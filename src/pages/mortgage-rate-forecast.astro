@@ -1,0 +1,360 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+export const prerender = true;
+---
+
+<DefaultLayout
+  title="Canadian Mortgage Rate Forecast 2026 — What Experts Predict"
+  description="Expert analysis of Canadian mortgage rates in 2026. Bank of Canada rate cuts, bond yields, fixed vs variable strategy for renewers."
+>
+  <!-- Breadcrumb -->
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Canadian Mortgage Rate Forecast 2026
+  </nav>
+
+  <!-- Hero -->
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated March 2026 · 13-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">Canadian Mortgage Rate Forecast 2026 — What Experts Predict</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-6">Where are Canadian mortgage rates headed in 2026? We analyze the Bank of Canada's rate cycle, bond yield trends, major bank consensus forecasts, and what it all means for your renewal decision — fixed or variable, lock in now or wait.</p>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <!-- Important disclaimer -->
+        <div class="rounded-lg p-5 mb-8" style="border: 2px solid var(--warning-foreground, #b45309); background: var(--warning, #fef9c3)">
+          <p class="font-bold mb-2" style="color: #92400e">Important Disclaimer</p>
+          <p class="text-sm leading-relaxed" style="color: #78350f">This article is for educational purposes only. Rate forecasts represent general market consensus and illustrative analysis — they are <strong>not financial advice</strong>, and future rate movements are inherently uncertain. No forecast, including those from major financial institutions, can guarantee where rates will land. Speak to a licensed mortgage professional before making any mortgage decision based on rate expectations.</p>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Where Rates Stand Right Now (Q1 2026)</h2>
+
+        <p class="mb-4 leading-relaxed">To understand where rates are going, you need to first understand where they are. As of Q1 2026, Canada's key mortgage-relevant benchmark rates sit at the following levels:</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
+            <p class="text-xs font-semibold uppercase tracking-wide mb-1" style="color: var(--muted-foreground)">Bank of Canada Overnight Rate</p>
+            <p class="text-3xl font-bold mb-1" style="color: var(--primary)">2.75%</p>
+            <p class="text-xs" style="color: var(--muted-foreground)">Down from peak of 5.00% in July 2023</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 2px solid var(--secondary); background: var(--card)">
+            <p class="text-xs font-semibold uppercase tracking-wide mb-1" style="color: var(--muted-foreground)">Prime Rate (major banks)</p>
+            <p class="text-3xl font-bold mb-1" style="color: var(--secondary)">4.95%</p>
+            <p class="text-xs" style="color: var(--muted-foreground)">Prime = BoC overnight + 2.20% (conventional spread)</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="text-xs font-semibold uppercase tracking-wide mb-1" style="color: var(--muted-foreground)">5-Year Fixed (competitive)</p>
+            <p class="text-3xl font-bold mb-1" style="color: var(--primary)">4.3–4.8%</p>
+            <p class="text-xs" style="color: var(--muted-foreground)">Range across major lenders. Driven by GoC 5-year bond yield.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="text-xs font-semibold uppercase tracking-wide mb-1" style="color: var(--muted-foreground)">Variable Rate (typical)</p>
+            <p class="text-3xl font-bold mb-1" style="color: var(--primary)">~4.20%</p>
+            <p class="text-xs" style="color: var(--muted-foreground)">Prime minus 0.75% = approx. 4.20% for well-qualified borrowers</p>
+          </div>
+        </div>
+
+        <p class="mb-6 leading-relaxed">The critical context: rates in early 2026 are dramatically lower than the peaks of 2023, but still elevated relative to the historic lows of 2020–2021. For the approximately 1.2 million Canadian households renewing their mortgages in 2026 — many of whom locked in at sub-2% during the pandemic — this renewal cycle still represents a significant payment adjustment regardless of which direction rates move from here.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How the Bank of Canada Rate Affects Your Mortgage</h2>
+
+        <p class="mb-4 leading-relaxed">Understanding the transmission mechanism from the Bank of Canada's overnight rate to your mortgage payment is essential for interpreting rate forecasts meaningfully.</p>
+
+        <p class="mb-4 leading-relaxed">The Bank of Canada sets an overnight target rate — the rate at which banks lend to each other overnight to manage their reserve requirements. This rate directly sets the floor for the <strong>prime rate</strong> at commercial banks, which has historically been set at prime = overnight + 2.20% (though this spread has varied slightly over time).</p>
+
+        <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+          <p class="font-bold mb-3">The Rate Transmission Chain</p>
+          <div class="flex flex-col gap-2 text-sm">
+            <div class="flex items-center gap-3">
+              <span class="rounded px-2 py-1 font-bold text-white text-xs" style="background: var(--primary)">BoC Overnight Rate</span>
+              <span style="color: var(--muted-foreground)">→ directly sets →</span>
+              <span class="rounded px-2 py-1 font-bold text-white text-xs" style="background: var(--secondary)">Prime Rate</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="rounded px-2 py-1 font-bold text-white text-xs" style="background: var(--secondary)">Prime Rate</span>
+              <span style="color: var(--muted-foreground)">→ directly sets →</span>
+              <span class="rounded px-2 py-1 font-bold text-xs" style="background: var(--border)">Variable Mortgage Rate (prime ± discount)</span>
+            </div>
+            <div class="flex items-center gap-3 mt-2">
+              <span class="rounded px-2 py-1 font-bold text-xs" style="background: var(--border)">GoC 5-Year Bond Yield</span>
+              <span style="color: var(--muted-foreground)">→ primarily drives →</span>
+              <span class="rounded px-2 py-1 font-bold text-xs" style="background: var(--border)">5-Year Fixed Mortgage Rate</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="mb-4 leading-relaxed">Fixed mortgage rates are driven not by the overnight rate but primarily by <strong>Government of Canada bond yields</strong> — especially the 5-year bond yield. Bond markets look forward, pricing in expected future rate paths and inflation outcomes. This is why fixed rates sometimes move in the opposite direction of BoC actions, or why rates can change even when the BoC holds steady.</p>
+
+        <p class="mb-6 leading-relaxed">Variable rate mortgages, by contrast, move directly in lockstep with prime rate changes. Every BoC cut of 25 basis points reduces variable rate mortgage payments by approximately $12–$15 per $100,000 of mortgage balance per month.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">What's Driving Rates in 2026</h2>
+
+        <p class="mb-4 leading-relaxed">The current rate environment is the product of several intersecting forces, each of which has implications for where rates go from here.</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">The 2024–2025 BoC Easing Cycle</h3>
+        <p class="mb-4 leading-relaxed">After raising rates aggressively from 0.25% to 5.00% between March 2022 and July 2023, the Bank of Canada began cutting in June 2024. By Q1 2026, the overnight rate had reached 2.75% — a 225-basis-point easing cycle over approximately 20 months. This was driven by falling inflation (CPI returning to near the 2% target), a softening Canadian labour market, and concerns about economic growth.</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">Inflation Trajectory</h3>
+        <p class="mb-4 leading-relaxed">Canadian CPI inflation returned to near the Bank of Canada's 2% target range through 2025, giving the BoC latitude to cut rates. The risk in 2026 is re-acceleration — particularly from global supply chain disruptions, shelter costs (which lag broader inflation in the CPI calculation), and external trade pressures. The BoC's mandate to maintain 2% inflation puts a floor on how far cuts can go.</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">US Tariff Uncertainty and Trade Risk</h3>
+        <p class="mb-4 leading-relaxed">US trade policy — including tariff threats on Canadian goods — has introduced meaningful economic uncertainty into the Canadian outlook. If tariffs significantly reduce Canadian exports and economic activity, the BoC may cut further to stimulate growth. Conversely, if tariffs pass through to higher consumer prices, the BoC may need to hold rates to manage inflation. This bilateral tension makes rate forecasting in 2026 particularly difficult.</p>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">The Housing Market</h3>
+        <p class="mb-4 leading-relaxed">Canada's housing market remains structurally supply-constrained. Rate cuts in 2024–2025 have supported demand recovery in many markets, particularly in lower price points. The Bank of Canada monitors housing affordability and household debt levels, as excess stimulus in this sector can complicate its inflation mandate.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Market Rate Forecasts: Illustrative Consensus for 2026</h2>
+
+        <p class="mb-4 leading-relaxed">Major Canadian financial institutions, bond market strategists, and independent economists regularly publish mortgage rate outlooks. Note that these are estimates and consensus ranges — individual bank forecasts vary and change frequently. The following represents illustrative consensus as of early 2026:</p>
+
+        <div class="overflow-x-auto mb-4">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Rate / Benchmark</th>
+                <th class="p-3 text-left">Current (Q1 2026)</th>
+                <th class="p-3 text-left">Forecast Mid-2026</th>
+                <th class="p-3 text-left">Forecast End-2026</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">BoC Overnight Rate</td>
+                <td class="p-3">2.75%</td>
+                <td class="p-3">2.50–2.75%</td>
+                <td class="p-3">2.25–2.75%</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Prime Rate</td>
+                <td class="p-3">4.95%</td>
+                <td class="p-3">4.70–4.95%</td>
+                <td class="p-3">4.45–4.95%</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">5-Year Fixed (competitive)</td>
+                <td class="p-3">4.3–4.8%</td>
+                <td class="p-3">4.1–4.7%</td>
+                <td class="p-3">3.9–4.5%</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Variable (prime - 0.75%)</td>
+                <td class="p-3">~4.20%</td>
+                <td class="p-3">~3.95–4.20%</td>
+                <td class="p-3">~3.70–4.20%</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">2-Year Fixed</td>
+                <td class="p-3">~4.3–4.6%</td>
+                <td class="p-3">~4.0–4.4%</td>
+                <td class="p-3">~3.8–4.3%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-xs mb-8" style="color: var(--muted-foreground)">Illustrative consensus ranges only. Not financial advice. Actual rate movements depend on inflation, economic data, and Bank of Canada decisions that cannot be predicted with certainty.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Fixed vs. Variable Strategy for Renewers in 2026</h2>
+
+        <p class="mb-4 leading-relaxed">The fixed vs. variable decision at renewal in 2026 is a more balanced call than it was in 2020 (when variable was obviously attractive in a low-rate environment) or in 2022–2023 (when fixed was obviously attractive as rates spiked). Here's how to think through the key considerations:</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
+            <h4 class="font-bold mb-3" style="color: var(--primary)">Case for Fixed in 2026</h4>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color: var(--muted-foreground)">
+              <li>• Rates are already at historically reasonable levels — locking in 4.3–4.5% provides certainty at a defensible number</li>
+              <li>• US tariff and trade uncertainty could push Canadian inflation higher, potentially halting BoC cuts</li>
+              <li>• Payment certainty is valuable if your budget is stretched from the existing rate shock</li>
+              <li>• Shorter fixed terms (2–3 year) available at competitive pricing without committing to a full 5 years</li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5" style="border: 2px solid var(--secondary); background: var(--card)">
+            <h4 class="font-bold mb-3" style="color: var(--secondary)">Case for Variable in 2026</h4>
+            <ul class="text-sm space-y-2 leading-relaxed" style="color: var(--muted-foreground)">
+              <li>• Market consensus leans toward further modest BoC cuts, which would reduce variable rate payments</li>
+              <li>• Variable penalty is always 3 months' interest — far more predictable than bank IRD penalties</li>
+              <li>• If you may sell or refinance within 2–3 years, variable avoids potentially large IRD exposure</li>
+              <li>• Historical data shows variable has outperformed fixed over most rolling 5-year periods in Canada</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Should I Lock In Now or Wait? The Rate Hold Strategy</h2>
+
+        <p class="mb-4 leading-relaxed">One of the most common questions from borrowers approaching renewal is: "Should I lock in my rate now, or wait to see if rates fall further?" The good news is that you don't have to choose.</p>
+
+        <p class="mb-4 leading-relaxed">Most Canadian lenders offer <strong>rate holds of up to 120 days</strong> (four months) before your renewal or purchase date. This means you can lock in today's rate now — protecting yourself if rates rise — while still being able to take advantage of a lower rate if rates fall between now and your renewal date.</p>
+
+        <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+          <p class="font-bold mb-2">How Rate Holds Work</p>
+          <ul class="text-sm space-y-2 leading-relaxed">
+            <li>• Lock in a rate today, up to 120 days before your renewal date</li>
+            <li>• If rates rise before your renewal, you keep the locked rate — you're protected</li>
+            <li>• If rates fall before your renewal, many lenders allow you to take the lower rate (sometimes called a "float-down" option)</li>
+            <li>• The rate hold is free — there is no cost or commitment to actually use that lender</li>
+            <li>• A mortgage broker can hold rates with multiple lenders simultaneously while you finalize your decision</li>
+          </ul>
+        </div>
+
+        <p class="mb-6 leading-relaxed">The strategic implication: start your renewal process 120 days before your maturity date. Lock in a competitive rate immediately. If rates fall further, your broker can often access the improved rate or switch to a competing lender at the lower rate before closing. This approach gives you the upside of potential rate cuts with protection against rate increases — the best of both scenarios.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Historical Context: The 2020–2026 Rate Cycle</h2>
+
+        <p class="mb-4 leading-relaxed">To understand where we are, it's useful to trace the full arc of this rate cycle:</p>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Period</th>
+                <th class="p-3 text-left">BoC Overnight Rate</th>
+                <th class="p-3 text-left">Key Context</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Early 2020</td>
+                <td class="p-3">1.75%</td>
+                <td class="p-3">Pre-pandemic baseline</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">March 2020</td>
+                <td class="p-3">0.25%</td>
+                <td class="p-3">Emergency cuts to 0.25% — pandemic stimulus</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">2020–Early 2022</td>
+                <td class="p-3">0.25%</td>
+                <td class="p-3">Held at emergency lows — driving historic housing boom</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">March 2022 – July 2023</td>
+                <td class="p-3">0.25% → 5.00%</td>
+                <td class="p-3">475 bps of hikes in 17 months — fastest tightening cycle since 1980s</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">July 2023 – May 2024</td>
+                <td class="p-3">5.00%</td>
+                <td class="p-3">Held at cycle peak while inflation moderated</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">June 2024 – Q1 2026</td>
+                <td class="p-3">5.00% → 2.75%</td>
+                <td class="p-3">225 bps of cuts as inflation returned to target</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">2026 (forecast)</td>
+                <td class="p-3">2.25–2.75%</td>
+                <td class="p-3">Possible modest additional cuts; rate stability increasingly likely</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">What This Means for the 2026 Renewal Wave</h2>
+
+        <p class="mb-4 leading-relaxed">The Bank of Canada and CMHC have both flagged 2025–2026 as a peak renewal period, with a large cohort of mortgages originated during the record-low-rate pandemic era now reaching their first renewal. Estimates suggest over 1 million mortgage households faced renewal in 2025 alone, with similar volumes expected through 2026.</p>
+
+        <p class="mb-4 leading-relaxed">For these borrowers, even though rates have fallen significantly from their 2023 peaks, the payment adjustment is still substantial. A homeowner who locked in a 5-year fixed at 1.79% in 2021 and is renewing at 4.4% in 2026 would see their payment increase by approximately 35–45% on a typical mortgage balance — a meaningful household budget impact.</p>
+
+        <p class="mb-4 leading-relaxed">The practical implications for renewers:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Start your renewal process at least 120 days early — not to get a rush rate, but to have time to model different scenarios with your broker</li>
+          <li>Consider accelerating your amortization if you can absorb higher payments — lower amortization means less total interest over the life of the loan</li>
+          <li>Don't automatically renew with your current lender — the 2024 rule change means you can switch without a new stress test, and competitors' rates may be meaningfully lower</li>
+          <li>Consider whether your household budget can absorb payment increases before choosing between fixed certainty and potential variable rate savings</li>
+          <li>Talk to a broker, not just your bank — brokers access lenders you can't reach directly, and they're free to use</li>
+        </ul>
+
+        <!-- Related guides -->
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">ARM vs VRM, trigger rates, IRD penalties, and full decision framework.</p>
+            </a>
+            <a href="/mortgage-renewal-term-lengths" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Term Lengths Compared</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">1-year through 5-year fixed, variable, and open — full comparison.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">No stress test for straight switches since 2024. Save thousands.</p>
+            </a>
+            <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Checklist</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step from 120 days before to signing day.</p>
+            </a>
+            <a href="/mortgage-renewal-mistakes" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Including auto-renewing and choosing rate type based on emotion.</p>
+            </a>
+            <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">How a Broker Helps at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Free to use, accesses 30+ lenders including monolines.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">Current Rates (Q1 2026)</a></li>
+              <li><a href="#" style="color: var(--secondary)">BoC → Prime → Mortgage</a></li>
+              <li><a href="#" style="color: var(--secondary)">What's Driving Rates</a></li>
+              <li><a href="#" style="color: var(--secondary)">2026 Rate Forecasts</a></li>
+              <li><a href="#" style="color: var(--secondary)">Fixed vs Variable Strategy</a></li>
+              <li><a href="#" style="color: var(--secondary)">Lock In or Wait?</a></li>
+              <li><a href="#" style="color: var(--secondary)">Historical Context</a></li>
+              <li><a href="#" style="color: var(--secondary)">The 2026 Renewal Wave</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Not Sure What to Do?</h3>
+            <p class="text-sm mb-4 opacity-90">A broker can model fixed vs. variable scenarios with real current rates for your specific situation — for free.</p>
+            <a href="/book-a-call" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2 text-sm" style="color: var(--primary)">The Rate Hold Strategy</h3>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Start 120 days early. Lock in a rate. If rates fall, your broker can often access the lower rate. You get downside protection with upside opportunity.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <!-- Mobile CTA -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <!-- CTA Section -->
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-3xl font-bold mb-4">Get a Personalized Rate Strategy for Your Renewal</h2>
+      <p class="text-lg mb-8 opacity-90">Rate forecasts are useful context — but your renewal decision should be based on your specific financial situation, risk tolerance, and timeline. A mortgage broker can model both fixed and variable scenarios with real current rates. It's free, and it could save you thousands.</p>
+      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        Book Your Free Renewal Strategy Call
+      </a>
+    </div>
+  </section>
+
+  <!-- Disclaimer -->
+  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
+    This content is for educational purposes only and does not constitute financial or mortgage advice. Rate forecasts are illustrative estimates based on general market consensus and are not guaranteed. Actual future rates depend on economic conditions, Bank of Canada decisions, and market factors that cannot be predicted with certainty. Always consult a licensed mortgage professional for advice specific to your situation.
+  </p>
+</DefaultLayout>
