@@ -1,0 +1,99 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import MortgageCalculators from '@/components/calculators/mortgage-calculators';
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Calculator — Payment, Rate Comparison & Penalty | MortgageRenewalHub.ca"
+  description="Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation. Updated for 2026."
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Mortgage Renewal Calculator
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-10">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tools</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Renewal Calculators</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Five free, real-time calculators built for Canadian mortgage renewals. All calculations use semi-annual compounding — the standard for Canadian mortgages. No email required.
+      </p>
+    </div>
+
+    <MortgageCalculators client:load />
+
+    <div class="mt-16 space-y-10">
+      <div>
+        <h2 class="text-heading-3 mb-3">How to Use These Calculators</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          {[
+            { name: "Payment Estimator", use: "Enter your balance, new rate, and remaining amortization to see your new payment. Compare monthly, bi-weekly, and accelerated options." },
+            { name: "Rate Comparison", use: "Enter your bank's rate and a broker's rate to see exactly how much you save monthly, annually, and over 5 years." },
+            { name: "Amortization Extension", use: "See what extending your amortization does to your payment and total interest — the key trade-off for affordability." },
+            { name: "Penalty Estimator", use: "Thinking of breaking your mortgage early? Estimate your IRD or 3-month interest penalty and the breakeven point." },
+            { name: "Debt Consolidation", use: "Model what rolling your credit cards, car loan, or line of credit into your mortgage does to your monthly cash flow." },
+          ].map(item => (
+            <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+              <h3 class="text-heading-5 mb-2">{item.name}</h3>
+              <p class="text-body-sm text-muted-foreground">{item.use}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Canadian Mortgage Math Note</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Unlike US mortgages, Canadian mortgages compound semi-annually (twice per year), not monthly. This means the effective monthly rate is slightly different from the nominal annual rate divided by 12.
+        </p>
+        <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 font-mono text-body-sm text-muted-foreground">
+          <p>Effective monthly rate = (1 + annual_rate / 2)^(1/6) − 1</p>
+          <p class="mt-2">Monthly payment = P × [r(1+r)^n] / [(1+r)^n − 1]</p>
+          <p class="mt-1 text-body-xs">Where: P = principal, r = effective monthly rate, n = number of payments</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Guides</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal" },
+            { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates" },
+            { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
+            { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal" },
+            { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want a Broker to Confirm These Numbers?</h2>
+      <p class="text-white/80 mb-6">Get real lender quotes from 30+ lenders — free. A licensed broker will validate your calculations and find you the best rate.</p>
+      <a href="/book-a-call">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Renewal Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
+    <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
+      Book Free Broker Consultation
+    </a>
+  </div>
+
+  <p class="container py-6 text-body-xs text-muted-foreground text-center">
+    Calculator results are estimates only. Canadian mortgages compound semi-annually. Always verify with your lender or a licensed mortgage professional. This content is for educational purposes only and does not constitute financial or mortgage advice.
+  </p>
+</DefaultLayout>

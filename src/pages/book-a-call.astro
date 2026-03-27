@@ -1,0 +1,52 @@
+---
+export const prerender = false;
+
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { SchedulingWidgetWithBoundary } from '@/components/scheduling/scheduling-with-boundary';
+import { services, teamMembers } from '@/lib/nylas/config';
+---
+
+<DefaultLayout
+  title="Book a Free Renewal Strategy Call — MortgageRenewalHub.ca"
+  description="Speak with a licensed Canadian mortgage professional about your renewal. Free, no obligation — we'll compare rates from 30+ lenders and build your strategy."
+>
+  <section class="section-padding py-16">
+    <div class="container max-w-screen-xl">
+      <div class="text-center mb-10">
+        <div class="inline-flex items-center gap-2 rounded-full bg-secondary-25 px-4 py-1.5 text-body-sm-medium text-secondary-200 mb-4">
+          Free · No Obligation · Licensed Professionals
+        </div>
+        <h1 class="text-4xl font-bold tracking-tight md:text-5xl">Book Your Free Renewal Strategy Call</h1>
+        <p class="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
+          Our licensed mortgage professionals will review your options, compare rates across 30+ lenders, and build a personalized strategy — completely free.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-6 text-body-sm text-muted-foreground">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-secondary-100" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            30-minute call
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-secondary-100" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Access to 30+ lenders
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-secondary-100" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            Zero broker fees
+          </div>
+        </div>
+      </div>
+
+      <SchedulingWidgetWithBoundary
+        client:load
+        services={services}
+        teamMembers={teamMembers}
+        initialServiceId="renewal-strategy-call"
+        initialRegion="canada"
+      />
+
+      <p class="mt-8 text-center text-body-xs text-muted-foreground max-w-xl mx-auto">
+        This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
+      </p>
+    </div>
+  </section>
+</DefaultLayout>

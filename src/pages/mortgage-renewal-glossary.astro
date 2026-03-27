@@ -1,0 +1,194 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const glossary: Record<string, { term: string; definition: string }[]> = {
+  A: [
+    { term: "Adjustable Rate Mortgage (ARM)", definition: "A variable rate mortgage where both the interest rate and the payment amount change when the lender's prime rate changes. When rates rise, your payment goes up. When rates fall, your payment goes down. Distinct from a VRM where the payment stays fixed." },
+    { term: "Amortization Period", definition: "The total length of time required to pay off your mortgage in full with regular scheduled payments. Typically 25 years (insured) or up to 30 years (conventional) in Canada. Not to be confused with the mortgage term, which is much shorter." },
+    { term: "Annual Percentage Rate (APR)", definition: "The total cost of borrowing expressed as a yearly rate, including interest and most fees. Often higher than the stated interest rate and provides a more complete cost comparison between lenders." },
+    { term: "Assignment", definition: "The legal transfer of your mortgage from one lender to another without discharging and re-registering the charge. Only possible with standard charge mortgages. Collateral charges cannot be assigned." },
+  ],
+  B: [
+    { term: "B-Lender", definition: "Alternative lenders that serve borrowers who don't meet the stricter criteria of major banks and monolines. Include institutions like Home Trust, Equitable Bank, Haventree Bank, and MCAP's alternative programs. Rates are higher than A-lenders but lower than private lenders." },
+    { term: "Bank of Canada (BoC) Rate", definition: "The overnight target rate set by the Bank of Canada at 8 scheduled meetings per year. Prime rate (and variable mortgage rates) move in response to BoC rate changes. As of January 2026, the BoC rate is 2.25%." },
+    { term: "Blend-and-Extend", definition: "A strategy offered by lenders that blends your existing locked-in rate with the current market rate to create a new blended rate, then extends the term from today. Avoids prepayment penalties but results in a rate above current best available." },
+    { term: "Bridge Loan", definition: "Short-term financing that allows you to buy a new home before selling your existing one. Bridge loans are typically open and carry higher rates, as they're designed to be held for a short period." },
+  ],
+  C: [
+    { term: "Canadian Mortgage Charter", definition: "A government framework introduced in 2023 that sets expectations for how lenders treat mortgage borrowers, including proactively contacting borrowers 4–6 months before renewal and providing relief options for those in financial hardship." },
+    { term: "CMHC (Canada Mortgage and Housing Corporation)", definition: "The federal Crown corporation that provides mortgage default insurance for high-ratio mortgages (less than 20% down payment). Also conducts housing market research and supports affordable housing programs." },
+    { term: "Closed Mortgage", definition: "A mortgage that cannot be paid off or refinanced early without paying a prepayment penalty. The vast majority of Canadian mortgages are closed. Fixed closed mortgages carry IRD penalties; variable closed mortgages carry 3-month interest penalties." },
+    { term: "Collateral Charge Mortgage", definition: "A mortgage registered against your property for an amount higher than your actual loan (often up to 125% of property value), tied to the lender's general security. Cannot be assigned to a new lender — must be fully discharged to switch. TD Canada Trust and National Bank register all mortgages this way by default." },
+    { term: "Consumer Proposal", definition: "A formal legal process under the Bankruptcy and Insolvency Act that allows you to settle debt with creditors for less than the full amount owed. Impacts your credit score significantly and affects your ability to qualify for mortgage renewals, particularly with A-lenders." },
+    { term: "Conventional Mortgage", definition: "A mortgage with a down payment of 20% or more, meaning no CMHC mortgage default insurance is required. Maximum amortization is typically 30 years (extended to 30 years for first-time buyers and new builds as of late 2024)." },
+  ],
+  D: [
+    { term: "Debt Service Ratio", definition: "A metric lenders use to qualify borrowers. GDS (Gross Debt Service) = housing costs ÷ gross income (max 39%). TDS (Total Debt Service) = all debt payments ÷ gross income (max 44%). Both calculated at the stress test rate for new mortgages and refinances." },
+    { term: "Default Insurance", definition: "Insurance required for mortgages with less than 20% down payment. Provided by CMHC, Sagen, or Canada Guaranty. The premium (0.60%–4.00% of the mortgage amount) is added to your mortgage balance. Protects the lender, not the borrower." },
+    { term: "Discharge Fee", definition: "A fee charged by your current lender when your mortgage is paid out and the charge is removed from your property title. Typically $200–$400 in Canada. Often covered by the new lender as an incentive when you switch." },
+    { term: "Discounted Rate", definition: "The actual interest rate you receive after negotiation or through a mortgage broker — lower than the lender's posted rate. The discount from posted to discounted can range from 0.50% to 1.50% or more depending on the product and market conditions." },
+  ],
+  E: [
+    { term: "Early Renewal", definition: "Renewing your mortgage before your maturity date. Your current lender may allow early renewal (typically within 120 days of maturity) at new terms, sometimes at a premium. Switching lenders typically requires waiting until maturity unless you pay a prepayment penalty." },
+    { term: "Equity", definition: "The portion of your home's value that you own outright — the difference between your property's market value and your outstanding mortgage balance. Home equity grows as you pay down principal and as property values appreciate." },
+  ],
+  F: [
+    { term: "FCAC (Financial Consumer Agency of Canada)", definition: "The federal regulator that protects mortgage consumers. FCAC rules require federally regulated lenders to send renewal statements at least 21 days before maturity and establish consumer rights in mortgage transactions." },
+    { term: "First National", definition: "Canada's largest non-bank mortgage lender, operating exclusively through the broker channel. Known for competitive rates and a fairer IRD penalty formula than major banks." },
+    { term: "Fixed Rate Mortgage", definition: "A mortgage where the interest rate remains constant for the entire term, regardless of market conditions. Payments are predictable. Fixed rates are determined primarily by Government of Canada bond yields, not the Bank of Canada overnight rate." },
+  ],
+  G: [
+    { term: "GDS Ratio", definition: "Gross Debt Service ratio. The percentage of your gross monthly income that covers housing costs: mortgage payments, property taxes, heat, and 50% of condo fees. Maximum typically 39% for qualifying purposes. Calculated at the stress test rate for refinances." },
+    { term: "Government of Canada Bond Yield", definition: "The interest rate earned on Government of Canada bonds. 5-year GoC bond yields are the primary driver of 5-year fixed mortgage rates. When bond yields rise, fixed mortgage rates typically rise within days or weeks." },
+  ],
+  H: [
+    { term: "High-Ratio Mortgage", definition: "A mortgage with less than 20% down payment, requiring mandatory CMHC default insurance. Maximum amortization is 25 years (or 30 years for first-time buyers and new builds as of late 2024)." },
+    { term: "Home Trust", definition: "A Canadian B-lender that specializes in serving borrowers who don't qualify with major banks — including those with bruised credit, self-employed borrowers, and those in non-traditional income situations." },
+  ],
+  I: [
+    { term: "Insured Mortgage", definition: "A mortgage that carries default insurance from CMHC, Sagen, or Canada Guaranty. Required when the down payment is less than 20% of the purchase price. Insured mortgages are subject to the stress test and have maximum amortization limits." },
+    { term: "Interest Rate Differential (IRD)", definition: "The penalty for breaking a fixed-rate mortgage before the end of the term. Calculated as the difference between your contract rate and the lender's current rate for the remaining term, multiplied by your balance. Can be tens of thousands of dollars at major banks due to how they calculate the comparison rate." },
+  ],
+  L: [
+    { term: "Lender", definition: "The institution providing your mortgage funds. In Canada, this includes Big 6 banks, monoline lenders, credit unions, B-lenders, and private lenders. Each has different rate competitiveness, penalty structures, and qualifying criteria." },
+    { term: "LTV (Loan-to-Value Ratio)", definition: "The ratio of your mortgage balance to your property's market value. A $400,000 mortgage on an $800,000 property = 50% LTV. Maximum LTV for refinancing is 80%. Lower LTV often qualifies for better rates and more lender options." },
+  ],
+  M: [
+    { term: "Maturity Date", definition: "The specific date your current mortgage term expires. This is your renewal date. Your lender must send a renewal statement at least 21 days before this date under FCAC rules. The optimal time to begin shopping is 120 days before maturity." },
+    { term: "Monoline Lender", definition: "A financial institution that only offers mortgages — no chequing accounts, savings accounts, or other banking products. Examples: First National, MCAP, RMG, Merix. Only accessible through mortgage brokers. Typically offer lower rates and fairer penalty formulas than major banks." },
+    { term: "Mortgage Broker", definition: "A licensed professional who shops for mortgages on behalf of borrowers across a network of 30+ lenders. Paid by the lender when your mortgage funds — free to the borrower. Access to monoline lenders and alternative programs unavailable directly to the public." },
+    { term: "Mortgage Default Insurance", definition: "Insurance required for mortgages with less than 20% down payment. Protects the lender (not you) if you default. CMHC, Sagen, and Canada Guaranty are the three providers in Canada. The premium is added to your mortgage balance." },
+    { term: "Mortgage Term", definition: "The length of your current mortgage agreement — the period during which your rate and conditions are locked in. Most commonly 5 years in Canada, ranging from 6 months to 10 years. At the end of each term, you must renew or pay off the mortgage." },
+  ],
+  N: [
+    { term: "NOA (Notice of Assessment)", definition: "The annual document issued by the CRA confirming your filed income tax return and final tax position. Lenders require the last 2 years' NOAs to verify income for self-employed borrowers and often as supplementary confirmation for employed borrowers." },
+    { term: "Negative Amortization", definition: "A situation where your mortgage payment is insufficient to cover all of the interest owed, causing the unpaid interest to be added to your principal balance — making your mortgage balance grow rather than shrink. Can occur with VRM mortgages that hit their trigger rate in a rising rate environment." },
+  ],
+  O: [
+    { term: "Open Mortgage", definition: "A mortgage that can be repaid in full or in part at any time without prepayment penalties. Interest rates on open mortgages are significantly higher (0.5–1.5%) than comparable closed mortgages. Typically used for short-term bridge situations or when early payoff is certain." },
+    { term: "Overnight Rate", definition: "See 'Bank of Canada Rate'. The benchmark rate at which major financial institutions borrow and lend money overnight. The BoC adjusts this rate 8 times per year to manage inflation and economic conditions." },
+  ],
+  P: [
+    { term: "Portability", definition: "The ability to transfer your existing mortgage (rate, terms, and remaining balance) from one property to another when you move. Not all mortgages are portable. Time limits typically apply (30–90 days between sale and purchase completion)." },
+    { term: "Posted Rate", definition: "The highest rate a lender publicly advertises for a given mortgage product. What lenders offer in renewal statements before negotiation. Always higher than discounted rates. The posted rate is used in some IRD penalty calculations, which can affect the severity of breaking fees." },
+    { term: "Pre-authorization", definition: "A soft credit inquiry mortgage brokers or lenders may perform early in the process to assess your approximate qualifying position before submitting a full application." },
+    { term: "Prepayment Privilege", definition: "The contractual right to make additional lump-sum payments on your principal, beyond your regular scheduled payments, without penalty. Most Canadian mortgages allow 10–20% of the original principal as a lump-sum payment each year." },
+    { term: "Prime Rate", definition: "The interest rate major Canadian banks use as a reference for variable rate products, including mortgages and lines of credit. Typically Bank of Canada overnight rate + 2.20%. As of March 2026, Canadian prime rate is 4.45%." },
+    { term: "Principal", definition: "The amount you originally borrowed on your mortgage (or the current outstanding balance after payments). Interest is calculated on the principal. Each regular payment reduces the principal slightly while covering the period's interest." },
+    { term: "Private Lender", definition: "Individual investors or small companies that lend mortgage funds directly — not regulated financial institutions. Last resort option for borrowers who can't qualify anywhere else. Rates typically 7–14%+ and terms usually 1–2 years maximum. Accessed through mortgage brokers." },
+  ],
+  R: [
+    { term: "Rate Hold", definition: "A guaranteed interest rate offered by a lender for a set period (typically 120 days) before your mortgage funds. Protects you if rates rise during that window. Most lenders allow you to drop to a lower rate if rates fall within the hold period." },
+    { term: "Refinancing", definition: "Replacing your existing mortgage with a new one — potentially for a different amount, different amortization, or to access home equity. Requires a new stress test, appraisal, and legal work. Different from a renewal, which maintains the same loan amount." },
+    { term: "Renewal", definition: "The process of agreeing to a new term and rate at the end of your existing mortgage term. Your outstanding balance continues; no new money is advanced. Can be done with your current lender or by switching to a new lender." },
+    { term: "Renewal Statement", definition: "The document your lender sends before your maturity date outlining their proposed new terms for the next term. Must be sent at least 21 days before maturity under FCAC rules. Contains the proposed rate, term, and payment amount — typically at posted rates." },
+  ],
+  S: [
+    { term: "Standard Charge Mortgage", definition: "A mortgage registered against your property for exactly the amount borrowed, allowing it to be assigned (transferred) to a new lender at renewal without full discharge. More flexible for switching than a collateral charge." },
+    { term: "Stress Test", definition: "The federal mortgage qualifying requirement that borrowers must qualify at the higher of (contract rate + 2%) or 5.25%. Applies to all new mortgage applications and refinances. As of November 2024, straight lender switches at renewal no longer require a stress test." },
+  ],
+  T: [
+    { term: "TDS Ratio", definition: "Total Debt Service ratio. The percentage of gross monthly income that covers all debt payments: mortgage, property taxes, heat, condo fees, car loans, student loans, and minimum credit card payments. Maximum typically 44%. Must be under this threshold when qualifying at the stress test rate." },
+    { term: "Term", definition: "The length of your current mortgage agreement. At the end of the term (the maturity date), your mortgage must be renewed or paid off. Most common Canadian term: 5 years. Options range from 6 months to 10 years, fixed or variable." },
+    { term: "Trigger Rate", definition: "Applies only to VRM (Variable Rate Mortgage) products with fixed payments. The trigger rate is the interest rate at which your fixed payment no longer covers all the interest owing. When reached, lenders typically require a payment increase or lump-sum contribution." },
+  ],
+  V: [
+    { term: "Variable Rate Mortgage (VRM)", definition: "A mortgage where the interest rate fluctuates with the lender's prime rate (driven by BoC decisions) but the payment amount stays fixed. The proportion going to principal vs. interest changes with rate movements. Can trigger a trigger rate event in rising rate environments." },
+  ],
+};
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Glossary: 50+ Terms Explained — MortgageRenewalHub.ca"
+  description="Complete Canadian mortgage renewal glossary. 50+ terms defined from ARM to VRM — amortization, collateral charge, IRD, stress test, trigger rate, and more."
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Renewal Glossary
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Canadian Mortgage Renewal Glossary: 50+ Terms Explained</h1>
+    <p class="text-lg mb-4" style="color: var(--muted-foreground)">Updated March 2026</p>
+    <p class="mb-8 leading-relaxed">From amortization to variable rate mortgages, this glossary covers every term you'll encounter when renewing a Canadian mortgage. Click any letter to jump to that section.</p>
+
+    <!-- Letter navigation -->
+    <div class="flex flex-wrap gap-2 mb-8">
+      {Object.keys(glossary).map(letter => (
+        <a href={`#letter-${letter}`} class="w-8 h-8 flex items-center justify-center rounded font-bold text-sm text-white hover:opacity-80 transition-opacity" style="background: var(--secondary)">
+          {letter}
+        </a>
+      ))}
+    </div>
+
+    <!-- Accordion sections by letter -->
+    <div class="space-y-2">
+      {Object.entries(glossary).map(([letter, terms]) => (
+        <details class="rounded-lg overflow-hidden" style="border: 1px solid var(--border)">
+          <summary id={`letter-${letter}`} class="flex items-center gap-4 p-4 cursor-pointer font-bold text-lg text-white" style="background: var(--primary); list-style: none">
+            <span class="text-2xl" style="color: var(--secondary)">{letter}</span>
+            <span>{terms.map(t => t.term).join(', ')}</span>
+          </summary>
+          <div class="divide-y" style="border-color: var(--border)">
+            {terms.map(item => (
+              <div class="p-5" style="background: var(--card)">
+                <h3 class="font-bold mb-2" style="color: var(--secondary)">{item.term}</h3>
+                <p class="text-sm leading-relaxed" style="color: var(--foreground)">{item.definition}</p>
+              </div>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <!-- Internal links -->
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Term vs amortization and the full renewal process explained.</p>
+        </a>
+        <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">ARM vs VRM, trigger rates, IRD penalties explained in context.</p>
+        </a>
+        <a href="/mortgage-lender-types-canada" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types in Canada</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, B-lenders, private lenders — full comparison.</p>
+        </a>
+        <a href="/mortgage-renewal-faq" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered. Clear answers to common renewal questions.</p>
+        </a>
+        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">How brokers work, who pays them, and what they do for you.</p>
+        </a>
+        <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Checklist</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step from 12 months out to renewal day.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
+      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Renewal Strategy Call
+      </a>
+    </div>
+  </section>
+
+  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
+    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
+  </p>
+</DefaultLayout>

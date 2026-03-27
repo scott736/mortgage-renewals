@@ -1,0 +1,166 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+export const prerender = true;
+---
+
+<DefaultLayout
+  title="BC Mortgage Renewal — Best Rates in British Columbia for 2026"
+  description="BC homeowners: compare mortgage renewal rates in Vancouver, Victoria, Kelowna and across BC. Free broker consultation — access 30+ lenders."
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+          🏔️ British Columbia Renewal Guide
+        </div>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          BC Mortgage Renewal in 2026
+        </h1>
+        <p class="text-xl text-white/80 mb-8">
+          British Columbia homeowners carry some of the highest mortgage balances in Canada. In a market where even a 0.25% rate difference means thousands of dollars, shopping your renewal is more important here than almost anywhere else.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/book-a-call">
+            <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
+              Book Free BC Broker Consultation
+            </button>
+          </a>
+          <a href="/mortgage-renewal-calculator">
+            <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
+              Calculate My New Payment
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BC MARKET SNAPSHOT -->
+  <section class="border-b py-10 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { stat: "$1.3M+", label: "Average Metro Vancouver home price", sub: "REBGV data" },
+          { stat: "$900K", label: "Average home price across BC", sub: "BCREA estimates" },
+          { stat: "200K+", label: "BC mortgages renewing in 2026", sub: "CMHC estimates" },
+          { stat: "1%", label: "BC PTT (Provincial Transfer Tax) — first-time buyer exemptions available", sub: "BC Government" },
+        ].map(item => (
+          <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
+            <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
+            <div class="mt-1 text-sm font-medium text-gray-800">{item.label}</div>
+            <div class="mt-0.5 text-xs text-gray-500">{item.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-12 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-10">
+
+          <div>
+            <h2 class="text-heading-2 mb-4">BC Mortgage Market Overview</h2>
+            <p class="text-body-lg text-muted-foreground mb-4">
+              British Columbia consistently records some of the highest home prices in Canada. In Metro Vancouver, average detached home prices have regularly exceeded $1.5 million — meaning mortgages that would be jumbo loans elsewhere are routine in BC.
+            </p>
+            <p class="text-body-md text-muted-foreground mb-4">
+              This scale amplifies the impact of rate shopping. A 0.50% rate reduction on a $900,000 mortgage saves over $4,500 per year — or $22,500 over a 5-year term. That's a compelling reason to work with a broker rather than accept your lender's first offer.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">BC-Specific Renewal Considerations</h2>
+            <div class="space-y-4">
+              {[
+                {
+                  title: "BCFSA Mortgage Broker Licensing",
+                  content: "All mortgage brokers operating in BC must be licensed through the BC Financial Services Authority (BCFSA). When selecting a broker, verify their BCFSA registration. Look for designations like AMP (Accredited Mortgage Professional) as an additional quality indicator.",
+                },
+                {
+                  title: "BC Speculation and Vacancy Tax",
+                  content: "BC's speculation and vacancy tax can affect investment property owners in designated urban areas. This can affect your approach to renewal if you hold investment properties — ask your broker how this interacts with your mortgage strategy.",
+                },
+                {
+                  title: "Foreign Buyer Restrictions",
+                  content: "BC has foreign buyer restrictions in certain areas. These primarily affect purchases, not renewals — but matter if you're advising foreign-national co-borrowers or considering property disposition.",
+                },
+                {
+                  title: "BC Credit Unions",
+                  content: "BC has a strong credit union sector — Vancity, First West Credit Union (Envision, Valley First, Enderby, Westminster), Interior Savings, and many others. Credit unions operate under the BC Financial Institutions Act and BCFSA oversight, giving them some flexibility that federally regulated lenders don't have.",
+                },
+              ].map(item => (
+                <div class="rounded-xl border border-gray-100 bg-white p-5">
+                  <h3 class="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p class="text-body-sm text-muted-foreground">{item.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Major BC Markets</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { city: "Metro Vancouver", notes: "Highest prices nationally. Very competitive lending. REBGV tracks the broader Vancouver market." },
+                { city: "Victoria & Capital Region", notes: "Strong government employment base. Active retiree market. Moderate prices vs. Metro Vancouver." },
+                { city: "Kelowna & Okanagan", notes: "Resort and wine country market. Strong second home and vacation rental activity." },
+                { city: "Fraser Valley", notes: "Surburban Vancouver. Strong growth market. More affordable than Metro Vancouver proper." },
+                { city: "Kamloops & Interior", notes: "Resource economy. More moderate prices. Strong credit union market." },
+                { city: "Nanaimo & Island", notes: "Growing market, Vancouver Island. Strong retiree and remote-worker migration." },
+              ].map(m => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{m.city}</div>
+                  <div class="text-xs text-muted-foreground">{m.notes}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="rounded-xl bg-primary-0 border border-primary-50 p-6">
+            <h3 class="text-heading-5 text-primary-100 mb-3">Free BC Broker Consultation</h3>
+            <p class="text-body-sm text-muted-foreground mb-4">Licensed BC mortgage brokers comparing 30+ lenders. Free, no obligation.</p>
+            <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
+              Book Free Call →
+            </a>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">BC Resources</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://www.bcfsa.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">BCFSA — BC Financial Services Authority</a></li>
+              <li><a href="https://www.bcrea.bc.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">BCREA — BC Real Estate Association</a></li>
+              <li><a href="https://www.rebgv.org" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">REBGV — Real Estate Board of Greater Vancouver</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-100 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <h2 class="text-heading-2 text-white mb-4">Ready to Start Your BC Renewal?</h2>
+      <p class="text-xl text-white/80 mb-8">
+        Our licensed BC mortgage brokers compare rates from 30+ lenders. With BC home values, even a small rate improvement can save you tens of thousands. Book your free call today.
+      </p>
+      <a href="/book-a-call">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Consultation
+        </button>
+      </a>
+    </div>
+  </section>
+
+  <p class="container py-6 text-xs text-muted-foreground text-center">
+    This content is for educational purposes only. Market data is approximate. Always consult a licensed BC mortgage broker for advice specific to your situation.
+  </p>
+</DefaultLayout>

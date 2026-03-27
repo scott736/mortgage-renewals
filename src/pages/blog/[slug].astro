@@ -1,0 +1,45 @@
+---
+import { type CollectionEntry,getCollection, render } from "astro:content";
+
+import ZippayBlogPost from "@/components/sections/zippay-blog-post";
+import ZippayCtaCard from "@/components/sections/zippay-cta-card";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+
+type BlogEntry = CollectionEntry<"blog">;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props as BlogEntry;
+
+const title = post.data.title;
+const tagline = post.data.tagline ?? "";
+const intro = post.data.intro ?? "";
+const author = post.data.author ?? "";
+const image =
+  post.data.coverImage ?? post.data.image ?? "/images/blog/placeholder.webp";
+const publishedISO = post.data.published.toISOString();
+
+const { Content } = await render(post);
+---
+
+<DefaultLayout title={title} description={intro}>
+  <ZippayBlogPost
+    client:only="react"
+    tagline={tagline}
+    title={title}
+    intro={intro}
+    image={image}
+    author={author}
+    published={publishedISO}
+  >
+    <Content />
+  </ZippayBlogPost>
+
+  <ZippayCtaCard client:only="react" softBg={true} />
+</DefaultLayout>

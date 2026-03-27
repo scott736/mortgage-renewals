@@ -1,0 +1,90 @@
+---
+import { FaXTwitter } from "react-icons/fa6";
+import { FcGoogle } from "react-icons/fc";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="bg-primary-300 min-h-[820px] px-6 py-10 text-white lg:py-24">
+    <div
+      class="container mx-auto flex max-w-[400px] flex-col items-center justify-center py-10"
+    >
+      <a href="/" aria-label="Zippay home" class="mb-5">
+        <img
+          src="/images/logos/white.svg"
+          alt="logo light"
+          width="44"
+          height="44"
+          class="h-11 w-11 object-contain"
+          loading="lazy"
+        />
+      </a>
+
+      <div class="w-full text-center">
+        <h1 class="text-2xl leading-tight font-semibold">Welcome Back!</h1>
+        <p class="mt-2 text-sm text-white/80">
+          Please enter your details to sign in your account
+        </p>
+      </div>
+
+      <div class="mt-8 w-full space-y-4">
+        <Button
+          type="button"
+          className="w-full border border-white/15 bg-white/10 text-white hover:bg-white/15"
+          variant="secondary"
+        >
+          <FcGoogle className="mr-2 h-5 w-5" />
+          Continue with Google
+        </Button>
+
+        <Button
+          type="button"
+          className="w-full border border-white/15 bg-white/10 text-white hover:bg-white/15"
+          variant="secondary"
+        >
+          <FaXTwitter className="mr-2 h-4 w-4" />
+          Continue with Twitter
+        </Button>
+      </div>
+
+      <div class="relative my-5 flex w-full items-center justify-center">
+        <span class="h-px w-full bg-white/15"></span>
+        <span class="mx-3 text-xs tracking-wide text-white/80 uppercase">
+          or
+        </span>
+        <span class="h-px w-full bg-white/15"></span>
+      </div>
+
+      <form class="w-full space-y-4" onsubmit="event.preventDefault()">
+        <Input
+          type="email"
+          placeholder="Email"
+          className="h-11 rounded-[12px] border border-white/15 bg-white/10 text-white placeholder:text-white/60 focus-visible:ring-white/20"
+          required
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          className="h-11 rounded-[12px] border border-white/15 bg-white/10 text-white placeholder:text-white/60 focus-visible:ring-white/20"
+          required
+        />
+
+        <Button type="submit" className="mt-2 w-full text-gray-900">
+          Continue with Email
+        </Button>
+      </form>
+
+      <p class="mt-8 text-center text-sm text-white/80">
+        Don’t have an account?
+        <a href="/signup" class="text-white underline underline-offset-4">
+          Sign Up
+        </a>
+      </p>
+    </div>
+  </section>
+</DefaultLayout>

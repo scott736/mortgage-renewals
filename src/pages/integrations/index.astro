@@ -1,0 +1,39 @@
+---
+import { type CollectionEntry,getCollection } from "astro:content";
+
+import ZippayCtaCard from "@/components/sections/zippay-cta-card";
+import ZippayIntegrationsHero from "@/components/sections/zippay-integrations-hero";
+import ZippayIntegrationsList, {
+  type IntegrationCard,
+} from "@/components/sections/zippay-integrations-list";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+
+type IntegrationEntry = CollectionEntry<"integrations">;
+
+const entryToSlug = (e: IntegrationEntry) => e.id;
+
+const all: IntegrationEntry[] = (await getCollection("integrations")).sort(
+  (a, b) =>
+    (b.data.published?.valueOf?.() ?? 0) - (a.data.published?.valueOf?.() ?? 0),
+);
+
+const items: IntegrationCard[] = all.map((i) => ({
+  slug: entryToSlug(i),
+  name:
+    (typeof i.data.title === "string" ? i.data.title.trim() : "") ||
+    entryToSlug(i).split("/").pop()!.replace(/-/g, " "),
+  category: (i.data.category ?? "General").toString(),
+  summary: (i.data.summary ?? i.data.description ?? "").toString(),
+  icon: (i.data.icon ?? "/logos/placeholder.svg").toString(),
+  badges: Array.isArray(i.data.badges) ? i.data.badges.map(String) : [],
+}));
+---
+
+<DefaultLayout
+  title="Integrations"
+  description="Connect your stack with Zippay"
+>
+  <ZippayIntegrationsHero client:load />
+  <ZippayIntegrationsList client:load items={items} />
+  <ZippayCtaCard client:load softBg />
+</DefaultLayout>

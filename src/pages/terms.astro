@@ -1,0 +1,36 @@
+---
+import ZippayCtaCard from "@/components/sections/zippay-cta-card";
+import TermsContent from "@/content/terms.mdx";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout title="Cookie Policy" description="How we use cookies.">
+  <section class="bg-primary-300 px-6 py-16 text-white lg:py-24">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1
+          class="text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl"
+        >
+          Terms of Service
+        </h1>
+        <p class="text-body-lg mx-auto mt-4 max-w-2xl text-white/80">
+          Understand how we collect, use, and protect your personal information
+          to ensure your privacy and security
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-6 pb-16 lg:pb-24">
+    <div
+      class="container -mt-6 rounded-t-[24px] bg-white px-4 py-10 md:-mt-8 md:px-10 md:py-14"
+    >
+      <article
+        class="prose prose-lg dark:prose-invert prose-headings:!text-foreground prose-p:!text-foreground max-w-none"
+      >
+        <TermsContent />
+      </article>
+    </div>
+  </section>
+  <ZippayCtaCard />
+</DefaultLayout>

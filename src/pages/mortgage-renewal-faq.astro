@@ -1,0 +1,181 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+const faqs = [
+  {
+    category: "Basics",
+    id: "basics",
+    questions: [
+      { q: "What is a mortgage renewal?", a: "A mortgage renewal is the process of agreeing to a new term — and a new interest rate — at the end of your current mortgage term. Your outstanding balance stays the same; no new money is advanced. You choose new conditions (rate, term length, payment frequency) for the next period of your mortgage." },
+      { q: "What's the difference between a mortgage term and amortization?", a: "Your term is the length of your current mortgage contract — typically 1 to 5 years. Amortization is the total time to pay off your entire mortgage (usually 25 years). At the end of each term, you must renew. Your amortization continues and decreases with each term." },
+      { q: "When does a mortgage need to be renewed?", a: "At the end of each mortgage term — your maturity date. If you have a 5-year term, you renew every 5 years. If you have a 3-year term, every 3 years. Your amortization continues through multiple terms." },
+      { q: "How far in advance should I start the renewal process?", a: "Start 120 days (4 months) before your maturity date. Most lenders offer rate holds for up to 120 days, so you can lock in today's rates while still having time to shop, compare, and switch if needed." },
+      { q: "Does my lender have to notify me before renewal?", a: "Yes. Under FCAC rules, federally regulated lenders must send a renewal statement at least 21 days before your maturity date. The Canadian Mortgage Charter encourages lenders to proactively contact borrowers 4–6 months before renewal to discuss options." },
+      { q: "What happens if I don't sign my renewal on time?", a: "If your maturity date passes without a signed renewal, most lenders will auto-convert your mortgage to a short-term open mortgage at their posted rate — significantly higher than discounted rates. Open mortgages can be broken without penalty, so you can immediately pivot to a better option." },
+    ]
+  },
+  {
+    category: "Rates & Terms",
+    id: "rates",
+    questions: [
+      { q: "What determines mortgage rates at renewal?", a: "Fixed rates are primarily driven by Government of Canada bond yields (especially the 5-year bond). Variable rates track the Bank of Canada overnight rate via your lender's prime rate. Your credit score, mortgage balance, LTV ratio, and choice of lender also affect the rate you receive." },
+      { q: "Is the rate my lender offers in the renewal statement the best I can get?", a: "Almost never. Lenders send renewal statements at their posted rates — their highest published rates. The discounted rates available through negotiation or via a broker are typically 0.50%–1.50% lower. Always compare before signing." },
+      { q: "What is the posted rate vs. the discounted rate?", a: "The posted rate is the highest rate a lender publicly advertises. The discounted rate is what you actually receive after negotiation, through a broker, or by qualifying for a promotional offer. Always seek the discounted rate." },
+      { q: "Should I choose fixed or variable at renewal?", a: "It depends on your risk tolerance, budget flexibility, and rate outlook. Fixed provides payment certainty. Variable (ARM or VRM) fluctuates with the Bank of Canada rate, has historically outperformed fixed over long periods, and carries a much lower break penalty. As of early 2026, both types are competitively priced within a modest spread." },
+      { q: "What is a rate hold?", a: "A rate hold lets you lock in today's rate with a lender for up to 120 days before your mortgage funds. If rates rise before your renewal date, you're protected. If rates fall, most lenders allow you to drop to the lower rate. Rate holds are free and non-binding." },
+      { q: "What is the difference between a 3-year and 5-year fixed?", a: "A 3-year fixed offers slightly less payment certainty but allows you to return to market in 3 years — useful if rates are expected to fall or you anticipate life changes. A 5-year fixed maximizes predictability and is often the most competitively priced fixed product. The right choice depends on rate forecasts and your plans." },
+      { q: "Can I negotiate my renewal rate?", a: "Yes, absolutely. Your current lender's renewal offer is a starting point, not a final offer. Use competing quotes from a broker to push your lender for a better rate. Many lenders will match or beat competitive offers to retain your business." },
+    ]
+  },
+  {
+    category: "Switching Lenders",
+    id: "switching",
+    questions: [
+      { q: "Can I switch lenders at renewal?", a: "Yes. Switching lenders at renewal is one of the most impactful financial decisions you can make. As of November 2024, a straight switch to a new lender at renewal no longer requires a stress test, making it much easier to access better rates elsewhere." },
+      { q: "What is a straight switch / straight transfer?", a: "A straight switch means transferring your mortgage to a new lender at renewal with the same outstanding balance, same remaining amortization, and no new funds advanced. No stress test is required (post-2024) and many new lenders cover the legal and discharge fees." },
+      { q: "Do I need a stress test to switch lenders at renewal?", a: "No — as of November 2024, a straight transfer at renewal to a federally regulated lender does not require the stress test. If you want to change your loan amount, amortization, or access equity, that becomes a refinance and the stress test still applies." },
+      { q: "What does it cost to switch lenders?", a: "Total switching costs typically range from $700 to $1,800. This includes: discharge fee from old lender ($200–$400), legal/registration fees ($300–$600), and potentially an appraisal. Many new lenders offer to cover legal and discharge fees as an incentive — always ask your broker." },
+      { q: "What is a collateral charge and why does it affect switching?", a: "A collateral charge registers your mortgage for more than your actual loan amount. It cannot be assigned (transferred) to a new lender — you must fully discharge and re-register, incurring full legal fees. TD Canada Trust and National Bank register all mortgages as collateral charges by default." },
+      { q: "How long does it take to switch lenders at renewal?", a: "Allow 3–6 weeks from application to funding. Starting 120 days before your maturity date gives you ample time. A mortgage broker can often expedite clean, straightforward switches." },
+    ]
+  },
+  {
+    category: "Saving Money",
+    id: "saving",
+    questions: [
+      { q: "How much can I save by shopping at renewal?", a: "On a $600,000 mortgage, even a 0.60% rate reduction saves approximately $3,600/year or $18,000 over a 5-year term. On larger mortgages common in Ontario and BC, the savings are even greater. Using a broker to access monoline lenders consistently outperforms staying with your current bank." },
+      { q: "What are prepayment privileges?", a: "Prepayment privileges allow you to make extra payments on your mortgage principal beyond your regular scheduled payments, without penalty. Most mortgages allow 10–20% of the original principal as an annual lump sum. Using these privileges accelerates principal paydown and saves significant interest." },
+      { q: "Should I use a mortgage broker at renewal?", a: "Yes, for virtually all borrowers. A broker is free to use (paid by the lender when your mortgage funds), accesses 30+ lenders including monoline lenders unavailable directly to the public, and consistently finds better rates than most borrowers achieve by going directly to one lender." },
+      { q: "Is it worth paying to break my mortgage early to get a lower rate?", a: "It depends on the penalty vs. the interest savings. If your penalty is $5,000 and switching saves $4,000/year, you break even in 15 months — likely worth it. Variable rate mortgages carry only 3-month interest penalties, making mid-term breaks more manageable than fixed-rate IRD penalties." },
+      { q: "What is blend-and-extend?", a: "Blend-and-extend lets you combine your existing rate with today's rate to create a new blended rate, then start a fresh full term. It avoids penalties but produces a rate above today's best available. A broker can model whether blending or breaking outright is better for your situation." },
+    ]
+  },
+  {
+    category: "Affordability & Hardship",
+    id: "hardship",
+    questions: [
+      { q: "What happens if I can't afford my new mortgage payment at renewal?", a: "Contact your lender immediately. The Canadian Mortgage Charter encourages lenders to work with borrowers experiencing hardship at renewal — options include temporary interest-only payments, extending amortization to reduce payments, or deferred payments. A broker can also explore B-lender options if your current lender won't accommodate." },
+      { q: "Can my current lender refuse to renew my mortgage?", a: "Technically yes, though it's uncommon for performing borrowers. If your credit has declined severely or you've had multiple missed payments, your lender may not offer a renewal. You then need a broker to find a B-lender or alternative solution." },
+      { q: "What are my rights under the Canadian Mortgage Charter?", a: "The Charter encourages lenders to: contact you 4–6 months before renewal; allow lender switches without stress test; waive requalification for amortization extensions if you're in hardship; offer relief measures for those in financial difficulty; and remove internal barriers to accessing these measures." },
+      { q: "Can I extend my amortization at renewal to lower my payment?", a: "Sometimes. Uninsured mortgages may be extended with lender approval subject to qualifying. The Canadian Mortgage Charter encourages lenders to offer amortization extensions as a hardship measure for borrowers in genuine difficulty." },
+      { q: "What if my property value has dropped below my mortgage balance?", a: "This is called negative equity. Renewal options are more limited — you can't easily switch lenders. Your current lender may still renew at maturity. Contact them well before the maturity date and seek broker advice early." },
+    ]
+  },
+  {
+    category: "Special Situations",
+    id: "special",
+    questions: [
+      { q: "Can self-employed borrowers renew their mortgage?", a: "Yes, though it requires more documentation. A-lenders require the last 2 years' NOAs and T1 returns. Brokers access Alt-A programs from monolines and B-lenders that use bank statements or gross revenue to qualify self-employed borrowers. Start 120–180 days before maturity." },
+      { q: "How does separation or divorce affect my mortgage renewal?", a: "Separation while in a joint mortgage is complex. Options include: one spouse buys out the other (requires refinance and stress test), both remain on the mortgage, or you sell. Removing a co-borrower always requires a full refinance. Get legal and broker advice early." },
+      { q: "Can I renew an investment property mortgage?", a: "Yes. Investment property mortgages follow similar renewal rules — including the 2024 no-stress-test rule for straight switches. Rates are typically 0.10–0.50% higher than owner-occupied. For 5+ unit properties, commercial mortgage rules apply." },
+      { q: "What happens if I'm in a consumer proposal at renewal?", a: "A consumer proposal significantly impacts your renewal options. B-lenders (Home Trust, Equitable, Haventree) often work with borrowers who've completed a consumer proposal and been discharged for 2+ years. Private lending may be needed immediately after discharge." },
+      { q: "Can I renew if I've had a recent bankruptcy?", a: "Renewal after bankruptcy is possible but challenging. Most A-lenders require 2+ years from discharge plus re-established credit. B-lenders may work with you sooner, typically 1–2 years post-discharge with strong equity. Private lending bridges the immediate post-discharge gap." },
+    ]
+  },
+  {
+    category: "Timing",
+    id: "timing",
+    questions: [
+      { q: "Can I renew my mortgage early (before my term ends)?", a: "Your current lender may allow early renewal within 120 days of maturity, often without a penalty. Switching lenders early (more than 120 days before maturity) typically requires a prepayment penalty. Evaluate whether the rate savings offset any penalty." },
+      { q: "What is the best time of year to renew?", a: "There's no single best time of year — rate environment matters more than the calendar. The best time is whenever you're within 120 days of maturity and rates are competitive. Avoid auto-renewal at posted rates regardless of time of year." },
+      { q: "How long does a mortgage renewal take?", a: "Staying with your current lender: 1–2 weeks (mostly administrative, often electronic). Switching lenders: 3–6 weeks for application review, legal coordination, and funding. Starting 120 days before maturity gives you ample time for either scenario." },
+      { q: "Can I lock in a rate before receiving my renewal statement?", a: "Yes. You don't need to wait for your lender's renewal statement. Most lenders offer 120-day rate holds. Contact a broker anytime in the 120-day window — you can lock a competing rate and use it to negotiate with your current lender before they even send their offer." },
+      { q: "What happens on my actual maturity date?", a: "If everything is arranged in advance: your new lender's funds pay out the old lender, the old mortgage is discharged, the new mortgage is registered, and your new term and rate begin. Your next scheduled payment goes to the new lender." },
+    ]
+  }
+];
+---
+
+<DefaultLayout
+  title="Mortgage Renewal FAQ: 40+ Questions Answered — MortgageRenewalHub.ca"
+  description="Complete Canadian mortgage renewal FAQ. 40+ questions in 7 categories: basics, rates, switching lenders, saving money, hardship, special situations, and timing."
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Renewal FAQ
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Canadian Mortgage Renewal FAQ: 40+ Questions Answered</h1>
+    <p class="text-lg mb-4" style="color: var(--muted-foreground)">Updated March 2026</p>
+    <p class="mb-8 leading-relaxed">Everything you've wanted to know about mortgage renewals in Canada — organized into 7 categories and answered in plain language.</p>
+
+    <div class="flex flex-wrap gap-2 mb-10">
+      {faqs.map(section => (
+        <a href={`#${section.id}`} class="px-3 py-1.5 rounded-full text-sm font-medium text-white hover:opacity-80 transition-opacity" style="background: var(--secondary)">
+          {section.category}
+        </a>
+      ))}
+    </div>
+
+    <div class="space-y-10">
+      {faqs.map(section => (
+        <section id={section.id}>
+          <h2 class="text-2xl font-bold mb-4 pb-2" style={`color: var(--primary); border-bottom: 2px solid var(--secondary)`}>{section.category}</h2>
+          <div class="space-y-2">
+            {section.questions.map(faq => (
+              <details class="rounded-lg overflow-hidden" style="border: 1px solid var(--border)">
+                <summary class="flex items-start justify-between p-4 cursor-pointer font-semibold gap-4" style="background: var(--card); list-style: none">
+                  <span>{faq.q}</span>
+                  <span class="flex-shrink-0 text-lg font-bold" style="color: var(--secondary)">+</span>
+                </summary>
+                <div class="p-4 text-sm leading-relaxed" style="background: var(--background); border-top: 1px solid var(--border)">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Explore Our Full Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">The complete 2,000-word guide to how Canadian renewals work.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">The 2024 rule change and 8-step switching process.</p>
+        </a>
+        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Free to use. 30+ lenders. Everything a broker does for you.</p>
+        </a>
+        <a href="/mortgage-renewal-bad-credit-financial-difficulty" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Financial Difficulty</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">B-lenders, private lending, your rights, and the path forward.</p>
+        </a>
+        <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step from 12 months out to renewal day.</p>
+        </a>
+        <a href="/mortgage-renewal-glossary" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Glossary</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">50+ Canadian mortgage terms defined clearly.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
+      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Renewal Strategy Call
+      </a>
+    </div>
+  </section>
+
+  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
+    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
+  </p>
+</DefaultLayout>

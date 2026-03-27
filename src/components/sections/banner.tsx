@@ -1,0 +1,62 @@
+"use client";
+
+import { X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const Banner = ({ url = "/book-a-call" }: { url?: string }) => {
+  const [isVisible, setIsVisible] = useState(true);
+  const [isClient, setIsClient] = useState(false);
+
+  // Check localStorage to see if banner was previously dismissed
+  useEffect(() => {
+    setIsClient(true);
+    const bannerDismissed = localStorage.getItem("banner-dismissed");
+    if (bannerDismissed === "true") {
+      setIsVisible(false);
+    }
+  }, []);
+
+  const handleDismiss = () => {
+    setIsVisible(false);
+    localStorage.setItem("banner-dismissed", "true");
+  };
+
+  // Don't render anything until client-side hydration is complete
+  if (!isClient || !isVisible) {
+    return null;
+  }
+
+  return (
+    <div className="bg-primary-300 relative">
+      <div className="container flex items-center justify-between gap-4 py-3 pr-12">
+        <div className="flex flex-1 items-center justify-center gap-3 sm:gap-4">
+          <span className="text-center text-sm font-medium text-white">
+            🇨🇦 Over 1.8M Canadians renewing in 2026 — are you getting the best rate?
+          </span>
+          <Button size="sm" variant="translucent" asChild>
+            <a href={url}>
+              Book Free Strategy Call
+            </a>
+          </Button>
+        </div>
+        <button
+          onClick={handleDismiss}
+          className={cn(
+            "absolute right-4 top-1/2 -translate-y-1/2 rounded-sm p-1.5",
+            "text-primary-foreground/70 hover:text-primary-foreground",
+            "hover:bg-gray-0/10 transition-all duration-200 hover:scale-110",
+            "focus:outline-none focus:ring-2 focus:ring-white/30",
+          )}
+          aria-label="Close banner"
+        >
+          <X className="size-3.5" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Banner;

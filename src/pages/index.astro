@@ -1,0 +1,343 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import RenewalCalculatorMini from '@/components/sections/renewal-calculator-mini';
+---
+
+<DefaultLayout
+  title="MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource"
+  description="Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal."
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 text-primary-foreground py-20 lg:py-28">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-body-sm text-white/90 mb-6">
+            🇨🇦 Canada's #1 Mortgage Renewal Resource
+          </div>
+          <h1 class="text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+            Save Thousands at Your Mortgage Renewal
+          </h1>
+          <p class="text-xl text-white/80 mb-8 max-w-lg">
+            Over 1.8 million Canadians are renewing their mortgage in the next 12 months. Most will sign the first offer they receive — and overpay by thousands. Don't be one of them.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="/mortgage-renewal-calculator">
+              <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+                Use Our Calculator
+              </button>
+            </a>
+            <a href="/book-a-call">
+              <button class="rounded-lg border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 text-lg transition-colors">
+                Talk to a Broker — Free
+              </button>
+            </a>
+          </div>
+          <p class="mt-4 text-body-sm text-white/60">Free broker consultation · No obligation · Licensed professionals</p>
+        </div>
+        <div class="hidden lg:block">
+          <img
+            src="/images/hero/hero-home.webp"
+            alt="Canadian couple reviewing mortgage renewal documents"
+            class="rounded-2xl shadow-2xl w-full object-cover"
+            width="600"
+            height="400"
+            loading="eager"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="border-b py-6 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="flex flex-wrap items-center justify-center gap-8 text-body-sm text-muted-foreground">
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-foreground">FCAC</span>
+          <span>Referenced</span>
+        </div>
+        <div class="w-px h-4 bg-gray-200 hidden sm:block"></div>
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-foreground">CMHC</span>
+          <span>Verified Data</span>
+        </div>
+        <div class="w-px h-4 bg-gray-200 hidden sm:block"></div>
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-foreground">OSFI</span>
+          <span>Compliant Information</span>
+        </div>
+        <div class="w-px h-4 bg-gray-200 hidden sm:block"></div>
+        <div class="flex items-center gap-2">
+          <span class="text-secondary-100">✓</span>
+          <span>Reviewed by Licensed Mortgage Professionals</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT IS A MORTGAGE RENEWAL -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">The Basics</div>
+          <h2 class="text-heading-2 mb-4">What Is a Mortgage Renewal?</h2>
+          <p class="text-body-lg text-muted-foreground mb-4">
+            A mortgage renewal is what happens at the end of your mortgage <strong>term</strong> — not the end of your mortgage entirely. Most Canadians have a 25-year mortgage but a 5-year term. Every 5 years, that term ends and you renew.
+          </p>
+          <p class="text-body-lg text-muted-foreground mb-6">
+            At renewal, your lender will send you an offer. You can accept it, negotiate for a better rate, or switch to a different lender entirely — often with no cost and no stress test required.
+          </p>
+          <a href="/what-is-a-mortgage-renewal" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+            Read the Full Guide →
+          </a>
+        </div>
+        <div class="bg-gray-25 rounded-2xl p-8">
+          <h3 class="text-heading-5 mb-4">Key Renewal Facts</h3>
+          <ul class="space-y-4">
+            {[
+              { stat: "21 days", label: "Minimum notice your lender must give before renewal (FCAC rule)" },
+              { stat: "4–6 months", label: "When lenders must begin outreach under the Canadian Mortgage Charter" },
+              { stat: "$0", label: "What it costs to use a mortgage broker at renewal" },
+              { stat: "70%+", label: "Canadians who sign the first offer without shopping — and overpay" },
+            ].map(item => (
+              <li class="flex items-start gap-4">
+                <div class="text-2xl font-bold text-primary-100 min-w-[80px]">{item.stat}</div>
+                <div class="text-body-sm text-muted-foreground">{item.label}</div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- #1 MISTAKE CALLOUT -->
+  <section class="bg-warning-0 border border-warning-50 mx-6 lg:mx-auto max-w-screen-xl rounded-2xl py-10 px-8 mb-16">
+    <div class="container max-w-3xl mx-auto text-center">
+      <div class="text-4xl mb-4">⚠️</div>
+      <h2 class="text-heading-3 mb-3">The #1 Mistake Canadians Make at Renewal</h2>
+      <p class="text-body-lg text-muted-foreground mb-6">
+        Over <strong>70% of Canadians sign their bank's first renewal offer without shopping around</strong>. Banks count on this. A 0.5% rate difference on a $600,000 mortgage costs you over $15,000 in extra interest over 5 years.
+      </p>
+      <a href="/mortgage-renewal-mistakes" class="inline-flex items-center gap-2 text-warning-200 font-semibold hover:underline">
+        See All 10 Renewal Mistakes to Avoid →
+      </a>
+    </div>
+  </section>
+
+  <!-- MINI CALCULATOR -->
+  <section class="py-16 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="text-center mb-10">
+        <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+        <h2 class="text-heading-2 mb-3">Renewal Snapshot Calculator</h2>
+        <p class="text-body-lg text-muted-foreground max-w-2xl mx-auto">
+          See your estimated new payment in seconds. Enter your balance, rate, and remaining amortization.
+        </p>
+      </div>
+      <RenewalCalculatorMini client:visible />
+      <div class="text-center mt-6">
+        <a href="/mortgage-renewal-calculator" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+          See All 5 Calculators — Including Rate Comparison & Penalty Estimator →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOP 5 WAYS TO SAVE -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="text-center mb-12">
+        <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Strategy Guide</div>
+        <h2 class="text-heading-2">Top 5 Ways to Save at Renewal</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          {
+            number: "01",
+            title: "Shop Around — Don't Auto-Renew",
+            desc: "Your bank's first offer is almost never their best rate. Getting one competing quote is often enough to save thousands.",
+            href: "/best-mortgage-renewal-rates",
+          },
+          {
+            number: "02",
+            title: "Use a Mortgage Broker",
+            desc: "Brokers access 30+ lenders simultaneously — including monolines unavailable directly. And their service is free to you.",
+            href: "/mortgage-broker-renewal",
+          },
+          {
+            number: "03",
+            title: "Lock in a Rate Hold Early",
+            desc: "Start shopping 120 days before your renewal. Lock in today's rate and you're protected if rates rise before your maturity date.",
+            href: "/mortgage-renewal-guide",
+          },
+          {
+            number: "04",
+            title: "Know Your Charge Type",
+            desc: "Standard charge mortgages switch lenders easily. Collateral charges (TD and some others) require legal fees to move.",
+            href: "/switching-lenders-at-renewal",
+          },
+          {
+            number: "05",
+            title: "Consider Your Term Length",
+            desc: "A shorter term (1-2 year fixed) may offer a lower rate today and let you lock in again when rates fall further.",
+            href: "/mortgage-renewal-term-lengths",
+          },
+          {
+            number: "06",
+            title: "Extend Your Amortization",
+            desc: "If cash flow is tight, extending your amortization can reduce your payment by hundreds per month.",
+            href: "/lower-mortgage-payments-at-renewal",
+          },
+        ].map(item => (
+          <a href={item.href} class="group block bg-gray-25 hover:bg-primary-0 rounded-2xl p-6 border border-gray-100 hover:border-primary-50 transition-colors">
+            <div class="text-3xl font-bold text-primary-50 mb-3">{item.number}</div>
+            <h3 class="text-heading-5 mb-2 group-hover:text-primary-100">{item.title}</h3>
+            <p class="text-body-sm text-muted-foreground">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED GUIDES GRID -->
+  <section class="py-16 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="text-center mb-12">
+        <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Deep Dives</div>
+        <h2 class="text-heading-2">Featured Guides</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { title: "Complete Renewal Guide", desc: "Everything you need to know — from 12 months out to renewal day.", href: "/mortgage-renewal-guide", badge: "Most Popular" },
+          { title: "Best Renewal Rates", desc: "How renewal rates work, why your bank's offer is rarely the best, and where to find better.", href: "/best-mortgage-renewal-rates", badge: "Rates" },
+          { title: "Lower Your Payments", desc: "11 strategies for Canadians who are stretched financially and need payment relief.", href: "/lower-mortgage-payments-at-renewal", badge: "Affordability" },
+          { title: "Switching Lenders", desc: "No stress test required since 2024. Here's the complete step-by-step process.", href: "/switching-lenders-at-renewal", badge: "Save Money" },
+          { title: "Renewal Checklist", desc: "Printable timeline from 12 months before renewal all the way to renewal day.", href: "/mortgage-renewal-checklist", badge: "Checklist" },
+          { title: "Renewal FAQ", desc: "40+ questions answered — from the basics to complex scenarios.", href: "/mortgage-renewal-faq", badge: "FAQ" },
+        ].map(item => (
+          <a href={item.href} class="group block bg-white rounded-2xl p-6 border border-gray-100 hover:border-secondary-50 hover:shadow-md transition-all">
+            <div class="inline-flex items-center rounded-full bg-secondary-25 px-3 py-1 text-body-xs text-secondary-200 mb-3">
+              {item.badge}
+            </div>
+            <h3 class="text-heading-5 mb-2 group-hover:text-secondary-100">{item.title}</h3>
+            <p class="text-body-sm text-muted-foreground">{item.desc}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- RENEWAL TIMELINE -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="text-center mb-12">
+        <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Your Renewal Roadmap</div>
+        <h2 class="text-heading-2">What to Do — Month by Month</h2>
+        <p class="text-body-lg text-muted-foreground max-w-2xl mx-auto mt-3">
+          Start 12 months early to maximize your options and savings.
+        </p>
+      </div>
+      <div class="max-w-3xl mx-auto space-y-6">
+        {[
+          { time: "12 Months Before", color: "bg-primary-0 border-primary-50", dot: "bg-primary-100", actions: ["Locate your mortgage documents (confirm maturity date, balance, charge type)", "Check your credit score for free (Equifax or TransUnion)", "Identify any debts to pay down before renewal"] },
+          { time: "6 Months Before", color: "bg-secondary-0 border-secondary-50", dot: "bg-secondary-100", actions: ["Contact a mortgage broker for a free renewal strategy meeting", "Research current market rates", "Decide on preferred term and rate type (fixed vs. variable)"] },
+          { time: "120 Days Before", color: "bg-warning-0 border-warning-50", dot: "bg-warning-100", actions: ["Lock in a rate hold with your broker or new lender", "Submit renewal application if switching lenders", "Gather documents: NOA/T4, proof of income, void cheque"] },
+          { time: "30 Days Before", color: "bg-success-0 border-success-50", dot: "bg-success-100", actions: ["Confirm approval with new lender (if switching)", "Sign new mortgage commitment", "Confirm new payment amount and start date"] },
+        ].map(step => (
+          <div class={`rounded-xl border p-6 ${step.color}`}>
+            <div class="flex items-start gap-4">
+              <div class={`mt-1 w-4 h-4 rounded-full flex-shrink-0 ${step.dot}`}></div>
+              <div>
+                <h3 class="text-heading-5 mb-3">{step.time}</h3>
+                <ul class="space-y-2">
+                  {step.actions.map(action => (
+                    <li class="flex items-start gap-2 text-body-sm text-muted-foreground">
+                      <span class="mt-1 text-xs">✓</span>
+                      {action}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/mortgage-renewal-checklist" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+          Get the Full Printable Checklist →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="py-16 bg-gray-25">
+    <div class="container max-w-3xl px-6">
+      <div class="text-center mb-10">
+        <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Common Questions</div>
+        <h2 class="text-heading-2">Mortgage Renewal FAQ</h2>
+      </div>
+      <div class="space-y-3">
+        {[
+          { q: "Do I have to pass a stress test to switch lenders at renewal?", a: "No. Since 2024, Canadians switching lenders on a straight transfer (same balance, same amortization) do not need to pass the mortgage stress test. This applies to both insured and uninsured mortgages." },
+          { q: "How much can I save by shopping around at renewal?", a: "Significantly. Even a 0.25% rate difference saves approximately $7,500 in interest over 5 years on a $600,000 mortgage. Canadians who shop around through a broker typically save 0.25–0.75% vs. their bank's first offer." },
+          { q: "Is a mortgage broker free to use?", a: "Yes, in virtually all cases. Mortgage brokers are paid a finder's fee by the lender you ultimately choose — you pay nothing. Their service, advice, and access to 30+ lenders is free to you." },
+          { q: "What happens if I do nothing at renewal?", a: "Your mortgage automatically renews at whatever rate your lender chooses — almost always the posted rate, which is nearly always the worst rate available. This is the most expensive option." },
+          { q: "When should I start thinking about my renewal?", a: "12 months before your maturity date gives you the most options. At 120 days out, you can lock in a rate hold. At 30 days out, you should be finalizing your lender choice." },
+        ].map(faq => (
+          <details class="group rounded-xl border border-gray-100 bg-white">
+            <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-body-md-medium">
+              {faq.q}
+              <span class="ml-4 flex-shrink-0 text-muted-foreground group-open:rotate-180 transition-transform">▼</span>
+            </summary>
+            <div class="px-5 pb-5 text-body-md text-muted-foreground">
+              {faq.a}
+            </div>
+          </details>
+        ))}
+      </div>
+      <div class="text-center mt-8">
+        <a href="/mortgage-renewal-faq" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+          See All 40+ Questions →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="bg-primary-100 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <h2 class="text-heading-2 text-white mb-4">Not Sure Where to Start?</h2>
+      <p class="text-xl text-white/80 mb-8">
+        Talk to a licensed mortgage broker — it's completely free. We'll review your renewal options, compare rates from 30+ lenders, and build a personalized strategy.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/book-a-call">
+          <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+            Book Your Free Call
+          </button>
+        </a>
+        <a href="/mortgage-renewal-calculator">
+          <button class="rounded-lg border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 text-lg transition-colors">
+            Use Our Calculator First
+          </button>
+        </a>
+      </div>
+      <p class="mt-4 text-body-sm text-white/60">No obligation · No cost · Licensed professionals</p>
+    </div>
+  </section>
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
+    <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold text-body-md-bold">
+      Book Free Broker Consultation
+    </a>
+  </div>
+
+  <p class="container py-6 text-body-xs text-muted-foreground text-center">
+    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
+  </p>
+</DefaultLayout>

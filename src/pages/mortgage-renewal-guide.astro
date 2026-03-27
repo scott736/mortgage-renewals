@@ -1,0 +1,323 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+---
+
+<DefaultLayout
+  title="Complete Mortgage Renewal Guide Canada 2026 | MortgageRenewalHub.ca"
+  description="Canada's most comprehensive mortgage renewal guide. Everything from 12 months before renewal to maturity day — rates, switching lenders, negotiating, and saving money."
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Complete Mortgage Renewal Guide
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">The Definitive Resource</div>
+    <h1 class="text-heading-1 mb-4">The Complete Canadian Mortgage Renewal Guide (2026)</h1>
+    <p class="text-body-lg text-muted-foreground mb-6">
+      Over 1.8 million Canadians are renewing their mortgage in 2026. Most will simply sign whatever their bank sends them. This guide walks you through everything — from 12 months before renewal to the day your new term begins — so you can make an informed decision and keep more money in your pocket.
+    </p>
+
+    <!-- Table of Contents -->
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10">
+      <h2 class="text-heading-5 mb-4">In This Guide</h2>
+      <ol class="space-y-2 text-body-sm text-secondary-100">
+        <li><a href="#full-timeline" class="hover:underline">1. The Complete Renewal Timeline (12 Months → Renewal Day)</a></li>
+        <li><a href="#rate-hold" class="hover:underline">2. Rate Hold Strategy</a></li>
+        <li><a href="#review-mortgage" class="hover:underline">3. How to Review Your Current Mortgage</a></li>
+        <li><a href="#charge-types" class="hover:underline">4. Standard vs. Collateral Charge — The Critical Difference</a></li>
+        <li><a href="#shopping" class="hover:underline">5. Shopping for Rates</a></li>
+        <li><a href="#negotiating" class="hover:underline">6. Negotiating With Your Current Lender</a></li>
+        <li><a href="#stay-vs-switch" class="hover:underline">7. When to Stay vs. When to Switch</a></li>
+        <li><a href="#switching-process" class="hover:underline">8. Switching Lenders: Process and Costs</a></li>
+        <li><a href="#documents" class="hover:underline">9. Documents You'll Need</a></li>
+        <li><a href="#watch-out" class="hover:underline">10. What to Watch Out For in the Renewal Contract</a></li>
+      </ol>
+    </div>
+
+    <h2 id="full-timeline" class="text-heading-2 mb-6 scroll-mt-20">1. The Complete Renewal Timeline</h2>
+
+    <div class="space-y-6 mb-10">
+      {[
+        {
+          time: "12 Months Before Renewal",
+          color: "bg-primary-0 border-primary-50",
+          dot: "bg-primary-100",
+          content: [
+            "Locate your original mortgage documents. Confirm your exact maturity date, current balance, remaining amortization, and charge type (standard vs. collateral).",
+            "Check your credit score. Equifax and TransUnion both offer free annual reports. A score above 720 unlocks the best rates — if yours is lower, you have 12 months to improve it.",
+            "Identify debts to pay down before renewal. High revolving credit balances increase your Total Debt Service ratio, which affects the rates you qualify for.",
+            "If you're self-employed, confirm your T1 Generals and Notices of Assessment are filed and up to date. Self-employed renewals take longer and require more documentation.",
+          ]
+        },
+        {
+          time: "6 Months Before Renewal",
+          color: "bg-secondary-0 border-secondary-50",
+          dot: "bg-secondary-100",
+          content: [
+            "Contact a mortgage broker for a free renewal strategy meeting. This is the ideal time — you have enough lead time to explore all options without pressure.",
+            "Begin researching rates. Check rate aggregator sites and ask your broker for current market rates across multiple lenders.",
+            "Decide whether you prefer fixed or variable, and what term length makes sense. Read our Fixed vs. Variable guide to understand the trade-offs.",
+            "Determine whether your mortgage is a standard or collateral charge. This one fact determines whether you can switch lenders at zero cost or must pay legal fees.",
+          ]
+        },
+        {
+          time: "120 Days (4 Months) Before Renewal",
+          color: "bg-warning-0 border-warning-50",
+          dot: "bg-warning-100",
+          content: [
+            "Lock in a rate hold with your broker or new lender of choice. Most lenders offer 90–120 day rate holds. This protects you if rates rise before maturity.",
+            "Submit your renewal application if switching lenders. The underwriting process takes 5–30 days. Starting now gives you plenty of time to resolve any issues.",
+            "Gather documents: most recent NOA/T4, two years of income verification, void cheque, current mortgage statement.",
+            "Request a renewal quote from your current lender. Even if you plan to switch, having their written offer gives your broker a negotiating data point.",
+          ]
+        },
+        {
+          time: "30 Days Before Renewal",
+          color: "bg-success-0 border-success-50",
+          dot: "bg-success-100",
+          content: [
+            "Confirm approval with your new lender (if switching). All conditions should be satisfied by now.",
+            "Sign your new mortgage commitment. Review every line — rate, term, prepayment privileges, charge type, portability.",
+            "Your lawyer or the new lender's legal team will arrange the discharge of your old mortgage and registration of the new one. This typically happens on maturity day.",
+            "Confirm the new payment amount and first payment date. Set up new automatic payments.",
+          ]
+        },
+        {
+          time: "On Renewal Day",
+          color: "bg-gray-25 border-gray-100",
+          dot: "bg-gray-400",
+          content: [
+            "Your new mortgage is registered. The balance transfers to your new lender (if switching) at the maturity date.",
+            "Confirm the new mortgage appears on your account and your first payment is correctly scheduled.",
+            "File all new mortgage documents in a safe location.",
+            "Set a calendar reminder for 12 months before your NEXT renewal date. The cycle begins again.",
+          ]
+        },
+      ].map(step => (
+        <div class={`rounded-xl border p-6 ${step.color}`}>
+          <div class="flex items-start gap-4">
+            <div class={`mt-1 w-4 h-4 rounded-full flex-shrink-0 ${step.dot}`}></div>
+            <div>
+              <h3 class="text-heading-4 mb-3">{step.time}</h3>
+              <ul class="space-y-2">
+                {step.content.map(item => (
+                  <li class="flex items-start gap-2 text-body-sm text-muted-foreground">
+                    <span class="mt-1 text-xs flex-shrink-0">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 id="rate-hold" class="text-heading-2 mb-4 scroll-mt-20">2. Rate Hold Strategy</h2>
+    <p class="text-body-md text-muted-foreground mb-4">
+      A rate hold (also called a rate commitment) is a written guarantee from a lender that they will honour a specific interest rate for a defined period — typically 90 to 120 days, with some lenders offering up to 180 days.
+    </p>
+    <p class="text-body-md text-muted-foreground mb-4">
+      The key benefit: if interest rates rise between now and your renewal date, you're protected. If rates fall, most lenders will honour the lower rate. This asymmetric protection is one of the most underused tools at renewal.
+    </p>
+    <div class="rounded-xl bg-secondary-25 border border-secondary-50 p-5 mb-8">
+      <h3 class="text-heading-5 mb-2">How to use a rate hold strategically:</h3>
+      <ol class="space-y-1 text-body-sm text-muted-foreground list-decimal list-inside">
+        <li>Get your rate hold 120 days before maturity when shopping begins</li>
+        <li>Continue monitoring rates — if they drop, ask your lender for the lower rate (many will honour it)</li>
+        <li>Use rate holds from multiple lenders simultaneously through your broker</li>
+        <li>Don't sign the commitment letter until you're happy — the hold itself is just a guarantee, not an obligation</li>
+      </ol>
+    </div>
+
+    <h2 id="review-mortgage" class="text-heading-2 mb-4 scroll-mt-20">3. How to Review Your Current Mortgage</h2>
+    <p class="text-body-md text-muted-foreground mb-4">
+      Before you can shop intelligently, you need to understand exactly what you have. Pull out your original mortgage documents or call your lender and confirm:
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-8">
+      {[
+        { label: "Current outstanding balance", why: "This is your renewal balance — the amount you'll be financing under the new term." },
+        { label: "Maturity date", why: "The exact date your current term ends. This is your target date for all planning." },
+        { label: "Remaining amortization", why: "How many years are left on your overall mortgage. This affects your new payment calculation." },
+        { label: "Charge type", why: "Standard or collateral? This determines whether you can switch lenders at no cost." },
+        { label: "Prepayment privileges", why: "What lump sum payments are allowed? Have you used any this year?" },
+        { label: "Portability", why: "Can this mortgage be moved to a new property if you sell and buy?" },
+      ].map(item => (
+        <div class="rounded-xl bg-gray-25 border border-gray-100 p-4">
+          <div class="font-semibold text-body-sm mb-1">{item.label}</div>
+          <div class="text-body-xs text-muted-foreground">{item.why}</div>
+        </div>
+      ))}
+    </div>
+
+    <h2 id="charge-types" class="text-heading-2 mb-4 scroll-mt-20">4. Standard vs. Collateral Charge — The Critical Difference</h2>
+    <p class="text-body-md text-muted-foreground mb-4">
+      This is one of the most important — and least understood — aspects of mortgage renewal. The type of charge registered against your property determines whether you can switch lenders for free.
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-4">
+      <div class="rounded-xl bg-success-0 border border-success-50 p-5">
+        <h3 class="text-heading-5 mb-2">✓ Standard Charge</h3>
+        <p class="text-body-sm text-muted-foreground mb-3">Registered for exactly the mortgage amount. Can be assigned (transferred) to a new lender without a lawyer. Switching costs: <strong>$0 in most cases</strong> — the new lender covers legal fees.</p>
+        <div class="text-body-xs text-muted-foreground">Common with: Most monolines, credit unions, some big banks</div>
+      </div>
+      <div class="rounded-xl bg-warning-0 border border-warning-50 p-5">
+        <h3 class="text-heading-5 mb-2">⚠ Collateral Charge</h3>
+        <p class="text-body-sm text-muted-foreground mb-3">Registered for more than the mortgage amount (sometimes up to 125% of property value). Cannot be assigned — must be discharged and re-registered to switch lenders. Switching costs: <strong>$500–$1,000+ in legal fees.</strong></p>
+        <div class="text-body-xs text-muted-foreground">Common with: TD Bank, National Bank, some others</div>
+      </div>
+    </div>
+    <p class="text-body-md text-muted-foreground mb-8">
+      Even with a collateral charge, switching can be worth it if the rate savings over 5 years exceed the legal fees. On a $600,000 mortgage, a 0.25% rate improvement saves approximately $7,500 — easily justifying $1,000 in fees.
+    </p>
+
+    <h2 id="shopping" class="text-heading-2 mb-4 scroll-mt-20">5. Shopping for Rates</h2>
+    <p class="text-body-md text-muted-foreground mb-4">Where to look when shopping for your renewal rate:</p>
+    <div class="space-y-3 mb-8">
+      {[
+        { source: "Mortgage Broker (Recommended)", desc: "Single application, quotes from 30+ lenders simultaneously. Accesses monolines, B-lenders, and credit unions that don't offer competitive rates directly. Free to use — paid by lenders." },
+        { source: "Rate Aggregator Sites", desc: "Ratehub, Nesto, LowestRates.ca — good for benchmarking current market rates. Note that the rates shown are often best-case for ideal borrowers." },
+        { source: "Direct Lenders", desc: "Going to each bank or credit union individually. Time-consuming and you may miss better options through the broker channel." },
+        { source: "Your Current Lender", desc: "Always get their written offer first — it's a useful negotiation chip even if you plan to switch." },
+      ].map(item => (
+        <div class="flex gap-4 rounded-xl bg-gray-25 border border-gray-100 p-4">
+          <div class="flex-shrink-0 w-2 h-2 rounded-full bg-primary-100 mt-2"></div>
+          <div>
+            <div class="font-semibold text-body-sm mb-1">{item.source}</div>
+            <div class="text-body-sm text-muted-foreground">{item.desc}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h2 id="negotiating" class="text-heading-2 mb-4 scroll-mt-20">6. Negotiating With Your Current Lender</h2>
+    <p class="text-body-md text-muted-foreground mb-4">
+      If you'd prefer to stay with your current lender but want a better rate, negotiation is very possible. Banks have significant flexibility — they just don't advertise it. Here's how to approach it:
+    </p>
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 mb-4">
+      <h3 class="text-heading-5 mb-3">Negotiation Script</h3>
+      <p class="text-body-sm text-muted-foreground italic mb-3">"I've received a competing offer at [X%] from another lender. I've been your customer for [X] years and would prefer to stay, but I need you to match or beat this rate. Can you connect me with your mortgage retention department?"</p>
+      <p class="text-body-sm text-muted-foreground">Key points: Always escalate to the retention department (not general customer service). Be specific with competing rates. Give them a 48-hour deadline. Be prepared to switch if they won't move.</p>
+    </div>
+    <p class="text-body-md text-muted-foreground mb-8">
+      Banks typically have 0.25–0.50% of rate flexibility they can offer loyal customers. Getting this in writing before your maturity date requires a competing offer — which is another reason why using a broker first is valuable even if you end up staying.
+    </p>
+
+    <h2 id="stay-vs-switch" class="text-heading-2 mb-4 scroll-mt-20">7. When to Stay vs. When to Switch</h2>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full border-collapse text-body-sm">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="text-left p-4 rounded-tl-xl">Scenario</th>
+            <th class="text-left p-4 rounded-tr-xl">Recommendation</th>
+          </tr>
+        </thead>
+        <tbody>
+          {[
+            { scenario: "Current lender matches the best available rate after negotiation", rec: "Stay — no benefit to switching at equal rates" },
+            { scenario: "Rate gap is 0.25% or more and you have a standard charge mortgage", rec: "Switch — savings far exceed switching costs (often $0)" },
+            { scenario: "Rate gap is 0.25% or more but you have a collateral charge", rec: "Run the numbers — if 5-year savings > legal fees (~$800–1,000), switch" },
+            { scenario: "You want to access equity or change your amortization", rec: "Switch via refinance — requires stress test but allows balance changes" },
+            { scenario: "You're planning to sell your home in the next 2 years", rec: "Consider a shorter term or open mortgage with your current lender" },
+            { scenario: "You have complex financials (self-employed, bruised credit)", rec: "Use a broker — specialty products often not available direct to public" },
+          ].map((row, i) => (
+            <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-25"}>
+              <td class="p-4">{row.scenario}</td>
+              <td class="p-4 font-semibold text-secondary-200">{row.rec}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2 id="switching-process" class="text-heading-2 mb-4 scroll-mt-20">8. Switching Lenders: Process and Costs</h2>
+    <p class="text-body-md text-muted-foreground mb-4">
+      Since the 2024 regulatory change, you can switch lenders at renewal on a straight transfer (same balance, same amortization) without a stress test — for both insured and uninsured mortgages. The process is simpler than most Canadians realize:
+    </p>
+    <ol class="space-y-3 mb-8 list-decimal list-inside text-body-md text-muted-foreground">
+      <li>Apply with new lender or through broker (~4 weeks before maturity ideally)</li>
+      <li>New lender orders an appraisal if required (sometimes waived for clean files)</li>
+      <li>Approve and sign the new mortgage commitment</li>
+      <li>Lawyer handles discharge of old mortgage and registration of new (usually on maturity date)</li>
+      <li>Funds transfer — balance moves seamlessly to new lender</li>
+    </ol>
+    <p class="text-body-md text-muted-foreground mb-8">
+      Full details, costs, and the collateral charge exception are covered in our <a href="/switching-lenders-at-renewal" class="text-secondary-100 hover:underline">complete switching lenders guide</a>.
+    </p>
+
+    <h2 id="documents" class="text-heading-2 mb-4 scroll-mt-20">9. Documents You'll Need</h2>
+    <div class="grid sm:grid-cols-2 gap-3 mb-8">
+      {[
+        "Current mortgage statement (showing balance and maturity date)",
+        "Two most recent T4 slips or T1 Generals + Notices of Assessment",
+        "Proof of current employment (recent pay stubs)",
+        "Void cheque for new payment setup",
+        "Photo ID",
+        "For self-employed: business financials or bank statements (12–24 months)",
+        "For rental properties: current leases and rental income documentation",
+        "For condos: recent status certificate (sometimes required by lender)",
+      ].map(doc => (
+        <div class="flex items-start gap-2 rounded-lg bg-gray-25 border border-gray-100 p-3 text-body-sm text-muted-foreground">
+          <span class="text-secondary-100 flex-shrink-0">□</span>
+          {doc}
+        </div>
+      ))}
+    </div>
+
+    <h2 id="watch-out" class="text-heading-2 mb-4 scroll-mt-20">10. What to Watch Out For in the Renewal Contract</h2>
+    <div class="space-y-4 mb-10">
+      {[
+        { flag: "Cashback traps", desc: "Some lenders offer $5,000–$10,000 cashback at renewal in exchange for a higher rate (typically +0.5%). Over 5 years, the extra interest almost always costs more than the cashback received. Do the math before accepting." },
+        { flag: "Extended amortization fine print", desc: "If your lender extends your amortization to lower payments, check whether this triggers CMHC re-insurance premiums or resets your total interest cost substantially." },
+        { flag: "Rate change clauses", desc: "Some bank renewal offers include language allowing them to adjust the rate if you sign early. Read every clause — insist on a rate guarantee in writing." },
+        { flag: "Prepayment privilege reduction", desc: "Some lenders offer a lower rate in exchange for reduced prepayment privileges (e.g., 10% instead of 20% annual lump sum). If you plan to pay down your mortgage aggressively, this matters." },
+        { flag: "Collateral charge registration", desc: "If your new lender registers a collateral charge, future switches will cost more. Ask explicitly whether they register standard or collateral charges." },
+      ].map(item => (
+        <div class="rounded-xl bg-error-0 border border-error-25 p-5">
+          <h3 class="text-heading-5 mb-2 text-error-200">⚠️ {item.flag}</h3>
+          <p class="text-body-sm text-muted-foreground">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 border-t pt-8">
+      <h2 class="text-heading-4 mb-4">Continue Reading</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator" },
+          { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates" },
+          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
+          { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal" },
+          { title: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes" },
+          { title: "Mortgage Renewal Checklist", href: "/mortgage-renewal-checklist" },
+        ].map(link => (
+          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+            <span class="text-secondary-100">→</span>
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </article>
+
+  <section class="bg-primary-100 py-12">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Ready to Put This Into Action?</h2>
+      <p class="text-white/80 mb-6">Book a free call with a licensed broker who will walk you through your specific renewal situation and compare real lender quotes.</p>
+      <a href="/book-a-call">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Renewal Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
+    <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
+      Book Free Broker Consultation
+    </a>
+  </div>
+
+  <p class="container py-6 text-body-xs text-muted-foreground text-center">
+    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
+  </p>
+</DefaultLayout>

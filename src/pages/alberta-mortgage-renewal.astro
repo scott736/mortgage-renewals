@@ -1,0 +1,170 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+export const prerender = true;
+---
+
+<DefaultLayout
+  title="Alberta Mortgage Renewal — Best Rates in Calgary, Edmonton & Beyond (2026)"
+  description="Alberta homeowners: compare mortgage renewal rates in Calgary, Edmonton, and across AB. No provincial land transfer tax. Free broker consultation."
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+          🏔️ Alberta Renewal Guide
+        </div>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          Alberta Mortgage Renewal in 2026
+        </h1>
+        <p class="text-xl text-white/80 mb-8">
+          Alberta's housing market has been one of the most active in Canada, driven by interprovincial migration and strong employment. If you're renewing in Alberta, here's what you need to know to get the best possible rate.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/book-a-call">
+            <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
+              Book Free Alberta Broker Consultation
+            </button>
+          </a>
+          <a href="/mortgage-renewal-calculator">
+            <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
+              Calculate My New Payment
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALBERTA MARKET SNAPSHOT -->
+  <section class="border-b py-10 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { stat: "$620K", label: "Average Calgary home price (2025)", sub: "CREB data" },
+          { stat: "$480K", label: "Average Edmonton home price", sub: "REALTORS® Association of Edmonton" },
+          { stat: "$0", label: "Alberta land transfer tax", sub: "No provincial LTT in Alberta" },
+          { stat: "+7%", label: "Population growth 2023–2024", sub: "Fastest growing province in Canada" },
+        ].map(item => (
+          <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
+            <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
+            <div class="mt-1 text-sm font-medium text-gray-800">{item.label}</div>
+            <div class="mt-0.5 text-xs text-gray-500">{item.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-12 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-10">
+
+          <div>
+            <h2 class="text-heading-2 mb-4">Alberta Mortgage Market Overview</h2>
+            <p class="text-body-lg text-muted-foreground mb-4">
+              Alberta has been Canada's fastest-growing province in recent years, driven by interprovincial migration from BC and Ontario attracted by lower housing costs and no provincial income tax on investment. This migration has significantly increased housing demand in Calgary and Edmonton.
+            </p>
+            <p class="text-body-md text-muted-foreground mb-4">
+              Alberta's unique advantage: unlike Ontario, BC, and Quebec, Alberta charges <strong>no provincial land transfer tax</strong>. This makes switching lenders and porting mortgages less expensive, giving Alberta homeowners more flexibility at renewal.
+            </p>
+            <p class="text-body-md text-muted-foreground">
+              Alberta's mortgage market is primarily served by federally regulated lenders (the big 6 banks, monolines) and provincially regulated Alberta Treasury Branches (ATB Financial) and credit unions (Servus, Connect First/Calgary Co-op, etc.).
+            </p>
+          </div>
+
+          <!-- Alberta Advantages -->
+          <div>
+            <h2 class="text-heading-3 mb-4">Alberta Renewal Advantages</h2>
+            <div class="space-y-4">
+              {[
+                {
+                  title: "No Provincial Land Transfer Tax",
+                  content: "Alberta is one of the few provinces with no provincial land transfer tax. This gives you more flexibility to switch lenders at renewal without worrying about title transfer costs. Standard switching costs in Alberta are typically just legal discharge and registration fees ($700–$1,200 for a collateral charge switch).",
+                },
+                {
+                  title: "ATB Financial (Alberta Treasury Branches)",
+                  content: "ATB is Alberta's own provincially owned financial institution. They offer competitive mortgage rates and have branches throughout Alberta, including in many rural communities where big bank branches are limited. ATB is not federally regulated, so they have some flexibility in their mortgage products.",
+                },
+                {
+                  title: "Strong Credit Union Sector",
+                  content: "Alberta credit unions — particularly Servus Credit Union (the largest in the province) — offer competitive mortgage rates and more personalized service. Credit unions operate under Alberta's Credit Union Act and CUDGCO oversight.",
+                },
+                {
+                  title: "CMHC MLI Select for Multi-Family",
+                  content: "Alberta has been a strong beneficiary of CMHC's MLI Select program for multi-family properties. If you own rental properties in Alberta, MLI Select can offer significantly better financing terms at renewal.",
+                },
+              ].map(item => (
+                <div class="rounded-xl border border-gray-100 bg-white p-5">
+                  <h3 class="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p class="text-body-sm text-muted-foreground">{item.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Alberta Markets</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { city: "Calgary", notes: "Strong growth market. Diverse economy (energy, tech, finance). Active condo and single-family markets." },
+                { city: "Edmonton", notes: "Government and healthcare employment base. Strong rental demand. More affordable than Calgary." },
+                { city: "Red Deer", notes: "Central Alberta hub. Agricultural and energy economy." },
+                { city: "Lethbridge", notes: "Southern Alberta. Agricultural and post-secondary education driven." },
+                { city: "Fort McMurray", notes: "Oil sands economy. Unique property market — specialized lenders preferred." },
+                { city: "Okotoks & Airdrie", notes: "Calgary suburbs with rapid growth. Many new construction mortgages coming up for renewal." },
+              ].map(m => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{m.city}</div>
+                  <div class="text-xs text-muted-foreground">{m.notes}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="rounded-xl bg-primary-0 border border-primary-50 p-6">
+            <h3 class="text-heading-5 text-primary-100 mb-3">Free Alberta Broker Consultation</h3>
+            <p class="text-body-sm text-muted-foreground mb-4">Licensed Alberta mortgage brokers comparing 30+ lenders including ATB, Servus, and major monolines. Free, no obligation.</p>
+            <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
+              Book Free Call →
+            </a>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Alberta Resources</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://www.reca.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">RECA — Real Estate Council of Alberta</a></li>
+              <li><a href="https://www.creb.com" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">CREB — Calgary Real Estate Board</a></li>
+              <li><a href="https://www.atb.com" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">ATB Financial</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-100 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <h2 class="text-heading-2 text-white mb-4">Start Your Alberta Renewal Today</h2>
+      <p class="text-xl text-white/80 mb-8">
+        Our brokers compare rates from 30+ lenders including ATB, monolines, and Alberta credit unions. Free, no obligation.
+      </p>
+      <a href="/book-a-call">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Consultation
+        </button>
+      </a>
+    </div>
+  </section>
+
+  <p class="container py-6 text-xs text-muted-foreground text-center">
+    Educational purposes only. Market data is approximate. Consult a licensed Alberta mortgage broker for advice specific to your situation.
+  </p>
+</DefaultLayout>

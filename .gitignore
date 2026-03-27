@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.vercel/
+
+# Environment variables — NEVER commit these
+.env
+.env.local
+.env.*.local
+
+# Astro
+.astro/
+
+# OS
+.DS_Store
+*.DS_Store
+
+# Editor
+.vscode/settings.json
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

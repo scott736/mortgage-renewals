@@ -1,0 +1,696 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+export const prerender = true;
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Checklist — Month-by-Month Timeline for Canadians | MortgageRenewalHub.ca"
+  description="Your complete mortgage renewal checklist. Four phases from 12 months before to renewal day — with every document, action item, and deadline you need to get the best rate in Canada."
+>
+  <!-- Breadcrumb -->
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Renewal Checklist
+  </nav>
+
+  <!-- Hero -->
+  <section class="py-14" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <div class="inline-block rounded-full px-4 py-1 text-xs font-semibold mb-5 uppercase tracking-wider" style="background: var(--secondary); color: white">
+        Free Printable Checklist
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-5 text-white leading-tight">
+        Mortgage Renewal Checklist — Month-by-Month Timeline for Canadians
+      </h1>
+      <p class="text-lg mb-6 opacity-90 text-white max-w-2xl">
+        A four-phase action plan from 12 months before renewal to the day your new term starts. Follow every step and you'll never leave money on the table at renewal again.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+          Book a Free Broker Call
+        </a>
+        <a href="/mortgage-renewal-calculator" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+          Calculate Your Savings
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+
+    <!-- How to use this checklist -->
+    <div class="rounded-lg p-6 mb-12" style="border-left: 4px solid var(--secondary); background: var(--accent)">
+      <h2 class="text-xl font-bold mb-3" style="color: var(--primary)">How to Use This Checklist</h2>
+      <p class="mb-3 leading-relaxed text-sm">
+        Canada's mortgage renewal process is not a single event — it's a four-phase journey that ideally begins a full year before your maturity date. Most homeowners make the costly mistake of starting too late: waiting until their renewal statement arrives (often just 21 days before maturity) gives you almost no time to shop, compare, or switch lenders.
+      </p>
+      <p class="mb-3 leading-relaxed text-sm">
+        This checklist breaks the process into four phases: 12 months out, 6 months out, 120 days out, and the final 30-day sprint. Use it as a living document — bookmark it, print it, or share it with your partner. Work through each item in sequence. By the time your maturity date arrives, you'll have done everything in your power to secure the lowest possible rate with the best possible mortgage structure.
+      </p>
+      <p class="text-sm font-semibold" style="color: var(--secondary)">
+        Pro tip: Your single most important action is to contact a licensed mortgage broker at least 120 days before your renewal date. Everything else builds from that conversation.
+      </p>
+    </div>
+
+    <!-- Phase Overview -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-12">
+      <div class="rounded-lg p-4 text-center" style="background: var(--primary); color: white">
+        <p class="text-2xl font-bold">12mo</p>
+        <p class="text-xs opacity-80 mt-1">Foundation</p>
+      </div>
+      <div class="rounded-lg p-4 text-center" style="background: var(--secondary); color: white">
+        <p class="text-2xl font-bold">6mo</p>
+        <p class="text-xs opacity-80 mt-1">Research</p>
+      </div>
+      <div class="rounded-lg p-4 text-center" style="background: oklch(70% 0.18 85); color: white">
+        <p class="text-2xl font-bold">120d</p>
+        <p class="text-xs opacity-80 mt-1">Action</p>
+      </div>
+      <div class="rounded-lg p-4 text-center" style="background: oklch(45% 0.12 145); color: white">
+        <p class="text-2xl font-bold">30d</p>
+        <p class="text-xs opacity-80 mt-1">Confirm</p>
+      </div>
+    </div>
+
+  <!-- Phase 1: 12 Months -->
+  <section class="mb-14">
+      <div class="rounded-lg p-4 mb-6 flex items-center gap-4" style="background: var(--primary)">
+        <div class="rounded-full w-12 h-12 flex items-center justify-center font-bold text-white flex-shrink-0 border-2 border-white border-opacity-40 text-lg">P1</div>
+        <div>
+          <h2 class="text-xl font-bold text-white">Phase 1: 12 Months Before Renewal</h2>
+          <p class="text-white text-sm" style="opacity: 0.8">Foundation work — set yourself up so nothing can surprise you later</p>
+        </div>
+      </div>
+
+      <p class="mb-6 leading-relaxed text-sm">
+        Most Canadians never think about their mortgage until a renewal notice arrives in the mail. Starting 12 months out puts you in an entirely different — and far more powerful — position. This phase is about understanding where you stand financially, identifying any weaknesses that could limit your options, and making sure no surprises ambush you when the stakes are highest.
+      </p>
+
+      <div class="space-y-4">
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">1.1 — Locate your mortgage documents and confirm your exact maturity date</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Find your most recent mortgage statement and your original commitment letter. You need to know your exact maturity date, current outstanding balance, remaining amortization, interest rate, and prepayment privileges. If you can't locate your documents, call your lender and ask them to confirm these details in writing. Save your maturity date somewhere obvious — it's the most important date in your renewal calendar.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">1.2 — Pull your credit reports from Equifax Canada and TransUnion Canada</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">You're entitled to free annual credit reports from both bureaus. Check for errors, outdated negative marks, unfamiliar accounts, or outstanding collections. Disputing errors can take months to resolve — starting 12 months out gives you a full year to clean up your credit profile before lenders assess it at renewal. A credit score of 720+ typically unlocks the best available rates. Scores under 650 can result in rate surcharges or limited lender options.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">1.3 — Identify whether your current mortgage is a standard charge or collateral charge</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Call your lender and ask directly, or check your mortgage documents. Standard charge mortgages can be transferred (assigned) to a new lender relatively inexpensively at renewal. Collateral charges — used by TD Canada Trust, National Bank, and others as their default — require a full discharge and re-registration to switch lenders, adding $500–$1,000 in legal costs. Knowing this now lets you plan your switching strategy accurately instead of being surprised later.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">1.4 — Set calendar reminders for 120 days, 90 days, and 30 days before maturity</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Set reminders for all three dates right now. The 120-day mark is your most critical milestone — it's when most lenders begin offering rate holds, and it gives you maximum time to shop, compare, and negotiate without pressure. Share these reminders with your spouse or co-borrower if applicable. If you're using a shared calendar system, add a note explaining why each date matters.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">1.5 — Calculate your break-even on making extra lump-sum payments now</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">If your current mortgage has prepayment privileges (most allow 10–20% of original principal annually), run the numbers on whether a lump-sum payment before renewal makes financial sense. Reducing your outstanding principal can improve your loan-to-value ratio, potentially unlocking better rates at renewal — particularly if a reduction moves you below the 80% LTV threshold that separates insured and uninsured mortgage pricing. Use our <a href="/mortgage-renewal-calculator" style="color: var(--secondary)">mortgage renewal calculator</a> to model the scenarios side by side.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">1.6 — Review your life plans and financial goals for the next 3–5 years</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Mortgage structure decisions at renewal should be informed by where your life is going over the next term. Are you planning to sell and move? Expecting a significant income change — up or down? Growing your family and thinking about a larger home? Considering refinancing for renovations? Planning to rent out the property? These factors directly affect which term length, rate type (fixed vs. variable), and amortization make the most sense. Spend 30 minutes thinking this through honestly — it will make every broker conversation far more productive and ensure your mortgage serves your life goals, not just minimizes today's payment.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- Phase 2: 6 Months -->
+    <section class="mb-14">
+      <div class="rounded-lg p-4 mb-6 flex items-center gap-4" style="background: var(--secondary)">
+        <div class="rounded-full w-12 h-12 flex items-center justify-center font-bold text-white flex-shrink-0 border-2 border-white border-opacity-40 text-lg">P2</div>
+        <div>
+          <h2 class="text-xl font-bold text-white">Phase 2: 6 Months Before Renewal</h2>
+          <p class="text-white text-sm" style="opacity: 0.8">Research and preparation — educate yourself and get your documents organized</p>
+        </div>
+      </div>
+
+      <p class="mb-6 leading-relaxed text-sm">
+        Six months out is when your renewal strategy starts taking shape. You're now close enough to begin having informed, substantive conversations with mortgage professionals, but still far enough away that you have genuine flexibility in your decisions. Use this window to understand the rate landscape, gather your financial documents, and think through the structural choices that will define your next mortgage term.
+      </p>
+
+      <div class="space-y-4">
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.1 — Contact a licensed mortgage broker for an initial strategy call</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Six months out is the ideal time for a first conversation with a mortgage broker. This is a free consultation — brokers are paid by lenders when your mortgage funds, not by you. A strategy call at this stage gives you a clear picture of what rate ranges look like in the current market, which lenders are most competitive for your profile, and whether any proactive steps in the next 6 months (credit improvement, debt reduction, document preparation) could meaningfully improve your position. Even if you ultimately stay with your current lender, this conversation costs you nothing and arms you with knowledge. <a href="/book-a-call" style="color: var(--secondary)">Book your free strategy call here.</a></p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.2 — Research current mortgage rates and the Bank of Canada rate outlook</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Understand the current rate environment: What are posted rates vs. discounted rates? What is the Bank of Canada prime rate, and what direction are economists forecasting for the next 12–18 months? What is the spread between fixed and variable rates? Understanding these dynamics helps you make informed decisions between fixed and variable, and between short and long terms. The BoC meets 8 times per year — subscribe to their rate announcement schedule. Our <a href="/mortgage-renewal-guide" style="color: var(--secondary)">complete renewal guide</a> has a section on interpreting the rate environment.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.3 — Decide your term length preference and rate type (fixed vs. variable)</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Term length and rate type are the two most consequential decisions in your renewal. Fixed rates offer payment certainty for the full term; variable rates track the Bank of Canada prime rate and historically (though not universally) result in lower total interest paid over time. Short terms (1–2 years) make strategic sense when you believe rates will fall significantly; longer terms (4–5 years) provide protection against increases. Your broker will give you a professional recommendation calibrated to current market conditions and your personal situation — but forming your own view first makes the conversation much more productive.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.4 — Begin assembling your complete financial document package</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Start gathering the documents you'll need for your renewal application. For employed borrowers: most recent 2 pay stubs, letter of employment confirming position, tenure, and salary, last 2 years of T4 slips, and last 2 years of Notice of Assessment from CRA. For self-employed: last 2 years of T1 General returns, business financial statements if incorporated, and articles of incorporation. For all borrowers: current statements for any car loans, student loans, lines of credit, and credit cards; your most recent mortgage statement; and a recent property tax bill. Having this package ready eliminates last-minute scrambles when your broker needs documents quickly at the 120-day mark.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.5 — Review your amortization options and run the payment scenarios</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Most Canadians passively accept whatever amortization years remain on their current mortgage. But renewal is an explicit opportunity to reassess. If cash flow has tightened, some lenders may allow a modest amortization extension (subject to qualification). If you can comfortably afford higher payments, shortening your amortization by even 2–3 years can save tens of thousands in total interest over the remaining life of the mortgage. Use our calculator to model different scenarios before your broker meeting so you arrive with informed questions rather than starting from zero.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.6 — Pay down credit card and revolving credit balances below 30% utilization</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Credit utilization — the ratio of your outstanding balance to your credit limit — is one of the most impactful factors in your credit score. Keeping all revolving credit (credit cards, lines of credit) below 30% utilization, and ideally below 10%, meaningfully improves your score over the months leading up to renewal. You have 6 months to strategically pay down balances and allow your score to reflect the improvement before lenders pull your credit for the application. Do not open any new credit accounts during this window.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- Phase 3: 120 Days -->
+    <section class="mb-14">
+      <div class="rounded-lg p-4 mb-6 flex items-center gap-4" style="background: oklch(60% 0.16 65)">
+        <div class="rounded-full w-12 h-12 flex items-center justify-center font-bold text-white flex-shrink-0 border-2 border-white border-opacity-40 text-lg">P3</div>
+        <div>
+          <h2 class="text-xl font-bold text-white">Phase 3: 120 Days Before Renewal</h2>
+          <p class="text-white text-sm" style="opacity: 0.8">Active shopping and application — this is where you win or lose at renewal</p>
+        </div>
+      </div>
+
+      <p class="mb-6 leading-relaxed text-sm">
+        The 120-day mark is when the rubber meets the road. Most lenders will hold a rate for up to 120 days before funding — meaning you can lock in today's rate now, even if your mortgage doesn't mature for four more months. This is also when you should be actively comparing offers, submitting applications, and making the decisive choice on whether to switch lenders or negotiate hard with your current one.
+      </p>
+
+      <div class="space-y-4">
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(60% 0.16 65)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">3.1 — Get a formal rate hold from your broker's best lender option</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">A rate hold (also called a rate commitment) locks in today's rate for up to 120 days. If rates rise before your renewal date, you're fully protected. If rates fall, most lenders allow you to drop to the lower rate before funding. This is essentially a free option on today's rates — locking in a rate hold costs you nothing and preserves your flexibility in any rate environment. Your broker will arrange this as part of submitting your application.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(60% 0.16 65)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">3.2 — Have your broker formally compare at least 3 lender offers</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Never accept a single offer without comparison — not even from a broker. Your broker should be presenting you with a minimum of 3 substantive options from different lender types (major bank, monoline, credit union, or alternative lender) so you can compare not just rates but penalty structures, prepayment privileges, portability conditions, and charge type. Multiple applications via a broker typically count as a single credit inquiry when done within a 14–45 day window — your credit score won't be damaged by comparison shopping through a broker.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(60% 0.16 65)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">3.3 — Submit your formal mortgage application to the chosen lender</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Once you've identified your preferred option, your broker submits the formal application with all supporting documents. For a straight lender switch — same balance, same amortization, no new funds — the process is typically faster than a new purchase: expect a commitment letter within 24–72 hours for a clean file. Since November 2024, federally regulated lenders are no longer required to apply the mortgage stress test to uninsured mortgages transferred as straight switches. Your broker manages the full submission and follows up with the underwriting team.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(60% 0.16 65)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">3.4 — Use your competing commitment letter to negotiate with your current lender</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Once you hold a written commitment from an external lender, take it to your current lender and ask them to match or beat it. The negotiating dynamic shifts entirely in your favour the moment you hold a competing offer. Some current lenders will match; others won't. If they match — and the overall mortgage features are equivalent, including prepayment privileges and penalty structure — staying put saves you switching costs. If they won't match, or if the external offer is materially better on features you care about, the math on switching is almost always clear. Have this conversation with your broker's guidance.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(60% 0.16 65)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">3.5 — Read your mortgage commitment letter carefully before signing</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Before signing your commitment letter, verify: the rate exactly matches what was quoted; the term length and amortization are correct; the prepayment privileges match what was discussed (how much lump-sum you can pay annually, how much you can increase your payment); the IRD penalty formula is documented or you've asked your broker to explain it; portability conditions are clearly stated; and any cost coverage commitments (legal fees, discharge fees) are in writing. If anything is unclear or different from what you discussed, ask before you sign. Once signed, the commitment is binding.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(60% 0.16 65)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">3.6 — Confirm whether the new lender covers your switching costs</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">If you're switching lenders, ask explicitly whether the new lender covers legal and discharge fees. Many lenders — particularly monoline lenders actively competing for prime borrowers — will cover some or all switching costs as an incentive. Typical switching costs if paid out-of-pocket: discharge fee from current lender ($200–$400); legal/registration fees ($300–$600); title insurance ($150–$300); appraisal if required ($300–$500). Total range: $700–$1,800. Having the new lender cover these costs eliminates the primary financial friction of switching, making the savings calculation even more compelling.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- Phase 4: 30 Days -->
+    <section class="mb-14">
+      <div class="rounded-lg p-4 mb-6 flex items-center gap-4" style="background: oklch(45% 0.12 145)">
+        <div class="rounded-full w-12 h-12 flex items-center justify-center font-bold text-white flex-shrink-0 border-2 border-white border-opacity-40 text-lg">P4</div>
+        <div>
+          <h2 class="text-xl font-bold text-white">Phase 4: 30 Days Before to Renewal Day</h2>
+          <p class="text-white text-sm" style="opacity: 0.8">Final confirmation and closing — execute everything cleanly for a smooth transition</p>
+        </div>
+      </div>
+
+      <p class="mb-6 leading-relaxed text-sm">
+        The final 30 days are about execution and confirmation. The strategic decisions have been made; now you're ensuring everything is properly in place for a smooth transition on your maturity date. This phase is largely administrative, but missing any of these steps can create frustrating — and occasionally expensive — delays right at the finish line.
+      </p>
+
+      <div class="space-y-4">
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(45% 0.12 145)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">4.1 — Sign your mortgage commitment and any remaining documents</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">If you haven't already signed your commitment letter, do so without delay. Your broker will send you any remaining forms — typically e-signature documents completable in under 10 minutes. If you're switching lenders, your broker coordinates the scheduling of the legal appointment with the lawyer or notary handling the transfer. This appointment is usually brief (30–45 minutes) and can often be done remotely via video or at a convenient law firm. Completing this early eliminates any risk of last-minute delays.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(45% 0.12 145)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">4.2 — Confirm your new payment amount, start date, and frequency</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Ask your broker or new lender to confirm exactly what your new mortgage payment will be, on what date it starts, and at what frequency (monthly, bi-weekly, or accelerated bi-weekly). Compare this to your current payment and update your budget accordingly. If your rate has changed significantly — up or down — your new payment may differ substantially. Note: choosing accelerated bi-weekly payments over monthly at no additional per-payment cost effectively adds one extra monthly payment per year, reducing your amortization by 2–3 years over the life of a typical mortgage.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(45% 0.12 145)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">4.3 — Set up pre-authorized debit with your new lender (if switching)</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">If you're switching to a new lender, provide a void cheque or direct deposit authorization from the bank account your payments will come from. Do this early — pre-authorized debit setups can take a few business days to process. You do not want to miss your first payment with a new lender because the banking connection wasn't configured in time. A missed payment during the first month of a new mortgage relationship is an avoidable and embarrassing problem.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(45% 0.12 145)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">4.4 — Update your property insurance certificate to name the new lender</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">If you're switching lenders, your new lender must be listed as the mortgage loss payee on your property insurance. Contact your insurance broker and request an updated certificate naming the new lender. This is a mandatory requirement before your new mortgage can fund. It's a 5-minute phone call, but forgetting it can delay your closing. Your broker may remind you, but don't wait — do it as soon as you've signed your commitment letter.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(45% 0.12 145)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">4.5 — Confirm the maturity date transition with both your current and new lender</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">A week before your maturity date, confirm with your broker that all legal work is complete, both lenders are coordinated on the transition date, and that your old lender will be paid out on time. Last-minute surprises in this final week are rare if you've started the process at 120 days — but a quick confirmation call eliminates any residual uncertainty.</p>
+          </div>
+        </label>
+
+        <label class="flex items-start gap-3 p-5 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: oklch(45% 0.12 145)" />
+          <div>
+            <p class="font-semibold text-sm mb-1" style="color: var(--primary)">4.6 — Note your next renewal date and immediately set your 12-month reminder</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">The moment your new term begins, note your next renewal date and set a reminder for 12 months before that date. Yes, this may be 4–5 years from now — but setting the reminder while it's fresh means you'll never be caught scrambling at the end of a term again. You've now joined the small minority of Canadian homeowners who actively and deliberately manage their mortgage renewal. The financial difference over a lifetime of homeownership is substantial.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- Documents You'll Need -->
+    <section class="mb-14">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Documents You'll Need at Renewal</h2>
+      <p class="mb-6 leading-relaxed text-sm">Regardless of whether you're renewing with your current lender or switching to a new one, having this documentation ready will accelerate the process and demonstrate your preparedness to underwriters. The amount required varies: renewing simply with your current lender typically requires minimal documents, while switching lenders requires a more comprehensive package.</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-bold mb-3 text-sm" style="color: var(--secondary)">Mortgage &amp; Property Documents</p>
+          <ul class="text-sm space-y-2" style="color: var(--muted-foreground)">
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Most recent mortgage statement (balance &amp; maturity date)</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Original commitment letter or full mortgage terms document</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Most recent annual property tax bill</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Current property insurance certificate</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Strata/condo documents and fee statements (if applicable)</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Void cheque for pre-authorized payments</li>
+          </ul>
+        </div>
+
+        <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-bold mb-3 text-sm" style="color: var(--secondary)">Income Documents — Employed Borrowers</p>
+          <ul class="text-sm space-y-2" style="color: var(--muted-foreground)">
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Most recent 2 consecutive pay stubs</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Employment letter confirming position, tenure, and salary</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Last 2 years of T4 slips</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Last 2 years Notice of Assessment (NOA) from CRA</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Bonus or commission letters (if income includes variable pay)</li>
+          </ul>
+        </div>
+
+        <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-bold mb-3 text-sm" style="color: var(--secondary)">Income Documents — Self-Employed Borrowers</p>
+          <ul class="text-sm space-y-2" style="color: var(--muted-foreground)">
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Last 2 years T1 General personal tax returns</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Last 2 years Notice of Assessment from CRA</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Business financial statements (if incorporated)</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Articles of incorporation</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> 3–6 months business bank statements (for Alt-A lender programs)</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Accountant letter confirming business status and income</li>
+          </ul>
+        </div>
+
+        <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-bold mb-3 text-sm" style="color: var(--secondary)">Personal ID &amp; Existing Debt Statements</p>
+          <ul class="text-sm space-y-2" style="color: var(--muted-foreground)">
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Two pieces of valid government-issued photo ID</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Social Insurance Number (for credit bureau authorization)</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Car loan or lease agreement and current statement</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Student loan statement and current balance</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Credit card statements (for any cards with balances)</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Line of credit statements</li>
+            <li class="flex items-start gap-2"><span style="color: var(--secondary)">✓</span> Any additional property mortgage statements</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 months -->
+    <section class="mb-10">
+      <div class="rounded-lg p-4 mb-6" style="background: var(--primary)">
+        <h2 class="text-xl font-bold text-white">12 Months Before Renewal</h2>
+        <p class="text-white opacity-80 text-sm">Foundation work — do this now so you're positioned perfectly later</p>
+      </div>
+      <div class="space-y-3">
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Confirm your exact mortgage maturity date</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Check your most recent mortgage statement or call your lender. Write the date down and save it somewhere obvious.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Pull your credit report (Equifax and TransUnion)</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Review for errors, unfamiliar accounts, or outstanding collections. You can get free reports from equifax.ca and transunion.ca. Dispute any errors immediately — resolution can take months.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Note your current credit score</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">720+ typically qualifies for prime rates. 650–719 is usually prime but may have nuances. Under 650 significantly limits options. Knowing where you stand gives you 12 months to improve.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Pay down high-interest revolving credit below 30% utilization</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Credit card utilization is one of the biggest factors affecting your score. Aim to keep balances below 30% of your credit limit on each card.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Identify whether your current mortgage is a standard charge or collateral charge</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Call your lender or review your mortgage documents. Collateral charges (TD, National Bank by default) require full discharge to switch lenders — which affects switching costs.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">File your taxes on time if self-employed</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Lenders need your last 2 years' Notices of Assessment. Being up to date on taxes is non-negotiable for most lenders. If you're behind, get current immediately.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Think about your life plans for the next 5 years</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Are you likely to sell, renovate, add a co-borrower, or have a major income change? Your plans affect which term length makes most sense.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- 6 months -->
+    <section class="mb-10">
+      <div class="rounded-lg p-4 mb-6" style="background: var(--secondary)">
+        <h2 class="text-xl font-bold text-white">6 Months Before Renewal</h2>
+        <p class="text-white opacity-80 text-sm">Research phase — start watching rates and understanding your options</p>
+      </div>
+      <div class="space-y-3">
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Begin monitoring current mortgage rates</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Check best available rates from comparison sites and broker networks. Understand the spread between fixed and variable, and between short and long terms.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Read the Bank of Canada rate decision updates</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">The BoC meets 8 times per year. Understanding the direction of rates helps you decide between fixed and variable, and between shorter and longer terms.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Gather and organize your income documents</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Locate your last 2 pay stubs, most recent T4 slips, and last 2 NOAs. If self-employed, pull your T1 General returns and business financial statements.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Request your current mortgage statement showing outstanding balance</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">You'll need this for any broker application. It shows your remaining balance, maturity date, and current terms.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Decide whether you want to simply renew or also refinance</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">If you want to access equity, add/remove a co-borrower, or change your amortization, that's a refinance — which requires additional steps and a stress test.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- 4 months / 120 days -->
+    <section class="mb-10">
+      <div class="rounded-lg p-4 mb-6" style="background: var(--primary)">
+        <h2 class="text-xl font-bold text-white">4 Months (120 Days) Before Renewal</h2>
+        <p class="text-white opacity-80 text-sm">Action phase — this is when the real work happens</p>
+      </div>
+      <div class="space-y-3">
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Contact a licensed mortgage broker</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">This is the single most impactful action you can take. Free to you, accesses 30+ lenders, and consistently finds better rates than going directly to one lender. <a href="/book-a-call" style="color: var(--secondary)">Book your free call here.</a></p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Submit your renewal application to 2–3 lenders via your broker</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Multiple applications via a broker typically count as a single credit inquiry if done within a 14–45 day window. Your score won't be damaged by rate shopping through a broker.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Lock in a rate hold with the best lender (valid up to 120 days)</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">A rate hold protects you if rates rise before your maturity date. Most lenders allow rate drops within the hold period if rates fall — so there's virtually no downside to holding early.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Use the competing offer to negotiate with your current lender</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Take the broker's best offer to your current lender and ask if they'll match or beat it. Some will. If they match, you can stay put. If they won't, you have a clear answer — switch.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Review and decide on: term length, rate type (fixed/variable), and lender</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Make this decision deliberately, not by default. Discuss your options with your broker before signing anything.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Sign the mortgage commitment (if switching lenders)</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Your broker will guide you through the paperwork. Signing in advance allows time for legal work to be completed before your maturity date.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Confirm whether your new lender will cover legal/discharge fees</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Many lenders offer to cover these costs as an incentive to attract your business. Ask explicitly before assuming you'll need to pay out of pocket.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- 30 days -->
+    <section class="mb-10">
+      <div class="rounded-lg p-4 mb-6" style="background: var(--secondary)">
+        <h2 class="text-xl font-bold text-white">30 Days Before Renewal</h2>
+        <p class="text-white opacity-80 text-sm">Final preparations — ensure everything is ready for a smooth transition</p>
+      </div>
+      <div class="space-y-3">
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Confirm your renewal statement has arrived from your current lender</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">FCAC rules require this at least 21 days before maturity. If you haven't received it, contact your lender immediately.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Confirm legal instructions have been sent (if switching lenders)</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Your broker or new lender coordinates with lawyers. Confirm the legal package has been sent and that the lawyers are aware of your maturity date.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Update your property insurance certificate if switching lenders</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Your new lender must be listed as loss payee on your homeowner's insurance. Contact your insurance provider and ask them to update the mortgagee information.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Verify your new payment amount and start date</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Confirm with your broker or new lender what your first payment will be, when it's due, and from which account it will be withdrawn.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Set up pre-authorized debit with your new lender (if switching)</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Provide a void cheque or banking details to your new lender so payments are set up correctly from day one.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- On renewal day -->
+    <section class="mb-10">
+      <div class="rounded-lg p-4 mb-6" style="background: var(--primary)">
+        <h2 class="text-xl font-bold text-white">On Renewal Day (Your Maturity Date)</h2>
+        <p class="text-white opacity-80 text-sm">The finish line — confirm everything has transitioned correctly</p>
+      </div>
+      <div class="space-y-3">
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Confirm your new lender has funded and your old mortgage is discharged</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Your broker or lawyer can confirm this. The old lender should confirm payout; the new lender should confirm funding.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Verify your new interest rate and mortgage balance on your first statement</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Check that the rate, term end date, payment amount, and outstanding balance are all as agreed. If anything is wrong, contact your broker and lender immediately.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Note your new maturity date and set a calendar reminder for 120 days before</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Start the cycle again. Your next renewal date is already set — get ahead of it now so you're never caught scrambling.</p>
+          </div>
+        </label>
+        <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
+          <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
+          <div>
+            <p class="font-semibold text-sm">Confirm your prepayment privileges and set a plan to use them</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">If you can make annual lump-sum payments of 10–20% of your original balance, plan to do so whenever cash flow allows. Even one extra payment per year reduces your amortization meaningfully.</p>
+          </div>
+        </label>
+      </div>
+    </section>
+
+    <!-- Email CTA -->
+    <div class="rounded-lg p-8 text-center" style="background: var(--accent); border: 1px solid var(--border)">
+      <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Get a Free Renewal Reminder</h2>
+      <p class="mb-4 text-sm" style="color: var(--muted-foreground)">Tell us your renewal date and we'll send you reminders at 120 days, 60 days, and 30 days before maturity — so you never miss the optimal window again.</p>
+      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-6 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Set Up My Free Renewal Reminder
+      </a>
+    </div>
+
+    <!-- Internal links -->
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">The complete guide to how mortgage renewals work in Canada.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">When to switch, the 8-step process, costs covered by new lenders.</p>
+        </a>
+        <a href="/mortgage-renewal-mistakes" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">The costly errors most Canadians make and how to avoid them.</p>
+        </a>
+        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Free to you. 30+ lenders. Complete broker guide for renewal.</p>
+        </a>
+        <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Rate type decision framework for the 2026 rate environment.</p>
+        </a>
+        <a href="/mortgage-renewal-faq" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered across 7 categories.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
+      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Renewal Strategy Call
+      </a>
+    </div>
+  </section>
+
+  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
+    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
+  </p>
+</DefaultLayout>

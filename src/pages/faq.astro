@@ -1,0 +1,12 @@
+---
+import ZippayCtaCard from "@/components/sections/zippay-cta-card";
+import ZippayFaqPage from "@/components/sections/zippay-faq-page";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <ZippayFaqPage client:only="react" />
+  <ZippayCtaCard />
+</DefaultLayout>

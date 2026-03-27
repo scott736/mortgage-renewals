@@ -1,0 +1,205 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+export const prerender = true;
+---
+
+<DefaultLayout
+  title="Ontario Mortgage Renewal — Rates, Rules & Resources for 2026"
+  description="Ontario homeowners: get the best mortgage renewal rates in 2026. Compare Toronto, Ottawa, Hamilton, and provincial market data. Free broker consultation."
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+          🏠 Ontario Renewal Guide
+        </div>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          Ontario Mortgage Renewal in 2026
+        </h1>
+        <p class="text-xl text-white/80 mb-8">
+          Over 500,000 Ontario homeowners are renewing in the next 12 months. With home values among the highest in Canada, even small rate improvements translate to major savings. Here's what Ontario homeowners need to know.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/book-a-call">
+            <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
+              Book Free Ontario Broker Consultation
+            </button>
+          </a>
+          <a href="/mortgage-renewal-calculator">
+            <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
+              Calculate My New Payment
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ONTARIO MARKET SNAPSHOT -->
+  <section class="border-b py-10 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { stat: "$1.1M+", label: "Average GTA home price (2025)", sub: "TRREB data" },
+          { stat: "$750K", label: "Average home price across Ontario", sub: "CREA estimates" },
+          { stat: "500K+", label: "Ontario mortgages renewing in 2026", sub: "CMHC estimates" },
+          { stat: "0%", label: "Land transfer tax rebate for first-time buyers", sub: "Ontario LTT rebate still available" },
+        ].map(item => (
+          <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
+            <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
+            <div class="mt-1 text-sm font-medium text-gray-800">{item.label}</div>
+            <div class="mt-0.5 text-xs text-gray-500">{item.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-12 lg:grid-cols-3">
+        <!-- Main content -->
+        <div class="lg:col-span-2 space-y-10">
+
+          <div>
+            <h2 class="text-heading-2 mb-4">Ontario Mortgage Market Overview</h2>
+            <p class="text-body-lg text-muted-foreground mb-4">
+              Ontario remains Canada's most active housing market, accounting for more than 40% of all residential mortgages by dollar value. The Greater Toronto Area alone sees hundreds of thousands of mortgage renewals annually, with mortgages on homes worth well over $1 million not uncommon.
+            </p>
+            <p class="text-body-md text-muted-foreground mb-4">
+              This means that even a 0.25% rate improvement at renewal saves significantly more for Ontario homeowners than for those elsewhere in the country. A $800,000 mortgage at 0.25% lower saves approximately $1,000/year — or $5,000 over a 5-year term.
+            </p>
+            <p class="text-body-md text-muted-foreground">
+              Ontario's mortgage market is also highly competitive, with hundreds of lenders — including national banks, credit unions, trust companies, and monolines — actively competing for renewal business.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Ontario-Specific Renewal Considerations</h2>
+            <div class="space-y-4">
+              {[
+                {
+                  title: "Collateral Charge Mortgages (TD, Scotiabank STEP)",
+                  content: "Several major Ontario lenders — particularly TD and those using STEP products — register mortgages as collateral charges. This makes switching lenders harder and more expensive (often requiring a real estate lawyer and $700–$1,500 in fees). Know your charge type before renewal.",
+                },
+                {
+                  title: "Ontario Land Transfer Tax (LTT)",
+                  content: "Ontario charges its own provincial LTT on property purchases, in addition to the municipal LTT in Toronto. These don't apply at renewal — but if you're considering porting vs. renewing, LTT on a new purchase is a significant cost to factor in.",
+                },
+                {
+                  title: "Toronto MLTT",
+                  content: "Toronto charges an additional Municipal Land Transfer Tax. Again, this doesn't affect a straight renewal — but matters if you're weighing whether to sell and buy something else vs. renewing your existing home.",
+                },
+                {
+                  title: "Ontario Credit Union Options",
+                  content: "Ontario has a rich credit union sector (Meridian, Alterna, FirstOntario, DUCA, and many others) that often offer competitive rates and more flexible qualification. Credit unions operate under provincial (FSRA) rather than federal oversight, giving them some flexibility federal lenders don't have.",
+                },
+              ].map(item => (
+                <div class="rounded-xl border border-gray-100 bg-white p-5">
+                  <h3 class="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p class="text-body-sm text-muted-foreground">{item.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Major Markets in Ontario</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { city: "Greater Toronto Area", notes: "Highest home values, most competitive lending market. TRREB data drives many national headlines." },
+                { city: "Ottawa", notes: "Federal government employment stabilizes the market. Strong credit union presence (Caisse Populaire, Meridian)." },
+                { city: "Hamilton & Niagara", notes: "Strong LIHTC and affordable housing activity. Growing first-time buyer market." },
+                { city: "London & SW Ontario", notes: "Moderate home values with strong local credit union sector." },
+                { city: "Barrie & Simcoe", notes: "Cottage country influence. Many mixed-use and recreational properties." },
+                { city: "Kitchener-Waterloo", notes: "Tech sector growth driving strong demand. Active buyer market." },
+              ].map(m => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{m.city}</div>
+                  <div class="text-xs text-muted-foreground">{m.notes}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Steps to Get the Best Rate in Ontario</h2>
+            <ol class="space-y-4">
+              {[
+                { step: "1", title: "Start 120 days before your maturity date", desc: "Most Ontario lenders will hold a rate for 120 days. Starting early locks in today's rate as a floor while you continue shopping." },
+                { step: "2", title: "Contact a mortgage broker licensed in Ontario", desc: "All mortgage brokers operating in Ontario must be licensed through FSRA (Financial Services Regulatory Authority of Ontario). Your broker will access both federally regulated lenders and Ontario credit unions." },
+                { step: "3", title: "Know your charge type", desc: "Call your current lender and ask whether your mortgage is registered as a standard charge or collateral charge. This determines your switching flexibility and potential legal costs." },
+                { step: "4", title: "Get at least 3 quotes", desc: "Your broker should present quotes from at least 3 different lenders — ideally comparing a bank, a monoline, and a credit union." },
+                { step: "5", title: "Review the full cost, not just rate", desc: "Compare penalties, prepayment privileges, portability, and discharge fees — not just the advertised rate." },
+              ].map(item => (
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 text-white font-bold text-sm">{item.step}</div>
+                  <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                    <p class="text-body-sm text-muted-foreground">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="rounded-xl bg-primary-0 border border-primary-50 p-6">
+            <h3 class="text-heading-5 text-primary-100 mb-3">Free Ontario Broker Consultation</h3>
+            <p class="text-body-sm text-muted-foreground mb-4">Our licensed Ontario mortgage brokers access 30+ lenders including monolines, credit unions, and banks — all in one call. Free, no obligation.</p>
+            <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
+              Book Free Call →
+            </a>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Ontario Resources</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://www.fsrao.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">FSRA — Ontario Mortgage Regulator</a></li>
+              <li><a href="https://www.orea.com" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">OREA — Ontario Real Estate Association</a></li>
+              <li><a href="https://www.trreb.com" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">TRREB — Toronto Regional Real Estate Board</a></li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Renewal Tools</h3>
+            <ul class="space-y-2">
+              {[
+                { name: "Payment Calculator", href: "/mortgage-renewal-calculator" },
+                { name: "Rate Comparison", href: "/mortgage-renewal-calculator" },
+                { name: "Renewal Checklist", href: "/mortgage-renewal-checklist" },
+                { name: "Switching Guide", href: "/switching-lenders-at-renewal" },
+              ].map(t => (
+                <li><a href={t.href} class="text-sm text-secondary-100 hover:underline">{t.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-100 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <h2 class="text-heading-2 text-white mb-4">Ready to Start Your Ontario Renewal?</h2>
+      <p class="text-xl text-white/80 mb-8">
+        Our licensed Ontario mortgage brokers will compare rates from 30+ lenders and build a personalized strategy for your renewal. Free, no obligation.
+      </p>
+      <a href="/book-a-call">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Consultation
+        </button>
+      </a>
+    </div>
+  </section>
+
+  <p class="container py-6 text-xs text-muted-foreground text-center">
+    This content is for educational purposes only. Market data is approximate and may change. Always consult a licensed Ontario mortgage broker for advice specific to your situation.
+  </p>
+</DefaultLayout>

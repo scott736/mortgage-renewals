@@ -1,0 +1,16 @@
+---
+import ZippayComparisonPlan from "@/components/sections/zippay-comparison-plan";
+import ZippayCtaCard from "@/components/sections/zippay-cta-card";
+import ZippayFAQ from "@/components/sections/zippay-faq";
+import ZippayPricingHero from "@/components/sections/zippay-pricing-hero";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <ZippayPricingHero />
+  <ZippayComparisonPlan client:only="react" />
+  <ZippayFAQ softBg={true} client:only="react" />
+  <ZippayCtaCard softBg={true} />
+</DefaultLayout>
