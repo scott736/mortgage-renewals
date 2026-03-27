@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+export const prerender = true;
 
 const faqs = [
   {
@@ -87,17 +88,39 @@ const faqs = [
 ---
 
 <DefaultLayout
-  title="Mortgage Renewal FAQ: 40+ Questions Answered — MortgageRenewalHub.ca"
-  description="Complete Canadian mortgage renewal FAQ. 40+ questions in 7 categories: basics, rates, switching lenders, saving money, hardship, special situations, and timing."
+  title="Mortgage Renewal FAQ — 40+ Questions Answered | MortgageRenewalHub.ca"
+  description="Canada's most comprehensive mortgage renewal FAQ. 40+ questions answered across 7 categories: basics, rates, switching lenders, saving money, affordability, special situations, and timing."
 >
+  <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Renewal FAQ
   </nav>
 
+  <!-- Hero -->
+  <section class="py-14" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <div class="inline-block rounded-full px-4 py-1 text-xs font-semibold mb-5 uppercase tracking-wider" style="background: var(--secondary); color: white">
+        40+ Questions Answered
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-5 text-white leading-tight">
+        Mortgage Renewal FAQ — Your Complete Question &amp; Answer Guide
+      </h1>
+      <p class="text-lg mb-6 opacity-90 text-white max-w-2xl">
+        Everything Canadians need to know about mortgage renewals — organized into 7 categories and answered in plain language. Updated March 2026.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+          Ask a Licensed Broker
+        </a>
+        <a href="/mortgage-renewal-guide" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+          Full Renewal Guide
+        </a>
+      </div>
+    </div>
+  </section>
+
   <article class="container max-w-4xl py-10">
-    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Canadian Mortgage Renewal FAQ: 40+ Questions Answered</h1>
-    <p class="text-lg mb-4" style="color: var(--muted-foreground)">Updated March 2026</p>
-    <p class="mb-8 leading-relaxed">Everything you've wanted to know about mortgage renewals in Canada — organized into 7 categories and answered in plain language.</p>
+    <p class="mb-8 leading-relaxed">Everything you've wanted to know about mortgage renewals in Canada — organized into 7 categories and answered in plain language. Use the category links below to jump to the section most relevant to your situation.</p>
 
     <div class="flex flex-wrap gap-2 mb-10">
       {faqs.map(section => (

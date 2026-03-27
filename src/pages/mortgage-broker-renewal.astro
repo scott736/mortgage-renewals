@@ -1,17 +1,62 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+export const prerender = true;
 ---
 
 <DefaultLayout
-  title="Using a Mortgage Broker at Renewal in Canada — MortgageRenewalHub.ca"
-  description="Mortgage brokers access 30+ lenders, are free to borrowers, and consistently find better rates than going to your bank. Here's everything you need to know."
+  title="Using a Mortgage Broker at Renewal — Free Expert Access to 30+ Lenders | MortgageRenewalHub.ca"
+  description="Mortgage brokers access 30+ lenders, are completely free to borrowers, and consistently find better rates than going directly to your bank. The complete Canadian guide."
 >
+  <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Using a Mortgage Broker at Renewal
   </nav>
 
+  <!-- Hero -->
+  <section class="py-14" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <div class="inline-block rounded-full px-4 py-1 text-xs font-semibold mb-5 uppercase tracking-wider" style="background: var(--secondary); color: white">
+        Free for Borrowers
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-5 text-white leading-tight">
+        Using a Mortgage Broker at Renewal — Free Expert Access to 30+ Lenders
+      </h1>
+      <p class="text-lg mb-6 opacity-90 text-white max-w-2xl">
+        Brokers are paid by the lender — not you. Yet they access far more lenders, negotiate harder, and consistently deliver better outcomes than going directly to a single bank. Here's everything you need to know.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+          Book a Free Broker Call
+        </a>
+        <a href="/mortgage-renewal-guide" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+          Full Renewal Guide
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats bar -->
+  <div class="py-6" style="background: var(--accent); border-bottom: 1px solid var(--border)">
+    <div class="container max-w-4xl">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div>
+          <p class="text-2xl font-bold" style="color: var(--primary)">30+</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Lenders accessed</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold" style="color: var(--primary)">$0</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Cost to borrowers</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold" style="color: var(--primary)">$9,540</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Avg. 5-yr savings*</p>
+        </div>
+      </div>
+      <p class="text-xs text-center mt-3" style="color: var(--muted-foreground)">*Based on $600k mortgage, 0.61% rate improvement, 25-yr amortization. Illustrative.</p>
+    </div>
+  </div>
+
   <article class="container max-w-4xl py-10">
-    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Should You Use a Mortgage Broker at Renewal? The Complete Canadian Guide</h1>
     <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated March 2026 · 11-minute read</p>
 
     <div class="flex flex-col lg:flex-row gap-10">

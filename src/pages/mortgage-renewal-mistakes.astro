@@ -1,17 +1,41 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+export const prerender = true;
 ---
 
 <DefaultLayout
-  title="10 Biggest Mortgage Renewal Mistakes Canadians Make — MortgageRenewalHub.ca"
-  description="Avoid the 10 most costly Canadian mortgage renewal mistakes — from auto-renewing without shopping to ignoring your charge type. Real numbers, real consequences."
+  title="10 Costly Mortgage Renewal Mistakes Canadians Make — And How to Avoid Them | MortgageRenewalHub.ca"
+  description="Avoid the 10 most costly Canadian mortgage renewal mistakes — from auto-renewing without shopping to ignoring your charge type. Real numbers, real consequences, actionable solutions."
 >
+  <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Renewal Mistakes
   </nav>
 
+  <!-- Hero -->
+  <section class="py-14" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <div class="inline-block rounded-full px-4 py-1 text-xs font-semibold mb-5 uppercase tracking-wider" style="background: var(--secondary); color: white">
+        Avoid These Errors
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-5 text-white leading-tight">
+        10 Costly Mortgage Renewal Mistakes Canadians Make — And How to Avoid Every One
+      </h1>
+      <p class="text-lg mb-6 opacity-90 text-white max-w-2xl">
+        Real numbers. Real consequences. Each of these mistakes is common, preventable, and potentially worth thousands of dollars. Updated March 2026.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+          Get Expert Help — Free
+        </a>
+        <a href="/mortgage-renewal-checklist" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+          Renewal Checklist
+        </a>
+      </div>
+    </div>
+  </section>
+
   <article class="container max-w-4xl py-10">
-    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">The 10 Biggest Mortgage Renewal Mistakes Canadians Make — And How to Avoid Every One</h1>
     <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated March 2026 · 8-minute read</p>
 
     <p class="mb-6 text-base leading-relaxed">Canada's mortgage renewal season is one of the most financially consequential periods in any homeowner's life — and most people sleepwalk through it. Whether you're renewing for the first time or the fifth, the same costly errors appear repeatedly. Here are the 10 most expensive mistakes Canadian homeowners make at renewal, and exactly what you should do instead.</p>
