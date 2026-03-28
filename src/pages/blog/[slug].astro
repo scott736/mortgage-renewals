@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import { type CollectionEntry,getCollection, render } from "astro:content";
 
 import ZippayBlogPost from "@/components/sections/zippay-blog-post";
@@ -9,10 +11,12 @@ type BlogEntry = CollectionEntry<"blog">;
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: post,
-  }));
+  return posts
+    .filter((post) => !post.data.draft)
+    .map((post) => ({
+      params: { slug: post.id },
+      props: post,
+    }));
 }
 
 const post = Astro.props as BlogEntry;
@@ -26,9 +30,34 @@ const image =
 const publishedISO = post.data.published.toISOString();
 
 const { Content } = await render(post);
+
+const articleSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": title,
+  "description": intro,
+  "image": new URL(image, Astro.site).toString(),
+  "datePublished": publishedISO,
+  "author": {
+    "@type": "Person",
+    "name": author || "MortgageRenewalHub.ca"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MortgageRenewalHub.ca",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mortgagerenewalhub.ca/favicon/favicon-96x96.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": new URL(Astro.url.pathname, Astro.site).toString()
+  }
+});
 ---
 
-<DefaultLayout title={title} description={intro}>
+<DefaultLayout title={title} description={intro} schema={articleSchema}>
   <ZippayBlogPost
     client:only="react"
     tagline={tagline}

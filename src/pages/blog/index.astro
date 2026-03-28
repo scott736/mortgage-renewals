@@ -11,9 +11,9 @@ import DefaultLayout from "@/layouts/DefaultLayout.astro";
 
 type BlogEntry = CollectionEntry<"blog">;
 
-const all: BlogEntry[] = (await getCollection("blog")).sort(
-  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
-);
+const all: BlogEntry[] = (await getCollection("blog"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
 
 const allPosts = all.map((p) => ({
   slug: p.id,

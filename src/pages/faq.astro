@@ -3,10 +3,13 @@ import ZippayCtaCard from "@/components/sections/zippay-cta-card";
 import ZippayFaqPage from "@/components/sections/zippay-faq-page";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
-<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<DefaultLayout
+  title="Mortgage Renewal Help & FAQ Categories — MortgageRenewalHub.ca"
+  description="Browse mortgage renewal help topics: rates, lender switching, affordability, special situations, and more. Find answers to your Canadian mortgage renewal questions."
+  schema={JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mortgagerenewalhub.ca"},{"@type":"ListItem","position":2,"name":"FAQ","item":"https://mortgagerenewalhub.ca/faq"}]})}
+>
   <ZippayFaqPage client:only="react" />
   <ZippayCtaCard />
 </DefaultLayout>

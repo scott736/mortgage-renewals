@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import RenewalCalculatorMini from '@/components/sections/renewal-calculator-mini';
 ---
@@ -6,6 +7,7 @@ import RenewalCalculatorMini from '@/components/sections/renewal-calculator-mini
 <DefaultLayout
   title="MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource"
   description="Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal."
+  preloadImage="/images/hero/hero-home.webp"
 >
   <!-- HERO -->
   <section class="bg-primary-100 text-primary-foreground py-20 lg:py-28">
@@ -36,12 +38,12 @@ import RenewalCalculatorMini from '@/components/sections/renewal-calculator-mini
           <p class="mt-4 text-body-sm text-white/60">Free broker consultation · No obligation · Licensed professionals</p>
         </div>
         <div class="hidden lg:block">
-          <img
+          <Image
             src="/images/hero/hero-home.webp"
             alt="Canadian couple reviewing mortgage renewal documents"
             class="rounded-2xl shadow-2xl w-full object-cover"
-            width="600"
-            height="400"
+            width={600}
+            height={400}
             loading="eager"
           />
         </div>

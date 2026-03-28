@@ -85,11 +85,38 @@ const faqs = [
     ]
   }
 ];
+
+const allQuestions = faqs.flatMap(category => category.questions);
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": allQuestions.map(item => ({
+    "@type": "Question",
+    "name": item.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.a
+    }
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mortgagerenewalhub.ca" },
+    { "@type": "ListItem", "position": 2, "name": "Mortgage Renewal FAQ", "item": "https://mortgagerenewalhub.ca/mortgage-renewal-faq" }
+  ]
+};
+
+const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema]);
 ---
 
 <DefaultLayout
   title="Mortgage Renewal FAQ — 40+ Questions Answered | MortgageRenewalHub.ca"
   description="Canada's most comprehensive mortgage renewal FAQ. 40+ questions answered across 7 categories: basics, rates, switching lenders, saving money, affordability, special situations, and timing."
+  schema={pageSchema}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">

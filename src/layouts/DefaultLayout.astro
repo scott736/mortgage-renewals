@@ -4,12 +4,12 @@ import Banner from "@/components/sections/banner";
 import Footer from "@/components/sections/footer";
 import Navbar from "@/components/sections/navbar";
 
-const { title, description } = Astro.props;
+const { title, description, schema, preloadImage } = Astro.props;
 ---
 
 <html lang="en" class="dark">
   <head>
-    <BaseHead title={title} description={description} />
+    <BaseHead title={title} description={description} schema={schema} preloadImage={preloadImage} />
     <script is:inline>
       (() => {
         try {
