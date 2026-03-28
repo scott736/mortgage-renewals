@@ -1,10 +1,12 @@
 ---
 import ZippayContactForm from "@/components/sections/zippay-contact-form";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
-
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
-<DefaultLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<DefaultLayout
+  title="Contact Us — MortgageRenewalHub.ca"
+  description="Get in touch with MortgageRenewalHub.ca. Questions about your mortgage renewal? We're here to help connect you with licensed Canadian mortgage professionals."
+  schema={JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mortgagerenewalhub.ca"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://mortgagerenewalhub.ca/contact"}]})}
+>
   <ZippayContactForm />
 </DefaultLayout>

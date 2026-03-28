@@ -15,6 +15,7 @@ const blog = defineCollection({
       coverImage: z.string().optional(),
       image: z.string().optional(),
       featured: z.boolean().optional(),
+      draft: z.boolean().optional(),
     })
     .transform((data) => ({
       ...data,

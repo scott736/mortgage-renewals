@@ -51,6 +51,7 @@ const Navbar: React.FC = () => {
         { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal" },
         { title: "How a Broker Helps", href: "/mortgage-broker-renewal" },
         { title: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes" },
+        { title: "Mortgage Glossary", href: "/mortgage-renewal-glossary" },
       ],
     },
     { label: "Rates", href: "/best-mortgage-renewal-rates" },
