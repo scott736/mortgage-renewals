@@ -109,7 +109,7 @@ Your input helps us improve and enhance our services to better meet your needs.`
 
             <div>
               <label htmlFor="message" className={labelCls}>
-                Problem Descriptions
+                How can we help?
               </label>
               <textarea
                 id="message"
@@ -129,7 +129,7 @@ Your input helps us improve and enhance our services to better meet your needs.`
                 className="text-primary focus:ring-primary/30 h-4 w-4 rounded border-gray-300 outline-none focus:ring-2"
               />
               <span className="text-body-sm text-gray-600">
-                Problem Descriptions
+                I agree to be contacted about my inquiry
               </span>
             </label>
 

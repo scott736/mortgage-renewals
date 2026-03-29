@@ -14,12 +14,12 @@ export type ZippayCtaCardProps = {
 };
 
 export default function ZippayCtaCard({
-  title = "A Better Way to Manage Your Money",
-  description = "Zippay enables you to achieve clarity and significant results on a large scale by linking tasks and workflows to the overarching objectives of the company",
-  primaryLabel = "Get Started",
-  primaryHref = "/pricing",
-  secondaryLabel = "Why Zippay",
-  secondaryHref = "/faq",
+  title = "Ready to Save at Your Mortgage Renewal?",
+  description = "Book a free strategy call with a licensed Canadian mortgage broker. Compare rates from 30+ lenders and find the best deal for your renewal.",
+  primaryLabel = "Book Free Call",
+  primaryHref = "/book-a-call",
+  secondaryLabel = "Learn More",
+  secondaryHref = "/mortgage-renewal-guide",
   softBg,
 }: ZippayCtaCardProps) {
   return (

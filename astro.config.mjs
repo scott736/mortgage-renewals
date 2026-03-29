@@ -9,7 +9,20 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   site: "https://mortgagerenewalhub.ca",
-  integrations: [mdx(), sitemap(), react()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => {
+        const redirects = [
+          '/investment-property-mortgage-renewal/',
+          '/mortgage-renewal-divorce-separation/',
+          '/faq/',
+        ];
+        return !redirects.some((path) => page.endsWith(path));
+      },
+    }),
+    react(),
+  ],
   output: "server",
   adapter: vercel(),
 

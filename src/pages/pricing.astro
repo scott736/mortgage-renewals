@@ -1,10 +1,8 @@
 ---
-import ZippayComparisonPlan from "@/components/sections/zippay-comparison-plan";
 import ZippayCtaCard from "@/components/sections/zippay-cta-card";
-import ZippayFAQ from "@/components/sections/zippay-faq";
-import ZippayPricingHero from "@/components/sections/zippay-pricing-hero";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 
+export const prerender = true;
 ---
 
 <DefaultLayout
@@ -12,8 +10,154 @@ import DefaultLayout from "@/layouts/DefaultLayout.astro";
   description="Free mortgage renewal guidance from licensed Canadian brokers. No fees to you — we're paid by the lender when your mortgage funds. See how we work."
   schema={JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mortgagerenewalhub.ca"},{"@type":"ListItem","position":2,"name":"Services & Pricing","item":"https://mortgagerenewalhub.ca/pricing"}]})}
 >
-  <ZippayPricingHero />
-  <ZippayComparisonPlan client:only="react" />
-  <ZippayFAQ softBg={true} client:only="react" />
-  <ZippayCtaCard softBg={true} />
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <p class="text-body-sm-medium uppercase tracking-wide text-white/70 mb-3">Services & Pricing</p>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          Everything Is Free. Seriously.
+        </h1>
+        <p class="text-xl text-white/80 max-w-2xl">
+          Our guides, calculators, and broker consultations cost you nothing. Mortgage brokers are paid by the lender when your mortgage funds — never by you.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE TIERS -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-heading-2">Choose Your Path</h2>
+        <p class="text-body-lg text-muted-foreground mt-3 max-w-2xl mx-auto">
+          Whether you prefer to do your own research or want hands-on help, we have you covered.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Self-Guided -->
+        <div class="rounded-2xl border border-gray-100 bg-gray-25 p-8">
+          <div class="text-3xl mb-4">📘</div>
+          <h3 class="text-heading-4 mb-2">Self-Guided</h3>
+          <div class="flex items-baseline gap-1 mb-4">
+            <span class="text-3xl font-bold text-primary-100">$0</span>
+            <span class="text-muted-foreground text-body-sm">always free</span>
+          </div>
+          <p class="text-body-md text-muted-foreground mb-6">
+            Use our guides, calculators, and checklists to navigate your renewal on your own.
+          </p>
+          <ul class="space-y-3 mb-8">
+            {["All renewal guides and articles", "5 mortgage calculators", "Rate comparison tools", "Printable checklists", "40+ FAQ answers"].map(f => (
+              <li class="flex items-start gap-2 text-body-sm">
+                <span class="text-secondary-100 mt-0.5">&#10003;</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a href="/mortgage-renewal-guide" class="block w-full rounded-lg border-2 border-primary-100 text-primary-100 text-center py-3 font-semibold hover:bg-primary-0 transition-colors">
+            Start Reading
+          </a>
+        </div>
+
+        <!-- Broker Consultation -->
+        <div class="rounded-2xl border-2 border-primary-100 bg-white p-8 shadow-lg relative">
+          <div class="absolute -top-3 left-6 bg-primary-100 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+            Most Popular
+          </div>
+          <div class="text-3xl mb-4">📞</div>
+          <h3 class="text-heading-4 mb-2">Broker Consultation</h3>
+          <div class="flex items-baseline gap-1 mb-4">
+            <span class="text-3xl font-bold text-primary-100">$0</span>
+            <span class="text-muted-foreground text-body-sm">no cost to you</span>
+          </div>
+          <p class="text-body-md text-muted-foreground mb-6">
+            Speak with a licensed mortgage broker who will compare rates from 30+ lenders on your behalf.
+          </p>
+          <ul class="space-y-3 mb-8">
+            {["Everything in Self-Guided", "Free 30-minute strategy call", "Personalized rate comparison", "Access to 30+ lenders", "No obligation whatsoever"].map(f => (
+              <li class="flex items-start gap-2 text-body-sm">
+                <span class="text-secondary-100 mt-0.5">&#10003;</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3 font-semibold hover:bg-primary-200 transition-colors">
+            Book Free Call
+          </a>
+        </div>
+
+        <!-- Full-Service -->
+        <div class="rounded-2xl border border-gray-100 bg-gray-25 p-8">
+          <div class="text-3xl mb-4">🤝</div>
+          <h3 class="text-heading-4 mb-2">Full-Service Renewal</h3>
+          <div class="flex items-baseline gap-1 mb-4">
+            <span class="text-3xl font-bold text-primary-100">$0</span>
+            <span class="text-muted-foreground text-body-sm">broker-managed</span>
+          </div>
+          <p class="text-body-md text-muted-foreground mb-6">
+            End-to-end guidance from a dedicated broker who handles everything from rate shopping to closing.
+          </p>
+          <ul class="space-y-3 mb-8">
+            {["Everything in Broker Consultation", "Dedicated renewal specialist", "Full lender negotiation", "Document preparation support", "Closing coordination"].map(f => (
+              <li class="flex items-start gap-2 text-body-sm">
+                <span class="text-secondary-100 mt-0.5">&#10003;</span>
+                {f}
+              </li>
+            ))}
+          </ul>
+          <a href="/book-a-call" class="block w-full rounded-lg border-2 border-primary-100 text-primary-100 text-center py-3 font-semibold hover:bg-primary-0 transition-colors">
+            Get Started
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="bg-gray-25 py-16">
+    <div class="container max-w-3xl px-6">
+      <div class="rounded-xl bg-primary-0 border border-primary-50 p-8">
+        <h2 class="text-heading-3 text-primary-100 mb-4">How Can It Be Free?</h2>
+        <p class="text-body-lg text-muted-foreground mb-4">
+          In Canada, mortgage brokers are paid a finder's fee by the lender you ultimately choose — not by you. This is standard across the industry and has been for decades.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-4">
+          This means you get expert advice, rate comparison across 30+ lenders, and full renewal support — all at no cost. The broker only gets paid if you choose to proceed with a lender they recommend.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Our site earns a referral fee when you book a consultation and choose to work with one of our partner brokers. This keeps our guides and tools free for everyone.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-16">
+    <div class="container max-w-3xl px-6">
+      <div class="text-center mb-10">
+        <h2 class="text-heading-2">Pricing FAQ</h2>
+      </div>
+      <div class="space-y-3">
+        {[
+          { q: "Is this really free? What's the catch?", a: "There is no catch. Mortgage brokers in Canada are paid by lenders, not borrowers. Our guides and calculators are free to use, and broker consultations are free with no obligation." },
+          { q: "How do mortgage brokers get paid?", a: "When your mortgage funds through a broker, the lender pays the broker a finder's fee (typically 0.5–1.1% of the mortgage amount). This is built into the lender's cost structure — it doesn't affect your rate." },
+          { q: "Do I have to use the broker you recommend?", a: "Absolutely not. Our consultations are no-obligation. You can use our guides and tools without ever speaking to a broker, or you can get a consultation and still choose to go with your bank." },
+          { q: "Will using a broker affect my mortgage rate?", a: "No — in fact, brokers often secure lower rates than what banks offer directly, because they can compare offers from 30+ lenders simultaneously and leverage competition." },
+        ].map(faq => (
+          <details class="group rounded-xl border border-gray-100 bg-white">
+            <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-body-md-medium">
+              {faq.q}
+              <span class="ml-4 flex-shrink-0 text-muted-foreground group-open:rotate-180 transition-transform">&#9660;</span>
+            </summary>
+            <div class="px-5 pb-5 text-body-md text-muted-foreground">
+              {faq.a}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <ZippayCtaCard />
 </DefaultLayout>
