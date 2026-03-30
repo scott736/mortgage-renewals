@@ -1,11 +1,35 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, howToSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Renewal Checklist — Month-by-Month Timeline for Canadians",
+    description: "Your complete mortgage renewal checklist. Four phases from 12 months before to renewal day — with every document, action item, and deadline you need to get the best rate in Canada.",
+    slug: "mortgage-renewal-checklist",
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Renewal Checklist", url: "/mortgage-renewal-checklist" }
+  ]),
+  howToSchema({
+    name: "Complete Mortgage Renewal Checklist for Canadians",
+    description: "A four-phase action plan from 12 months before renewal to the day your new term starts, covering credit checks, document preparation, rate shopping, and closing.",
+    steps: [
+      { name: "Phase 1: 12 months before renewal — Build your foundation", text: "Locate your mortgage documents and confirm your maturity date, pull your credit reports from Equifax and TransUnion, check your credit score and address any issues, determine your mortgage charge type (standard vs. collateral), and identify debts to pay down." },
+      { name: "Phase 2: 6 months before renewal — Research your options", text: "Contact a mortgage broker for a free renewal strategy meeting, research current market rates, decide between fixed and variable rate types, understand your prepayment privileges, and begin gathering income documentation." },
+      { name: "Phase 3: 120 days before renewal — Take action", text: "Lock in a rate hold with your broker or preferred lender, submit your switching application if changing lenders, get your current lender's written renewal offer, compare all offers side by side, and make your decision." },
+      { name: "Phase 4: 30 days before to renewal day — Confirm and close", text: "Confirm approval with your new lender, sign the mortgage commitment, complete legal work for discharge and registration, set up new automatic payments, and file all documents securely." },
+    ],
+  }),
+  speakableSchema("mortgage-renewal-checklist"),
+);
 ---
 
 <DefaultLayout
   title="Mortgage Renewal Checklist — Month-by-Month Timeline for Canadians | MortgageRenewalHub.ca"
   description="Your complete mortgage renewal checklist. Four phases from 12 months before to renewal day — with every document, action item, and deadline you need to get the best rate in Canada."
+  schema={schema}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -36,6 +60,17 @@ export const prerender = true;
   </section>
 
   <article class="container max-w-4xl py-12">
+
+    <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• The renewal process has 4 phases: foundation (12 months out), research (6 months), action (120 days), and confirmation (30 days to renewal day).</li>
+        <li>• Start 12 months early by pulling your credit reports from Equifax and TransUnion — a score above 720 unlocks the best rates.</li>
+        <li>• Lock in a rate hold 120 days before maturity — most lenders offer 90-120 day holds that protect you if rates rise, and honour lower rates if they fall.</li>
+        <li>• Your single most important action is contacting a mortgage broker at least 120 days before renewal — everything else builds from that conversation.</li>
+        <li>• Know your charge type: standard charges switch lenders at $0 cost; collateral charges require full discharge and re-registration with legal fees.</li>
+      </ul>
+    </div>
 
     <!-- How to use this checklist -->
     <div class="rounded-lg p-6 mb-12" style="border-left: 4px solid var(--secondary); background: var(--accent)">

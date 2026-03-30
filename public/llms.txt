@@ -1,0 +1,61 @@
+# MortgageRenewalHub.ca
+
+> Canada's most comprehensive mortgage renewal resource. Compare rates, use free calculators, and get expert guidance to save thousands at renewal.
+
+## Site Information
+
+- Name: MortgageRenewalHub.ca
+- URL: https://mortgagerenewalhub.ca
+- Language: English (Canadian)
+- Topic: Canadian mortgage renewals, rates, guides, and calculators
+- Audience: Canadian homeowners approaching mortgage renewal
+- Content Type: Educational guides, tools, calculators, FAQs
+
+## Core Pages
+
+- [Home](https://mortgagerenewalhub.ca/): Overview of mortgage renewal resources and tools
+- [What Is a Mortgage Renewal?](https://mortgagerenewalhub.ca/what-is-a-mortgage-renewal): Foundational guide explaining mortgage renewals in Canada
+- [Complete Mortgage Renewal Guide](https://mortgagerenewalhub.ca/mortgage-renewal-guide): Comprehensive 10-section guide covering the full renewal process
+- [Best Mortgage Renewal Rates](https://mortgagerenewalhub.ca/best-mortgage-renewal-rates): Current Canadian mortgage renewal rates with comparison tables
+- [Mortgage Renewal Calculator](https://mortgagerenewalhub.ca/mortgage-renewal-calculator): Interactive calculator for renewal payment scenarios
+- [Mortgage Renewal Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist): Month-by-month checklist from 12 months before renewal to renewal day
+- [Mortgage Renewal FAQ](https://mortgagerenewalhub.ca/mortgage-renewal-faq): 40+ frequently asked questions about mortgage renewals in Canada
+- [Mortgage Renewal Glossary](https://mortgagerenewalhub.ca/mortgage-renewal-glossary): 40+ mortgage renewal terms defined in plain English
+
+## Topic Guides
+
+- [Fixed vs. Variable Mortgage](https://mortgagerenewalhub.ca/fixed-vs-variable-mortgage-renewal): Comparison of fixed and variable rate options at renewal
+- [Switching Lenders at Renewal](https://mortgagerenewalhub.ca/switching-lenders-at-renewal): Step-by-step guide to transferring your mortgage to a new lender
+- [Renewal vs. Refinancing](https://mortgagerenewalhub.ca/renewal-vs-refinancing): When to renew vs. refinance, including costs and benefits
+- [Mortgage Renewal Term Lengths](https://mortgagerenewalhub.ca/mortgage-renewal-term-lengths): How to choose between 1-year, 3-year, 5-year, and other terms
+- [Lower Mortgage Payments at Renewal](https://mortgagerenewalhub.ca/lower-mortgage-payments-at-renewal): Strategies to reduce monthly payments at renewal
+- [Mortgage Renewal Mistakes](https://mortgagerenewalhub.ca/mortgage-renewal-mistakes): Common pitfalls to avoid during mortgage renewal
+- [Mortgage Rate Forecast](https://mortgagerenewalhub.ca/mortgage-rate-forecast): Canadian mortgage rate outlook and projections
+- [Mortgage Lender Types in Canada](https://mortgagerenewalhub.ca/mortgage-lender-types-canada): A-lenders, B-lenders, monolines, and private lenders explained
+- [Using a Mortgage Broker](https://mortgagerenewalhub.ca/mortgage-broker-renewal): Benefits and process of using a mortgage broker at renewal
+
+## Special Situations
+
+- [Self-Employed Mortgage Renewal](https://mortgagerenewalhub.ca/self-employed-mortgage-renewal): Renewal guide for self-employed and business-owner borrowers
+- [Bad Credit Mortgage Renewal](https://mortgagerenewalhub.ca/bad-credit-mortgage-renewal): Options for renewing with credit challenges
+- [Divorce & Mortgage Renewal](https://mortgagerenewalhub.ca/divorce-mortgage-renewal): Handling mortgage renewal during separation or divorce
+- [Investment Property Renewal](https://mortgagerenewalhub.ca/investment-property-renewal): Renewal considerations for rental and investment properties
+
+## Provincial Guides
+
+- [Ontario Mortgage Renewal](https://mortgagerenewalhub.ca/ontario-mortgage-renewal): Province-specific renewal guide for Ontario homeowners
+- [British Columbia Mortgage Renewal](https://mortgagerenewalhub.ca/bc-mortgage-renewal): Province-specific renewal guide for BC homeowners
+- [Alberta Mortgage Renewal](https://mortgagerenewalhub.ca/alberta-mortgage-renewal): Province-specific renewal guide for Alberta homeowners
+- [Quebec Mortgage Renewal](https://mortgagerenewalhub.ca/quebec-mortgage-renewal): Province-specific renewal guide for Quebec homeowners
+- [Saskatchewan & Manitoba Mortgage Renewal](https://mortgagerenewalhub.ca/saskatchewan-manitoba-mortgage-renewal): Province-specific renewal guide for SK and MB homeowners
+
+## About
+
+- [About Us](https://mortgagerenewalhub.ca/about): Our mission and team
+- [Contact](https://mortgagerenewalhub.ca/contact): Get in touch
+- [Book a Call](https://mortgagerenewalhub.ca/book-a-call): Schedule a free mortgage renewal strategy call
+- [Pricing](https://mortgagerenewalhub.ca/pricing): Services and pricing
+
+## Content Policy
+
+This site publishes original, expert-reviewed educational content about Canadian mortgage renewals. Content is updated regularly to reflect current market rates, Bank of Canada policy changes, and regulatory updates. All content may be cited with attribution to MortgageRenewalHub.ca.

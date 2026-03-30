@@ -1,11 +1,25 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Self-Employed Mortgage Renewal in Canada — How to Get Approved",
+    description: "Self-employed Canadians face unique challenges at mortgage renewal. Here's how to qualify, what lenders look for, and strategies to get the best rate.",
+    slug: "self-employed-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Self-Employed Mortgage Renewal", url: "/self-employed-mortgage-renewal" }
+  ]),
+  speakableSchema("self-employed-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Self-Employed Mortgage Renewal in Canada — How to Get Approved"
   description="Self-employed Canadians face unique challenges at mortgage renewal. Here's how to qualify, what lenders look for, and strategies to get the best rate."
+  schema={schema}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -32,6 +46,18 @@ export const prerender = true;
   <article class="container max-w-4xl py-12">
     <div class="flex flex-col lg:flex-row gap-10">
       <div class="flex-1">
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Self-employed borrowers face unique challenges because business write-offs reduce stated income — the strategies that minimize taxes can work against mortgage qualification.</li>
+            <li>• Most A-lenders require 2 full years of self-employment income history (T1 Generals + NOAs); some accept 1 year with prior employment in the same field.</li>
+            <li>• Two income qualification paths exist: traditional (declared income from tax returns, best rates) and stated income (B-lender programs, 0.5-1.5% rate premium).</li>
+            <li>• Key B-lenders for self-employed Canadians include Home Trust, Equitable Bank, Haventree Bank, and MCAP Fusion — all accessed through mortgage brokers.</li>
+            <li>• A credit score of 650+ is preferred for A-lenders; 600+ is acceptable for some B-lenders with compensating factors like strong equity.</li>
+            <li>• Consider reducing write-offs in the 1-2 tax years before renewal — the mortgage interest savings over 5 years may outweigh the additional tax paid.</li>
+          </ul>
+        </div>
 
         <div class="rounded-lg p-5 mb-8" style="background: var(--accent); border-left: 4px solid var(--secondary)">
           <p class="font-bold mb-2">The Core Challenge for Self-Employed Borrowers</p>

@@ -1,12 +1,24 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "About MortgageRenewalHub.ca",
+    description: "MortgageRenewalHub.ca is an independent Canadian mortgage renewal education resource. Learn how we help Canadians save thousands at renewal.",
+    slug: "about",
+  }),
+  breadcrumbSchema([{ name: "About", url: "/about" }]),
+  speakableSchema("about"),
+);
 ---
 
 <DefaultLayout
   title="About MortgageRenewalHub.ca — Canada's Mortgage Renewal Resource"
   description="MortgageRenewalHub.ca is an independent Canadian mortgage renewal education resource. Learn how we help Canadians save thousands at renewal."
+  schema={schema}
 >
   <!-- HERO -->
   <section class="bg-primary-100 py-16 lg:py-24">

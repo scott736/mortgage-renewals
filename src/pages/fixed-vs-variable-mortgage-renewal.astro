@@ -1,10 +1,24 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Fixed vs. Variable Rate at Mortgage Renewal",
+    description: "Fixed or variable at renewal? ARM vs VRM, trigger rates, IRD penalties, historical context, and a risk-tolerance decision framework for Canadian homeowners.",
+    slug: "fixed-vs-variable-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Fixed vs. Variable at Renewal", url: "/fixed-vs-variable-mortgage-renewal" }
+  ]),
+  speakableSchema("fixed-vs-variable-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Fixed vs. Variable Rate at Mortgage Renewal — MortgageRenewalHub.ca"
   description="Fixed or variable at renewal? ARM vs VRM, trigger rates, IRD penalties, historical context, and a risk-tolerance decision framework for Canadian homeowners."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Fixed vs. Variable at Renewal
@@ -18,6 +32,18 @@ import DefaultLayout from '@/layouts/DefaultLayout.astro';
       <div class="flex-1">
 
         <p class="mb-6 text-base leading-relaxed">The choice between a fixed and variable interest rate is one of the most consequential decisions a Canadian mortgage holder makes at renewal — and it's one where there's no universally correct answer. The right choice depends on your financial situation, risk tolerance, the current rate environment, and your expectations about where rates are headed. This comprehensive guide breaks down every aspect of this decision so you can make a confident, informed choice.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Historically, variable rates have outperformed fixed rates approximately 80-90% of the time over rolling 5-year periods in Canada.</li>
+            <li>• Variable rate break penalties are only 3 months' interest, while fixed rate IRD penalties at major banks can reach $15,000-$40,000+ on large mortgages.</li>
+            <li>• There are two types of variable mortgages: ARMs (payment changes with rate) and VRMs (payment stays fixed, principal/interest split changes) — VRMs carry trigger rate risk.</li>
+            <li>• As of March 2026, variable rates are around 4.20-4.45% (prime minus discount) while 5-year fixed rates sit at 4.50-4.80%, giving variable a slight edge.</li>
+            <li>• The BoC cut rates from 5.00% to 2.25% between June 2024 and January 2026 — a 275-basis-point easing cycle.</li>
+            <li>• Shorter fixed terms (2-3 years) offer a middle ground: payment certainty now with the flexibility to reassess when rates may be lower.</li>
+          </ul>
+        </div>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Fixed Rate Mortgages at Renewal</h2>
 

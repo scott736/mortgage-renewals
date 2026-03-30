@@ -1,11 +1,25 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Renewal After Divorce or Separation in Canada",
+    description: "Going through a divorce or separation? Understand your mortgage renewal options — buyouts, refinancing, selling, and what happens to a joint mortgage.",
+    slug: "divorce-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Renewal After Divorce or Separation", url: "/divorce-mortgage-renewal" }
+  ]),
+  speakableSchema("divorce-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Mortgage Renewal After Divorce or Separation in Canada"
   description="Going through a divorce or separation? Understand your mortgage renewal options — buyouts, refinancing, selling, and what happens to a joint mortgage."
+  schema={schema}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">

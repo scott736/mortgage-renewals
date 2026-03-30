@@ -1,11 +1,26 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Canadian Mortgage Rate Forecast 2026 — What to Expect at Renewal",
+    description: "Canadian mortgage rate forecast for 2026. Where the Bank of Canada rate stands, major bank projections, fixed vs variable outlook, bond market drivers, and what it all means at renewal.",
+    slug: "mortgage-rate-forecast",
+  }),
+  breadcrumbSchema([
+    { name: "Canadian Mortgage Rate Forecast 2026", url: "/mortgage-rate-forecast" }
+  ]),
+  speakableSchema("mortgage-rate-forecast"),
+);
 ---
 
 <DefaultLayout
   title="Canadian Mortgage Rate Forecast 2026 — What to Expect at Renewal — MortgageRenewalHub.ca"
   description="Canadian mortgage rate forecast for 2026. Where the Bank of Canada rate stands, major bank projections, fixed vs variable outlook, bond market drivers, and what it all means at renewal."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Canadian Mortgage Rate Forecast 2026

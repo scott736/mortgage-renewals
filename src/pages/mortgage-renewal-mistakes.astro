@@ -1,11 +1,25 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "10 Costly Mortgage Renewal Mistakes Canadians Make — And How to Avoid Every One",
+    description: "Avoid the 10 most costly Canadian mortgage renewal mistakes — from auto-renewing without shopping to ignoring your charge type. Real numbers, real consequences, actionable solutions.",
+    slug: "mortgage-renewal-mistakes",
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Renewal Mistakes", url: "/mortgage-renewal-mistakes" }
+  ]),
+  speakableSchema("mortgage-renewal-mistakes"),
+);
 ---
 
 <DefaultLayout
   title="10 Costly Mortgage Renewal Mistakes Canadians Make — And How to Avoid Them | MortgageRenewalHub.ca"
   description="Avoid the 10 most costly Canadian mortgage renewal mistakes — from auto-renewing without shopping to ignoring your charge type. Real numbers, real consequences, actionable solutions."
+  schema={schema}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">

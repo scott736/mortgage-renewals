@@ -1,14 +1,25 @@
 ---
 import ZippayCtaCard from "@/components/sections/zippay-cta-card";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Our Services & Pricing",
+    description: "Free mortgage renewal guidance from licensed Canadian brokers. No fees to you — we're paid by the lender when your mortgage funds.",
+    slug: "pricing",
+  }),
+  breadcrumbSchema([{ name: "Services & Pricing", url: "/pricing" }]),
+  speakableSchema("pricing"),
+);
 ---
 
 <DefaultLayout
   title="Our Services & Pricing — MortgageRenewalHub.ca"
   description="Free mortgage renewal guidance from licensed Canadian brokers. No fees to you — we're paid by the lender when your mortgage funds. See how we work."
-  schema={JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mortgagerenewalhub.ca"},{"@type":"ListItem","position":2,"name":"Services & Pricing","item":"https://mortgagerenewalhub.ca/pricing"}]})}
+  schema={schema}
 >
   <!-- HERO -->
   <section class="bg-primary-100 py-16 lg:py-24">

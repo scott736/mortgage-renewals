@@ -1,10 +1,24 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Canadian Mortgage Lender Types: Who's Who and Which Is Right for Your Renewal",
+    description: "Compare all Canadian mortgage lender types at renewal: Big 6 banks, monoline lenders, credit unions, B-lenders, and private lenders. Rates, penalties, flexibility.",
+    slug: "mortgage-lender-types-canada",
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Lender Types in Canada", url: "/mortgage-lender-types-canada" }
+  ]),
+  speakableSchema("mortgage-lender-types-canada"),
+);
 ---
 
 <DefaultLayout
   title="Mortgage Lender Types in Canada: Banks, Monolines, B-Lenders, Private — MortgageRenewalHub.ca"
   description="Compare all Canadian mortgage lender types at renewal: Big 6 banks, monoline lenders, credit unions, B-lenders, and private lenders. Rates, penalties, flexibility."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Lender Types in Canada

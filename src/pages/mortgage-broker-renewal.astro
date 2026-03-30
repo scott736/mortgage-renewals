@@ -1,11 +1,26 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Using a Mortgage Broker at Renewal — Free Expert Access to 30+ Lenders",
+    description: "Mortgage brokers access 30+ lenders, are completely free to borrowers, and consistently find better rates than going directly to your bank. The complete Canadian guide.",
+    slug: "mortgage-broker-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Using a Mortgage Broker at Renewal", url: "/mortgage-broker-renewal" }
+  ]),
+  speakableSchema("mortgage-broker-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Using a Mortgage Broker at Renewal — Free Expert Access to 30+ Lenders | MortgageRenewalHub.ca"
   description="Mortgage brokers access 30+ lenders, are completely free to borrowers, and consistently find better rates than going directly to your bank. The complete Canadian guide."
+  schema={schema}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">

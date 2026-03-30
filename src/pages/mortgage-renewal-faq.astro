@@ -110,7 +110,28 @@ const breadcrumbSchema = {
   ]
 };
 
-const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema]);
+const articleSchemaObj = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mortgage Renewal FAQ — 40+ Questions Answered",
+  "description": "Canada's most comprehensive mortgage renewal FAQ. 40+ questions answered across 7 categories: basics, rates, switching lenders, saving money, affordability, special situations, and timing.",
+  "url": "https://mortgagerenewalhub.ca/mortgage-renewal-faq",
+  "datePublished": "2025-01-15",
+  "dateModified": "2026-03-30",
+  "author": { "@type": "Organization", "name": "MortgageRenewalHub.ca", "url": "https://mortgagerenewalhub.ca" },
+  "publisher": { "@type": "Organization", "name": "MortgageRenewalHub.ca", "url": "https://mortgagerenewalhub.ca", "logo": { "@type": "ImageObject", "url": "https://mortgagerenewalhub.ca/favicon/favicon-96x96.png" } },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://mortgagerenewalhub.ca/mortgage-renewal-faq" },
+  "inLanguage": "en-CA"
+};
+
+const speakableSchemaObj = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "speakable": { "@type": "SpeakableSpecification", "cssSelector": ["h1", "article > p:first-of-type"] },
+  "url": "https://mortgagerenewalhub.ca/mortgage-renewal-faq"
+};
+
+const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema, articleSchemaObj, speakableSchemaObj]);
 ---
 
 <DefaultLayout

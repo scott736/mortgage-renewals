@@ -1,11 +1,25 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Bad Credit Mortgage Renewal in Canada — Options When Your Score is Low",
+    description: "Renewing your mortgage with bad credit in Canada? Learn your options by credit score range, B-lenders vs private lenders, strategies to improve before renewal, and how a broker helps.",
+    slug: "bad-credit-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Bad Credit Mortgage Renewal", url: "/bad-credit-mortgage-renewal" }
+  ]),
+  speakableSchema("bad-credit-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Bad Credit Mortgage Renewal in Canada — Options When Your Score is Low — MortgageRenewalHub.ca"
   description="Renewing your mortgage with bad credit in Canada? Learn your options by credit score range, B-lenders vs private lenders, strategies to improve before renewal, and how a broker helps."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Bad Credit Mortgage Renewal
@@ -24,6 +38,18 @@ export const prerender = true;
         </div>
 
         <p class="mb-6 text-base leading-relaxed">Hundreds of thousands of Canadians renew mortgages with imperfect credit every year. The key is understanding which lenders serve which credit profiles, what levers you still have, and how to avoid making decisions that make the situation worse. A mortgage broker who works with alternative lenders is your most valuable ally in this process — and their service is free to you.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• The critical A-lender threshold is a credit score of 660 — below this, options shift to B-lenders (620-659) or private lenders (below 620).</li>
+            <li>• B-lenders charge 0.50-2.00% above prime rates with lender fees of 0.50-1.00%; private lenders charge 8-15%+ with 1-3% lender fees.</li>
+            <li>• Your existing lender may renew you even with a lower score since they already hold the mortgage and are protected by your property's value.</li>
+            <li>• Paying credit card balances below 30% utilization can add 20-40 points to your score within 30-60 days — the fastest single improvement action.</li>
+            <li>• Mortgage payment history carries enormous weight — never miss a mortgage payment in the months before renewal, even if other credit is struggling.</li>
+            <li>• Private mortgages are a bridge, not a destination — use the term to rebuild credit and plan to move to a B-lender or A-lender at the next renewal.</li>
+          </ul>
+        </div>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">What Counts as "Bad Credit" for a Mortgage in Canada?</h2>
 

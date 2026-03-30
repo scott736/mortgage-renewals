@@ -1,12 +1,26 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "BC Mortgage Renewal — Best Rates in British Columbia for 2026",
+    description: "BC homeowners: compare mortgage renewal rates in Vancouver, Victoria, Kelowna and across BC. Free broker consultation — access 30+ lenders.",
+    slug: "bc-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "BC Mortgage Renewal", url: "/bc-mortgage-renewal" }
+  ]),
+  speakableSchema("bc-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="BC Mortgage Renewal — Best Rates in British Columbia for 2026"
   description="BC homeowners: compare mortgage renewal rates in Vancouver, Victoria, Kelowna and across BC. Free broker consultation — access 30+ lenders."
+  schema={schema}
 >
   <!-- HERO -->
   <section class="bg-primary-100 py-16 lg:py-24">

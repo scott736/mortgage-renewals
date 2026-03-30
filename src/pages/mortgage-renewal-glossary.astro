@@ -1,11 +1,25 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Renewal Glossary — Canadian Mortgage Terms Explained",
+    description: "Plain-English definitions for 40+ Canadian mortgage terms: amortization, IRD, collateral charge, CMHC, stress test, HELOC, portability, TDS, and more. Your complete renewal glossary.",
+    slug: "mortgage-renewal-glossary",
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Renewal Glossary", url: "/mortgage-renewal-glossary" }
+  ]),
+  speakableSchema("mortgage-renewal-glossary"),
+);
 ---
 
 <DefaultLayout
   title="Mortgage Renewal Glossary — Canadian Mortgage Terms Explained — MortgageRenewalHub.ca"
   description="Plain-English definitions for 40+ Canadian mortgage terms: amortization, IRD, collateral charge, CMHC, stress test, HELOC, portability, TDS, and more. Your complete renewal glossary."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Renewal Glossary

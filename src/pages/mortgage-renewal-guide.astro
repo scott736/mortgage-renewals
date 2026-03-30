@@ -1,10 +1,35 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, howToSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "The Complete Canadian Mortgage Renewal Guide (2026)",
+    description: "Canada's most comprehensive mortgage renewal guide. Everything from 12 months before renewal to maturity day — rates, switching lenders, negotiating, and saving money.",
+    slug: "mortgage-renewal-guide",
+  }),
+  breadcrumbSchema([
+    { name: "Complete Mortgage Renewal Guide", url: "/mortgage-renewal-guide" }
+  ]),
+  howToSchema({
+    name: "How to Prepare for Your Mortgage Renewal",
+    description: "A complete renewal timeline from 12 months before maturity to renewal day, covering credit checks, rate shopping, negotiation, and closing.",
+    steps: [
+      { name: "12 months before renewal — Build your foundation", text: "Locate your original mortgage documents, confirm your maturity date, check your credit score, identify debts to pay down, and ensure tax filings are current if self-employed." },
+      { name: "6 months before renewal — Research your options", text: "Contact a mortgage broker for a free strategy meeting, research current rates, decide between fixed or variable, and determine whether your mortgage is a standard or collateral charge." },
+      { name: "120 days before renewal — Take action", text: "Lock in a rate hold with your broker or new lender, submit your renewal application if switching, gather documents, and request a renewal quote from your current lender." },
+      { name: "30 days before renewal — Confirm everything", text: "Confirm approval with your new lender if switching, sign your new mortgage commitment, arrange legal work for discharge and registration, and set up new automatic payments." },
+      { name: "On renewal day — Finalize the transition", text: "Your new mortgage is registered and the balance transfers to your new lender. Confirm the new mortgage appears on your account, file all documents, and set a reminder for your next renewal." },
+    ],
+  }),
+  speakableSchema("mortgage-renewal-guide"),
+);
 ---
 
 <DefaultLayout
   title="Complete Mortgage Renewal Guide Canada 2026 | MortgageRenewalHub.ca"
   description="Canada's most comprehensive mortgage renewal guide. Everything from 12 months before renewal to maturity day — rates, switching lenders, negotiating, and saving money."
+  schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Complete Mortgage Renewal Guide
@@ -16,6 +41,18 @@ import DefaultLayout from '@/layouts/DefaultLayout.astro';
     <p class="text-body-lg text-muted-foreground mb-6">
       Over 1.8 million Canadians are renewing their mortgage in 2026. Most will simply sign whatever their bank sends them. This guide walks you through everything — from 12 months before renewal to the day your new term begins — so you can make an informed decision and keep more money in your pocket.
     </p>
+
+    <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Over 1.8 million Canadians are renewing their mortgage in 2026 — most will sign without shopping and overpay by thousands.</li>
+        <li>• Start preparing 12 months before your maturity date; lock in a rate hold 120 days out to protect against rate increases.</li>
+        <li>• Standard charge mortgages can switch lenders at $0 cost; collateral charges (TD, National Bank) require $500-$1,000 in legal fees but savings often far exceed the cost.</li>
+        <li>• Banks have 0.25-0.50% of rate flexibility for loyal customers — but only if you ask and have a competing offer in hand.</li>
+        <li>• A mortgage broker compares 30+ lenders for free (paid by the lender) and accesses monolines not available to the public directly.</li>
+        <li>• Since 2024, no stress test is required to switch lenders on a straight transfer at renewal.</li>
+      </ul>
+    </div>
 
     <!-- Table of Contents -->
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10">

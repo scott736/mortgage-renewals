@@ -38,7 +38,19 @@ const organizationSchema = JSON.stringify({
     "@type": "ContactPoint",
     "contactType": "customer service",
     "url": "https://mortgagerenewalhub.ca/contact"
-  }
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Canada"
+  },
+  "knowsAbout": [
+    "Mortgage Renewal",
+    "Canadian Mortgage Rates",
+    "Mortgage Refinancing",
+    "Fixed vs Variable Mortgages",
+    "Mortgage Broker Services"
+  ],
+  "sameAs": []
 });
 
 const websiteSchema = JSON.stringify({
@@ -128,6 +140,7 @@ const websiteSchema = JSON.stringify({
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
+<meta property="og:locale" content="en_CA" />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:site_name" content={SITE_METADATA.openGraph.siteName} />
 <meta property="og:title" content={finalTitle} />

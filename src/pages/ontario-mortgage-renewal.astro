@@ -1,12 +1,26 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Ontario Mortgage Renewal — Rates, Rules & Resources for 2026",
+    description: "Ontario homeowners: get the best mortgage renewal rates in 2026. Compare Toronto, Ottawa, Hamilton, and provincial market data. Free broker consultation.",
+    slug: "ontario-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Ontario Mortgage Renewal", url: "/ontario-mortgage-renewal" }
+  ]),
+  speakableSchema("ontario-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Ontario Mortgage Renewal — Rates, Rules & Resources for 2026"
   description="Ontario homeowners: get the best mortgage renewal rates in 2026. Compare Toronto, Ottawa, Hamilton, and provincial market data. Free broker consultation."
+  schema={schema}
 >
   <!-- HERO -->
   <section class="bg-primary-100 py-16 lg:py-24">

@@ -1,12 +1,26 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Alberta Mortgage Renewal — Best Rates in Calgary, Edmonton & Beyond (2026)",
+    description: "Alberta homeowners: compare mortgage renewal rates in Calgary, Edmonton, and across AB. No provincial land transfer tax. Free broker consultation.",
+    slug: "alberta-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Alberta Mortgage Renewal", url: "/alberta-mortgage-renewal" }
+  ]),
+  speakableSchema("alberta-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Alberta Mortgage Renewal — Best Rates in Calgary, Edmonton & Beyond (2026)"
   description="Alberta homeowners: compare mortgage renewal rates in Calgary, Edmonton, and across AB. No provincial land transfer tax. Free broker consultation."
+  schema={schema}
 >
   <!-- HERO -->
   <section class="bg-primary-100 py-16 lg:py-24">

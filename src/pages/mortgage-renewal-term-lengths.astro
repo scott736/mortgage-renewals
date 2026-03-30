@@ -1,11 +1,26 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Term Lengths at Renewal — 1, 2, 3, 4 or 5 Years?",
+    description: "Guide to choosing the right mortgage term at renewal. Compare 6-month, 1, 2, 3, 4, and 5-year fixed terms: rate premiums, best-for scenarios, rate holds, and 2026 market context.",
+    slug: "mortgage-renewal-term-lengths",
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Term Lengths at Renewal", url: "/mortgage-renewal-term-lengths" }
+  ]),
+  speakableSchema("mortgage-renewal-term-lengths"),
+);
 ---
 
 <DefaultLayout
   title="Mortgage Term Lengths at Renewal — 1, 2, 3, 4 or 5 Years? — MortgageRenewalHub.ca"
   description="Guide to choosing the right mortgage term at renewal. Compare 6-month, 1, 2, 3, 4, and 5-year fixed terms: rate premiums, best-for scenarios, rate holds, and 2026 market context."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Term Lengths at Renewal

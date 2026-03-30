@@ -1,12 +1,43 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, howToSchema, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "How to Lower Your Mortgage Payment at Renewal — 11 Strategies",
+    description: "Facing higher payments at renewal? These 11 proven strategies can lower your mortgage payment in 2026 — from extending amortization to consolidating debt.",
+    slug: "lower-mortgage-payments-at-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Lower Mortgage Payments at Renewal", url: "/lower-mortgage-payments-at-renewal" }
+  ]),
+  speakableSchema("lower-mortgage-payments-at-renewal"),
+  howToSchema({
+    name: "How to Lower Your Mortgage Payment at Renewal",
+    description: "11 proven strategies to reduce your monthly mortgage payment when renewing in Canada.",
+    steps: [
+      { name: "Shop for a Lower Rate", text: "Don't auto-renew. Contact a mortgage broker 120 days before renewal to get competing quotes from 30+ lenders." },
+      { name: "Switch to a Monoline Lender", text: "Monoline lenders like MCAP and First National consistently offer rates 0.1–0.4% below major banks, with no stress test required since 2024." },
+      { name: "Choose a Shorter Term", text: "A 1-year or 2-year fixed term may carry a lower rate than 5-year fixed and lets you renew into a lower rate environment." },
+      { name: "Choose a Variable Rate Mortgage", text: "Variable rates may be at or below fixed rates, and your payment drops automatically with each BoC rate cut." },
+      { name: "Extend Your Amortization Period", text: "Extend from 20 years remaining back to 25 or 30 years to significantly reduce monthly payments, though total interest increases." },
+      { name: "Switch to Bi-Weekly Payments", text: "Align payments with your pay cycle by paying half-monthly amount every two weeks for better cash flow management." },
+      { name: "Consolidate High-Interest Debt", text: "Roll credit card and loan balances into your mortgage at renewal to reduce total monthly obligations." },
+      { name: "Make a Lump Sum Payment Before Renewal", text: "Apply savings or bonuses to reduce your outstanding balance before renewal, directly lowering your future payment." },
+      { name: "Consider a HELOC", text: "A Home Equity Line of Credit provides flexible low-interest access to equity as a standby safety net." },
+      { name: "Add a Rental Suite", text: "Generate rental income from a basement suite or ADU to offset your higher mortgage payment." },
+      { name: "Contact Your Lender About Hardship Options", text: "If at genuine risk of missing payments, contact your lender early about programs under the Canadian Mortgage Charter." },
+    ],
+  }),
+);
 ---
 
 <DefaultLayout
   title="How to Lower Your Mortgage Payment at Renewal — 11 Strategies"
   description="Facing higher payments at renewal? These 11 proven strategies can lower your mortgage payment in 2026 — from extending amortization to consolidating debt."
+  schema={schema}
 >
   <!-- HERO -->
   <section class="bg-primary-100 py-16 lg:py-24">

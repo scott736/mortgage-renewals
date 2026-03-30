@@ -2,12 +2,33 @@
 import { Image } from 'astro:assets';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import RenewalCalculatorMini from '@/components/sections/renewal-calculator-mini';
+import { speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  speakableSchema("", ["h1", ".container > p"]),
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource",
+    "description": "Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
+    "url": "https://mortgagerenewalhub.ca",
+    "inLanguage": "en-CA",
+    "isPartOf": { "@type": "WebSite", "name": "MortgageRenewalHub.ca", "url": "https://mortgagerenewalhub.ca" },
+    "about": {
+      "@type": "FinancialProduct",
+      "name": "Mortgage Renewal",
+      "description": "Canadian mortgage renewal guidance, rates, calculators, and expert advice",
+      "provider": { "@type": "Organization", "name": "MortgageRenewalHub.ca" }
+    }
+  }
+);
 ---
 
 <DefaultLayout
   title="MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource"
   description="Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal."
   preloadImage="/images/hero/hero-home.webp"
+  schema={schema}
 >
   <!-- HERO -->
   <section class="bg-primary-100 text-primary-foreground py-20 lg:py-28">

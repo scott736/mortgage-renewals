@@ -1,10 +1,35 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, howToSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "What Is a Mortgage Renewal? A Complete Canadian Guide",
+    description: "Learn exactly what a mortgage renewal is, how the process works, what's in your renewal statement, and your rights under Canadian law. 2,000-word guide.",
+    slug: "what-is-a-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "What Is a Mortgage Renewal?", url: "/what-is-a-mortgage-renewal" }
+  ]),
+  howToSchema({
+    name: "How to Renew Your Mortgage in Canada",
+    description: "The 5-step process for renewing your Canadian mortgage, from receiving your renewal statement to the start of your new term.",
+    steps: [
+      { name: "Lender sends your renewal statement", text: "Under FCAC rules, your lender must send a renewal statement at least 21 days before your maturity date. Proactive lenders may reach out 4-6 months in advance as encouraged by the Canadian Mortgage Charter." },
+      { name: "Review competing offers", text: "Use a mortgage broker or shop directly with multiple lenders to get competing rate quotes. Most lenders allow you to lock in a rate up to 120 days in advance, protecting you if rates rise." },
+      { name: "Negotiate with your lender or broker", text: "Armed with competing offers, you or your broker go back to your current lender and ask for a better rate. Many lenders will match or beat competing offers to retain your business." },
+      { name: "Choose a term and sign", text: "Once you've selected the best offer, sign the renewal agreement or new mortgage commitment if switching lenders. This can often be done electronically." },
+      { name: "New term begins on your maturity date", text: "Your new rate and conditions take effect on your maturity date. Your remaining amortization continues from where it left off." },
+    ],
+  }),
+  speakableSchema("what-is-a-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="What Is a Mortgage Renewal? Complete Canadian Guide — MortgageRenewalHub.ca"
   description="Learn exactly what a mortgage renewal is, how the process works, what's in your renewal statement, and your rights under Canadian law. 2,000-word guide."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › What Is a Mortgage Renewal?
@@ -19,6 +44,17 @@ import DefaultLayout from '@/layouts/DefaultLayout.astro';
       <div class="flex-1">
 
         <p class="mb-6 text-base leading-relaxed">Every Canadian homeowner with a mortgage will face a renewal — often more than once. Yet the vast majority of Canadians sign their renewal paperwork without truly understanding what they're agreeing to, or what their options are. This guide explains everything you need to know: what a renewal actually is, how the process works, what your lender is legally required to tell you, and what your rights are under Canadian law.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• A mortgage renewal is a renegotiation of your rate and terms at the end of each term — typically every 1 to 5 years — not an automatic continuation.</li>
+            <li>• Over 70% of Canadians simply sign their lender's renewal offer without shopping around, which almost always means paying a higher rate than necessary.</li>
+            <li>• FCAC rules require lenders to send a renewal statement at least 21 days before maturity; the Canadian Mortgage Charter encourages contact 4-6 months in advance.</li>
+            <li>• Even a 0.25% rate reduction on a $500,000 mortgage saves approximately $1,250/year or $6,250 over a 5-year term.</li>
+            <li>• If you do nothing at renewal, your lender will auto-convert you to a posted-rate open mortgage — potentially 1-2% higher, costing $5,000-$10,000/year extra on a $500K balance.</li>
+          </ul>
+        </div>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Most Important Distinction: Term vs. Amortization</h2>
 

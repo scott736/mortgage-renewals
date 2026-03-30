@@ -1,10 +1,24 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Saskatchewan & Manitoba Mortgage Renewal Guide 2026",
+    description: "Saskatchewan and Manitoba mortgage renewal guide: no provincial land transfer tax, agricultural property financing, prairie market conditions, FSRA-licensed brokers, and 2026 renewal strategies.",
+    slug: "saskatchewan-manitoba-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Saskatchewan & Manitoba Mortgage Renewal", url: "/saskatchewan-manitoba-mortgage-renewal" }
+  ]),
+  speakableSchema("saskatchewan-manitoba-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Saskatchewan & Manitoba Mortgage Renewal Guide 2026 — MortgageRenewalHub.ca"
   description="Saskatchewan and Manitoba mortgage renewal guide: no provincial land transfer tax, agricultural property financing, prairie market conditions, FSRA-licensed brokers, and 2026 renewal strategies."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Saskatchewan & Manitoba Mortgage Renewal

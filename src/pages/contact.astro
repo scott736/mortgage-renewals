@@ -1,12 +1,37 @@
 ---
 import ZippayContactForm from "@/components/sections/zippay-contact-form";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  breadcrumbSchema([{ name: "Contact", url: "/contact" }]),
+  speakableSchema("contact"),
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact MortgageRenewalHub.ca",
+    "description": "Get in touch with MortgageRenewalHub.ca for mortgage renewal questions.",
+    "url": "https://mortgagerenewalhub.ca/contact",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "MortgageRenewalHub.ca",
+      "url": "https://mortgagerenewalhub.ca",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "url": "https://mortgagerenewalhub.ca/contact",
+        "areaServed": "CA",
+        "availableLanguage": "English"
+      }
+    }
+  }
+);
 ---
 
 <DefaultLayout
   title="Contact Us — MortgageRenewalHub.ca"
   description="Get in touch with MortgageRenewalHub.ca. Questions about your mortgage renewal? We're here to help connect you with licensed Canadian mortgage professionals."
-  schema={JSON.stringify({"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://mortgagerenewalhub.ca"},{"@type":"ListItem","position":2,"name":"Contact","item":"https://mortgagerenewalhub.ca/contact"}]})}
+  schema={schema}
 >
   <ZippayContactForm />
 </DefaultLayout>

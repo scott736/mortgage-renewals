@@ -1,11 +1,25 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 export const prerender = true;
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Investment Property Mortgage Renewal in Canada — Strategies & Options",
+    description: "Renewing a rental property mortgage in Canada? Understand DSCR qualification, portfolio lending, and strategies to maximize your real estate portfolio returns.",
+    slug: "investment-property-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Investment Property Mortgage Renewal", url: "/investment-property-renewal" }
+  ]),
+  speakableSchema("investment-property-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Investment Property Mortgage Renewal in Canada — Strategies & Options"
   description="Renewing a rental property mortgage in Canada? Understand DSCR qualification, portfolio lending, and strategies to maximize your real estate portfolio returns."
+  schema={schema}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">

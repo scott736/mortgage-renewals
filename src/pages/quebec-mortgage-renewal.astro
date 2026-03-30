@@ -1,10 +1,24 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Quebec Mortgage Renewal Guide 2026",
+    description: "Quebec mortgage renewal: AMF brokers, notarial deed of loan system, why all switches require a notary ($800–$1,500), French language rights, and how to save more in Quebec.",
+    slug: "quebec-mortgage-renewal",
+  }),
+  breadcrumbSchema([
+    { name: "Quebec Mortgage Renewal", url: "/quebec-mortgage-renewal" }
+  ]),
+  speakableSchema("quebec-mortgage-renewal"),
+);
 ---
 
 <DefaultLayout
   title="Quebec Mortgage Renewal Guide 2026 — MortgageRenewalHub.ca"
   description="Quebec mortgage renewal: AMF brokers, notarial deed of loan system, why all switches require a notary ($800–$1,500), French language rights, and how to save more in Quebec."
+  schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Quebec Mortgage Renewal
