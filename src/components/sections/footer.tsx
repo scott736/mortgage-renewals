@@ -1,3 +1,5 @@
+import { PROVINCE_PAGES } from "@/consts";
+
 export default function Footer() {
   const year = new Date().getFullYear();
 
@@ -21,6 +23,10 @@ export default function Footer() {
         { name: "Renewal Checklist", href: "/mortgage-renewal-checklist" },
         { name: "Renewal FAQ", href: "/mortgage-renewal-faq" },
       ],
+    },
+    {
+      title: "Provinces",
+      links: PROVINCE_PAGES,
     },
     {
       title: "Company",
@@ -66,7 +72,7 @@ export default function Footer() {
           </div>
 
           {/* Nav grid */}
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {nav.map((section) => (
               <div key={section.title}>
                 <h4 className="mb-4 text-sm font-semibold uppercase tracking-widest text-white/60">

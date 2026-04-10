@@ -42,7 +42,7 @@ export const POST: APIRoute = async ({ request }) => {
     // Send confirmation email with calendar details
     if (pending) {
       const service = getServiceById(pending.service_id);
-      const teamMember = getTeamMemberById(pending.team_member_id);
+      const teamMember = pending.team_member_id ? getTeamMemberById(pending.team_member_id) : undefined;
 
       if (service && teamMember) {
         // Use duration override if set (from profile pages), otherwise use service default
@@ -144,7 +144,7 @@ export const GET: APIRoute = async ({ url }) => {
   }
 
   const service = getServiceById(pending.service_id);
-  const teamMember = getTeamMemberById(pending.team_member_id);
+  const teamMember = pending.team_member_id ? getTeamMemberById(pending.team_member_id) : undefined;
 
   // Use duration override if set (from profile pages), otherwise use service default
   const actualDuration = pending.duration_override ?? service?.duration ?? 30;

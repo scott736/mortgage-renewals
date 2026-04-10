@@ -2,6 +2,8 @@
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
 
+export const prerender = true;
+
 const schema = combineSchemas(
   articleSchema({
     headline: "Quebec Mortgage Renewal Guide 2026",

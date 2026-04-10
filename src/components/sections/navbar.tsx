@@ -11,6 +11,43 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { PROVINCE_PAGES } from "@/consts";
+
+const ITEMS = [
+  {
+    label: "Calculators",
+    href: "/mortgage-renewal-calculator",
+    dropdownItems: [
+      { title: "Renewal Payment Estimator", href: "/mortgage-renewal-calculator" },
+      { title: "Rate Comparison Calculator", href: "/mortgage-renewal-calculator#rate-comparison" },
+      { title: "Amortization Extension Calculator", href: "/mortgage-renewal-calculator#amortization" },
+      { title: "Early Renewal Penalty Estimator", href: "/mortgage-renewal-calculator#penalty" },
+      { title: "Debt Consolidation Calculator", href: "/mortgage-renewal-calculator#debt-consolidation" },
+    ],
+  },
+  {
+    label: "Guides",
+    href: "/mortgage-renewal-guide",
+    dropdownItems: [
+      { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide" },
+      { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal" },
+      { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
+      { title: "Lower Your Payments", href: "/lower-mortgage-payments-at-renewal" },
+      { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing" },
+      { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal" },
+      { title: "How a Broker Helps", href: "/mortgage-broker-renewal" },
+      { title: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes" },
+      { title: "Mortgage Glossary", href: "/mortgage-renewal-glossary" },
+    ],
+  },
+  { label: "Rates", href: "/best-mortgage-renewal-rates" },
+  { label: "FAQ", href: "/mortgage-renewal-faq" },
+  {
+    label: "Provinces",
+    href: "/ontario-mortgage-renewal",
+    dropdownItems: PROVINCE_PAGES.map((p) => ({ title: p.name, href: p.href })),
+  },
+];
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,45 +64,11 @@ const Navbar: React.FC = () => {
     };
   }, [isMenuOpen]);
 
-  const ITEMS = [
-    {
-      label: "Calculators",
-      href: "/mortgage-renewal-calculator",
-      dropdownItems: [
-        { title: "Renewal Payment Estimator", href: "/mortgage-renewal-calculator" },
-        { title: "Rate Comparison Calculator", href: "/mortgage-renewal-calculator#rate-comparison" },
-        { title: "Amortization Extension Calculator", href: "/mortgage-renewal-calculator#amortization" },
-        { title: "Early Renewal Penalty Estimator", href: "/mortgage-renewal-calculator#penalty" },
-        { title: "Debt Consolidation Calculator", href: "/mortgage-renewal-calculator#debt-consolidation" },
-      ],
-    },
-    {
-      label: "Guides",
-      href: "/mortgage-renewal-guide",
-      dropdownItems: [
-        { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide" },
-        { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal" },
-        { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
-        { title: "Lower Your Payments", href: "/lower-mortgage-payments-at-renewal" },
-        { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing" },
-        { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal" },
-        { title: "How a Broker Helps", href: "/mortgage-broker-renewal" },
-        { title: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes" },
-        { title: "Mortgage Glossary", href: "/mortgage-renewal-glossary" },
-      ],
-    },
-    { label: "Rates", href: "/best-mortgage-renewal-rates" },
-    { label: "FAQ", href: "/mortgage-renewal-faq" },
-    { label: "Provinces", href: "/ontario-mortgage-renewal" },
-  ];
-
-  const bgColor = "bg-background";
-
   return (
     <header
       className={cn(
         "lg:h-22 relative z-50 h-16 border-b border-b-gray-50 px-2.5 lg:px-0",
-        bgColor,
+        "bg-background",
       )}
     >
       <div className="lg:h-22 container flex h-16 items-center">
@@ -176,7 +179,7 @@ const Navbar: React.FC = () => {
           "container absolute inset-x-0 top-full flex h-[calc(100vh-64px)] flex-col px-2.5 lg:px-0",
           "transition duration-300 ease-in-out lg:hidden",
           isMenuOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-full opacity-0",
-          bgColor,
+          "bg-background",
         )}
       >
         <div className="flex h-[calc(100vh-80px)] flex-col px-5">

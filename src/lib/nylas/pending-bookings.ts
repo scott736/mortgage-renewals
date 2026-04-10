@@ -19,7 +19,7 @@ export interface PendingBooking {
   id: string;
   token: string;
   service_id: string;
-  team_member_id: string;
+  team_member_id?: string;
   guest_name: string;
   guest_email: string;
   guest_phone?: string;

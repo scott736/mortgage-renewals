@@ -157,12 +157,12 @@ const websiteSchema = JSON.stringify({
 <meta property="og:image:alt" content={SITE_METADATA.openGraph.images[0].alt} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content={SITE_METADATA.twitter.card} />
-<meta property="twitter:url" content={Astro.url} />
-<meta property="twitter:title" content={finalTitle} />
-<meta property="twitter:description" content={finalDescription} />
-<meta property="twitter:image" content={imageURL} />
-<meta property="twitter:creator" content={SITE_METADATA.twitter.creator} />
+<meta name="twitter:card" content={SITE_METADATA.twitter.card} />
+<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:title" content={finalTitle} />
+<meta name="twitter:description" content={finalDescription} />
+<meta name="twitter:image" content={imageURL} />
+<meta name="twitter:creator" content={SITE_METADATA.twitter.creator} />
 
 <!-- Structured Data: Organization (always present) -->
 <script type="application/ld+json" set:html={organizationSchema} />
