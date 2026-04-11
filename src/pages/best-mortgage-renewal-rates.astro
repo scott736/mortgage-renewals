@@ -25,7 +25,7 @@ const schema = combineSchemas(
   </nav>
 
   <article class="container max-w-4xl py-10">
-    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Last Updated: March 2026</div>
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Last Updated: April 2026</div>
     <h1 class="text-heading-1 mb-4">Best Mortgage Renewal Rates in Canada (2026)</h1>
     <p class="text-body-lg text-muted-foreground mb-8">
       Your mortgage renewal is one of the most significant financial decisions you'll make. The rate you accept today will determine how much interest you pay over the next <a href="/mortgage-renewal-term-lengths" class="text-secondary-100 hover:underline">term</a> — often $5,000 to $30,000 worth of difference depending on your balance and how hard you shop. Use our <a href="/mortgage-renewal-calculator" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to see the impact on your specific numbers.
@@ -34,7 +34,7 @@ const schema = combineSchemas(
     <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
       <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
       <ul class="space-y-2 text-sm leading-relaxed">
-        <li>• Best 5-year fixed rates in Canada are approximately 4.04% and 5-year variable rates around prime minus 0.95% (prime at 4.45%) as of March 2026.</li>
+        <li>• Best 5-year fixed rates in Canada are approximately 3.91–4.04% and 5-year variable rates around prime minus 1.10% (prime at 4.45%) as of April 2026.</li>
         <li>• Banks quote rates 0.25-0.75% higher than what brokers can access — on a $600,000 mortgage, 0.5% extra costs approximately $15,000 over 5 years.</li>
         <li>• Insured mortgages (originally less than 20% down) get the best rates; uninsurable mortgages (refinances, over $1.5M) pay a 0.10-0.30% premium.</li>
         <li>• The Bank of Canada overnight rate is at 2.25% as of early 2026, with most economists expecting rates to hold steady through the year.</li>
@@ -44,7 +44,7 @@ const schema = combineSchemas(
 
     <!-- Rate Table -->
     <div class="mb-12">
-      <h2 class="text-heading-3 mb-4">Current Market Renewal Rates (March 2026)</h2>
+      <h2 class="text-heading-3 mb-4">Current Market Renewal Rates (April 2026)</h2>
       <p class="text-body-sm text-muted-foreground mb-4">
         These are approximate market rates available through mortgage brokers for qualified borrowers. Your actual rate depends on your credit score, LTV ratio, income, and property type. <strong>Always get a personalized quote.</strong>
       </p>
@@ -60,13 +60,13 @@ const schema = combineSchemas(
           </thead>
           <tbody>
             {[
-              { term: "1-Year Fixed", type: "Fixed", rate: "~4.39%", note: "Short commitment, maximum flexibility" },
-              { term: "2-Year Fixed", type: "Fixed", rate: "~4.24%", note: "Balance of flexibility and rate" },
-              { term: "3-Year Fixed", type: "Fixed", rate: "~4.09%", note: "Most popular balance point" },
-              { term: "4-Year Fixed", type: "Fixed", rate: "~4.19%", note: "Less common, sometimes poor value" },
-              { term: "5-Year Fixed", type: "Fixed", rate: "~4.04%", note: "Longest commitment, usually lowest fixed rate" },
-              { term: "3-Year Variable", type: "Variable", rate: "~Prime − 0.85%", note: "Prime rate currently 4.45%" },
-              { term: "5-Year Variable", type: "Variable", rate: "~Prime − 0.95%", note: "Historically lowest rate, highest volatility" },
+              { term: "1-Year Fixed", type: "Fixed", rate: "~4.69%", note: "Short commitment, maximum flexibility" },
+              { term: "2-Year Fixed", type: "Fixed", rate: "~4.04%", note: "Balance of flexibility and rate" },
+              { term: "3-Year Fixed", type: "Fixed", rate: "~3.87%", note: "Most popular balance point" },
+              { term: "4-Year Fixed", type: "Fixed", rate: "~3.99%", note: "Less common, sometimes poor value" },
+              { term: "5-Year Fixed", type: "Fixed", rate: "~3.91%", note: "Lowest insured rate; uninsured adds ~0.10–0.20%" },
+              { term: "3-Year Variable", type: "Variable", rate: "~Prime − 0.85%", note: "Prime rate currently 4.45%; effective ~3.60%" },
+              { term: "5-Year Variable", type: "Variable", rate: "~Prime − 1.10%", note: "Effective ~3.35%; lowest available rate right now" },
               { term: "Open Mortgage", type: "Open", rate: "~7.0%+", note: "Pay off anytime, much higher rate" },
             ].map((row, i) => (
               <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-25"}>
@@ -79,7 +79,7 @@ const schema = combineSchemas(
           </tbody>
         </table>
       </div>
-      <p class="mt-3 text-body-xs text-muted-foreground">Rates shown are approximate best available through broker channel for insured mortgages in March 2026. Rates change daily. <a href="/book-a-call" class="underline text-secondary-100">Get your personalized rate quote.</a></p>
+      <p class="mt-3 text-body-xs text-muted-foreground">Rates shown are approximate best available through broker channel for insured mortgages in April 2026. Rates change daily. <a href="/book-a-call" class="underline text-secondary-100">Get your personalized rate quote.</a></p>
     </div>
 
     <h2 class="text-heading-3 mb-4">How Renewal Rates Differ From Purchase Rates</h2>
@@ -161,7 +161,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mb-4">Rate Forecast: 2026–2027</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      The Bank of Canada has paused its rate-cutting cycle with the overnight rate at 2.25% as of early 2026. Most major bank economists expect rates to remain relatively stable through 2026, with possible small cuts in late 2026 or early 2027 depending on inflation and US trade policy. For a deeper analysis, see our full <a href="/mortgage-rate-forecast" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
+      The Bank of Canada has held its overnight rate at 2.25% for three consecutive announcements (Jan, March, and the next decision is April 29, 2026). Most major bank economists (BMO, CIBC, RBC, TD, National Bank) expect the BoC rate to remain at 2.25% through end of 2026, with some upside rate risk if inflation re-accelerates due to Middle East energy prices. For a deeper analysis, see our full <a href="/mortgage-rate-forecast" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
     </p>
     <p class="text-body-md text-muted-foreground mb-8">
       For fixed rates, the key driver is Canadian government bond yields. 5-year bond yields have been elevated due to inflation uncertainty and US tariff concerns. Fixed rates are unlikely to return to the sub-2% levels seen in 2020–2021.
