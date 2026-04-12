@@ -1,30 +1,30 @@
 ---
 import ZippayContactForm from "@/components/sections/zippay-contact-form";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
-import { breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { webPageNode, breadcrumbSchema, combineSchemas } from '@/lib/schema';
+
+const SITE = "https://mortgagerenewalhub.ca";
+const ORG_ID = `${SITE}/#organization`;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "contact",
+    name: "Contact MortgageRenewalHub.ca",
+    description: "Get in touch with MortgageRenewalHub.ca for mortgage renewal questions.",
+  }),
   breadcrumbSchema([{ name: "Contact", url: "/contact" }]),
-  speakableSchema("contact"),
   {
-    "@context": "https://schema.org",
     "@type": "ContactPage",
-    "name": "Contact MortgageRenewalHub.ca",
-    "description": "Get in touch with MortgageRenewalHub.ca for mortgage renewal questions.",
-    "url": "https://mortgagerenewalhub.ca/contact",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "MortgageRenewalHub.ca",
-      "url": "https://mortgagerenewalhub.ca",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "url": "https://mortgagerenewalhub.ca/contact",
-        "areaServed": "CA",
-        "availableLanguage": "English"
-      }
-    }
-  }
+    "@id": `${SITE}/contact/#contactpage`,
+    name: "Contact MortgageRenewalHub.ca",
+    description: "Get in touch with MortgageRenewalHub.ca for mortgage renewal questions.",
+    url: `${SITE}/contact/`,
+    inLanguage: "en-CA",
+    isPartOf: { "@id": `${SITE}/#website` },
+    mainEntity: {
+      "@id": ORG_ID,
+    },
+  },
 );
 ---
 

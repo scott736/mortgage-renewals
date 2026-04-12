@@ -1,0 +1,269 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is the Canadian Mortgage Charter?",
+    answer: "The Canadian Mortgage Charter is a set of consumer protections for residential mortgage borrowers introduced by the federal government in the 2023 Fall Economic Statement and expanded in Budget 2024. It is not legislation — it is an FCAC-enforceable framework that sets expectations for how federally regulated financial institutions (banks and federal credit unions) treat mortgage holders, particularly those facing financial stress or approaching renewal."
+  },
+  {
+    question: "Does the Canadian Mortgage Charter apply to credit unions?",
+    answer: "It applies to federally regulated financial institutions — including all Big 6 banks and any federally chartered credit unions. Provincially regulated credit unions are not directly bound by the Charter, but most follow similar principles voluntarily because consumer expectations have shifted. If your mortgage is with a provincial credit union and you need relief, ask specifically about their Charter-aligned policies."
+  },
+  {
+    question: "What does the 'no stress test at renewal' provision actually mean?",
+    answer: "Under the Charter, insured mortgage holders switching to a new federally regulated lender at renewal on a straight-switch basis are not subject to the OSFI B-20 stress test. This was a significant early-stage protection. In November 2024, OSFI extended the same exemption to uninsured straight switches — so now both insured and conventional borrowers have the same benefit at renewal."
+  },
+  {
+    question: "How early must my lender contact me before renewal under the Charter?",
+    answer: "Federally regulated lenders are required to contact borrowers at least 12 months — previously 4 months — before the renewal date of their mortgage. The earlier notice is designed to give you time to shop, compare rates, and consider switching lenders rather than feeling pressured by a last-minute renewal offer at the posted rate."
+  },
+  {
+    question: "Can my lender extend my amortization if I'm facing hardship?",
+    answer: "Yes. Under the Charter, federally regulated lenders must permit temporary amortization extensions up to 35 years for borrowers facing financial hardship on their principal residence. This is a genuine hardship relief — not a general payment-reduction tool — and is designed to prevent defaults during periods of elevated rates or income loss. Fees to implement this relief are typically waived."
+  },
+  {
+    question: "Is the Canadian Mortgage Charter enforceable?",
+    answer: "Yes, through the Financial Consumer Agency of Canada (FCAC). If a federally regulated lender violates Charter provisions, you can file a complaint with the FCAC, which has authority to investigate and impose administrative penalties. The Charter is not statutory law, but its expectations are treated as part of the FCAC's market-conduct oversight and lenders take compliance seriously."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Canadian Mortgage Charter: Consumer Protections Explained (2026)",
+    description: "The Canadian Mortgage Charter's consumer protections for renewal, hardship relief, amortization extensions, and FCAC enforcement — a complete plain-language guide.",
+    slug: "canadian-mortgage-charter",
+    articleSection: "Consumer Protection",
+    about: "Canadian Mortgage Charter",
+    keywords: ["Canadian Mortgage Charter", "mortgage consumer protection", "FCAC mortgage", "renewal protections", "hardship relief Canada"],
+  }),
+  breadcrumbSchema([
+    { name: "Canadian Mortgage Charter", url: "/canadian-mortgage-charter" }
+  ]),
+  faqSchema(faqs, "canadian-mortgage-charter"),
+  webPageNode({
+    slug: "canadian-mortgage-charter",
+    name: "Canadian Mortgage Charter: Consumer Protections",
+    description: "Full guide to the Canadian Mortgage Charter's provisions — renewal notice, stress test exemption, amortization extensions, and FCAC enforcement.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Canadian Mortgage Charter: Consumer Protections (2026)"
+  description="The Canadian Mortgage Charter explained — renewal notice rules, no-stress-test switches, hardship relief, amortization extensions, and FCAC enforcement."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Canadian Mortgage Charter
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Consumer Protection · Federal Policy</div>
+      <h1 class="text-heading-1 mb-4">The Canadian Mortgage Charter</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Introduced in 2023 and expanded in Budget 2024, the Canadian Mortgage Charter sets federally enforceable expectations for how banks and federal credit unions treat residential mortgage holders — especially at renewal and during financial hardship.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• The Charter is an <strong>FCAC-enforceable framework</strong>, not legislation — but federally regulated lenders take it seriously.</li>
+        <li>• Lenders must contact borrowers <strong>at least 12 months</strong> before renewal (up from 4 months).</li>
+        <li>• <strong>No stress test</strong> for insured straight-switch renewals (the 2023 provision); extended to uninsured in Nov 2024 by OSFI.</li>
+        <li>• <strong>Temporary amortization extensions</strong> up to 35 years must be permitted for hardship on principal residences.</li>
+        <li>• <strong>Lump-sum payments without penalty</strong> allowed for variable-rate fixed-payment borrowers facing negative amortization.</li>
+        <li>• <strong>Fees waived</strong> for most relief measures; <strong>no interest on interest</strong> charged during relief periods.</li>
+        <li>• Source: <a href="https://www.canada.ca/en/department-finance.html" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Department of Finance Canada</a>.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Background: Why the Charter Was Introduced</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Bank of Canada raised its policy rate from 0.25% in March 2022 to 5.00% by July 2023 — a steep tightening cycle that exposed millions of Canadian mortgage holders to payment shock and trigger-rate events. By late 2023, public pressure on the federal government to provide protection was substantial. The response was the Canadian Mortgage Charter, announced in the Fall Economic Statement on November 21, 2023.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Charter codified a set of "expectations" for federally regulated lenders — banks and federally chartered credit unions — that together create meaningful protections. Budget 2024 (tabled April 2024) expanded the Charter with additional provisions, and subsequent OSFI rule changes in November 2024 further aligned renewal protections across insured and uninsured borrowers.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Core Provisions of the Charter</h2>
+
+    <div class="space-y-5 mb-8">
+      <div class="rounded-lg border border-gray-100 bg-white p-5">
+        <div class="flex items-start gap-3">
+          <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white bg-secondary-100">1</div>
+          <div>
+            <p class="font-semibold mb-1">Advance Renewal Notice (12+ months)</p>
+            <p class="text-body-sm text-muted-foreground leading-relaxed">Federally regulated lenders must contact mortgage borrowers at least 12 months — previously 4 to 6 months — before the renewal date. The notice is intended to prompt early shopping, not last-minute decisions at posted rates. See our <a href="/mortgage-renewal-checklist/" class="text-secondary-100 hover:underline">renewal checklist</a> for how to use this timeline.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-gray-100 bg-white p-5">
+        <div class="flex items-start gap-3">
+          <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white bg-secondary-100">2</div>
+          <div>
+            <p class="font-semibold mb-1">No Stress Test on Insured Straight Switches</p>
+            <p class="text-body-sm text-muted-foreground leading-relaxed">Insured mortgage holders transferring to a new federally regulated lender at renewal on a straight-switch basis (same balance, same amortization, no new money) qualify at the contract rate — no OSFI B-20 stress test. This was later extended to uninsured switches in November 2024 via an OSFI guideline update.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-gray-100 bg-white p-5">
+        <div class="flex items-start gap-3">
+          <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white bg-secondary-100">3</div>
+          <div>
+            <p class="font-semibold mb-1">Temporary Amortization Extension for Hardship</p>
+            <p class="text-body-sm text-muted-foreground leading-relaxed">Federally regulated lenders must permit temporary amortization extensions up to 35 years on principal residences for borrowers facing genuine financial hardship. This is a targeted relief measure, not a routine refinance feature, and was designed to prevent defaults during the 2022–2024 rate cycle's worst stress points.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-gray-100 bg-white p-5">
+        <div class="flex items-start gap-3">
+          <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white bg-secondary-100">4</div>
+          <div>
+            <p class="font-semibold mb-1">Penalty-Free Lump Sums to Avoid Negative Amortization</p>
+            <p class="text-body-sm text-muted-foreground leading-relaxed">Borrowers on fixed-payment variable-rate mortgages who are approaching their trigger point can make lump-sum prepayments to bring the balance down without triggering a prepayment penalty, even if the amount exceeds their contractual annual prepayment privilege. See our <a href="/trigger-rate-variable-mortgage-canada/" class="text-secondary-100 hover:underline">trigger rate guide</a> for context.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-gray-100 bg-white p-5">
+        <div class="flex items-start gap-3">
+          <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white bg-secondary-100">5</div>
+          <div>
+            <p class="font-semibold mb-1">Fee Waivers for Relief Measures</p>
+            <p class="text-body-sm text-muted-foreground leading-relaxed">Administrative fees for implementing relief measures — amortization extensions, payment deferrals, interest-only periods — must be waived or materially reduced when the relief is granted. Borrowers should not have to pay extra to access hardship accommodation.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-gray-100 bg-white p-5">
+        <div class="flex items-start gap-3">
+          <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white bg-secondary-100">6</div>
+          <div>
+            <p class="font-semibold mb-1">No Interest on Interest During Relief</p>
+            <p class="text-body-sm text-muted-foreground leading-relaxed">During approved relief periods — for example, a short payment deferral — lenders cannot charge compound interest (interest on accumulated unpaid interest). This prevents borrowers from facing a meaningfully larger balance once the relief period ends.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-gray-100 bg-white p-5">
+        <div class="flex items-start gap-3">
+          <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white bg-secondary-100">7</div>
+          <div>
+            <p class="font-semibold mb-1">Proactive Outreach to At-Risk Borrowers</p>
+            <p class="text-body-sm text-muted-foreground leading-relaxed">Lenders must make proactive contact with borrowers identified as at risk of payment difficulty — particularly those on variable-rate products approaching trigger points, or those facing renewals at materially higher rates. The intent is early intervention rather than waiting for missed payments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Who the Charter Applies To</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Covered by the Charter</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>All Big 6 banks (RBC, TD, BMO, Scotiabank, CIBC, National Bank)</li>
+          <li>Other Schedule I and Schedule II banks</li>
+          <li>Federally chartered credit unions (e.g., UNI Financial, Coast Capital at federal level)</li>
+          <li>Trust companies under federal charter</li>
+          <li>Federal mortgage insurance companies (CMHC)</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Not Directly Covered</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Provincial credit unions (Ontario, Quebec, BC, etc.)</li>
+          <li>Private lenders and MICs</li>
+          <li>Some B-lenders (those not federally regulated)</li>
+          <li>Non-bank mortgage lenders (though most follow similar principles)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Enforcement Works: The FCAC Role</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The <strong>Financial Consumer Agency of Canada (FCAC)</strong> is the federal body responsible for overseeing market conduct at federally regulated financial institutions. The Charter is incorporated into FCAC's supervisory expectations, meaning that banks and federal credit unions can face administrative monetary penalties, public naming, and corrective directives if they fail to meet Charter standards.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you believe your lender has violated a Charter provision — for example, failing to offer amortization relief during genuine hardship, charging fees on a relief measure, or refusing to provide early renewal notice — you can file a complaint with FCAC at <a href="https://www.canada.ca/en/financial-consumer-agency.html" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">canada.ca/fcac</a>. The agency investigates systemic issues rather than individual disputes, but persistent patterns of non-compliance can trigger enforcement action.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What's Not in the Charter</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Charter is a meaningful set of protections, but it is not a comprehensive rate-regulation regime. Notable gaps:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Lenders are not required to offer you their best rate at renewal. Posted rates still exist and many borrowers accept them without shopping.</li>
+      <li>The Charter does not cap prepayment penalties or standardize how they are calculated.</li>
+      <li>It does not apply to investment properties or commercial loans.</li>
+      <li>It does not override OSFI's underwriting standards — the stress test still applies to refinances and new money.</li>
+      <li>No major new Charter provisions have been added in 2025 or 2026 to date.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Practical Steps: Using the Charter at Renewal</h2>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Watch for your 12-month notice.</strong> Most federally regulated lenders now send out renewal-awareness communications a year ahead. Use that time to shop.</li>
+      <li><strong>Know you can switch without a stress test.</strong> The straight-switch exemption means you qualify at the contract rate — no income-constrained re-qualification stopping you from leaving.</li>
+      <li><strong>Ask about hardship options if you're struggling.</strong> Amortization extensions, payment holidays, and fee waivers are expected protections, not favours.</li>
+      <li><strong>Document everything.</strong> Keep copies of written renewal offers and correspondence. If a lender doesn't comply with the Charter, documentation is essential for any FCAC complaint.</li>
+      <li><strong>Use a mortgage broker as your advocate.</strong> Brokers know the Charter inside out and can help you enforce its benefits. See our <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">broker renewal guide</a>.</li>
+    </ol>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <div>
+      <h2 class="text-heading-3 mb-4">Related Guides</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+          { title: "Trigger Rate on Variable Mortgages", href: "/trigger-rate-variable-mortgage-canada/" },
+          { title: "30-Year Amortization Rules", href: "/30-year-amortization-mortgage-renewal/" },
+          { title: "Insured vs. Conventional at Renewal", href: "/insured-vs-conventional-mortgage-renewal/" },
+          { title: "Bank of Canada Rate Decisions", href: "/bank-of-canada-rate-decisions/" },
+          { title: "Mortgage Broker at Renewal", href: "/mortgage-broker-renewal/" },
+        ].map(link => (
+          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+            <span class="text-secondary-100">→</span>
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want to Use Your Charter Rights at Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> understands every Charter provision and can put them to work on your file — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Renewal Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

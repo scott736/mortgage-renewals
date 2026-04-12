@@ -1,10 +1,10 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, howToSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, howToSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 const schema = combineSchemas(
   articleSchema({
-    headline: "Switching Lenders at Mortgage Renewal: Your Complete 2026 Guide",
+    headline: "Switching Lenders at Mortgage Renewal in Canada — 2026 Guide",
     description: "Switching lenders at renewal can save $10,000+ over 5 years. Learn the 8-step process, costs, 2024 stress test rule change, and how a broker simplifies everything.",
     slug: "switching-lenders-at-renewal",
   }),
@@ -25,13 +25,17 @@ const schema = combineSchemas(
       { name: "New term begins on maturity date", text: "On your maturity date, the old lender is paid out, the new lender takes over, and your new rate and term begin. You start making payments to the new institution at a lower rate." },
     ],
   }),
-  speakableSchema("switching-lenders-at-renewal"),
+  webPageNode({
+    slug: "switching-lenders-at-renewal",
+    name: "Switching Mortgage Lenders at Renewal in Canada",
+    description: "8-step guide to switching lenders at Canadian mortgage renewal — costs, the 2024 stress test exemption, and broker process.",
+  }),
 );
 ---
 
 <DefaultLayout
-  title="Switching Lenders at Mortgage Renewal in Canada — MortgageRenewalHub.ca"
-  description="Switching lenders at renewal can save $10,000+ over 5 years. Learn the 8-step process, costs, 2024 stress test rule change, and how a broker simplifies everything."
+  title="Switching Lenders at Mortgage Renewal in Canada (2026)"
+  description="Switching lenders at renewal can save $10,000+ over 5 years. The 8-step process, costs, the 2024 stress test exemption, and how a broker simplifies it."
   schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -45,7 +49,7 @@ const schema = combineSchemas(
     <div class="flex flex-col lg:flex-row gap-10">
       <div class="flex-1">
 
-        <p class="mb-6 text-base leading-relaxed">Switching lenders at mortgage renewal is the single most impactful financial decision most Canadian homeowners can make. Yet only a fraction of Canadians actually do it — one of the most <a href="/mortgage-renewal-mistakes" style="color: var(--secondary)">common renewal mistakes</a>. In 2024, a significant regulatory change eliminated the stress test for borrowers transferring their mortgage straight across to a new lender — making switching easier, less risky, and more accessible than ever before. This guide explains every step of the process, what it costs, what to watch for, and how to maximize your savings.</p>
+        <p class="mb-6 text-base leading-relaxed">Switching lenders at mortgage renewal is the single most impactful financial decision most Canadian homeowners can make. Yet only a fraction of Canadians actually do it — one of the most <a href="/mortgage-renewal-mistakes/" style="color: var(--secondary)">common renewal mistakes</a>. In 2024, a significant regulatory change eliminated the stress test for borrowers transferring their mortgage straight across to a new lender — making switching easier, less risky, and more accessible than ever before. This guide explains every step of the process, what it costs, what to watch for, and how to maximize your savings.</p>
 
         <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
           <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
@@ -95,7 +99,7 @@ const schema = combineSchemas(
             <li>No additional funds advanced (no cash-back, no equity access)</li>
             <li>No change to the property</li>
           </ul>
-          <p class="text-sm mt-2">If you want to borrow more money, change your amortization significantly, or do anything beyond simply moving the existing mortgage, that becomes a refinance — and the stress test still applies. See our <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">fixed vs. variable guide</a> for help choosing your rate type on the new term.</p>
+          <p class="text-sm mt-2">If you want to borrow more money, change your amortization significantly, or do anything beyond simply moving the existing mortgage, that becomes a refinance — and the stress test still applies. See our <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed vs. variable guide</a> for help choosing your rate type on the new term.</p>
         </div>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The 8-Step Process for Switching Lenders at Renewal</h2>
@@ -106,7 +110,7 @@ const schema = combineSchemas(
               <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white" style="background: var(--secondary)">1</div>
               <div>
                 <p class="font-bold mb-1">Find your maturity date (120 days before)</p>
-                <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Check your most recent mortgage statement or contact your current lender to confirm the exact date your term expires. Mark 120 days before that date on your calendar — that's when you should start the switching process. Our <a href="/mortgage-renewal-checklist" style="color: var(--secondary)">renewal checklist</a> walks you through the full timeline. Most lenders allow rate holds up to 120 days before funding.</p>
+                <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Check your most recent mortgage statement or contact your current lender to confirm the exact date your term expires. Mark 120 days before that date on your calendar — that's when you should start the switching process. Our <a href="/mortgage-renewal-checklist/" style="color: var(--secondary)">renewal checklist</a> walks you through the full timeline. Most lenders allow rate holds up to 120 days before funding.</p>
               </div>
             </div>
           </div>
@@ -235,7 +239,7 @@ const schema = combineSchemas(
         <p class="mb-4 leading-relaxed">Timing is everything in mortgage renewals, and the single biggest mistake is waiting too long. Here's why 120 days is the magic number:</p>
 
         <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
-          <li><strong>Rate holds:</strong> Most lenders will hold a <a href="/best-mortgage-renewal-rates" style="color: var(--secondary)">competitive rate</a> for up to 120 days before your renewal date. This means you can lock in today's rate even if your mortgage doesn't renew for four months — protecting you if rates rise between now and then.</li>
+          <li><strong>Rate holds:</strong> Most lenders will hold a <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">competitive rate</a> for up to 120 days before your renewal date. This means you can lock in today's rate even if your mortgage doesn't renew for four months — protecting you if rates rise between now and then.</li>
           <li><strong>Processing time:</strong> Even a straightforward switch involves an application, underwriting review, legal work, and coordination between lawyers and lenders. Allow at least 4–6 weeks for the administrative process.</li>
           <li><strong>Negotiation leverage:</strong> The earlier you start shopping, the more time you have to get multiple competing offers and use them as leverage with your current lender.</li>
           <li><strong>Stress-free experience:</strong> Starting early eliminates last-minute pressure and ensures you make a decision based on financial merit, not time constraints.</li>
@@ -257,7 +261,7 @@ const schema = combineSchemas(
             <p class="font-bold mb-2 text-sm" style="color: var(--secondary)">About Your Income</p>
             <ul class="text-sm space-y-1" style="color: var(--muted-foreground)">
               <li>• Last 2 pay stubs (employed)</li>
-              <li>• 2 years NOA (<a href="/self-employed-mortgage-renewal" style="color: var(--secondary)">self-employed</a>)</li>
+              <li>• 2 years NOA (<a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed</a>)</li>
               <li>• Employment letter (some lenders)</li>
               <li>• T4 slips (last 2 years)</li>
             </ul>
@@ -288,7 +292,7 @@ const schema = combineSchemas(
 
         <p class="mb-4 leading-relaxed">Critically: mortgage brokers in Canada are paid by the lender via a finder's fee, not by you. Using a broker for a renewal switch is entirely free for the borrower. The lender pays the broker a percentage of the funded mortgage amount as compensation for bringing them a qualified client.</p>
 
-        <p class="mb-6 leading-relaxed">Read more in our detailed guide on <a href="/mortgage-broker-renewal" style="color: var(--secondary)">using a mortgage broker at renewal</a>.</p>
+        <p class="mb-6 leading-relaxed">Read more in our detailed guide on <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">using a mortgage broker at renewal</a>.</p>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Real Numbers: What Switching Can Save You</h2>
 
@@ -346,7 +350,7 @@ const schema = combineSchemas(
           <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
             <h3 class="font-bold mb-3">Compare 30+ Lenders Free</h3>
             <p class="text-sm mb-4 opacity-90">A broker does the shopping for you. No cost to you, ever.</p>
-            <a href="/book-a-call" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
               Book a Free Call
             </a>
           </div>
@@ -358,27 +362,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
           <p class="text-xs" style="color: var(--muted-foreground)">The complete beginner's guide to how renewals work in Canada.</p>
         </a>
-        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">How a Broker Helps at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Free to use, accesses monolines. Here's exactly what a broker does.</p>
         </a>
-        <a href="/mortgage-lender-types-canada" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types in Canada</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, credit unions, B-lenders — how they compare.</p>
         </a>
-        <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Which rate type should you choose for your new term?</p>
         </a>
-        <a href="/mortgage-renewal-mistakes" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Including auto-renewing without shopping — avoid these errors.</p>
         </a>
-        <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Checklist</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step from 12 months before to renewal day.</p>
         </a>
@@ -387,7 +391,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -396,13 +400,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

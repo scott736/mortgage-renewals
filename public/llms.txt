@@ -14,48 +14,120 @@
 ## Core Pages
 
 - [Home](https://mortgagerenewalhub.ca/): Overview of mortgage renewal resources and tools
-- [What Is a Mortgage Renewal?](https://mortgagerenewalhub.ca/what-is-a-mortgage-renewal): Foundational guide explaining mortgage renewals in Canada
-- [Complete Mortgage Renewal Guide](https://mortgagerenewalhub.ca/mortgage-renewal-guide): Comprehensive 10-section guide covering the full renewal process
-- [Best Mortgage Renewal Rates](https://mortgagerenewalhub.ca/best-mortgage-renewal-rates): Current Canadian mortgage renewal rates with comparison tables
-- [Mortgage Renewal Calculator](https://mortgagerenewalhub.ca/mortgage-renewal-calculator): Interactive calculator for renewal payment scenarios
-- [Mortgage Renewal Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist): Month-by-month checklist from 12 months before renewal to renewal day
-- [Mortgage Renewal FAQ](https://mortgagerenewalhub.ca/mortgage-renewal-faq): 40+ frequently asked questions about mortgage renewals in Canada
-- [Mortgage Renewal Glossary](https://mortgagerenewalhub.ca/mortgage-renewal-glossary): 40+ mortgage renewal terms defined in plain English
+- [What Is a Mortgage Renewal?](https://mortgagerenewalhub.ca/what-is-a-mortgage-renewal/): Foundational guide explaining mortgage renewals in Canada
+- [Complete Mortgage Renewal Guide](https://mortgagerenewalhub.ca/mortgage-renewal-guide/): Comprehensive 10-section guide covering the full renewal process
+- [Mortgage Renewal Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist/): Month-by-month checklist from 12 months before renewal to renewal day
+- [Mortgage Renewal FAQ](https://mortgagerenewalhub.ca/mortgage-renewal-faq/): 40+ frequently asked questions about mortgage renewals in Canada
+- [Mortgage Renewal Glossary](https://mortgagerenewalhub.ca/mortgage-renewal-glossary/): 40+ mortgage renewal terms defined in plain English
+- [Site Map](https://mortgagerenewalhub.ca/mortgage-renewal-sitemap/): Complete list of all pages on the site
+
+## Calculators & Interactive Tools
+
+- [Mortgage Renewal Calculator Suite](https://mortgagerenewalhub.ca/mortgage-renewal-calculator/): Five free calculators — payment estimator, rate comparison, amortization extension, penalty estimator, debt consolidation
+- [Mortgage Stress Test Calculator](https://mortgagerenewalhub.ca/mortgage-stress-test-calculator/): OSFI B-20 qualifying rate calculator with GDS/TDS analysis
+- [Blend-and-Extend Calculator](https://mortgagerenewalhub.ca/blend-and-extend-calculator/): Compute your blended rate and compare against breaking early
+- [Switch vs. Stay Break-Even Calculator](https://mortgagerenewalhub.ca/switch-vs-stay-calculator/): Factor in discharge, legal, appraisal, and title costs
+- [HELOC vs. Refinance Calculator](https://mortgagerenewalhub.ca/heloc-vs-refinance-calculator/): Compare equity access options
+- [Payment Frequency Calculator](https://mortgagerenewalhub.ca/mortgage-payment-frequency-canada/): See savings from accelerated bi-weekly or weekly payments
+- [Should I Switch? Quiz](https://mortgagerenewalhub.ca/should-i-switch-quiz/): 5-question decision aid
+- [Mortgage Term Decision Guide](https://mortgagerenewalhub.ca/mortgage-term-decision-guide/): Interactive decision framework for picking term length
+- [Renewal Date Reminder](https://mortgagerenewalhub.ca/renewal-reminder/): Get notified 6 months and 4 months before your renewal
+- [Rate Alert Signup](https://mortgagerenewalhub.ca/rate-alert/): Get notified when rates hit your target
+
+## Rates & Market Data
+
+- [Best Mortgage Renewal Rates](https://mortgagerenewalhub.ca/best-mortgage-renewal-rates/): Current best renewal rates with live comparison tables
+- [Current Mortgage Rates Canada](https://mortgagerenewalhub.ca/current-mortgage-rates-canada/): Live broker rates for all terms
+- [Mortgage Rate Forecast](https://mortgagerenewalhub.ca/mortgage-rate-forecast/): Canadian mortgage rate outlook and projections
+- [Bank of Canada Rate Decisions](https://mortgagerenewalhub.ca/bank-of-canada-rate-decisions/): BoC meeting calendar, current overnight rate, and decision history
 
 ## Topic Guides
 
-- [Fixed vs. Variable Mortgage](https://mortgagerenewalhub.ca/fixed-vs-variable-mortgage-renewal): Comparison of fixed and variable rate options at renewal
-- [Switching Lenders at Renewal](https://mortgagerenewalhub.ca/switching-lenders-at-renewal): Step-by-step guide to transferring your mortgage to a new lender
-- [Renewal vs. Refinancing](https://mortgagerenewalhub.ca/renewal-vs-refinancing): When to renew vs. refinance, including costs and benefits
-- [Mortgage Renewal Term Lengths](https://mortgagerenewalhub.ca/mortgage-renewal-term-lengths): How to choose between 1-year, 3-year, 5-year, and other terms
-- [Lower Mortgage Payments at Renewal](https://mortgagerenewalhub.ca/lower-mortgage-payments-at-renewal): Strategies to reduce monthly payments at renewal
-- [Mortgage Renewal Mistakes](https://mortgagerenewalhub.ca/mortgage-renewal-mistakes): Common pitfalls to avoid during mortgage renewal
-- [Mortgage Rate Forecast](https://mortgagerenewalhub.ca/mortgage-rate-forecast): Canadian mortgage rate outlook and projections
-- [Mortgage Lender Types in Canada](https://mortgagerenewalhub.ca/mortgage-lender-types-canada): A-lenders, B-lenders, monolines, and private lenders explained
-- [Using a Mortgage Broker](https://mortgagerenewalhub.ca/mortgage-broker-renewal): Benefits and process of using a mortgage broker at renewal
+- [Switching Lenders at Renewal](https://mortgagerenewalhub.ca/switching-lenders-at-renewal/): Step-by-step guide to transferring your mortgage to a new lender
+- [Stress Test at Renewal](https://mortgagerenewalhub.ca/stress-test-mortgage-renewal/): OSFI B-20 and the November 2024 straight-switch exemption
+- [Collateral vs. Standard Charge](https://mortgagerenewalhub.ca/collateral-vs-standard-charge-mortgage/): How charge type affects switching
+- [Prepayment Privileges in Canada](https://mortgagerenewalhub.ca/mortgage-prepayment-privileges-canada/): Big 6 and monoline prepayment limits compared
+- [Canadian Mortgage Charter](https://mortgagerenewalhub.ca/canadian-mortgage-charter/): Federal renewal consumer protections
+- [IRD vs. 3-Month Interest Penalty](https://mortgagerenewalhub.ca/ird-vs-three-month-interest-penalty/): Big 6 vs. monoline penalty methodology
+- [Fixed vs. Variable at Renewal](https://mortgagerenewalhub.ca/fixed-vs-variable-mortgage-renewal/): Comparison of fixed and variable rate options
+- [Insured vs. Conventional at Renewal](https://mortgagerenewalhub.ca/insured-vs-conventional-mortgage-renewal/): CMHC insurance portability
+- [30-Year Amortization Rules](https://mortgagerenewalhub.ca/30-year-amortization-mortgage-renewal/): 2024 federal rule changes and eligibility
+- [Trigger Rate (Variable Mortgages)](https://mortgagerenewalhub.ca/trigger-rate-variable-mortgage-canada/): Trigger rate and trigger point explained
+- [Porting a Mortgage](https://mortgagerenewalhub.ca/porting-a-mortgage-canada/): Port-and-blend vs. break-and-new
+- [Assuming a Mortgage](https://mortgagerenewalhub.ca/assuming-a-mortgage-canada/): Taking over an existing mortgage
+- [Mortgage Flex Features](https://mortgagerenewalhub.ca/mortgage-flex-features-canada/): Skip-a-payment, double-up, payment vacation
+- [Renewal vs. Refinancing](https://mortgagerenewalhub.ca/renewal-vs-refinancing/): When to renew vs. refinance
+- [Renewal Term Lengths](https://mortgagerenewalhub.ca/mortgage-renewal-term-lengths/): How to choose 1, 2, 3, 4, 5, or 10-year term
+- [Lower Mortgage Payments at Renewal](https://mortgagerenewalhub.ca/lower-mortgage-payments-at-renewal/): Strategies to reduce monthly payments
+- [Renewal Mistakes](https://mortgagerenewalhub.ca/mortgage-renewal-mistakes/): Common pitfalls to avoid
+- [Mortgage Lender Types in Canada](https://mortgagerenewalhub.ca/mortgage-lender-types-canada/): A-lenders, B-lenders, monolines, private lenders
+- [Using a Mortgage Broker](https://mortgagerenewalhub.ca/mortgage-broker-renewal/): Benefits and process
+
+## Bank & Lender Renewal Pages
+
+- [TD Canada Trust](https://mortgagerenewalhub.ca/td-mortgage-renewal/): Renewal process, rates, and collateral charge considerations
+- [RBC Royal Bank](https://mortgagerenewalhub.ca/rbc-mortgage-renewal/): Renewal process, rates, and prepayment privileges
+- [BMO Bank of Montreal](https://mortgagerenewalhub.ca/bmo-mortgage-renewal/): Renewal process with 20% prepayment privileges
+- [Scotiabank](https://mortgagerenewalhub.ca/scotiabank-mortgage-renewal/): STEP collateral charge and ARM variable structure
+- [CIBC](https://mortgagerenewalhub.ca/cibc-mortgage-renewal/): Renewal process, rates, and Home Power Plan
+- [National Bank of Canada](https://mortgagerenewalhub.ca/national-bank-mortgage-renewal/): Renewal process and regional coverage
+- [First National (Monoline)](https://mortgagerenewalhub.ca/first-national-mortgage-renewal/): Broker-channel monoline renewal
+- [MCAP (Monoline)](https://mortgagerenewalhub.ca/mcap-mortgage-renewal/): Canada's largest non-bank lender
+- [Credit Union Mortgage Renewal](https://mortgagerenewalhub.ca/credit-union-mortgage-renewal-canada/): Provincial credit union flexibility at renewal
 
 ## Special Situations
 
-- [Self-Employed Mortgage Renewal](https://mortgagerenewalhub.ca/self-employed-mortgage-renewal): Renewal guide for self-employed and business-owner borrowers
-- [Bad Credit Mortgage Renewal](https://mortgagerenewalhub.ca/bad-credit-mortgage-renewal): Options for renewing with credit challenges
-- [Divorce & Mortgage Renewal](https://mortgagerenewalhub.ca/divorce-mortgage-renewal): Handling mortgage renewal during separation or divorce
-- [Investment Property Renewal](https://mortgagerenewalhub.ca/investment-property-renewal): Renewal considerations for rental and investment properties
+- [Self-Employed Mortgage Renewal](https://mortgagerenewalhub.ca/self-employed-mortgage-renewal/): For business owners and contractors
+- [Bad Credit Mortgage Renewal](https://mortgagerenewalhub.ca/bad-credit-mortgage-renewal/): Options with credit challenges
+- [First-Time Mortgage Renewer](https://mortgagerenewalhub.ca/first-time-mortgage-renewal/): 2020-2021 cohort payment shock guide
+- [Seniors / Retirees](https://mortgagerenewalhub.ca/seniors-mortgage-renewal-canada/): Qualifying on fixed income, CPP/OAS/RRIF
+- [Reverse Mortgage at Renewal](https://mortgagerenewalhub.ca/reverse-mortgage-at-renewal/): CHIP, Equitable Flex, Bloom comparison
+- [Job Loss at Renewal](https://mortgagerenewalhub.ca/job-loss-mortgage-renewal/): Hardship options under the Canadian Mortgage Charter
+- [Divorce & Mortgage Renewal](https://mortgagerenewalhub.ca/divorce-mortgage-renewal/): Handling mortgage renewal during separation
+- [Spousal Buyout](https://mortgagerenewalhub.ca/spousal-buyout-mortgage-renewal/): 95% LTV buyout program specifics
+- [Remove a Co-Signer](https://mortgagerenewalhub.ca/remove-co-signer-mortgage-renewal/): Refinance process for co-signer removal
+- [Investment Property Renewal](https://mortgagerenewalhub.ca/investment-property-renewal/): Rental property renewal considerations
+- [New to Canada](https://mortgagerenewalhub.ca/new-to-canada-mortgage-renewal/): PR and newcomer renewal
+- [Estate / POA Renewal](https://mortgagerenewalhub.ca/estate-mortgage-renewal/): Death, probate, and power of attorney scenarios
 
 ## Provincial Guides
 
-- [Ontario Mortgage Renewal](https://mortgagerenewalhub.ca/ontario-mortgage-renewal): Province-specific renewal guide for Ontario homeowners
-- [British Columbia Mortgage Renewal](https://mortgagerenewalhub.ca/bc-mortgage-renewal): Province-specific renewal guide for BC homeowners
-- [Alberta Mortgage Renewal](https://mortgagerenewalhub.ca/alberta-mortgage-renewal): Province-specific renewal guide for Alberta homeowners
-- [Quebec Mortgage Renewal](https://mortgagerenewalhub.ca/quebec-mortgage-renewal): Province-specific renewal guide for Quebec homeowners
-- [Saskatchewan & Manitoba Mortgage Renewal](https://mortgagerenewalhub.ca/saskatchewan-manitoba-mortgage-renewal): Province-specific renewal guide for SK and MB homeowners
+- [Ontario](https://mortgagerenewalhub.ca/ontario-mortgage-renewal/): Ontario-specific renewal with FSRA, TRREB data
+- [British Columbia](https://mortgagerenewalhub.ca/bc-mortgage-renewal/): BC-specific renewal guidance
+- [Alberta](https://mortgagerenewalhub.ca/alberta-mortgage-renewal/): Alberta-specific renewal guidance
+- [Quebec](https://mortgagerenewalhub.ca/quebec-mortgage-renewal/): Quebec-specific renewal with notary requirements
+- [Manitoba](https://mortgagerenewalhub.ca/manitoba-mortgage-renewal/): Manitoba standalone guide (LTT progressive 0-2%)
+- [Saskatchewan](https://mortgagerenewalhub.ca/saskatchewan-mortgage-renewal/): Saskatchewan standalone guide (no LTT)
+- [Atlantic Canada](https://mortgagerenewalhub.ca/atlantic-canada-mortgage-renewal/): NS, NB, PEI, NL combined
+- [Territories](https://mortgagerenewalhub.ca/territories-mortgage-renewal/): Yukon, NWT, Nunavut
+
+## Resources
+
+- [News & Market Updates](https://mortgagerenewalhub.ca/mortgage-renewal-news/): Bank of Canada decisions and renewal news
+- [Case Studies](https://mortgagerenewalhub.ca/case-studies/): Canadian renewal success stories
+- [Downloadable PDF Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist-pdf/): Free PDF renewal checklist
 
 ## About
 
-- [About Us](https://mortgagerenewalhub.ca/about): Our mission and team
-- [Contact](https://mortgagerenewalhub.ca/contact): Get in touch
-- [Book a Call](https://mortgagerenewalhub.ca/book-a-call): Schedule a free mortgage renewal strategy call
-- [Pricing](https://mortgagerenewalhub.ca/pricing): Services and pricing
+- [About Us](https://mortgagerenewalhub.ca/about/): Our mission and team
+- [Contact](https://mortgagerenewalhub.ca/contact/): Get in touch
+- [Book a Call](https://mortgagerenewalhub.ca/book-a-call/): Schedule a free mortgage renewal strategy call
+- [Pricing](https://mortgagerenewalhub.ca/pricing/): Services and pricing
+
+## Legal
+
+- [Privacy Policy](https://mortgagerenewalhub.ca/privacy/): How we collect, use, and protect personal information
+- [Terms of Service](https://mortgagerenewalhub.ca/terms/): Terms governing use of MortgageRenewalHub.ca
+- [Cookie Policy](https://mortgagerenewalhub.ca/cookie-policy/): How cookies are used on the site
+
+## Authorship & Editorial
+
+Content on MortgageRenewalHub.ca is authored and reviewed by Scott Dillingham, Licensed Mortgage Broker and principal of LendCity Mortgages. Articles cite primary sources including the Financial Consumer Agency of Canada (FCAC), Canada Mortgage and Housing Corporation (CMHC), Bank of Canada (BoC), Office of the Superintendent of Financial Institutions (OSFI), and Department of Finance Canada.
 
 ## Content Policy
 
-This site publishes original, expert-reviewed educational content about Canadian mortgage renewals. Content is updated regularly to reflect current market rates, Bank of Canada policy changes, and regulatory updates. All content may be cited with attribution to MortgageRenewalHub.ca.
+This site publishes original, expert-reviewed educational content about Canadian mortgage renewals. Content is updated regularly to reflect current market rates, Bank of Canada policy changes, and regulatory updates. All content may be cited with attribution to MortgageRenewalHub.ca. Content is considered educational; specific recommendations require consultation with a licensed mortgage professional.
+
+## AI Crawler Policy
+
+AI training and AI search crawlers (GPTBot, ClaudeBot, Google-Extended, PerplexityBot, OAI-SearchBot, ChatGPT-User, anthropic-ai, CCBot, Applebot, Amazonbot, cohere-ai, meta-external-agent, FacebookBot, YouBot, Bytespider, Gemini-Web-Scraper, Google-CloudVertexBot, AI2Bot, Diffbot, DuckAssistBot, Mistral-User) are explicitly allowed via robots.txt. Citation with link attribution to the source URL is requested.

@@ -1,0 +1,201 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Are TD mortgages registered as collateral charges?",
+    answer: "Yes. Since October 18, 2010, all TD Canada Trust residential mortgages have been registered as collateral charges. This differs from the standard charge used by RBC, BMO, CIBC, and National Bank for their standalone mortgage products. Collateral charges allow TD to secure multiple credit products (like a HELOC added later) under one registration, but they make switching to a new lender more expensive because a new lender cannot simply assume the existing charge — a full discharge and re-registration is required, typically involving $700-$1,500 in legal fees."
+  },
+  {
+    question: "What's TD's current 5-year fixed mortgage rate for renewal?",
+    answer: "TD's 5-year fixed special rate is approximately 4.59% as of April 2026. Renewal offers on a TD renewal letter can be materially higher — sometimes posted or just off posted — unless you negotiate. TD's prime mortgage rate is 4.60%, which is 15 basis points above the standard Big 6 prime of 4.45%. If you're a TD mortgage customer, it's worth comparing TD's offer against broker-sourced rates before signing."
+  },
+  {
+    question: "What are TD's prepayment privileges at renewal?",
+    answer: "TD allows lump-sum prepayments of up to 15% of the original principal per year, plus the ability to increase your regular payment by up to 100% (doubling). These are generous by Big 6 standards. Missed payment catch-ups and anniversary-date flexibility are also available on most TD products. Confirm the specific terms of your product at renewal, as features can vary between TD's core mortgage and the Home Equity FlexLine."
+  },
+  {
+    question: "How does TD calculate the IRD penalty if I break my mortgage?",
+    answer: "TD uses a 'discounted rate' IRD methodology — the comparison rate is TD's current posted rate for the remaining term, less the discount you received at origination. This inflated IRD calculation (shared by Scotiabank, BMO, and several Big 6 peers) typically produces higher penalties than monoline lenders, which use contract-rate IRD. If you're considering switching before term-end, get a specific penalty quote from TD and compare carefully. At renewal (at maturity), no IRD penalty applies."
+  },
+  {
+    question: "Should I switch away from TD at my renewal?",
+    answer: "It depends on the total cost comparison. TD's collateral charge registration makes switching more expensive ($700-$1,500 in legal fees vs. ~$300 for a standard charge switch). Many new lenders offer cash-back incentives to offset these costs. If a broker can source a rate 15-25 bps better than TD's renewal offer, the savings over 5 years typically exceed switching costs. Ask your broker to run a net-of-costs comparison."
+  },
+  {
+    question: "What is the TD Home Equity FlexLine?",
+    answer: "The TD Home Equity FlexLine (HEFL) is TD's combined mortgage and HELOC product. It's always registered as a collateral charge (as are all TD mortgages) and allows you to reamortize principal repayments into an active credit line. For borrowers who use HELOC credit actively, the FlexLine is a flexible tool; for borrowers who just want a straight mortgage, a simpler product at another lender may be cheaper and easier to switch at future renewals."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "td-mortgage-renewal",
+    name: "TD Canada Trust Mortgage Renewal 2026 — Rates, Charge Type & Strategy",
+    description: "TD Canada Trust mortgage renewal guide: collateral charge implications, 2026 rates, prepayment privileges, IRD methodology, and when to switch.",
+  }),
+  articleSchema({
+    headline: "TD Canada Trust Mortgage Renewal 2026 — Rates, Charge Type & Strategy",
+    description: "Everything TD Canada Trust mortgage customers need at renewal: collateral charge registration, 5-year fixed rates, prepayment rules, IRD calculation, and how to negotiate or switch in 2026.",
+    slug: "td-mortgage-renewal",
+    articleSection: "Bank Renewal Guides",
+    about: "TD Canada Trust",
+    keywords: ["TD mortgage renewal", "TD collateral charge", "TD Canada Trust renewal rate", "TD mortgage switching", "Home Equity FlexLine"],
+  }),
+  breadcrumbSchema([
+    { name: "TD Mortgage Renewal", url: "/td-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "td-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="TD Canada Trust Mortgage Renewal 2026 — Rates & Strategy"
+  description="TD mortgage renewal: collateral charge rules, 2026 rates, prepayment privileges, IRD methodology, and when it makes sense to switch."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › TD Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 8-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">TD Canada Trust Mortgage Renewal in 2026</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">TD is the largest mortgage lender in Canada by market share and the only Big 6 bank that registers all residential mortgages as collateral charges. Here's what that means for your 2026 TD renewal — rates, prepayment privileges, IRD calculation, and when it's worth switching.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+          Compare TD vs. Broker Quotes
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex-1">
+
+      <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+        <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">TD at a Glance (April 2026)</h2>
+        <ul class="space-y-2 text-sm leading-relaxed">
+          <li>• <strong>Default charge type:</strong> Collateral (all TD mortgages since October 18, 2010)</li>
+          <li>• <strong>Prime mortgage rate:</strong> 4.60% (15 bps above Big 6 standard prime of 4.45%)</li>
+          <li>• <strong>5-year fixed special:</strong> ~4.59%</li>
+          <li>• <strong>Prepayment privileges:</strong> 15% lump sum per year + up to 100% payment increase</li>
+          <li>• <strong>IRD methodology:</strong> Discounted-rate (inflated vs. monolines)</li>
+          <li>• <strong>Signature product:</strong> TD Home Equity FlexLine (HEFL) — combined mortgage + HELOC</li>
+          <li>• <strong>Broker channel:</strong> Yes, TD accepts broker-sourced mortgages</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">TD's Collateral Charge — What It Means at Renewal</h2>
+
+      <p class="mb-4 leading-relaxed">TD is the only Big 6 bank that registers every residential mortgage as a <strong>collateral charge</strong> — a policy that has applied to all new TD mortgages since October 18, 2010. This is materially different from the standard charge used by RBC, BMO, CIBC, and National Bank on their core mortgage products.</p>
+
+      <p class="mb-4 leading-relaxed">A collateral charge secures the mortgage against the property at an amount that can exceed the actual mortgage balance — often up to 125% of the appraised value. This allows TD to offer "re-advanceable" products like the Home Equity FlexLine without requiring a new registration every time you borrow more. It also allows TD to secure other credit products (credit cards, loans) under the same charge.</p>
+
+      <p class="mb-4 leading-relaxed">The downside at renewal: <strong>you cannot switch to another lender by simply assuming the existing charge</strong>. A new lender must discharge TD's collateral charge and register their own mortgage. This requires a real estate lawyer and typically $700-$1,500 in legal fees. Many lenders offer cash-back incentives that offset these costs.</p>
+
+      <p class="mb-6 leading-relaxed">If you plan to stay with TD at renewal, the charge type doesn't matter — you're not moving. If you plan to shop the market, factor ~$1,000 in net switching costs into your comparison. See our <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching lenders guide</a> for the full walkthrough.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">TD Mortgage Rates at Renewal</h2>
+
+      <p class="mb-4 leading-relaxed">TD's posted 5-year fixed rate as of April 2026 is approximately 5.99%; the 5-year fixed special (the rate negotiated with most customers) is approximately 4.59%. Your renewal letter may show a rate somewhere in between — often 10-40 basis points above the special rate — which is where negotiation starts.</p>
+
+      <p class="mb-4 leading-relaxed">TD's <strong>prime mortgage rate is 4.60%</strong>, which is 15 basis points higher than the Big 6 standard prime of 4.45%. This matters if you have a variable-rate TD mortgage — your rate is priced off TD's prime, not the standard prime, so a prime - 0.80% variable is effectively TD Prime (4.60%) - 0.80% = 3.80%, not 4.45% - 0.80% = 3.65%.</p>
+
+      <p class="mb-6 leading-relaxed">Before signing your renewal, get at least two broker-sourced quotes for comparison. Monoline lenders (First National, MCAP, RMG) frequently undercut TD's special rate by 15-25 basis points, and credit unions may be sharper still. On a $500,000 mortgage, a 0.20% rate difference saves approximately $5,100 over a 5-year term.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">TD Prepayment Privileges</h2>
+
+      <p class="mb-4 leading-relaxed">TD's standard prepayment privileges are generous by Big 6 standards:</p>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li><strong>Lump-sum prepayments:</strong> Up to 15% of the original principal amount per year, applied to principal without penalty.</li>
+        <li><strong>Payment increase:</strong> You can increase your regular payment by up to 100% (double your payment) without penalty.</li>
+        <li><strong>Anniversary dates:</strong> Most TD products allow prepayments on any regular payment date, not just the mortgage anniversary.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">On a $500,000 mortgage, the 15% privilege allows up to $75,000/year in lump-sum prepayments. If you receive year-end bonuses or want to aggressively pay down principal, TD's privilege is competitive. Compare these to the 20% privilege at some lenders (like BMO on standard fixed) and 15-20% at First National to see the full picture.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">TD's IRD Penalty Methodology</h2>
+
+      <p class="mb-4 leading-relaxed">If you break your TD fixed-rate mortgage mid-term, the Interest Rate Differential (IRD) penalty is calculated using a <strong>discounted-rate methodology</strong>. The comparison rate is TD's current posted rate for the remaining term, less the discount you received at origination.</p>
+
+      <p class="mb-4 leading-relaxed">This produces higher IRD penalties than the contract-rate methodology used by monolines like First National. A typical example: a customer with a 3-year remaining term on an original 5-year fixed may see an IRD penalty of $15,000-$30,000 at TD that would be $8,000-$15,000 at a monoline.</p>
+
+      <p class="mb-6 leading-relaxed">This matters only if you break the mortgage mid-term. At renewal (at maturity), no IRD penalty applies — you're free to switch lenders without penalty. The IRD calculation is relevant to future flexibility: if you might sell or refinance before the next maturity date, a lender with a fairer IRD methodology saves money.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The TD Renewal Letter Playbook</h2>
+
+      <ol class="space-y-4 mb-8">
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">1. Don't sign the first offer</h3>
+          <p class="text-sm leading-relaxed">TD's initial renewal offer is typically 20-50 basis points above the rate they'll give you after negotiation. Read the letter for facts but do not sign.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">2. Get broker quotes</h3>
+          <p class="text-sm leading-relaxed">A 30-minute broker call produces quotes from 3-5 lenders (banks, monolines, credit unions). This sets your benchmark for negotiation with TD.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">3. Call TD's retention line</h3>
+          <p class="text-sm leading-relaxed">Armed with a competing quote, call TD and ask to speak with mortgage retention. Request rate matching. TD has real retention budget and will often match or come close to a concrete broker quote.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">4. Compare net-of-switching-cost</h3>
+          <p class="text-sm leading-relaxed">If TD won't match, compare the net savings after ~$1,000 in collateral-charge switching costs. On a $500K mortgage, a 0.20% rate advantage is $5,100 over 5 years — switching pays even with costs. Many lenders cover those costs via cash-back.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">5. Sign before maturity</h3>
+          <p class="text-sm leading-relaxed">Whether you stay or switch, make sure the new mortgage funds before your maturity date. If you don't actively sign anything, TD will auto-renew you — often at a worse rate than the initial offer.</p>
+        </li>
+      </ol>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">When Staying with TD Makes Sense</h2>
+
+      <p class="mb-4 leading-relaxed">Despite the collateral charge and sometimes-higher rates, staying with TD can be the right choice when:</p>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li>You actively use the Home Equity FlexLine for re-advanceable credit;</li>
+        <li>TD matches or comes close to broker-sourced rates after negotiation;</li>
+        <li>You value TD's branch network and digital banking integration;</li>
+        <li>You have multiple TD products and the total relationship value justifies staying;</li>
+        <li>Your qualifying ratios are tight and a switch would require requalification you might not pass.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">The key is making an informed decision. A free broker call gives you the benchmark — then you can negotiate with TD from a position of information or switch with confidence.</p>
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/rbc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">RBC Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Compare RBC's standard charge to TD's collateral charge approach.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step guide — applies to TD customers moving to another lender.</p>
+        </a>
+        <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates 2026</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Current market rates to benchmark TD's offer against.</p>
+        </a>
+        <a href="/first-national-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">First National Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Compare a monoline's rates and IRD methodology to TD.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Don't take TD's first offer.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call gives you the benchmark rate to negotiate — or a better offer to switch to. No obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

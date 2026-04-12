@@ -2,9 +2,23 @@
 import ZippayCtaCard from "@/components/sections/zippay-cta-card";
 import CookieContent from "@/content/cookie-policy.mdx";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { webPageNode, breadcrumbSchema, combineSchemas } from "@/lib/schema";
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "cookie-policy",
+    name: "Cookie Policy — MortgageRenewalHub.ca",
+    description: "How MortgageRenewalHub.ca uses cookies and similar technologies.",
+  }),
+  breadcrumbSchema([{ name: "Cookie Policy", url: "/cookie-policy" }]),
+);
 ---
 
-<DefaultLayout title="Cookie Policy" description="How we use cookies.">
+<DefaultLayout
+  title="Cookie Policy — MortgageRenewalHub.ca"
+  description="How MortgageRenewalHub.ca uses cookies and similar technologies to enhance your browsing experience and analyze site usage."
+  schema={schema}
+>
   <section class="bg-primary-300 px-6 py-16 text-white lg:py-24">
     <div class="container">
       <div class="mx-auto max-w-3xl text-center">

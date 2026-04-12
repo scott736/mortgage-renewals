@@ -1,0 +1,173 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { SwitchVsStay } from '@/components/calculators/additional-calculators';
+import { articleSchema, breadcrumbSchema, webPageNode, webApplicationSchema, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "How does a switch-vs-stay calculator work?",
+    answer: "It compares the total 5-year cost of renewing with your current lender (monthly payment plus any retention offer) against the total 5-year cost of switching to a new lender at a better rate — including discharge fees, legal/registration costs, and any appraisal. The break-even analysis tells you how quickly the rate savings make up for one-time switching costs, and which option wins on total interest paid over the term."
+  },
+  {
+    question: "What switching costs should I factor in?",
+    answer: "Typical switching costs include: discharge fee from the current lender ($200–$400), legal/registration fees with the new lender ($300–$600), title insurance ($150–$300), and an appraisal if required ($300–$500). Total is usually $700–$1,800. Many lenders offer to cover discharge and legal on straight switches as an incentive — always ask your broker which offers include this."
+  },
+  {
+    question: "Does this work for collateral charge mortgages?",
+    answer: "Yes — the calculator includes the legal and discharge costs that apply when switching away from a collateral charge. A collateral charge (default at TD and Tangerine) requires full discharge and new registration, which adds roughly $700–$1,200 in legal fees. Even with those costs, a 0.20%+ rate advantage typically pays back in under 18 months on a mid-sized mortgage. See our collateral vs. standard charge guide for details."
+  },
+  {
+    question: "My bank offered to match the competing rate. Should I still switch?",
+    answer: "Maybe not — if your bank matches the rate, and you're happy with their service, staying avoids the switching costs. But be sure the matched offer comes in writing, that prepayment privileges, penalty formula, and portability are equivalent, and that the bank isn't quietly locking you into a restricted-rate product. A broker can compare the fine print side-by-side."
+  },
+  {
+    question: "Do I need to pass the stress test to switch?",
+    answer: "Since November 21, 2024, OSFI has exempted uninsured straight-switch renewals (same balance, same amortization, no new money) from the Minimum Qualifying Rate. You still qualify at contract rate. If you're adding money, changing amortization, or refinancing, the stress test applies — our stress test calculator shows your qualifying mortgage in that case."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "switch-vs-stay-calculator",
+    name: "Switch vs. Stay Mortgage Calculator — Canada 2026",
+    description: "Free calculator to decide whether switching lenders at renewal beats staying. Compares 5-year cost with full switching fees and rate savings.",
+  }),
+  webApplicationSchema({
+    name: "Switch vs. Stay Mortgage Renewal Calculator (Canada)",
+    description: "Run the math on switching lenders at renewal versus accepting your current lender's offer. Includes discharge, legal, appraisal, and title fees.",
+    slug: "switch-vs-stay-calculator",
+    features: [
+      "5-year total cost comparison",
+      "Break-even analysis for switching costs",
+      "Includes discharge, legal, appraisal, title",
+      "Canadian semi-annual compounding",
+      "Free — no email required",
+    ],
+  }),
+  articleSchema({
+    headline: "Switch vs. Stay Mortgage Calculator — Canada 2026",
+    description: "Free Canadian switch-vs-stay calculator. Compare 5-year cost of staying with your current lender against switching — including all fees. Updated April 2026.",
+    slug: "switch-vs-stay-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage switch vs stay analysis",
+    keywords: ["switch vs stay mortgage", "renewal break-even", "switching lender calculator", "mortgage transfer math"],
+  }),
+  faqSchema(faqs, "switch-vs-stay-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator" },
+    { name: "Switch vs. Stay Calculator", url: "/switch-vs-stay-calculator" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Switch vs. Stay Mortgage Calculator — Canada 2026"
+  description="Free Canadian switch-vs-stay calculator. Compare the 5-year cost of staying with your current lender versus switching — including all switching fees."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Switch vs. Stay
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Switch vs. Stay Mortgage Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Your current lender sent you a renewal offer. You've got a competing quote from a broker. Which is actually better once you include discharge, legal, and appraisal fees? This calculator runs the 5-year total cost both ways — so the decision is clear.
+      </p>
+    </div>
+
+    <SwitchVsStay client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How Switching Economics Work in Canada (2026)</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          A new lender may offer 0.20%–0.60% below your current lender's renewal rate. On a $500,000 mortgage, that's roughly $6,000–$18,000 in interest over 5 years. Switching costs — discharge, legal, title, appraisal — typically total $700–$1,800, and many new lenders cover discharge and legal entirely on straight switches.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          The math almost always favours switching unless your current lender matches the competing offer. The real questions are: how big is the rate gap, and will your existing lender match?
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">November 2024: No Stress Test on Straight Switches</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Before November 21, 2024, switching lenders at renewal required passing the OSFI B-20 stress test at a qualifying rate 2% above contract. For borrowers who couldn't requalify, the current lender held all the leverage.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          OSFI's exemption for uninsured straight switches — same balance, same amortization, no new money — levels the playing field. Qualifying is now based on contract rate, not the MQR. See our <a href="/stress-test-mortgage-renewal/" class="text-secondary-100 hover:underline">stress test renewal guide</a> for the full picture.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When Staying Makes Sense</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li>Your current lender matches the best competing rate in writing with equivalent terms.</li>
+          <li>Rate gap is under ~0.10% and switching fees are unusually high (e.g., collateral charge with no legal coverage).</li>
+          <li>You plan to break the new mortgage within the first year (penalty risk outweighs rate savings).</li>
+          <li>You need a HELOC/readvanceable product the new lender doesn't match.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When Switching Is the Clear Winner</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li>Your bank's renewal offer is at or near their posted rate — the default position for most Big 6 renewal letters.</li>
+          <li>A monoline lender is offering 0.20%+ below the best bank rate with legal-paid switching.</li>
+          <li>You want portability, standard charge registration, or richer prepayment privileges.</li>
+          <li>You're at a collateral-charge lender (TD, Tangerine) and want a standard charge on your next mortgage.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Tools & Guides</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Main Renewal Calculator Suite", href: "/mortgage-renewal-calculator/" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+            { title: "Stress Test at Renewal", href: "/stress-test-mortgage-renewal/" },
+            { title: "Collateral vs. Standard Charge", href: "/collateral-vs-standard-charge-mortgage/" },
+            { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+            { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want a Broker to Double-Check the Math?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will pull exact rates, confirm switching costs with the new lender, and tell you honestly whether staying or switching wins — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

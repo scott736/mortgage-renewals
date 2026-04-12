@@ -1,0 +1,304 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Is there a land transfer tax when I renew a mortgage in Yukon, NWT, or Nunavut?",
+    answer: "None of the three Canadian territories — Yukon, Northwest Territories, or Nunavut — levies a land transfer tax. Only small registration and title fees apply under each territory's Land Titles Office. More importantly, a straight mortgage renewal never triggers title transfer, so registration fees generally do not apply either. You may incur a discharge fee ($200–$400) if you switch lenders, and legal/title insurance costs of a few hundred dollars if your mortgage is on a collateral charge that must be re-registered."
+  },
+  {
+    question: "Which lenders offer mortgages in the territories?",
+    answer: "Lender competition is limited compared to southern Canada. In Yukon, BMO, CIBC, and Chinook Financial (a federal credit union) are the dominant mortgage providers in Whitehorse. In the Northwest Territories, BMO, Scotiabank, and Borealis Credit Union serve most of Yellowknife and the larger communities. Nunavut has the smallest private mortgage market in Canada — most housing in Iqaluit and the smaller hamlets is government-owned or employer-provided, so Bank of Canada data shows minimal private mortgage origination. A mortgage broker can access national monoline lenders (MCAP, First National, RMG) that also lend in the territories, which widens your options considerably."
+  },
+  {
+    question: "Why are mortgage rates often higher in the territories?",
+    answer: "Three main reasons: (1) limited lender competition means fewer players fighting for your business and smaller rate discounts; (2) appraisal and servicing costs are higher in remote markets, which some lenders price into their rates; and (3) resale market liquidity is lower, so lenders view territorial collateral as slightly riskier. In 2026, expect your renewal rate to be 0.05–0.25% higher on average than an equivalent borrower would pay in Vancouver, Calgary, or Toronto — although a broker with access to monolines can often close that gap."
+  },
+  {
+    question: "Can I use a mortgage broker if I live in Yukon, NWT, or Nunavut?",
+    answer: "Yes. Mortgage brokers licensed in any Canadian province can arrange mortgages on territorial properties — there is no territorial broker licensing regime, so the nearest-province licence applies. Most broker channels submit territorial files to national lenders (MCAP, First National, Scotia's broker arm) that lend on approved-appraiser property in Whitehorse, Yellowknife, Iqaluit, and the larger communities. Broker access is often more valuable in the territories than anywhere else in Canada because it dramatically widens your lender set."
+  },
+  {
+    question: "Are there territorial first-time buyer programs that affect renewal?",
+    answer: "Yukon Housing Corporation, NWT Housing Corporation, and Nunavut Housing Corporation each run first-time buyer and down payment assistance programs. These programs usually come with a second mortgage or equity participation that must be registered against title. At renewal, you must confirm whether the territorial program's second charge interferes with switching lenders — some new lenders will not fund behind a territorial housing program charge. Always have your broker or lawyer confirm charge ranking before you commit to a switch."
+  },
+  {
+    question: "Does the 2024 federal stress-test exemption for straight switches apply in the territories?",
+    answer: "Yes. The November 2024 OSFI change that eliminated the stress test on straight lender switches (same balance, same amortization, no new money) applies uniformly to all federally regulated lenders, including those operating in the territories. Territorial homeowners switching from one bank to another at renewal on a straight transfer do not need to re-qualify at the stress-test rate. The exemption does not apply if you increase your loan amount or extend your amortization — that is a refinance, and the stress test still applies."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "territories-mortgage-renewal",
+    name: "Territories Mortgage Renewal — Yukon, NWT, Nunavut 2026",
+    description: "Mortgage renewal guide for Canada's three territories: Yukon, Northwest Territories, and Nunavut. Lenders, rates, and broker access in 2026.",
+  }),
+  articleSchema({
+    headline: "Territories Mortgage Renewal 2026 — Yukon, NWT & Nunavut",
+    description: "How to renew your mortgage in Yukon, Northwest Territories, or Nunavut. Lender options, rate premiums, territorial housing programs, and why brokers matter most in remote markets.",
+    slug: "territories-mortgage-renewal",
+    areaServed: "Canadian Territories",
+    articleSection: "Territorial Guides",
+    about: "Territorial Mortgage Renewal in Canada",
+    keywords: ["Yukon mortgage renewal", "NWT mortgage renewal", "Nunavut mortgage", "Whitehorse mortgage", "Yellowknife mortgage", "Iqaluit mortgage"],
+  }),
+  breadcrumbSchema([
+    { name: "Territories Mortgage Renewal", url: "/territories-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "territories-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Territories Mortgage Renewal 2026 — Yukon, NWT & Nunavut"
+  description="Mortgage renewal in Yukon, NWT, and Nunavut: lender options, no land transfer tax, territorial housing programs, and why brokers matter in remote markets."
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+          Territorial Renewal Guide
+        </div>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          Mortgage Renewal in the Canadian Territories (2026)
+        </h1>
+        <p class="text-xl text-white/80 mb-8">
+          Yukon, Northwest Territories, and Nunavut share small populations, limited lender competition, and unique housing dynamics. Here's how to secure a competitive renewal in Whitehorse, Yellowknife, Iqaluit, and beyond.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/book-a-call/">
+            <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
+              Book Free Territorial Consultation
+            </button>
+          </a>
+          <a href="/mortgage-renewal-calculator/">
+            <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
+              Calculate My New Payment
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BREADCRUMB -->
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Territories Mortgage Renewal
+  </nav>
+
+  <!-- MARKET SNAPSHOT -->
+  <section class="border-b py-10 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { stat: "$590K", label: "Whitehorse avg home price (2026)", sub: "Yukon Real Estate data" },
+          { stat: "$425K", label: "Yellowknife avg home price (2026)", sub: "NWT Bureau of Statistics" },
+          { stat: "0%", label: "Land transfer tax in all 3 territories", sub: "Small registration fees only" },
+          { stat: "3", label: "Territorial housing corporations", sub: "Yukon, NWT, Nunavut programs" },
+        ].map(item => (
+          <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
+            <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
+            <div class="mt-1 text-sm font-medium text-gray-800">{item.label}</div>
+            <div class="mt-0.5 text-xs text-gray-500">{item.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• None of the three territories charges a land transfer tax — registration fees are nominal and renewals typically trigger no fees at all.</li>
+            <li>• Limited lender competition means territorial renewal rates run 0.05–0.25% higher on average than southern-Canada equivalents.</li>
+            <li>• Yukon's Whitehorse market is dominated by BMO, CIBC, and Chinook Financial; NWT's Yellowknife by BMO, Scotiabank, and Borealis Credit Union; Nunavut has the smallest private mortgage market in Canada.</li>
+            <li>• Mortgage brokers bring national monoline lenders (MCAP, First National, RMG) into a market that otherwise has few players, which is usually the single biggest factor in securing a competitive rate.</li>
+            <li>• Territorial housing corporation second mortgages may complicate switches — always verify charge priority before committing to a new lender.</li>
+            <li>• The November 2024 OSFI stress-test exemption for straight lender switches applies equally in the territories.</li>
+          </ul>
+        </div>
+
+        <p class="mb-6 leading-relaxed">Canada's three territories — Yukon, Northwest Territories, and Nunavut — cover more than 40% of the country's landmass but house less than 0.4% of its population. That disproportion shapes every aspect of the territorial mortgage market: fewer lenders compete for business, appraisers travel long distances, and some communities have almost no private mortgage activity at all. If you own a home in Whitehorse, Yellowknife, Iqaluit, or one of the larger territorial communities and your mortgage is approaching renewal, understanding how the territorial market works is the single most valuable step you can take toward getting a competitive rate.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Yukon: Whitehorse and Beyond</h2>
+
+        <p class="mb-4 leading-relaxed">Yukon is home to roughly 45,000 residents, with about 80% living in Whitehorse. The 2026 average Whitehorse home price is approximately $590,000 — high enough that renewal rate differences translate into real money. The Yukon Real Estate Association tracks monthly sales data, and overall the market has been stable through 2025 and into 2026.</p>
+
+        <p class="mb-4 leading-relaxed">Major mortgage lenders active in Yukon include Bank of Montreal (BMO), CIBC, and the credit union Chinook Financial (a federal credit union regulated by OSFI). Scotiabank and TD have limited presence. Monoline lenders — MCAP, First National, RMG, Merix — will lend on Whitehorse properties through the broker channel, which often produces the most competitive rate quotes.</p>
+
+        <p class="mb-4 leading-relaxed">Yukon has no land transfer tax. When you purchase or transfer title, only modest Land Titles Office registration fees apply (typically a few hundred dollars). A straight mortgage renewal — staying with your existing lender — triggers no fees whatsoever. Yukon Housing Corporation runs first-time homebuyer and down payment assistance programs; if you received one of those loans at purchase, confirm its status with your broker before switching lenders.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Northwest Territories: Yellowknife and the Regional Centres</h2>
+
+        <p class="mb-4 leading-relaxed">The Northwest Territories has approximately 45,000 residents, with Yellowknife representing roughly half. The 2026 average Yellowknife home price sits near $425,000 — more affordable than Whitehorse but with a thinner resale market. The NWT Bureau of Statistics publishes housing data and shows the market remained steady through 2025.</p>
+
+        <p class="mb-4 leading-relaxed">Lending in the NWT is dominated by BMO, Scotiabank, and Borealis Credit Union (the territory's largest credit union). CIBC and RBC maintain smaller footprints. Brokered files frequently route to First National, MCAP, and Equitable Bank, which all lend on Yellowknife properties.</p>
+
+        <p class="mb-4 leading-relaxed">There is no NWT land transfer tax. Registration fees at the Land Titles Office are modest. The NWT Housing Corporation offers homeownership assistance programs that occasionally register as second charges — again, verify charge priority before a renewal switch.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Nunavut: Canada's Smallest Private Mortgage Market</h2>
+
+        <p class="mb-4 leading-relaxed">Nunavut's mortgage market is genuinely unique within Canada. The territory has approximately 40,000 residents across 25 communities, with Iqaluit (population ~7,500) serving as the capital. Unlike Yukon and NWT, the majority of Nunavut housing is government-owned, employer-provided (particularly for federal and territorial government staff), or constructed under territorial housing programs. The private single-family home market in Iqaluit exists but is small — Bank of Canada data shows minimal mortgage origination in Nunavut compared to any province or territory.</p>
+
+        <p class="mb-4 leading-relaxed">If you hold a private mortgage on a Nunavut property, you are part of a small club. Lenders active in the territory include Scotiabank (in Iqaluit) and — via broker channels — some national monolines that will fund on approved appraiser property. Expect fewer rate quotes, and expect to rely on a broker to present your file to non-local lenders, since Nunavut falls outside the standard retail footprint of most national banks.</p>
+
+        <p class="mb-4 leading-relaxed">Nunavut charges no land transfer tax. Nunavut Housing Corporation runs a suite of homeownership programs, many of which carry second mortgages or equity participations that must be carefully managed during any renewal switch.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Lender Landscape: At-a-Glance Comparison</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Territory</th>
+                <th class="p-3 text-left">Dominant Retail Lenders</th>
+                <th class="p-3 text-left">Local Credit Union</th>
+                <th class="p-3 text-left">Broker Access to Monolines</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Yukon</td>
+                <td class="p-3">BMO, CIBC</td>
+                <td class="p-3">Chinook Financial</td>
+                <td class="p-3">Yes — MCAP, First National, RMG</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Northwest Territories</td>
+                <td class="p-3">BMO, Scotiabank, CIBC</td>
+                <td class="p-3">Borealis Credit Union</td>
+                <td class="p-3">Yes — on Yellowknife properties</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">Nunavut</td>
+                <td class="p-3">Scotiabank (primarily Iqaluit)</td>
+                <td class="p-3">None territorially — Atlantic CU network sometimes participates</td>
+                <td class="p-3">Limited — depends on property and community</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Why Broker Access Matters More in the North</h2>
+
+        <p class="mb-4 leading-relaxed">In a dense urban market like Toronto or Vancouver, a homeowner can walk into five different bank branches and get five competing quotes. In Whitehorse or Yellowknife, that's not an option — there simply aren't five banks. This is why the broker channel is disproportionately valuable in territorial markets. A licensed broker submits your file to 20+ lenders, several of whom — including major monolines — happily lend on territorial properties but don't have retail branches there.</p>
+
+        <p class="mb-4 leading-relaxed">Monoline lenders like MCAP, First National, RMG, and Merix operate exclusively through brokers. Their back-end overhead is lower than the big banks (no branch networks), and they pass some of that saving through in rates. In the territories, where local competition is thin, this is often the difference between a competitive renewal rate and a posted rate. Read our full guide on <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">using a mortgage broker at renewal</a>.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Territorial Housing Programs and Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">Each territory operates a territorial housing corporation that provides homeownership assistance:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Yukon Housing Corporation:</strong> Offers the Home Ownership Program and Owner Build Program. Programs often register a second charge on title.</li>
+          <li><strong>NWT Housing Corporation:</strong> Runs PATH (Providing Assistance for Territorial Homeownership) and EDAP (Expanded Down Payment Assistance Program). Second charges are common.</li>
+          <li><strong>Nunavut Housing Corporation:</strong> Administers the Homeownership Program and Down payment Assistance Program. Second charges are the norm due to high construction costs in the territory.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">At renewal, if you took one of these programs at purchase, the second charge does not automatically block a lender switch — but it must be acknowledged and subordinated by the new lender. Some national lenders do not accept files with a territorial housing program charge behind them. Before you commit to any renewal switch, ask your broker to confirm in writing that the new lender accepts the territorial housing program's charge position.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The 2024 Stress Test Change Applies in the Territories</h2>
+
+        <p class="mb-4 leading-relaxed">In November 2024, OSFI removed the stress test requirement for straight mortgage switches at renewal — same balance, same amortization, no new money — at federally regulated lenders. This applies equally in the territories. You can now transfer your mortgage to a new federally regulated lender at renewal without re-qualifying at the stress-test rate, as long as you're not borrowing more or extending your amortization. See our <a href="/stress-test-mortgage-renewal/" style="color: var(--secondary)">stress test at renewal</a> guide for the full mechanics.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Bank of Canada Rate and Territorial Renewal Impact</h2>
+
+        <p class="mb-4 leading-relaxed">As of April 2026, the Bank of Canada policy rate sits at 2.25%. Variable-rate and HELOC products in the territories move with BoC decisions. Fixed-rate pricing is driven by 5-year Government of Canada bond yields plus a lender-specific spread. Territorial borrowers pay slightly higher spreads than southern Canadian equivalents, but the underlying rate benchmark is identical. See our <a href="/mortgage-rate-forecast/" style="color: var(--secondary)">2026 rate forecast</a> for a full outlook.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <!-- INTERNAL LINKS -->
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/bc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">BC Mortgage Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Closest major provincial market to Yukon — similar broker strategies apply.</p>
+            </a>
+            <a href="/alberta-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Alberta Mortgage Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Alberta lenders frequently lend into NWT — relevant for Yellowknife borrowers.</p>
+            </a>
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">How a Broker Helps at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Broker access matters most in thin markets — here's why.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">The 8-step process plus the 2024 stress-test exemption.</p>
+            </a>
+            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Banks, credit unions, monolines, and B-lenders compared.</p>
+            </a>
+            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Renewal Guide</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Everything Canadians need for a successful 2026 renewal.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">Yukon Market</a></li>
+              <li><a href="#" style="color: var(--secondary)">NWT Market</a></li>
+              <li><a href="#" style="color: var(--secondary)">Nunavut Market</a></li>
+              <li><a href="#" style="color: var(--secondary)">Lender Comparison</a></li>
+              <li><a href="#" style="color: var(--secondary)">Broker Access</a></li>
+              <li><a href="#" style="color: var(--secondary)">Housing Programs</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Territorial Renewal Help</h3>
+            <p class="text-sm mb-4 opacity-90">A broker widens your lender set dramatically in thin northern markets — at no cost to you.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <!-- MOBILE CTA -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <!-- CTA -->
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-3xl font-bold mb-4">Territorial Homeowner? Get Broker-Level Access to National Lenders</h2>
+      <p class="text-lg mb-8 opacity-90">In Whitehorse, Yellowknife, and Iqaluit, a broker is often the difference between a posted rate and a competitive one. Consultation is free.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        Book Your Free Renewal Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

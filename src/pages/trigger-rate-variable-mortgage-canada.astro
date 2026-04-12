@@ -1,0 +1,260 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a trigger rate on a Canadian variable-rate mortgage?",
+    answer: "The trigger rate is the interest rate at which your fixed monthly payment on a variable-rate mortgage (VRM) no longer covers any principal — 100% of your payment is going to interest. Once reached, further rate increases cause your loan balance to grow instead of shrink (negative amortization). It only applies to fixed-payment VRMs, not adjustable-rate mortgages (ARMs) where the payment floats with prime."
+  },
+  {
+    question: "What is the difference between a trigger rate and a trigger point?",
+    answer: "The trigger rate is the prime-linked interest rate at which payments stop reducing principal. The trigger point occurs later — when your outstanding balance exceeds a contractual cap (often 100–125% of the original principal depending on the lender and whether the charge is standard or collateral). At the trigger point, the lender requires action: a lump-sum payment, a payment increase, or conversion to a fixed rate."
+  },
+  {
+    question: "Which Canadian lenders have fixed-payment VRMs that can hit a trigger rate?",
+    answer: "Most Big 6 banks offer fixed-payment variable mortgages where the trigger-rate concept applies: TD, RBC, BMO, CIBC, and National Bank. Scotiabank's standard variable is structured as an adjustable-rate mortgage (ARM) where the payment changes with every Bank of Canada move — so there is no trigger rate. Monoline lenders are mixed; many brokers recommend ARMs specifically to eliminate trigger risk."
+  },
+  {
+    question: "Are trigger rates still a concern in April 2026?",
+    answer: "Largely no. With the Bank of Canada overnight rate at 2.25% and prime at 4.45% — down from a peak prime of 7.20% in late 2023 — most trigger-rate events that occurred between 2022 and 2024 have resolved. However, borrowers who hit trigger points during the cycle may still be carrying extended amortizations (35–40+ years on paper) that contractually reset at renewal, potentially causing payment shock."
+  },
+  {
+    question: "What happens to my amortization at renewal if I hit a trigger point during my term?",
+    answer: "At renewal, your lender is required to return your mortgage to a contractual amortization — typically the lesser of the original amortization or what remains on a normal schedule. Borrowers who saw their amortization stretch to 35 or 40 years on paper during the 2022–2024 rate cycle may face a sharp payment increase at renewal as the schedule is reset. Working with a broker 120 days before maturity lets you shop for the lowest rate to offset that adjustment."
+  },
+  {
+    question: "Should I switch from a fixed-payment VRM to an ARM to avoid trigger rates?",
+    answer: "An ARM (adjustable-rate mortgage, like Scotiabank's variable product) eliminates trigger risk because your payment adjusts each time prime changes. The trade-off is payment volatility — your monthly cost fluctuates with every BoC decision. With the BoC now in a neutral stance at 2.25%, payment volatility is relatively low. Speak to a broker about whether an ARM fits your cash-flow tolerance."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Trigger Rate on Canadian Variable-Rate Mortgages (2026)",
+    description: "What the trigger rate and trigger point mean on fixed-payment variable mortgages in Canada — how they work, which lenders, and the 2022–2024 aftermath.",
+    slug: "trigger-rate-variable-mortgage-canada",
+    articleSection: "Variable Rate Mortgages",
+    about: "Trigger rate Canadian variable mortgage",
+    keywords: ["trigger rate", "trigger point", "variable rate mortgage Canada", "fixed payment VRM", "negative amortization"],
+  }),
+  breadcrumbSchema([
+    { name: "Trigger Rate on Variable Mortgages", url: "/trigger-rate-variable-mortgage-canada" }
+  ]),
+  faqSchema(faqs, "trigger-rate-variable-mortgage-canada"),
+  webPageNode({
+    slug: "trigger-rate-variable-mortgage-canada",
+    name: "Trigger Rate on Canadian Variable-Rate Mortgages (2026)",
+    description: "Explains the trigger rate and trigger point on Canadian fixed-payment VRMs, which lenders use them, and what happens at renewal.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Trigger Rate on Canadian Variable Mortgages (2026)"
+  description="What trigger rates and trigger points mean on Canadian fixed-payment variable mortgages — lender rules, negative amortization, and renewal impacts."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Trigger Rate on Variable Mortgages
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Variable Rate Guide</div>
+      <h1 class="text-heading-1 mb-4">Trigger Rate on Canadian Variable-Rate Mortgages</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. With the Bank of Canada overnight rate at 2.25% and prime at 4.45%, trigger-rate pressure has eased dramatically — but borrowers who hit triggers during the 2022–2024 cycle are still navigating extended amortizations at renewal.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• The <strong>trigger rate</strong> is the rate at which your fixed VRM payment stops reducing principal — 100% of the payment goes to interest.</li>
+        <li>• The <strong>trigger point</strong> is later: when your balance exceeds the contractual cap (often 100–125% of the original principal).</li>
+        <li>• Only <strong>fixed-payment variable mortgages</strong> have trigger rates. Adjustable-rate mortgages (ARMs) — like Scotiabank's standard variable — have no trigger because payments move with prime.</li>
+        <li>• Most Big 6 fixed-payment VRMs are offered by TD, RBC, BMO, CIBC, and National Bank.</li>
+        <li>• With prime at 4.45% (down from 7.20% in late 2023), triggers are largely behind us — but renewal reality checks are active.</li>
+        <li>• Source: <a href="https://www.bankofcanada.ca/2022/11/staff-analytical-notes-2022-19/" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Bank of Canada Staff Analytical Note 2022-19</a>.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Understanding the Two Types of Variable Mortgages in Canada</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Before we can explain the trigger rate, you need to understand that not all "variable-rate mortgages" behave the same way in Canada. There are two distinct structures, and only one of them has a trigger rate at all.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Fixed-Payment VRM</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Your monthly payment stays constant regardless of prime. When prime rises, more of each payment goes to interest and less to principal. This is where the trigger rate lives.</p>
+        <p class="text-body-sm-medium">Offered by: TD, RBC, BMO, CIBC, National Bank</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Adjustable-Rate Mortgage (ARM)</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Your payment changes every time the Bank of Canada moves prime. Each payment always covers the full interest charge plus some principal. No trigger rate exists.</p>
+        <p class="text-body-sm-medium">Offered by: Scotiabank (standard variable), many monolines</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How the Trigger Rate Mechanism Works</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      When you sign a fixed-payment variable mortgage, your payment is calculated based on the contract rate at origination. If prime subsequently rises, the interest portion of each payment grows. Eventually, a rate is reached where the interest charge exactly equals your payment — meaning nothing is left over to reduce the principal balance. This is your trigger rate.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Past the trigger rate, the lender has two operational choices. Most Canadian lenders allow <strong>negative amortization</strong> — the unpaid interest is added to the principal balance, so your loan grows each month. Your payment stays the same on paper, but your amortization period quietly extends. Some borrowers who signed VRMs with 25-year amortizations in 2020–2021 watched those schedules stretch to 35, 40, or even 50+ years on internal lender statements during the 2022–2024 tightening cycle.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Trigger Point: The Contractual Ceiling</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Lenders don't let negative amortization run forever. Each mortgage contract specifies a <strong>trigger point</strong> — typically when the outstanding balance reaches 100%, 105%, or up to 125% of the original principal (standard-charge mortgages are usually at the lower end; collateral-charge mortgages at the higher end). When the balance hits this ceiling, the lender is contractually required to contact you and present options:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Make a <strong>lump-sum prepayment</strong> to bring the balance back below the cap</li>
+      <li><strong>Increase your monthly payment</strong> to at least cover the interest charge</li>
+      <li><strong>Convert to a fixed-rate mortgage</strong> at the lender's current conversion rate</li>
+      <li><strong>Extend the amortization</strong> (subject to regulatory limits and lender policy)</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Trigger Rate by Lender (April 2026)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Here's how Canada's major residential mortgage lenders structure their variable products. Always confirm with your specific contract, as terms can vary by product tier:
+    </p>
+
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Variable Structure</th>
+            <th class="p-3 text-left">Trigger Rate Applies?</th>
+            <th class="p-3 text-left">Typical Trigger Point Cap</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">TD Canada Trust</td>
+            <td class="p-3">Fixed-payment VRM</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">105% of original principal</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">RBC Royal Bank</td>
+            <td class="p-3">Fixed-payment VRM</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">~105–110%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">BMO</td>
+            <td class="p-3">Fixed-payment VRM</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">~105%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">CIBC</td>
+            <td class="p-3">Fixed-payment VRM</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">~105%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">National Bank</td>
+            <td class="p-3">Fixed-payment VRM</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">~105%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Scotiabank</td>
+            <td class="p-3">ARM (adjustable-rate)</td>
+            <td class="p-3">No — payment floats with prime</td>
+            <td class="p-3">N/A</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Most monolines</td>
+            <td class="p-3">Mixed — often ARM</td>
+            <td class="p-3">Varies</td>
+            <td class="p-3">Varies</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Source: Lender product disclosures as of April 2026. Confirm specific cap language in your mortgage commitment letter and annual statement.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Trigger Rates Were a Crisis in 2022–2024</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Bank of Canada's overnight rate rose from 0.25% in March 2022 to 5.00% by July 2023 — the fastest tightening cycle in a generation. Prime rate climbed from 2.45% to 7.20% in roughly 16 months. Fixed-payment VRM borrowers who had signed contracts at discounted rates of prime minus 1% saw their effective interest rate triple, and many hit their trigger rates within the first year of the cycle.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Bank of Canada's own <a href="https://www.bankofcanada.ca/2022/11/staff-analytical-notes-2022-19/" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Staff Analytical Note 2022-19</a> estimated that roughly half of all fixed-payment VRM holders had hit their trigger rate by late 2022. Federally regulated lenders worked with OSFI to permit amortization extensions as a relief mechanism, rather than force mass payment shock mid-term. The <a href="/canadian-mortgage-charter/" class="text-secondary-100 hover:underline">Canadian Mortgage Charter</a> later formalised some of these protections.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Where We Are Today (April 2026)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Bank of Canada's overnight rate is now 2.25%, held for a third consecutive meeting on March 18, 2026. Prime rate sits at 4.45% — far below the 7.20% peak. For most fixed-payment VRM holders, payments are comfortably above the trigger rate again, and the principal portion of each payment is growing again. The acute trigger-rate crisis is over.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      However, borrowers who hit their trigger point during the cycle may still be carrying extended amortizations — 35, 40, even 45+ years on paper. At renewal, the lender must contractually restore a normal amortization schedule, and that reset can cause meaningful payment increases even in today's lower-rate environment. This is why starting the renewal process 120 days early and shopping for the best rate matters more than ever. See our <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">mortgage rate forecast</a> for what to expect through the rest of 2026.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Calculate Your Current Trigger Rate</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A simplified formula: your trigger rate is approximately your payment amount, divided by your outstanding balance, multiplied by 12 (for monthly payments) and expressed as a percentage. A more precise calculation requires your exact payment schedule and Canadian semi-annual compounding, but the rough rule is close enough for planning purposes.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example</p>
+      <p class="text-body-sm leading-relaxed">Outstanding balance: $500,000. Monthly payment: $2,500. Estimated trigger rate ≈ ($2,500 × 12) ÷ $500,000 = 6.00%. At today's effective VRM rates around 4.55% (prime 4.45% + 0.10%), this borrower has roughly 1.45 percentage points of cushion before hitting their trigger.</p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <div>
+      <h2 class="text-heading-3 mb-4">Related Guides</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
+          { title: "Bank of Canada Rate Decisions", href: "/bank-of-canada-rate-decisions/" },
+          { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
+          { title: "Mortgage Rate Forecast", href: "/mortgage-rate-forecast/" },
+          { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+        ].map(link => (
+          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+            <span class="text-secondary-100">→</span>
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Worried About Your Trigger Rate at Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can review your current VRM, calculate your exact trigger rate, and shop 30+ lenders for your renewal — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Renewal Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

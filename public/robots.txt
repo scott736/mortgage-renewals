@@ -54,4 +54,22 @@ Allow: /
 User-agent: Bytespider
 Allow: /
 
+User-agent: Gemini-Web-Scraper
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: Mistral-User
+Allow: /
+
 Sitemap: https://mortgagerenewalhub.ca/sitemap-index.xml

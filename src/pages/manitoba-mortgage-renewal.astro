@@ -1,0 +1,279 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Is there a land transfer tax in Manitoba?",
+    answer: "Yes. Manitoba charges a progressive provincial Land Transfer Tax: 0% on the first $30,000 of value; 0.5% from $30,000 to $90,000; 1.0% from $90,000 to $150,000; 1.5% from $150,000 to $200,000; and 2.0% on any value above $200,000. There is no first-time buyer rebate in Manitoba. The tax applies at purchase, not at mortgage renewal — so straight renewals are not affected."
+  },
+  {
+    question: "Who regulates mortgage brokers in Manitoba?",
+    answer: "Manitoba mortgage brokers are regulated by the Financial and Consumer Affairs Authority (FCAA) of Manitoba; the Manitoba Securities Commission (part of FCAA) oversees mortgage broker licensing under The Mortgage Brokers Act. All active brokers must hold a valid Manitoba licence, and a public registry is available for verification."
+  },
+  {
+    question: "Do I need to pass the stress test to renew in Manitoba?",
+    answer: "The stress-test rules that apply to Manitoba are the federal OSFI B-20 rules for federally regulated lenders. As of November 21, 2024, OSFI exempts uninsured straight-switch renewals — same balance, same amortization, no new funds — from the Minimum Qualifying Rate. Manitoba credit unions are provincially regulated under FCAA and not bound by B-20, though many apply a comparable test voluntarily."
+  },
+  {
+    question: "Which credit unions are strongest in Manitoba?",
+    answer: "Manitoba has one of the strongest credit union sectors in Canada. The major players include Assiniboine Credit Union, Cambrian Credit Union, Access Credit Union, Steinbach Credit Union, Prairie Mountain Credit Union, and Caisse Groupe Financier (the Franco-Manitoban credit union). Credit unions collectively hold a meaningful share of the Manitoba mortgage market and often offer competitive renewal rates with flexible underwriting."
+  },
+  {
+    question: "How does Winnipeg's mortgage market differ from rural Manitoba?",
+    answer: "Winnipeg accounts for the majority of Manitoba mortgages by dollar value, with average home prices around $400,000 in 2026. Brandon, Manitoba's second-largest city, averages roughly $310,000. Rural Manitoba includes farming communities, cottage country in the Whiteshell and Interlake regions, and smaller towns — each of which may require specialized lender knowledge for acreage, farmland, or seasonal-use properties. A locally-knowledgeable broker adds real value for non-standard Manitoba properties."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "manitoba-mortgage-renewal",
+    name: "Manitoba Mortgage Renewal 2026 — Winnipeg, Brandon & Rural MB",
+    description: "Manitoba-specific mortgage renewal guide for 2026: FCAA broker regulator, Manitoba LTT rules, Winnipeg and Brandon markets, and Manitoba credit union options.",
+  }),
+  articleSchema({
+    headline: "Manitoba Mortgage Renewal 2026 — Winnipeg, Brandon & Rural MB",
+    description: "Manitoba mortgage renewal in 2026: FCAA broker regulator, provincial land transfer tax rules, Winnipeg and Brandon housing markets, and credit union renewal strategies.",
+    slug: "manitoba-mortgage-renewal",
+    areaServed: "Manitoba, Canada",
+    articleSection: "Provincial Guides",
+    about: "Manitoba Mortgage Renewal",
+    keywords: ["Manitoba mortgage renewal", "Winnipeg renewal rates", "Brandon mortgage", "FCAA Manitoba", "Manitoba credit union", "Assiniboine Credit Union"],
+  }),
+  breadcrumbSchema([
+    { name: "Manitoba Mortgage Renewal", url: "/manitoba-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "manitoba-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Manitoba Mortgage Renewal 2026 — Winnipeg & Brandon Guide"
+  description="Manitoba mortgage renewal 2026: FCAA regulator, land transfer tax rules, Winnipeg and Brandon markets, credit union options, and 2026 renewal strategies."
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+          Manitoba Renewal Guide
+        </div>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          Manitoba Mortgage Renewal in 2026
+        </h1>
+        <p class="text-xl text-white/80 mb-8">
+          Winnipeg, Brandon, and rural Manitoba homeowners renewing in 2026 benefit from a stable housing market, a strong credit union sector, and comparatively affordable average home prices. Here's how to get the best possible rate at renewal.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/book-a-call/">
+            <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
+              Book Free Manitoba Broker Consultation
+            </button>
+          </a>
+          <a href="/mortgage-renewal-calculator/">
+            <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
+              Calculate My New Payment
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET SNAPSHOT -->
+  <section class="border-b py-10 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { stat: "~$400K", label: "Winnipeg avg home price (2026)", sub: "WinnipegREALTORS" },
+          { stat: "~$310K", label: "Brandon avg home price (2026)", sub: "Brandon Area REALTORS" },
+          { stat: "2%", label: "Top marginal LTT rate (over $200K)", sub: "Manitoba Land Transfer Tax" },
+          { stat: "Low", label: "Rental vacancy rate (CMHC)", sub: "Stable multi-family demand" },
+        ].map(item => (
+          <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
+            <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
+            <div class="mt-1 text-sm font-medium text-gray-800">{item.label}</div>
+            <div class="mt-0.5 text-xs text-gray-500">{item.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-12 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-10">
+
+          <div>
+            <h2 class="text-heading-2 mb-4">Manitoba Mortgage Market Overview</h2>
+            <p class="text-body-lg text-muted-foreground mb-4">
+              Manitoba's mortgage market is anchored by Winnipeg — home to roughly 60% of the province's population and the bulk of its residential mortgages. Manitoba has historically posted more stable home-price movement than Ontario or British Columbia, with modest but consistent appreciation through 2024-2026. The 2025-2026 renewal wave still applies — 2020-2021 buyers who locked in at ~2% are now renewing at 4%+ — but absolute dollar amounts are lower than in higher-priced provinces, which cushions the shock.
+            </p>
+            <p class="text-body-md text-muted-foreground mb-4">
+              Manitoba is served by all Big 6 banks, a full slate of monoline lenders available through the broker channel, and an unusually strong credit union sector — Manitoba credit unions collectively hold a larger market share here than in most provinces.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Manitoba Land Transfer Tax (LTT)</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Manitoba charges a progressive Land Transfer Tax on property purchases. The tax does not apply to straight mortgage renewal — but it does apply if you sell and buy a new home, or if a refinance triggers a new registration under certain title-insurance scenarios (rare).</p>
+            <div class="overflow-x-auto mb-6">
+              <table class="w-full text-body-sm border-collapse">
+                <thead>
+                  <tr class="bg-primary-100 text-white">
+                    <th class="p-3 text-left">Value Bracket</th>
+                    <th class="p-3 text-left">LTT Rate</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="border-b border-gray-100">
+                    <td class="p-3">$0 – $30,000</td>
+                    <td class="p-3">0%</td>
+                  </tr>
+                  <tr class="border-b border-gray-100 bg-gray-25">
+                    <td class="p-3">$30,001 – $90,000</td>
+                    <td class="p-3">0.5%</td>
+                  </tr>
+                  <tr class="border-b border-gray-100">
+                    <td class="p-3">$90,001 – $150,000</td>
+                    <td class="p-3">1.0%</td>
+                  </tr>
+                  <tr class="border-b border-gray-100 bg-gray-25">
+                    <td class="p-3">$150,001 – $200,000</td>
+                    <td class="p-3">1.5%</td>
+                  </tr>
+                  <tr>
+                    <td class="p-3">Above $200,000</td>
+                    <td class="p-3 font-semibold">2.0%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="text-body-md text-muted-foreground">Unlike Ontario, BC, and PEI, Manitoba provides <strong>no first-time buyer LTT rebate</strong>. A $400,000 Winnipeg purchase triggers approximately $5,650 in LTT. For renewal purposes, this is not a direct cost — but it matters if you're weighing porting vs. selling and buying something else.</p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Manitoba Mortgage Broker Licensing (FCAA)</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Manitoba mortgage brokers are regulated by the <strong>Financial and Consumer Affairs Authority (FCAA)</strong> of Manitoba, with specific oversight conducted by the Manitoba Securities Commission (a part of FCAA). Licensing is governed by The Mortgage Brokers Act.</p>
+            <p class="text-body-md text-muted-foreground mb-4">Before engaging any Manitoba mortgage broker, verify their licence status via the FCAA public registry. Licensed Manitoba brokers can access both federally regulated lenders (banks, monolines) and provincially regulated credit unions — giving you a fuller rate comparison than going to a single bank branch.</p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Manitoba Credit Union Sector</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Manitoba has one of Canada's deepest credit union markets. Major players include:</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { name: "Assiniboine Credit Union", notes: "Winnipeg-based, strong presence in residential and rural lending; known for community banking and competitive renewal rates." },
+                { name: "Cambrian Credit Union", notes: "Winnipeg-based with branches throughout the city; competitive 5-year fixed and variable products." },
+                { name: "Access Credit Union", notes: "Expansive rural network serving Eastman and southern Manitoba; agricultural and residential lending." },
+                { name: "Steinbach Credit Union", notes: "Large credit union serving Steinbach and southeastern Manitoba; deep agricultural lending expertise." },
+                { name: "Prairie Mountain Credit Union", notes: "Western Manitoba coverage including Brandon area; strong in farm and acreage financing." },
+                { name: "Caisse Groupe Financier", notes: "Franco-Manitoban credit union serving the French-speaking communities in Winnipeg and rural MB." },
+              ].map(cu => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{cu.name}</div>
+                  <div class="text-xs text-muted-foreground">{cu.notes}</div>
+                </div>
+              ))}
+            </div>
+            <p class="text-body-md text-muted-foreground mt-4">Because credit unions are provincially regulated (by FCAA), they are not bound by OSFI's B-20 stress test in the same way as federally regulated banks. Many credit unions apply a comparable test voluntarily, but some will qualify borrowers at the contract rate — a meaningful advantage if your qualifying ratios are tight.</p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Major Markets in Manitoba</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { city: "Winnipeg", notes: "Capital and largest city, ~$400K average. Diverse housing stock from century-old Wolseley to new south-end developments. Active broker and credit union market." },
+                { city: "Brandon", notes: "Second-largest city, ~$310K average. Strong local employment base (agriculture, healthcare, CFB Shilo). Prairie Mountain Credit Union is a local leader." },
+                { city: "Steinbach", notes: "Fast-growing Mennonite heartland; Steinbach Credit Union dominates. Mix of residential and agricultural lending." },
+                { city: "Portage la Prairie", notes: "Smaller market with agricultural and acreage properties; a locally-experienced broker is especially helpful." },
+                { city: "Thompson & the North", notes: "Remote markets with limited lender appetite; local credit unions and specialty lenders lead." },
+                { city: "Cottage country", notes: "Lake of the Woods, Whiteshell, Interlake — seasonal properties require specialty lender coverage. Brokers with cottage-financing expertise add value." },
+              ].map(m => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{m.city}</div>
+                  <div class="text-xs text-muted-foreground">{m.notes}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Steps to Get the Best Rate in Manitoba</h2>
+            <ol class="space-y-4">
+              {[
+                { step: "1", title: "Start 120 days before maturity", desc: "Most Manitoba lenders will hold a rate for up to 120 days. Locking in early sets a rate floor and gives you time to continue shopping. Our <a href='/mortgage-renewal-checklist/' style='color: var(--secondary)'>renewal checklist</a> maps the full timeline." },
+                { step: "2", title: "Use a FCAA-licensed broker", desc: "A licensed <a href='/mortgage-broker-renewal/' style='color: var(--secondary)'>Manitoba broker</a> accesses banks, monolines, and provincial credit unions in a single consultation. Verify the licence via the FCAA registry before engaging." },
+                { step: "3", title: "Compare across all three channels", desc: "Get at least one quote each from a Big 6 bank, a monoline (First National, MCAP, RMG), and a Manitoba credit union. Each wins on different borrower profiles." },
+                { step: "4", title: "Check your charge type", desc: "Call your current lender and ask whether your mortgage is registered as a standard charge or a collateral charge. TD and STEP-product mortgages are collateral; this affects switching cost." },
+                { step: "5", title: "Review total cost, not just rate", desc: "Prepayment privileges, portability, penalty calculation, and discharge fees all materially affect the true 5-year cost — often more than a 0.1% rate difference." },
+              ].map(item => (
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 text-white font-bold text-sm">{item.step}</div>
+                  <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                    <p class="text-body-sm text-muted-foreground" set:html={item.desc}></p>
+                  </div>
+                </div>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="rounded-xl bg-primary-0 border border-primary-50 p-6">
+            <h3 class="text-heading-5 text-primary-100 mb-3">Free Manitoba Broker Consultation</h3>
+            <p class="text-body-sm text-muted-foreground mb-4">Our FCAA-licensed Manitoba brokers compare rates across banks, monolines, and credit unions in Winnipeg, Brandon, and rural MB. Free, no obligation.</p>
+            <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
+              Book Free Call →
+            </a>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Manitoba Resources</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://www.fcaa.gov.mb.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">FCAA Manitoba — Broker Regulator</a></li>
+              <li><a href="https://www.winnipegrealtors.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">WinnipegREALTORS</a></li>
+              <li><a href="https://www.gov.mb.ca/finance/taxation/taxes/land.html" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">Manitoba Land Transfer Tax</a></li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Renewal Tools</h3>
+            <ul class="space-y-2">
+              {[
+                { name: "Payment Calculator", href: "/mortgage-renewal-calculator/" },
+                { name: "Renewal Checklist", href: "/mortgage-renewal-checklist/" },
+                { name: "Switching Guide", href: "/switching-lenders-at-renewal/" },
+                { name: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal/" },
+              ].map(t => (
+                <li><a href={t.href} class="text-sm text-secondary-100 hover:underline">{t.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-100 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <h2 class="text-heading-2 text-white mb-4">Ready to Start Your Manitoba Renewal?</h2>
+      <p class="text-xl text-white/80 mb-8">
+        Our licensed Manitoba mortgage brokers compare rates from 30+ lenders — including Assiniboine, Cambrian, Access, and Steinbach Credit Union. Free, no obligation.
+      </p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Consultation
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

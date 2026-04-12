@@ -64,7 +64,7 @@ function BrokerCTA({ message }: { message: string }) {
         <p className="text-body-sm-medium text-primary-200">{message}</p>
         <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
       </div>
-      <a href="/book-a-call" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
+      <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
       </a>
     </div>

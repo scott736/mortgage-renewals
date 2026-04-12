@@ -1,0 +1,303 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is MCAP and why can't I get a mortgage from them directly?",
+    answer: "MCAP is Canada's largest non-bank monoline mortgage lender, with over $175 billion in mortgages under administration. MCAP sells mortgages exclusively through the mortgage broker channel — they have no retail branches, no online direct-to-consumer application, and no walk-in banking. If you want an MCAP mortgage, you must work with a licensed mortgage broker who submits your file on your behalf. MCAP's low overhead (no branches, no retail staff) is part of why their rates are consistently competitive."
+  },
+  {
+    question: "What are MCAP's prepayment privileges?",
+    answer: "MCAP offers 20% annual lump-sum prepayment and 20% annual payment increase — the 20/20 package is among the most generous in the Canadian market. For a $500,000 mortgage, that means you can prepay up to $100,000 per year in lump sums and increase your payment by up to 20% per year (either once or via the double-up feature on any payment). These privileges reset on each anniversary date and are not carried forward if unused. For borrowers planning aggressive principal paydown, MCAP is one of the best lenders in Canada."
+  },
+  {
+    question: "How does MCAP calculate its IRD penalty?",
+    answer: "MCAP uses what is generally considered a 'fair' IRD (Interest Rate Differential) calculation based on the original contract rate minus the current posted rate for the remaining term. This methodology — common among monoline lenders — typically produces a smaller penalty than the Big 6 banks' 'posted rate' methodology, which compares your discounted rate to the posted rate and can result in penalties several times larger. If you break an MCAP fixed-rate mortgage mid-term, expect a penalty closer to a true IRD than an inflated bank-style IRD. See our collateral-vs-standard-charge article for how this interacts with charge structure."
+  },
+  {
+    question: "Are MCAP mortgages backed by a major institution?",
+    answer: "Yes. MCAP is jointly owned by institutional investors including Otéra Capital (a subsidiary of Caisse de dépôt et placement du Québec) and the Canadian Pension Plan Investment Board (CPPIB), among others. The company funds its mortgages through institutional investors and the Canada Mortgage Bond program, not through consumer deposits. Your mortgage is a contract with MCAP directly, but the company itself is well-capitalized and has operated in Canada for over four decades."
+  },
+  {
+    question: "Can I switch to MCAP at renewal?",
+    answer: "Yes — and MCAP is one of the most common destinations when mortgage brokers help clients switch lenders at renewal. The November 2024 OSFI change that eliminated the stress test on straight lender switches applies to MCAP as a federally regulated financial institution. Your broker will submit your straight switch file to MCAP; approval is typically issued within 24–72 hours for a clean file. MCAP also frequently offers to cover legal and discharge fees on straight switches, making the switch nearly cost-free."
+  },
+  {
+    question: "Does MCAP offer HELOCs or readvanceable mortgages?",
+    answer: "MCAP's core product line is amortizing residential mortgages — fixed and variable rate, 1 to 10-year terms. They do not offer traditional HELOCs or readvanceable mortgages the way RBC's Homeline or Scotiabank's STEP does. If you need a HELOC component alongside your mortgage, you would typically set that up with a different lender. A broker can structure a mortgage with one lender and a HELOC with another, or recommend a bank product that combines both."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mcap-mortgage-renewal",
+    name: "MCAP Mortgage Renewal — Canada's Largest Monoline (2026)",
+    description: "Complete guide to MCAP mortgage renewal — prepayment privileges, IRD calculation, ownership, and how to renew with Canada's largest non-bank lender.",
+  }),
+  articleSchema({
+    headline: "MCAP Mortgage Renewal 2026 — Rates, Prepayment, and the 20/20 Advantage",
+    description: "Everything you need to know about renewing with MCAP — 20/20 prepayment, fair IRD calculation, broker-only access, and why monolines consistently beat big-bank pricing.",
+    slug: "mcap-mortgage-renewal",
+    articleSection: "Lender Profiles",
+    about: "MCAP Mortgage Renewal",
+    keywords: ["MCAP renewal", "MCAP mortgage rates", "MCAP 20/20 prepayment", "monoline lender Canada", "MCAP IRD penalty"],
+  }),
+  breadcrumbSchema([
+    { name: "MCAP Mortgage Renewal", url: "/mcap-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "mcap-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="MCAP Mortgage Renewal 2026 — Rates, 20/20 Prepayment, IRD"
+  description="Complete guide to renewing with MCAP — Canada's largest monoline lender. 20/20 prepayment, fair IRD calculation, broker-only access, and switch mechanics."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › MCAP Mortgage Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">MCAP Mortgage Renewal: A Complete 2026 Guide</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 10-minute read</p>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <p class="mb-6 text-base leading-relaxed">MCAP is the biggest name most Canadians have never heard of. With over $175 billion in mortgages under administration, MCAP is the largest non-bank mortgage lender in Canada — larger than several of the Big 6 banks' mortgage books — yet it has zero retail branches. MCAP sells exclusively through mortgage brokers, funds through institutional capital markets, and competes on rate. For borrowers renewing in 2026, MCAP is frequently one of the top three most competitive destinations.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• MCAP is Canada's largest monoline lender with over $175 billion in mortgages under administration.</li>
+            <li>• Broker-only channel — you cannot apply directly.</li>
+            <li>• 20% annual lump-sum prepayment and 20% annual payment increase — the "20/20" package is among the most generous in Canada.</li>
+            <li>• Uses a fair, contract-rate-based IRD calculation that typically produces smaller penalties than Big 6 posted-rate IRDs.</li>
+            <li>• Jointly owned by CPPIB, Otéra Capital, and institutional investors — well-capitalized and backed by pension-grade capital.</li>
+            <li>• Competitive rates across fixed and variable terms, especially for strong-profile A-channel borrowers.</li>
+            <li>• Frequently covers legal and discharge fees on straight lender switches at renewal.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Who Is MCAP?</h2>
+
+        <p class="mb-4 leading-relaxed">MCAP was founded in 1981 and has grown to become the largest independent mortgage financing company in Canada. Headquartered in Toronto, MCAP originates and services residential, commercial, and construction mortgages. The residential business — which is what matters for most readers of this page — operates through the broker channel, meaning every MCAP mortgage is sourced through a licensed mortgage broker.</p>
+
+        <p class="mb-4 leading-relaxed">MCAP's ownership structure is unusual in Canadian lending. The company is jointly owned by:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Canada Pension Plan Investment Board (CPPIB) — Canada's public pension investment manager.</li>
+          <li>Otéra Capital — a subsidiary of Caisse de dépôt et placement du Québec (CDPQ), one of Canada's largest institutional investors.</li>
+          <li>MCAP management and employees.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">This ownership gives MCAP access to low-cost, long-duration institutional capital, which is passed through to borrowers in the form of consistently competitive rates. Many of MCAP's mortgages are funded through the Canada Mortgage Bond (CMB) program administered by CMHC — the same program used by several major banks.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">MCAP's Product Line</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Product</th>
+                <th class="p-3 text-left">Terms</th>
+                <th class="p-3 text-left">Key Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">MCAP Value Flex</td>
+                <td class="p-3">1–10 year fixed; 5-year variable</td>
+                <td class="p-3">Standard product; 20/20 prepayment; fair IRD</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">MCAP Value (low-rate)</td>
+                <td class="p-3">Typically 5-year fixed</td>
+                <td class="p-3">Lower rate; restrictive prepayment; no porting</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">MCAP Eclipse</td>
+                <td class="p-3">Varies</td>
+                <td class="p-3">Insured-channel product with competitive rates on high-ratio purchases and transfers</td>
+              </tr>
+              <tr style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">MCAP Fusion</td>
+                <td class="p-3">Varies</td>
+                <td class="p-3">Alternative-income / Alt-A product for <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed</a> and newer-credit borrowers</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The 20/20 Prepayment Privilege</h2>
+
+        <p class="mb-4 leading-relaxed">MCAP's standard prepayment package is the 20/20: up to 20% annual lump-sum prepayment of the original principal, plus up to 20% annual payment increase. Both reset each anniversary date. This matches or exceeds every Big 6 bank's standard privilege:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Big 6 banks: typically 10–20% lump sum and 15–100% payment increase, varying by lender.</li>
+          <li>MCAP: 20% lump sum + 20% payment increase — consistently at the top of the market.</li>
+        </ul>
+
+        <p class="mb-4 leading-relaxed">For a $500,000 mortgage, the 20/20 privilege allows up to $100,000/year in lump-sum prepayments and a $500 → $600 payment increase annually (20% of a $500 base). Used strategically, the 20/20 can shave 5–10 years off a 25-year amortization. See our <a href="/mortgage-flex-features-canada/" style="color: var(--secondary)">mortgage flex features</a> guide for full mechanics.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">MCAP's IRD: Among the Fairest in Canada</h2>
+
+        <p class="mb-4 leading-relaxed">One of the biggest hidden differences between monoline lenders like MCAP and the Big 6 banks is how they calculate the penalty to break a fixed-rate mortgage before maturity. This matters because a renewal typically means you're locking into another multi-year term, and your circumstances may change.</p>
+
+        <p class="mb-4 leading-relaxed">Big 6 banks use a "posted rate" IRD methodology: they compare your discounted contract rate to the bank's current posted rate for the remaining term, multiplied by the remaining months. Because posted rates are artificially high (used primarily as a benchmark for discounts), this calculation inflates the penalty — sometimes to 3–5x what a fair IRD would produce.</p>
+
+        <p class="mb-4 leading-relaxed">MCAP uses a contract-rate-based IRD. The calculation compares your original contract rate to MCAP's current rate for the remaining term, without any artificial posted-rate inflation. The result is a penalty that reflects the actual economic loss MCAP would suffer — typically much smaller than a big-bank penalty.</p>
+
+        <p class="mb-6 leading-relaxed">The Financial Consumer Agency of Canada (FCAC) has historically called attention to the difference between bank and monoline IRD calculations. If there's any realistic chance you might need to break a fixed-rate mortgage mid-term, the difference in penalty structure alone can justify choosing a monoline over a bank.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How to Renew With MCAP</h2>
+
+        <p class="mb-4 leading-relaxed">There are two scenarios:</p>
+
+        <div class="space-y-4 mb-6">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Scenario 1: You already have an MCAP mortgage</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)">MCAP will send a renewal letter 4–6 months before maturity. The renewal letter typically contains a rate offer. Because MCAP operates through brokers, your original broker should receive a copy — they can shop other lenders and compare. Do not auto-sign the renewal letter without comparing alternatives.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">If MCAP's renewal offer is competitive, staying with MCAP is a straightforward internal rollover. If a broker finds a better rate elsewhere, switching out is straightforward — MCAP uses standard charges, so the transfer is a clean assignment.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Scenario 2: You want to switch TO MCAP at renewal</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)">Start by contacting a mortgage broker — MCAP only works with licensed brokers, so you cannot apply directly. The broker will submit your file; approval is typically issued in 24–72 hours for a clean profile. MCAP uses standard charges, which simplifies the transfer from your current lender.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">The November 2024 OSFI stress-test exemption for straight lender switches applies to MCAP. If you're doing a straight transfer — same balance, same amortization, no new money — you will not be stress-tested at the inflated benchmark rate. MCAP frequently covers legal and discharge fees on straight switches.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">MCAP vs. the Big 6 at Renewal</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Factor</th>
+                <th class="p-3 text-left">MCAP</th>
+                <th class="p-3 text-left">Big 6 Banks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Channel</td>
+                <td class="p-3">Broker-only</td>
+                <td class="p-3">Branch + broker</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Rate competitiveness</td>
+                <td class="p-3">Consistently among the lowest</td>
+                <td class="p-3">Posted high, competitive once you negotiate</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Prepayment privileges</td>
+                <td class="p-3">20/20 standard</td>
+                <td class="p-3">10–20% lump; 15–100% payment</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">IRD penalty methodology</td>
+                <td class="p-3">Fair (contract rate-based)</td>
+                <td class="p-3">Posted rate (typically inflated)</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Charge type</td>
+                <td class="p-3">Standard</td>
+                <td class="p-3">Varies (TD uses collateral)</td>
+              </tr>
+              <tr style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">HELOC availability</td>
+                <td class="p-3">Not offered</td>
+                <td class="p-3">Yes (Homeline, STEP, etc.)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, credit unions, B-lenders compared.</p>
+            </a>
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">MCAP is only accessible through licensed brokers.</p>
+            </a>
+            <a href="/mortgage-flex-features-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Flex Features</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">How MCAP's 20/20 compares to competitor prepayment privileges.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">The 8-step process and 2024 stress-test exemption.</p>
+            </a>
+            <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">MCAP Fusion is one of the top Alt-A options for self-employed borrowers.</p>
+            </a>
+            <a href="/collateral-vs-standard-charge-mortgage/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Charge Types Explained</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">MCAP uses standard charges — why this matters for switches.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">Who Is MCAP</a></li>
+              <li><a href="#" style="color: var(--secondary)">Products</a></li>
+              <li><a href="#" style="color: var(--secondary)">20/20 Prepayment</a></li>
+              <li><a href="#" style="color: var(--secondary)">Fair IRD</a></li>
+              <li><a href="#" style="color: var(--secondary)">How to Renew</a></li>
+              <li><a href="#" style="color: var(--secondary)">MCAP vs Big 6</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Want an MCAP Quote?</h3>
+            <p class="text-sm mb-4 opacity-90">MCAP is broker-only. We can quote MCAP alongside 30+ other lenders at no cost to you.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Get an MCAP rate quote through a broker</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">MCAP is broker-only. We'll quote MCAP alongside every other competitive lender at no cost.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,0 +1,204 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { HelocVsRefinance } from '@/components/calculators/additional-calculators';
+import { articleSchema, breadcrumbSchema, webPageNode, webApplicationSchema, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the difference between a HELOC and a refinance?",
+    answer: "A HELOC (Home Equity Line of Credit) is a revolving credit line secured by your home, typically at prime + 0.5% to prime + 1%. You draw funds as needed and only pay interest on what you use. A refinance rewrites your existing mortgage at a new rate and term — usually at a fixed or variable amortizing rate lower than HELOC rates. Refinances provide a lump sum and a fixed repayment schedule; HELOCs provide flexibility but at a higher rate."
+  },
+  {
+    question: "When is a HELOC the better choice?",
+    answer: "HELOCs win when you need access to funds over time (renovation draws, tuition across years, business capital), when the amount you'll actually use is much less than the facility size, or when you expect to repay quickly. Because you only pay interest on drawn balances, a HELOC used for 3–6 months of bridge financing typically costs less than refinancing to a new 5-year term plus penalty."
+  },
+  {
+    question: "When is a refinance the better choice?",
+    answer: "A refinance beats a HELOC when you need a large lump sum that will stay outstanding for years (debt consolidation, major renovation funded upfront, tax obligations). Refinance rates are typically 1.5%–2.5% below HELOC rates — on $100,000+ borrowed long-term, that savings dwarfs the one-time refinance costs (legal, appraisal, possibly prepayment penalty)."
+  },
+  {
+    question: "Can I have both a HELOC and a mortgage?",
+    answer: "Yes — that's how readvanceable mortgages (BMO Homeowner ReadiLine, RBC Homeline, National Bank All-in-One, CIBC Home Power Plan, Scotiabank STEP) work. The mortgage portion amortizes while a HELOC sits alongside with a limit that grows as the mortgage is paid down. These are typically registered as collateral charges, which reduces switching flexibility at renewal."
+  },
+  {
+    question: "Does refinancing trigger the stress test?",
+    answer: "Yes. Any refinance — whether you're taking equity out, consolidating debt, or extending amortization — is subject to the full OSFI B-20 stress test at the Minimum Qualifying Rate (greater of contract rate + 2% or 5.25%). HELOCs are also subject to the stress test since the 2017/2018 rule updates. Straight mortgage renewals (no new money) are exempt post-November 2024."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "heloc-vs-refinance-calculator",
+    name: "HELOC vs. Refinance Calculator — Canada 2026",
+    description: "Free calculator to decide between a HELOC and a mortgage refinance. Compares rates, costs, and 5-year total interest for your borrowing amount.",
+  }),
+  webApplicationSchema({
+    name: "HELOC vs. Refinance Calculator (Canada)",
+    description: "Compare a home equity line of credit against refinancing your mortgage. Models 5-year interest cost, setup fees, and flexibility trade-offs.",
+    slug: "heloc-vs-refinance-calculator",
+    features: [
+      "HELOC variable rate cost model",
+      "Refinance fixed-rate amortization",
+      "Setup cost comparison",
+      "5-year total interest breakdown",
+      "Free — no email required",
+    ],
+  }),
+  articleSchema({
+    headline: "HELOC vs. Refinance Calculator — Canada 2026",
+    description: "Free Canadian HELOC vs. refinance calculator. Compare 5-year interest cost, fees, and flexibility for any borrowing amount. Updated April 2026.",
+    slug: "heloc-vs-refinance-calculator",
+    articleSection: "Calculators",
+    about: "HELOC vs mortgage refinance",
+    keywords: ["HELOC vs refinance", "home equity calculator Canada", "refinance mortgage calculator", "HELOC rate Canada"],
+  }),
+  faqSchema(faqs, "heloc-vs-refinance-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator" },
+    { name: "HELOC vs. Refinance", url: "/heloc-vs-refinance-calculator" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="HELOC vs. Refinance Calculator — Canada 2026"
+  description="Free Canadian HELOC vs. refinance calculator. Compare 5-year interest cost, fees, and flexibility for any borrowing amount. Updated April 2026."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › HELOC vs. Refinance
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">HELOC vs. Refinance Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        You've got home equity and you need to access it. Should you open a HELOC at prime + 0.5% for flexibility, or refinance your mortgage at a lower rate for certainty? This calculator runs both scenarios so you can see the 5-year cost of each.
+      </p>
+    </div>
+
+    <HelocVsRefinance client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How HELOCs Work in Canada (2026)</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          A HELOC is a revolving credit line secured against your home. Most Canadian HELOCs price at <strong>prime + 0.5%</strong> to <strong>prime + 1.0%</strong>. With Bank of Canada policy rate at current levels and prime around 4.70%, HELOC rates typically run 5.20%–5.70%. You draw funds as needed; you pay interest only on what you've drawn. Minimum payments are usually interest-only, meaning principal doesn't amortize unless you pay extra.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          HELOCs are capped at a combined loan-to-value of 65% for the HELOC portion (80% if combined with an amortizing mortgage), per OSFI B-20 rules. They require the full stress test at application.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">How Refinances Work in Canada (2026)</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          A refinance rewrites your existing mortgage at a new rate and term, typically to a fixed or variable amortizing structure. Today's 5-year fixed refinance rates are around 4.19%; 5-year variables sit near prime minus small discounts. You receive a lump sum (the difference between your new mortgage amount and your existing balance, minus fees) and a new amortization schedule.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Refinance costs include legal/registration, appraisal, and — if you're breaking a closed term early — a prepayment penalty. Refinancing is subject to the full stress test.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">HELOC Pros and Cons</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+            <h3 class="text-body-md-semibold text-secondary-200 mb-2">Pros</h3>
+            <ul class="text-body-sm space-y-1 list-disc list-inside">
+              <li>Draw only what you need, when you need it</li>
+              <li>Interest only on drawn balance</li>
+              <li>Reusable — repay and redraw repeatedly</li>
+              <li>No prepayment penalty, ever</li>
+              <li>Fast setup, minimal ongoing fees</li>
+            </ul>
+          </div>
+          <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+            <h3 class="text-body-md-semibold text-error-100 mb-2">Cons</h3>
+            <ul class="text-body-sm space-y-1 list-disc list-inside">
+              <li>Rate ~1.5–2.5% above 5-yr fixed refinance</li>
+              <li>Variable rate — no long-term certainty</li>
+              <li>Interest-only minimum means no automatic paydown</li>
+              <li>Typically registered as collateral charge</li>
+              <li>Lender can freeze or reduce limit in stressed markets</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Refinance Pros and Cons</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+            <h3 class="text-body-md-semibold text-secondary-200 mb-2">Pros</h3>
+            <ul class="text-body-sm space-y-1 list-disc list-inside">
+              <li>Lower rate than HELOC (often 1.5–2.5% less)</li>
+              <li>Fixed rate option for 5-yr certainty</li>
+              <li>Amortizing payments — builds equity automatically</li>
+              <li>Best for large, long-term borrowing</li>
+            </ul>
+          </div>
+          <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+            <h3 class="text-body-md-semibold text-error-100 mb-2">Cons</h3>
+            <ul class="text-body-sm space-y-1 list-disc list-inside">
+              <li>Stress test required — not all borrowers qualify</li>
+              <li>Legal / appraisal costs ~$1,000–$2,000</li>
+              <li>Possible prepayment penalty mid-term</li>
+              <li>Less flexible — fixed draw at closing</li>
+              <li>Longer to set up than a HELOC</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Tools & Guides</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Main Renewal Calculator Suite", href: "/mortgage-renewal-calculator/" },
+            { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+            { title: "Stress Test at Renewal", href: "/stress-test-mortgage-renewal/" },
+            { title: "Collateral vs. Standard Charge", href: "/collateral-vs-standard-charge-mortgage/" },
+            { title: "Lower Mortgage Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+            { title: "Mortgage Rate Forecast", href: "/mortgage-rate-forecast/" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Which Product Is Right for Your Situation?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can compare HELOC and refinance quotes across 30+ lenders — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,9 +1,14 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "self-employed-mortgage-renewal",
+    name: "Self-Employed Mortgage Renewal in Canada",
+    description: "How self-employed Canadians qualify at mortgage renewal — Alt-A programs, monoline lenders, and broker-assisted strategies.",
+  }),
   articleSchema({
     headline: "Self-Employed Mortgage Renewal in Canada — How to Get Approved",
     description: "Self-employed Canadians face unique challenges at mortgage renewal. Here's how to qualify, what lenders look for, and strategies to get the best rate.",
@@ -12,12 +17,11 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Self-Employed Mortgage Renewal", url: "/self-employed-mortgage-renewal" }
   ]),
-  speakableSchema("self-employed-mortgage-renewal"),
 );
 ---
 
 <DefaultLayout
-  title="Self-Employed Mortgage Renewal in Canada — How to Get Approved"
+  title="Self-Employed Mortgage Renewal Canada — Get Approved"
   description="Self-employed Canadians face unique challenges at mortgage renewal. Here's how to qualify, what lenders look for, and strategies to get the best rate."
   schema={schema}
 >
@@ -33,7 +37,7 @@ const schema = combineSchemas(
       <h1 class="text-4xl font-bold mb-5 leading-tight">Self-Employed Mortgage Renewal in Canada — How to Get Approved</h1>
       <p class="text-xl leading-relaxed opacity-90 mb-8">Running your own business is rewarding — but it creates real complications at mortgage renewal. No T4. Variable income. Write-offs that shrink your stated earnings. This guide explains exactly how lenders assess self-employed income, which products are available, and how to position your file for the best possible outcome.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/book-a-call" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
           Get a Free Strategy Call
         </a>
         <a href="#income-approaches" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="border: 2px solid rgba(255,255,255,0.4); color: white">
@@ -54,7 +58,7 @@ const schema = combineSchemas(
             <li>• Most A-lenders require 2 full years of self-employment income history (T1 Generals + NOAs); some accept 1 year with prior employment in the same field.</li>
             <li>• Two income qualification paths exist: traditional (declared income from tax returns, best rates) and stated income (B-lender programs, 0.5-1.5% rate premium).</li>
             <li>• Key B-lenders for self-employed Canadians include Home Trust, Equitable Bank, Haventree Bank, and MCAP Fusion — all accessed through mortgage brokers.</li>
-            <li>• A <a href="/bad-credit-mortgage-renewal" style="color: var(--secondary)">credit score</a> of 650+ is preferred for A-lenders; 600+ is acceptable for some B-lenders with compensating factors like strong equity.</li>
+            <li>• A <a href="/bad-credit-mortgage-renewal/" style="color: var(--secondary)">credit score</a> of 650+ is preferred for A-lenders; 600+ is acceptable for some B-lenders with compensating factors like strong equity.</li>
             <li>• Consider reducing write-offs in the 1-2 tax years before renewal — the mortgage interest savings over 5 years may outweigh the additional tax paid.</li>
           </ul>
         </div>
@@ -201,7 +205,7 @@ const schema = combineSchemas(
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Stated Income Lenders (B-Lenders) for Self-Employed Renewers</h2>
 
-        <p class="mb-4 leading-relaxed">When traditional income qualification won't work — because declared income is too low due to write-offs or the business is newer — <a href="/mortgage-lender-types-canada" style="color: var(--secondary)">B-lenders</a> with stated income programs become your primary option. These lenders acknowledge that self-employed borrowers often have more real-world cash flow than their tax returns reflect, and they build products around that reality.</p>
+        <p class="mb-4 leading-relaxed">When traditional income qualification won't work — because declared income is too low due to write-offs or the business is newer — <a href="/mortgage-lender-types-canada/" style="color: var(--secondary)">B-lenders</a> with stated income programs become your primary option. These lenders acknowledge that self-employed borrowers often have more real-world cash flow than their tax returns reflect, and they build products around that reality.</p>
 
         <p class="mb-4 leading-relaxed">Key B-lenders with strong self-employed programs as of 2026:</p>
 
@@ -226,7 +230,7 @@ const schema = combineSchemas(
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Key Documents for Self-Employed Renewal</h2>
 
-        <p class="mb-4 leading-relaxed">Preparation is your best asset. A well-organized, complete document package — outlined in our <a href="/mortgage-renewal-checklist" style="color: var(--secondary)">renewal checklist</a> — submitted at the start of your renewal application signals professionalism to the underwriter and speeds up the approval process significantly.</p>
+        <p class="mb-4 leading-relaxed">Preparation is your best asset. A well-organized, complete document package — outlined in our <a href="/mortgage-renewal-checklist/" style="color: var(--secondary)">renewal checklist</a> — submitted at the start of your renewal application signals professionalism to the underwriter and speeds up the approval process significantly.</p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
@@ -316,7 +320,7 @@ const schema = combineSchemas(
               <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white" style="background: var(--secondary)">5</div>
               <div>
                 <p class="font-bold mb-1">Work with a broker who specializes in self-employed clients</p>
-                <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Not all mortgage brokers have equal experience with self-employed files. A <a href="/mortgage-broker-renewal" style="color: var(--secondary)">broker who regularly places self-employed borrowers</a> knows which specific lenders have the most flexible programs, which B-lenders are most competitive for your profile, and exactly how to package and present your income documentation to maximize approval probability. This expertise is genuinely valuable and costs you nothing.</p>
+                <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Not all mortgage brokers have equal experience with self-employed files. A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">broker who regularly places self-employed borrowers</a> knows which specific lenders have the most flexible programs, which B-lenders are most competitive for your profile, and exactly how to package and present your income documentation to maximize approval probability. This expertise is genuinely valuable and costs you nothing.</p>
               </div>
             </div>
           </div>
@@ -326,27 +330,27 @@ const schema = combineSchemas(
         <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
           <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/mortgage-lender-types-canada" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types Compared</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, B-lenders, private — which is right for self-employed borrowers.</p>
             </a>
-            <a href="/bad-credit-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Bad Credit Mortgage Renewal</p>
               <p class="text-xs" style="color: var(--muted-foreground)">If write-offs and income challenges have also impacted your credit score.</p>
             </a>
-            <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker at Renewal</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Especially valuable for self-employed files — brokers know which lenders work for your profile.</p>
             </a>
-            <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
               <p class="text-xs" style="color: var(--muted-foreground)">No stress test for straight switches since 2024. What you need to qualify.</p>
             </a>
-            <a href="/renewal-vs-refinancing" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinancing</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Self-employed borrowers sometimes use refinance to access equity or restructure.</p>
             </a>
-            <a href="/mortgage-renewal-guide" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Mortgage Renewal Guide</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Everything Canadians need to know about the renewal process in 2026.</p>
             </a>
@@ -374,7 +378,7 @@ const schema = combineSchemas(
           <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
             <h3 class="font-bold mb-3">Self-Employed Renewal Help</h3>
             <p class="text-sm mb-4 opacity-90">A broker experienced with self-employed files will know exactly which lenders to approach and how to package your income documentation.</p>
-            <a href="/book-a-call" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
               Book a Free Call
             </a>
           </div>
@@ -389,7 +393,7 @@ const schema = combineSchemas(
 
   <!-- Mobile CTA -->
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -399,14 +403,11 @@ const schema = combineSchemas(
     <div class="container max-w-3xl text-center">
       <h2 class="text-3xl font-bold mb-4">Get Expert Help With Your Self-Employed Renewal</h2>
       <p class="text-lg mb-8 opacity-90">Self-employed mortgage files require a broker who understands the nuances of income documentation, lender program criteria, and how to position your file for the best outcome. Get that expertise for free.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
 
   <!-- Disclaimer -->
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial, legal, or tax advice. Lending criteria, income qualification requirements, and lender programs vary and may change. Always consult a licensed mortgage professional and a qualified accountant for advice specific to your personal and business situation.
-  </p>
 </DefaultLayout>

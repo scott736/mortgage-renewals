@@ -1,0 +1,337 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a reverse mortgage in Canada, and who offers them?",
+    answer: "A reverse mortgage is a loan available to Canadian homeowners aged 55+ that allows access to up to 55% of the home's value without requiring income qualification or monthly payments. Interest accrues on the balance and compounds monthly; the loan is repaid when the borrower sells, moves out, or passes away. Three main providers operate in Canada as of 2026: HomeEquity Bank (the CHIP product, the original Canadian reverse mortgage), Equitable Bank (Flex Reverse Mortgage), and Bloom Finance (a newer entrant). All three are federally regulated and subject to consumer-protection oversight by FCAC and OSFI."
+  },
+  {
+    question: "Does a reverse mortgage make sense as a renewal alternative?",
+    answer: "Sometimes. A conventional mortgage renewal requires you to keep qualifying — income, credit, debt servicing — and make ongoing payments. For seniors aged 55+ facing payment shock (their payment at renewal is unaffordable), unable to qualify due to retirement income levels, or wanting to eliminate mortgage payments entirely, a reverse mortgage can replace the conventional mortgage. You pay out the old mortgage with the reverse mortgage advance, and from that point forward no monthly payments are due. The trade-off is a higher rate (7–8% in 2026 vs. 4–5% conventional) and compounding interest that reduces home equity over time."
+  },
+  {
+    question: "What are the current reverse mortgage rates in Canada?",
+    answer: "As of April 2026, reverse mortgage rates range roughly 7.0–8.0% depending on the product, borrower age, and term chosen. HomeEquity Bank's CHIP typically offers 5-year fixed rates around 7.5%, with shorter terms slightly lower and variable options floating with the prime rate. Equitable Bank Flex and Bloom Finance generally sit in similar ranges. These rates are materially higher than conventional mortgages (5-year fixed around 4.19–4.29% in April 2026) because the lender has no recurring cash flow from payments — all interest compounds and is recovered only at loan termination."
+  },
+  {
+    question: "How much can I borrow against my home with a reverse mortgage?",
+    answer: "Up to 55% of the home's appraised value, with the exact maximum depending on your age, home value, location, and lender. Older borrowers qualify for higher percentages. A 75-year-old may access 40–50% of home value; an 85-year-old may access close to 55%. For a home valued at $800,000, that's potentially $320,000–$440,000 in tax-free proceeds. The proceeds can be taken as a lump sum, a line of credit, or scheduled advances. The money is not taxable because it's a loan, not income — useful for retirees managing marginal tax brackets."
+  },
+  {
+    question: "What happens to my home equity over time with a reverse mortgage?",
+    answer: "Because interest compounds monthly without payments, the loan balance grows over time. On a 7.5% rate, the balance roughly doubles every 10 years. If the home's value grows at a similar pace (historical Canadian appreciation is ~3–5% annually), the borrower's net equity typically stays positive but shrinks as a percentage of the home's value. Canadian reverse mortgages include a 'no negative equity guarantee' — even if the balance ever exceeds the home's sale value, the borrower or estate owes only the sale price, never more. However, this means heirs may inherit little to no residual equity if the borrower lives long with the reverse mortgage in place."
+  },
+  {
+    question: "Can I pay off a reverse mortgage early?",
+    answer: "Yes, but with penalty. Prepayment penalties on reverse mortgages are significant — HomeEquity Bank charges up to 3 months of interest if prepaid in years 1–3, tapering to lower amounts after year 5. Some products allow 10% annual prepayment without penalty after year 2. If you expect to sell the home or move within 5 years, a reverse mortgage is likely not the best choice — a conventional mortgage or home equity line of credit (for those who can qualify) typically has much lower break costs. A broker can run the specific numbers for your scenario."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "reverse-mortgage-at-renewal",
+    name: "Reverse Mortgage at Renewal — Senior Homeowner Options (2026)",
+    description: "How a reverse mortgage works at Canadian mortgage renewal — CHIP, Equitable Flex, Bloom; rates, eligibility, and when it replaces a conventional renewal.",
+  }),
+  articleSchema({
+    headline: "Reverse Mortgage at Renewal — Options for Canadian Seniors (2026)",
+    description: "Complete guide to reverse mortgages as a renewal alternative for Canadians aged 55+ — HomeEquity Bank CHIP, Equitable Flex, Bloom Finance, rates, eligibility, and trade-offs.",
+    slug: "reverse-mortgage-at-renewal",
+    articleSection: "Senior Options",
+    about: "Reverse Mortgage as Renewal Alternative",
+    keywords: ["reverse mortgage Canada", "CHIP reverse mortgage", "HomeEquity Bank", "Equitable Flex", "Bloom Finance", "senior mortgage options"],
+  }),
+  breadcrumbSchema([
+    { name: "Reverse Mortgage at Renewal", url: "/reverse-mortgage-at-renewal" }
+  ]),
+  faqSchema(faqs, "reverse-mortgage-at-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Reverse Mortgage at Renewal 2026 — CHIP, Flex, Bloom Options"
+  description="Reverse mortgage at Canadian renewal for homeowners 55+ — HomeEquity CHIP, Equitable Flex, Bloom Finance. Rates, eligibility, trade-offs, and when it makes sense."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Reverse Mortgage at Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 12-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">Reverse Mortgage at Renewal: Options for Canadian Seniors 55+</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">If you're aged 55+ and your mortgage renewal is approaching — particularly if the new payment is unaffordable — a reverse mortgage may eliminate monthly payments entirely. This guide explains how, when it makes sense, and what the long-term equity trade-off looks like.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+          Get a Free Strategy Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Reverse mortgages are available to Canadian homeowners aged 55 and older, with no income or credit qualification required.</li>
+            <li>• You can access up to 55% of your home's value (exact amount depends on age, location, home type).</li>
+            <li>• Three Canadian providers as of 2026: HomeEquity Bank (CHIP), Equitable Bank (Flex), and Bloom Finance.</li>
+            <li>• Rates in April 2026 sit at 7.0–8.0% — materially higher than conventional mortgages (4.19–4.29% for 5-year fixed).</li>
+            <li>• No monthly payments are required; interest accrues and compounds until the home is sold, vacated, or the borrower passes away.</li>
+            <li>• A "no negative equity guarantee" means the borrower or estate never owes more than the home's sale value.</li>
+            <li>• Reverse mortgages are regulated by OSFI and FCAC — the same consumer-protection regime that governs Canadian banks.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">When a Reverse Mortgage Makes Sense at Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">Reverse mortgages are not appropriate for everyone — but for the right borrower at the right moment, they solve a problem that conventional mortgages can't. Typical scenarios where a reverse mortgage at renewal is worth serious consideration:</p>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">Payment shock is unaffordable</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Your mortgage rate is rising from a 2020-era 1.89% to a 2026-era 4.25%. On a $400,000 balance, your monthly payment jumps by several hundred dollars. If retirement income can't absorb that, a reverse mortgage eliminates the payment entirely.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">You can't requalify on retirement income</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">A conventional mortgage renewal with your existing lender usually doesn't re-qualify you. But if you want to switch lenders, requalification applies. Retirees on CPP/OAS/RRIF income may not meet debt-servicing ratios despite strong home equity. A reverse mortgage ignores income entirely.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">You want to access equity for retirement</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Paying down a mortgage through your working years built home equity. At renewal, you can replace the conventional mortgage with a reverse mortgage and extract additional equity as tax-free proceeds for retirement spending, travel, or gifts to children.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">You want to age in place without selling</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Many seniors want to stay in their home for life but face pressure to downsize purely for financial reasons. A reverse mortgage can provide the cash flow to age in place — which for many retirees is the primary benefit.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Canadian Reverse Mortgage Providers (2026)</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Provider</th>
+                <th class="p-3 text-left">Product</th>
+                <th class="p-3 text-left">Min Age</th>
+                <th class="p-3 text-left">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">HomeEquity Bank</td>
+                <td class="p-3">CHIP Reverse Mortgage</td>
+                <td class="p-3">55</td>
+                <td class="p-3">The original Canadian reverse mortgage; largest market share; owned by Ontario Teachers' Pension Plan</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Equitable Bank</td>
+                <td class="p-3">Flex Reverse Mortgage</td>
+                <td class="p-3">55</td>
+                <td class="p-3">Competitive rates; flexible payment options including optional interest-only payments</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">Bloom Finance</td>
+                <td class="p-3">Bloom Reverse Mortgage</td>
+                <td class="p-3">55</td>
+                <td class="p-3">Newer entrant; digital-first application; growing market presence</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How Much Can You Borrow?</h2>
+
+        <p class="mb-4 leading-relaxed">The maximum loan-to-value ratio depends on several factors:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Age of borrower:</strong> Older borrowers qualify for higher percentages. A 55-year-old might access 15–25% of home value; an 85-year-old might access 50–55%.</li>
+          <li><strong>Couple vs. single:</strong> When both spouses are on the mortgage, the younger age drives the calculation.</li>
+          <li><strong>Home value:</strong> Homes under $200,000 are difficult to finance; homes above the insurability threshold ($2.5M in 2026) face additional conditions.</li>
+          <li><strong>Home type:</strong> Detached homes in urban markets qualify most easily. Condos, rural acreages, and mobile homes may face lower limits or decline.</li>
+          <li><strong>Location:</strong> Major urban centres (Toronto, Vancouver, Calgary, Ottawa, Montreal) have the broadest product availability.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">Example: a 72-year-old couple in Toronto with a home valued at $1,200,000 and a $250,000 remaining mortgage balance might qualify for a reverse mortgage of $450,000–$550,000. After paying out the existing mortgage, $200,000–$300,000 in tax-free proceeds is available.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Long-Term Equity Trade-Off</h2>
+
+        <p class="mb-4 leading-relaxed">The single most important concept to understand about reverse mortgages is compounding. Because no payments are made, every month's interest charge is added to the balance, and next month's interest is calculated on the larger balance. At 7.5%, the loan roughly doubles every 10 years.</p>
+
+        <p class="mb-4 leading-relaxed">Simplified example: a $300,000 reverse mortgage at 7.5% compounded monthly grows to approximately:</p>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Years</th>
+                <th class="p-3 text-left">Approx. Balance</th>
+                <th class="p-3 text-left">Home Value (4% growth)</th>
+                <th class="p-3 text-left">Remaining Equity (on $800K starting home)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">5</td>
+                <td class="p-3">$434,000</td>
+                <td class="p-3">$973,000</td>
+                <td class="p-3">$539,000</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">10</td>
+                <td class="p-3">$628,000</td>
+                <td class="p-3">$1,184,000</td>
+                <td class="p-3">$556,000</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">15</td>
+                <td class="p-3">$910,000</td>
+                <td class="p-3">$1,440,000</td>
+                <td class="p-3">$530,000</td>
+              </tr>
+              <tr style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">20</td>
+                <td class="p-3">$1,317,000</td>
+                <td class="p-3">$1,753,000</td>
+                <td class="p-3">$436,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-xs mb-8" style="color: var(--muted-foreground)">Illustrative only. Actual rates, compounding frequency, and home-value growth vary.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The No-Negative-Equity Guarantee</h2>
+
+        <p class="mb-4 leading-relaxed">All three major Canadian reverse mortgage providers include a no-negative-equity guarantee. In the event the loan balance ever exceeds the home's fair market value at termination (sale, move, or death), the borrower or estate is only obligated to pay the sale value — not the balance. This is an important consumer protection, though in practice the balance rarely exceeds home value because of the conservative LTV caps and Canadian home-price appreciation trends.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Alternatives to Consider</h2>
+
+        <p class="mb-4 leading-relaxed">Before choosing a reverse mortgage, always evaluate alternatives:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Downsize:</strong> Selling the current home and buying a smaller property can release equity outright, without compounding interest.</li>
+          <li><strong>Home Equity Line of Credit (HELOC):</strong> If you can still qualify, a HELOC offers lower rates (typically prime + 0.5%) but requires minimum interest payments.</li>
+          <li><strong>Conventional mortgage with longer amortization:</strong> At renewal, extending amortization (30 years on insured) can lower payments to a manageable level while keeping a lower rate. See our <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">lower payments at renewal</a> guide.</li>
+          <li><strong>Intergenerational support:</strong> Adult children co-signing a conventional renewal or providing monthly support may be lower-cost.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Process: Switching From Conventional to Reverse at Renewal</h2>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">1. Shop conventional renewal first</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Get a quote from a broker for a conventional renewal. This is your baseline — if conventional is affordable, reverse mortgage may not be necessary.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">2. Get a reverse mortgage quote</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">A broker can get quotes from CHIP, Equitable Flex, and Bloom simultaneously. Compare rate, amount available, and fees.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">3. Review with family or financial advisor</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Reverse mortgages affect estate planning. Discuss with adult children if relevant. A financial advisor or estate lawyer can model the long-term impact on inheritance.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">4. Independent legal advice</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Reverse mortgage lenders require borrowers to receive Independent Legal Advice (ILA) — a separate lawyer confirms you understand the product. Budget $300–$600.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">5. Closing</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">On closing, the reverse mortgage lender pays out your existing mortgage and registers their new charge. From that day forward, no monthly payment is due.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/lower-mortgage-payments-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lower Mortgage Payments</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Conventional alternatives to reverse mortgages.</p>
+            </a>
+            <a href="/estate-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Estate Mortgage Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">How reverse mortgages interact with inheritance.</p>
+            </a>
+            <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Calculator</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Model conventional payments before committing to reverse.</p>
+            </a>
+            <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Term Lengths</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Shorter terms may ease transition to reverse later.</p>
+            </a>
+            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinance</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">A reverse mortgage is technically a refinance.</p>
+            </a>
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Brokers can quote all three reverse mortgage providers.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">When It Makes Sense</a></li>
+              <li><a href="#" style="color: var(--secondary)">Canadian Providers</a></li>
+              <li><a href="#" style="color: var(--secondary)">How Much You Can Borrow</a></li>
+              <li><a href="#" style="color: var(--secondary)">Long-Term Trade-Off</a></li>
+              <li><a href="#" style="color: var(--secondary)">No Negative Equity</a></li>
+              <li><a href="#" style="color: var(--secondary)">Alternatives</a></li>
+              <li><a href="#" style="color: var(--secondary)">Switching Process</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Reverse Mortgage Consultation</h3>
+            <p class="text-sm mb-4 opacity-90">We quote CHIP, Equitable Flex, and Bloom side-by-side — and compare against conventional renewal alternatives. No cost, no pressure.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-3xl font-bold mb-4">Compare Reverse vs. Conventional Renewal</h2>
+      <p class="text-lg mb-8 opacity-90">Every senior's situation is different. We'll quote both paths side by side and help you — and your family — make the right decision.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        Book Your Free Renewal Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

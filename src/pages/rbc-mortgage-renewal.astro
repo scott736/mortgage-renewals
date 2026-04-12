@@ -1,0 +1,172 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Does RBC register mortgages as collateral or standard charges?",
+    answer: "RBC's standalone mortgages are registered as standard charges — the simpler, more portable registration type. However, the RBC Royal Credit Line (Homeline Plan), which combines a mortgage with a HELOC, is registered as a collateral charge. If you're on a pure RBC mortgage (not Homeline), switching lenders at renewal is less expensive than switching from TD or STEP products."
+  },
+  {
+    question: "What is RBC's 5-year fixed mortgage rate for renewals?",
+    answer: "RBC's 5-year fixed special rate is approximately 4.29% as of April 2026 — among the most competitive posted rates in the Big 6. The renewal offer on your letter may be higher; always negotiate. RBC's special rates are earned with good credit and employment income, but the bank typically matches competing broker offers when presented with a concrete quote."
+  },
+  {
+    question: "What are RBC's prepayment privileges?",
+    answer: "RBC allows lump-sum prepayments of up to 10% of the original principal per year, plus the RBC Double-Up Payment feature that allows doubling any regular payment without penalty. These privileges are more modest than TD's 15% or BMO's 20% — if active prepayment is important to you, RBC's terms may be a reason to compare."
+  },
+  {
+    question: "How does RBC calculate IRD penalties?",
+    answer: "RBC uses a posted-rate IRD methodology, similar to most Big 6 banks. The comparison rate is RBC's posted rate for the remaining term, less the discount you received at origination. This tends to produce higher IRD penalties than the contract-rate methodology used by monolines. At renewal (at maturity), no IRD applies — but if you're considering breaking mid-term, get a specific quote from RBC."
+  },
+  {
+    question: "Should I switch away from RBC at my renewal?",
+    answer: "If your RBC mortgage is a standalone standard-charge mortgage, switching is inexpensive (typically $300-$700 in legal fees, often covered by new-lender cash-back). If a broker can source a rate 10-25 bps better than RBC's best offer, switching typically pays. If you're on the Homeline Plan (collateral charge), switching costs more (~$1,000), so the rate advantage needs to be larger to justify."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "rbc-mortgage-renewal",
+    name: "RBC Royal Bank Mortgage Renewal 2026 — Rates & Strategy",
+    description: "RBC mortgage renewal guide: standard charge vs. Homeline collateral charge, 2026 rates, prepayment privileges, IRD calculation, and when to negotiate or switch.",
+  }),
+  articleSchema({
+    headline: "RBC Royal Bank Mortgage Renewal 2026 — Rates & Strategy",
+    description: "Everything RBC Royal Bank mortgage customers need at renewal: standard vs. Homeline collateral charge, 5-year fixed rates around 4.29%, prepayment privileges, IRD methodology, and negotiation tactics.",
+    slug: "rbc-mortgage-renewal",
+    articleSection: "Bank Renewal Guides",
+    about: "RBC Royal Bank",
+    keywords: ["RBC mortgage renewal", "RBC Royal Bank renewal rate", "RBC Homeline", "Royal Credit Line", "RBC prepayment"],
+  }),
+  breadcrumbSchema([
+    { name: "RBC Mortgage Renewal", url: "/rbc-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "rbc-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="RBC Royal Bank Mortgage Renewal 2026 — Rates & Strategy"
+  description="RBC mortgage renewal: standard vs. Homeline collateral charge, 2026 rates, prepayment privileges, IRD methodology, and when to negotiate or switch."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › RBC Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 7-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">RBC Royal Bank Mortgage Renewal in 2026</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">RBC is the largest Canadian bank by assets and one of the Big 6's most competitive on posted renewal rates. Here's what to know about your RBC renewal in 2026 — charge type, rates, prepayment, IRD calculation, and when to negotiate versus switch.</p>
+      <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+        Compare RBC vs. Broker Quotes
+      </a>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex-1">
+
+      <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+        <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">RBC at a Glance (April 2026)</h2>
+        <ul class="space-y-2 text-sm leading-relaxed">
+          <li>• <strong>Default charge type:</strong> Standard (Homeline Plan is collateral)</li>
+          <li>• <strong>5-year fixed special:</strong> ~4.29% (among the most competitive Big 6 rates)</li>
+          <li>• <strong>Prepayment privileges:</strong> 10% lump sum per year + Double-Up payment feature</li>
+          <li>• <strong>IRD methodology:</strong> Posted-rate based</li>
+          <li>• <strong>Signature product:</strong> RBC Royal Credit Line / Homeline Plan (combined mortgage + HELOC)</li>
+          <li>• <strong>Broker channel:</strong> Yes, RBC accepts broker-sourced applications</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">RBC's Charge Type: Standard vs. Homeline</h2>
+
+      <p class="mb-4 leading-relaxed">RBC's standalone residential mortgages are registered as <strong>standard charges</strong> — the simpler registration type used by most Big 6 peers for their core mortgage products. A standard charge secures the mortgage at the actual outstanding balance and can be transferred (with some effort) between lenders at renewal.</p>
+
+      <p class="mb-4 leading-relaxed">The <strong>RBC Homeline Plan</strong> (sometimes called the Royal Credit Line or Royal Home Equity Line of Credit in different marketing contexts) combines a mortgage with a HELOC under a single collateral-charge registration. This is more flexible for borrowers who actively use HELOC credit, but it comes with the same switching friction as TD's collateral charges: re-registration at a new lender requires ~$700-$1,500 in legal fees.</p>
+
+      <p class="mb-6 leading-relaxed">Before shopping competing quotes, confirm which product you're on. A quick call to RBC mortgage services will tell you. Customers on a pure standalone RBC mortgage enjoy the lowest switching friction among Big 6 banks; Homeline customers face the same switching costs as TD.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">RBC Mortgage Rates at Renewal</h2>
+
+      <p class="mb-4 leading-relaxed">RBC's posted 5-year fixed rate in April 2026 is approximately 5.89%; the 5-year fixed special — the rate negotiated with most customers — is approximately 4.29%. This makes RBC one of the more competitive posted rates among the Big 6, alongside CIBC's ~4.29%.</p>
+
+      <p class="mb-6 leading-relaxed">Your renewal letter rate will typically be 10-30 basis points above the special. Always negotiate, and benchmark against broker-sourced quotes. On a $500K mortgage, even a 0.15% improvement saves ~$3,700 over 5 years — well worth a 30-minute call.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">RBC Prepayment Privileges</h2>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li><strong>Lump-sum prepayments:</strong> Up to 10% of the original principal per year, applied to principal without penalty.</li>
+        <li><strong>RBC Double-Up Payment:</strong> You can double any regular mortgage payment at any time without penalty. If missed, the Double-Up opportunity doesn't carry forward.</li>
+        <li><strong>Anniversary flexibility:</strong> Lump-sum prepayments can typically be made on any regular payment date.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">RBC's 10% lump-sum privilege is modest compared to TD's 15% or BMO's 20%. If aggressive prepayment is a priority, this is a factor in choosing a lender at renewal.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">RBC's IRD Methodology</h2>
+
+      <p class="mb-4 leading-relaxed">RBC uses a posted-rate IRD methodology — the comparison rate is RBC's posted rate for the remaining term, less the discount you received at origination. This is standard Big 6 practice and typically produces higher IRD penalties than the contract-rate methodology used by monoline lenders.</p>
+
+      <p class="mb-6 leading-relaxed">At renewal (maturity), no IRD applies — you can switch without penalty. The IRD calculation matters only if you break mid-term. If future flexibility matters to you (selling, refinancing, relocating), a lender with fair IRD (First National, Merix) saves money compared to RBC's methodology over multiple term cycles.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The RBC Renewal Negotiation Playbook</h2>
+
+      <ol class="space-y-4 mb-8">
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">1. Read the renewal letter for facts only</h3>
+          <p class="text-sm leading-relaxed">Note your maturity date, current balance, and any rate options offered. Do not sign.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">2. Get 2-3 broker-sourced quotes</h3>
+          <p class="text-sm leading-relaxed">A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> can present quotes from monolines, credit unions, and competing banks in one call. This is your negotiating benchmark.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">3. Call RBC mortgage retention</h3>
+          <p class="text-sm leading-relaxed">Ask to speak with mortgage retention (not the general renewal line). Provide a specific competing quote. RBC's retention team has real rate authority and often matches or comes within 5 bps of a legitimate monoline quote.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">4. Decide: stay or switch</h3>
+          <p class="text-sm leading-relaxed">If RBC matches and your charge is standard, staying is simplest. If RBC won't match and a meaningful rate advantage exists, switch — especially easy if you're on a standard charge.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">5. Sign before maturity</h3>
+          <p class="text-sm leading-relaxed">Active renewal prevents RBC's auto-renewal default, which is often priced less favorably than the negotiated offer.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/td-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">TD Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Compare RBC's standard charge approach to TD's collateral charge.</p>
+        </a>
+        <a href="/bmo-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">BMO Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">BMO offers 20% prepayment privileges — compare with RBC's 10%.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step switch guide — straightforward for standard-charge RBC mortgages.</p>
+        </a>
+        <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates 2026</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Current market rates to benchmark your RBC offer against.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Negotiate from a position of information.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call gives you the benchmark rate to leverage with RBC — or a better offer to switch to. No obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

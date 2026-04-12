@@ -1,10 +1,15 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-broker-renewal",
+    name: "Using a Mortgage Broker at Mortgage Renewal in Canada",
+    description: "How a Canadian mortgage broker accesses 30+ lenders for free and consistently beats bank renewal offers.",
+  }),
   articleSchema({
     headline: "Using a Mortgage Broker at Renewal — Free Expert Access to 30+ Lenders",
     description: "Mortgage brokers access 30+ lenders, are completely free to borrowers, and consistently find better rates than going directly to your bank. The complete Canadian guide.",
@@ -13,13 +18,12 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Using a Mortgage Broker at Renewal", url: "/mortgage-broker-renewal" }
   ]),
-  speakableSchema("mortgage-broker-renewal"),
 );
 ---
 
 <DefaultLayout
-  title="Using a Mortgage Broker at Renewal — Free Expert Access to 30+ Lenders | MortgageRenewalHub.ca"
-  description="Mortgage brokers access 30+ lenders, are completely free to borrowers, and consistently find better rates than going directly to your bank. The complete Canadian guide."
+  title="Using a Mortgage Broker at Renewal — 30+ Lenders, Free"
+  description="Mortgage brokers compare 30+ Canadian lenders, are free for borrowers, and consistently find better rates than going directly to your bank at renewal."
   schema={schema}
 >
   <!-- Breadcrumb -->
@@ -40,10 +44,10 @@ const schema = combineSchemas(
         Brokers are paid by the lender — not you. Yet they access far more lenders, negotiate harder, and consistently deliver better outcomes than going directly to a single bank. Here's everything you need to know.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        <a href="/book-a-call/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
           Book a Free Broker Call
         </a>
-        <a href="/mortgage-renewal-guide" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+        <a href="/mortgage-renewal-guide/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
           Full Renewal Guide
         </a>
       </div>
@@ -89,12 +93,12 @@ const schema = combineSchemas(
         <p class="mb-4 leading-relaxed">A mortgage broker operates as an intermediary between you (the borrower) and a wide network of lenders. They are not employees of any single lender — they work independently and represent your interests in the transaction. At renewal time, a broker's specific role includes:</p>
 
         <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
-          <li><strong>Rate comparison:</strong> Simultaneously shopping your renewal across their entire lender network to identify the <a href="/best-mortgage-renewal-rates" style="color: var(--secondary)">best available rates</a> and terms for your profile.</li>
+          <li><strong>Rate comparison:</strong> Simultaneously shopping your renewal across their entire lender network to identify the <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">best available rates</a> and terms for your profile.</li>
           <li><strong>Lender qualification assessment:</strong> Reviewing your income, credit, property details, and mortgage balance to determine which lenders will offer the most competitive terms — not just which ones will approve you, but which offer the best value.</li>
           <li><strong>Application submission:</strong> Preparing and submitting your mortgage application, gathering documents, and managing the administrative process on your behalf.</li>
           <li><strong>Negotiation:</strong> Using competing offers and their lender relationships to negotiate the best possible rate and conditions.</li>
-          <li><strong>Mortgage structure advice:</strong> Advising you on term length, rate type (<a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">fixed vs variable</a>), prepayment privileges, portability, and whether your mortgage features align with your life plans.</li>
-          <li><strong>Coordination with legal and other parties:</strong> Connecting with lawyers, notaries, and your existing lender to ensure a smooth transfer if you're <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">switching lenders</a>.</li>
+          <li><strong>Mortgage structure advice:</strong> Advising you on term length, rate type (<a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed vs variable</a>), prepayment privileges, portability, and whether your mortgage features align with your life plans.</li>
+          <li><strong>Coordination with legal and other parties:</strong> Connecting with lawyers, notaries, and your existing lender to ensure a smooth transfer if you're <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching lenders</a>.</li>
         </ul>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How Brokers Are Paid: Free for Borrowers</h2>
@@ -107,7 +111,7 @@ const schema = combineSchemas(
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Broker Access to Monoline Lenders</h2>
 
-        <p class="mb-4 leading-relaxed">One of the most tangible advantages brokers have over walking into a bank branch is access to <a href="/mortgage-lender-types-canada" style="color: var(--secondary)">monoline lenders</a> — financial institutions that only offer mortgages (unlike banks that offer a full suite of banking products). Monolines operate exclusively through the mortgage broker channel; you cannot walk into a First National or MCAP branch, because they don't have branches.</p>
+        <p class="mb-4 leading-relaxed">One of the most tangible advantages brokers have over walking into a bank branch is access to <a href="/mortgage-lender-types-canada/" style="color: var(--secondary)">monoline lenders</a> — financial institutions that only offer mortgages (unlike banks that offer a full suite of banking products). Monolines operate exclusively through the mortgage broker channel; you cannot walk into a First National or MCAP branch, because they don't have branches.</p>
 
         <p class="mb-4 leading-relaxed">Monoline lenders typically offer:</p>
 
@@ -188,10 +192,10 @@ const schema = combineSchemas(
 
         <p class="mb-4 leading-relaxed">Brokers have access to lenders with Alt-A (alternative documentation) programs that allow qualifying based on bank statements, gross revenue, accountant letters, or other evidence of actual cash flow — rather than just CRA net income. For self-employed borrowers, a broker is not just helpful — it's often the only path to a competitive renewal rate.</p>
 
-        <p class="mb-4 leading-relaxed">For more detail, see our <a href="/self-employed-mortgage-renewal" style="color: var(--secondary)">self-employed mortgage renewal guide</a>.</p>
+        <p class="mb-4 leading-relaxed">For more detail, see our <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed mortgage renewal guide</a>.</p>
 
         <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">Borrowers with Credit Challenges</h3>
-        <p class="mb-4 leading-relaxed">If your credit score has declined since your original mortgage — due to missed payments, high credit utilization, a consumer proposal, or other factors — your current lender may offer a renewal at an unfavourable rate, or in some cases may <a href="/bad-credit-mortgage-renewal" style="color: var(--secondary)">not offer a renewal at all</a>. Brokers can access B-lender programs (from institutions like Home Trust, Equitable Bank, and Haventree Bank) specifically designed for borrowers who don't meet prime lender credit standards. While B-lender rates are higher, they provide a bridge while you rebuild credit.</p>
+        <p class="mb-4 leading-relaxed">If your credit score has declined since your original mortgage — due to missed payments, high credit utilization, a consumer proposal, or other factors — your current lender may offer a renewal at an unfavourable rate, or in some cases may <a href="/bad-credit-mortgage-renewal/" style="color: var(--secondary)">not offer a renewal at all</a>. Brokers can access B-lender programs (from institutions like Home Trust, Equitable Bank, and Haventree Bank) specifically designed for borrowers who don't meet prime lender credit standards. While B-lender rates are higher, they provide a bridge while you rebuild credit.</p>
 
         <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">Complex Income Situations</h3>
         <p class="mb-4 leading-relaxed">Contract workers, commission-based earners, those with variable bonus income, rental income earners, and borrowers with income from multiple sources all face added scrutiny from bank underwriters. Brokers understand which lenders are most flexible with non-traditional income documentation and can match your income profile to the right lender.</p>
@@ -284,7 +288,7 @@ const schema = combineSchemas(
           <li><strong>"What term length do you recommend given current rates and my situation?"</strong> — Get their professional opinion, not just options.</li>
           <li><strong>"Is this a standard charge or a collateral charge mortgage?"</strong> — Affects your flexibility at the next renewal.</li>
           <li><strong>"How are you compensated by the lender on this deal?"</strong> — A transparent broker will tell you.</li>
-          <li><strong>"What lenders did you compare to arrive at this recommendation?"</strong> — Ensure they've done comprehensive shopping. See our <a href="/mortgage-renewal-checklist" style="color: var(--secondary)">renewal checklist</a> for the full process.</li>
+          <li><strong>"What lenders did you compare to arrive at this recommendation?"</strong> — Ensure they've done comprehensive shopping. See our <a href="/mortgage-renewal-checklist/" style="color: var(--secondary)">renewal checklist</a> for the full process.</li>
           <li><strong>"What should I be doing now to improve my position before the next renewal in 3–5 years?"</strong> — A great broker thinks long-term with you.</li>
         </ol>
 
@@ -308,7 +312,7 @@ const schema = combineSchemas(
           <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
             <h3 class="font-bold mb-3">Get Your Free Strategy Call</h3>
             <p class="text-sm mb-4 opacity-90">30+ lenders compared. 100% free to you. No obligation.</p>
-            <a href="/book-a-call" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
               Book Now — It's Free
             </a>
           </div>
@@ -320,27 +324,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">8-step process, costs, 2024 stress test changes.</p>
         </a>
-        <a href="/self-employed-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Mortgage Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Alt-A programs, income proof, and why brokers are essential for SE borrowers.</p>
         </a>
-        <a href="/mortgage-lender-types-canada" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types in Canada</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, credit unions, B-lenders, private lenders compared.</p>
         </a>
-        <a href="/bad-credit-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Bad Credit</p>
           <p class="text-xs" style="color: var(--muted-foreground)">B-lender options, credit repair, and navigating difficult renewals.</p>
         </a>
-        <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Documents to gather, timeline, and what to do at each stage.</p>
         </a>
-        <a href="/mortgage-renewal-mistakes" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Including skipping the broker conversation — avoid these costly errors.</p>
         </a>
@@ -349,7 +353,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -358,13 +362,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

@@ -1,0 +1,278 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Do all Canadian lenders offer skip-a-payment?",
+    answer: "All of the Big 6 banks (RBC, TD, BMO, Scotiabank, CIBC, National Bank) offer some version of a skip-a-payment or payment vacation feature on their residential mortgages. Typical terms allow one skipped monthly payment per 12-month period, up to a cumulative maximum of 4 months over the life of the mortgage. Monoline lenders are split — MCAP, First National, and Scotia's broker arm offer skip features; some smaller monolines do not. Interest always accrues during skipped periods and gets added to your balance, so you pay it back later (typically as an increase in future payments, or by extending amortization slightly)."
+  },
+  {
+    question: "What is a double-up payment?",
+    answer: "A double-up payment is a prepayment feature that lets you pay up to 100% more than your scheduled payment on any regular payment date. If your normal payment is $2,400/month, you can pay up to $4,800 on any given payment date, with the extra $2,400 going entirely toward principal. RBC, CIBC, and BMO all offer generous double-up features. TD and Scotia allow up to 100% payment increases but use slightly different mechanics. The double-up payment is one of the most powerful prepayment tools in Canada because it compounds the principal reduction every time you use it, reducing the interest you owe for the remainder of the term."
+  },
+  {
+    question: "How much can I increase my regular payment each year?",
+    answer: "Most Canadian A-lenders allow annual payment increases of 15% to 100% of your original payment amount, resetting each year. RBC and CIBC typically allow 100% increases (effectively a permanent double-up); Scotia and BMO allow 15–20%; TD varies by product. Monoline lenders like MCAP and First National commonly allow 15–20%. These increases are permanent — you can keep the higher payment in place indefinitely — and every dollar of the increase goes to principal. Combined with an annual lump-sum prepayment, payment increases are how borrowers pay off mortgages years ahead of schedule."
+  },
+  {
+    question: "What is re-amortization and which lenders offer it?",
+    answer: "Re-amortization is the reverse of a payment increase: after making a lump-sum prepayment, some lenders will let you reset your amortization so that your monthly payment goes down rather than your remaining term shrinking. It's useful when you make a large prepayment (inheritance, bonus, sale proceeds) but want the breathing room of a lower monthly obligation. Not every lender offers it — Scotia, BMO, and certain MCAP products support re-amortization on request. Most charge a small administrative fee. Always confirm whether re-amortization is available before you make the lump-sum payment, because once the lump sum is applied under a standard prepayment, you cannot always undo it to reset amortization."
+  },
+  {
+    question: "Are cash-back mortgages still a good idea?",
+    answer: "Cash-back mortgages pay the borrower 1–7% of the mortgage amount in cash at closing, but in exchange they carry a rate premium (usually 0.40–0.70% above a comparable standard rate). They made sense when cash-flow constraints at purchase were severe. At renewal, they rarely make sense — the rate premium almost always exceeds the cash-back benefit over a 5-year term, and if you break the mortgage early, most cash-back agreements require full or proportional repayment of the cash-back amount. FCAC (the Financial Consumer Agency of Canada) explicitly cautions borrowers to run the math carefully before choosing cash-back products."
+  },
+  {
+    question: "Do flex features cost extra?",
+    answer: "Generally no — flex features like skip-a-payment, double-up, and payment increases are included at no additional fee in standard Canadian mortgage products. The trade-off is built into the rate: lenders offering more flexible prepayment privileges sometimes price their rates a few basis points higher than restrictive 'low-rate' mortgages (those with limited prepayment privileges). Always ask your broker to show you both options. For borrowers who plan to stay the full term and make no prepayments, a restrictive low-rate mortgage saves money. For borrowers who expect to prepay or might need a skip, a flex-rich standard mortgage is worth the small premium."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-flex-features-canada",
+    name: "Mortgage Flex Features in Canada — Skip-a-Payment, Double-Up & More",
+    description: "Complete guide to Canadian mortgage flex features — skip-a-payment, double-up, payment increases, re-amortization — with lender-by-lender comparison.",
+  }),
+  articleSchema({
+    headline: "Mortgage Flex Features in Canada — Every Tool Explained (2026)",
+    description: "How skip-a-payment, payment vacations, double-up payments, annual payment increases, and re-amortization work at Canadian banks and monolines — with a lender comparison table.",
+    slug: "mortgage-flex-features-canada",
+    articleSection: "Mortgage Mechanics",
+    about: "Canadian Mortgage Prepayment and Flex Features",
+    keywords: ["skip a payment", "double up payment mortgage", "mortgage payment vacation", "Canadian mortgage prepayment", "re-amortization"],
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Flex Features", url: "/mortgage-flex-features-canada" }
+  ]),
+  faqSchema(faqs, "mortgage-flex-features-canada"),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Flex Features Canada — Skip, Double-Up & More (2026)"
+  description="Every Canadian mortgage flex feature explained — skip-a-payment, double-up, payment increases, re-amortization — with lender-by-lender comparison for 2026."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Flex Features
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Mortgage Flex Features in Canada: Every Tool Explained</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 11-minute read</p>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <p class="mb-6 text-base leading-relaxed">Canadian mortgages come with a surprising number of built-in flexibility features that most borrowers never use — and many don't know exist. Skip-a-payment, double-up payments, annual payment increases, lump-sum prepayments, and re-amortization are all standard on most A-lender products. Used strategically, these features can shave years off your mortgage, provide a cash-flow safety net in tough months, and meaningfully shift the interest-vs-principal math. This guide explains each feature, which lenders offer what, and how to use them intelligently.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• All Big 6 banks (RBC, TD, BMO, Scotia, CIBC, National Bank) offer skip-a-payment, with 1 skip per year up to 4 months cumulative over the life of the mortgage.</li>
+            <li>• Interest accrues during skipped payments and gets added to the balance — skip-a-payment is a cash-flow tool, not a free pass on interest.</li>
+            <li>• Double-up payments allow 100% increases on any scheduled payment date — among the most powerful prepayment tools available.</li>
+            <li>• Annual payment increases of 15–100% let you permanently boost payments, with every extra dollar going to principal.</li>
+            <li>• Re-amortization after a lump sum lets you lower your monthly payment — offered by some but not all lenders; confirm before prepaying.</li>
+            <li>• Flex features are almost always included at no additional fee, but lenders that offer them may price rates a few basis points higher than no-frills 'low-rate' mortgages.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Skip-a-Payment / Payment Vacation</h2>
+
+        <p class="mb-4 leading-relaxed">Skip-a-payment (called "Payment Pause," "Payment Vacation," or "Skip a Payment" depending on the lender) lets you skip one or more scheduled mortgage payments without it counting as a late payment or affecting your credit. The Big 6 all offer this feature. Typical eligibility rules:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>You must be current on your mortgage (no payments in arrears).</li>
+          <li>You may skip one monthly payment per 12-month period.</li>
+          <li>The cumulative lifetime maximum is typically 4 months across your entire mortgage.</li>
+          <li>Interest continues to accrue during the skipped period and gets added to your principal balance.</li>
+          <li>You typically request the skip through online banking or by calling the lender — most banks process it in 1–2 days.</li>
+        </ul>
+
+        <p class="mb-4 leading-relaxed">The economic reality of a skip: if you skip a $2,500 payment with $1,800 of it being interest, your balance grows by roughly $1,800 (since the interest portion was not paid and now capitalizes). The $700 principal portion you would have repaid simply doesn't get repaid that month. The lender adjusts future payments slightly — or keeps payments the same and extends the amortization marginally — to absorb the skip.</p>
+
+        <p class="mb-4 leading-relaxed">Skip is a cash-flow lifeline, not a money-saver. Use it during medical leave, parental leave, job loss, or one-time emergencies. Avoid using it habitually, and never use it when the underlying problem is a structural cash-flow issue — that's when you need to consider <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">lower mortgage payments at renewal</a>.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Double-Up Payments</h2>
+
+        <p class="mb-4 leading-relaxed">A double-up payment is a prepayment feature that lets you pay up to 100% more than your scheduled payment on any regular payment date, with the entire additional amount going to principal. If your regular payment is $2,400, you can pay anywhere from $2,401 to $4,800 on that payment date, with the excess reducing principal dollar-for-dollar.</p>
+
+        <p class="mb-4 leading-relaxed">RBC and CIBC offer the most generous double-up terms. BMO's feature is similar. TD and Scotia use slightly different mechanics but achieve comparable outcomes. The power of the feature compounds: every dollar of extra principal reduces the interest you owe for the remainder of the term, which means more of your next scheduled payment goes to principal, and so on.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Annual Payment Increase</h2>
+
+        <p class="mb-4 leading-relaxed">Separate from double-up (which is a one-time payment increase), most lenders allow a permanent increase to your regular payment amount once per 12-month period. The increase is expressed as a percentage of your original payment.</p>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Lender</th>
+                <th class="p-3 text-left">Annual Payment Increase</th>
+                <th class="p-3 text-left">Lump-Sum Prepayment</th>
+                <th class="p-3 text-left">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">RBC</td>
+                <td class="p-3">Up to 100%</td>
+                <td class="p-3">10% per year</td>
+                <td class="p-3">Among the most flexible Big 6 products</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">TD</td>
+                <td class="p-3">Up to 100%</td>
+                <td class="p-3">15% per year</td>
+                <td class="p-3">Uses collateral charges by default</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">BMO</td>
+                <td class="p-3">20%</td>
+                <td class="p-3">20%</td>
+                <td class="p-3">"20/20" product is iconic</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Scotiabank</td>
+                <td class="p-3">15%</td>
+                <td class="p-3">15%</td>
+                <td class="p-3">Re-amortization on request after lump sum</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">CIBC</td>
+                <td class="p-3">100%</td>
+                <td class="p-3">10–20%</td>
+                <td class="p-3">Double-up is generous</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">MCAP</td>
+                <td class="p-3">20%</td>
+                <td class="p-3">20%</td>
+                <td class="p-3">Industry-leading 20/20 monoline</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">First National</td>
+                <td class="p-3">15%</td>
+                <td class="p-3">15%</td>
+                <td class="p-3">Standard broker-channel terms</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-xs mb-8" style="color: var(--muted-foreground)">Prepayment privileges vary by specific product and may change over time. Always confirm with your lender or broker at signing.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Lump-Sum Prepayment</h2>
+
+        <p class="mb-4 leading-relaxed">In addition to increasing your regular payment, most Canadian lenders allow a once-per-year lump-sum prepayment of 10–20% of the original mortgage principal. This is a one-time payment you send directly to the lender, applied entirely to principal. Bonus season, inheritance, or proceeds from a sale are common sources for lump-sum prepayments.</p>
+
+        <p class="mb-4 leading-relaxed">Lump sums paired with annual payment increases are how disciplined borrowers shorten 25-year amortizations to 15 or 18 years. A $10,000 lump sum in year 2 of a $500,000 mortgage at 4.25% saves roughly $8,500 in interest over the remaining amortization — a 85% return on the deployed capital.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Re-Amortization: Lower Payments After a Lump Sum</h2>
+
+        <p class="mb-4 leading-relaxed">Most borrowers who make a lump-sum prepayment keep their monthly payment the same, which accelerates the payoff date. But some lenders allow the opposite: re-amortize the mortgage so the payment drops while the original amortization is preserved. This is useful when cash flow is tight and the lump sum was a one-time event.</p>
+
+        <p class="mb-4 leading-relaxed">Scotia, BMO, and certain MCAP products support re-amortization on request. The request typically requires a short form and a small administrative fee ($50–$250). Ask your broker before making the lump-sum payment — the request is easier to process at the same time.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Cash-Back Mortgages: Use With Caution</h2>
+
+        <p class="mb-4 leading-relaxed">Cash-back mortgages advance 1–7% of the mortgage amount in cash to the borrower at closing in exchange for a higher rate (typically 0.40–0.70% above comparable standard rates). The feature is marketed as useful for closing costs, furniture, or renovations.</p>
+
+        <p class="mb-4 leading-relaxed">At renewal, the math rarely works. On a $500,000 mortgage, a 5% cash-back = $25,000 upfront, but a 0.60% rate premium = roughly $15,000 extra in interest over 5 years. Net benefit $10,000 — unless you break early, in which case virtually every cash-back agreement requires you to return the cash on a prorated basis. The Financial Consumer Agency of Canada (FCAC) publishes a calculator to help borrowers run the comparison. Our <a href="/mortgage-renewal-mistakes/" style="color: var(--secondary)">renewal mistakes</a> guide covers cash-back as a common trap.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Low-Rate vs. Flex Mortgages at Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">Some lenders offer two versions of the same product: a "low-rate" or "no-frills" mortgage with limited or no prepayment privileges, and a standard mortgage with full flex features. The low-rate version is typically 0.05–0.15% lower than the flex version. At renewal, you face the same choice.</p>
+
+        <p class="mb-4 leading-relaxed">Rule of thumb: if you are certain you will not prepay, never need a skip, and plan to hold the mortgage to maturity, the low-rate version saves money. If you have any realistic chance of prepaying, doubling up, or needing a skip, the flex version is worth the small premium. See our <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed vs. variable</a> and <a href="/mortgage-renewal-term-lengths/" style="color: var(--secondary)">term length</a> guides for how flex features interact with term choice.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/lower-mortgage-payments-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lower Mortgage Payments</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">How to structurally lower payments at renewal.</p>
+            </a>
+            <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Cash-back traps and ignoring prepayment privileges.</p>
+            </a>
+            <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Term Lengths</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">How term length interacts with flex features.</p>
+            </a>
+            <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Rate structure affects which flex features are most valuable.</p>
+            </a>
+            <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Calculator</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Model the impact of payment increases and lump sums.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Compare flex features across lenders at renewal time.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">Skip-a-Payment</a></li>
+              <li><a href="#" style="color: var(--secondary)">Double-Up</a></li>
+              <li><a href="#" style="color: var(--secondary)">Payment Increase</a></li>
+              <li><a href="#" style="color: var(--secondary)">Lump Sum</a></li>
+              <li><a href="#" style="color: var(--secondary)">Re-Amortization</a></li>
+              <li><a href="#" style="color: var(--secondary)">Cash-Back</a></li>
+              <li><a href="#" style="color: var(--secondary)">Low-Rate vs Flex</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Using Your Flex Features</h3>
+            <p class="text-sm mb-4 opacity-90">A broker can model double-up and lump-sum scenarios against your current mortgage to show you the real impact.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want to use your flex features strategically?</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A licensed broker can run lump-sum and double-up projections for your specific mortgage, at no cost.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

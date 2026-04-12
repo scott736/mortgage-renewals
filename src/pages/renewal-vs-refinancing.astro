@@ -1,8 +1,13 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "renewal-vs-refinancing",
+    name: "Mortgage Renewal vs. Refinancing in Canada",
+    description: "Renewal vs refinancing in Canada — when to access equity, stress test rules, costs, and a decision framework.",
+  }),
   articleSchema({
     headline: "Mortgage Renewal vs. Refinancing in Canada",
     description: "Renewal vs refinancing: side-by-side comparison, when to access equity, stress test rules, costs, blend-and-extend strategy, and a clear decision framework.",
@@ -11,12 +16,11 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Renewal vs. Refinancing", url: "/renewal-vs-refinancing" }
   ]),
-  speakableSchema("renewal-vs-refinancing"),
 );
 ---
 
 <DefaultLayout
-  title="Mortgage Renewal vs. Refinancing in Canada — MortgageRenewalHub.ca"
+  title="Mortgage Renewal vs. Refinancing in Canada (2026)"
   description="Renewal vs refinancing: side-by-side comparison, when to access equity, stress test rules, costs, blend-and-extend strategy, and a clear decision framework."
   schema={schema}
 >
@@ -100,7 +104,7 @@ const schema = combineSchemas(
 
     <p class="mb-4 leading-relaxed">A renewal is the process of agreeing to a new term — and a new interest rate — at the end of your current mortgage term. Your outstanding principal balance remains exactly the same. No new money is advanced. You're simply choosing the conditions under which you'll continue repaying what you already owe.</p>
 
-    <p class="mb-4 leading-relaxed">Renewals are the lower-friction option: if you're staying with the same lender, no appraisal or stress test is required. If you <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">switch to a new lender</a> for a straight transfer (since 2024), no stress test is required either. Legal fees at renewal, if you switch lenders, are often covered by the new lender as a competitive incentive.</p>
+    <p class="mb-4 leading-relaxed">Renewals are the lower-friction option: if you're staying with the same lender, no appraisal or stress test is required. If you <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switch to a new lender</a> for a straight transfer (since 2024), no stress test is required either. Legal fees at renewal, if you switch lenders, are often covered by the new lender as a competitive incentive.</p>
 
     <p class="mb-6 leading-relaxed">The key strategic opportunities at renewal are: choosing a competitive rate, choosing the right term length, and potentially switching to a lender with better features (prepayment privileges, portability, penalty structures). What you cannot do at a simple renewal: access your home's equity, consolidate other debts into your mortgage, or significantly change your amortization.</p>
 
@@ -115,14 +119,14 @@ const schema = combineSchemas(
       <li><strong>Consolidate high-interest debt:</strong> Roll credit card balances (19–24% interest) or personal loans into your mortgage rate (4–6%). This can significantly reduce monthly cash flow burden — but extends the timeline of that debt.</li>
       <li><strong>Change your amortization:</strong> Reset to a longer amortization to reduce monthly payments (cash flow improvement) or shorten your amortization to pay off faster.</li>
       <li><strong>Break a high rate:</strong> If rates have dropped substantially since you signed your current term, it may make mathematical sense to pay the penalty and refinance to a lower rate — even mid-term.</li>
-      <li><strong>Remove or add a co-borrower:</strong> Adding or removing someone from the mortgage (e.g., at <a href="/divorce-mortgage-renewal" style="color: var(--secondary)">separation or divorce</a>) triggers a full refinance and stress test.</li>
+      <li><strong>Remove or add a co-borrower:</strong> Adding or removing someone from the mortgage (e.g., at <a href="/divorce-mortgage-renewal/" style="color: var(--secondary)">separation or divorce</a>) triggers a full refinance and stress test.</li>
     </ul>
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Stress Test at Refinancing</h2>
 
     <p class="mb-4 leading-relaxed">Every refinance — without exception — requires the borrower to pass the federal mortgage stress test. This applies regardless of how long you've owned the property, how much equity you have, or how excellent your credit score is.</p>
 
-    <p class="mb-4 leading-relaxed">The <a href="/mortgage-renewal-glossary" style="color: var(--secondary)">stress test</a> requires you to qualify at the <strong>higher of</strong>:</p>
+    <p class="mb-4 leading-relaxed">The <a href="/mortgage-renewal-glossary/" style="color: var(--secondary)">stress test</a> requires you to qualify at the <strong>higher of</strong>:</p>
 
     <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
       <p class="font-bold mb-3">Stress Test Qualifying Rate = Greater of:</p>
@@ -133,7 +137,7 @@ const schema = combineSchemas(
       <p class="text-sm mt-3">Example: If your refinance rate is 4.65%, your stress test rate is 6.65%. Your income must be sufficient to qualify at the higher rate, not just your actual rate.</p>
     </div>
 
-    <p class="mb-6 leading-relaxed">This stress test requirement means that some borrowers who want to refinance cannot qualify for the full amount of equity they hope to access — particularly in today's higher-rate environment. Working with a <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> can help you identify which lenders use more favourable income calculations, or whether a B-lender route might be appropriate if your situation is complex.</p>
+    <p class="mb-6 leading-relaxed">This stress test requirement means that some borrowers who want to refinance cannot qualify for the full amount of equity they hope to access — particularly in today's higher-rate environment. Working with a <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> can help you identify which lenders use more favourable income calculations, or whether a B-lender route might be appropriate if your situation is complex.</p>
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Costs of Refinancing</h2>
 
@@ -147,7 +151,7 @@ const schema = combineSchemas(
       <li><strong>Discharge fee from current lender:</strong> $200–$400.</li>
     </ul>
 
-    <p class="mb-6 leading-relaxed">Total refinancing costs often range from $1,500 to $3,500 — not counting any prepayment penalties on a mid-term break. The math must show that the benefits of refinancing (lower rate, equity access, debt consolidation savings) outweigh these costs over your planned holding period. Our <a href="/mortgage-renewal-calculator" style="color: var(--secondary)">renewal calculator</a> can help you model the break-even point.</p>
+    <p class="mb-6 leading-relaxed">Total refinancing costs often range from $1,500 to $3,500 — not counting any prepayment penalties on a mid-term break. The math must show that the benefits of refinancing (lower rate, equity access, debt consolidation savings) outweigh these costs over your planned holding period. Our <a href="/mortgage-renewal-calculator/" style="color: var(--secondary)">renewal calculator</a> can help you model the break-even point.</p>
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Cashback Mortgage Trap</h2>
 
@@ -197,27 +201,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Term vs amortization, the renewal process, and your FCAC rights.</p>
         </a>
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Save $10,000+ by shopping. The 2024 stress test change explained.</p>
         </a>
-        <a href="/bad-credit-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Bad Credit</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Options when you can't qualify, from B-lenders to private lending.</p>
         </a>
-        <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Rate risk, penalties, and the current BoC environment.</p>
         </a>
-        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Free to use — how brokers compare 30+ lenders for you.</p>
         </a>
-        <a href="/mortgage-rate-forecast" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2026 Mortgage Rate Forecast</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Current BoC rate, best fixed rates, and rate forecasts for 2026–2027.</p>
         </a>
@@ -226,7 +230,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -235,13 +239,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

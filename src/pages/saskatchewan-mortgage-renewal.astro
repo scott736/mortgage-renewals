@@ -1,0 +1,251 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Is there a land transfer tax in Saskatchewan?",
+    answer: "No — Saskatchewan does not charge a provincial Land Transfer Tax. The province instead levies a small Land Titles transfer fee of approximately 0.3% of the property's value on registration. This makes Saskatchewan one of the cheapest provinces in Canada for a property transaction from a transfer-tax standpoint. Straight mortgage renewal does not trigger this fee."
+  },
+  {
+    question: "Who regulates mortgage brokers in Saskatchewan?",
+    answer: "Saskatchewan mortgage brokers are regulated by the Financial and Consumer Affairs Authority (FCAA) of Saskatchewan under The Mortgage Brokerages and Mortgage Administrators Act. Brokerages and individual mortgage associates must both be licensed. Verify a broker's status via the FCAA's public registry before committing."
+  },
+  {
+    question: "Do I have to pass the stress test to renew my Saskatchewan mortgage?",
+    answer: "For federally regulated lenders (banks, monolines), OSFI's B-20 rules apply — but as of November 21, 2024, uninsured straight-switch renewals (same balance, same amortization, no new money) are exempt from the Minimum Qualifying Rate. Saskatchewan credit unions are provincially regulated under the FCAA and are not bound by B-20; many apply a comparable test voluntarily, and some will qualify at contract rate."
+  },
+  {
+    question: "Which credit unions serve Saskatchewan?",
+    answer: "Saskatchewan has a strong credit union sector with significant market share. Major Saskatchewan credit unions include Conexus Credit Union, Affinity Credit Union, Synergy Credit Union, Innovation Credit Union, and Cornerstone Credit Union. Credit unions often offer competitive rates with flexible underwriting for self-employed, farm, and acreage borrowers — profiles that can be more challenging at the big banks."
+  },
+  {
+    question: "How does Saskatchewan's resource-sector economy affect mortgage renewal?",
+    answer: "Saskatchewan's economy is tied to agriculture, potash, oil and gas, and uranium. Commodity prices drive income stability for many Saskatchewan borrowers. For renewal, lenders look for 2+ years of continuous employment or, for self-employed and contract workers, 2 years of T1 General tax returns with NOAs. Oil-patch camp workers, farmers, and potash-sector contractors are routinely approved, but having recent pay stubs, employment letters, or farm financial statements ready will speed the renewal process."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "saskatchewan-mortgage-renewal",
+    name: "Saskatchewan Mortgage Renewal 2026 — Saskatoon, Regina & Rural SK",
+    description: "Saskatchewan-specific mortgage renewal guide for 2026: FCAA broker regulator, no provincial LTT, Saskatoon and Regina markets, and Saskatchewan credit union renewal options.",
+  }),
+  articleSchema({
+    headline: "Saskatchewan Mortgage Renewal 2026 — Saskatoon, Regina & Rural SK",
+    description: "Saskatchewan mortgage renewal: no provincial land transfer tax, FCAA broker regulator, Saskatoon and Regina housing markets, and 2026 renewal strategies for SK homeowners.",
+    slug: "saskatchewan-mortgage-renewal",
+    areaServed: "Saskatchewan, Canada",
+    articleSection: "Provincial Guides",
+    about: "Saskatchewan Mortgage Renewal",
+    keywords: ["Saskatchewan mortgage renewal", "Saskatoon renewal rates", "Regina mortgage", "FCAA Saskatchewan", "Conexus Credit Union", "Affinity Credit Union"],
+  }),
+  breadcrumbSchema([
+    { name: "Saskatchewan Mortgage Renewal", url: "/saskatchewan-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "saskatchewan-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Saskatchewan Mortgage Renewal 2026 — Saskatoon & Regina"
+  description="Saskatchewan mortgage renewal 2026: no provincial LTT, FCAA broker regulator, Saskatoon and Regina markets, and credit union renewal strategies."
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+          Saskatchewan Renewal Guide
+        </div>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          Saskatchewan Mortgage Renewal in 2026
+        </h1>
+        <p class="text-xl text-white/80 mb-8">
+          Saskatoon, Regina, and rural Saskatchewan homeowners benefit from no provincial land transfer tax, a strong credit union sector, and among the most affordable home prices in Canada. Here's how to get the best renewal rate.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/book-a-call/">
+            <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
+              Book Free Saskatchewan Broker Consultation
+            </button>
+          </a>
+          <a href="/mortgage-renewal-calculator/">
+            <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
+              Calculate My New Payment
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET SNAPSHOT -->
+  <section class="border-b py-10 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { stat: "~$400K", label: "Saskatoon avg home price (2026)", sub: "SRAR data" },
+          { stat: "~$325K", label: "Regina avg home price (2026)", sub: "ARAR data" },
+          { stat: "0%", label: "Provincial land transfer tax", sub: "Only a ~0.3% title transfer fee" },
+          { stat: "~40%", label: "Share of Canada's agricultural output", sub: "Stats Canada" },
+        ].map(item => (
+          <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
+            <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
+            <div class="mt-1 text-sm font-medium text-gray-800">{item.label}</div>
+            <div class="mt-0.5 text-xs text-gray-500">{item.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-12 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-10">
+
+          <div>
+            <h2 class="text-heading-2 mb-4">Saskatchewan Mortgage Market Overview</h2>
+            <p class="text-body-lg text-muted-foreground mb-4">
+              Saskatchewan's mortgage market is anchored by Saskatoon (~$400K average home price in 2026) and Regina (~$325K), with substantial rural activity across farming communities, acreages, and resource-sector towns. Home values are among the most affordable in Canada, and Saskatchewan benefits from having <strong>no provincial land transfer tax</strong> — only a small land titles transfer fee of approximately 0.3% on registration.
+            </p>
+            <p class="text-body-md text-muted-foreground mb-4">
+              Saskatchewan's economy is diversified across agriculture (Saskatchewan produces roughly 40% of Canada's agricultural output), potash (Saskatchewan supplies over 30% of global potash), uranium (the world's largest producer), and oil and gas (the Bakken formation in the southeast). These resource cycles can influence local housing demand and, for resource-sector workers, can affect income documentation at renewal.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">No Provincial Land Transfer Tax</h2>
+            <p class="text-body-md text-muted-foreground mb-4">
+              Saskatchewan is one of only four provinces in Canada without a provincial Land Transfer Tax (joining Alberta and the three territories). Instead, the province charges a small Land Titles transfer fee of approximately 0.3% of the property's value on registration. For a $400,000 Saskatoon purchase, that's roughly $1,200 — compared with roughly $5,475 in Manitoba, $4,500 in Ontario, or $6,000 in BC.
+            </p>
+            <p class="text-body-md text-muted-foreground">
+              For renewal purposes, the absence of a provincial LTT doesn't directly affect a straight renewal (which has no transfer tax implications anyway). But it does matter if you're considering porting your mortgage to a new home or if a refinance triggers any title-registration event. It also makes Saskatchewan one of the cheapest provinces in Canada for <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching lenders</a> at renewal, since overall transaction costs are lower than in higher-tax provinces.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Saskatchewan Mortgage Broker Licensing (FCAA)</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Saskatchewan mortgage brokers are regulated by the <strong>Financial and Consumer Affairs Authority (FCAA)</strong> of Saskatchewan under The Mortgage Brokerages and Mortgage Administrators Act. Both brokerage firms and individual mortgage associates must hold valid FCAA licences. The FCAA maintains a public registry where consumers can verify licence status.</p>
+            <p class="text-body-md text-muted-foreground mb-4">Licensed Saskatchewan brokers have access to federally regulated lenders (banks, monolines) and provincially regulated Saskatchewan credit unions. For farm and acreage clients, they can also coordinate with Farm Credit Canada (FCC), though FCC is typically accessed directly.</p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Saskatchewan Credit Union Sector</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Saskatchewan has one of the largest credit union shares of any provincial mortgage market in Canada. Credit unions are frequently the most competitive option at renewal — especially for self-employed borrowers, farmers, acreage owners, and borrowers with tight qualifying ratios.</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { name: "Conexus Credit Union", notes: "Largest Saskatchewan credit union; strong urban and rural coverage with competitive residential and agricultural products." },
+                { name: "Affinity Credit Union", notes: "Second-largest Saskatchewan CU; significant Saskatoon and provincial presence, competitive renewal rates." },
+                { name: "Synergy Credit Union", notes: "West-central Saskatchewan coverage; strong oil-patch and agricultural lending expertise." },
+                { name: "Innovation Credit Union", notes: "Digital-first credit union with physical branches across Saskatchewan; competitive rates and modern mortgage technology." },
+                { name: "Cornerstone Credit Union", notes: "East-central Saskatchewan coverage; strong community relationships and agricultural lending." },
+                { name: "TCU Financial Group", notes: "Saskatchewan-based credit union with urban and rural presence; competitive residential renewal products." },
+              ].map(cu => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{cu.name}</div>
+                  <div class="text-xs text-muted-foreground">{cu.notes}</div>
+                </div>
+              ))}
+            </div>
+            <p class="text-body-md text-muted-foreground mt-4">Credit unions in Saskatchewan are regulated by FCAA, not by OSFI, so they are not bound by B-20 in the same way as federally regulated banks. Many apply a similar test voluntarily, but some will qualify at contract rate — a meaningful advantage for borrowers with tight qualifying ratios or variable incomes.</p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Major Markets in Saskatchewan</h2>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { city: "Saskatoon", notes: "Largest city in SK, ~$400K average; growing tech sector, healthcare employment, and University of Saskatchewan. Balanced-to-seller's market in 2026." },
+                { city: "Regina", notes: "Provincial capital, ~$325K average; government, healthcare, and SaskPower employment anchor the market. Moderate market conditions in 2026." },
+                { city: "Prince Albert", notes: "Northern hub serving northern SK and into the North; unique property mix including smaller towns and Indigenous reserve proximities." },
+                { city: "Moose Jaw & southern SK", notes: "Moose Jaw, Weyburn, Estevan — diversified economies with agriculture, oil and gas. Properties more affordable than Saskatoon/Regina." },
+                { city: "Acreages & rural residential", notes: "Substantial number of rural residential properties with private wells and septics; requires lender with rural product comfort." },
+                { city: "Farmland & agricultural", notes: "Saskatchewan farmland values have appreciated significantly through the 2020s. FCC, Conexus, and Synergy Credit Union are major agricultural lenders." },
+              ].map(m => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{m.city}</div>
+                  <div class="text-xs text-muted-foreground">{m.notes}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Steps to Get the Best Rate in Saskatchewan</h2>
+            <ol class="space-y-4">
+              {[
+                { step: "1", title: "Start 120 days before maturity", desc: "Most Saskatchewan lenders will hold a rate for up to 120 days. Locking a rate early creates a floor and gives you time to keep shopping. Our <a href='/mortgage-renewal-checklist/' style='color: var(--secondary)'>renewal checklist</a> walks through the full timeline." },
+                { step: "2", title: "Use an FCAA-licensed broker", desc: "A Saskatchewan-licensed <a href='/mortgage-broker-renewal/' style='color: var(--secondary)'>mortgage broker</a> can pull quotes from banks, monolines, and SK credit unions in one consultation. Verify the licence via the FCAA registry." },
+                { step: "3", title: "Get quotes from all three channels", desc: "Get at least one quote each from a Big 6 bank, a monoline (First National, MCAP, RMG), and a Saskatchewan credit union (Conexus, Affinity, Synergy). Each wins on different profiles." },
+                { step: "4", title: "Farm or acreage? Start earlier", desc: "Agricultural and rural acreage renewals involve more documentation and a narrower set of lenders. Start 6 months early for farm mortgages and use a broker with rural experience." },
+                { step: "5", title: "Compare total cost, not just rate", desc: "Prepayment privileges, portability, penalty methodology, and discharge fees all meaningfully affect the 5-year cost of your mortgage. Review the <a href='/fixed-vs-variable-mortgage-renewal/' style='color: var(--secondary)'>fixed vs. variable</a> decision carefully with your broker." },
+              ].map(item => (
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 text-white font-bold text-sm">{item.step}</div>
+                  <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                    <p class="text-body-sm text-muted-foreground" set:html={item.desc}></p>
+                  </div>
+                </div>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="rounded-xl bg-primary-0 border border-primary-50 p-6">
+            <h3 class="text-heading-5 text-primary-100 mb-3">Free Saskatchewan Broker Consultation</h3>
+            <p class="text-body-sm text-muted-foreground mb-4">Our FCAA-licensed Saskatchewan brokers access banks, monolines, and credit unions — including Conexus, Affinity, and Synergy — in one consultation. Free, no obligation.</p>
+            <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
+              Book Free Call →
+            </a>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Saskatchewan Resources</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://fcaa.gov.sk.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">FCAA Saskatchewan — Broker Regulator</a></li>
+              <li><a href="https://www.saskatoonrealestate.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">Saskatoon Real Estate</a></li>
+              <li><a href="https://www.fcc-fac.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">Farm Credit Canada (FCC)</a></li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Renewal Tools</h3>
+            <ul class="space-y-2">
+              {[
+                { name: "Payment Calculator", href: "/mortgage-renewal-calculator/" },
+                { name: "Renewal Checklist", href: "/mortgage-renewal-checklist/" },
+                { name: "Switching Guide", href: "/switching-lenders-at-renewal/" },
+                { name: "Self-Employed Renewal", href: "/self-employed-mortgage-renewal/" },
+              ].map(t => (
+                <li><a href={t.href} class="text-sm text-secondary-100 hover:underline">{t.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-100 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <h2 class="text-heading-2 text-white mb-4">Ready to Start Your Saskatchewan Renewal?</h2>
+      <p class="text-xl text-white/80 mb-8">
+        Our licensed Saskatchewan mortgage brokers compare rates from 30+ lenders including Conexus, Affinity, and Synergy Credit Union. Free, no obligation.
+      </p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Consultation
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

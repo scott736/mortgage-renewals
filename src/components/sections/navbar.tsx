@@ -16,36 +16,104 @@ import { PROVINCE_PAGES } from "@/consts";
 const ITEMS = [
   {
     label: "Calculators",
-    href: "/mortgage-renewal-calculator",
+    href: "/mortgage-renewal-calculator/",
     dropdownItems: [
-      { title: "Renewal Payment Estimator", href: "/mortgage-renewal-calculator" },
-      { title: "Rate Comparison Calculator", href: "/mortgage-renewal-calculator#rate-comparison" },
-      { title: "Amortization Extension Calculator", href: "/mortgage-renewal-calculator#amortization" },
-      { title: "Early Renewal Penalty Estimator", href: "/mortgage-renewal-calculator#penalty" },
-      { title: "Debt Consolidation Calculator", href: "/mortgage-renewal-calculator#debt-consolidation" },
+      { title: "All Renewal Calculators", href: "/mortgage-renewal-calculator/" },
+      { title: "Stress Test Calculator", href: "/mortgage-stress-test-calculator/" },
+      { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
+      { title: "Switch vs. Stay Break-Even", href: "/switch-vs-stay-calculator/" },
+      { title: "HELOC vs. Refinance", href: "/heloc-vs-refinance-calculator/" },
+      { title: "Payment Frequency Calculator", href: "/mortgage-payment-frequency-canada/" },
+      { title: "Should I Switch? (Quiz)", href: "/should-i-switch-quiz/" },
     ],
   },
   {
     label: "Guides",
-    href: "/mortgage-renewal-guide",
+    href: "/mortgage-renewal-guide/",
     dropdownItems: [
-      { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide" },
-      { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal" },
-      { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
-      { title: "Lower Your Payments", href: "/lower-mortgage-payments-at-renewal" },
-      { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing" },
-      { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal" },
-      { title: "How a Broker Helps", href: "/mortgage-broker-renewal" },
-      { title: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes" },
-      { title: "Mortgage Glossary", href: "/mortgage-renewal-glossary" },
+      { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide/" },
+      { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal/" },
+      { title: "Switching Lenders", href: "/switching-lenders-at-renewal/" },
+      { title: "Stress Test at Renewal", href: "/stress-test-mortgage-renewal/" },
+      { title: "Collateral vs. Standard Charge", href: "/collateral-vs-standard-charge-mortgage/" },
+      { title: "Prepayment Privileges", href: "/mortgage-prepayment-privileges-canada/" },
+      { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
+      { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal/" },
+      { title: "Insured vs. Conventional", href: "/insured-vs-conventional-mortgage-renewal/" },
+      { title: "30-Year Amortization Rules", href: "/30-year-amortization-mortgage-renewal/" },
+      { title: "Trigger Rate (Variable)", href: "/trigger-rate-variable-mortgage-canada/" },
+      { title: "IRD vs. 3-Month Penalty", href: "/ird-vs-three-month-interest-penalty/" },
+      { title: "Porting a Mortgage", href: "/porting-a-mortgage-canada/" },
+      { title: "Renewal Mistakes", href: "/mortgage-renewal-mistakes/" },
+      { title: "Mortgage Glossary", href: "/mortgage-renewal-glossary/" },
     ],
   },
-  { label: "Rates", href: "/best-mortgage-renewal-rates" },
-  { label: "FAQ", href: "/mortgage-renewal-faq" },
+  {
+    label: "Rates",
+    href: "/best-mortgage-renewal-rates/",
+    dropdownItems: [
+      { title: "Best Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+      { title: "Current Mortgage Rates", href: "/current-mortgage-rates-canada/" },
+      { title: "Rate Forecast", href: "/mortgage-rate-forecast/" },
+      { title: "Bank of Canada Decisions", href: "/bank-of-canada-rate-decisions/" },
+      { title: "Rate Alert Signup", href: "/rate-alert/" },
+    ],
+  },
+  {
+    label: "Lenders",
+    href: "/mortgage-lender-types-canada/",
+    dropdownItems: [
+      { title: "All Canadian Lender Types", href: "/mortgage-lender-types-canada/" },
+      { title: "Mortgage Broker at Renewal", href: "/mortgage-broker-renewal/" },
+      { title: "TD Canada Trust", href: "/td-mortgage-renewal/" },
+      { title: "RBC Royal Bank", href: "/rbc-mortgage-renewal/" },
+      { title: "BMO Bank of Montreal", href: "/bmo-mortgage-renewal/" },
+      { title: "Scotiabank", href: "/scotiabank-mortgage-renewal/" },
+      { title: "CIBC", href: "/cibc-mortgage-renewal/" },
+      { title: "National Bank", href: "/national-bank-mortgage-renewal/" },
+      { title: "First National (Monoline)", href: "/first-national-mortgage-renewal/" },
+      { title: "MCAP (Monoline)", href: "/mcap-mortgage-renewal/" },
+      { title: "Credit Unions", href: "/credit-union-mortgage-renewal-canada/" },
+    ],
+  },
+  {
+    label: "Situations",
+    href: "/self-employed-mortgage-renewal/",
+    dropdownItems: [
+      { title: "Self-Employed", href: "/self-employed-mortgage-renewal/" },
+      { title: "Bad Credit", href: "/bad-credit-mortgage-renewal/" },
+      { title: "First-Time Renewer", href: "/first-time-mortgage-renewal/" },
+      { title: "Seniors / Retirees", href: "/seniors-mortgage-renewal-canada/" },
+      { title: "Reverse Mortgage Option", href: "/reverse-mortgage-at-renewal/" },
+      { title: "Job Loss at Renewal", href: "/job-loss-mortgage-renewal/" },
+      { title: "Divorce", href: "/divorce-mortgage-renewal/" },
+      { title: "Spousal Buyout", href: "/spousal-buyout-mortgage-renewal/" },
+      { title: "Remove a Co-Signer", href: "/remove-co-signer-mortgage-renewal/" },
+      { title: "Investment Property", href: "/investment-property-renewal/" },
+      { title: "New to Canada", href: "/new-to-canada-mortgage-renewal/" },
+      { title: "Estate / POA", href: "/estate-mortgage-renewal/" },
+      { title: "Assuming a Mortgage", href: "/assuming-a-mortgage-canada/" },
+    ],
+  },
   {
     label: "Provinces",
-    href: "/ontario-mortgage-renewal",
+    href: "/ontario-mortgage-renewal/",
     dropdownItems: PROVINCE_PAGES.map((p) => ({ title: p.name, href: p.href })),
+  },
+  {
+    label: "Resources",
+    href: "/mortgage-renewal-faq/",
+    dropdownItems: [
+      { title: "FAQ", href: "/mortgage-renewal-faq/" },
+      { title: "News & Updates", href: "/mortgage-renewal-news/" },
+      { title: "Case Studies", href: "/case-studies/" },
+      { title: "Renewal Checklist", href: "/mortgage-renewal-checklist/" },
+      { title: "PDF Checklist Download", href: "/mortgage-renewal-checklist-pdf/" },
+      { title: "Renewal Date Reminder", href: "/renewal-reminder/" },
+      { title: "Term Decision Guide", href: "/mortgage-term-decision-guide/" },
+      { title: "Flex Features", href: "/mortgage-flex-features-canada/" },
+      { title: "Site Map", href: "/mortgage-renewal-sitemap/" },
+    ],
   },
 ];
 
@@ -145,12 +213,12 @@ const Navbar: React.FC = () => {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-2.5">
-            <a href="/book-a-call" className="hidden lg:block">
+            <a href="/book-a-call/" className="hidden lg:block">
               <Button size="sm" variant="secondary">
                 Book Free Call
               </Button>
             </a>
-            <a href="/mortgage-renewal-calculator" className="hidden lg:block">
+            <a href="/mortgage-renewal-calculator/" className="hidden lg:block">
               <Button size="sm">Compare Rates</Button>
             </a>
 
@@ -211,8 +279,8 @@ const Navbar: React.FC = () => {
               ),
             )}
             <div className="flex flex-col gap-3 pb-20 sm:gap-4 lg:flex-row">
-              <a href="/book-a-call"><Button variant="secondary" className="w-full" onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }}>Book Free Call</Button></a>
-              <a href="/mortgage-renewal-calculator"><Button className="w-full" onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }}>Compare Rates</Button></a>
+              <a href="/book-a-call/"><Button variant="secondary" className="w-full" onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }}>Book Free Call</Button></a>
+              <a href="/mortgage-renewal-calculator/"><Button className="w-full" onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }}>Compare Rates</Button></a>
             </div>
           </nav>
         </div>

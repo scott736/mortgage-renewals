@@ -1,0 +1,229 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Can seniors on a fixed income still qualify for a mortgage renewal in Canada?",
+    answer: "Yes. Most Canadian lenders accept pension income, CPP, OAS, and RRIF withdrawals as qualifying income for mortgage renewal. Staying with your existing lender requires no requalification at all. Switching lenders via a straight switch (same balance, same amortization, no new money) is exempt from the stress test as of November 21, 2024. Refinancing or extending amortization still requires full requalification, which can be harder on a fixed income — but specific senior-friendly products, including reverse mortgages, exist for that scenario."
+  },
+  {
+    question: "What is the Canadian Mortgage Charter's 35-year amortization extension?",
+    answer: "The Canadian Mortgage Charter (introduced 2024) requires federally regulated lenders to offer temporary relief — including amortization extensions up to 35 years — for borrowers facing genuine financial hardship. For seniors on fixed incomes whose payment has risen materially at renewal, requesting this extension can substantially reduce the monthly payment. It's a temporary accommodation, not a permanent term change, and lender approval is required."
+  },
+  {
+    question: "Should a senior consider a reverse mortgage at renewal?",
+    answer: "A reverse mortgage is worth considering for homeowners 55+ who have significant equity but limited income to service a traditional mortgage. Canadian reverse mortgage providers include HomeEquity Bank (CHIP) and Bloom Finance (backed by Equitable Bank). There are no monthly payments; interest accrues and the balance is paid when the home is sold or the owner passes away. Reverse mortgage rates are higher than conventional (typically 7-8% in April 2026) — so they are best for seniors whose main alternative would be selling the home."
+  },
+  {
+    question: "What happens to the mortgage if I pass away during the term?",
+    answer: "Federally regulated lenders in Canada typically provide a 30-day grace period for the estate after a borrower passes away during a mortgage term. The estate has time to decide whether to pay the mortgage out, sell the property, transfer the mortgage to a surviving co-borrower, or requalify in the name of an heir. Life insurance, mortgage insurance, or an estate with liquid assets all provide paths to resolving the mortgage without forced sale. For reverse mortgages, the estate typically has 6-12 months to settle the loan."
+  },
+  {
+    question: "Are seniors charged higher mortgage renewal rates?",
+    answer: "No — federally regulated lenders in Canada are prohibited from discriminating on the basis of age under provincial human rights legislation and the Canadian Human Rights Act. Rate pricing is based on mortgage characteristics (term, product type, insurability, loan-to-value) rather than borrower age. However, income qualification at refinance does depend on documented income, which can favor higher-earning younger borrowers. This is where proper income documentation (pension statements, RRIF projections, investment income) and broker expertise matter most for seniors."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "seniors-mortgage-renewal-canada",
+    name: "Seniors Mortgage Renewal in Canada — Options After 65",
+    description: "Canadian seniors mortgage renewal: qualifying on pension and RRIF income, reverse mortgages, Canadian Mortgage Charter, and 2026 strategies for homeowners 65+.",
+  }),
+  articleSchema({
+    headline: "Seniors Mortgage Renewal in Canada — Options After 65",
+    description: "Canadian seniors mortgage renewal guide: pension and RRIF income qualifying, reverse mortgages (CHIP, Bloom), Canadian Mortgage Charter relief, and strategies for homeowners 65+.",
+    slug: "seniors-mortgage-renewal-canada",
+    articleSection: "Persona Guides",
+    about: "Seniors Mortgage Renewal",
+    keywords: ["seniors mortgage renewal Canada", "reverse mortgage renewal", "CHIP reverse mortgage", "pension income mortgage", "retirement mortgage Canada"],
+  }),
+  breadcrumbSchema([
+    { name: "Seniors Mortgage Renewal Canada", url: "/seniors-mortgage-renewal-canada" }
+  ]),
+  faqSchema(faqs, "seniors-mortgage-renewal-canada"),
+);
+---
+
+<DefaultLayout
+  title="Seniors Mortgage Renewal Canada — Options After 65"
+  description="Canadian seniors mortgage renewal: qualifying on pension and RRIF income, reverse mortgages, Canadian Mortgage Charter relief, and strategies for homeowners 65+."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Seniors Mortgage Renewal Canada
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 11-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">Seniors Mortgage Renewal in Canada — Options After 65</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">Renewing a mortgage in your 60s, 70s, or beyond requires a different lens than renewing in your 30s. Fixed income, estate considerations, and alternative products like reverse mortgages all come into play. This guide walks through what Canadian seniors need to know at renewal — including how to qualify on pension income, when a reverse mortgage makes sense, and how the Canadian Mortgage Charter can help.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+          Get a Free Strategy Call
+        </a>
+        <a href="#options" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="border: 2px solid rgba(255,255,255,0.4); color: white">
+          See Renewal Options
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Canadian lenders cannot discriminate on age — your age does not determine your renewal rate. Income documentation and loan-to-value do.</li>
+            <li>• Pension income (CPP, OAS, workplace pensions), RRIF withdrawals, and investment income are all accepted as qualifying income by most Canadian lenders.</li>
+            <li>• Staying with your current lender at renewal requires no requalification. A straight switch is exempt from the stress test since November 21, 2024.</li>
+            <li>• The Canadian Mortgage Charter provides hardship relief including temporary amortization extensions up to 35 years — useful for fixed-income seniors facing payment shock.</li>
+            <li>• Reverse mortgages (HomeEquity Bank's CHIP, Bloom Finance via Equitable Bank) are available to homeowners 55+, require no monthly payments, and are repaid when the home is sold or the owner passes. Rates are higher — typically 7-8% in April 2026.</li>
+            <li>• If you die during the term, federally regulated lenders typically allow a 30-day grace period for the estate to decide how to handle the mortgage.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Why Seniors Renewals Are Different</h2>
+
+        <p class="mb-4 leading-relaxed">A senior renewing a mortgage in 2026 likely falls into one of three groups:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Still working, approaching retirement:</strong> Employment income remains the primary qualifying income; the mortgage will extend into retirement years.</li>
+          <li><strong>Recently retired:</strong> Income has shifted from employment to a mix of CPP, OAS, workplace pension, RRIF withdrawals, and investment income. This is often the tightest renewal — the income statement looks dramatically different than at original qualification.</li>
+          <li><strong>Long retired:</strong> Fixed income has been stable for years. The issue is less income qualification and more payment size relative to that income — especially if the original mortgage was taken at 2% rates and is renewing into 4%+ rates.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">In all three groups, the solution space is wider than most seniors realize. Staying with your current lender, switching via a straight switch, invoking Mortgage Charter hardship relief, or considering a reverse mortgage are all on the table. A good broker will walk through each option against your specific situation.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)" id="options">Qualifying on Pension and Retirement Income</h2>
+
+        <p class="mb-4 leading-relaxed">Most Canadian lenders accept the following as qualifying income for mortgage renewal:</p>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">CPP (Canada Pension Plan) and OAS (Old Age Security)</h3>
+            <p class="text-sm leading-relaxed">Both are accepted as stable lifelong income. Lenders typically require the most recent CPP/OAS statement or your most recent T4A(OAS) and T4A(P) slips. Maximum CPP (2026) is approximately $18,900/year; OAS is approximately $8,780/year for ages 65-74 (higher after 75). Both are indexed to inflation.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Workplace pension income</h3>
+            <p class="text-sm leading-relaxed">Defined-benefit workplace pensions, LIF (Life Income Fund) withdrawals, and IPP (Individual Pension Plan) distributions are typically accepted with pension statements or T4A slips. Defined-contribution pensions that have annuitized are similarly accepted.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">RRIF withdrawals</h3>
+            <p class="text-sm leading-relaxed">Minimum RRIF withdrawals (increasing from about 5.3% at 72 to higher percentages at older ages) are typically accepted as ongoing income. Some lenders will qualify against the actual RRIF balance's ability to sustain withdrawals over the mortgage term. An asset-based or income-based approach is worth discussing with your broker.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Investment income and non-registered accounts</h3>
+            <p class="text-sm leading-relaxed">Interest, dividends, and GIC income from non-registered and TFSA accounts are counted at most lenders when supported by T3/T5 slips and broker statements. Large non-registered portfolios can substantially lift qualifying income for seniors who otherwise appear cash-light.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">EI, GIS, and age-based supplements</h3>
+            <p class="text-sm leading-relaxed">Guaranteed Income Supplement (GIS), provincial income supplements, and other age-based benefits are generally accepted by lenders comfortable with senior files, though underwriter approach varies. Some lenders weight temporary supplements less heavily than permanent income streams.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Canadian Mortgage Charter — 35-Year Amortization Extension</h2>
+
+        <p class="mb-4 leading-relaxed">The Canadian Mortgage Charter (announced in the 2023 Federal Fall Economic Statement and applied to federally regulated lenders through 2024-2025) sets out a series of commitments lenders must honor when borrowers face genuine financial hardship. For seniors facing payment shock at renewal, two provisions are particularly relevant:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Temporary amortization extension to 35 years:</strong> Federally regulated lenders must offer qualifying hardship borrowers a temporary amortization extension up to 35 years to reduce the monthly payment. This is a temporary accommodation, not a permanent change, and is restored to a normal amortization schedule at the next renewal.</li>
+          <li><strong>Lump-sum payments without penalty to avoid negative amortization:</strong> Borrowers in variable-rate mortgages where the payment no longer covers interest are permitted to make lump-sum catch-up payments without early-payout penalty.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">Charter provisions are not automatic — you must request them from your lender, often with supporting documentation showing hardship. If your lender is unresponsive or appears unfamiliar with the Charter, a broker can help escalate or direct you to a lender that will honor the request.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Reverse Mortgages in Canada: CHIP and Bloom</h2>
+
+        <p class="mb-4 leading-relaxed">For seniors 55+ with substantial equity but limited qualifying income, a reverse mortgage can be the right tool. Two main Canadian providers:</p>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">HomeEquity Bank — CHIP Reverse Mortgage</h3>
+            <p class="text-sm leading-relaxed">Canada's largest reverse mortgage provider. Available to Canadian homeowners 55+. No monthly payments required; interest accrues onto the balance. Maximum advance is typically up to 55% of the home's appraised value (higher at older ages). Repaid when the home is sold, both owners pass away, or the owners move out permanently. Rates in April 2026 are approximately 7.0-8.0% depending on term.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Bloom Finance (via Equitable Bank)</h3>
+            <p class="text-sm leading-relaxed">Canada's second major reverse mortgage provider, backed by Equitable Bank. Similar structure to CHIP: no monthly payments, interest accrues, repaid at sale or death. Competitive rates and occasionally different features than CHIP. Comparing both is standard practice.</p>
+          </div>
+        </div>
+
+        <p class="mb-4 leading-relaxed">A reverse mortgage is the right tool when:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>You have substantial home equity but limited monthly income;</li>
+          <li>You intend to stay in your home long-term (typically 10+ years);</li>
+          <li>The alternative would be selling the home you want to stay in;</li>
+          <li>You've discussed the estate implications with family and legal counsel.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">Reverse mortgages are generally <strong>not</strong> the right tool when the conventional renewal is affordable with minor adjustments, when you plan to move in the next few years, or when estate transfer to family is the primary objective (because the accruing balance reduces what passes to heirs).</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Estate and Succession at Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">A senior renewal is an appropriate moment to review estate and succession planning against the mortgage. Key considerations:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Term length and expected sale date:</strong> If you anticipate selling within 2-3 years, a 5-year term may carry unnecessary prepayment risk. Shorter terms or open mortgages can be worth the small rate premium.</li>
+          <li><strong>Life insurance review:</strong> Does existing coverage (life insurance, mortgage insurance) cover the outstanding balance if you pass during the term? This is worth reviewing at each renewal.</li>
+          <li><strong>30-day estate provision:</strong> Federally regulated lenders typically provide a 30-day grace for the estate to decide how to handle the mortgage after a borrower's death. This is not enough time to refinance — but it is enough to make decisions.</li>
+          <li><strong>Surviving-spouse qualification:</strong> If the mortgage is jointly held and one spouse passes, the surviving spouse may need to requalify for the mortgage individually. A conversation with the lender or broker in advance clarifies whether that is straightforward or whether additional steps are needed.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Example Scenarios</h2>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2 text-sm" style="color: var(--secondary)">Scenario 1: Retired couple, $200K mortgage, renewing after 5 years at 2%</h3>
+            <p class="text-sm leading-relaxed">Payment rises from ~$1,060/month to ~$1,310/month at 4.25%. Combined CPP/OAS/workplace pension income of $68,000/year easily qualifies — straight switch to best-rate lender is the right move. No stress test applies. Savings: potentially 20-30 bps over staying with existing lender = ~$2,500-$4,000 over the term.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2 text-sm" style="color: var(--secondary)">Scenario 2: Widow, 74, $380K mortgage, fixed income of $42K/year</h3>
+            <p class="text-sm leading-relaxed">Payment at 4.25% would be ~$2,060/month — difficult on $3,500/month income. Options: (a) request Mortgage Charter 35-year amortization extension, reducing payment to ~$1,720/month; (b) consider reverse mortgage against $1.1M home equity, eliminating monthly payment entirely; (c) consider selling and downsizing. Broker helps quantify each option.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2 text-sm" style="color: var(--secondary)">Scenario 3: 68-year-old, still working, wants 10-year term</h3>
+            <p class="text-sm leading-relaxed">With a planned retirement in 5 years, a 5-year term lines up with retirement. A 10-year term would carry the mortgage beyond the planned retirement date and trap the borrower in higher payments at a point when income drops. Broker walks through term length strategy tied to retirement planning.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related -->
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/lower-mortgage-payments-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lower Mortgage Payments at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Strategies to reduce monthly payment when renewing on fixed income.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">No stress test on straight switches — helpful for seniors with tight ratios.</p>
+        </a>
+        <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Term Length Strategy</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Aligning mortgage term with retirement and life planning.</p>
+        </a>
+        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Month-by-month timeline for renewing your mortgage successfully.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A licensed Canadian mortgage broker can walk you through every option — traditional renewal, straight switch, hardship relief, or reverse mortgage. Free, no obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

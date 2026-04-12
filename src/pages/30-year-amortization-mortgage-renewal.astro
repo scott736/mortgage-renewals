@@ -1,0 +1,247 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Who can get a 30-year amortization on an insured mortgage in Canada?",
+    answer: "As of December 15, 2024, two groups can access 30-year insured amortizations: (1) all first-time homebuyers, regardless of property type, and (2) any buyer purchasing a newly built home, regardless of whether they are first-time buyers. Previously, from August 1, 2024, only first-time buyers of new construction qualified. The insured mortgage cap was simultaneously raised to $1.5 million."
+  },
+  {
+    question: "What defines a 'first-time homebuyer' for the 30-year rule?",
+    answer: "Canada Mortgage and Housing Corporation (CMHC) defines a first-time buyer as someone where no borrower on the application has owned a principal residence in the prior 4 years. There is a specific exception for people separating from a marriage or common-law partnership, who may qualify even if they owned a home during that period. All co-borrowers on the mortgage must meet the criteria."
+  },
+  {
+    question: "Does the 30-year amortization apply at refinance?",
+    answer: "No. Default-insured refinances are not permitted in Canada — insurance applies to purchases and certain very limited circumstances only. If you want a 30-year amortization at refinance, you must refinance as a conventional (uninsured) mortgage, which requires 20% equity. Uninsured borrowers have long been able to use 30-year amortizations."
+  },
+  {
+    question: "Does 30-year amortization apply at renewal?",
+    answer: "Yes, but only if your mortgage was originally set up on a 30-year amortization under the rules in effect at origination. Straight renewals preserve your existing amortization. You cannot extend from 25 to 30 years at renewal to lower payments — that would require a refinance, which triggers the stress test and, for insured loans, isn't permitted."
+  },
+  {
+    question: "Why was the 30-year amortization expanded?",
+    answer: "The December 2024 expansion was part of what the federal government called the 'Boldest Mortgage Reforms in Decades.' The goal was to improve affordability for younger buyers being priced out by high home values and to stimulate new construction supply. Longer amortizations reduce monthly payments (at the cost of more total interest over the life of the loan), helping buyers qualify under the stress test at today's rates."
+  },
+  {
+    question: "What's the payment impact of 30-year vs. 25-year amortization?",
+    answer: "On a $600,000 insured mortgage at 4.00%, the monthly payment is roughly $3,160 on a 25-year amortization versus $2,855 on a 30-year — a savings of $305/month, or about 9.6%. Total interest paid over the life of the loan is meaningfully higher with the 30-year (roughly $428,000 vs. $348,000 if you carried it to full amortization), but most borrowers renew long before reaching that point."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "30-Year Amortization for Insured Mortgages at Renewal (2026)",
+    description: "Canada's 2024 federal rule change that extended 30-year insured amortizations to first-time buyers and new-build purchasers. How it affects renewal.",
+    slug: "30-year-amortization-mortgage-renewal",
+    articleSection: "Federal Mortgage Rules",
+    about: "30-year amortization insured mortgage Canada",
+    keywords: ["30 year amortization", "first time buyer mortgage", "insured mortgage rules", "CMHC amortization", "2024 mortgage reform"],
+  }),
+  breadcrumbSchema([
+    { name: "30-Year Amortization at Renewal", url: "/30-year-amortization-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "30-year-amortization-mortgage-renewal"),
+  webPageNode({
+    slug: "30-year-amortization-mortgage-renewal",
+    name: "30-Year Amortization for Insured Mortgages in Canada",
+    description: "Canada's August and December 2024 rule changes on 30-year insured amortizations — who qualifies, how it affects renewal, and payment math.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="30-Year Amortization Insured Mortgage Canada (2026)"
+  description="Canada's 2024 federal reforms extended 30-year insured amortizations to first-time buyers and new-build buyers. Who qualifies, renewal rules, and payment math."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › 30-Year Amortization at Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Federal Rules · 2024 Reforms</div>
+      <h1 class="text-heading-1 mb-4">30-Year Amortization for Insured Mortgages in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. The federal government's 2024 mortgage reforms — phased in August and expanded December 15, 2024 — opened 30-year insured amortizations to first-time homebuyers and all new-build purchasers. Here's how it works and what it means at renewal.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>August 1, 2024:</strong> 30-year insured amortizations became available to first-time buyers of newly built homes only.</li>
+        <li>• <strong>December 15, 2024:</strong> Expanded to <em>all</em> first-time buyers (any property) and <em>any</em> buyer of a newly built home (first-time or not).</li>
+        <li>• Insured cap raised simultaneously from $1M to <strong>$1.5M</strong>.</li>
+        <li>• <strong>First-time buyer</strong> = no borrower has owned a principal residence in the prior 4 years (with a marriage/common-law breakdown exception).</li>
+        <li>• Does <strong>not</strong> apply at insured refinance (insured refinances aren't permitted in Canada).</li>
+        <li>• At <strong>renewal</strong>, your existing amortization is preserved on a straight switch — you can't stretch it to 30 years unless it was 30 at origination.</li>
+        <li>• Source: <a href="https://www.canada.ca/en/department-finance/news/2024/12/boldest-mortgage-reforms-in-decades-come-into-force-today.html" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Department of Finance — Boldest Mortgage Reforms in Decades</a>.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">A Short History of Canadian Insured Amortization Rules</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian insured amortization limits have oscillated for decades. Before 2008, CMHC would insure mortgages up to 40 years. Following the global financial crisis, successive federal governments tightened the rules — down to 35 years, then 30 years, then 25 years by July 2012. That 25-year insured maximum held for over a decade.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The 2024 reforms reversed that trajectory for targeted cohorts. The policy goal was twofold: improve affordability for younger Canadians struggling to enter the market, and stimulate supply of newly built homes by providing a specific incentive for purchasers of new construction.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Two Eligibility Paths in Effect Today</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Path 1: First-Time Buyers</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Since December 15, 2024, any first-time buyer can access a 30-year insured amortization regardless of whether the home is new construction or a resale.</p>
+        <p class="text-body-sm-medium">Requirement: no borrower has owned a principal residence in the prior 4 years.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Path 2: New Construction</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Any buyer purchasing a newly built home (not just first-timers) can access a 30-year insured amortization on the purchase.</p>
+        <p class="text-body-sm-medium">Newly built = never previously occupied, including pre-construction condos and new detached homes.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Counts as a "First-Time Homebuyer"?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The technical definition used by CMHC, Sagen, and Canada Guaranty requires that <strong>no borrower</strong> listed on the mortgage application has owned a principal residence in the prior 4 years. Key points:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>If you're applying jointly with a spouse or partner, both of you must meet the 4-year criterion.</li>
+      <li>Owning investment property that was never your principal residence does not disqualify you (confirm with your lender — some have stricter interpretations).</li>
+      <li>A marriage or common-law separation exception allows the departing spouse to qualify as a first-time buyer even if they owned the matrimonial home during the 4-year window.</li>
+      <li>Foreign ownership periods can count, depending on the lender's underwriting policy.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Payment Impact: 25-Year vs. 30-Year Amortization</h2>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The monthly payment reduction from a 30-year amortization is meaningful but comes with long-term interest cost. Here's the math at April 2026 insured rates (~4.00% on a 5-year fixed):
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Mortgage Balance</th>
+            <th class="p-3 text-left">25-Year Payment</th>
+            <th class="p-3 text-left">30-Year Payment</th>
+            <th class="p-3 text-left">Monthly Savings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">$400,000</td>
+            <td class="p-3">$2,105</td>
+            <td class="p-3">$1,902</td>
+            <td class="p-3 font-semibold text-secondary-100">$203</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">$600,000</td>
+            <td class="p-3">$3,158</td>
+            <td class="p-3">$2,855</td>
+            <td class="p-3 font-semibold text-secondary-100">$303</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">$800,000</td>
+            <td class="p-3">$4,210</td>
+            <td class="p-3">$3,807</td>
+            <td class="p-3 font-semibold text-secondary-100">$403</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">$1,200,000</td>
+            <td class="p-3">$6,315</td>
+            <td class="p-3">$5,710</td>
+            <td class="p-3 font-semibold text-secondary-100">$605</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Calculations assume 4.00% contract rate, Canadian semi-annual compounding. Actual payments vary by lender.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How This Intersects With Your Mortgage Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you purchased your home under the 2024 rules with a 30-year insured amortization, that amortization continues through your first and subsequent renewals — as long as you do a straight switch or straight renewal. After 5 years in your first term, your remaining amortization at renewal would be 25 years, and the pattern continues.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      What you <strong>cannot</strong> do at renewal is extend your amortization beyond your contractual schedule. If you originated on a 25-year amortization in 2022, you cannot renew into a 30-year amortization today — even if you'd otherwise meet the first-time-buyer criterion. Renewals preserve the existing amortization. See our <a href="/renewal-vs-refinancing/" class="text-secondary-100 hover:underline">renewal vs. refinancing guide</a> for when you might want the flexibility of a refinance instead.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      One narrow exception: the <a href="/canadian-mortgage-charter/" class="text-secondary-100 hover:underline">Canadian Mortgage Charter</a> permits temporary amortization extensions up to 35 years on principal residences as a hardship relief measure. This is a genuine hardship provision — not a payment-reduction tool — and requires lender cooperation on a case-by-case basis.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Uninsured Mortgages Always Had 30-Year Access</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      An important clarification: borrowers with 20%+ down (conventional/uninsured) have been able to use 30-year amortizations for years — and some lenders offer 35-year uninsured amortizations. The 2024 changes only addressed insured mortgages. If you're renewing a conventional mortgage with 20%+ equity, the 30-year amortization question has always been on the table for refinances, subject to your lender's underwriting and the stress test.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Long-Term Cost: The Trade-Off of Longer Amortizations</h2>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Reduced monthly payments are attractive, but 30-year amortizations increase total interest paid over the life of the loan substantially. On a $600,000 mortgage at 4.00% carried to full term:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>25-year amortization:</strong> Total payments ≈ $947,400. Total interest ≈ $347,400.</li>
+      <li><strong>30-year amortization:</strong> Total payments ≈ $1,027,800. Total interest ≈ $427,800.</li>
+      <li><strong>Extra interest over life of loan:</strong> ~$80,400 for the 30-year option.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Most Canadians don't carry a single mortgage to full amortization — life events, rate changes, and home sales intervene. But the total cost picture matters when deciding whether to maximize qualification with a 30-year term or opt for 25 years if affordability allows.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <div>
+      <h2 class="text-heading-3 mb-4">Related Guides</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { title: "Insured vs. Conventional at Renewal", href: "/insured-vs-conventional-mortgage-renewal/" },
+          { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
+          { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+          { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+          { title: "Mortgage Renewal Term Lengths", href: "/mortgage-renewal-term-lengths/" },
+          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+        ].map(link => (
+          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+            <span class="text-secondary-100">→</span>
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Questions About Your Amortization?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can review your current amortization and options — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

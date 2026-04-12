@@ -47,10 +47,10 @@ export function SchedulingWidgetWithBoundary(props: SchedulingWidgetWithBoundary
       <p className="font-semibold text-destructive mb-2">Something went wrong</p>
       <p className="text-sm text-muted-foreground mb-4">
         We encountered an unexpected error.{' '}
-        <a href="/book-a-call" className="text-primary hover:underline">Contact us</a>
+        <a href="/book-a-call/" className="text-primary hover:underline">Contact us</a>
         {' '}and we'll help you get started.
       </p>
-      <a href="/book-a-call" className="text-sm text-primary hover:underline">
+      <a href="/book-a-call/" className="text-sm text-primary hover:underline">
         Contact
       </a>
     </div>

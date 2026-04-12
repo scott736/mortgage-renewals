@@ -1,0 +1,262 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is the Interest Rate Differential (IRD)?",
+    answer: "The Interest Rate Differential is a prepayment penalty charged on closed fixed-rate mortgages when you break the term early and current rates are lower than your contract rate. It's designed to compensate the lender for the interest they would have earned had you stayed. Most Canadian lenders charge the greater of 3 months' interest or IRD, and the calculation method varies dramatically between the Big 6 banks and monoline lenders."
+  },
+  {
+    question: "Why is the Big 6 IRD so much higher than a monoline IRD?",
+    answer: "The Big 6 banks (TD, RBC, BMO, Scotiabank, CIBC, National Bank) use the 'discounted rate method' for IRD — they compare your contract rate against the current posted rate for your remaining term, minus the original discount from posted you received. Because posted rates are typically 2%+ above contract rates, this math inflates the rate gap and the penalty. Monoline lenders like First National and MCAP use a fair contract-rate-based method, producing much lower penalties."
+  },
+  {
+    question: "When does IRD apply versus the 3-month interest penalty?",
+    answer: "On a closed fixed-rate mortgage, most Canadian lenders charge the GREATER of 3 months' interest or IRD. Three-month interest applies when rates have risen (or held steady) since your origination — there's no lost interest to the lender, so only the simple 3-month figure applies. IRD applies when rates have fallen: the lender would lose income re-lending the principal at a lower rate, so they charge the differential. On variable-rate mortgages, only 3 months' interest applies — IRD does not apply."
+  },
+  {
+    question: "Can I negotiate the IRD penalty?",
+    answer: "Rarely directly — the penalty formula is in your mortgage commitment and is non-negotiable once signed. But you can often avoid or reduce it by: porting the mortgage to a new property, doing a blend-and-extend instead of breaking, using your annual prepayment privilege before breaking to reduce the principal being penalized, or switching at maturity (zero penalty at renewal). A broker can model each option."
+  },
+  {
+    question: "How does the 2024 Mortgage Charter affect prepayment penalties?",
+    answer: "The 2024 Canadian Mortgage Charter committed federally regulated lenders to providing clear, upfront penalty disclosures and better options for borrowers in financial difficulty. It did not change the IRD formula or the 3-month interest calculation. OSFI's November 2024 straight-switch exemption removed the stress test barrier to switching at renewal (when no penalty applies), but penalties for breaking mid-term remain unchanged."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "IRD vs. 3-Month Interest Penalty: Canada 2026 Explained",
+    description: "How Canadian mortgage prepayment penalties work in 2026. IRD calculation methods, Big 6 vs. monoline differences, and real-dollar examples.",
+    slug: "ird-vs-three-month-interest-penalty",
+    articleSection: "Guides",
+    about: "Canadian mortgage prepayment penalties",
+    keywords: ["IRD penalty Canada", "3 month interest penalty", "mortgage break fee", "discounted rate IRD", "posted rate penalty"],
+  }),
+  breadcrumbSchema([
+    { name: "IRD vs. 3-Month Interest Penalty", url: "/ird-vs-three-month-interest-penalty" }
+  ]),
+  faqSchema(faqs, "ird-vs-three-month-interest-penalty"),
+  webPageNode({
+    slug: "ird-vs-three-month-interest-penalty",
+    name: "IRD vs. 3-Month Interest Penalty — Canada 2026",
+    description: "Complete Canadian mortgage penalty guide: IRD calculation methods, Big 6 vs. monoline differences, real-dollar examples, and strategies to avoid.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="IRD vs. 3-Month Interest Penalty: Canada 2026 Explained"
+  description="How Canadian mortgage prepayment penalties work in 2026. IRD calculation methods, Big 6 vs. monoline differences, and real-dollar examples."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › IRD vs. 3-Month Interest Penalty
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 2026 · 9-minute read</div>
+    <h1 class="text-heading-1 mb-4">IRD vs. 3-Month Interest Penalty in Canada: The 2026 Guide</h1>
+    <p class="text-body-lg text-muted-foreground mb-8">
+      If you break a closed Canadian fixed-rate mortgage before the end of your term, your lender charges a prepayment penalty — and the difference between what Big 6 banks charge versus what monoline lenders charge is staggering. On a typical $300,000 mortgage with three years remaining, the same scenario can produce a $3,000 penalty at a monoline or a $12,000 penalty at a Big 6. This guide explains exactly why, how each calculation works, and how to avoid the worst outcomes.
+    </p>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-md">
+        <li>• All Big 6 Canadian banks charge the <strong>greater of 3 months' interest or IRD</strong> on closed fixed-rate mortgages.</li>
+        <li>• Big 6 IRD uses the <strong>"discounted rate method"</strong> — posted rate minus the original discount from posted — which inflates the penalty substantially.</li>
+        <li>• Monoline lenders (First National, MCAP) use a fair <strong>contract-rate-based method</strong> producing much smaller penalties.</li>
+        <li>• Current posted-to-contract gap is ~<strong>190–215 basis points</strong> (5-yr posted ~6.09% vs. broker contract ~3.94%).</li>
+        <li>• On a $300,000 mortgage with 3 years remaining: Big 6 IRD commonly $10,000–$13,000; monoline ~$3,000–$3,500.</li>
+        <li>• Variable-rate mortgages charge only 3 months' interest — IRD doesn't apply.</li>
+        <li>• At renewal maturity, any prepayment or full payout is penalty-free.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Two Penalties Explained</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Every closed Canadian mortgage contract specifies two possible prepayment penalty formulas — and on fixed-rate mortgages the lender applies whichever is <strong>larger</strong>:
+    </p>
+    <ul class="space-y-3 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li><strong>3 months' interest:</strong> Three months of interest calculated on your current outstanding balance at your contract rate. For a $400,000 balance at 4.29%, that's roughly $400,000 × 4.29% × 3/12 = <strong>$4,290</strong>.</li>
+      <li><strong>IRD (Interest Rate Differential):</strong> The difference between your contract rate and a "comparison rate" (the lender's current rate for your remaining term), multiplied by your balance and the months remaining.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How the Big 6 Calculate IRD: The Discounted Rate Method</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Here is where the math breaks down for the borrower. The Big 6 banks don't compare your contract rate against today's contract rate — they compare against the <strong>posted rate</strong> for your remaining term, reduced by the original discount you received from their posted rate at origination.
+    </p>
+
+    <div class="rounded-xl border border-gray-100 bg-white p-5 mb-6">
+      <p class="text-body-md-semibold mb-2">Big 6 IRD Formula (Simplified)</p>
+      <p class="text-body-sm mb-3 text-muted-foreground">IRD = (Your contract rate − Comparison rate) × Outstanding balance × Months remaining / 12</p>
+      <p class="text-body-sm mb-3 text-muted-foreground"><strong>Comparison rate</strong> = Today's posted rate for your remaining term − your original discount from posted</p>
+      <p class="text-body-xs text-muted-foreground"><em>Example:</em> You signed at 4.29% when posted was 6.29% (2.00% discount). Today's 3-year posted rate is 6.09%. Comparison rate = 6.09% − 2.00% = 4.09%. IRD rate gap = 4.29% − 4.09% = 0.20%. But in periods of falling rates, posted rates drop much less than contract rates — magnifying the gap.</p>
+    </div>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The problem: posted rates are almost always 2%+ above actual contract rates for the same term. So when actual rates fall, the posted rate falls less, which means the comparison rate stays artificially high, which means the rate gap (and the penalty) stays artificially low — until the contract rate starts to look "favourable" by comparison. In practice, this method inflates the penalty by thousands of dollars in most falling-rate scenarios.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      CIBC uses a slight variant that compares posted-to-posted (ignoring the original discount), producing similar results. TD, RBC, BMO, Scotiabank, and National Bank all use posted-rate-based methods. The result: a Big 6 IRD of $10,000–$13,000 is common on a $300,000 mortgage with three years remaining, even when today's rates are only modestly below the contract rate.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Monoline Lenders Calculate IRD: The Fair Method</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Monoline lenders — First National, MCAP, RMG, Merix, Strive, and others — typically compare your contract rate to their <strong>current contract rate</strong> for the remaining term, with no posted-rate inflation. The formula is:
+    </p>
+
+    <div class="rounded-xl border border-secondary-50 bg-secondary-25 p-5 mb-6">
+      <p class="text-body-md-semibold mb-2">Monoline IRD Formula (Fair Method)</p>
+      <p class="text-body-sm mb-3">IRD = (Your contract rate − Today's contract rate for remaining term) × Outstanding balance × Months remaining / 12</p>
+      <p class="text-body-xs text-muted-foreground"><em>Example:</em> Contract 4.29%; today's 3-year monoline rate 3.94%. Gap = 0.35%. On $300,000 with 3 years remaining: penalty ≈ $300,000 × 0.35% × 36/12 = <strong>$3,150</strong>.</p>
+    </div>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Because there's no posted-rate fiction in the formula, the monoline IRD reflects the actual economic loss to the lender from breaking early. The penalty is typically one-third to one-quarter of what a Big 6 would charge in the same scenario.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Side-by-Side: Same Scenario, Two Lenders</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Consider a borrower with a $300,000 mortgage, 3 years remaining on a 5-year fixed at 4.29%, with a 2% original discount from posted. Today's 3-year posted rate is 6.09%; today's 3-year contract rate is 3.94%. The borrower wants to break and switch.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender Type</th>
+            <th class="p-3 text-left">Comparison Rate</th>
+            <th class="p-3 text-left">Rate Gap</th>
+            <th class="p-3 text-left">IRD Penalty</th>
+            <th class="p-3 text-left">3-Month Interest</th>
+            <th class="p-3 text-left">Actual Charge</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">Big 6 Bank</td>
+            <td class="p-3">6.09% − 2.00% = 4.09%</td>
+            <td class="p-3">0.20%</td>
+            <td class="p-3">~$1,800</td>
+            <td class="p-3">~$3,215</td>
+            <td class="p-3 font-semibold">~$3,215*</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">Big 6 (falling-rate worst case)</td>
+            <td class="p-3">Frozen posted ~4.50%</td>
+            <td class="p-3">~1.30%</td>
+            <td class="p-3 font-semibold text-error-100">~$11,700</td>
+            <td class="p-3">~$3,215</td>
+            <td class="p-3 font-semibold text-error-100">~$11,700</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">Monoline</td>
+            <td class="p-3">3.94% (contract)</td>
+            <td class="p-3">0.35%</td>
+            <td class="p-3">~$3,150</td>
+            <td class="p-3">~$3,215</td>
+            <td class="p-3 font-semibold text-secondary-200">~$3,215</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-body-xs text-muted-foreground mb-6">
+      *In the first Big 6 row, posted rates have tracked closer to contract rates, so IRD is smaller than 3 months' interest and the latter applies. The second row illustrates a typical "sticky posted rate" outcome where Big 6 IRD balloons. Actual penalties depend on exact rates at break time and should be confirmed with the lender.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Posted Rates Distort Everything</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Posted rates are the rates banks advertise in their branches. They are not the rates most borrowers actually pay — the contract rate, offered to new customers through brokers or retention officers, is typically 1.5%–2.5% lower. The gap has grown over the past decade as the broker channel has become increasingly competitive.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Banks keep posted rates high in part because the IRD calculation relies on them. When rates drop in the market, banks often leave their posted rate unchanged or drop it only slightly. This keeps the "comparison rate" in the IRD formula artificially close to the borrower's contract rate, which keeps IRD penalties high when borrowers try to leave.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      This is also why the FCAC and consumer advocacy organizations have repeatedly called for penalty reform. The 2024 Canadian Mortgage Charter improved disclosure — lenders must now provide a clear penalty estimate on request — but did not change the underlying math.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When 3-Month Interest Applies Instead of IRD</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      When rates have risen since your origination date, the bank could re-lend your principal at a higher rate than your contract — they haven't lost interest income. In that scenario, the IRD calculation produces zero or negative, and only the 3-month interest charge applies. This is often the case for borrowers who took out mortgages during ultra-low-rate periods (2020–2021) and are now considering breaking during a higher-rate era.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Variable-rate mortgages never use IRD — only 3 months' interest applies regardless of rate movements, because the variable rate moves with prime. This predictability makes variable mortgages much easier to break, and is one reason brokers often recommend variable over fixed for borrowers who expect to move or refinance mid-term. See our <a href="/fixed-vs-variable-mortgage-renewal/" class="text-secondary-100 hover:underline">fixed vs. variable guide</a> for the full trade-off.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Strategies to Reduce or Avoid the Penalty</h2>
+    <ul class="space-y-3 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li><strong>Wait for renewal.</strong> No penalty applies at maturity — even large prepayments or full payouts are free. This is the best-case scenario and why timing renewal correctly matters.</li>
+      <li><strong>Port your mortgage.</strong> If you're moving, porting the existing mortgage to the new property avoids the break entirely. Most lenders allow porting within 30–120 days of sale.</li>
+      <li><strong>Blend-and-extend.</strong> Instead of breaking, extend your term at a blended rate. See our <a href="/blend-and-extend-calculator/" class="text-secondary-100 hover:underline">blend-and-extend calculator</a> to compare.</li>
+      <li><strong>Use your annual prepayment privilege first.</strong> Prepay 10%–20% of your balance penalty-free, then break on the reduced balance — the IRD is calculated on the balance at break time, so a lower balance means a lower penalty.</li>
+      <li><strong>Get a monoline next time.</strong> If the penalty math is important to your decision, choose a lender with fair IRD methodology on your next term. Brokers have access to these lenders.</li>
+      <li><strong>Negotiate with the new lender.</strong> Some switching scenarios involve the new lender subsidizing part of the penalty as an acquisition cost. It's rare but worth asking.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Get Your Actual Penalty Number</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Under the 2024 Canadian Mortgage Charter, federally regulated lenders are required to provide borrowers with a clear, written prepayment penalty quote on request. Call your lender's mortgage servicing line and ask for:
+    </p>
+    <ul class="space-y-2 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li>Your current outstanding balance</li>
+      <li>The exact IRD penalty quote as of today</li>
+      <li>The 3-month interest figure</li>
+      <li>The comparison rate they're using (and the method)</li>
+      <li>How long the quote is valid (usually 30 days)</li>
+    </ul>
+    <p class="text-body-md mb-6 leading-relaxed">
+      A mortgage broker can request this on your behalf and compare it to the cost of the alternative they'd move you to. If you're anywhere near a renewal, also request the <strong>payout statement</strong> for the maturity date — you may find that waiting 4–6 months eliminates the penalty entirely.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-8">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Related Guides & Tools</h2>
+    <div class="grid sm:grid-cols-2 gap-3 mb-8">
+      {[
+        { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
+        { title: "Switch vs. Stay Calculator", href: "/switch-vs-stay-calculator/" },
+        { title: "Mortgage Prepayment Privileges", href: "/mortgage-prepayment-privileges-canada/" },
+        { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
+        { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+        { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
+      ].map(link => (
+        <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+          <span class="text-secondary-100">→</span>
+          {link.title}
+        </a>
+      ))}
+    </div>
+
+    <p class="text-body-xs text-muted-foreground mb-6">
+      Sources: Canadian Mortgage Charter (2024); FCAC prepayment penalty guidance; lender prepayment disclosures (TD, RBC, BMO, Scotiabank, CIBC, National Bank, First National, MCAP); industry analysis via pragmatic.mortgage and ratehub.ca. Figures illustrative — always obtain a written quote from your lender before making break decisions. Posted rates and contract rates as of April 2026.
+    </p>
+  </article>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Facing a Big Penalty? Get a Second Opinion.</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will pull your exact penalty, model port and blend alternatives, and tell you whether breaking is worth it — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

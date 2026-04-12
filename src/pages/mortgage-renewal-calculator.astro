@@ -1,23 +1,44 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import MortgageCalculators from '@/components/calculators/mortgage-calculators';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, webApplicationSchema, combineSchemas } from '@/lib/schema';
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-renewal-calculator",
+    name: "Mortgage Renewal Calculator — Payment, Rate Comparison & Penalty",
+    description: "Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Mortgage Renewal Calculator Suite",
+    description: "Five free interactive calculators for Canadian mortgage renewal: payment estimator, rate comparison, amortization extension, penalty estimator, and debt consolidation. Uses semi-annual compounding (the Canadian standard).",
+    slug: "mortgage-renewal-calculator",
+    features: [
+      "Payment Estimator",
+      "Rate Comparison",
+      "Amortization Extension Calculator",
+      "Mortgage Penalty Estimator (IRD & 3-month interest)",
+      "Debt Consolidation Modeler",
+      "Semi-annual compounding (Canadian standard)",
+      "No email required",
+    ],
+  }),
   articleSchema({
     headline: "Mortgage Renewal Calculator — Payment, Rate Comparison & Penalty",
     description: "Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation. Updated for 2026.",
     slug: "mortgage-renewal-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage Renewal Calculator",
+    keywords: ["mortgage renewal calculator", "Canadian mortgage calculator", "renewal payment", "rate comparison", "mortgage penalty calculator"],
   }),
   breadcrumbSchema([
     { name: "Mortgage Renewal Calculator", url: "/mortgage-renewal-calculator" }
   ]),
-  speakableSchema("mortgage-renewal-calculator"),
 );
 ---
 
 <DefaultLayout
-  title="Mortgage Renewal Calculator — Payment, Rate Comparison & Penalty | MortgageRenewalHub.ca"
+  title="Mortgage Renewal Calculator — Payment, Rate & Penalty"
   description="Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation. Updated for 2026."
   schema={schema}
 >
@@ -30,7 +51,7 @@ const schema = combineSchemas(
       <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tools</div>
       <h1 class="text-heading-1 mb-4">Mortgage Renewal Calculators</h1>
       <p class="text-body-lg text-muted-foreground max-w-2xl">
-        Five free, real-time calculators built for Canadian mortgage renewals. All calculations use semi-annual compounding — the standard for Canadian mortgages. No email required. New to renewals? Start with our <a href="/what-is-a-mortgage-renewal" class="text-secondary-100 hover:underline">guide to what a mortgage renewal is</a>.
+        Five free, real-time calculators built for Canadian mortgage renewals. All calculations use semi-annual compounding — the standard for Canadian mortgages. No email required. New to renewals? Start with our <a href="/what-is-a-mortgage-renewal/" class="text-secondary-100 hover:underline">guide to what a mortgage renewal is</a>.
       </p>
     </div>
 
@@ -58,7 +79,7 @@ const schema = combineSchemas(
       <div>
         <h2 class="text-heading-3 mb-3">Canadian Mortgage Math Note</h2>
         <p class="text-body-md text-muted-foreground mb-3">
-          Unlike US mortgages, Canadian mortgages compound semi-annually (twice per year), not monthly. This means the effective monthly rate is slightly different from the nominal annual rate divided by 12. For a complete list of Canadian mortgage terms and how they affect your renewal, see our <a href="/mortgage-renewal-glossary" class="text-secondary-100 hover:underline">mortgage renewal glossary</a>.
+          Unlike US mortgages, Canadian mortgages compound semi-annually (twice per year), not monthly. This means the effective monthly rate is slightly different from the nominal annual rate divided by 12. For a complete list of Canadian mortgage terms and how they affect your renewal, see our <a href="/mortgage-renewal-glossary/" class="text-secondary-100 hover:underline">mortgage renewal glossary</a>.
         </p>
         <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 font-mono text-body-sm text-muted-foreground">
           <p>Effective monthly rate = (1 + annual_rate / 2)^(1/6) − 1</p>
@@ -71,12 +92,12 @@ const schema = combineSchemas(
         <h2 class="text-heading-3 mb-4">Related Guides</h2>
         <div class="grid sm:grid-cols-2 gap-3">
           {[
-            { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal" },
-            { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates" },
-            { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal" },
-            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
-            { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal" },
-            { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide" },
+            { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal/" },
+            { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+            { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+            { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
+            { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide/" },
           ].map(link => (
             <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
               <span class="text-secondary-100">→</span>
@@ -92,8 +113,8 @@ const schema = combineSchemas(
   <section class="bg-primary-100 py-12 mt-10">
     <div class="container max-w-3xl text-center">
       <h2 class="text-heading-3 text-white mb-3">Want a Broker to Confirm These Numbers?</h2>
-      <p class="text-white/80 mb-6">Get real lender quotes from 30+ lenders — free. A licensed <a href="/mortgage-broker-renewal" class="text-white underline">mortgage broker</a> will validate your calculations and find you the <a href="/best-mortgage-renewal-rates" class="text-white underline">best rate</a>.</p>
-      <a href="/book-a-call">
+      <p class="text-white/80 mb-6">Get real lender quotes from 30+ lenders — free. A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will validate your calculations and find you the <a href="/best-mortgage-renewal-rates/" class="text-white underline">best rate</a>.</p>
+      <a href="/book-a-call/">
         <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
           Book Your Free Renewal Strategy Call
         </button>
@@ -102,12 +123,8 @@ const schema = combineSchemas(
   </section>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
-    <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
+    <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
       Book Free Broker Consultation
     </a>
   </div>
-
-  <p class="container py-6 text-body-xs text-muted-foreground text-center">
-    Calculator results are estimates only. Canadian mortgages compound semi-annually. Always verify with your lender or a licensed mortgage professional. This content is for educational purposes only and does not constitute financial or mortgage advice.
-  </p>
 </DefaultLayout>

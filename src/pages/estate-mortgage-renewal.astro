@@ -1,0 +1,298 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What happens to a mortgage when the borrower dies?",
+    answer: "A mortgage does not automatically disappear when the borrower dies — the debt survives and becomes an obligation of the estate. The estate (managed by the executor named in the will, or by a court-appointed administrator if there's no will) typically has about 30 days to notify the lender of the death. The lender will temporarily pause foreclosure risk while the estate decides what to do. Three paths forward are common: (1) a surviving spouse or co-borrower continues the mortgage (if they qualify), (2) a beneficiary assumes the mortgage, or (3) the estate sells the property and pays out the mortgage from proceeds."
+  },
+  {
+    question: "If my spouse and I are both on the mortgage and my spouse dies, what happens?",
+    answer: "You, as the surviving joint borrower, are now solely responsible for the mortgage. The death of one joint borrower does not trigger an automatic qualification review — you simply continue making payments. However, if you wish to change anything about the mortgage (refinance, switch lenders at renewal, borrow more), the lender will qualify you on your individual income. If your ability to service the mortgage alone is in doubt, life insurance proceeds (if the deceased had mortgage life insurance or a separate life insurance policy) often cover the balance entirely. Confirm whether mortgage life insurance was attached — many borrowers forget they purchased it."
+  },
+  {
+    question: "Can a Power of Attorney sign a mortgage renewal on behalf of the grantor?",
+    answer: "Yes, provided the POA document grants authority to manage real estate — specifically, powers to sell, mortgage, or renew existing mortgages. This is sometimes called a 'continuing' or 'enduring' Power of Attorney for Property, and it survives the grantor's incapacity. The lender will require a certified copy of the POA document, will verify the identity of the attorney-in-fact, and will often want to confirm the grantor's signature on the original POA through a solicitor. Simple personal-care POAs (focused on health decisions) do not grant authority to renew mortgages."
+  },
+  {
+    question: "What is probate, and does every estate mortgage require it?",
+    answer: "Probate is a court process that validates the will and formally appoints the executor. Most provinces charge probate fees (Ontario calls them Estate Administration Tax; BC, Alberta, and others have similar structures). If the deceased owned property solely in their name, probate is almost always required before the executor can sell or transfer the property. If the property was held jointly with right of survivorship, the surviving joint owner takes full title without probate, and no probate is required for the mortgage to continue. Always confirm how title was held — joint tenancy with survivorship avoids probate, tenancy in common does not."
+  },
+  {
+    question: "How does a beneficiary assume a deceased's mortgage at renewal?",
+    answer: "If a beneficiary (adult child, sibling, etc.) wishes to take over the property and mortgage, they typically must qualify as a new borrower. Standard lender underwriting applies: income, credit, stress test, debt servicing. Some lenders will allow the mortgage to be formally assumed (see our mortgage assumption guide) — others will require a full new mortgage originated in the beneficiary's name at renewal. If the renewal date is close, aligning the probate transfer with the renewal date avoids prepayment penalties and makes the origination cleanest. A lawyer coordinates with the lender on timing."
+  },
+  {
+    question: "What if the estate can't afford to keep making payments while probate is pending?",
+    answer: "Most lenders in Canada will work with an estate in good faith during the probate period. Options include: (1) a temporary payment deferral (3–6 months) until probate completes and the estate has access to funds, (2) applying estate assets (RRSPs, TFSAs, other investments) through probate orders to cover payments, or (3) an emergency sale if the property needs to be liquidated. The worst thing an estate can do is ignore the mortgage — lenders are flexible when engaged early, less flexible when payments simply stop. Notify the lender within 30 days and provide documentation of the probate application."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "estate-mortgage-renewal",
+    name: "Estate & POA Mortgage Renewal in Canada (2026)",
+    description: "How mortgages are handled after a borrower's death — estate options, Power of Attorney renewals, probate requirements, and beneficiary assumption.",
+  }),
+  articleSchema({
+    headline: "Estate & Power of Attorney Mortgage Renewal in Canada (2026)",
+    description: "Complete guide to estate mortgage renewal scenarios — death during term, Power of Attorney authority, probate, beneficiary assumption, and working with the lender during estate administration.",
+    slug: "estate-mortgage-renewal",
+    articleSection: "Life Events",
+    about: "Estate and Power of Attorney Mortgage Renewal",
+    keywords: ["estate mortgage renewal", "deceased borrower mortgage", "POA mortgage renewal", "probate mortgage", "mortgage after death"],
+  }),
+  breadcrumbSchema([
+    { name: "Estate Mortgage Renewal", url: "/estate-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "estate-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Estate & POA Mortgage Renewal in Canada 2026"
+  description="Estate and Power of Attorney mortgage renewal in Canada — death during term, probate requirements, beneficiary assumption, and lender options during administration."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Estate Mortgage Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Estate and Power of Attorney Mortgage Renewal in Canada</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 12-minute read</p>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <p class="mb-6 text-base leading-relaxed">When a mortgage borrower dies or becomes incapable of managing their own financial affairs, the mortgage does not pause. Payments remain due, the term continues toward its renewal date, and a decision must be made about what happens next. This guide explains the three most common scenarios — death during the term, Power of Attorney administration, and probate — and how each interacts with Canadian mortgage renewal rules.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• A mortgage survives the borrower's death — the debt becomes an obligation of the estate.</li>
+            <li>• The estate typically has 30 days to notify the lender of the death.</li>
+            <li>• Three paths forward: surviving spouse continues, beneficiary assumes, or estate sells.</li>
+            <li>• Probate is usually required if property was held solely in the deceased's name; jointly owned property with right of survivorship bypasses probate.</li>
+            <li>• A continuing (enduring) Power of Attorney for Property that grants real estate authority can be used to renew a mortgage on behalf of an incapable grantor.</li>
+            <li>• Lenders are generally cooperative during estate administration when engaged early and transparently.</li>
+            <li>• Mortgage life insurance (if purchased separately) often pays out the balance on death — always check.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Scenario 1: Joint Ownership — Surviving Spouse Continues</h2>
+
+        <p class="mb-4 leading-relaxed">The simplest estate scenario is when the property and mortgage are held jointly by two borrowers (typically spouses) with right of survivorship. When one borrower dies, the surviving joint owner automatically takes full title without probate, and the mortgage simply continues. No new qualification is triggered unless and until the surviving spouse initiates a change — a renewal switch, a refinance, or additional borrowing.</p>
+
+        <p class="mb-4 leading-relaxed">The surviving spouse's responsibilities:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Notify the lender of the death within 30 days. Provide a death certificate.</li>
+          <li>Update property title at the Land Registry (usually handled by an estate lawyer).</li>
+          <li>Continue making mortgage payments on schedule.</li>
+          <li>At the next renewal, the surviving spouse will be underwritten on their individual income if they switch lenders or change terms.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">Critically: before the renewal, check whether the deceased spouse had mortgage life insurance or a personal life insurance policy that named the spouse as beneficiary. If so, the policy may pay out the mortgage balance entirely, eliminating the renewal question altogether.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Scenario 2: Sole Ownership — Probate Required</h2>
+
+        <p class="mb-4 leading-relaxed">If the deceased owned the property solely in their name, the property becomes part of the estate and must pass through probate before any transfer, sale, or renewal can occur. Probate is the court process that validates the will, confirms the executor's authority, and issues a "Certificate of Appointment of Estate Trustee" (Ontario) or equivalent document in other provinces.</p>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Province</th>
+                <th class="p-3 text-left">Probate Fee (on $500K estate)</th>
+                <th class="p-3 text-left">Typical Timeline</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Ontario</td>
+                <td class="p-3">~$7,000 (Estate Administration Tax)</td>
+                <td class="p-3">3–6 months</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">British Columbia</td>
+                <td class="p-3">~$6,650 (Probate Fees Act)</td>
+                <td class="p-3">3–6 months</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Alberta</td>
+                <td class="p-3">$525 (flat schedule, capped)</td>
+                <td class="p-3">2–4 months</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Quebec</td>
+                <td class="p-3">No probate fees (notarial wills)</td>
+                <td class="p-3">2–4 months</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">Other provinces</td>
+                <td class="p-3">Varies — typically 0.4–1.4% of estate</td>
+                <td class="p-3">3–6 months</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-6 leading-relaxed">During probate, mortgage payments continue. The executor, once formally appointed, has authority to sign a renewal letter, arrange a switch to a new lender, or sell the property to pay out the mortgage. Before the certificate is issued, most actions are on hold — so early probate application is important when the renewal date is approaching.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Scenario 3: Beneficiary Takes Over the Property</h2>
+
+        <p class="mb-4 leading-relaxed">A common estate plan involves leaving the family home to one specific beneficiary — often an adult child. When this happens, the beneficiary must either assume the existing mortgage or originate a new one in their name once the property is transferred.</p>
+
+        <p class="mb-4 leading-relaxed">Options available:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong><a href="/assuming-a-mortgage-canada/" style="color: var(--secondary)">Mortgage assumption</a>:</strong> If the existing mortgage is assumable and has a favorable rate, the beneficiary qualifies with the existing lender and takes over the mortgage as-is. The rate, term, and amortization all continue.</li>
+          <li><strong>New mortgage at renewal:</strong> If the renewal date is close, the beneficiary originates a new mortgage in their name at the renewal date. The existing mortgage expires, the new one begins with fresh terms, and no prepayment penalty applies.</li>
+          <li><strong>New mortgage mid-term:</strong> If the renewal is far off and the beneficiary wants to take ownership now, they originate a new mortgage that pays out the existing one. This triggers a prepayment penalty, which the estate or the beneficiary pays.</li>
+          <li><strong>Sale to estate:</strong> The beneficiary purchases the home from the estate at fair market value, using a standard purchase mortgage. Proceeds are distributed to other beneficiaries per the will.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Scenario 4: Power of Attorney Renewing for an Incapable Grantor</h2>
+
+        <p class="mb-4 leading-relaxed">When the grantor (the mortgage borrower) is still living but has lost capacity — due to dementia, stroke, or other cognitive impairment — a previously executed Continuing Power of Attorney for Property can authorize the attorney-in-fact (the person named in the POA) to manage the grantor's financial affairs, including signing mortgage renewals.</p>
+
+        <p class="mb-4 leading-relaxed">For a lender to accept a POA-signed renewal, the document must:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Be a Continuing or Enduring Power of Attorney for Property (terminology varies by province).</li>
+          <li>Explicitly grant authority over real estate transactions — ideally language covering "mortgage," "renew," "refinance," and "sell."</li>
+          <li>Be valid and unrevoked — in some provinces, a POA is automatically revoked by the grantor's death or by a subsequent POA.</li>
+          <li>Be provided in a certified true copy to the lender, along with identification of the attorney-in-fact.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">Some lenders require a solicitor's opinion letter confirming the POA is valid and effective under provincial law. Working with an estate lawyer alongside your mortgage broker is essential for POA-driven renewals — the paperwork requirements are specific, and mistakes can cause the lender to decline the renewal.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">What to Do When a Borrower Dies: Checklist</h2>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Within 30 days</p>
+            <ul class="list-disc list-inside text-sm space-y-1" style="color: var(--muted-foreground)">
+              <li>Notify the lender of the death and provide a death certificate.</li>
+              <li>Confirm whether mortgage life insurance was in place (often bundled at origination).</li>
+              <li>Confirm how property title was held: jointly with survivorship, or solely.</li>
+              <li>Continue making mortgage payments — payment defaults create significant complications.</li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Within 3 months</p>
+            <ul class="list-disc list-inside text-sm space-y-1" style="color: var(--muted-foreground)">
+              <li>Engage an estate lawyer to apply for probate (if required).</li>
+              <li>Determine the preferred path: continue, assume, or sell.</li>
+              <li>If renewal is within 6 months, begin discussions with the lender about options.</li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">At renewal</p>
+            <ul class="list-disc list-inside text-sm space-y-1" style="color: var(--muted-foreground)">
+              <li>Renewing executor or beneficiary submits standard renewal documentation.</li>
+              <li>Qualification is based on the new borrower's individual profile.</li>
+              <li>Consider <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching lenders</a> if a more competitive rate is available — probate doesn't prevent a lender switch.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Working With the Lender During Estate Administration</h2>
+
+        <p class="mb-4 leading-relaxed">Every major Canadian lender has an Estate Department (sometimes called Estate Services or Estate Administration). Their role is to work with executors, POA attorneys-in-fact, and beneficiaries to maintain the mortgage through the transition period. Useful tips:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Ask to be routed to the Estate Department rather than standard customer service. Responses are typically more informed.</li>
+          <li>Request a written confirmation of the current balance, payment schedule, and renewal date — the executor will need this for estate accounting.</li>
+          <li>If the estate needs a short-term deferral to complete probate, ask explicitly. Most lenders will grant 3–6 months.</li>
+          <li>Keep good records of every communication. Estate administration can take months — institutional memory varies at the lender.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/assuming-a-mortgage-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Assumption</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">How a beneficiary takes over an existing mortgage.</p>
+            </a>
+            <a href="/reverse-mortgage-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Reverse Mortgage at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Often relevant for seniors and estate planning.</p>
+            </a>
+            <a href="/spousal-buyout-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Spousal Buyout</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Related but distinct — for living separations rather than estates.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Probate doesn't prevent a lender switch.</p>
+            </a>
+            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="color: var(--primary); border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Beneficiaries face individual qualification at renewal.</p>
+            </a>
+            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Renewal Guide</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Full reference for 2026 renewals.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">Joint Ownership</a></li>
+              <li><a href="#" style="color: var(--secondary)">Sole Ownership / Probate</a></li>
+              <li><a href="#" style="color: var(--secondary)">Beneficiary Takes Over</a></li>
+              <li><a href="#" style="color: var(--secondary)">Power of Attorney</a></li>
+              <li><a href="#" style="color: var(--secondary)">Checklist</a></li>
+              <li><a href="#" style="color: var(--secondary)">Working With Lender</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Estate or POA Renewal?</h3>
+            <p class="text-sm mb-4 opacity-90">We work alongside your estate lawyer to coordinate the lender, insurer, and timing of the renewal.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Confidential estate mortgage consultation</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">We work with estate lawyers on timing, documentation, and lender coordination — at no cost to the estate or beneficiaries.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

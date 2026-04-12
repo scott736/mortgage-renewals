@@ -1,7 +1,7 @@
 ---
 import ZippayCtaCard from "@/components/sections/zippay-cta-card";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -12,7 +12,11 @@ const schema = combineSchemas(
     slug: "pricing",
   }),
   breadcrumbSchema([{ name: "Services & Pricing", url: "/pricing" }]),
-  speakableSchema("pricing"),
+  webPageNode({
+    slug: "pricing",
+    name: "Pricing — MortgageRenewalHub.ca Services",
+    description: "Pricing and service tiers for MortgageRenewalHub.ca — broker consultation is always free for borrowers.",
+  }),
 );
 ---
 
@@ -66,7 +70,7 @@ const schema = combineSchemas(
               </li>
             ))}
           </ul>
-          <a href="/mortgage-renewal-guide" class="block w-full rounded-lg border-2 border-primary-100 text-primary-100 text-center py-3 font-semibold hover:bg-primary-0 transition-colors">
+          <a href="/mortgage-renewal-guide/" class="block w-full rounded-lg border-2 border-primary-100 text-primary-100 text-center py-3 font-semibold hover:bg-primary-0 transition-colors">
             Start Reading
           </a>
         </div>
@@ -93,7 +97,7 @@ const schema = combineSchemas(
               </li>
             ))}
           </ul>
-          <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3 font-semibold hover:bg-primary-200 transition-colors">
+          <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3 font-semibold hover:bg-primary-200 transition-colors">
             Book Free Call
           </a>
         </div>
@@ -117,7 +121,7 @@ const schema = combineSchemas(
               </li>
             ))}
           </ul>
-          <a href="/book-a-call" class="block w-full rounded-lg border-2 border-primary-100 text-primary-100 text-center py-3 font-semibold hover:bg-primary-0 transition-colors">
+          <a href="/book-a-call/" class="block w-full rounded-lg border-2 border-primary-100 text-primary-100 text-center py-3 font-semibold hover:bg-primary-0 transition-colors">
             Get Started
           </a>
         </div>

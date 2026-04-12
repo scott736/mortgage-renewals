@@ -1,0 +1,218 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Can I renew my mortgage after losing my job?",
+    answer: "Yes. If you stay with your current lender at renewal, no requalification is required — your existing lender must offer renewal as long as the mortgage is in good standing and the property is unchanged. As of November 21, 2024, uninsured straight switches to a new lender are also exempt from the stress test. The challenge is refinancing or extending amortization, which requires qualifying income — and EI does not count as qualifying income at most Canadian lenders."
+  },
+  {
+    question: "What does the Canadian Mortgage Charter require lenders to do for job loss?",
+    answer: "The Canadian Mortgage Charter requires federally regulated lenders to offer hardship relief for borrowers facing genuine financial difficulty. Specific provisions include: temporary amortization extension up to 35 years to reduce the monthly payment; allowing lump-sum payments without early-payout penalty to prevent negative amortization; and proactive outreach to at-risk borrowers. Request these accommodations in writing from your lender with supporting documentation (termination notice, EI claim, severance details)."
+  },
+  {
+    question: "Does EI or severance count as qualifying income?",
+    answer: "EI does not count as qualifying income at most Canadian lenders — it's explicitly excluded by OSFI guidance. Severance, however, can count for qualification purposes: most lenders will gross up severance over its payout period (e.g., 52 weeks of salary paid as severance is treated as 52 weeks of income) and may extend that 12-24 months forward for requalification purposes. Documentation requires the severance agreement in writing with clear terms. A new job after severance resets your income documentation on employment letter and pay stubs."
+  },
+  {
+    question: "Can I skip a mortgage payment after a job loss?",
+    answer: "Some Canadian lenders offer skip-a-payment programs, typically limited to one or two skipped payments per year. The skipped payment is not forgiven — it's added back to your mortgage balance and interest accrues on it. This can be a useful short-term cushion while you find new work, but it increases your total interest paid. For longer relief, a mortgage deferral (up to 6 months at many lenders) or Charter-based amortization extension is usually preferable."
+  },
+  {
+    question: "Should I talk to my lender about hardship before or after I miss a payment?",
+    answer: "Before. The moment you know you have a problem — ideally the day of the termination — call your lender. Canadian lenders have dedicated mortgage hardship teams and have significantly more flexibility to help a borrower before default than after. If you miss a payment, your credit score takes an immediate hit, your file is flagged for collections, and your lender's hardship team has fewer tools to help. Proactive communication is always better."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "job-loss-mortgage-renewal",
+    name: "Job Loss and Mortgage Renewal in Canada — Your Options",
+    description: "Lost your job before renewal? Your Canadian options: hardship relief, straight switch, Mortgage Charter provisions, skip-a-payment, and when to talk to your lender.",
+  }),
+  articleSchema({
+    headline: "Job Loss and Mortgage Renewal in Canada — Your Options",
+    description: "Job loss before mortgage renewal in Canada: Mortgage Charter hardship relief, 35-year amortization extension, severance qualifying, skip-a-payment, and broker strategies for 2026.",
+    slug: "job-loss-mortgage-renewal",
+    articleSection: "Persona Guides",
+    about: "Job Loss Mortgage Renewal",
+    keywords: ["job loss mortgage renewal", "unemployed mortgage renewal Canada", "Canadian Mortgage Charter hardship", "severance mortgage qualifying", "skip a payment mortgage"],
+  }),
+  breadcrumbSchema([
+    { name: "Job Loss Mortgage Renewal", url: "/job-loss-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "job-loss-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Job Loss & Mortgage Renewal Canada — Hardship Options"
+  description="Job loss before renewal in Canada: Mortgage Charter hardship relief, 35-year amortization extension, severance qualifying, and broker strategies."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Job Loss Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 10-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">Job Loss and Mortgage Renewal in Canada — Your Options</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">Losing your job near a mortgage renewal is one of the most stressful moments in Canadian homeownership — but your options are wider than most people realize. The Canadian Mortgage Charter, the November 2024 straight-switch exemption, and lender hardship programs all exist specifically for this scenario. Here's how to use them.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+          Get a Free Strategy Call
+        </a>
+        <a href="#options" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="border: 2px solid rgba(255,255,255,0.4); color: white">
+          See Your Options
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <div class="rounded-lg p-6 mb-8" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+          <p class="font-bold mb-2" style="color: var(--primary)">Call your lender — today.</p>
+          <p class="text-sm leading-relaxed">If you've just lost your job or received notice, the single most important thing you can do is call your mortgage lender's hardship team proactively. Canadian lenders are required under the Canadian Mortgage Charter to work with you, and they have substantially more options available before you miss a payment than after. Do not wait for the renewal letter to arrive.</p>
+        </div>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Staying with your current lender at renewal requires no requalification. Your mortgage will renew as long as it is in good standing.</li>
+            <li>• The Canadian Mortgage Charter requires federally regulated lenders to offer hardship relief including 35-year amortization extensions and penalty-free lump-sum payments.</li>
+            <li>• Severance counts as qualifying income for 12-24 months at most Canadian lenders. EI does not count as qualifying income.</li>
+            <li>• Since November 21, 2024, uninsured straight switches are exempt from the stress test — so you can switch to a better-rate lender even without employment income, provided the mortgage is unchanged.</li>
+            <li>• Refinancing, extending amortization permanently, or accessing equity requires qualifying income and triggers the full stress test.</li>
+            <li>• Credit unions and some alternative lenders are often more flexible than the Big 6 on hardship files.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)" id="options">Your Canadian Options After a Job Loss</h2>
+
+        <p class="mb-4 leading-relaxed">The right option depends on: how close you are to the renewal maturity date, whether you have severance, the stability of your household's second income (if any), your current mortgage balance vs. home value (LTV), and whether you can reasonably expect new employment within a defined time window. Work through the options below with your lender's hardship team or a <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a>.</p>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Option 1: Straight renewal with existing lender (no requalification)</h3>
+            <p class="text-sm leading-relaxed">If your mortgage is in good standing and you're renewing the existing balance with no new money and same amortization, your current lender is required to offer renewal. No income verification. No stress test. This is the simplest path for a borrower currently between jobs — but the rate offered on the renewal letter will likely be uncompetitive, so negotiate aggressively.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Option 2: Straight switch to a new lender (November 2024 exemption)</h3>
+            <p class="text-sm leading-relaxed">Since November 21, 2024, uninsured straight switches (same balance, same amortization, no new money) are exempt from the OSFI B-20 stress test. This means you can switch lenders to capture a better rate even without current employment income, provided the switch meets the narrow straight-switch criteria. Your <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">broker can process this</a> without requiring full income requalification.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Option 3: Temporary amortization extension (Mortgage Charter)</h3>
+            <p class="text-sm leading-relaxed">The Canadian Mortgage Charter requires federally regulated lenders to offer a temporary amortization extension up to 35 years to reduce monthly payments during genuine hardship. This is particularly useful if you're renewing into a higher rate and also dealing with job loss. The extension is temporary — restored at the next renewal — but provides meaningful cash-flow relief while you find new employment.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Option 4: Deferral or skip-a-payment</h3>
+            <p class="text-sm leading-relaxed">Many Canadian lenders offer short-term mortgage deferrals (up to 6 months in some cases) and skip-a-payment programs (typically 1-2 per year). Both add the skipped payment(s) back to the balance with interest. Use sparingly — the interest cost compounds over the remaining amortization.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Option 5: Convert variable to fixed (if applicable)</h3>
+            <p class="text-sm leading-relaxed">If you're currently in a variable mortgage and concerned about further rate moves, most Canadian lenders allow a mid-term variable-to-fixed conversion into a new fixed term at current rates. This locks your payment and eliminates further rate uncertainty during a time of income uncertainty. Your lender can quote the conversion rate directly; your broker can confirm whether it's competitive with market rates.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">Option 6: Credit union or alternative lender for hardship renewals</h3>
+            <p class="text-sm leading-relaxed">If you need to refinance, extend amortization beyond what the Charter permits, or restructure the mortgage in ways that trigger requalification, provincial credit unions are often more flexible than federally regulated banks. Credit unions are not bound by OSFI B-20 and apply their own underwriting discretion. B-lenders (Home Trust, Equitable Bank, Haventree) also serve borrowers with non-standard income documentation at slightly higher rates.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Severance as Qualifying Income</h2>
+
+        <p class="mb-4 leading-relaxed">If you received severance as part of your termination, most Canadian lenders will count it as qualifying income — but with specific rules:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Written severance agreement required:</strong> Lenders need the signed agreement specifying the amount, the period it covers, and the payment schedule (lump sum vs. salary continuance).</li>
+          <li><strong>Period-based qualification:</strong> A 52-week salary continuance at your prior rate generally counts as 52 weeks of income for qualification purposes. A lump-sum severance is usually annualized over the period it represents (e.g., a $50K lump-sum severance representing 6 months of salary is treated as 6 months of income, not 12).</li>
+          <li><strong>Forward-looking window:</strong> Most lenders will extend severance income qualification 12-24 months forward. Beyond that, you'll need a new employment source.</li>
+          <li><strong>New job resets the picture:</strong> If you find new work within the severance window, your documentation becomes the new-employment letter and pay stubs — which is usually easier than documenting severance.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed"><strong>EI is explicitly excluded</strong> from qualifying income at federally regulated lenders per OSFI guidance. Do not rely on EI for any calculation involving requalification. EI is a cash-flow cushion for day-to-day expenses, not a qualifying income source.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Timing: When the Renewal Hits Matters</h2>
+
+        <p class="mb-4 leading-relaxed">The proximity of your job loss to your renewal date affects the range of options available:</p>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Timing</th>
+                <th class="p-3 text-left">Best Options</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Renewal &gt; 12 months away</td>
+                <td class="p-3">Focus on finding new work; job change between now and renewal resets the picture. Consider skip-a-payment for short-term cash flow.</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Renewal 6-12 months away</td>
+                <td class="p-3">Request Mortgage Charter amortization extension now. Start renewal shopping 120 days out; a straight switch is available without requalification.</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Renewal 1-3 months away</td>
+                <td class="p-3">Focus on the lender with no requalification: existing lender renewal or straight switch to better rate. Do not initiate a refinance that requires requalification.</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">At or past maturity</td>
+                <td class="p-3">Sign existing-lender renewal immediately to avoid default. Negotiate rate after signing if needed — most lenders will adjust within 30-60 days of renewal date.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Example: $450K Mortgage, Job Loss 4 Months Before Renewal</h2>
+
+        <div class="rounded-lg p-5 mb-8" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+          <p class="text-sm leading-relaxed">Alex, 42, Ontario homeowner. Mortgage balance $450K, renewing in 4 months. Laid off with 6 months of salary continuance severance. Spouse earns $65K. Original rate 2.14%; renewal rates ~4.29%.</p>
+          <p class="text-sm leading-relaxed mt-3"><strong>Path chosen:</strong> (1) Contacted broker immediately; (2) confirmed severance + spouse income still qualifies under straight-switch rules (no requalification required anyway); (3) requested Charter amortization extension from current lender to reduce payment during severance window — approved from 22 years remaining to 30 years; (4) shopped straight-switch to a monoline offering 4.09%; (5) used new-lender cash-back to cover legal switching costs. Net outcome: payment reduced from what would have been ~$2,545/month at current lender's renewal rate (4.29%, original amortization) to ~$2,180/month (4.09%, extended amortization).</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/lower-mortgage-payments-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lower Mortgage Payments at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Strategies to reduce payment including amortization extension.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Straight switch is exempt from stress test since November 2024.</p>
+        </a>
+        <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">What requalification looks like if you refinance vs. straight renew.</p>
+        </a>
+        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Credit-Challenged Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">If job loss has affected your credit, alternative options are available.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">You have more options than you think.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A licensed Canadian mortgage broker can walk through every Charter-based, straight-switch, and hardship option in a single call. Free, no obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

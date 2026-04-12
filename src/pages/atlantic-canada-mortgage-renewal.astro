@@ -1,0 +1,270 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Is there a land transfer tax in Atlantic Canada at mortgage renewal?",
+    answer: "Land transfer taxes in Atlantic Canada only apply when a property changes hands — not at mortgage renewal. Nova Scotia charges a municipal Deed Transfer Tax (capped at 1.5%; Halifax Regional Municipality is 1.5%), New Brunswick charges a flat 1% Real Property Transfer Tax, PEI charges 1% with a first-time buyer exemption, and Newfoundland and Labrador charges a Registration of Deeds fee ($100 base plus $0.40 per $100 of value over $500) on both the property and the mortgage, capped at $5,000 each. At straight renewal, none of these apply."
+  },
+  {
+    question: "Who regulates mortgage brokers in the Atlantic provinces?",
+    answer: "Each Atlantic province has its own mortgage broker regulator. Nova Scotia brokers are licensed by Service Nova Scotia; New Brunswick by the Financial and Consumer Services Commission (FCNB); Prince Edward Island by the Department of Justice and Public Safety under the Mortgage Brokers Act; and Newfoundland and Labrador by Digital Government and Service NL. Always verify your broker's licence with the provincial regulator before committing."
+  },
+  {
+    question: "Do Atlantic credit unions offer competitive mortgage renewal rates?",
+    answer: "Yes. Atlantic Canada has a strong credit union sector overseen by the Credit Union Prudential Supervisors Association (CUPSA). Credit unions such as East Coast Credit Union, Bayview Credit Union, Provincial Credit Union (PEI), and Newfoundland and Labrador Credit Union frequently match or beat big-bank posted rates at renewal, and they often offer more flexible underwriting for self-employed borrowers and unique property types common in the region."
+  },
+  {
+    question: "Does PEI's first-time home buyer exemption apply when I renew?",
+    answer: "The PEI Real Property Transfer Tax first-time buyer exemption applies only at the time of purchase, not at renewal. To qualify at purchase, the buyer must have resided in PEI for 183 consecutive days or filed PEI tax returns in 2 of the previous 6 years, and must never have owned a principal residence. Once you've owned the home, renewal has no transfer-tax implications."
+  },
+  {
+    question: "Is Newfoundland's Registration of Deeds fee charged on mortgage switching?",
+    answer: "Yes — if you switch lenders in Newfoundland and Labrador, a new mortgage must be registered, which triggers the Registration of Deeds fee on the mortgage amount ($100 base plus $0.40 per $100 of value over $500, capped at $5,000). This is distinct from any property-registration fee and must be factored into switching cost calculations. Many lenders offer cash-back incentives that offset this fee."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "atlantic-canada-mortgage-renewal",
+    name: "Atlantic Canada Mortgage Renewal — NS, NB, PEI, NL Guide 2026",
+    description: "Mortgage renewal guide for Nova Scotia, New Brunswick, PEI, and Newfoundland and Labrador. Provincial rules, transfer taxes, and credit union options for 2026.",
+  }),
+  articleSchema({
+    headline: "Atlantic Canada Mortgage Renewal — NS, NB, PEI, NL Guide 2026",
+    description: "Atlantic Canada mortgage renewal guide: Nova Scotia, New Brunswick, PEI, and Newfoundland and Labrador provincial rules, deed transfer taxes, and 2026 renewal strategies.",
+    slug: "atlantic-canada-mortgage-renewal",
+    areaServed: "Atlantic Canada (Nova Scotia, New Brunswick, Prince Edward Island, Newfoundland and Labrador)",
+    articleSection: "Provincial Guides",
+    about: "Atlantic Canada Mortgage Renewal",
+    keywords: ["Atlantic Canada mortgage renewal", "Nova Scotia mortgage", "New Brunswick mortgage", "PEI mortgage", "Newfoundland mortgage", "Halifax renewal rates"],
+  }),
+  breadcrumbSchema([
+    { name: "Atlantic Canada Mortgage Renewal", url: "/atlantic-canada-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "atlantic-canada-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Atlantic Canada Mortgage Renewal 2026 — NS, NB, PEI, NL"
+  description="Atlantic Canada mortgage renewal guide: Nova Scotia, New Brunswick, PEI, Newfoundland — provincial rules, deed transfer taxes, and 2026 renewal strategies."
+  schema={schema}
+>
+  <!-- HERO -->
+  <section class="bg-primary-100 py-16 lg:py-24">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-3xl">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white/80">
+          Atlantic Canada Renewal Guide
+        </div>
+        <h1 class="text-4xl font-bold text-white lg:text-5xl leading-tight mb-6">
+          Atlantic Canada Mortgage Renewal in 2026
+        </h1>
+        <p class="text-xl text-white/80 mb-8">
+          Nova Scotia, New Brunswick, Prince Edward Island, and Newfoundland and Labrador have their own mortgage broker regulators, property transfer rules, and credit union networks. Here's what Atlantic homeowners need to know at renewal.
+        </p>
+        <div class="flex flex-wrap gap-4">
+          <a href="/book-a-call/">
+            <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
+              Book Free Atlantic Broker Consultation
+            </button>
+          </a>
+          <a href="/mortgage-renewal-calculator/">
+            <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
+              Calculate My New Payment
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET SNAPSHOT -->
+  <section class="border-b py-10 bg-gray-25">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {[
+          { stat: "~$585K", label: "Halifax Regional Municipality avg home (Mar 2026)", sub: "NSAR data" },
+          { stat: "~$386K", label: "Moncton avg home (2026)", sub: "NB market tracking" },
+          { stat: "~$429K", label: "Charlottetown avg home (2026)", sub: "PEIREA data" },
+          { stat: "~$410K", label: "St. John's avg home (2026, +11% YoY)", sub: "NLAR data" },
+        ].map(item => (
+          <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
+            <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
+            <div class="mt-1 text-sm font-medium text-gray-800">{item.label}</div>
+            <div class="mt-0.5 text-xs text-gray-500">{item.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-16 lg:py-20">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-12 lg:grid-cols-3">
+        <div class="lg:col-span-2 space-y-10">
+
+          <div>
+            <h2 class="text-heading-2 mb-4">Atlantic Canada Mortgage Market Overview</h2>
+            <p class="text-body-lg text-muted-foreground mb-4">
+              Atlantic Canada's four provinces — Nova Scotia, New Brunswick, Prince Edward Island, and Newfoundland and Labrador — share a smaller-scale, relatively affordable mortgage market when compared with Ontario or British Columbia. But each province has its own mortgage broker regulator, its own property-transfer tax rules, and its own housing market dynamics. Understanding those differences matters at renewal, especially if you're considering switching lenders.
+            </p>
+            <p class="text-body-md text-muted-foreground mb-4">
+              Home prices across the region surged in 2021-2022 and have continued rising modestly through 2025-2026. Halifax now averages roughly $565K-$600K, and St. John's has posted an 11% year-over-year increase into 2026. For 2020-2021 buyers renewing now, the combination of higher balances and higher rates is producing meaningful payment shock — making it especially important to shop the <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">best mortgage renewal rates</a> rather than accept a renewal letter from the existing lender.
+            </p>
+            <p class="text-body-md text-muted-foreground">
+              The region is served by all Big 6 banks, a number of monoline lenders that operate through the broker channel, and a strong credit union sector supervised prudentially by CUPSA (the Credit Union Prudential Supervisors Association).
+            </p>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Province-by-Province Transfer Tax Summary</h2>
+            <div class="space-y-4">
+              {[
+                {
+                  title: "Nova Scotia — Municipal Deed Transfer Tax",
+                  content: "Nova Scotia's Deed Transfer Tax is set by each municipality and capped at 1.5%. Halifax Regional Municipality charges 1.5%; rural municipalities range from 0.5% to 1.5%. There is no first-time buyer rebate. In 2022 the province introduced a Provincial Non-Resident Deed Transfer Tax (originally 5%, with proposals to increase further — verify at novascotia.ca). Neither tax applies at renewal — only on purchase or transfer."
+                },
+                {
+                  title: "New Brunswick — Real Property Transfer Tax",
+                  content: "New Brunswick charges a flat 1% Real Property Transfer Tax on the greater of the purchase price or the property's assessed value. There is no first-time buyer rebate. The tax applies at purchase only; renewing your existing mortgage does not trigger it."
+                },
+                {
+                  title: "Prince Edward Island — Real Property Transfer Tax",
+                  content: "PEI charges a flat 1% Real Property Transfer Tax, but offers a fully-waived exemption for first-time buyers who have resided in PEI for 183 consecutive days or filed PEI tax returns in 2 of the previous 6 years and have never owned a principal residence. The exemption is claimed at purchase, not at renewal."
+                },
+                {
+                  title: "Newfoundland and Labrador — Registration of Deeds fee",
+                  content: "NL does not charge a traditional land transfer tax. Instead, it charges a Registration of Deeds fee — $100 base plus $0.40 per $100 of value over $500 — on both the property registration and the mortgage registration, each capped at $5,000. There is no first-time buyer rebate. The mortgage-side fee is worth noting if you <a href='/switching-lenders-at-renewal/' style='color: var(--secondary)'>switch lenders at renewal</a>, since a new mortgage registration is required."
+                },
+              ].map(item => (
+                <div class="rounded-xl border border-gray-100 bg-white p-5">
+                  <h3 class="font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p class="text-body-sm text-muted-foreground" set:html={item.content}></p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Mortgage Broker Regulators by Province</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Each Atlantic province licenses mortgage brokers separately. Always verify your broker's license with the appropriate regulator before committing to a rate.</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { name: "Nova Scotia", body: "Service Nova Scotia administers the Mortgage Regulation Act and licenses brokerages, brokers, associate brokers, and mortgage lenders operating in the province." },
+                { name: "New Brunswick", body: "The Financial and Consumer Services Commission (FCNB) regulates mortgage brokers, administrators, associates, and salespersons under the Mortgage Brokers Act." },
+                { name: "Prince Edward Island", body: "PEI's Department of Justice and Public Safety regulates mortgage brokers under the Mortgage Brokers Act. Licence verification is available through the provincial registry." },
+                { name: "Newfoundland and Labrador", body: "Digital Government and Service NL licenses and oversees mortgage brokers under provincial consumer-protection legislation." },
+              ].map(reg => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{reg.name}</div>
+                  <div class="text-xs text-muted-foreground">{reg.body}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Atlantic Canada Credit Union Sector</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Atlantic Canada has a deep credit union tradition. Provincially chartered credit unions in the region are prudentially supervised by CUPSA (the Credit Union Prudential Supervisors Association), which harmonizes oversight across the four provinces. Credit unions are provincial, not federally regulated, which means they are not bound by OSFI B-20 stress-test rules in the same way as federally chartered banks.</p>
+            <div class="grid sm:grid-cols-2 gap-4">
+              {[
+                { city: "Nova Scotia", notes: "East Coast Credit Union, Teachers Plus Credit Union, Valley Credit Union — all offer renewal products with flexible underwriting for self-employed and rural borrowers." },
+                { city: "New Brunswick", notes: "Bayview Credit Union, Omista Credit Union, and Beaubear Credit Union serve communities from Saint John to Miramichi with competitive rates." },
+                { city: "Prince Edward Island", notes: "Provincial Credit Union and Consolidated Credit Union dominate the PEI credit union landscape with strong mortgage renewal offerings." },
+                { city: "Newfoundland and Labrador", notes: "Newfoundland and Labrador Credit Union, Eagle River Credit Union, and Venture Credit Union serve Newfoundland and coastal Labrador." },
+              ].map(m => (
+                <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
+                  <div class="font-semibold text-sm text-primary-100 mb-1">{m.city}</div>
+                  <div class="text-xs text-muted-foreground">{m.notes}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Steps to Get the Best Rate in Atlantic Canada</h2>
+            <ol class="space-y-4">
+              {[
+                { step: "1", title: "Start 120 days before maturity", desc: "Most Atlantic lenders will hold a rate for up to 120 days. Starting early locks in today's rate as a floor while you continue to shop. See our <a href='/mortgage-renewal-checklist/' style='color: var(--secondary)'>renewal checklist</a> for a month-by-month timeline." },
+                { step: "2", title: "Use a broker licensed in your province", desc: "All <a href='/mortgage-broker-renewal/' style='color: var(--secondary)'>mortgage brokers</a> serving Atlantic clients must be licensed in the province where the property is located. Some national brokerages hold licences in all four provinces; verify before engaging." },
+                { step: "3", title: "Get quotes from a bank, a monoline, and a credit union", desc: "Each channel tends to win on different profiles. Credit unions often win for self-employed or unique-property borrowers; monolines win on straightforward residential files; banks win when you value branch access and broad product suites." },
+                { step: "4", title: "In Newfoundland, factor the Registration of Deeds fee", desc: "Switching lenders in NL triggers a new mortgage registration fee. On a $300K mortgage, that's roughly $1,300 on the mortgage side. Confirm whether the new lender's cash-back incentive covers this before committing." },
+                { step: "5", title: "Compare total cost, not just rate", desc: "Penalties, prepayment privileges, portability, discharge fees, and charge type (<a href='/switching-lenders-at-renewal/' style='color: var(--secondary)'>standard vs. collateral</a>) all materially affect the true cost of a 5-year term." },
+              ].map(item => (
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-primary-100 text-white font-bold text-sm">{item.step}</div>
+                  <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">{item.title}</h3>
+                    <p class="text-body-sm text-muted-foreground" set:html={item.desc}></p>
+                  </div>
+                </div>
+              ))}
+            </ol>
+          </div>
+
+          <div>
+            <h2 class="text-heading-3 mb-4">Unique Property Types in Atlantic Canada</h2>
+            <p class="text-body-md text-muted-foreground mb-4">Atlantic Canada has a higher share of unique residential properties than most Canadian markets: coastal properties with shore access, rural homes with well and septic, century homes in the historic centres of Halifax, Saint John, Charlottetown, and St. John's, and seasonal or recreational properties in popular coastal zones. Not all lenders are equally comfortable with these property types.</p>
+            <p class="text-body-md text-muted-foreground mb-4">At renewal, a locally-knowledgeable broker can be especially valuable if your property is anything other than a standard suburban detached home. Credit unions and select monolines (First National, MCAP, RMG) are often more comfortable with coastal, well-and-septic, and older-stock properties than the bigger national banks.</p>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <div class="rounded-xl bg-primary-0 border border-primary-50 p-6">
+            <h3 class="text-heading-5 text-primary-100 mb-3">Free Atlantic Broker Consultation</h3>
+            <p class="text-body-sm text-muted-foreground mb-4">Our licensed Atlantic Canada mortgage brokers compare rates across banks, monolines, and credit unions in all four provinces. Free, no obligation.</p>
+            <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
+              Book Free Call →
+            </a>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Atlantic Regulators</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="https://beta.novascotia.ca/programs-and-services/mortgage-brokerage-licence" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">Service Nova Scotia</a></li>
+              <li><a href="https://fcnb.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">FCNB (New Brunswick)</a></li>
+              <li><a href="https://www.princeedwardisland.ca" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">PEI Department of Justice and Public Safety</a></li>
+              <li><a href="https://www.gov.nl.ca/dgsnl/" class="text-secondary-100 hover:underline" target="_blank" rel="noopener">Digital Government and Service NL</a></li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl border border-gray-100 bg-white p-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Renewal Tools</h3>
+            <ul class="space-y-2">
+              {[
+                { name: "Payment Calculator", href: "/mortgage-renewal-calculator/" },
+                { name: "Renewal Checklist", href: "/mortgage-renewal-checklist/" },
+                { name: "Switching Guide", href: "/switching-lenders-at-renewal/" },
+                { name: "Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
+              ].map(t => (
+                <li><a href={t.href} class="text-sm text-secondary-100 hover:underline">{t.name}</a></li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary-100 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <h2 class="text-heading-2 text-white mb-4">Ready to Start Your Atlantic Renewal?</h2>
+      <p class="text-xl text-white/80 mb-8">
+        Our Atlantic-licensed mortgage brokers compare rates from banks, monolines, and credit unions in Nova Scotia, New Brunswick, PEI, and Newfoundland and Labrador. Free, no obligation.
+      </p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Consultation
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

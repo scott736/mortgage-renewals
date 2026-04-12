@@ -1,0 +1,159 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import LiveRatesTable from '@/components/sections/live-rates-table';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "current-mortgage-rates-canada",
+    name: "Current Mortgage Rates Canada (April 2026)",
+    description: "Live Canadian mortgage rates for April 11, 2026 — best broker-negotiated rates for 1 through 5-year terms and 5-year variable, plus Big 5 comparison.",
+  }),
+  articleSchema({
+    headline: "Current Mortgage Rates in Canada (April 11, 2026)",
+    description: "Today's best mortgage rates across Canada: 3.94% insured 5-year fixed, 3.30% 5-year variable at prime minus 1.15%. Updated weekly.",
+    slug: "current-mortgage-rates-canada",
+    articleSection: "Rates",
+    about: "Canadian Mortgage Rates",
+    keywords: ["current mortgage rates Canada", "best 5-year rates", "mortgage rates April 2026", "Canadian mortgage rates today"],
+    dateModified: "2026-04-11",
+  }),
+  breadcrumbSchema([
+    { name: "Current Mortgage Rates", url: "/current-mortgage-rates-canada" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Current Mortgage Rates Canada — April 11, 2026"
+  description="Today's best Canadian mortgage rates: 3.94% insured 5-yr fixed, 3.30% variable. Big 5 bank comparison, broker rates, and BoC prime at 4.45%."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Current Mortgage Rates Canada
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 11, 2026</div>
+      <h1 class="text-heading-1 mb-4">Current Mortgage Rates in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Today's best broker-negotiated rates for Canadian homeowners. Refreshed weekly from 30+ lenders, compared against the Big 5 bank special-offer rates. No posted bank fluff — these are the rates you can actually get.
+      </p>
+    </div>
+
+    <LiveRatesTable client:load />
+
+    <div class="mt-10 grid sm:grid-cols-3 gap-4">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <div class="text-body-xs text-muted-foreground uppercase tracking-wide mb-1">Bank of Canada</div>
+        <div class="text-heading-3 font-bold text-primary-100">2.25%</div>
+        <p class="text-body-xs text-muted-foreground mt-1">Overnight rate · held March 18, 2026</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <div class="text-body-xs text-muted-foreground uppercase tracking-wide mb-1">Prime Rate</div>
+        <div class="text-heading-3 font-bold text-primary-100">4.45%</div>
+        <p class="text-body-xs text-muted-foreground mt-1">Big 6 posted prime</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <div class="text-body-xs text-muted-foreground uppercase tracking-wide mb-1">Next BoC Decision</div>
+        <div class="text-heading-3 font-bold text-primary-100">Apr 29</div>
+        <p class="text-body-xs text-muted-foreground mt-1">Most economists expect another hold</p>
+      </div>
+    </div>
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How to Read These Rates</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Canadian mortgage rates split into three categories. <strong>Insured</strong> rates are the lowest — these apply to mortgages originally made with less than 20% down where the borrower paid CMHC or Sagen default insurance. <strong>Uninsured</strong> rates add about 0.10–0.30% and apply to most refinances, rentals, and mortgages over $1.5M. <strong>Variable</strong> rates float with Bank of Canada prime (currently 4.45%) and are expressed as "prime minus X."
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Posted bank rates — the ones on RBC, TD, Scotia, BMO, and CIBC websites — are typically 0.5% to 1.0% higher than what brokers can negotiate. Your renewal letter from your current lender almost always quotes the posted rate. That's the gap you close by shopping.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Insured vs. Uninsured: The Rate Difference</h2>
+        <div class="overflow-x-auto">
+          <table class="w-full text-body-sm border-collapse">
+            <thead>
+              <tr class="bg-primary-100 text-white">
+                <th class="text-left p-3 rounded-tl-lg">Category</th>
+                <th class="text-left p-3">Who Qualifies</th>
+                <th class="text-left p-3 rounded-tr-lg">5-Yr Fixed Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white">
+                <td class="p-3 font-semibold">Insured</td>
+                <td class="p-3 text-muted-foreground">Under 20% down at original purchase</td>
+                <td class="p-3 text-secondary-200 font-semibold">3.94% – 4.04%</td>
+              </tr>
+              <tr class="bg-gray-25">
+                <td class="p-3 font-semibold">Insurable</td>
+                <td class="p-3 text-muted-foreground">20%+ down, under $1M, owner-occupied</td>
+                <td class="p-3 text-secondary-200 font-semibold">4.09% – 4.19%</td>
+              </tr>
+              <tr class="bg-white">
+                <td class="p-3 font-semibold">Uninsured</td>
+                <td class="p-3 text-muted-foreground">Refinance, rental, or over $1.5M</td>
+                <td class="p-3 text-secondary-200 font-semibold">4.19% – 4.29%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">HELOC and Home Equity Rates</h2>
+        <p class="text-body-md text-muted-foreground">
+          HELOCs (Home Equity Lines of Credit) in Canada are priced at prime + a spread. With prime at 4.45%, typical HELOC rates range from <strong>4.95% (prime + 0.5%)</strong> at the best-priced big banks down to <strong>5.95% (prime + 1.5%)</strong> at lenders with more conservative pricing. HELOCs are never part of a renewal switch — they're a separate product you might add to complement your mortgage.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Why Broker Rates Beat Bank Rates</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Monoline access:</strong> Brokers can shop First National, MCAP, RMG, Merix — lenders with no branches and lower overhead, not available to the public directly.</li>
+          <li><strong>Volume pricing:</strong> Brokers place hundreds of mortgages a year per lender; banks treat them as wholesale partners with sharper pricing than retail branches.</li>
+          <li><strong>Zero cost to you:</strong> Brokers are paid a finder's fee by the chosen lender — not by the borrower.</li>
+          <li><strong>Negotiation lever:</strong> Even if you stay with your current bank, a broker quote in writing is your most effective negotiation tool at renewal.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Pages</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Best Mortgage Renewal Rates Guide", href: "/best-mortgage-renewal-rates/" },
+            { title: "Mortgage Rate Forecast 2026", href: "/mortgage-rate-forecast/" },
+            { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
+            { title: "Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+            { title: "Set a Rate Alert", href: "/rate-alert/" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want Today's Rate for Your File?</h2>
+      <p class="text-white/80 mb-6">These are market ranges. Your actual rate depends on credit score, property, and loan-to-value. A broker confirms your real rate in one call — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Get Your Personalized Rate
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

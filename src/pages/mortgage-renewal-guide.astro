@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, howToSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, howToSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 const schema = combineSchemas(
   articleSchema({
@@ -22,13 +22,17 @@ const schema = combineSchemas(
       { name: "On renewal day — Finalize the transition", text: "Your new mortgage is registered and the balance transfers to your new lender. Confirm the new mortgage appears on your account, file all documents, and set a reminder for your next renewal." },
     ],
   }),
-  speakableSchema("mortgage-renewal-guide"),
+  webPageNode({
+    slug: "mortgage-renewal-guide",
+    name: "Complete Canadian Mortgage Renewal Guide (2026)",
+    description: "Canada's complete mortgage renewal guide — from 12 months before maturity to renewal day, with rates, lenders, and savings strategies.",
+  }),
 );
 ---
 
 <DefaultLayout
-  title="Complete Mortgage Renewal Guide Canada 2026 | MortgageRenewalHub.ca"
-  description="Canada's most comprehensive mortgage renewal guide. Everything from 12 months before renewal to maturity day — rates, switching lenders, negotiating, and saving money."
+  title="Complete Mortgage Renewal Guide Canada 2026"
+  description="Canada's complete mortgage renewal guide. Everything from 12 months before renewal to maturity day — rates, lenders, negotiation, and savings."
   schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
@@ -39,7 +43,7 @@ const schema = combineSchemas(
     <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">The Definitive Resource</div>
     <h1 class="text-heading-1 mb-4">The Complete Canadian Mortgage Renewal Guide (2026)</h1>
     <p class="text-body-lg text-muted-foreground mb-6">
-      Over 1.8 million Canadians are renewing their mortgage in 2026. Most will simply sign whatever their bank sends them — one of the most common <a href="/mortgage-renewal-mistakes" class="text-secondary-100 hover:underline">renewal mistakes</a> Canadians make. This guide walks you through everything — from 12 months before renewal to the day your new term begins — so you can make an informed decision and keep more money in your pocket.
+      Over 1.8 million Canadians are renewing their mortgage in 2026. Most will simply sign whatever their bank sends them — one of the most common <a href="/mortgage-renewal-mistakes/" class="text-secondary-100 hover:underline">renewal mistakes</a> Canadians make. This guide walks you through everything — from 12 months before renewal to the day your new term begins — so you can make an informed decision and keep more money in your pocket.
     </p>
 
     <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
@@ -155,7 +159,7 @@ const schema = combineSchemas(
       A rate hold (also called a rate commitment) is a written guarantee from a lender that they will honour a specific interest rate for a defined period — typically 90 to 120 days, with some lenders offering up to 180 days.
     </p>
     <p class="text-body-md text-muted-foreground mb-4">
-      The key benefit: if interest rates rise between now and your renewal date, you're protected. If rates fall, most lenders will honour the lower rate. This asymmetric protection is one of the most underused tools at renewal. Check our <a href="/best-mortgage-renewal-rates" class="text-secondary-100 hover:underline">best mortgage renewal rates</a> page for current market rates to benchmark against.
+      The key benefit: if interest rates rise between now and your renewal date, you're protected. If rates fall, most lenders will honour the lower rate. This asymmetric protection is one of the most underused tools at renewal. Check our <a href="/best-mortgage-renewal-rates/" class="text-secondary-100 hover:underline">best mortgage renewal rates</a> page for current market rates to benchmark against.
     </p>
     <div class="rounded-xl bg-secondary-25 border border-secondary-50 p-5 mb-8">
       <h3 class="text-heading-5 mb-2">How to use a rate hold strategically:</h3>
@@ -169,7 +173,7 @@ const schema = combineSchemas(
 
     <h2 id="review-mortgage" class="text-heading-2 mb-4 scroll-mt-20">3. How to Review Your Current Mortgage</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      Before you can shop intelligently, you need to understand exactly what you have. If you're not sure what some of these terms mean, our <a href="/mortgage-renewal-glossary" class="text-secondary-100 hover:underline">mortgage renewal glossary</a> defines them all. Pull out your original mortgage documents or call your lender and confirm:
+      Before you can shop intelligently, you need to understand exactly what you have. If you're not sure what some of these terms mean, our <a href="/mortgage-renewal-glossary/" class="text-secondary-100 hover:underline">mortgage renewal glossary</a> defines them all. Pull out your original mortgage documents or call your lender and confirm:
     </p>
     <div class="grid sm:grid-cols-2 gap-4 mb-8">
       {[
@@ -189,7 +193,7 @@ const schema = combineSchemas(
 
     <h2 id="charge-types" class="text-heading-2 mb-4 scroll-mt-20">4. Standard vs. Collateral Charge — The Critical Difference</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      This is one of the most important — and least understood — aspects of mortgage renewal. The type of charge registered against your property determines whether you can <a href="/switching-lenders-at-renewal" class="text-secondary-100 hover:underline">switch lenders</a> for free.
+      This is one of the most important — and least understood — aspects of mortgage renewal. The type of charge registered against your property determines whether you can <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switch lenders</a> for free.
     </p>
     <div class="grid sm:grid-cols-2 gap-4 mb-4">
       <div class="rounded-xl bg-success-0 border border-success-50 p-5">
@@ -228,7 +232,7 @@ const schema = combineSchemas(
 
     <h2 id="negotiating" class="text-heading-2 mb-4 scroll-mt-20">6. Negotiating With Your Current Lender</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      If you'd prefer to stay with your current lender but want a better rate, negotiation is very possible — especially with a <a href="/mortgage-broker-renewal" class="text-secondary-100 hover:underline">mortgage broker</a> in your corner. Banks have significant flexibility — they just don't advertise it. Here's how to approach it:
+      If you'd prefer to stay with your current lender but want a better rate, negotiation is very possible — especially with a <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> in your corner. Banks have significant flexibility — they just don't advertise it. Here's how to approach it:
     </p>
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 mb-4">
       <h3 class="text-heading-5 mb-3">Negotiation Script</h3>
@@ -268,7 +272,7 @@ const schema = combineSchemas(
 
     <h2 id="switching-process" class="text-heading-2 mb-4 scroll-mt-20">8. Switching Lenders: Process and Costs</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      Since the 2024 regulatory change, you can switch lenders at renewal on a straight transfer (same balance, same amortization) without a stress test — for both insured and uninsured mortgages. Use our <a href="/mortgage-renewal-calculator" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to model the savings before deciding. The process is simpler than most Canadians realize:
+      Since the 2024 regulatory change, you can switch lenders at renewal on a straight transfer (same balance, same amortization) without a stress test — for both insured and uninsured mortgages. Use our <a href="/mortgage-renewal-calculator/" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to model the savings before deciding. The process is simpler than most Canadians realize:
     </p>
     <ol class="space-y-3 mb-8 list-decimal list-inside text-body-md text-muted-foreground">
       <li>Apply with new lender or through broker (~4 weeks before maturity ideally)</li>
@@ -278,7 +282,7 @@ const schema = combineSchemas(
       <li>Funds transfer — balance moves seamlessly to new lender</li>
     </ol>
     <p class="text-body-md text-muted-foreground mb-8">
-      Full details, costs, and the collateral charge exception are covered in our <a href="/switching-lenders-at-renewal" class="text-secondary-100 hover:underline">complete switching lenders guide</a>.
+      Full details, costs, and the collateral charge exception are covered in our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">complete switching lenders guide</a>.
     </p>
 
     <h2 id="documents" class="text-heading-2 mb-4 scroll-mt-20">9. Documents You'll Need</h2>
@@ -320,12 +324,12 @@ const schema = combineSchemas(
       <h2 class="text-heading-4 mb-4">Continue Reading</h2>
       <div class="grid sm:grid-cols-2 gap-3">
         {[
-          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator" },
-          { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates" },
-          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
-          { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal" },
-          { title: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes" },
-          { title: "Mortgage Renewal Checklist", href: "/mortgage-renewal-checklist" },
+          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+          { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+          { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+          { title: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes/" },
+          { title: "Mortgage Renewal Checklist", href: "/mortgage-renewal-checklist/" },
         ].map(link => (
           <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
             <span class="text-secondary-100">→</span>
@@ -340,7 +344,7 @@ const schema = combineSchemas(
     <div class="container max-w-3xl text-center">
       <h2 class="text-heading-3 text-white mb-3">Ready to Put This Into Action?</h2>
       <p class="text-white/80 mb-6">Book a free call with a licensed broker who will walk you through your specific renewal situation and compare real lender quotes.</p>
-      <a href="/book-a-call">
+      <a href="/book-a-call/">
         <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
           Book Your Free Renewal Strategy Call
         </button>
@@ -349,12 +353,8 @@ const schema = combineSchemas(
   </section>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
-    <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
+    <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
       Book Free Broker Consultation
     </a>
   </div>
-
-  <p class="container py-6 text-body-xs text-muted-foreground text-center">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

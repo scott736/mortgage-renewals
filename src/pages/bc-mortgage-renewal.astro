@@ -1,24 +1,32 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "bc-mortgage-renewal",
+    name: "BC Mortgage Renewal — Best Rates in British Columbia for 2026",
+    description: "British Columbia-specific guide to renewing your mortgage in 2026 — Vancouver, Victoria, Kelowna and provincial markets.",
+  }),
   articleSchema({
     headline: "BC Mortgage Renewal — Best Rates in British Columbia for 2026",
     description: "BC homeowners: compare mortgage renewal rates in Vancouver, Victoria, Kelowna and across BC. Free broker consultation — access 30+ lenders.",
     slug: "bc-mortgage-renewal",
+    areaServed: "British Columbia, Canada",
+    articleSection: "Provincial Guides",
+    about: "British Columbia Mortgage Renewal",
+    keywords: ["BC mortgage renewal", "Vancouver renewal rates", "Victoria mortgage", "Kelowna mortgage", "BCFSA"],
   }),
   breadcrumbSchema([
     { name: "BC Mortgage Renewal", url: "/bc-mortgage-renewal" }
   ]),
-  speakableSchema("bc-mortgage-renewal"),
 );
 ---
 
 <DefaultLayout
-  title="BC Mortgage Renewal — Best Rates in British Columbia for 2026"
+  title="BC Mortgage Renewal 2026 — Best Rates in British Columbia"
   description="BC homeowners: compare mortgage renewal rates in Vancouver, Victoria, Kelowna and across BC. Free broker consultation — access 30+ lenders."
   schema={schema}
 >
@@ -33,15 +41,15 @@ const schema = combineSchemas(
           BC Mortgage Renewal in 2026
         </h1>
         <p class="text-xl text-white/80 mb-8">
-          British Columbia homeowners carry some of the highest mortgage balances in Canada. In a market where even a 0.25% rate difference means thousands of dollars, <a href="/lower-mortgage-payments-at-renewal" style="color: var(--secondary)">shopping your renewal</a> is more important here than almost anywhere else.
+          British Columbia homeowners carry some of the highest mortgage balances in Canada. In a market where even a 0.25% rate difference means thousands of dollars, <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">shopping your renewal</a> is more important here than almost anywhere else.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="/book-a-call">
+          <a href="/book-a-call/">
             <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
               Book Free BC Broker Consultation
             </button>
           </a>
-          <a href="/mortgage-renewal-calculator">
+          <a href="/mortgage-renewal-calculator/">
             <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
               Calculate My New Payment
             </button>
@@ -83,7 +91,7 @@ const schema = combineSchemas(
               British Columbia consistently records some of the highest home prices in Canada. In Metro Vancouver, average detached home prices have regularly exceeded $1.5 million — meaning mortgages that would be jumbo loans elsewhere are routine in BC.
             </p>
             <p class="text-body-md text-muted-foreground mb-4">
-              This scale amplifies the impact of rate shopping. A 0.50% rate reduction on a $900,000 mortgage saves over $4,500 per year — or $22,500 over a 5-year term. That's a compelling reason to work with a <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> rather than accept your lender's first offer.
+              This scale amplifies the impact of rate shopping. A 0.50% rate reduction on a $900,000 mortgage saves over $4,500 per year — or $22,500 over a 5-year term. That's a compelling reason to work with a <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> rather than accept your lender's first offer.
             </p>
           </div>
 
@@ -93,11 +101,11 @@ const schema = combineSchemas(
               {[
                 {
                   title: "BCFSA Mortgage Broker Licensing",
-                  content: "All mortgage brokers operating in BC must be licensed through the BC Financial Services Authority (BCFSA). When selecting a broker, verify their BCFSA registration. Compare <a href='/best-mortgage-renewal-rates' style='color: var(--secondary)'>current renewal rates</a> and look for designations like AMP (Accredited Mortgage Professional) as an additional quality indicator.",
+                  content: "All mortgage brokers operating in BC must be licensed through the BC Financial Services Authority (BCFSA). When selecting a broker, verify their BCFSA registration. Compare <a href='/best-mortgage-renewal-rates/' style='color: var(--secondary)'>current renewal rates</a> and look for designations like AMP (Accredited Mortgage Professional) as an additional quality indicator.",
                 },
                 {
                   title: "BC Speculation and Vacancy Tax",
-                  content: "BC's speculation and vacancy tax can affect investment property owners in designated urban areas. This can affect your approach to renewal if you hold investment properties — consider whether <a href='/switching-lenders-at-renewal' style='color: var(--secondary)'>switching lenders</a> or adjusting your mortgage strategy makes sense.",
+                  content: "BC's speculation and vacancy tax can affect investment property owners in designated urban areas. This can affect your approach to renewal if you hold investment properties — consider whether <a href='/switching-lenders-at-renewal/' style='color: var(--secondary)'>switching lenders</a> or adjusting your mortgage strategy makes sense.",
                 },
                 {
                   title: "Foreign Buyer Restrictions",
@@ -105,7 +113,7 @@ const schema = combineSchemas(
                 },
                 {
                   title: "BC Credit Unions",
-                  content: "BC has a strong credit union sector — Vancity, First West Credit Union (Envision, Valley First, Enderby, Westminster), Interior Savings, and many others. Credit unions operate under the BC Financial Institutions Act and BCFSA oversight, giving them some flexibility that federally regulated lenders don't have. Choosing between <a href='/fixed-vs-variable-mortgage-renewal' style='color: var(--secondary)'>fixed and variable rates</a> is especially important with BC's high balances.",
+                  content: "BC has a strong credit union sector — Vancity, First West Credit Union (Envision, Valley First, Enderby, Westminster), Interior Savings, and many others. Credit unions operate under the BC Financial Institutions Act and BCFSA oversight, giving them some flexibility that federally regulated lenders don't have. Choosing between <a href='/fixed-vs-variable-mortgage-renewal/' style='color: var(--secondary)'>fixed and variable rates</a> is especially important with BC's high balances.",
                 },
               ].map(item => (
                 <div class="rounded-xl border border-gray-100 bg-white p-5">
@@ -141,7 +149,7 @@ const schema = combineSchemas(
           <div class="rounded-xl bg-primary-0 border border-primary-50 p-6">
             <h3 class="text-heading-5 text-primary-100 mb-3">Free BC Broker Consultation</h3>
             <p class="text-body-sm text-muted-foreground mb-4">Licensed BC mortgage brokers comparing 30+ lenders. Free, no obligation.</p>
-            <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
+            <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 py-3 text-center text-sm font-semibold text-white hover:opacity-90">
               Book Free Call →
             </a>
           </div>
@@ -166,15 +174,11 @@ const schema = combineSchemas(
       <p class="text-xl text-white/80 mb-8">
         Our licensed BC mortgage brokers compare rates from 30+ lenders. With BC home values, even a small rate improvement can save you tens of thousands. Book your free call today.
       </p>
-      <a href="/book-a-call">
+      <a href="/book-a-call/">
         <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
           Book Your Free Consultation
         </button>
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-muted-foreground text-center">
-    This content is for educational purposes only. Market data is approximate. Always consult a licensed BC mortgage broker for advice specific to your situation.
-  </p>
 </DefaultLayout>

@@ -1,0 +1,301 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a mortgage prepayment privilege in Canada?",
+    answer: "A prepayment privilege is a contractual allowance, included in your mortgage, that lets you pay down principal faster than your regular schedule without triggering a prepayment penalty. Typical privileges include an annual lump-sum allowance (10%–20% of the original principal) and the ability to increase your regular payment by a set percentage. Anything above those limits during a closed term triggers a prepayment charge."
+  },
+  {
+    question: "Do prepayment privileges reset every year?",
+    answer: "Yes — almost every Canadian mortgage prepayment privilege is use-it-or-lose-it on a calendar-year basis. Your 15% lump-sum allowance in 2026 does not carry over to 2027 if unused. This is why many borrowers make a prepayment in late December and another in early January to effectively double their annual prepayment capacity across two calendar years."
+  },
+  {
+    question: "Does making a prepayment reduce my monthly payment?",
+    answer: "No. Prepayments reduce your principal and your amortization (the time remaining), but they do not change your contractual monthly or biweekly payment. Your payment stays the same, more of it goes to principal after the prepayment, and you finish paying off the mortgage earlier. If you want a lower monthly payment, you need to increase your amortization, which is usually a refinance."
+  },
+  {
+    question: "Can I make prepayments on a variable-rate mortgage?",
+    answer: "Yes. Variable-rate mortgages generally carry the same prepayment privileges as fixed-rate products from the same lender. The break penalty on a variable is almost always a simple 3-month interest charge, so there's no IRD risk — but the annual lump-sum and payment-increase privileges still give you penalty-free flexibility within each year."
+  },
+  {
+    question: "Is there any downside to using prepayment privileges?",
+    answer: "The main trade-off is liquidity. Money prepaid against your mortgage is no longer accessible unless you have a readvanceable mortgage, a HELOC, or refinance to pull it back out (which triggers the stress test and legal costs). Make sure you have a solid emergency fund — typically 3–6 months of expenses — before making significant prepayments."
+  },
+  {
+    question: "Which Canadian lender has the best prepayment privileges?",
+    answer: "MCAP and BMO (on non-Smart Fixed products) offer the most generous combination at 20% lump sum and 20% payment increase annually. TD offers 15% and up to 100% payment increase — an industry-leading payment-increase privilege. First National offers 15%/15%. Credit unions vary widely, with some offering 20%/20% on specific products. The best lender depends on how you plan to use the privilege."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Prepayment Privileges in Canada — 2026 Lender Guide",
+    description: "Complete 2026 comparison of prepayment privileges at all major Canadian lenders. Lump-sum allowances, payment-increase rules, and how to save $30K+ in interest.",
+    slug: "mortgage-prepayment-privileges-canada",
+    articleSection: "Guides",
+    about: "Canadian mortgage prepayment privileges",
+    keywords: ["mortgage prepayment Canada", "prepayment privileges", "lump sum mortgage payment", "double-up payment", "TD prepayment", "RBC double-up"],
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Prepayment Privileges", url: "/mortgage-prepayment-privileges-canada" }
+  ]),
+  faqSchema(faqs, "mortgage-prepayment-privileges-canada"),
+  webPageNode({
+    slug: "mortgage-prepayment-privileges-canada",
+    name: "Mortgage Prepayment Privileges in Canada (2026)",
+    description: "Lender-by-lender 2026 comparison of Canadian mortgage prepayment privileges: lump-sum allowances, payment-increase rules, and strategies to save interest.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Prepayment Privileges in Canada — 2026 Lender Guide"
+  description="2026 comparison of Canadian mortgage prepayment privileges. Lump-sum allowances, payment-increase rules, and strategies to save tens of thousands in interest."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Mortgage Prepayment Privileges
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 2026 · 10-minute read</div>
+    <h1 class="text-heading-1 mb-4">Mortgage Prepayment Privileges in Canada: The 2026 Lender Guide</h1>
+    <p class="text-body-lg text-muted-foreground mb-8">
+      Prepayment privileges are the single most under-used feature of Canadian mortgages. They let you pay down principal faster, skip years of interest, and finish your mortgage early — all without penalty. But every lender structures them differently, and most homeowners don't know what their contract actually allows. This guide compares all the major Canadian lenders side-by-side, shows how to use privileges strategically, and explains why they matter at renewal.
+    </p>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-md">
+        <li>• Most Canadian closed mortgages include two prepayment privileges: an annual lump-sum allowance (10%–20%) and the ability to increase your regular payment (10%–100%).</li>
+        <li>• Privileges are almost always calendar-year use-it-or-lose-it — unused portions don't carry forward.</li>
+        <li>• MCAP and BMO (20%/20%) offer the most generous lump-sum + payment increase combination. TD allows up to 100% payment increase.</li>
+        <li>• A $5,000/year lump-sum prepayment on a $500,000 mortgage at 4.29% saves roughly $30,000 in interest and shortens amortization by ~3 years.</li>
+        <li>• Prepayments reduce principal and amortization but do not lower your contractual monthly payment.</li>
+        <li>• At renewal, you can make an unlimited prepayment with no penalty — this is the best single prepayment opportunity in a mortgage's life cycle.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Two Standard Privileges: Lump Sum and Payment Increase</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Nearly every closed Canadian mortgage includes two separate prepayment privileges, each measured as a percentage of the <strong>original</strong> mortgage amount (not your current balance):
+    </p>
+    <ul class="space-y-2 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li><strong>Annual lump-sum prepayment:</strong> A one-time or multiple-time extra payment of up to 10%–20% of the original principal per calendar year, applied directly against principal.</li>
+      <li><strong>Payment increase (or "double-up"):</strong> The right to increase your regular scheduled payment by 10%–100%. Extra amounts go to principal; you can typically reduce the payment back to the original at any time.</li>
+    </ul>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Open mortgages have unlimited prepayment (no penalty ever) but carry a higher rate. Closed mortgages — the standard — enforce these privilege limits, and anything exceeding them triggers a prepayment penalty (typically the greater of 3 months' interest or IRD for fixed; 3 months' interest for variable). See our <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD vs. 3-month interest guide</a> for the math.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Lender-by-Lender Comparison (April 2026)</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Lump Sum / Yr</th>
+            <th class="p-3 text-left">Payment Increase</th>
+            <th class="p-3 text-left">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">TD Canada Trust</td>
+            <td class="p-3">15% of original</td>
+            <td class="p-3 text-secondary-200 font-semibold">Up to 100%</td>
+            <td class="p-3">Industry-leading payment-increase flexibility.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">RBC</td>
+            <td class="p-3">10%</td>
+            <td class="p-3">"Double-Up" (1× regular pmt)</td>
+            <td class="p-3">Double-Up applied to any scheduled payment; cancel anytime.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">BMO</td>
+            <td class="p-3 text-secondary-200 font-semibold">20% (10% Smart Fixed)</td>
+            <td class="p-3 text-secondary-200 font-semibold">20% (10% Smart Fixed)</td>
+            <td class="p-3">BMO Smart Fixed is a restricted low-rate product with lower privileges.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">Scotiabank</td>
+            <td class="p-3">15% (typical)</td>
+            <td class="p-3">Up to 15%</td>
+            <td class="p-3">Varies by product; STEP components differ.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">CIBC</td>
+            <td class="p-3">10% fixed / 20% variable & convertible</td>
+            <td class="p-3 text-secondary-200 font-semibold">100%</td>
+            <td class="p-3">Best lump-sum flexibility is on variable/convertible products.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">National Bank</td>
+            <td class="p-3">10%</td>
+            <td class="p-3">Double-Up (1× regular pmt)</td>
+            <td class="p-3">Standard Big 6 structure.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">First National</td>
+            <td class="p-3">15%</td>
+            <td class="p-3">15% (fixed only)</td>
+            <td class="p-3">Strong monoline offering. Variable rates vary.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">MCAP</td>
+            <td class="p-3 text-secondary-200 font-semibold">20%</td>
+            <td class="p-3 text-secondary-200 font-semibold">20%</td>
+            <td class="p-3">Best combined privilege among monolines.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">Credit Unions (typical)</td>
+            <td class="p-3">10%–20%</td>
+            <td class="p-3">Varies</td>
+            <td class="p-3">Confirm directly — some offer 20%/20%, others 15%/15%.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-xs text-muted-foreground mb-6">Privileges verified against lender disclosures and industry rate databases as of April 2026. Restricted rate products may have lower privileges. Always verify on your specific commitment letter.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Much Can Prepayments Actually Save You?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      On a $500,000 mortgage at 4.29% with a 25-year amortization, the standard monthly payment is about $2,706. Three common prepayment strategies illustrate the impact:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Strategy</th>
+            <th class="p-3 text-left">Amortization</th>
+            <th class="p-3 text-left">Interest Saved</th>
+            <th class="p-3 text-left">Time Saved</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3">No prepayments (baseline)</td>
+            <td class="p-3">25 yrs 0 mo</td>
+            <td class="p-3">–</td>
+            <td class="p-3">–</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3">$5,000/year lump sum</td>
+            <td class="p-3">~22 yrs</td>
+            <td class="p-3 font-semibold text-secondary-200">~$30,000</td>
+            <td class="p-3">~3 years</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3">10% payment increase</td>
+            <td class="p-3">~22 yrs 2 mo</td>
+            <td class="p-3 font-semibold text-secondary-200">~$28,000</td>
+            <td class="p-3">~2 yrs 10 mo</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3">Accelerated biweekly only</td>
+            <td class="p-3">~22 yrs</td>
+            <td class="p-3 font-semibold text-secondary-200">~$30,000</td>
+            <td class="p-3">~3 years</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3">$10,000/year + 10% increase</td>
+            <td class="p-3">~18 yrs 6 mo</td>
+            <td class="p-3 font-semibold text-secondary-200">~$68,000</td>
+            <td class="p-3">~6.5 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The math is remarkably consistent: even small consistent prepayments compound dramatically because they come off principal directly, where interest is calculated. Our <a href="/mortgage-payment-frequency-canada/" class="text-secondary-100 hover:underline">payment frequency guide</a> shows how accelerated biweekly achieves similar results automatically.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The "December-January" Double Strategy</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Because prepayment privileges reset on January 1 for most lenders, a borrower planning a large prepayment can double their effective annual capacity by splitting the payment across two calendar years. A 15% privilege on a $400,000 original mortgage allows $60,000 per year — meaning you can prepay $60,000 in late December and another $60,000 in early January without penalty, for $120,000 in total in just a few weeks.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      This strategy is particularly effective if you've received a year-end bonus, inheritance, or other lump sum and want to move as much as possible into principal before a possible rate change at renewal.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Prepayments at Renewal: Unlimited, Penalty-Free</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      At the maturity date of your term — your renewal day — you can make an <strong>unlimited prepayment with no penalty</strong>. This is the single best prepayment opportunity in a mortgage's life cycle and one of the most under-used. If you have accumulated savings, an inheritance, or sale proceeds from another property, timing them for renewal allows you to reduce your principal as much as you want before signing the new term.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      This applies whether you renew with your existing lender or <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switch to a new one</a>. Your broker can help you structure the prepayment so the new term starts with a lower balance.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Smart Strategies for Using Your Privilege</h2>
+    <ul class="space-y-3 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li><strong>Build the emergency fund first.</strong> 3–6 months of expenses in a high-interest savings account before aggressive prepayments.</li>
+      <li><strong>Automate what you can.</strong> A 10% payment increase applied once typically stays in place automatically — you don't need to remember each payment cycle.</li>
+      <li><strong>Pair with tax refunds or bonuses.</strong> Tying annual prepayments to predictable windfalls (RRSP refunds, annual bonuses) builds the habit.</li>
+      <li><strong>Compare to investment alternatives.</strong> With a 4.29% mortgage rate, prepayment is effectively a 4.29% guaranteed after-tax return. Match this against expected after-tax returns on TFSAs/RRSPs — the right answer depends on your rate and tax bracket.</li>
+      <li><strong>Use privileges in the year <em>before</em> renewal.</strong> Lowering your balance before renewal gives you a lower starting point on the new term.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Happens If You Exceed Your Privilege?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Any amount paid above the annual privilege during a closed term is treated as partial prepayment and triggers a prepayment charge. For fixed mortgages with major banks, that's typically the greater of 3 months' interest or IRD — which on a Big 6 mortgage with several years remaining can easily exceed $10,000 on a large mortgage. See our <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD vs. 3-month interest penalty guide</a> for details.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      For variable-rate mortgages, only 3 months' interest applies, so the cost of exceeding the privilege is more predictable. In either case, always check with your lender before making a prepayment near or above your limit.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-8">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Related Guides & Tools</h2>
+    <div class="grid sm:grid-cols-2 gap-3 mb-8">
+      {[
+        { title: "Mortgage Payment Frequency Guide", href: "/mortgage-payment-frequency-canada/" },
+        { title: "IRD vs. 3-Month Interest Penalty", href: "/ird-vs-three-month-interest-penalty/" },
+        { title: "Lower Mortgage Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+        { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+        { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+        { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+      ].map(link => (
+        <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+          <span class="text-secondary-100">→</span>
+          {link.title}
+        </a>
+      ))}
+    </div>
+
+    <p class="text-body-xs text-muted-foreground mb-6">
+      Sources: Lender prepayment disclosures (TD, RBC, BMO, Scotiabank, CIBC, National Bank, First National, MCAP); FCAC mortgage prepayment guidance; ratehub.ca lender comparisons. Privileges current as of April 2026 and may change with new product launches. Always verify on your specific mortgage commitment letter.
+    </p>
+  </article>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want to Maximize Your Prepayment Privileges?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will compare prepayment terms across 30+ Canadian lenders so you get the right privilege mix for your goals — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

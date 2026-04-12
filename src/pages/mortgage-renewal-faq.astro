@@ -1,5 +1,12 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import {
+  faqSchema as buildFaqSchema,
+  breadcrumbSchema as buildBreadcrumb,
+  articleSchema as buildArticle,
+  webPageNode as buildWebPage,
+  combineSchemas,
+} from '@/lib/schema';
 export const prerender = true;
 
 const faqs = [
@@ -22,7 +29,7 @@ const faqs = [
       { q: "What determines mortgage rates at renewal?", a: "Fixed rates are primarily driven by Government of Canada bond yields (especially the 5-year bond). Variable rates track the Bank of Canada overnight rate via your lender's prime rate. Your credit score, mortgage balance, LTV ratio, and choice of lender also affect the rate you receive." },
       { q: "Is the rate my lender offers in the renewal statement the best I can get?", a: "Almost never. Lenders send renewal statements at their posted rates — their highest published rates. The discounted rates available through negotiation or via a broker are typically 0.50%–1.50% lower. Always compare before signing." },
       { q: "What is the posted rate vs. the discounted rate?", a: "The posted rate is the highest rate a lender publicly advertises. The discounted rate is what you actually receive after negotiation, through a broker, or by qualifying for a promotional offer. Always seek the discounted rate." },
-      { q: "Should I choose fixed or variable at renewal?", a: 'It depends on your risk tolerance, budget flexibility, and rate outlook. Fixed provides payment certainty. Variable (ARM or VRM) fluctuates with the Bank of Canada rate, has historically outperformed fixed over long periods, and carries a much lower break penalty. As of early 2026, both types are competitively priced within a modest spread. See our full <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">fixed vs. variable at renewal</a> guide for a detailed comparison.' },
+      { q: "Should I choose fixed or variable at renewal?", a: 'It depends on your risk tolerance, budget flexibility, and rate outlook. Fixed provides payment certainty. Variable (ARM or VRM) fluctuates with the Bank of Canada rate, has historically outperformed fixed over long periods, and carries a much lower break penalty. As of early 2026, both types are competitively priced within a modest spread. See our full <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed vs. variable at renewal</a> guide for a detailed comparison.' },
       { q: "What is a rate hold?", a: "A rate hold lets you lock in today's rate with a lender for up to 120 days before your mortgage funds. If rates rise before your renewal date, you're protected. If rates fall, most lenders allow you to drop to the lower rate. Rate holds are free and non-binding." },
       { q: "What is the difference between a 3-year and 5-year fixed?", a: "A 3-year fixed offers slightly less payment certainty but allows you to return to market in 3 years — useful if rates are expected to fall or you anticipate life changes. A 5-year fixed maximizes predictability and is often the most competitively priced fixed product. The right choice depends on rate forecasts and your plans." },
       { q: "Can I negotiate my renewal rate?", a: "Yes, absolutely. Your current lender's renewal offer is a starting point, not a final offer. Use competing quotes from a broker to push your lender for a better rate. Many lenders will match or beat competitive offers to retain your business." },
@@ -32,7 +39,7 @@ const faqs = [
     category: "Switching Lenders",
     id: "switching",
     questions: [
-      { q: "Can I switch lenders at renewal?", a: 'Yes. <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">Switching lenders at renewal</a> is one of the most impactful financial decisions you can make. As of November 2024, a straight switch to a new lender at renewal no longer requires a stress test, making it much easier to access better rates elsewhere.' },
+      { q: "Can I switch lenders at renewal?", a: 'Yes. <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">Switching lenders at renewal</a> is one of the most impactful financial decisions you can make. As of November 2024, a straight switch to a new lender at renewal no longer requires a stress test, making it much easier to access better rates elsewhere.' },
       { q: "What is a straight switch / straight transfer?", a: "A straight switch means transferring your mortgage to a new lender at renewal with the same outstanding balance, same remaining amortization, and no new funds advanced. No stress test is required (post-2024) and many new lenders cover the legal and discharge fees." },
       { q: "Do I need a stress test to switch lenders at renewal?", a: "No — as of November 2024, a straight transfer at renewal to a federally regulated lender does not require the stress test. If you want to change your loan amount, amortization, or access equity, that becomes a refinance and the stress test still applies." },
       { q: "What does it cost to switch lenders?", a: "Total switching costs typically range from $700 to $1,800. This includes: discharge fee from old lender ($200–$400), legal/registration fees ($300–$600), and potentially an appraisal. Many new lenders offer to cover legal and discharge fees as an incentive — always ask your broker." },
@@ -44,9 +51,9 @@ const faqs = [
     category: "Saving Money",
     id: "saving",
     questions: [
-      { q: "How much can I save by shopping at renewal?", a: 'On a $600,000 mortgage, even a 0.60% rate reduction saves approximately $3,600/year or $18,000 over a 5-year term. On larger mortgages common in Ontario and BC, the savings are even greater. Using a broker to access monoline lenders consistently outperforms staying with your current bank. Use our <a href="/mortgage-renewal-calculator" style="color: var(--secondary)">mortgage renewal calculator</a> to model your savings.' },
+      { q: "How much can I save by shopping at renewal?", a: 'On a $600,000 mortgage, even a 0.60% rate reduction saves approximately $3,600/year or $18,000 over a 5-year term. On larger mortgages common in Ontario and BC, the savings are even greater. Using a broker to access monoline lenders consistently outperforms staying with your current bank. Use our <a href="/mortgage-renewal-calculator/" style="color: var(--secondary)">mortgage renewal calculator</a> to model your savings.' },
       { q: "What are prepayment privileges?", a: "Prepayment privileges allow you to make extra payments on your mortgage principal beyond your regular scheduled payments, without penalty. Most mortgages allow 10–20% of the original principal as an annual lump sum. Using these privileges accelerates principal paydown and saves significant interest." },
-      { q: "Should I use a mortgage broker at renewal?", a: 'Yes, for virtually all borrowers. A <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> is free to use (paid by the lender when your mortgage funds), accesses 30+ lenders including monoline lenders unavailable directly to the public, and consistently finds better rates than most borrowers achieve by going directly to one lender.' },
+      { q: "Should I use a mortgage broker at renewal?", a: 'Yes, for virtually all borrowers. A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> is free to use (paid by the lender when your mortgage funds), accesses 30+ lenders including monoline lenders unavailable directly to the public, and consistently finds better rates than most borrowers achieve by going directly to one lender.' },
       { q: "Is it worth paying to break my mortgage early to get a lower rate?", a: "It depends on the penalty vs. the interest savings. If your penalty is $5,000 and switching saves $4,000/year, you break even in 15 months — likely worth it. Variable rate mortgages carry only 3-month interest penalties, making mid-term breaks more manageable than fixed-rate IRD penalties." },
       { q: "What is blend-and-extend?", a: "Blend-and-extend lets you combine your existing rate with today's rate to create a new blended rate, then start a fresh full term. It avoids penalties but produces a rate above today's best available. A broker can model whether blending or breaking outright is better for your situation." },
     ]
@@ -66,8 +73,8 @@ const faqs = [
     category: "Special Situations",
     id: "special",
     questions: [
-      { q: "Can self-employed borrowers renew their mortgage?", a: 'Yes, though it requires more documentation. A-lenders require the last 2 years\' NOAs and T1 returns. Brokers access Alt-A programs from monolines and B-lenders that use bank statements or gross revenue to qualify self-employed borrowers. Start 120–180 days before maturity. Read our <a href="/self-employed-mortgage-renewal" style="color: var(--secondary)">self-employed mortgage renewal</a> guide for full details.' },
-      { q: "How does separation or divorce affect my mortgage renewal?", a: 'Separation while in a joint mortgage is complex. Options include: one spouse buys out the other (requires refinance and stress test), both remain on the mortgage, or you sell. Removing a co-borrower always requires a full refinance. Get legal and broker advice early. See our <a href="/divorce-mortgage-renewal" style="color: var(--secondary)">divorce mortgage renewal</a> guide for a full walkthrough.' },
+      { q: "Can self-employed borrowers renew their mortgage?", a: 'Yes, though it requires more documentation. A-lenders require the last 2 years\' NOAs and T1 returns. Brokers access Alt-A programs from monolines and B-lenders that use bank statements or gross revenue to qualify self-employed borrowers. Start 120–180 days before maturity. Read our <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed mortgage renewal</a> guide for full details.' },
+      { q: "How does separation or divorce affect my mortgage renewal?", a: 'Separation while in a joint mortgage is complex. Options include: one spouse buys out the other (requires refinance and stress test), both remain on the mortgage, or you sell. Removing a co-borrower always requires a full refinance. Get legal and broker advice early. See our <a href="/divorce-mortgage-renewal/" style="color: var(--secondary)">divorce mortgage renewal</a> guide for a full walkthrough.' },
       { q: "Can I renew an investment property mortgage?", a: "Yes. Investment property mortgages follow similar renewal rules — including the 2024 no-stress-test rule for straight switches. Rates are typically 0.10–0.50% higher than owner-occupied. For 5+ unit properties, commercial mortgage rules apply." },
       { q: "What happens if I'm in a consumer proposal at renewal?", a: "A consumer proposal significantly impacts your renewal options. B-lenders (Home Trust, Equitable, Haventree) often work with borrowers who've completed a consumer proposal and been discharged for 2+ years. Private lending may be needed immediately after discharge." },
       { q: "Can I renew if I've had a recent bankruptcy?", a: "Renewal after bankruptcy is possible but challenging. Most A-lenders require 2+ years from discharge plus re-established credit. B-lenders may work with you sooner, typically 1–2 years post-discharge with strong equity. Private lending bridges the immediate post-discharge gap." },
@@ -88,55 +95,39 @@ const faqs = [
 
 const allQuestions = faqs.flatMap(category => category.questions);
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": allQuestions.map(item => ({
-    "@type": "Question",
-    "name": item.q,
-    "acceptedAnswer": {
-      "@type": "Answer",
-      "text": item.a
-    }
-  }))
-};
+// Strip inline HTML from answers before serializing into FAQ schema (JSON-LD
+// Answer.text should be plain text — embedded anchor tags with style attrs
+// produce malformed snippets in some parsers).
+function stripHtml(html: string): string {
+  return html
+    .replace(/<a [^>]*>([^<]*)<\/a>/g, "$1")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mortgagerenewalhub.ca" },
-    { "@type": "ListItem", "position": 2, "name": "Mortgage Renewal FAQ", "item": "https://mortgagerenewalhub.ca/mortgage-renewal-faq" }
-  ]
-};
-
-const articleSchemaObj = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "Mortgage Renewal FAQ — 40+ Questions Answered",
-  "description": "Canada's most comprehensive mortgage renewal FAQ. 40+ questions answered across 7 categories: basics, rates, switching lenders, saving money, affordability, special situations, and timing.",
-  "url": "https://mortgagerenewalhub.ca/mortgage-renewal-faq",
-  "datePublished": "2025-01-15",
-  "dateModified": "2026-03-30",
-  "author": { "@type": "Organization", "name": "MortgageRenewalHub.ca", "url": "https://mortgagerenewalhub.ca" },
-  "publisher": { "@type": "Organization", "name": "MortgageRenewalHub.ca", "url": "https://mortgagerenewalhub.ca", "logo": { "@type": "ImageObject", "url": "https://mortgagerenewalhub.ca/favicon/favicon-96x96.png" } },
-  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://mortgagerenewalhub.ca/mortgage-renewal-faq" },
-  "inLanguage": "en-CA"
-};
-
-const speakableSchemaObj = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "speakable": { "@type": "SpeakableSpecification", "cssSelector": ["h1", "article > p:first-of-type"] },
-  "url": "https://mortgagerenewalhub.ca/mortgage-renewal-faq"
-};
-
-const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema, articleSchemaObj, speakableSchemaObj]);
+const pageSchema = combineSchemas(
+  buildWebPage({
+    slug: "mortgage-renewal-faq",
+    name: "Mortgage Renewal FAQ — 40+ Questions Answered",
+    description: "Canada's most comprehensive mortgage renewal FAQ — 40+ questions answered.",
+  }),
+  buildFaqSchema(allQuestions.map(item => ({ question: item.q, answer: stripHtml(item.a) })), "mortgage-renewal-faq"),
+  buildArticle({
+    headline: "Mortgage Renewal FAQ — 40+ Questions Answered",
+    description: "Canada's most comprehensive mortgage renewal FAQ. 40+ questions answered across 7 categories: basics, rates, switching lenders, saving money, affordability, special situations, and timing.",
+    slug: "mortgage-renewal-faq",
+    articleSection: "FAQ",
+    about: "Canadian Mortgage Renewal",
+    keywords: ["mortgage renewal FAQ", "Canadian mortgage questions", "renewal answers"],
+  }),
+  buildBreadcrumb([{ name: "Mortgage Renewal FAQ", url: "/mortgage-renewal-faq" }]),
+);
 ---
 
 <DefaultLayout
-  title="Mortgage Renewal FAQ — 40+ Questions Answered | MortgageRenewalHub.ca"
-  description="Canada's most comprehensive mortgage renewal FAQ. 40+ questions answered across 7 categories: basics, rates, switching lenders, saving money, affordability, special situations, and timing."
+  title="Mortgage Renewal FAQ — 40+ Canadian Questions Answered"
+  description="Canada's most comprehensive mortgage renewal FAQ. 40+ answers across basics, rates, switching lenders, saving money, affordability, and timing."
   schema={pageSchema}
 >
   <!-- Breadcrumb -->
@@ -157,10 +148,10 @@ const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema, articleSchemaObj
         Everything Canadians need to know about mortgage renewals — organized into 7 categories and answered in plain language. Updated April 2026.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        <a href="/book-a-call/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
           Ask a Licensed Broker
         </a>
-        <a href="/mortgage-renewal-guide" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+        <a href="/mortgage-renewal-guide/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
           Full Renewal Guide
         </a>
       </div>
@@ -202,27 +193,27 @@ const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema, articleSchemaObj
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Explore Our Full Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
           <p class="text-xs" style="color: var(--muted-foreground)">The complete 2,000-word guide to how Canadian renewals work.</p>
         </a>
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">The 2024 rule change and 8-step switching process.</p>
         </a>
-        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Free to use. 30+ lenders. Everything a broker does for you.</p>
         </a>
-        <a href="/bad-credit-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Financial Difficulty</p>
           <p class="text-xs" style="color: var(--muted-foreground)">B-lenders, private lending, your rights, and the path forward.</p>
         </a>
-        <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step from 12 months out to renewal day.</p>
         </a>
-        <a href="/mortgage-renewal-glossary" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-glossary/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Glossary</p>
           <p class="text-xs" style="color: var(--muted-foreground)">50+ Canadian mortgage terms defined clearly.</p>
         </a>
@@ -231,7 +222,7 @@ const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema, articleSchemaObj
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -240,13 +231,9 @@ const pageSchema = JSON.stringify([faqSchema, breadcrumbSchema, articleSchemaObj
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

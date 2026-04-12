@@ -1,9 +1,14 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-renewal-mistakes",
+    name: "10 Costly Mortgage Renewal Mistakes Canadians Make",
+    description: "The 10 most costly mortgage renewal mistakes Canadians make — and how to avoid every one in 2026.",
+  }),
   articleSchema({
     headline: "10 Costly Mortgage Renewal Mistakes Canadians Make — And How to Avoid Every One",
     description: "Avoid the 10 most costly Canadian mortgage renewal mistakes — from auto-renewing without shopping to ignoring your charge type. Real numbers, real consequences, actionable solutions.",
@@ -12,13 +17,12 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Mortgage Renewal Mistakes", url: "/mortgage-renewal-mistakes" }
   ]),
-  speakableSchema("mortgage-renewal-mistakes"),
 );
 ---
 
 <DefaultLayout
-  title="10 Costly Mortgage Renewal Mistakes Canadians Make — And How to Avoid Them | MortgageRenewalHub.ca"
-  description="Avoid the 10 most costly Canadian mortgage renewal mistakes — from auto-renewing without shopping to ignoring your charge type. Real numbers, real consequences, actionable solutions."
+  title="10 Costly Mortgage Renewal Mistakes Canadians Make in 2026"
+  description="Avoid the 10 most costly Canadian mortgage renewal mistakes — from auto-renewing without shopping to ignoring collateral charges. Real numbers, real fixes."
   schema={schema}
 >
   <!-- Breadcrumb -->
@@ -39,10 +43,10 @@ const schema = combineSchemas(
         Real numbers. Real consequences. Each of these mistakes is common, preventable, and potentially worth thousands of dollars. Updated April 2026.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        <a href="/book-a-call/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
           Get Expert Help — Free
         </a>
-        <a href="/mortgage-renewal-checklist" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+        <a href="/mortgage-renewal-checklist/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
           Renewal Checklist
         </a>
       </div>
@@ -64,7 +68,7 @@ const schema = combineSchemas(
             <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Auto-Renewing Without Shopping</h2>
             <p class="mb-3 leading-relaxed text-sm">This is the most common and most expensive mistake. Over 70% of Canadians accept their lender's renewal offer without getting a single competing quote. Your lender's renewal statement almost always contains their <strong>posted rate</strong> — not their best rate. Posted rates can be 0.50–1.50% higher than what a broker could negotiate.</p>
             <p class="text-sm leading-relaxed"><strong>The cost:</strong> On a $600,000 mortgage, a 0.75% rate difference costs approximately $4,500/year or $22,500 over a 5-year term. That's money that stays in your lender's pocket instead of yours.</p>
-            <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: Start shopping 120 days before your renewal date. Contact a <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> to get competing offers from 30+ lenders. Use that offer to negotiate — or simply switch.</p>
+            <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: Start shopping 120 days before your renewal date. Contact a <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> to get competing offers from 30+ lenders. Use that offer to negotiate — or simply switch.</p>
           </div>
         </div>
       </div>
@@ -88,7 +92,7 @@ const schema = combineSchemas(
           <div class="text-3xl font-bold flex-shrink-0" style="color: var(--secondary)">03</div>
           <div>
             <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Only Looking at the Rate</h2>
-            <p class="mb-3 leading-relaxed text-sm">Rate is important — but it's not the only thing that matters. Two mortgages with identical rates can have dramatically different costs if one has a punishing <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">IRD penalty</a> formula and the other has a fair one. A 5-year fixed at 4.60% at a major bank with a large-bank IRD formula may end up costing you more than a 4.65% rate at a monoline with a fair IRD — if you break the mortgage 2 years in.</p>
+            <p class="mb-3 leading-relaxed text-sm">Rate is important — but it's not the only thing that matters. Two mortgages with identical rates can have dramatically different costs if one has a punishing <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">IRD penalty</a> formula and the other has a fair one. A 5-year fixed at 4.60% at a major bank with a large-bank IRD formula may end up costing you more than a 4.65% rate at a monoline with a fair IRD — if you break the mortgage 2 years in.</p>
             <p class="text-sm leading-relaxed">Other factors to consider: prepayment privileges (can you make extra payments?), portability (can you take the mortgage with you if you move?), and term flexibility.</p>
             <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: Ask your broker to explain the full mortgage features — not just the rate. Request the penalty formula and prepayment terms in writing.</p>
           </div>
@@ -101,7 +105,7 @@ const schema = combineSchemas(
           <div class="text-3xl font-bold flex-shrink-0" style="color: var(--secondary)">04</div>
           <div>
             <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Not Knowing Your Mortgage Charge Type</h2>
-            <p class="mb-3 leading-relaxed text-sm">If your current mortgage is registered as a collateral charge (which TD Canada Trust and National Bank do by default, and many others offer), <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">switching lenders</a> at renewal requires a full discharge and re-registration — not a simple assignment. This means higher legal fees, more complexity, and potentially discouraging you from switching even when it's financially beneficial.</p>
+            <p class="mb-3 leading-relaxed text-sm">If your current mortgage is registered as a collateral charge (which TD Canada Trust and National Bank do by default, and many others offer), <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching lenders</a> at renewal requires a full discharge and re-registration — not a simple assignment. This means higher legal fees, more complexity, and potentially discouraging you from switching even when it's financially beneficial.</p>
             <p class="text-sm leading-relaxed">Many borrowers discover this only when a broker or lawyer tells them during the switching process — often adding $500–$1,000 in unexpected costs. Knowing in advance lets you plan accordingly.</p>
             <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: Check your existing mortgage documents or ask your current lender whether your mortgage is registered as a standard charge or a collateral charge.</p>
           </div>
@@ -114,7 +118,7 @@ const schema = combineSchemas(
           <div class="text-3xl font-bold flex-shrink-0" style="color: var(--secondary)">05</div>
           <div>
             <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Ignoring the Amortization Reset Opportunity</h2>
-            <p class="mb-3 leading-relaxed text-sm">Most Canadians simply renew on the remaining amortization (if you started with 25 years and have 20 left, you continue with 20 years). But renewal is an opportunity to reassess: if cash flow is tight, you may be able to negotiate a modest <a href="/lower-mortgage-payments-at-renewal" style="color: var(--secondary)">amortization extension</a> (subject to lender approval and qualifications). If cash flow is healthy, you could shorten your amortization to pay down principal faster.</p>
+            <p class="mb-3 leading-relaxed text-sm">Most Canadians simply renew on the remaining amortization (if you started with 25 years and have 20 left, you continue with 20 years). But renewal is an opportunity to reassess: if cash flow is tight, you may be able to negotiate a modest <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">amortization extension</a> (subject to lender approval and qualifications). If cash flow is healthy, you could shorten your amortization to pay down principal faster.</p>
             <p class="text-sm leading-relaxed">Shaving 2 years off a remaining 20-year amortization might only add $200–$300/month to your payment, but saves tens of thousands in interest over the life of the mortgage.</p>
             <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: Review your amortization timeline and ask your broker what your payment would look like at different amortization lengths. Make an intentional choice rather than accepting the default.</p>
           </div>
@@ -166,7 +170,7 @@ const schema = combineSchemas(
           <div class="text-3xl font-bold flex-shrink-0" style="color: var(--secondary)">09</div>
           <div>
             <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Not Improving Your Credit Before Renewal</h2>
-            <p class="mb-3 leading-relaxed text-sm">Your credit score at renewal time directly affects the rate and options available to you — even with your current lender. A credit score of 720+ typically qualifies you for the best available rates. A score under 650 can result in rate surcharges, limited lender options, or in extreme cases, a <a href="/bad-credit-mortgage-renewal" style="color: var(--secondary)">renewal denial</a>. The time to address credit issues is before renewal, not on your maturity date.</p>
+            <p class="mb-3 leading-relaxed text-sm">Your credit score at renewal time directly affects the rate and options available to you — even with your current lender. A credit score of 720+ typically qualifies you for the best available rates. A score under 650 can result in rate surcharges, limited lender options, or in extreme cases, a <a href="/bad-credit-mortgage-renewal/" style="color: var(--secondary)">renewal denial</a>. The time to address credit issues is before renewal, not on your maturity date.</p>
             <p class="text-sm leading-relaxed">Simple credit improvements include: paying down credit cards below 30% utilization, ensuring no missed payments in the 12 months before renewal, and avoiding opening new credit accounts in the 6 months before your maturity date.</p>
             <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: Pull your credit report from Equifax and TransUnion 12 months before renewal. Address any errors or issues immediately.</p>
           </div>
@@ -181,7 +185,7 @@ const schema = combineSchemas(
             <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Skipping the Broker Conversation</h2>
             <p class="mb-3 leading-relaxed text-sm">Perhaps the most meta mistake: failing to consult a mortgage broker at all. A broker's service is free to you, takes less than an hour of your time, and consistently produces better outcomes than going directly to a single lender. Even if you ultimately decide to stay with your current lender, having the broker's competing offers in hand gives you negotiating leverage that dramatically improves your renewal rate.</p>
             <p class="text-sm leading-relaxed">There's no downside to speaking with a licensed broker — no cost, no obligation, and significant potential upside. The only reason not to do it is inertia.</p>
-            <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: <a href="/book-a-call" style="color: var(--secondary); text-decoration: underline">Book a free renewal strategy call</a> with a licensed broker at least 120 days before your renewal date.</p>
+            <p class="mt-3 text-sm font-semibold" style="color: var(--secondary)">What to do instead: <a href="/book-a-call/" style="color: var(--secondary); text-decoration: underline">Book a free renewal strategy call</a> with a licensed broker at least 120 days before your renewal date.</p>
           </div>
         </div>
       </div>
@@ -192,27 +196,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
           <p class="text-xs" style="color: var(--muted-foreground)">The foundational guide to how Canadian mortgage renewals work.</p>
         </a>
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">How to save $10,000+ and the 2024 stress test change that makes it easier.</p>
         </a>
-        <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Your step-by-step action plan from 12 months out to renewal day.</p>
         </a>
-        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Free to you, accesses 30+ lenders. Here's exactly what they do.</p>
         </a>
-        <a href="/bad-credit-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Bad Credit</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Options when your credit score has declined before renewal.</p>
         </a>
-        <a href="/mortgage-renewal-faq" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
           <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered. Everything you need to know.</p>
         </a>
@@ -221,7 +225,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -230,13 +234,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

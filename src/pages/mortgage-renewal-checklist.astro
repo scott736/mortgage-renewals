@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, howToSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, howToSchema, webPageNode, combineSchemas } from '@/lib/schema';
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -22,13 +22,17 @@ const schema = combineSchemas(
       { name: "Phase 4: 30 days before to renewal day — Confirm and close", text: "Confirm approval with your new lender, sign the mortgage commitment, complete legal work for discharge and registration, set up new automatic payments, and file all documents securely." },
     ],
   }),
-  speakableSchema("mortgage-renewal-checklist"),
+  webPageNode({
+    slug: "mortgage-renewal-checklist",
+    name: "Canadian Mortgage Renewal Checklist",
+    description: "Month-by-month mortgage renewal checklist for Canadians — every document, action, and deadline from 12 months out.",
+  }),
 );
 ---
 
 <DefaultLayout
-  title="Mortgage Renewal Checklist — Month-by-Month Timeline for Canadians | MortgageRenewalHub.ca"
-  description="Your complete mortgage renewal checklist. Four phases from 12 months before to renewal day — with every document, action item, and deadline you need to get the best rate in Canada."
+  title="Mortgage Renewal Checklist — Canadian Monthly Timeline"
+  description="Complete Canadian mortgage renewal checklist. Four phases from 12 months out to renewal day, with every document, action, and deadline you need."
   schema={schema}
 >
   <!-- Breadcrumb -->
@@ -49,10 +53,10 @@ const schema = combineSchemas(
         A four-phase action plan from 12 months before renewal to the day your new term starts. Follow every step and you'll never leave money on the table at renewal again.
       </p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/book-a-call" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        <a href="/book-a-call/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--secondary)">
           Book a Free Broker Call
         </a>
-        <a href="/mortgage-renewal-calculator" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
+        <a href="/mortgage-renewal-calculator/" class="inline-flex items-center justify-center rounded-lg px-7 py-3 font-semibold hover:opacity-90 transition-opacity" style="background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3)">
           Calculate Your Savings
         </a>
       </div>
@@ -76,7 +80,7 @@ const schema = combineSchemas(
     <div class="rounded-lg p-6 mb-12" style="border-left: 4px solid var(--secondary); background: var(--accent)">
       <h2 class="text-xl font-bold mb-3" style="color: var(--primary)">How to Use This Checklist</h2>
       <p class="mb-3 leading-relaxed text-sm">
-        Canada's mortgage renewal process is not a single event — it's a four-phase journey that ideally begins a full year before your maturity date. Most homeowners make the costly mistake of starting too late — one of the <a href="/mortgage-renewal-mistakes" style="color: var(--secondary)">most common renewal mistakes</a> Canadians make: waiting until their renewal statement arrives (often just 21 days before maturity) gives you almost no time to shop, compare, or <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">switch lenders</a>.
+        Canada's mortgage renewal process is not a single event — it's a four-phase journey that ideally begins a full year before your maturity date. Most homeowners make the costly mistake of starting too late — one of the <a href="/mortgage-renewal-mistakes/" style="color: var(--secondary)">most common renewal mistakes</a> Canadians make: waiting until their renewal statement arrives (often just 21 days before maturity) gives you almost no time to shop, compare, or <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switch lenders</a>.
       </p>
       <p class="mb-3 leading-relaxed text-sm">
         This checklist breaks the process into four phases: 12 months out, 6 months out, 120 days out, and the final 30-day sprint. Use it as a living document — bookmark it, print it, or share it with your partner. Work through each item in sequence. By the time your maturity date arrives, you'll have done everything in your power to secure the lowest possible rate with the best possible mortgage structure.
@@ -157,7 +161,7 @@ const schema = combineSchemas(
           <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
           <div>
             <p class="font-semibold text-sm mb-1" style="color: var(--primary)">1.5 — Calculate your break-even on making extra lump-sum payments now</p>
-            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">If your current mortgage has prepayment privileges (most allow 10–20% of original principal annually), run the numbers on whether a lump-sum payment before renewal makes financial sense. Reducing your outstanding principal can improve your loan-to-value ratio, potentially unlocking better rates at renewal — particularly if a reduction moves you below the 80% LTV threshold that separates insured and uninsured mortgage pricing. Use our <a href="/mortgage-renewal-calculator" style="color: var(--secondary)">mortgage renewal calculator</a> to model the scenarios side by side.</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">If your current mortgage has prepayment privileges (most allow 10–20% of original principal annually), run the numbers on whether a lump-sum payment before renewal makes financial sense. Reducing your outstanding principal can improve your loan-to-value ratio, potentially unlocking better rates at renewal — particularly if a reduction moves you below the 80% LTV threshold that separates insured and uninsured mortgage pricing. Use our <a href="/mortgage-renewal-calculator/" style="color: var(--secondary)">mortgage renewal calculator</a> to model the scenarios side by side.</p>
           </div>
         </label>
 
@@ -190,7 +194,7 @@ const schema = combineSchemas(
           <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
           <div>
             <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.1 — Contact a licensed mortgage broker for an initial strategy call</p>
-            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Six months out is the ideal time for a first conversation with a mortgage broker. This is a free consultation — brokers are paid by lenders when your mortgage funds, not by you. A strategy call at this stage gives you a clear picture of what rate ranges look like in the current market, which lenders are most competitive for your profile, and whether any proactive steps in the next 6 months (credit improvement, debt reduction, document preparation) could meaningfully improve your position. Even if you ultimately stay with your current lender, this conversation costs you nothing and arms you with knowledge. <a href="/book-a-call" style="color: var(--secondary)">Book your free strategy call here.</a></p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Six months out is the ideal time for a first conversation with a mortgage broker. This is a free consultation — brokers are paid by lenders when your mortgage funds, not by you. A strategy call at this stage gives you a clear picture of what rate ranges look like in the current market, which lenders are most competitive for your profile, and whether any proactive steps in the next 6 months (credit improvement, debt reduction, document preparation) could meaningfully improve your position. Even if you ultimately stay with your current lender, this conversation costs you nothing and arms you with knowledge. <a href="/book-a-call/" style="color: var(--secondary)">Book your free strategy call here.</a></p>
           </div>
         </label>
 
@@ -198,7 +202,7 @@ const schema = combineSchemas(
           <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
           <div>
             <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.2 — Research current mortgage rates and the Bank of Canada rate outlook</p>
-            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Understand the current rate environment: What are posted rates vs. discounted rates? What is the Bank of Canada prime rate, and what direction are economists forecasting for the next 12–18 months? Check our <a href="/mortgage-rate-forecast" style="color: var(--secondary)">mortgage rate forecast</a> for the latest outlook and <a href="/best-mortgage-renewal-rates" style="color: var(--secondary)">best mortgage renewal rates</a> for current market rates. What is the spread between fixed and variable rates? Understanding these dynamics helps you make informed decisions between fixed and variable, and between short and long terms. The BoC meets 8 times per year — subscribe to their rate announcement schedule. Our <a href="/mortgage-renewal-guide" style="color: var(--secondary)">complete renewal guide</a> has a section on interpreting the rate environment.</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Understand the current rate environment: What are posted rates vs. discounted rates? What is the Bank of Canada prime rate, and what direction are economists forecasting for the next 12–18 months? Check our <a href="/mortgage-rate-forecast/" style="color: var(--secondary)">mortgage rate forecast</a> for the latest outlook and <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">best mortgage renewal rates</a> for current market rates. What is the spread between fixed and variable rates? Understanding these dynamics helps you make informed decisions between fixed and variable, and between short and long terms. The BoC meets 8 times per year — subscribe to their rate announcement schedule. Our <a href="/mortgage-renewal-guide/" style="color: var(--secondary)">complete renewal guide</a> has a section on interpreting the rate environment.</p>
           </div>
         </label>
 
@@ -206,7 +210,7 @@ const schema = combineSchemas(
           <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
           <div>
             <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2.3 — Decide your term length preference and rate type (fixed vs. variable)</p>
-            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Term length and rate type are the two most consequential decisions in your renewal. Read our <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">fixed vs. variable at renewal</a> guide and <a href="/mortgage-renewal-term-lengths" style="color: var(--secondary)">term length comparison</a> for a full analysis. Fixed rates offer payment certainty for the full term; variable rates track the Bank of Canada prime rate and historically (though not universally) result in lower total interest paid over time. Short terms (1–2 years) make strategic sense when you believe rates will fall significantly; longer terms (4–5 years) provide protection against increases. Your broker will give you a professional recommendation calibrated to current market conditions and your personal situation — but forming your own view first makes the conversation much more productive.</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Term length and rate type are the two most consequential decisions in your renewal. Read our <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed vs. variable at renewal</a> guide and <a href="/mortgage-renewal-term-lengths/" style="color: var(--secondary)">term length comparison</a> for a full analysis. Fixed rates offer payment certainty for the full term; variable rates track the Bank of Canada prime rate and historically (though not universally) result in lower total interest paid over time. Short terms (1–2 years) make strategic sense when you believe rates will fall significantly; longer terms (4–5 years) provide protection against increases. Your broker will give you a professional recommendation calibrated to current market conditions and your personal situation — but forming your own view first makes the conversation much more productive.</p>
           </div>
         </label>
 
@@ -468,7 +472,7 @@ const schema = combineSchemas(
           <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
           <div>
             <p class="font-semibold text-sm">File your taxes on time if self-employed</p>
-            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Lenders need your last 2 years' Notices of Assessment. Being up to date on taxes is non-negotiable for most lenders. If you're behind, get current immediately. See our <a href="/self-employed-mortgage-renewal" style="color: var(--secondary)">self-employed mortgage renewal</a> guide for more details.</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">Lenders need your last 2 years' Notices of Assessment. Being up to date on taxes is non-negotiable for most lenders. If you're behind, get current immediately. See our <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed mortgage renewal</a> guide for more details.</p>
           </div>
         </label>
         <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer hover:opacity-90 transition-opacity" style="border: 1px solid var(--border); background: var(--card)">
@@ -520,7 +524,7 @@ const schema = combineSchemas(
           <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
           <div>
             <p class="font-semibold text-sm">Decide whether you want to simply renew or also refinance</p>
-            <p class="text-xs mt-1" style="color: var(--muted-foreground)">If you want to access equity, add/remove a co-borrower, or change your amortization, that's a refinance — which requires additional steps and a stress test. Our <a href="/renewal-vs-refinancing" style="color: var(--secondary)">renewal vs. refinancing</a> guide explains the differences.</p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">If you want to access equity, add/remove a co-borrower, or change your amortization, that's a refinance — which requires additional steps and a stress test. Our <a href="/renewal-vs-refinancing/" style="color: var(--secondary)">renewal vs. refinancing</a> guide explains the differences.</p>
           </div>
         </label>
       </div>
@@ -537,7 +541,7 @@ const schema = combineSchemas(
           <input type="checkbox" class="mt-1 w-5 h-5 rounded flex-shrink-0" style="accent-color: var(--secondary)" />
           <div>
             <p class="font-semibold text-sm">Contact a licensed mortgage broker</p>
-            <p class="text-xs mt-1" style="color: var(--muted-foreground)">This is the single most impactful action you can take. Free to you, accesses 30+ lenders, and consistently finds better rates than going directly to one lender. <a href="/book-a-call" style="color: var(--secondary)">Book your free call here.</a></p>
+            <p class="text-xs mt-1" style="color: var(--muted-foreground)">This is the single most impactful action you can take. Free to you, accesses 30+ lenders, and consistently finds better rates than going directly to one lender. <a href="/book-a-call/" style="color: var(--secondary)">Book your free call here.</a></p>
           </div>
         </label>
         <label class="flex items-start gap-3 p-4 rounded-lg cursor-pointer" style="border: 1px solid var(--border); background: var(--card)">
@@ -672,7 +676,7 @@ const schema = combineSchemas(
     <div class="rounded-lg p-8 text-center" style="background: var(--accent); border: 1px solid var(--border)">
       <h2 class="text-xl font-bold mb-2" style="color: var(--primary)">Get a Free Renewal Reminder</h2>
       <p class="mb-4 text-sm" style="color: var(--muted-foreground)">Tell us your renewal date and we'll send you reminders at 120 days, 60 days, and 30 days before maturity — so you never miss the optimal window again.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-6 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-6 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Set Up My Free Renewal Reminder
       </a>
     </div>
@@ -681,27 +685,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
           <p class="text-xs" style="color: var(--muted-foreground)">The complete guide to how mortgage renewals work in Canada.</p>
         </a>
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">When to switch, the 8-step process, costs covered by new lenders.</p>
         </a>
-        <a href="/mortgage-renewal-mistakes" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
           <p class="text-xs" style="color: var(--muted-foreground)">The costly errors most Canadians make and how to avoid them.</p>
         </a>
-        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Free to you. 30+ lenders. Complete broker guide for renewal.</p>
         </a>
-        <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Rate type decision framework for the 2026 rate environment.</p>
         </a>
-        <a href="/mortgage-renewal-faq" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
           <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered across 7 categories.</p>
         </a>
@@ -710,7 +714,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -719,13 +723,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

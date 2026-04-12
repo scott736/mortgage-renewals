@@ -1,8 +1,13 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "fixed-vs-variable-mortgage-renewal",
+    name: "Fixed vs. Variable Rate at Mortgage Renewal",
+    description: "Choosing between fixed and variable rates at renewal — ARM vs VRM, trigger rates, IRD penalties, and a decision framework.",
+  }),
   articleSchema({
     headline: "Fixed vs. Variable Rate at Mortgage Renewal",
     description: "Fixed or variable at renewal? ARM vs VRM, trigger rates, IRD penalties, historical context, and a risk-tolerance decision framework for Canadian homeowners.",
@@ -11,12 +16,11 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Fixed vs. Variable at Renewal", url: "/fixed-vs-variable-mortgage-renewal" }
   ]),
-  speakableSchema("fixed-vs-variable-mortgage-renewal"),
 );
 ---
 
 <DefaultLayout
-  title="Fixed vs. Variable Rate at Mortgage Renewal — MortgageRenewalHub.ca"
+  title="Fixed vs. Variable at Mortgage Renewal — 2026 Guide"
   description="Fixed or variable at renewal? ARM vs VRM, trigger rates, IRD penalties, historical context, and a risk-tolerance decision framework for Canadian homeowners."
   schema={schema}
 >
@@ -31,7 +35,7 @@ const schema = combineSchemas(
     <div class="flex flex-col lg:flex-row gap-10">
       <div class="flex-1">
 
-        <p class="mb-6 text-base leading-relaxed">The choice between a fixed and variable interest rate is one of the most consequential decisions a Canadian mortgage holder makes at renewal — and it's one where there's no universally correct answer. The right choice depends on your financial situation, risk tolerance, the <a href="/mortgage-rate-forecast" style="color: var(--secondary)">current rate environment</a>, and your expectations about where rates are headed. This comprehensive guide breaks down every aspect of this decision so you can make a confident, informed choice.</p>
+        <p class="mb-6 text-base leading-relaxed">The choice between a fixed and variable interest rate is one of the most consequential decisions a Canadian mortgage holder makes at renewal — and it's one where there's no universally correct answer. The right choice depends on your financial situation, risk tolerance, the <a href="/mortgage-rate-forecast/" style="color: var(--secondary)">current rate environment</a>, and your expectations about where rates are headed. This comprehensive guide breaks down every aspect of this decision so you can make a confident, informed choice.</p>
 
         <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
           <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
@@ -127,7 +131,7 @@ const schema = combineSchemas(
         <div class="rounded-lg p-5 mb-6" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-bold mb-2">IRD Penalty: Bank vs. Monoline Comparison</p>
           <p class="text-sm leading-relaxed mb-2">Monoline lenders (First National, MCAP, etc.) typically calculate IRD penalties more fairly than major banks, using posted rates differently. On the same mortgage, a monoline IRD penalty might be $8,000 while a major bank would charge $22,000. This is a significant factor to consider at renewal when choosing your next lender for a fixed-rate term.</p>
-          <p class="text-sm"><a href="/mortgage-lender-types-canada" style="color: var(--secondary)">Read our lender comparison guide for more on penalty structures.</a></p>
+          <p class="text-sm"><a href="/mortgage-lender-types-canada/" style="color: var(--secondary)">Read our lender comparison guide for more on penalty structures.</a></p>
         </div>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Rate Spread Concept</h2>
@@ -142,11 +146,11 @@ const schema = combineSchemas(
 
         <p class="mb-4 leading-relaxed">Fixed rates are driven not by the BoC's overnight rate but primarily by Government of Canada bond yields — particularly the 5-year bond yield. Bond markets had already priced in many of the BoC cuts ahead of time, which is why 5-year fixed mortgage rates didn't fall as dramatically as prime-linked variable rates.</p>
 
-        <p class="mb-4 leading-relaxed">As of April 2026, most major bank economists (BMO, CIBC, RBC, TD, National Bank) expect the BoC to hold at 2.25% through end of 2026, with some upside risk from Middle East energy prices. The next BoC decision is April 29, 2026. This makes the fixed vs. variable decision relatively balanced — fixed rates offer modest certainty premium, while variable offers slight rate advantage with the potential for further BoC cuts. Use our <a href="/mortgage-renewal-calculator" style="color: var(--secondary)">renewal calculator</a> to model both scenarios with your actual numbers.</p>
+        <p class="mb-4 leading-relaxed">As of April 2026, most major bank economists (BMO, CIBC, RBC, TD, National Bank) expect the BoC to hold at 2.25% through end of 2026, with some upside risk from Middle East energy prices. The next BoC decision is April 29, 2026. This makes the fixed vs. variable decision relatively balanced — fixed rates offer modest certainty premium, while variable offers slight rate advantage with the potential for further BoC cuts. Use our <a href="/mortgage-renewal-calculator/" style="color: var(--secondary)">renewal calculator</a> to model both scenarios with your actual numbers.</p>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Shorter-Term Fixed as a Middle Ground</h2>
 
-        <p class="mb-4 leading-relaxed">Many borrowers overlook the strategic value of <a href="/mortgage-renewal-term-lengths" style="color: var(--secondary)">shorter fixed-rate terms</a> at renewal. A 2-year or 3-year fixed provides the predictability of a fixed rate while allowing you to return to the market sooner — potentially locking into even lower rates if the environment continues to improve.</p>
+        <p class="mb-4 leading-relaxed">Many borrowers overlook the strategic value of <a href="/mortgage-renewal-term-lengths/" style="color: var(--secondary)">shorter fixed-rate terms</a> at renewal. A 2-year or 3-year fixed provides the predictability of a fixed rate while allowing you to return to the market sooner — potentially locking into even lower rates if the environment continues to improve.</p>
 
         <p class="mb-4 leading-relaxed">In a declining rate environment, shorter terms are particularly valuable. In early 2026, 2-year fixed rates from competitive lenders are often priced close to 5-year fixed rates — sometimes even lower — making them an attractive proposition: you get predictability for 24 months while preserving the flexibility to reassess when your term ends.</p>
 
@@ -170,7 +174,7 @@ const schema = combineSchemas(
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3">Likely to move or refinance within 3 years</td>
                 <td class="p-3 font-medium" style="color: var(--secondary)">Variable or short-term fixed</td>
-                <td class="p-3">Lower break penalty; easier <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">switching at next renewal</a></td>
+                <td class="p-3">Lower break penalty; easier <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching at next renewal</a></td>
               </tr>
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3">Comfortable absorbing $200–400/mo payment swings</td>
@@ -215,8 +219,8 @@ const schema = combineSchemas(
           </div>
           <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
             <h3 class="font-bold mb-3">Not Sure Which to Choose?</h3>
-            <p class="text-sm mb-4 opacity-90">A <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> can model both scenarios with real current rates for your situation.</p>
-            <a href="/book-a-call" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+            <p class="text-sm mb-4 opacity-90">A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> can model both scenarios with real current rates for your situation.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
               Book a Free Call
             </a>
           </div>
@@ -228,27 +232,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/mortgage-renewal-term-lengths" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Term Lengths Compared</p>
           <p class="text-xs" style="color: var(--muted-foreground)">1yr through 5yr fixed, variable, open — full comparison with pros and cons.</p>
         </a>
-        <a href="/mortgage-rate-forecast" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2026 Canadian Mortgage Rate Forecast</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Current BoC rate, bond yields, and rate predictions for 2026–2027.</p>
         </a>
-        <a href="/mortgage-lender-types-canada" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types and Penalty Structures</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Banks vs monolines: who has the most forgiving IRD penalties?</p>
         </a>
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">No stress test required for straight switches since 2024.</p>
         </a>
-        <a href="/mortgage-renewal-mistakes" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Avoid the most common and costly errors at renewal.</p>
         </a>
-        <a href="/mortgage-renewal-faq" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
           <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered across 7 categories.</p>
         </a>
@@ -257,7 +261,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -266,13 +270,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

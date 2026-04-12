@@ -1,0 +1,246 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the difference between an insured and a conventional (uninsured) mortgage in Canada?",
+    answer: "An insured mortgage has default insurance from CMHC, Sagen, or Canada Guaranty — typically required when you put less than 20% down at origination. A conventional (uninsured) mortgage is one where the original down payment was 20% or more. At renewal, insured mortgages almost always get the best rates available because monoline lenders specialize in bulk-insuring them."
+  },
+  {
+    question: "Does my mortgage stay insured through renewal if my home value has gone up?",
+    answer: "Yes. Once your mortgage is insured at origination, it remains insured through every straight renewal for the life of the amortization — even if your home has appreciated and your current loan-to-value is now well below 80%. This is a significant advantage because you continue to access lower insured rates at each renewal."
+  },
+  {
+    question: "Can I get my mortgage insured at renewal if it wasn't insured originally?",
+    answer: "No. Default insurance is only available at the time of purchase (or refinance involving new money under specific limited circumstances). If your mortgage was originated conventionally with 20%+ down, you cannot retroactively insure it at renewal. It will remain a conventional mortgage for the rest of its amortization."
+  },
+  {
+    question: "Why do insured mortgages get lower rates at renewal?",
+    answer: "Monoline lenders (First National, MCAP, RMG, Merix) specialize in insured mortgages because they bulk-insure them and securitize the loans through the Canada Mortgage Bond program. Their funding cost is lower, and regulatory capital treatment is more favourable for insured loans. They pass these savings to borrowers as lower rates — often 15–30 basis points below the best conventional rates."
+  },
+  {
+    question: "Do I need to pass a stress test to renew my insured mortgage at a new lender?",
+    answer: "No. Under the Canadian Mortgage Charter (2023), no stress test is required when switching an insured mortgage to a new lender at renewal on a straight-switch basis. The November 2024 OSFI change extended the same exemption to uninsured straight switches — so now both types are on equal footing at renewal."
+  },
+  {
+    question: "Can I remove CMHC insurance at renewal to get a better rate?",
+    answer: "Not through a straight renewal. Insurance can only be removed by refinancing the mortgage — which triggers a full application, stress test, and new registration. In most cases, this isn't advisable: you lose the lower insured rate premium at renewal, and you'd pay legal and appraisal fees. Insured status is a feature, not a liability."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Insured vs. Conventional Mortgage Renewal in Canada (2026)",
+    description: "How CMHC insurance affects your mortgage renewal — why insured rates beat conventional, what happens when your LTV improves, and the renewal stress test rules.",
+    slug: "insured-vs-conventional-mortgage-renewal",
+    articleSection: "Mortgage Renewal",
+    about: "Insured vs conventional mortgage renewal",
+    keywords: ["insured mortgage", "conventional mortgage", "CMHC insurance renewal", "uninsured mortgage", "default insurance Canada"],
+  }),
+  breadcrumbSchema([
+    { name: "Insured vs. Conventional at Renewal", url: "/insured-vs-conventional-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "insured-vs-conventional-mortgage-renewal"),
+  webPageNode({
+    slug: "insured-vs-conventional-mortgage-renewal",
+    name: "Insured vs. Conventional Mortgage Renewal in Canada",
+    description: "How CMHC/Sagen/Canada Guaranty insurance status affects your mortgage renewal rate, stress test requirements, and lender choice in Canada.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Insured vs. Conventional Mortgage Renewal Canada 2026"
+  description="How CMHC insurance affects your renewal rate — insured stays insured, conventional stays conventional. The gap in rates and lender options explained."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Insured vs. Conventional Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Renewal Strategy</div>
+      <h1 class="text-heading-1 mb-4">Insured vs. Conventional Mortgage Renewal in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Your original down payment determined whether your mortgage is insured or conventional — and that status follows you for the life of the loan, shaping your rates, lender options, and renewal flexibility.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>Insured mortgages</strong> (originally less than 20% down) stay insured through every straight renewal — even if your home has appreciated.</li>
+        <li>• <strong>Insured renewal rates</strong> are typically 15–30 basis points lower than conventional rates today (April 2026): ~3.94–4.04% insured vs. ~4.19–4.29% uninsured on a 5-year fixed.</li>
+        <li>• <strong>Conventional mortgages</strong> (20%+ down originally, or over $1M pre-Dec 2024) cannot be insured at renewal — status is set at origination.</li>
+        <li>• <strong>No stress test</strong> is required for straight-switch renewals of either type as of November 2024 (OSFI) / 2023 (Canadian Mortgage Charter for insured).</li>
+        <li>• Insurance can only be <strong>removed by refinancing</strong>, not by straight renewal — and usually you wouldn't want to anyway.</li>
+        <li>• Monoline lenders dominate the insured market and offer the best rates via the broker channel.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Makes a Mortgage "Insured" in Canada?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Default insurance protects the lender — not you — if you default on your mortgage. It is provided by one of three insurers in Canada: <strong>CMHC</strong> (the federal Crown corporation), <strong>Sagen</strong> (formerly Genworth), or <strong>Canada Guaranty</strong>. The insurance premium is typically 2.80% to 4.00% of the mortgage amount and is rolled into the loan balance at origination.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Insurance is mandatory whenever a homebuyer puts less than 20% down at purchase. It is also available on certain refinances and for some portfolio-insured conventional loans that lenders insure in bulk to securitize through the Canada Mortgage Bond program. If you put 20% or more down and your lender did not portfolio-insure your loan, your mortgage is conventional — also called uninsured.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Insured Status Is "Sticky" — It Follows You at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      This is the single most important rule to understand: once your mortgage is insured at origination, it remains insured through every straight renewal for the life of the amortization. You do not pay the insurance premium again at renewal — it was a one-time charge. The insurance coverage simply follows the loan from lender to lender or term to term.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      This has a major upside. Even if your home has doubled in value and your current loan-to-value (LTV) is well below 80%, your mortgage is still classified as insured for pricing purposes at every renewal. You access the cheaper insured rate tier even though a buyer purchasing your home today with the same down payment would be conventional.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Current Rate Gap: Insured vs. Conventional (April 2026)</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Term / Type</th>
+            <th class="p-3 text-left">Best Insured Rate</th>
+            <th class="p-3 text-left">Best Uninsured Rate</th>
+            <th class="p-3 text-left">Insured Advantage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">5-year fixed</td>
+            <td class="p-3">3.94–4.04%</td>
+            <td class="p-3">4.19–4.29%</td>
+            <td class="p-3 font-semibold text-secondary-100">~25 bps</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">3-year fixed</td>
+            <td class="p-3">3.80–3.90%</td>
+            <td class="p-3">4.05–4.15%</td>
+            <td class="p-3 font-semibold text-secondary-100">~25 bps</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">5-year variable</td>
+            <td class="p-3">3.30–3.35%</td>
+            <td class="p-3">3.55–3.65%</td>
+            <td class="p-3 font-semibold text-secondary-100">~30 bps</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Broker-channel rates, April 2026. Big 5 posted specials are materially higher (RBC 4.29%, CIBC 4.29%, TD 4.59%, BMO 4.51%, Scotia 4.94%). See <a href="/best-mortgage-renewal-rates/" class="text-secondary-100 hover:underline">best renewal rates</a> for live comparisons.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What a 25-Basis-Point Rate Gap Means in Dollars</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      On a $500,000 mortgage over a 5-year term with a 25-year amortization, a 25-basis-point rate advantage (e.g., 3.99% insured vs. 4.24% conventional) saves roughly <strong>$70 per month</strong>, or <strong>$4,200 over 5 years</strong>. On a $750,000 balance, those figures grow to $105/month and ~$6,300 over the term. This is the structural advantage of having had less than 20% down at origination — a counterintuitive benefit that compounds with every renewal.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Insured Mortgages Get Better Rates</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The economics come down to three factors:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Lower lender risk capital.</strong> Default-insured loans carry zero credit risk for the lender (the insurer absorbs losses), so regulatory capital requirements are minimal.</li>
+      <li><strong>Securitization access.</strong> Insured loans can be packaged into <a href="https://www.cmhc-schl.gc.ca/" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Canada Mortgage Bonds</a>, funded at rates close to Government of Canada yields. This cheap funding flows through to borrowers.</li>
+      <li><strong>Broker-channel competition.</strong> Monolines compete aggressively for insured volume because it's their core business. Big banks often price insured renewals less competitively because they rely more on branch-based cross-selling.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Renewal Stress Test Rules: Both Types Are Now Exempt</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Two regulatory shifts have put insured and uninsured borrowers on equal renewal footing:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Canadian Mortgage Charter (2023):</strong> The federal government formalised the exemption from the stress test for insured mortgages switching to a new lender at renewal on a straight basis. See our <a href="/canadian-mortgage-charter/" class="text-secondary-100 hover:underline">full Canadian Mortgage Charter guide</a>.</li>
+      <li><strong>OSFI Guideline B-20 change (November 21, 2024):</strong> Extended the same exemption to uninsured straight switches. Both insured and conventional renewals now qualify at the contract rate — no stress test — when moving lenders with the same balance and amortization.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Can You Change Insurance Status at Renewal?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The short answer: no, not through a straight renewal. Here's what is and isn't possible:
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">What You Can Do</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Keep the same insured status</li>
+          <li>Switch lenders (straight switch, no stress test)</li>
+          <li>Change term length</li>
+          <li>Change between fixed and variable rate</li>
+          <li>Adjust payment frequency</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">What You Cannot Do</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Add insurance to a conventional mortgage</li>
+          <li>Remove insurance without a full refinance</li>
+          <li>Increase the balance (that's a <a href="/renewal-vs-refinancing/" class="text-secondary-100 hover:underline">refinance</a>, not a renewal)</li>
+          <li>Extend amortization beyond original (except hardship, per Charter)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The $1M Threshold and December 2024 Rule Changes</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Historically, default insurance in Canada was capped at purchase prices under $1 million — any home over that price required at least 20% down and was automatically conventional. On December 15, 2024, the federal government raised the insured cap to <strong>$1.5 million</strong> as part of the broader "Boldest Mortgage Reforms in Decades" package (<a href="https://www.canada.ca/en/department-finance/news/2024/12/boldest-mortgage-reforms-in-decades-come-into-force-today.html" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Department of Finance announcement</a>).
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      This doesn't retroactively affect anyone's existing mortgage — your insurance status is locked at origination. But it does mean that anyone who refinanced into a home purchase between $1M and $1.5M after December 2024 with less than 20% down now has an insured mortgage they couldn't have had before.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <div>
+      <h2 class="text-heading-3 mb-4">Related Guides</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+          { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+          { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
+          { title: "30-Year Amortization Rules", href: "/30-year-amortization-mortgage-renewal/" },
+          { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
+        ].map(link => (
+          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+            <span class="text-secondary-100">→</span>
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Not Sure if Your Mortgage is Insured?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can confirm your insurance status in minutes and shop 30+ lenders for your renewal — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Renewal Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

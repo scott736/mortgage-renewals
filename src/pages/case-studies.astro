@@ -1,0 +1,193 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const caseStudies = [
+  {
+    stat: "$47K saved switching at 2025 renewal",
+    province: "ON",
+    city: "Mississauga",
+    situation: "$720K mortgage coming off a 5-yr fixed at 2.59% facing a TD renewal offer of 5.19%.",
+    outcome: "Straight-switched from TD to First National at 4.34% — saved approximately $47,000 over the new 5-year term. No stress test required thanks to the November 2024 OSFI exemption. Legal fees covered by the new lender.",
+    lender: "TD → First National",
+  },
+  {
+    stat: "Self-employed approval after 3 bank rejections",
+    province: "BC",
+    city: "Vancouver",
+    situation: "Incorporated contractor with strong revenue but limited T4 income. Three Big 5 banks declined the renewal on income-qualification rules.",
+    outcome: "Broker placed the file with a B-lender through the broker channel. Approved at 5.24% for 2 years with a clear path back to an A-lender at next renewal once 2 additional years of NOAs were available.",
+    lender: "Big 5 → B-lender (broker channel)",
+  },
+  {
+    stat: "Co-signer removed at renewal",
+    province: "AB",
+    city: "Calgary",
+    situation: "Homeowner originally qualified with parents as co-signers in 2020. Five years later, income had tripled and they wanted to remove the co-signers but stay with the same lender.",
+    outcome: "Broker arranged a full refinance (not a straight switch) with the same lender, qualifying the borrower alone on their own income. Parents removed from title and the mortgage. Rate held at 4.24% on a 5-year fixed.",
+    lender: "Scotiabank (internal refi)",
+  },
+  {
+    stat: "Blend-and-extend saved $18K",
+    province: "QC",
+    city: "Montreal",
+    situation: "$410K mortgage with 18 months remaining at 5.84%. Break penalty would have been ~$21,000 (IRD). Market rates around 4.19%.",
+    outcome: "Stayed with RBC via blend-and-extend — weighted-average new rate of 4.62% over a fresh 5-year term. Avoided the IRD penalty entirely. Locked in current market pricing for four extra years. ~$18,000 net savings.",
+    lender: "RBC (blend-and-extend)",
+  },
+  {
+    stat: "Divorce buyout mortgage secured",
+    province: "NS",
+    city: "Halifax",
+    situation: "Separating couple needed a spousal buyout — one spouse buying out the other's share of the marital home. Required a refinance up to 95% LTV, which is only available under CMHC's spousal buyout program.",
+    outcome: "Broker structured the file under the CMHC spousal buyout insurance program, qualifying the remaining spouse alone. New mortgage at 4.09% (insured), consent order documentation finalized through collaborating lawyers.",
+    lender: "Monoline (CMHC insured)",
+  },
+  {
+    stat: "Seniors used CHIP reverse mortgage",
+    province: "MB",
+    city: "Winnipeg",
+    situation: "Retired couple in their early 70s with a $180K conventional mortgage coming up for renewal. Fixed pension income was getting tight once the mortgage payment was factored in.",
+    outcome: "Rather than renew, they converted to a HomeEquity Bank CHIP reverse mortgage. Mortgage paid off entirely, monthly payment eliminated, and an additional $90K tax-free cash drawn to supplement retirement. No payments owed until the home is sold.",
+    lender: "HomeEquity Bank (CHIP)",
+  },
+];
+
+const faqs = [
+  {
+    question: "Are these real case studies?",
+    answer: "These are composite scenarios illustrating common outcomes our broker partners have achieved. They reflect realistic numbers for April 2026 rates and real Canadian lender programs, but they are not specific individuals. Results will vary based on your personal situation, credit, income, and property."
+  },
+  {
+    question: "Can I actually save $47,000 by switching lenders?",
+    answer: "Yes — on a large mortgage with a big rate gap, 5-year savings of $40,000+ are realistic. On a $720,000 mortgage, the difference between 5.19% and 4.34% is roughly $47,000 of interest over 5 years. The specific number depends on your balance, the rate gap, and amortization."
+  },
+  {
+    question: "Is a reverse mortgage right for seniors at renewal?",
+    answer: "A reverse mortgage (CHIP from HomeEquity Bank or Equitable Bank's PATH Home Plan) is one option for homeowners 55+ who want to eliminate mortgage payments. It costs more in interest long-term than a conventional mortgage but solves cash-flow problems. A broker should walk you through all options — including downsizing — before recommending one."
+  },
+  {
+    question: "What's the spousal buyout program?",
+    answer: "CMHC's Spousal Buyout Program allows the remaining spouse in a separation to refinance up to 95% of the home's value to buy out their former partner's share. It's treated as a purchase-equivalent insured mortgage. It requires a separation agreement or court order."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "case-studies",
+    name: "Mortgage Renewal Case Studies — Real Canadian Scenarios",
+    description: "Six illustrative Canadian mortgage renewal case studies: switching savings, self-employed, co-signer removal, blend-and-extend, divorce buyout, and reverse mortgage.",
+  }),
+  articleSchema({
+    headline: "Mortgage Renewal Case Studies — Real Canadian Scenarios",
+    description: "Six realistic Canadian mortgage renewal case studies showing typical outcomes for common situations: switching, self-employed, co-signer, blend, divorce, and reverse mortgage.",
+    slug: "case-studies",
+    about: "Mortgage Renewal Case Studies",
+    articleSection: "Case Studies",
+  }),
+  faqSchema(faqs, "case-studies"),
+  breadcrumbSchema([
+    { name: "Case Studies", url: "/case-studies" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Case Studies — Canadian Scenarios"
+  description="Six Canadian mortgage renewal case studies: switching savings, self-employed approval, co-signer removal, blend-and-extend, divorce buyout, and reverse mortgage."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Case Studies
+  </nav>
+
+  <section class="container max-w-5xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Real-World Outcomes</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Renewal Case Studies</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Six realistic Canadian mortgage renewal scenarios — what the situation looked like, what the broker arranged, and the outcome. These are the kinds of results Canadian homeowners achieve when they shop their renewal instead of auto-signing.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-5">
+      {caseStudies.map(cs => (
+        <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm flex flex-col">
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="inline-flex items-center rounded-full bg-secondary-25 text-secondary-200 text-body-xs font-semibold px-3 py-1">
+              {cs.province} · {cs.city}
+            </div>
+            <div class="text-body-xs text-muted-foreground">{cs.lender}</div>
+          </div>
+          <h2 class="text-heading-4 font-bold mb-3 text-primary-100">{cs.stat}</h2>
+          <div class="mb-4">
+            <div class="text-body-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Situation</div>
+            <p class="text-body-sm leading-relaxed">{cs.situation}</p>
+          </div>
+          <div class="mb-4 flex-1">
+            <div class="text-body-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Outcome</div>
+            <p class="text-body-sm leading-relaxed">{cs.outcome}</p>
+          </div>
+          <a href="/book-a-call/" class="mt-auto inline-flex items-center justify-center rounded-lg bg-gray-25 hover:bg-secondary-25 border border-gray-100 text-body-sm-medium py-2.5 transition-colors">
+            Explore your options →
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 rounded-xl bg-warning-25 border border-warning-50 p-5">
+      <p class="text-body-sm font-semibold mb-2 text-warning-200">Disclaimer</p>
+      <p class="text-body-sm text-foreground leading-relaxed">
+        Composite scenarios illustrating common outcomes. Your results will vary based on your credit, income, property, and lender decisions. All scenarios involve licensed mortgage brokers and lenders operating under Canadian regulations (FSRA, BCFSA, AMF, etc.). This content is educational, not a promise of any specific result.
+      </p>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqs.map(f => (
+          <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+            <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+              <span>{f.question}</span>
+              <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+            </summary>
+            <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-heading-3 mb-4">Related Guides</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+          { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal/" },
+          { title: "Divorce Mortgage Renewal", href: "/divorce-mortgage-renewal/" },
+          { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
+          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+          { title: "Bad Credit Mortgage Renewal", href: "/bad-credit-mortgage-renewal/" },
+        ].map(link => (
+          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+            <span class="text-secondary-100">→</span>
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want Your Own Renewal Case Study?</h2>
+      <p class="text-white/80 mb-6">Talk to a licensed mortgage broker about your specific renewal — rate, charge type, timing, and lender options. Free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,0 +1,307 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "I got a CMHC New to Canada mortgage at purchase. Will my renewal be different from a regular renewal?",
+    answer: "No. CMHC's New to Canada insured program allows newcomers to access high-ratio (up to 95% LTV) insured mortgages at purchase. Once the mortgage is in place, it renews like any other insured mortgage — your insurance (CMHC, Sagen, or Canada Guaranty) continues to follow the mortgage, and any new lender you switch to inherits the existing insurance. The fact that your original mortgage was a New to Canada product becomes largely irrelevant at renewal; what matters is your current income, credit, and the property's loan-to-value ratio."
+  },
+  {
+    question: "I've been a permanent resident for 5 years. Am I treated differently than a Canadian citizen at renewal?",
+    answer: "Not at renewal. Permanent residents who hold mortgages are treated identically to Canadian citizens for renewal purposes. Lenders care about your income, your credit history (built in Canada since your mortgage started), your debt-servicing ratios, and the equity in the property. Your citizenship status doesn't change the renewal analysis. The only situation where PR status might matter is if you've been outside Canada for an extended period and your residency status is in question — in which case, resolve that first."
+  },
+  {
+    question: "I'm on a work permit and my mortgage is coming up for renewal. What are my options?",
+    answer: "Work permit holders (non-permanent residents) face stricter requalification at renewal, particularly if they want to switch lenders. Most A-lenders will renew an existing mortgage on a work-permit holder if the permit is still valid, the borrower's income is stable, and payments have been made on time. Switching lenders can be more challenging: some lenders require permanent residency for new applications. Work with a broker who has experience placing work-permit files — they will know which lenders are flexible on non-PR status."
+  },
+  {
+    question: "Can foreign income be used to qualify at mortgage renewal?",
+    answer: "Most A-lenders in Canada will not use foreign income for qualification — they want Canadian employment income demonstrated on T4s or Canadian-sourced NOAs. Some B-lenders and specialty programs (including certain private lenders) accept verified foreign income with a currency haircut and additional documentation. At renewal, if you relied on foreign income to qualify at purchase and you now have Canadian income history, your file is actually stronger — lenders prefer Canadian-sourced income. If you still rely on foreign income, a broker will need to match you to a lender with a specific program for international borrowers."
+  },
+  {
+    question: "My credit history in Canada is only 2 years long. Will this hurt my renewal?",
+    answer: "Short credit history is less of a problem at renewal than at original purchase. By renewal time (typically 5 years after purchase for a standard 5-year term), you've likely built meaningful Canadian credit history — the mortgage itself contributes a strong trade line, and any credit cards, car loans, or utilities you've maintained for years are additional positives. Most A-lenders want 2+ years of Canadian credit history for renewal underwriting; that's achievable by the 5-year renewal mark for the vast majority of newcomers. If you've been in Canada less than 2 years, a renewal in your name may still be viable but may require broker involvement to place with a flexible lender."
+  },
+  {
+    question: "I became a Canadian citizen after purchasing my home. Does anything change at renewal?",
+    answer: "Nothing operationally. Your mortgage doesn't care whether you're a PR or a citizen — it's a contract tied to the property and your income/credit profile. Citizenship status is not a mortgage qualification factor in Canada. The only minor benefit is administrative: some newcomers find that having a Canadian passport simplifies identity verification for renewal applications, but PR cards serve the same purpose. Focus your renewal shopping on the rate and the lender's program terms, not your immigration status."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "new-to-canada-mortgage-renewal",
+    name: "New to Canada Mortgage Renewal — Newcomer Guide 2026",
+    description: "Mortgage renewal guide for newcomers to Canada — permanent residents, work permit holders, and new Canadian citizens. Qualification, options, and strategies.",
+  }),
+  articleSchema({
+    headline: "New to Canada Mortgage Renewal — 2026 Newcomer Guide",
+    description: "Complete renewal guide for newcomers — how permanent residents, work permit holders, and those with foreign income are treated at renewal, plus CMHC New to Canada program mechanics.",
+    slug: "new-to-canada-mortgage-renewal",
+    articleSection: "Persona Guides",
+    about: "Newcomer Mortgage Renewal in Canada",
+    keywords: ["new to Canada mortgage", "permanent resident mortgage renewal", "work permit mortgage", "CMHC New to Canada", "newcomer mortgage"],
+  }),
+  breadcrumbSchema([
+    { name: "New to Canada Mortgage Renewal", url: "/new-to-canada-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "new-to-canada-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="New to Canada Mortgage Renewal 2026 — Newcomer Guide"
+  description="Newcomer mortgage renewal guide — permanent residents, work permit holders, CMHC New to Canada program mechanics, foreign income, and building Canadian credit."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › New to Canada Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 11-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">New to Canada Mortgage Renewal: Newcomer Guide for 2026</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">You moved to Canada, bought a home, and now your first mortgage is coming up for renewal. Here's what changes, what doesn't, and how to navigate your renewal as a permanent resident, citizen, or work-permit holder.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+          Get a Free Strategy Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Permanent residents and Canadian citizens are treated identically at mortgage renewal.</li>
+            <li>• The CMHC New to Canada insured program — which allowed up to 95% LTV at purchase — is largely invisible at renewal; your mortgage renews like any other insured mortgage.</li>
+            <li>• Work permit holders face tighter underwriting, especially when switching lenders; a broker with experience placing non-PR files is valuable.</li>
+            <li>• Foreign income is rarely accepted by A-lenders; by renewal, most newcomers have Canadian income history, which makes qualification easier, not harder.</li>
+            <li>• Canadian credit history built over the term of your original mortgage is a strong asset at renewal — typically 2+ years of history is sufficient for A-channel approval.</li>
+            <li>• The November 2024 federal stress-test exemption for straight lender switches applies equally to newcomer borrowers at federally regulated lenders.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">A Quick Recap of Your First Mortgage</h2>
+
+        <p class="mb-4 leading-relaxed">When you arrived in Canada and purchased your first home, you probably used one of two paths:</p>
+
+        <ol class="list-decimal list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>CMHC New to Canada insured program:</strong> Designed specifically for permanent residents and non-permanent residents who arrived in Canada within the past 5 years. Allows up to 95% LTV (5% down payment). Requires mortgage default insurance, which is added to the principal and amortized. Available through most major lenders.</li>
+          <li><strong>Standard qualification:</strong> If you had a longer Canadian work history, Canadian credit, and sufficient down payment (typically 20%+), you may have qualified through a conventional application without using the New to Canada program.</li>
+        </ol>
+
+        <p class="mb-6 leading-relaxed">Either way, at renewal the mortgage that's maturing is just a mortgage — the program under which it was originated has no bearing on how it renews.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Insured vs. Uninsured at Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">This is the single most important distinction for newcomer mortgages at renewal. See our <a href="/insured-vs-conventional-mortgage-renewal/" style="color: var(--secondary)">insured vs. conventional mortgage renewal</a> guide for the full mechanics.</p>
+
+        <p class="mb-4 leading-relaxed">If you originally put down less than 20% — including via the CMHC New to Canada program — your mortgage is insured. Insurance follows the mortgage for its full life. At renewal, any new lender who takes on the mortgage inherits the existing insurance, and the borrower isn't stress-tested on the original insured balance. This actually advantages you: insured mortgages typically get the lowest rates in Canada because the lender's risk is backstopped by CMHC/Sagen/Canada Guaranty.</p>
+
+        <p class="mb-6 leading-relaxed">If you originally put down 20%+, your mortgage is uninsured (conventional). At renewal, the standard stress test rules apply — with the November 2024 exemption for straight lender switches. Either way, your renewal rate and options will be similar to any other Canadian borrower with equivalent income and credit.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Renewal Scenarios by Immigration Status</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Status</th>
+                <th class="p-3 text-left">Renewing with Current Lender</th>
+                <th class="p-3 text-left">Switching Lenders</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Canadian Citizen (became citizen after purchase)</td>
+                <td class="p-3">Same as any citizen renewal</td>
+                <td class="p-3">Full flexibility</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Permanent Resident</td>
+                <td class="p-3">Same as citizen renewal</td>
+                <td class="p-3">Full flexibility — treated identically to citizens</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Work Permit (non-PR)</td>
+                <td class="p-3">Typically smooth if permit is valid and payments are current</td>
+                <td class="p-3">Stricter — some lenders require PR; broker help valuable</td>
+              </tr>
+              <tr style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Study Permit (rare)</td>
+                <td class="p-3">Lender-specific; often requires guarantor review</td>
+                <td class="p-3">Very limited options; specialty lenders</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Building Canadian Credit: Why Renewal Is Easier Than Purchase</h2>
+
+        <p class="mb-4 leading-relaxed">One of the most commonly underappreciated aspects of newcomer mortgage renewal is this: you have more credit history now than you did when you first purchased. Every month of on-time mortgage payments adds to your Canadian credit file. By the 5-year renewal mark, most newcomers have:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>5 years of clean mortgage payment history — one of the strongest trade lines a credit bureau can see.</li>
+          <li>Multiple Canadian credit cards with established usage patterns.</li>
+          <li>Utility and telecom accounts that reporting agencies include in alternative credit assessments.</li>
+          <li>Possibly a car loan or personal line of credit with history.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">This matters: lenders see a 5-year established Canadian borrower rather than a "new arrival" profile. Your rate options at renewal should be comparable to any Canadian with equivalent income and debt servicing.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Foreign Income at Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">If your income at purchase relied partly or wholly on foreign sources (an employer abroad, overseas investments, or business income from outside Canada), some specialty lenders accepted it — often with a currency haircut (e.g., 75% of stated foreign income). At renewal, the picture depends on whether you now have Canadian income:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Transitioned to Canadian employment:</strong> Your renewal is straightforward — document your Canadian income with T4s and NOAs, and you're in the standard A-channel qualification.</li>
+          <li><strong>Self-employed Canadian income:</strong> Document through T1 Generals with 2 years of NOAs. See our <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed guide</a>.</li>
+          <li><strong>Still reliant on foreign income:</strong> You'll need to stay with a lender whose program supports foreign income. Options narrow. Private lenders and specialty B-lenders are typically the path.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Key Documents for Your Newcomer Renewal</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2 text-sm" style="color: var(--secondary)">Identity & Status</p>
+            <ul class="text-sm space-y-1" style="color: var(--muted-foreground)">
+              <li>• Valid PR card or Canadian passport</li>
+              <li>• Valid work permit (if applicable)</li>
+              <li>• Secondary ID (driver's licence, provincial ID)</li>
+              <li>• SIN (for credit check)</li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2 text-sm" style="color: var(--secondary)">Income</p>
+            <ul class="text-sm space-y-1" style="color: var(--muted-foreground)">
+              <li>• Recent pay stubs (last 2)</li>
+              <li>• 2 years Canadian T4s / NOAs</li>
+              <li>• Employment letter</li>
+              <li>• Self-employed: T1 Generals + NOAs</li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2 text-sm" style="color: var(--secondary)">Mortgage</p>
+            <ul class="text-sm space-y-1" style="color: var(--muted-foreground)">
+              <li>• Most recent mortgage statement</li>
+              <li>• Current balance and maturity date</li>
+              <li>• Insurance confirmation (if insured)</li>
+              <li>• 12–24 months of payment history</li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2 text-sm" style="color: var(--secondary)">Property</p>
+            <ul class="text-sm space-y-1" style="color: var(--muted-foreground)">
+              <li>• Property tax bill</li>
+              <li>• Home insurance certificate</li>
+              <li>• Strata/condo fees (if applicable)</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Why a Broker Is Especially Valuable for Newcomers</h2>
+
+        <p class="mb-4 leading-relaxed">Canada's mortgage market is diverse — 30+ lenders with varying newcomer-specific programs. For a PR or work-permit holder, the right match matters:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Not every lender is comfortable with work-permit borrowers; a broker knows which ones are.</li>
+          <li>Specialty programs for international income exist but aren't advertised — broker channels are where they live.</li>
+          <li>Language and documentation preferences vary by lender; matching your file to a lender who will accept your specific documentation saves time and avoids declines.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">See our full <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">broker guide</a>.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/insured-vs-conventional-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Insured vs. Conventional</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">How insured (including New to Canada) mortgages renew.</p>
+            </a>
+            <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Many newcomer entrepreneurs land here at renewal.</p>
+            </a>
+            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">The 2024 exemption and how it applies to newcomers.</p>
+            </a>
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Most valuable for newcomers with unusual income profiles.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">The 8-step process and 2024 stress-test exemption.</p>
+            </a>
+            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Renewal Guide</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Everything you need to know for a 2026 renewal.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">First Mortgage Recap</a></li>
+              <li><a href="#" style="color: var(--secondary)">Insured vs Uninsured</a></li>
+              <li><a href="#" style="color: var(--secondary)">Scenarios by Status</a></li>
+              <li><a href="#" style="color: var(--secondary)">Canadian Credit</a></li>
+              <li><a href="#" style="color: var(--secondary)">Foreign Income</a></li>
+              <li><a href="#" style="color: var(--secondary)">Documents</a></li>
+              <li><a href="#" style="color: var(--secondary)">Why a Broker</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Newcomer Renewal Help</h3>
+            <p class="text-sm mb-4 opacity-90">A broker experienced with newcomer files knows which lenders are flexible on immigration status, foreign income, and short Canadian credit history.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-3xl font-bold mb-4">Newcomer? You Have More Options Than You Think.</h2>
+      <p class="text-lg mb-8 opacity-90">Your first mortgage in Canada is behind you. Your renewal is your chance to shop like any other Canadian — and we'll help.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+        Book Your Free Renewal Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

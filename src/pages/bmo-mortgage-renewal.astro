@@ -1,0 +1,206 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Does BMO register mortgages as collateral or standard charges?",
+    answer: "BMO's standalone residential mortgages are registered as standard charges, making them comparatively inexpensive to switch away from at renewal. BMO's Homeowner ReadiLine (mortgage + HELOC combined) is registered as a collateral charge, which adds switching friction similar to TD and RBC Homeline."
+  },
+  {
+    question: "What is BMO's current 5-year fixed rate for renewal?",
+    answer: "BMO's 5-year fixed special is approximately 4.51% as of April 2026. BMO also offers the Smart Fixed product at a lower rate, but with reduced prepayment privileges (10% vs. 20% on standard fixed). Both rates are negotiable on a renewal — the letter offer is typically higher than what's available with negotiation or broker competition."
+  },
+  {
+    question: "What are BMO's prepayment privileges?",
+    answer: "BMO offers some of the most generous prepayment privileges among the Big 6: 20% lump-sum prepayment of original principal per year, plus up to 20% regular payment increase, on the standard fixed. The Smart Fixed product reduces these to 10% lump-sum and 10% payment increase in exchange for a lower rate. For borrowers who actively prepay, BMO's standard fixed often beats competitors."
+  },
+  {
+    question: "What is BMO's Smart Fixed mortgage?",
+    answer: "BMO's Smart Fixed is a discounted 5-year fixed product with 10% lump-sum prepayment privileges and 10% payment increase privileges — half the standard BMO prepayment allowance. In exchange, the rate is typically 10-20 basis points below BMO's standard fixed special. It's best suited to borrowers who don't anticipate making large prepayments; it's worse for borrowers who plan to aggressively pay down principal."
+  },
+  {
+    question: "How does BMO calculate IRD penalties?",
+    answer: "BMO uses a posted-rate IRD methodology standard across the Big 6. The comparison rate is BMO's posted rate for the remaining term, less the discount you received at origination. IRD only applies if you break mid-term; at renewal (maturity), no penalty applies and you can switch freely."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "bmo-mortgage-renewal",
+    name: "BMO Mortgage Renewal 2026 — Rates, Smart Fixed & Strategy",
+    description: "BMO Bank of Montreal mortgage renewal guide: standard vs. ReadiLine collateral charge, Smart Fixed vs. standard fixed, 2026 rates, prepayment privileges, and negotiation.",
+  }),
+  articleSchema({
+    headline: "BMO Bank of Montreal Mortgage Renewal 2026 — Rates, Smart Fixed & Strategy",
+    description: "BMO mortgage renewal guide: standard charge vs. Homeowner ReadiLine collateral charge, Smart Fixed vs. standard fixed, 2026 rates around 4.51%, 20% prepayment privileges, and IRD methodology.",
+    slug: "bmo-mortgage-renewal",
+    articleSection: "Bank Renewal Guides",
+    about: "BMO Bank of Montreal",
+    keywords: ["BMO mortgage renewal", "Bank of Montreal renewal rate", "BMO Smart Fixed", "Homeowner ReadiLine", "BMO prepayment"],
+  }),
+  breadcrumbSchema([
+    { name: "BMO Mortgage Renewal", url: "/bmo-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "bmo-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="BMO Mortgage Renewal 2026 — Rates, Smart Fixed & Strategy"
+  description="BMO mortgage renewal: standard vs. ReadiLine collateral charge, Smart Fixed vs. standard fixed, 2026 rates, 20% prepayment, and negotiation tactics."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › BMO Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 8-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">BMO Bank of Montreal Mortgage Renewal in 2026</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">BMO offers some of the most generous prepayment privileges in the Big 6 — but also a lower-rate Smart Fixed product with reduced prepayment. Here's how to decide between BMO's products at renewal, what rates to expect, and when to negotiate versus switch.</p>
+      <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+        Compare BMO vs. Broker Quotes
+      </a>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex-1">
+
+      <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+        <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">BMO at a Glance (April 2026)</h2>
+        <ul class="space-y-2 text-sm leading-relaxed">
+          <li>• <strong>Default charge type:</strong> Standard (Homeowner ReadiLine is collateral)</li>
+          <li>• <strong>5-year fixed special:</strong> ~4.51% (standard fixed)</li>
+          <li>• <strong>Smart Fixed:</strong> Lower rate with 10% prepayment privileges (vs. 20% on standard)</li>
+          <li>• <strong>Prepayment privileges (standard):</strong> 20% lump sum + 20% payment increase</li>
+          <li>• <strong>IRD methodology:</strong> Posted-rate based</li>
+          <li>• <strong>Signature product:</strong> BMO Homeowner ReadiLine (combined mortgage + HELOC)</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">BMO's Charge Types: Standard vs. ReadiLine</h2>
+
+      <p class="mb-4 leading-relaxed">BMO's standalone residential mortgages use a <strong>standard charge</strong> registration, which keeps switching costs modest ($300-$700 in legal fees, often covered by new-lender cash-back). The <strong>BMO Homeowner ReadiLine</strong> — BMO's combined mortgage and HELOC product — is a collateral charge, with the same switching friction as TD's collateral mortgages (~$700-$1,500 in legal fees).</p>
+
+      <p class="mb-6 leading-relaxed">Before shopping, confirm which BMO product you're on. Customers on standalone BMO mortgages enjoy easy switching; ReadiLine customers face higher switching costs but have access to re-advanceable HELOC credit during the term.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">BMO Smart Fixed vs. Standard Fixed</h2>
+
+      <p class="mb-4 leading-relaxed">BMO uniquely offers two variants of the 5-year fixed mortgage, and choosing between them at renewal requires understanding your prepayment intentions:</p>
+
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr style="background: var(--primary); color: white">
+              <th class="p-3 text-left">Feature</th>
+              <th class="p-3 text-left">BMO Standard Fixed</th>
+              <th class="p-3 text-left">BMO Smart Fixed</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b" style="border-color: var(--border)">
+              <td class="p-3 font-medium">Rate (April 2026)</td>
+              <td class="p-3">~4.51%</td>
+              <td class="p-3">~4.34% (typically 10-20 bps lower)</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+              <td class="p-3 font-medium">Lump-sum prepayment</td>
+              <td class="p-3">Up to 20%/year</td>
+              <td class="p-3">Up to 10%/year</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border)">
+              <td class="p-3 font-medium">Payment increase</td>
+              <td class="p-3">Up to 20%</td>
+              <td class="p-3">Up to 10%</td>
+            </tr>
+            <tr style="border-color: var(--border)">
+              <td class="p-3 font-medium">Best for</td>
+              <td class="p-3">Borrowers who prepay aggressively</td>
+              <td class="p-3">Borrowers with steady payments only</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mb-6 leading-relaxed">Rule of thumb: if you anticipate making lump-sum prepayments exceeding 10% of original principal, the standard fixed's higher rate is typically still cheaper than the Smart Fixed's lower rate plus penalty-rate prepayments. Run the specific numbers with your broker.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">BMO Prepayment Privileges — Best in the Big 6</h2>
+
+      <p class="mb-4 leading-relaxed">The standard BMO 5-year fixed offers the most generous prepayment privileges in the Big 6:</p>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li><strong>Lump-sum prepayments:</strong> Up to 20% of original principal per year, without penalty. On a $500K mortgage, that's $100K/year in prepayment capacity.</li>
+        <li><strong>Payment increase:</strong> You can increase your regular payment by up to 20% without penalty.</li>
+        <li><strong>Flexibility:</strong> Prepayments can be made on any regular payment date.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">These privileges tie or beat most competitors: TD allows 15% + 100% payment increase; RBC 10% + Double-Up; First National 15% + 15%. BMO's 20%/20% is best-in-class for active prepayers.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">BMO's IRD Methodology</h2>
+
+      <p class="mb-4 leading-relaxed">BMO uses a posted-rate IRD methodology identical in approach to RBC, TD, and most Big 6 peers. The comparison rate is BMO's posted rate for the remaining term, less the discount you received at origination. This produces higher IRD penalties than monoline contract-rate methodology.</p>
+
+      <p class="mb-6 leading-relaxed">At renewal (maturity), no IRD applies. If you plan to break mid-term (selling, refinancing), a lender with fairer IRD (First National, some credit unions) saves money.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The BMO Renewal Negotiation Playbook</h2>
+
+      <ol class="space-y-4 mb-8">
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">1. Identify your current product</h3>
+          <p class="text-sm leading-relaxed">Confirm whether you're on standard BMO fixed, Smart Fixed, or ReadiLine. This determines your switching cost and baseline features.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">2. Get broker quotes</h3>
+          <p class="text-sm leading-relaxed">Benchmark BMO's renewal offer against monolines (First National, MCAP), credit unions, and competing banks. Target a 15-25 bps rate improvement.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">3. Call BMO mortgage retention with a competing quote</h3>
+          <p class="text-sm leading-relaxed">BMO's retention desk has real rate authority and typically matches or comes close to concrete broker quotes.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">4. Weigh prepayment privileges in your decision</h3>
+          <p class="text-sm leading-relaxed">If you actively prepay, BMO's standard-fixed 20% privilege is a real feature worth paying for. If a monoline offers a lower rate but only 15% prepayment, run the specific math.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">5. Sign before maturity</h3>
+          <p class="text-sm leading-relaxed">Always actively sign. BMO's auto-renewal is priced less favorably than the negotiated offer.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/td-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">TD Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Compare TD's 15% prepayment vs. BMO's 20%.</p>
+        </a>
+        <a href="/rbc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">RBC Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">RBC's 10% prepayment vs. BMO's 20%.</p>
+        </a>
+        <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates 2026</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Current market rates to benchmark BMO's offer.</p>
+        </a>
+        <a href="/first-national-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">First National Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Compare a monoline's rate and IRD to BMO.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Get the right BMO product — or a better offer elsewhere.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call walks through Smart Fixed vs. standard fixed — and benchmarks BMO against competing lenders. No obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

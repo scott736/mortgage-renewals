@@ -4,11 +4,32 @@ export const prerender = false;
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { SchedulingWidgetWithBoundary } from '@/components/scheduling/scheduling-with-boundary';
 import { services, teamMembers } from '@/lib/nylas/config';
+import { webPageNode, breadcrumbSchema, serviceSchema, combineSchemas } from '@/lib/schema';
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "book-a-call",
+    name: "Book a Free Mortgage Renewal Strategy Call",
+    description: "Schedule a free 30-minute call with a licensed Canadian mortgage broker to review your renewal options.",
+  }),
+  serviceSchema({
+    name: "Free Mortgage Renewal Strategy Call",
+    description: "A complimentary 30-minute consultation with a licensed Canadian mortgage broker who will compare rates from 30+ lenders, review your renewal options, and build a personalized strategy. No fee, no obligation.",
+    slug: "book-a-call",
+    serviceType: "Mortgage Broker Consultation",
+    price: "0",
+    priceCurrency: "CAD",
+  }),
+  breadcrumbSchema([
+    { name: "Book a Call", url: "/book-a-call" }
+  ]),
+);
 ---
 
 <DefaultLayout
   title="Book a Free Renewal Strategy Call — MortgageRenewalHub.ca"
   description="Speak with a licensed Canadian mortgage professional about your renewal. Free, no obligation — we'll compare rates from 30+ lenders and build your strategy."
+  schema={schema}
 >
   <section class="section-padding py-16">
     <div class="container max-w-screen-xl">

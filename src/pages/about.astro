@@ -1,22 +1,26 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "about",
+    name: "About MortgageRenewalHub.ca",
+    description: "Independent Canadian mortgage renewal education resource — our mission and team.",
+  }),
   articleSchema({
     headline: "About MortgageRenewalHub.ca",
     description: "MortgageRenewalHub.ca is an independent Canadian mortgage renewal education resource. Learn how we help Canadians save thousands at renewal.",
     slug: "about",
   }),
   breadcrumbSchema([{ name: "About", url: "/about" }]),
-  speakableSchema("about"),
 );
 ---
 
 <DefaultLayout
-  title="About MortgageRenewalHub.ca — Canada's Mortgage Renewal Resource"
+  title="About MortgageRenewalHub.ca — Canada's Renewal Resource"
   description="MortgageRenewalHub.ca is an independent Canadian mortgage renewal education resource. Learn how we help Canadians save thousands at renewal."
   schema={schema}
 >
@@ -45,10 +49,10 @@ const schema = combineSchemas(
             Over 70% of Canadians sign their bank's first renewal offer without shopping around. Banks know this and count on it. The result? Billions of dollars in unnecessary interest paid by Canadians who simply didn't know they had better options.
           </p>
           <p class="text-body-md text-muted-foreground mb-4">
-            MortgageRenewalHub.ca exists to change that. We provide clear, accurate, jargon-free information about mortgage renewals — starting with our <a href="/mortgage-renewal-guide" style="color: var(--secondary)">complete mortgage renewal guide</a> — so that every Canadian can approach their renewal from a position of knowledge and confidence.
+            MortgageRenewalHub.ca exists to change that. We provide clear, accurate, jargon-free information about mortgage renewals — starting with our <a href="/mortgage-renewal-guide/" style="color: var(--secondary)">complete mortgage renewal guide</a> — so that every Canadian can approach their renewal from a position of knowledge and confidence.
           </p>
           <p class="text-body-md text-muted-foreground">
-            Our guides, <a href="/mortgage-renewal-calculator" style="color: var(--secondary)">calculators</a>, and resources are free. We earn revenue when you choose to <a href="/book-a-call" style="color: var(--secondary)">book a free consultation</a> with a licensed mortgage broker — but we never pressure, upsell, or compromise the quality of our educational content.
+            Our guides, <a href="/mortgage-renewal-calculator/" style="color: var(--secondary)">calculators</a>, and resources are free. We earn revenue when you choose to <a href="/book-a-call/" style="color: var(--secondary)">book a free consultation</a> with a licensed mortgage broker — but we never pressure, upsell, or compromise the quality of our educational content.
           </p>
         </div>
         <div class="space-y-4">
@@ -99,14 +103,37 @@ const schema = combineSchemas(
       <div class="rounded-xl bg-primary-0 border border-primary-50 p-8">
         <h2 class="text-heading-3 text-primary-100 mb-4">How This Site Works</h2>
         <p class="text-body-lg text-muted-foreground mb-4">
-          MortgageRenewalHub.ca is an independent resource. Our guides and calculators are free to use and have no conditions attached.
+          MortgageRenewalHub.ca is an educational resource powered by <a href="https://lendcity.ca" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a>, a licensed Canadian mortgage brokerage. Our guides and calculators are free to use and have no conditions attached.
         </p>
         <p class="text-body-md text-muted-foreground mb-4">
-          We connect Canadians with licensed mortgage brokers for free consultations. If you choose to work with a broker you found through us, the broker may pay us a referral fee — at no cost to you. Broker services are always free to borrowers in Canada.
+          When you book a free strategy call through this site, you're speaking with a licensed mortgage agent on the LendCity team who can compare rates from 30+ lenders on your behalf. Broker services are always free to borrowers in Canada — lenders pay the broker, not you.
         </p>
         <p class="text-body-md text-muted-foreground">
-          This means our interests are aligned: the better our information, the more likely you'll find value in speaking with a broker. We have no incentive to promote specific lenders or products — only to give you the best possible information.
+          This means our interests are aligned: the better our information, the more likely you'll find value in speaking with our team. We have no incentive to promote specific lenders or products — only to give you the best possible information.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POWERED BY LENDCITY -->
+  <section class="bg-gray-25 py-16">
+    <div class="container max-w-3xl px-6 text-center">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Powered By</div>
+      <h2 class="text-heading-2 mb-4">LendCity Mortgages</h2>
+      <p class="text-body-lg text-muted-foreground mb-6">
+        MortgageRenewalHub.ca is owned and operated by <a href="https://lendcity.ca" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a> — a full-service Canadian mortgage brokerage helping homeowners, investors, and first-time buyers across the country secure better rates and smarter mortgage strategies.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://lendcity.ca" target="_blank" rel="noopener">
+          <button class="rounded-lg bg-primary-100 hover:opacity-90 text-white font-semibold px-8 py-4 text-lg transition-colors">
+            Visit LendCity.ca →
+          </button>
+        </a>
+        <a href="tel:+15199600370">
+          <button class="rounded-lg border-2 border-primary-100 hover:bg-primary-0 text-primary-100 font-semibold px-8 py-4 text-lg transition-colors">
+            📞 1-519-960-0370
+          </button>
+        </a>
       </div>
     </div>
   </section>
@@ -119,12 +146,12 @@ const schema = combineSchemas(
         Book a free strategy call with a licensed Canadian mortgage broker. No obligation, no pressure — just expert guidance on your options.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="/book-a-call">
+        <a href="/book-a-call/">
           <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
             Book Free Call
           </button>
         </a>
-        <a href="/mortgage-renewal-guide">
+        <a href="/mortgage-renewal-guide/">
           <button class="rounded-lg border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 text-lg transition-colors">
             Read the Guide First
           </button>

@@ -3,12 +3,10 @@ import { Button } from "@/components/ui/button";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
 ---
 
-<DefaultLayout title="404: Not Found" description="Page does not exist">
-  <section class="bg-primary-300 h-[80vh] px-6 text-white">
-    <div class="container h-full">
-      <div
-        class="mx-auto flex h-full max-w-3xl flex-col items-center justify-center text-center"
-      >
+<DefaultLayout title="404: Not Found — MortgageRenewalHub.ca" description="The page you're looking for doesn't exist. Browse our most popular mortgage renewal resources or contact us for help." noindex={true}>
+  <section class="bg-primary-300 px-6 py-20 text-white lg:py-28">
+    <div class="container">
+      <div class="mx-auto flex max-w-3xl flex-col items-center justify-center text-center">
         <span
           class="inline-flex h-7 items-center rounded-[10px] border border-white/15 bg-white/10 px-3 text-sm text-white/90 shadow-[0_1px_2px_0_rgba(13,13,18,0.06)] backdrop-blur-[2px]"
         >
@@ -22,7 +20,7 @@ import DefaultLayout from "@/layouts/DefaultLayout.astro";
         </h1>
 
         <p class="text-body-lg mx-auto mt-4 max-w-2xl text-white/80">
-          Sorry, we couldn’t find the page you’re looking for. It might have
+          Sorry, we couldn't find the page you're looking for. It might have
           been moved, renamed, or no longer exists.
         </p>
 
@@ -38,9 +36,50 @@ import DefaultLayout from "@/layouts/DefaultLayout.astro";
             variant="translucent"
             className="w-full text-white sm:w-auto"
           >
-            <a href="/contact">Contact Support</a>
+            <a href="/contact/">Contact Support</a>
           </Button>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-6 py-16">
+    <div class="container max-w-5xl">
+      <h2 class="text-heading-3 mb-2 text-center">Popular Resources</h2>
+      <p class="text-body-md mb-8 text-center text-muted-foreground">
+        Looking for help with your mortgage renewal? Start with these guides.
+      </p>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <a href="/mortgage-renewal-guide/" class="group rounded-xl border border-gray-100 bg-gray-25 p-5 transition-colors hover:border-primary-100">
+          <div class="text-body-sm-medium uppercase tracking-wide text-secondary-100">Guide</div>
+          <div class="mt-2 font-semibold text-gray-900 group-hover:text-primary-100">Complete Mortgage Renewal Guide</div>
+          <p class="text-body-sm mt-1 text-muted-foreground">Everything from 12 months out to renewal day.</p>
+        </a>
+        <a href="/best-mortgage-renewal-rates/" class="group rounded-xl border border-gray-100 bg-gray-25 p-5 transition-colors hover:border-primary-100">
+          <div class="text-body-sm-medium uppercase tracking-wide text-secondary-100">Rates</div>
+          <div class="mt-2 font-semibold text-gray-900 group-hover:text-primary-100">Best Mortgage Renewal Rates</div>
+          <p class="text-body-sm mt-1 text-muted-foreground">Compare current Canadian renewal rates.</p>
+        </a>
+        <a href="/mortgage-renewal-calculator/" class="group rounded-xl border border-gray-100 bg-gray-25 p-5 transition-colors hover:border-primary-100">
+          <div class="text-body-sm-medium uppercase tracking-wide text-secondary-100">Calculator</div>
+          <div class="mt-2 font-semibold text-gray-900 group-hover:text-primary-100">Mortgage Renewal Calculator</div>
+          <p class="text-body-sm mt-1 text-muted-foreground">Model your new payment in seconds.</p>
+        </a>
+        <a href="/mortgage-renewal-faq/" class="group rounded-xl border border-gray-100 bg-gray-25 p-5 transition-colors hover:border-primary-100">
+          <div class="text-body-sm-medium uppercase tracking-wide text-secondary-100">FAQ</div>
+          <div class="mt-2 font-semibold text-gray-900 group-hover:text-primary-100">40+ FAQ Answers</div>
+          <p class="text-body-sm mt-1 text-muted-foreground">Honest answers to common renewal questions.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="group rounded-xl border border-gray-100 bg-gray-25 p-5 transition-colors hover:border-primary-100">
+          <div class="text-body-sm-medium uppercase tracking-wide text-secondary-100">Save</div>
+          <div class="mt-2 font-semibold text-gray-900 group-hover:text-primary-100">Switching Lenders at Renewal</div>
+          <p class="text-body-sm mt-1 text-muted-foreground">No stress test required since 2024.</p>
+        </a>
+        <a href="/book-a-call/" class="group rounded-xl border border-gray-100 bg-gray-25 p-5 transition-colors hover:border-primary-100">
+          <div class="text-body-sm-medium uppercase tracking-wide text-secondary-100">Free Call</div>
+          <div class="mt-2 font-semibold text-gray-900 group-hover:text-primary-100">Book a Free Strategy Call</div>
+          <p class="text-body-sm mt-1 text-muted-foreground">15-min consult with a licensed broker.</p>
+        </a>
       </div>
     </div>
   </section>

@@ -1,0 +1,152 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const posts = [
+  {
+    date: "Mar 18, 2026",
+    category: "Bank of Canada",
+    title: "Bank of Canada Holds Rate at 2.25% in March Decision",
+    excerpt: "The BoC held its overnight rate at 2.25% for the third consecutive meeting, citing stable inflation at 1.9% and resilient Canadian labour market data. Prime rate remains at 4.45%. Here's what the hold means for anyone renewing in 2026.",
+    href: "/bank-of-canada-rate-decisions/",
+    readTime: "5 min read",
+  },
+  {
+    date: "Feb 14, 2026",
+    category: "Regulation",
+    title: "November 2024 Stress Test Change: What It Means 18 Months Later",
+    excerpt: "OSFI's November 21, 2024 rule change eliminated the stress test for uninsured straight-switch renewals. 18 months in, we look at the actual switching behaviour, lender competition, and real borrower savings.",
+    href: "/stress-test-mortgage-renewal/",
+    readTime: "8 min read",
+  },
+  {
+    date: "Jan 20, 2026",
+    category: "Regulation",
+    title: "The December 2024 Mortgage Reforms: 30-Year Amortization Now Live",
+    excerpt: "First-time buyers and new-build purchasers with insured mortgages can now amortize over 30 years — up from 25. One year later, the program has meaningfully expanded affordability. Here's how it applies at renewal.",
+    href: "/30-year-amortization-mortgage-renewal/",
+    readTime: "6 min read",
+  },
+  {
+    date: "Dec 12, 2025",
+    category: "Variable Rates",
+    title: "Trigger Rate Anxiety Fades as Prime Drops to 4.45%",
+    excerpt: "Two years ago, variable-rate borrowers were hitting trigger rates in droves. With prime now at 4.45% — down from its 7.20% peak — the trigger-rate crisis has largely resolved. But if you had one, it's time to check whether your amortization restored to schedule.",
+    href: "/trigger-rate-variable-mortgage-canada/",
+    readTime: "7 min read",
+  },
+  {
+    date: "Nov 5, 2025",
+    category: "Canadian Mortgage Charter",
+    title: "Canadian Mortgage Charter: What Changed Between 2023 and 2026",
+    excerpt: "Introduced in Budget 2023, the Canadian Mortgage Charter codified lender obligations around at-risk borrowers. Three years on, we look at what it delivered, what banks did voluntarily, and what's still missing at renewal.",
+    href: "/canadian-mortgage-charter/",
+    readTime: "9 min read",
+  },
+  {
+    date: "Oct 15, 2025",
+    category: "Market Data",
+    title: "2026 Renewal Wave: $900B of Mortgages Coming Up",
+    excerpt: "Roughly $900 billion in Canadian mortgages will renew in 2026–2027, with most originated at 1.5–3.0% coming off their first term. The payment-shock math, where interest-rate outlook helps, and what borrowers should do 120 days out.",
+    href: "/mortgage-renewal-guide/",
+    readTime: "11 min read",
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-renewal-news",
+    name: "Canadian Mortgage Renewal News and Updates",
+    description: "News and analysis on Canadian mortgage renewals — Bank of Canada decisions, OSFI rule changes, and market trends affecting borrowers renewing in 2026.",
+  }),
+  articleSchema({
+    headline: "Canadian Mortgage Renewal News and Updates",
+    description: "Six recent posts covering the Bank of Canada's March 2026 hold, November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
+    slug: "mortgage-renewal-news",
+    articleSection: "News",
+    about: "Canadian mortgage renewal news",
+  }),
+  breadcrumbSchema([
+    { name: "News", url: "/mortgage-renewal-news" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Renewal News — Canada 2026"
+  description="Canadian mortgage renewal news: Bank of Canada rate decisions, OSFI stress test changes, 30-year amortization reform, trigger rates, and the 2026 renewal wave."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › News
+  </nav>
+
+  <section class="container max-w-5xl py-10">
+    <div class="mb-10">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated Weekly</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Renewal News</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        News, analysis, and commentary on the Canadian mortgage market — every item curated for relevance to homeowners coming up for renewal in 2026 and 2027.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      {posts.map(post => (
+        <a href={post.href} class="group rounded-2xl border border-gray-100 bg-white p-6 shadow-sm hover:border-secondary-50 hover:shadow-md transition-all flex flex-col">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="inline-flex items-center rounded-full bg-primary-0 text-primary-200 text-body-xs font-semibold px-3 py-1">
+              {post.category}
+            </span>
+            <time class="text-body-xs text-muted-foreground">{post.date}</time>
+          </div>
+          <h2 class="text-heading-4 font-bold mb-3 text-foreground group-hover:text-secondary-200 transition-colors">
+            {post.title}
+          </h2>
+          <p class="text-body-sm text-muted-foreground leading-relaxed mb-4 flex-1">
+            {post.excerpt}
+          </p>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+            <span class="text-body-xs text-muted-foreground">{post.readTime}</span>
+            <span class="text-body-sm-medium text-secondary-100 group-hover:translate-x-1 transition-transform">
+              Read more →
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-2xl bg-gray-25 border border-gray-100 p-6 sm:p-8">
+      <h2 class="text-heading-3 mb-3">Stay Current on Renewal News</h2>
+      <p class="text-body-md text-muted-foreground mb-5 max-w-2xl">
+        Bank of Canada decisions, OSFI rule changes, and lender rate moves all affect your renewal. Get a weekly-ish digest — no spam, just the updates that matter.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="/rate-alert/" class="inline-flex items-center justify-center rounded-lg bg-primary-100 text-white px-6 py-3 font-semibold hover:opacity-90 transition-opacity">
+          Set a Rate Alert
+        </a>
+        <a href="/renewal-reminder/" class="inline-flex items-center justify-center rounded-lg border border-gray-200 bg-white px-6 py-3 font-semibold hover:bg-gray-25 transition-colors">
+          Get a Renewal Reminder
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-heading-3 mb-4">Related Pages</h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {[
+          { title: "Current Mortgage Rates Canada", href: "/current-mortgage-rates-canada/" },
+          { title: "Mortgage Rate Forecast 2026", href: "/mortgage-rate-forecast/" },
+          { title: "Mortgage Renewal Guide", href: "/mortgage-renewal-guide/" },
+          { title: "Bank of Canada Rate Decisions", href: "/bank-of-canada-rate-decisions/" },
+        ].map(link => (
+          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+            <span class="text-secondary-100">→</span>
+            {link.title}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,8 +1,13 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-lender-types-canada",
+    name: "Canadian Mortgage Lender Types Explained",
+    description: "Big 6 banks, monolines, credit unions, B-lenders, and private lenders compared for Canadian mortgage renewals.",
+  }),
   articleSchema({
     headline: "Canadian Mortgage Lender Types: Who's Who and Which Is Right for Your Renewal",
     description: "Compare all Canadian mortgage lender types at renewal: Big 6 banks, monoline lenders, credit unions, B-lenders, and private lenders. Rates, penalties, flexibility.",
@@ -11,13 +16,12 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Mortgage Lender Types in Canada", url: "/mortgage-lender-types-canada" }
   ]),
-  speakableSchema("mortgage-lender-types-canada"),
 );
 ---
 
 <DefaultLayout
-  title="Mortgage Lender Types in Canada: Banks, Monolines, B-Lenders, Private — MortgageRenewalHub.ca"
-  description="Compare all Canadian mortgage lender types at renewal: Big 6 banks, monoline lenders, credit unions, B-lenders, and private lenders. Rates, penalties, flexibility."
+  title="Mortgage Lender Types Canada — Banks, Monolines, B-Lenders"
+  description="Compare Canadian mortgage lender types at renewal: Big 6 banks, monolines, credit unions, B-lenders, and private lenders. Rates and penalties compared."
   schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -101,11 +105,11 @@ const schema = combineSchemas(
 
     <p class="mb-4 leading-relaxed">Canada's six largest banks — RBC, TD, Scotiabank, BMO, CIBC, and National Bank — dominate the mortgage market. They hold the majority of Canadian mortgage balances and are the lenders most Canadians interact with by default, typically because they already hold their chequing accounts, savings, and other financial products.</p>
 
-    <p class="mb-4 leading-relaxed">The Big 6 banks have significant advantages: they're heavily regulated and stable, they offer full-service banking relationships, and their branch networks provide convenient in-person access. For mortgage purposes, though, they have notable disadvantages that borrowers should understand before signing a renewal without comparison shopping — <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">switching lenders at renewal</a> is easier than most people think.</p>
+    <p class="mb-4 leading-relaxed">The Big 6 banks have significant advantages: they're heavily regulated and stable, they offer full-service banking relationships, and their branch networks provide convenient in-person access. For mortgage purposes, though, they have notable disadvantages that borrowers should understand before signing a renewal without comparison shopping — <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching lenders at renewal</a> is easier than most people think.</p>
 
     <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">The IRD Penalty Problem at Major Banks</h3>
 
-    <p class="mb-4 leading-relaxed">This is the most significant structural disadvantage of fixed-rate mortgages at major banks. When you break a fixed-rate mortgage mid-term, you pay an IRD penalty — the lender's compensation for lost interest income. The <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">IRD formula</a> used by major banks in Canada is significantly more punitive than the formula used by monoline lenders.</p>
+    <p class="mb-4 leading-relaxed">This is the most significant structural disadvantage of fixed-rate mortgages at major banks. When you break a fixed-rate mortgage mid-term, you pay an IRD penalty — the lender's compensation for lost interest income. The <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">IRD formula</a> used by major banks in Canada is significantly more punitive than the formula used by monoline lenders.</p>
 
     <p class="mb-4 leading-relaxed">The reason is technical but important: major banks use their <strong>posted rates</strong> (their highest published rates) as the comparison rate in the IRD calculation, not the actual discounted rate they charge. This inflates the IRD dramatically. A monoline lender, by contrast, uses a rate closer to what they actually charge as the comparison rate, producing a much more realistic — and lower — penalty.</p>
 
@@ -150,7 +154,7 @@ const schema = combineSchemas(
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">B-Lenders: The Bridge to Prime</h2>
 
-    <p class="mb-4 leading-relaxed">B-lenders are federally regulated alternative lenders that serve borrowers who don't meet the stricter qualifying criteria of major banks or monoline lenders. Their rates are higher than A-lenders — typically 0.5% to 2.0% above comparable prime rates — but they serve a crucial market segment: borrowers with credit challenges, <a href="/self-employed-mortgage-renewal" style="color: var(--secondary)">self-employed borrowers</a> with documentation gaps, or those with recent bankruptcy or consumer proposal history.</p>
+    <p class="mb-4 leading-relaxed">B-lenders are federally regulated alternative lenders that serve borrowers who don't meet the stricter qualifying criteria of major banks or monoline lenders. Their rates are higher than A-lenders — typically 0.5% to 2.0% above comparable prime rates — but they serve a crucial market segment: borrowers with credit challenges, <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed borrowers</a> with documentation gaps, or those with recent bankruptcy or consumer proposal history.</p>
 
     <p class="mb-4 leading-relaxed">Key B-lenders in Canada include:</p>
     <ul class="list-disc list-inside mb-4 space-y-1 leading-relaxed">
@@ -168,11 +172,11 @@ const schema = combineSchemas(
 
     <p class="mb-4 leading-relaxed">Private lending serves borrowers who genuinely cannot qualify with any other type of lender — perhaps due to recent bankruptcy, multiple credit failures, or highly unusual income situations. It's a temporary, expensive bridge — always with a clear exit plan to move to a B-lender or A-lender within 1–2 years.</p>
 
-    <p class="mb-6 leading-relaxed">If you're in a situation where private lending seems like your only option, read our <a href="/bad-credit-mortgage-renewal" style="color: var(--secondary)">guide to mortgage renewal with financial difficulty</a> before proceeding.</p>
+    <p class="mb-6 leading-relaxed">If you're in a situation where private lending seems like your only option, read our <a href="/bad-credit-mortgage-renewal/" style="color: var(--secondary)">guide to mortgage renewal with financial difficulty</a> before proceeding.</p>
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How to Find the Right Lender for Your Renewal</h2>
 
-    <p class="mb-4 leading-relaxed">The honest answer is: work with a <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a>. A licensed broker has relationships with lenders across all five categories. They can assess your profile and match you with the lender type and specific institution that offers the best combination of rate, features, penalty structure, and qualifying flexibility for your situation.</p>
+    <p class="mb-4 leading-relaxed">The honest answer is: work with a <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a>. A licensed broker has relationships with lenders across all five categories. They can assess your profile and match you with the lender type and specific institution that offers the best combination of rate, features, penalty structure, and qualifying flexibility for your situation.</p>
 
     <p class="mb-6 leading-relaxed">Going directly to a single bank means you only see one option, at one institution's rates, with one set of penalties and conditions. A broker sees everything. That breadth of access, combined with the broker's expertise in matching profiles to lenders, is the foundation of why using a broker at renewal consistently outperforms going directly to a lender.</p>
 
@@ -180,27 +184,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Free access to 30+ lenders. Everything a broker does for you at renewal.</p>
         </a>
-        <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable: IRD Penalties</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Why the penalty difference between bank and monoline can be $10,000+.</p>
         </a>
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">No stress test on straight switches since 2024. 8-step process.</p>
         </a>
-        <a href="/bad-credit-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Bad Credit</p>
           <p class="text-xs" style="color: var(--muted-foreground)">B-lenders, private lending, and the path back to prime rates.</p>
         </a>
-        <a href="/self-employed-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Which lenders work best for self-employed borrowers at renewal.</p>
         </a>
-        <a href="/mortgage-renewal-glossary" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-glossary/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Glossary</p>
           <p class="text-xs" style="color: var(--muted-foreground)">IRD, collateral charge, monoline, B-lender — all terms explained.</p>
         </a>
@@ -209,7 +213,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -218,13 +222,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

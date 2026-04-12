@@ -48,6 +48,7 @@
     "lucide-react": "^1.8.0",
     "motion": "^12.23.9",
     "nylas": "^8.0.5",
+    "pdfkit": "^0.18.0",
     "proj4": "^2.20.8",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
@@ -59,6 +60,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/pdfkit": "^0.17.5",
     "@typescript-eslint/eslint-plugin": "^8.58.1",
     "@typescript-eslint/parser": "^8.58.1",
     "astro-eslint-parser": "^1.2.2",

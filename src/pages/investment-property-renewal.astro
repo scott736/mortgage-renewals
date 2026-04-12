@@ -1,9 +1,14 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "investment-property-renewal",
+    name: "Investment Property Mortgage Renewal in Canada",
+    description: "Renewing a rental or investment property mortgage in Canada — DSCR qualification, portfolio lending, and 2026 strategies.",
+  }),
   articleSchema({
     headline: "Investment Property Mortgage Renewal in Canada — Strategies & Options",
     description: "Renewing a rental property mortgage in Canada? Understand DSCR qualification, portfolio lending, and strategies to maximize your real estate portfolio returns.",
@@ -12,12 +17,11 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Investment Property Mortgage Renewal", url: "/investment-property-renewal" }
   ]),
-  speakableSchema("investment-property-renewal"),
 );
 ---
 
 <DefaultLayout
-  title="Investment Property Mortgage Renewal in Canada — Strategies & Options"
+  title="Investment Property Mortgage Renewal Canada (2026)"
   description="Renewing a rental property mortgage in Canada? Understand DSCR qualification, portfolio lending, and strategies to maximize your real estate portfolio returns."
   schema={schema}
 >
@@ -33,7 +37,7 @@ const schema = combineSchemas(
       <h1 class="text-4xl font-bold mb-5 leading-tight">Investment Property Mortgage Renewal in Canada — Strategies &amp; Options</h1>
       <p class="text-xl leading-relaxed opacity-90 mb-8">Renewing a rental or investment property mortgage in Canada involves different rules, different lenders, and different qualification criteria than an owner-occupied home. This guide covers everything property investors need to know about the 2026 renewal landscape.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/book-a-call" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
           Get a Free Strategy Call
         </a>
         <a href="#qualification" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="border: 2px solid rgba(255,255,255,0.4); color: white">
@@ -69,7 +73,7 @@ const schema = combineSchemas(
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3 font-medium">Typical rate premium</td>
                 <td class="p-3">Base rate (best pricing)</td>
-                <td class="p-3">+0.10% to +0.30% above <a href="/best-mortgage-renewal-rates" style="color: var(--secondary)">owner-occupied rates</a></td>
+                <td class="p-3">+0.10% to +0.30% above <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">owner-occupied rates</a></td>
               </tr>
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3 font-medium">Maximum LTV (uninsured)</td>
@@ -89,7 +93,7 @@ const schema = combineSchemas(
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3 font-medium">Stress test at renewal</td>
                 <td class="p-3">No (straight switch since 2024)</td>
-                <td class="p-3">No for <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">straight renewal</a>; yes for refinancing</td>
+                <td class="p-3">No for <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">straight renewal</a>; yes for refinancing</td>
               </tr>
               <tr style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3 font-medium">Portfolio lender options</td>
@@ -138,7 +142,7 @@ const schema = combineSchemas(
           </div>
           <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
             <p class="font-bold text-sm mb-2" style="color: var(--primary)">Portfolio concentration limits</p>
-            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Federally regulated lenders face internal limits on the proportion of their mortgage portfolio that can be allocated to investor properties. In practice, this means A-lenders are more selective about taking on new investor property files — making <a href="/mortgage-lender-types-canada" style="color: var(--secondary)">B-lenders and portfolio lenders</a> increasingly important for investors with large portfolios.</p>
+            <p class="text-xs leading-relaxed" style="color: var(--muted-foreground)">Federally regulated lenders face internal limits on the proportion of their mortgage portfolio that can be allocated to investor properties. In practice, this means A-lenders are more selective about taking on new investor property files — making <a href="/mortgage-lender-types-canada/" style="color: var(--secondary)">B-lenders and portfolio lenders</a> increasingly important for investors with large portfolios.</p>
           </div>
           <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
             <p class="font-bold text-sm mb-2" style="color: var(--primary)">Minimum qualifying income requirements</p>
@@ -166,7 +170,7 @@ const schema = combineSchemas(
           </ul>
         </div>
 
-        <p class="mb-6 leading-relaxed">Portfolio lending is typically arranged through <a href="/mortgage-broker-renewal" style="color: var(--secondary)">specialist mortgage brokers</a> with deep relationships in the commercial and alternative mortgage space. Not every broker has access to or experience with portfolio lenders — finding one with demonstrated expertise in multi-property investor files is important.</p>
+        <p class="mb-6 leading-relaxed">Portfolio lending is typically arranged through <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">specialist mortgage brokers</a> with deep relationships in the commercial and alternative mortgage space. Not every broker has access to or experience with portfolio lenders — finding one with demonstrated expertise in multi-property investor files is important.</p>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">DSCR Loans: Qualify on the Property's Income, Not Yours</h2>
 
@@ -259,7 +263,7 @@ const schema = combineSchemas(
         </div>
         <p class="text-xs mb-6" style="color: var(--muted-foreground)">Illustrative calculations only. Actual payments depend on exact rate, amortization, and compounding. Longer amortization means more total interest paid over the life of the loan.</p>
 
-        <p class="mb-6 leading-relaxed">The trade-off is clear: <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">lower monthly payments</a> improve current cash flow but increase total interest cost over the life of the loan. For investors focused on cash flow and acquisition capacity, longer amortizations are frequently the right choice. For investors focused on debt reduction and net worth growth, shorter amortizations are preferable. Your strategy depends on your portfolio objectives.</p>
+        <p class="mb-6 leading-relaxed">The trade-off is clear: <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">lower monthly payments</a> improve current cash flow but increase total interest cost over the life of the loan. For investors focused on cash flow and acquisition capacity, longer amortizations are frequently the right choice. For investors focused on debt reduction and net worth growth, shorter amortizations are preferable. Your strategy depends on your portfolio objectives.</p>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">When to Consider Selling vs. Renewing</h2>
 
@@ -305,27 +309,27 @@ const schema = combineSchemas(
         <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
           <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/mortgage-lender-types-canada" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types Compared</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, B-lenders, portfolio lenders — the full landscape for investors.</p>
             </a>
-            <a href="/renewal-vs-refinancing" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinancing</p>
               <p class="text-xs" style="color: var(--muted-foreground)">When accessing equity or restructuring makes sense for rental property investors.</p>
             </a>
-            <a href="/self-employed-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Mortgage Renewal</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Many real estate investors are also self-employed — the income challenges compound.</p>
             </a>
-            <a href="/fixed-vs-variable-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Cash flow implications of fixed vs. variable rate choice for investment properties.</p>
             </a>
-            <a href="/mortgage-rate-forecast" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Mortgage Rate Forecast 2026</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Rate direction analysis — critical for cap rate vs. mortgage rate decisions.</p>
             </a>
-            <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Access portfolio lenders and B-lenders unavailable directly — essential for investors.</p>
             </a>
@@ -354,7 +358,7 @@ const schema = combineSchemas(
           <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
             <h3 class="font-bold mb-3">Investor Mortgage Strategy Call</h3>
             <p class="text-sm mb-4 opacity-90">A broker who specializes in investor properties can find lenders and structures you'd never access on your own. Free consultation.</p>
-            <a href="/book-a-call" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
               Book a Free Call
             </a>
           </div>
@@ -369,7 +373,7 @@ const schema = combineSchemas(
 
   <!-- Mobile CTA -->
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -379,14 +383,11 @@ const schema = combineSchemas(
     <div class="container max-w-3xl text-center">
       <h2 class="text-3xl font-bold mb-4">Optimize Your Investment Property Renewal</h2>
       <p class="text-lg mb-8 opacity-90">Investment property renewals involve more moving parts than a primary residence — DSCR, portfolio lending, OSFI rules, amortization strategy, and tax considerations all intersect. A specialist mortgage broker can help you navigate all of them and find the best structure for your portfolio. The consultation is always free.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-10 py-4 font-bold text-lg hover:opacity-90 transition-opacity" style="background: var(--secondary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
 
   <!-- Disclaimer -->
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial, legal, or tax advice. Mortgage qualification rules, lender criteria, CMHC program requirements, and OSFI guidelines are subject to change. Tax treatment of investment property mortgages depends on individual circumstances and should be reviewed with a qualified accountant. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

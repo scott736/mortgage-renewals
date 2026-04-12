@@ -1,0 +1,163 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { BlendAndExtend } from '@/components/calculators/additional-calculators';
+import { articleSchema, breadcrumbSchema, webPageNode, webApplicationSchema, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a blend-and-extend mortgage?",
+    answer: "A blend-and-extend is a Canadian bank product that lets you access today's rate before your term is up by blending your current rate with the new rate, weighted by the time remaining. Your current term is extended (usually to a new 5-year term) without paying a prepayment penalty."
+  },
+  {
+    question: "Is blend-and-extend always better than breaking my mortgage?",
+    answer: "Not always. If today's rate is significantly lower than your current rate and your remaining term is short, breaking the mortgage and paying the 3-month interest penalty (or IRD) can save more over the new term. Use the comparison in our calculator to model both scenarios."
+  },
+  {
+    question: "Which banks offer blend-and-extend?",
+    answer: "All Big 6 banks (TD, RBC, BMO, Scotiabank, CIBC, National Bank) offer blend-and-extend on their fixed-rate mortgages. Monoline lenders like First National and MCAP typically do not — instead, they charge a fair 3-month interest penalty to break."
+  },
+  {
+    question: "Does blend-and-extend reset my amortization?",
+    answer: "No. Blend-and-extend keeps your existing amortization schedule. Only your rate and remaining term change. If you want to extend amortization (for lower payments), that's a separate request and requires a full refinance and stress test."
+  },
+  {
+    question: "Can I blend with a different lender?",
+    answer: "No. Blend-and-extend is only offered by your current lender — it's a tool they use to retain you. If you want to switch lenders, you'll need to break your mortgage, pay any penalty, and transfer to the new lender."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "blend-and-extend-calculator",
+    name: "Blend-and-Extend Calculator — Canadian Mortgage 2026",
+    description: "Free calculator to see your blended mortgage rate and compare blend-and-extend vs. breaking your mortgage early.",
+  }),
+  webApplicationSchema({
+    name: "Blend-and-Extend Mortgage Calculator (Canada)",
+    description: "Calculate your blended rate when extending your mortgage term early. Compares blend-and-extend against breaking and re-mortgaging at today's rates.",
+    slug: "blend-and-extend-calculator",
+    features: [
+      "Weighted blended rate calculation",
+      "Compare vs. 3-month interest penalty scenario",
+      "Monthly and term savings breakdown",
+      "Canadian semi-annual compounding",
+      "Free — no email required",
+    ],
+  }),
+  articleSchema({
+    headline: "Blend-and-Extend Calculator — Canadian Mortgage 2026",
+    description: "Free Canadian blend-and-extend calculator. See your blended rate, monthly savings, and whether blending beats breaking your mortgage. Updated April 2026.",
+    slug: "blend-and-extend-calculator",
+    articleSection: "Calculators",
+    about: "Blend-and-extend mortgage",
+    keywords: ["blend and extend", "blended mortgage rate", "mortgage blend calculator", "early renewal Canada"],
+  }),
+  faqSchema(faqs, "blend-and-extend-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator" },
+    { name: "Blend-and-Extend Calculator", url: "/blend-and-extend-calculator" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Blend-and-Extend Calculator — Canadian Mortgage 2026"
+  description="Free Canadian blend-and-extend calculator. See your blended rate, monthly savings, and whether blending beats breaking your mortgage early."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator" class="hover:underline">Calculators</a> › Blend-and-Extend
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Blend-and-Extend Mortgage Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Your bank is offering a blend-and-extend. Is it actually a good deal — or should you break your mortgage and switch? This calculator runs the math both ways using Canadian semi-annual compounding.
+      </p>
+    </div>
+
+    <BlendAndExtend client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How Blend-and-Extend Works in Canada</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          All Big 6 Canadian banks (TD, RBC, BMO, Scotiabank, CIBC, National Bank) offer blend-and-extend on fixed-rate mortgages. The bank weights your existing rate and today's rate by the months they apply to — then offers you that blended rate on a new, extended term (usually 5 years from today).
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          <strong>Example:</strong> You have 24 months left at 5.25%. Today's 5-year rate is 4.19%. The bank offers: (24 × 5.25% + 60 × 4.19%) ÷ 84 = <strong>~4.49%</strong> on a new 5-year term. You skip the 3-month interest or IRD penalty — the trade-off is you're locked in with your current lender.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When Blend-and-Extend Beats Breaking</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li>You have 18+ months left on your term (blending captures more of the new rate).</li>
+          <li>You're with a Big 6 bank that would use posted-rate IRD on a break (penalty often $10K+).</li>
+          <li>You want to stay with your current lender for other reasons (existing HELOC, relationship).</li>
+          <li>You believe rates may rise in the 1–2 years remaining on your current term.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When Breaking Beats Blend-and-Extend</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li>You're with a monoline lender (First National, MCAP) that uses a fair 3-month interest penalty.</li>
+          <li>Only 6–12 months remain — blending preserves too much of your high rate.</li>
+          <li>A competitor is offering legal-paid switches and a rate significantly below today's market.</li>
+          <li>You want to switch to a variable rate (blend-and-extend usually keeps you fixed).</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Tools & Guides</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Main Renewal Calculator Suite", href: "/mortgage-renewal-calculator" },
+            { title: "Early Renewal Penalty Estimator", href: "/mortgage-renewal-calculator#penalty" },
+            { title: "IRD vs. 3-Month Penalty Explainer", href: "/ird-vs-three-month-interest-penalty" },
+            { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
+            { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want a Broker to Run Both Scenarios?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal" class="text-white underline">mortgage broker</a> will call your bank for the exact blend offer and compare it against today's best switch rates — free.</p>
+      <a href="/book-a-call">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

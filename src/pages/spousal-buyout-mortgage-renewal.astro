@@ -1,0 +1,291 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a spousal buyout mortgage under the Canadian Mortgage Charter?",
+    answer: "A spousal buyout mortgage is a specific mortgage product defined under the Canadian Mortgage Charter and the CMHC/Sagen/Canada Guaranty insurer programs. It allows one spouse to buy out the other's share of the matrimonial home by financing up to 95% of the property's fair market value — treated as a purchase for qualification purposes rather than a refinance. This is materially different from a refinance, which is capped at 80% LTV. The program is only available when both spouses are currently on title, a separation agreement or court order specifies the buyout, and the buying spouse can qualify at the appraised value."
+  },
+  {
+    question: "How is a spousal buyout different from a regular divorce refinance?",
+    answer: "A regular refinance is limited to 80% LTV — meaning you can only borrow up to 80% of the home's appraised value, leaving the remaining 20% as equity. For many separating couples, that cap is the problem: if one spouse wants to keep the home but only has 20% equity in the property, a refinance can't generate enough proceeds to buy the other spouse out. The spousal buyout program bypasses this by treating the transaction as a purchase (up to 95% LTV), which is specifically contemplated by the Canadian Mortgage Charter for separation scenarios."
+  },
+  {
+    question: "What documents does a spousal buyout require?",
+    answer: "(1) A legally executed separation agreement or court order that specifies the buyout amount and terms; (2) A fair market value appraisal of the home from a qualified appraiser (usually one on the lender's or insurer's approved list); (3) Standard mortgage application documents — income verification, credit, debt servicing; (4) Proof that both spouses are currently on title (current title search from the Land Registry); (5) Legal representation on both sides, since the non-buying spouse is relinquishing ownership. Most spousal buyouts close in 30–60 days from full documentation."
+  },
+  {
+    question: "Does the spousal buyout use the stress test?",
+    answer: "Yes. The buying spouse must pass the federal stress test — contract rate + 2% or 5.25%, whichever is higher — based on their individual income alone. This is often the limiting factor: after separation, one spouse must now qualify for the full mortgage on a single income. If the buying spouse's income is insufficient, options include: (a) adding a co-signer like a parent or sibling, (b) negotiating a smaller equity buyout paid from external sources, (c) extending amortization up to 30 years on insured mortgages, or (d) selling and dividing proceeds."
+  },
+  {
+    question: "Can the timing align with a mortgage renewal?",
+    answer: "Yes, and it often makes sense to align them. If your separation and mortgage renewal are close in time, structuring the spousal buyout to close at your renewal date avoids early-payout penalties on the existing mortgage. The buying spouse effectively refinances-as-purchase at the renewal date. If your renewal isn't close, breaking the existing mortgage mid-term to execute the buyout triggers a prepayment penalty — which can be substantial on a fixed-rate Big 6 mortgage. A broker can model whether waiting for renewal or executing now produces the better net outcome."
+  },
+  {
+    question: "What happens to the non-buying spouse's credit?",
+    answer: "When the buyout closes, the non-buying spouse is removed from title and from the mortgage (provided the lender issues a written release of covenant — this must be explicit, not assumed). After that, the mortgage no longer appears on the non-buying spouse's credit file. The non-buying spouse receives their share of equity as cash. From a credit and qualifying perspective, the non-buying spouse is free to rent or purchase elsewhere without the old mortgage counting against their debt servicing. Always confirm in writing that the lender has released the non-buying spouse from the mortgage obligation."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "spousal-buyout-mortgage-renewal",
+    name: "Spousal Buyout Mortgage at Renewal — 2026 Canadian Guide",
+    description: "How the Canadian Mortgage Charter spousal buyout program works at renewal — 95% LTV, qualification, documents, and when to time it with your renewal.",
+  }),
+  articleSchema({
+    headline: "Spousal Buyout Mortgage at Renewal — The 95% LTV Program (2026)",
+    description: "Complete guide to the spousal buyout mortgage in Canada — up to 95% LTV as a purchase (not a refinance), qualification, the Canadian Mortgage Charter provisions, and renewal-timing strategy.",
+    slug: "spousal-buyout-mortgage-renewal",
+    articleSection: "Life Events",
+    about: "Spousal Buyout Mortgage in Canada",
+    keywords: ["spousal buyout mortgage", "Canadian Mortgage Charter separation", "95 LTV divorce", "matrimonial home buyout", "separation refinance"],
+  }),
+  breadcrumbSchema([
+    { name: "Spousal Buyout Mortgage at Renewal", url: "/spousal-buyout-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "spousal-buyout-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Spousal Buyout Mortgage at Renewal 2026 — 95% LTV Program"
+  description="How the Canadian Mortgage Charter spousal buyout works — up to 95% LTV as a purchase (not refinance), qualification, required documents, and renewal timing."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Spousal Buyout Mortgage at Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Spousal Buyout Mortgage at Renewal: The 95% LTV Program</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 11-minute read</p>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <p class="mb-6 text-base leading-relaxed">Separating from a spouse is difficult enough without also trying to understand which mortgage product applies when one partner wants to keep the matrimonial home. Under the Canadian Mortgage Charter and the programs run by the three mortgage default insurers (CMHC, Sagen, Canada Guaranty), a specific mortgage product exists for exactly this situation: the spousal buyout mortgage. It allows up to 95% loan-to-value — treated as a purchase rather than a refinance — which is the single most important distinction you need to understand. This guide explains how it works, how it interacts with mortgage renewal, and when it's the right tool.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• The spousal buyout mortgage allows up to 95% LTV — treated as a purchase, not a refinance.</li>
+            <li>• A regular refinance is capped at 80% LTV, which is why the spousal buyout is a distinct, purpose-built product.</li>
+            <li>• Governed by the Canadian Mortgage Charter and insurer-specific program rules from CMHC, Sagen, and Canada Guaranty.</li>
+            <li>• Requires a separation agreement or court order specifying the buyout amount.</li>
+            <li>• Both spouses must currently be on title (not just the mortgage).</li>
+            <li>• Stress test applies to the buying spouse's individual income.</li>
+            <li>• Aligning the buyout with your mortgage renewal date avoids early-payout penalties on the existing mortgage.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Why the 95% LTV Rule Matters</h2>
+
+        <p class="mb-4 leading-relaxed">Consider a common scenario: a couple bought their home 5 years ago for $600,000 with 20% down. The mortgage is $480,000, and the home is now worth $750,000. They have $270,000 in equity ($750K − $480K). On separation, they agree that one spouse keeps the home and the other receives half the equity — $135,000.</p>
+
+        <p class="mb-4 leading-relaxed">Under a regular refinance (80% LTV max), the buying spouse could only borrow up to $600,000 (80% of $750K). Subtract the existing $480,000 mortgage, and only $120,000 could be raised through refinancing — which is $15,000 short of the $135,000 buyout amount. The couple would either need to sell, bring in external cash, or use the spousal buyout program.</p>
+
+        <p class="mb-4 leading-relaxed">Under the spousal buyout program (95% LTV), the buying spouse can borrow up to $712,500 (95% of $750K). After the existing $480,000 mortgage is paid out, $232,500 is available — more than enough to fund the $135,000 buyout with room to cover closing costs. This is the structural reason the program exists.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Program Eligibility Requirements</h2>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">1. Both spouses currently on title</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">The home must be jointly owned. If one spouse was never on title, the buyout program doesn't apply — a regular refinance is used instead.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">2. Legally binding separation agreement or court order</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">The document must clearly specify the buyout amount and acknowledge that the transfer of title is consideration for the separation. Lenders and insurers will not accept a handshake deal.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">3. Fair market value appraisal</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">An independent appraisal from a qualified appraiser establishes the home's current value. This is the basis for calculating the 95% LTV limit. Appraisals typically cost $400–$700.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">4. Buying spouse qualifies independently</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">The remaining spouse must pass full qualification on their own income — stress test, debt servicing ratios (GDS ≤ 39%, TDS ≤ 44%), credit score. This is often the binding constraint.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">5. Insurer approval</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Because the mortgage is over 80% LTV, it must be insured. CMHC, Sagen, and Canada Guaranty all offer spousal buyout programs. The insurer approves the file based on its own program rules.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Spousal Buyout vs. Other Options</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Option</th>
+                <th class="p-3 text-left">Max LTV</th>
+                <th class="p-3 text-left">When to Use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Spousal Buyout (insured)</td>
+                <td class="p-3">95%</td>
+                <td class="p-3">Couple wants to keep home and buying spouse can't raise enough via refinance</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Refinance (conventional)</td>
+                <td class="p-3">80%</td>
+                <td class="p-3">Sufficient equity; buying spouse comfortable with 80% LTV mortgage</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Mortgage Assumption</td>
+                <td class="p-3">Existing balance only</td>
+                <td class="p-3">Assumable mortgage with favorable rate; equity split handled separately</td>
+              </tr>
+              <tr style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Sell and split proceeds</td>
+                <td class="p-3">N/A</td>
+                <td class="p-3">Neither spouse wants or can afford to keep the home</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-6 leading-relaxed">See our <a href="/assuming-a-mortgage-canada/" style="color: var(--secondary)">mortgage assumption</a> and <a href="/divorce-mortgage-renewal/" style="color: var(--secondary)">divorce mortgage renewal</a> guides for the alternative paths.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Timing the Buyout With Your Mortgage Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">Timing matters significantly. If your existing mortgage is mid-term, executing a spousal buyout means breaking it, which triggers a prepayment penalty. Depending on whether your current mortgage is with a Big 6 bank (posted-rate IRD) or a monoline (fair IRD), this penalty can range from a few thousand dollars to $15,000+.</p>
+
+        <p class="mb-4 leading-relaxed">If your mortgage is approaching renewal (within the next 6 months), it's almost always worth timing the buyout to the renewal date. The existing mortgage expires naturally on that date, no penalty is charged, and the new spousal buyout mortgage is originated fresh with the buying spouse as the sole borrower.</p>
+
+        <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+          <p class="font-bold mb-2">When renewal-aligned buyout makes sense</p>
+          <ul class="list-disc list-inside text-sm space-y-2">
+            <li>Separation agreement is not yet finalized but separation is imminent — schedule the finalization to align with the renewal date.</li>
+            <li>Mortgage renewal is within 6 months and both spouses agree to the broad outline of the division.</li>
+            <li>The existing mortgage has a significant prepayment penalty (Big 6 posted-rate IRD).</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Qualifying on a Single Income</h2>
+
+        <p class="mb-4 leading-relaxed">This is the emotional and financial gut check of the spousal buyout process. The mortgage that was comfortable on two incomes may not be serviceable on one. Before you commit to a buyout, work through:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>GDS ratio:</strong> (Principal + Interest + Property Tax + Heat + 50% of condo fees) ÷ gross income. Must be ≤ 39% for most insured programs.</li>
+          <li><strong>TDS ratio:</strong> GDS + all other monthly debt payments. Must be ≤ 44% for most insured programs.</li>
+          <li><strong>Stress test:</strong> The GDS/TDS calculation is done using the qualifying rate (contract + 2% or 5.25%, whichever is higher).</li>
+          <li><strong>Child support / spousal support:</strong> If you're paying support, it typically reduces your qualifying income. If you're receiving support (and it's documented and reliable), it typically adds to your qualifying income — but only for a minimum number of years the lender specifies.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">If your individual income won't qualify for the post-buyout mortgage, options include adding a co-signer (usually a parent), negotiating a smaller buyout with a cash top-up from external sources, or extending amortization to 30 years on the insured mortgage. See the <a href="/stress-test-mortgage-renewal/" style="color: var(--secondary)">stress test guide</a> for full mechanics.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Required Documents</h2>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Finalized separation agreement or court order specifying the buyout amount.</li>
+          <li>Full Form of Departure / Spousal Buyout declaration (insurer-specific form).</li>
+          <li>Appraisal from a lender-approved appraiser.</li>
+          <li>Current Title search confirming joint ownership.</li>
+          <li>Standard income, credit, and identity documents.</li>
+          <li>Copy of existing mortgage statement (if the existing mortgage is being paid out as part of the buyout).</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Why Use a Broker for a Spousal Buyout</h2>
+
+        <p class="mb-4 leading-relaxed">Spousal buyouts are specialty files. Not every lender offers the insured spousal buyout product, and those that do have different underwriting preferences. A mortgage broker familiar with buyout files will:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Match your file to a lender whose spousal buyout program is the best fit — some lenders are more aggressive on debt-servicing ratios in buyout scenarios.</li>
+          <li>Coordinate with your family lawyer on timing and documentation.</li>
+          <li>Request the insurer pre-approval in parallel with lender underwriting to speed up closing.</li>
+          <li>Present alternative structures if the buyout doesn't qualify — refinance, assumption, or sale.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/divorce-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Divorce & Mortgage Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Broader divorce-scenario renewal strategies.</p>
+            </a>
+            <a href="/assuming-a-mortgage-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Assumption</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Alternative to buyout when existing rate is favorable.</p>
+            </a>
+            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Single-income qualification mechanics.</p>
+            </a>
+            <a href="/insured-vs-conventional-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Insured vs. Conventional</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">The 95% LTV buyout is always insured.</p>
+            </a>
+            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinance</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Why buyout is its own category, not a refinance.</p>
+            </a>
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Buyouts are specialty files — broker experience matters.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">Why 95% LTV Matters</a></li>
+              <li><a href="#" style="color: var(--secondary)">Eligibility</a></li>
+              <li><a href="#" style="color: var(--secondary)">Buyout vs Alternatives</a></li>
+              <li><a href="#" style="color: var(--secondary)">Timing with Renewal</a></li>
+              <li><a href="#" style="color: var(--secondary)">Single-Income Qualifying</a></li>
+              <li><a href="#" style="color: var(--secondary)">Documents</a></li>
+              <li><a href="#" style="color: var(--secondary)">Why Use a Broker</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Considering a Spousal Buyout?</h3>
+            <p class="text-sm mb-4 opacity-90">We've helped hundreds of Canadians navigate separation with the 95% LTV buyout program. Consultation is free and confidential.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Confidential spousal buyout consultation</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">We'll model the buyout, confirm eligibility, and coordinate with your family lawyer — at no cost.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

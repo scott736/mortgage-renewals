@@ -1,0 +1,171 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Does CIBC register mortgages as collateral or standard charges?",
+    answer: "CIBC's standalone residential mortgages are registered as standard charges, which makes them less expensive to switch at renewal. The CIBC Home Power Plan (combined mortgage + HELOC) is registered as a collateral charge. If you're on a pure CIBC mortgage, switching is inexpensive; if you're on Home Power Plan, switching requires full re-registration with ~$700-$1,500 in legal fees."
+  },
+  {
+    question: "What is CIBC's current 5-year fixed rate for renewal?",
+    answer: "CIBC's 5-year fixed special is approximately 4.29% as of April 2026 — tied with RBC among the most competitive Big 5 rates. Renewal letter offers are typically 10-30 bps above this; negotiating against broker quotes usually closes the gap or improves further."
+  },
+  {
+    question: "What are CIBC's prepayment privileges?",
+    answer: "CIBC allows 10% lump-sum prepayment per year on fixed-closed mortgages, OR up to 20% on variable and convertible mortgages. Additionally, CIBC allows up to 100% regular payment increase (doubling) on most products. The doubled payment feature is among the most generous in the Big 6, though the fixed lump-sum privilege is on the lower end."
+  },
+  {
+    question: "How does CIBC calculate IRD penalties?",
+    answer: "CIBC uses a posted-to-posted IRD variant — the penalty is calculated based on the difference between CIBC's posted rate at origination and CIBC's posted rate for the remaining term. This is slightly different from RBC's and BMO's methodology but produces similarly inflated IRD penalties relative to monolines. At renewal (maturity), no IRD applies."
+  },
+  {
+    question: "Should I switch away from CIBC at renewal?",
+    answer: "If you're on a standalone CIBC mortgage (standard charge) and CIBC's renewal offer is competitive (within 15 bps of broker quotes), staying is simplest. If CIBC trails broker quotes by more than 15-20 bps and your situation is straightforward, switching pays — especially since standard-charge switches are inexpensive. If on Home Power Plan, a larger rate advantage is needed to justify the ~$1,000 collateral-charge switching cost."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "cibc-mortgage-renewal",
+    name: "CIBC Mortgage Renewal 2026 — Rates, Home Power Plan & Strategy",
+    description: "CIBC mortgage renewal guide: standard charge vs. Home Power Plan collateral charge, 2026 rates, prepayment privileges, IRD methodology, and negotiation tactics.",
+  }),
+  articleSchema({
+    headline: "CIBC Mortgage Renewal 2026 — Rates, Home Power Plan & Strategy",
+    description: "CIBC mortgage renewal guide: standard charge vs. Home Power Plan collateral charge, 5-year fixed rates around 4.29%, 10-20% prepayment privileges, 100% payment increase, and IRD methodology.",
+    slug: "cibc-mortgage-renewal",
+    articleSection: "Bank Renewal Guides",
+    about: "CIBC",
+    keywords: ["CIBC mortgage renewal", "CIBC Home Power Plan", "CIBC renewal rate", "CIBC prepayment", "CIBC standard charge"],
+  }),
+  breadcrumbSchema([
+    { name: "CIBC Mortgage Renewal", url: "/cibc-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "cibc-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="CIBC Mortgage Renewal 2026 — Rates & Home Power Plan"
+  description="CIBC mortgage renewal: standard charge vs. Home Power Plan collateral charge, 2026 rates, prepayment privileges, IRD methodology, and negotiation tactics."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › CIBC Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 7-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">CIBC Mortgage Renewal in 2026</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">CIBC offers competitive Big 5 rates, a standard-charge default, and a 100% payment-increase privilege that's among the most flexible in the Big 6. Here's what to know at your CIBC renewal in 2026.</p>
+      <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+        Compare CIBC vs. Broker Quotes
+      </a>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex-1">
+
+      <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+        <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">CIBC at a Glance (April 2026)</h2>
+        <ul class="space-y-2 text-sm leading-relaxed">
+          <li>• <strong>Default charge type:</strong> Standard (Home Power Plan is collateral)</li>
+          <li>• <strong>5-year fixed special:</strong> ~4.29% (tied with RBC as most competitive Big 5)</li>
+          <li>• <strong>Prepayment privileges:</strong> 10% lump sum (fixed-closed) OR 20% (variable/convertible), up to 100% payment increase</li>
+          <li>• <strong>IRD methodology:</strong> Posted-to-posted variant</li>
+          <li>• <strong>Signature product:</strong> CIBC Home Power Plan (combined mortgage + HELOC)</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">CIBC's Charge Type: Standard vs. Home Power Plan</h2>
+
+      <p class="mb-4 leading-relaxed">CIBC's standalone residential mortgages use a <strong>standard charge</strong> registration — meaning they can be switched to another lender at renewal with modest legal costs ($300-$700, often covered by new-lender cash-back). This makes CIBC customers' switching friction among the lowest in the Big 6.</p>
+
+      <p class="mb-6 leading-relaxed">The <strong>CIBC Home Power Plan</strong> — CIBC's combined mortgage and HELOC product — is registered as a collateral charge. If you're on Home Power Plan, switching requires full re-registration at the new lender, typically $700-$1,500 in legal fees. Confirm with CIBC which product you're on before shopping.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">CIBC Mortgage Rates at Renewal</h2>
+
+      <p class="mb-4 leading-relaxed">CIBC's 5-year fixed special rate is approximately 4.29% as of April 2026 — tied with RBC among the most competitive Big 5 posted rates. CIBC's posted rate is ~5.89%; most customers are priced within the special-rate band after qualifying and employment-income verification.</p>
+
+      <p class="mb-6 leading-relaxed">CIBC tends to be among the more aggressive Big 5 banks on renewal pricing when faced with competing quotes. A broker-sourced benchmark is still worth obtaining, but the gap between CIBC's best offer and broker quotes is often smaller than with, for example, Scotiabank.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">CIBC Prepayment Privileges — The 100% Payment Increase</h2>
+
+      <p class="mb-4 leading-relaxed">CIBC's prepayment structure is nuanced — the lump-sum allowance varies by product, and the payment-increase allowance is particularly generous:</p>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li><strong>Fixed-closed mortgages:</strong> 10% lump-sum prepayment of original principal per year.</li>
+        <li><strong>Variable and convertible mortgages:</strong> 20% lump-sum prepayment per year.</li>
+        <li><strong>Payment increase:</strong> Up to 100% (doubling) of regular payment on most products. This is among the most flexible payment-increase privileges in the Big 6.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">The 100% payment increase is the most generous among Big 6 peers on this dimension (tied with TD's 100%). If you want to accelerate amortization via higher payments rather than lump sums, CIBC's structure is best-in-class.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">CIBC's IRD Methodology</h2>
+
+      <p class="mb-4 leading-relaxed">CIBC uses a <strong>posted-to-posted IRD variant</strong> — the penalty is calculated based on the difference between CIBC's posted rate at origination and CIBC's posted rate for the remaining term. This is slightly different from the discounted-rate methodology at TD or the posted-rate methodology at RBC and BMO, but produces similarly elevated penalties relative to monoline contract-rate methodology.</p>
+
+      <p class="mb-6 leading-relaxed">At renewal (maturity), no IRD penalty applies. The methodology matters only if you break the mortgage mid-term. Monolines (First National) and some credit unions use fair contract-rate IRD, which can mean meaningfully lower penalties if future flexibility is important.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The CIBC Renewal Playbook</h2>
+
+      <ol class="space-y-4 mb-8">
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">1. Confirm standalone mortgage vs. Home Power Plan</h3>
+          <p class="text-sm leading-relaxed">Check your product type — this determines switching costs and whether the collateral-charge friction applies.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">2. Get broker quotes</h3>
+          <p class="text-sm leading-relaxed">Benchmark CIBC's offer against monolines, credit unions, and other banks. Target 10-25 bps improvement.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">3. Negotiate with CIBC retention</h3>
+          <p class="text-sm leading-relaxed">Call CIBC mortgage retention with a concrete competing quote. CIBC typically responds constructively and narrows the gap.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">4. Run net-of-switching-cost math</h3>
+          <p class="text-sm leading-relaxed">Standalone CIBC switches are cheap (~$500 net), so even a 15 bps improvement can justify switching. Home Power Plan switches need a larger rate advantage.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">5. Sign before maturity</h3>
+          <p class="text-sm leading-relaxed">Always actively sign. Auto-renewal is priced less favorably than any negotiated rate.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/rbc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">RBC Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">CIBC and RBC frequently share the lead on Big 5 posted rates.</p>
+        </a>
+        <a href="/td-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">TD Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">TD's 100% payment increase matches CIBC's; compare on charge type.</p>
+        </a>
+        <a href="/bmo-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">BMO Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">BMO's 20% lump-sum vs. CIBC's 10% (fixed) / 20% (variable).</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step switch guide — straightforward for standalone CIBC.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Benchmark CIBC's offer before signing.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call provides the comparison — useful for negotiation or for finding a better offer. No obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

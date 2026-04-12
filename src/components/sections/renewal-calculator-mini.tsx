@@ -95,7 +95,7 @@ export default function RenewalCalculatorMini() {
           <div className="my-4 hidden h-12 w-px bg-white/20 sm:block" />
           <div className="text-center">
             <a
-              href="/book-a-call"
+              href="/book-a-call/"
               className="inline-block rounded-lg bg-[oklch(70%_0.18_85)] px-5 py-3 text-sm font-semibold text-gray-900 transition hover:opacity-90"
             >
               Get a Better Rate →

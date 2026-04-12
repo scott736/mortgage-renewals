@@ -1,0 +1,124 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import SwitchQuiz from '@/components/interactive/switch-quiz';
+import { webApplicationSchema, articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "should-i-switch-quiz",
+    name: "Should I Switch Mortgage Lenders? — Free 5-Question Quiz",
+    description: "A free 5-question quiz that tells you whether to switch mortgage lenders at renewal, negotiate with your current lender, or stay put.",
+  }),
+  webApplicationSchema({
+    name: "Should I Switch Lenders Quiz",
+    description: "Free interactive quiz that uses 5 questions about your lender type, credit score, rate gap, timeline, and province to recommend whether you should switch, negotiate, or stay at your mortgage renewal.",
+    slug: "should-i-switch-quiz",
+    features: [
+      "5-question branching quiz",
+      "Covers lender type, credit, rate gap, timeline, province",
+      "Outputs one of four actionable recommendations",
+      "Updated for Nov 2024 OSFI straight-switch exemption",
+      "Free, no email required",
+    ],
+  }),
+  articleSchema({
+    headline: "Should I Switch Mortgage Lenders Quiz",
+    description: "5-question quiz to decide whether to switch lenders, negotiate, or stay at renewal. Considers credit, rate gap, timeline, and province.",
+    slug: "should-i-switch-quiz",
+    articleSection: "Interactive Tools",
+    about: "Mortgage Renewal Decision",
+  }),
+  breadcrumbSchema([
+    { name: "Should I Switch Quiz", url: "/should-i-switch-quiz" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Should I Switch Mortgage Lenders? Free Quiz"
+  description="Free 5-question quiz tells you whether to switch mortgage lenders, negotiate with your current lender, or stay put at renewal. Canadian-specific."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Should I Switch Quiz
+  </nav>
+
+  <section class="container max-w-3xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool · 2 Minutes</div>
+      <h1 class="text-heading-1 mb-4">Should I Switch Lenders at My Mortgage Renewal?</h1>
+      <p class="text-body-lg text-muted-foreground">
+        Answer 5 quick questions. Get a clear recommendation: Strong Switch Case, Consider Switching, Negotiate With Current Lender, or Stay and Re-evaluate Later. No signup required.
+      </p>
+    </div>
+
+    <SwitchQuiz client:load />
+
+    <div class="mt-10 space-y-6">
+      <div>
+        <h2 class="text-heading-3 mb-3">How This Quiz Works</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          The quiz scores your answers across five factors that jointly determine whether switching at renewal makes financial sense: your current lender type (Big 6 banks tend to post higher rates), your credit band (below 600 limits A-lender options), the size of the rate gap between your current rate and the best available, how much time you have before maturity (rate holds run 120 days), and your province (primarily for regulatory context).
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          This is educational — not a credit check, not a mortgage approval, and not personalized advice. For a real recommendation on your specific file, talk to a licensed mortgage broker.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">The 4 Possible Outcomes</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl border border-success-50 bg-success-25 p-4">
+            <h3 class="font-semibold text-success-200 mb-2">Strong Switch Case</h3>
+            <p class="text-body-sm">Good profile, meaningful rate gap, right timing — switching should clearly pay off.</p>
+          </div>
+          <div class="rounded-xl border border-secondary-50 bg-secondary-25 p-4">
+            <h3 class="font-semibold text-secondary-200 mb-2">Consider Switching</h3>
+            <p class="text-body-sm">Savings exist but aren't huge. Run the math carefully; make sure switching costs are covered.</p>
+          </div>
+          <div class="rounded-xl border border-warning-50 bg-warning-25 p-4">
+            <h3 class="font-semibold text-warning-200 mb-2">Negotiate With Current Lender</h3>
+            <p class="text-body-sm">Switching costs likely exceed savings — but you can still get a better rate by negotiating.</p>
+          </div>
+          <div class="rounded-xl border border-gray-100 bg-gray-25 p-4">
+            <h3 class="font-semibold mb-2">Stay + Re-evaluate Later</h3>
+            <p class="text-body-sm">No immediate win. Take a short term and re-shop in 1–2 years.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Tools & Guides</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Switching Lenders at Renewal (Full Guide)", href: "/switching-lenders-at-renewal/" },
+            { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+            { title: "Mortgage Stress Test Calculator", href: "/mortgage-stress-test-calculator/" },
+            { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+            { title: "Mortgage Broker at Renewal", href: "/mortgage-broker-renewal/" },
+            { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want the Real Answer?</h2>
+      <p class="text-white/80 mb-6">A licensed mortgage broker will review your actual file, pull real lender quotes, and give you a concrete recommendation. Free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book a Free Broker Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

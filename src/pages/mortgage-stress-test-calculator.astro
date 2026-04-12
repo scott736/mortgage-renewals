@@ -1,0 +1,186 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { StressTestCalculator } from '@/components/calculators/additional-calculators';
+import { articleSchema, breadcrumbSchema, webPageNode, webApplicationSchema, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is the Canadian mortgage stress test?",
+    answer: "The stress test (OSFI Guideline B-20) requires federally regulated lenders to qualify uninsured mortgage borrowers at the greater of their contract rate plus 2%, or a floor of 5.25%. Insured borrowers face the same test via CMHC. It ensures you could still afford payments if rates rise."
+  },
+  {
+    question: "Do I need to pass the stress test at renewal?",
+    answer: "Since November 21, 2024, OSFI exempts uninsured straight-switch renewals from the stress test — meaning if you transfer to a new lender with the same balance and amortization, no stress test applies. Insured renewals were already exempt. The stress test still applies if you refinance, change amortization significantly, or add a co-borrower."
+  },
+  {
+    question: "What is GDS and TDS?",
+    answer: "GDS (Gross Debt Service) is the percentage of your gross monthly income that goes to housing costs (principal, interest, property tax, heat, 50% of condo fees). TDS (Total Debt Service) adds all other debt payments. Typical limits: GDS 39%, TDS 44% for insured; lenders often allow higher for uninsured."
+  },
+  {
+    question: "Do credit unions apply the stress test?",
+    answer: "Provincial credit unions are not regulated by OSFI and are not bound by B-20. Many apply a similar test voluntarily, but some will qualify you at your contract rate — giving you more borrowing capacity. Federally chartered credit unions (like Meridian OneCap at the federal level) do apply the stress test."
+  },
+  {
+    question: "What if I fail the stress test at renewal?",
+    answer: "If you're doing a straight switch, the test doesn't apply. If you're refinancing or adding new money, failing the stress test means your current lender has leverage — they can offer a worse rate because you can't easily leave. A broker can explore credit unions or alternative lenders not bound by B-20."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-stress-test-calculator",
+    name: "Mortgage Stress Test Calculator Canada (2026)",
+    description: "Free OSFI B-20 stress test calculator. See what mortgage you qualify for at the greater of contract rate + 2% or 5.25%.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Mortgage Stress Test Calculator",
+    description: "Calculate your maximum mortgage under the OSFI B-20 stress test. Uses the greater of contract rate + 2% or 5.25%, with GDS/TDS ratio analysis.",
+    slug: "mortgage-stress-test-calculator",
+    features: [
+      "OSFI B-20 qualifying rate math",
+      "GDS (39%) and TDS (44%) ratio check",
+      "Shows max mortgage at qualifying vs contract rate",
+      "Updated for November 2024 straight-switch exemption",
+      "Canadian semi-annual compounding",
+    ],
+  }),
+  articleSchema({
+    headline: "Mortgage Stress Test Calculator Canada (2026)",
+    description: "Free Canadian stress test calculator. See your max mortgage under OSFI B-20 qualifying rate rules. Includes Nov 2024 straight-switch exemption.",
+    slug: "mortgage-stress-test-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage stress test",
+    keywords: ["mortgage stress test", "OSFI B-20", "qualifying rate", "GDS TDS calculator", "Canadian mortgage qualification"],
+  }),
+  faqSchema(faqs, "mortgage-stress-test-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator" },
+    { name: "Stress Test Calculator", url: "/mortgage-stress-test-calculator" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Stress Test Calculator Canada 2026"
+  description="Free OSFI B-20 stress test calculator. See what mortgage you qualify for at the greater of contract rate + 2% or 5.25%. Includes Nov 2024 rules."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator" class="hover:underline">Calculators</a> › Stress Test
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Canadian Mortgage Stress Test Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        See your maximum qualifying mortgage under OSFI B-20. The stress test uses the greater of your contract rate + 2% or the 5.25% floor. As of November 2024, it's waived for uninsured straight-switch renewals — but applies to any refinance or new money.
+      </p>
+    </div>
+
+    <StressTestCalculator client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How the Stress Test Works (2026)</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          OSFI Guideline B-20 requires federally regulated lenders (all Big 6 banks, most credit unions at the federal level, and all monoline lenders) to qualify uninsured mortgage borrowers using a <strong>Minimum Qualifying Rate (MQR)</strong>: the greater of your contract rate + 2% or a 5.25% floor.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          With today's 5-year fixed rates around 4.19% (April 2026), most borrowers are stress-tested at <strong>6.19%</strong> (contract + 2%), not the 5.25% floor. CMHC applies the same test to insured mortgages (under 20% down).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">The November 2024 Straight-Switch Exemption</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          On November 21, 2024, OSFI eliminated the stress test for uninsured straight-switch renewals. If you're moving your mortgage to a new federally regulated lender at renewal with:
+        </p>
+        <ul class="space-y-1 text-body-md text-muted-foreground list-disc list-inside mb-3">
+          <li>The same outstanding balance (plus up to ~$3,000 for fees)</li>
+          <li>The same remaining amortization</li>
+          <li>No cash taken out, no new money advanced</li>
+        </ul>
+        <p class="text-body-md text-muted-foreground">
+          …the new lender is <strong>not required</strong> to apply the MQR. You qualify at the contract rate. This change mirrors the insured-mortgage exemption already in place and finally put uninsured borrowers on equal footing with their insured counterparts. See our <a href="/switching-lenders-at-renewal" class="text-secondary-100 hover:underline">switching lenders guide</a> for the full process.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">GDS and TDS Ratios</h2>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+            <h3 class="font-semibold mb-2">GDS — Gross Debt Service</h3>
+            <p class="text-body-sm text-muted-foreground mb-2">Housing costs only:</p>
+            <ul class="text-body-sm space-y-1 list-disc list-inside">
+              <li>Principal + interest</li>
+              <li>Property tax (÷ 12)</li>
+              <li>Heat (÷ 12)</li>
+              <li>50% of condo fees</li>
+            </ul>
+            <p class="text-body-sm-medium mt-3">Max: 39% of gross monthly income (insured)</p>
+          </div>
+          <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+            <h3 class="font-semibold mb-2">TDS — Total Debt Service</h3>
+            <p class="text-body-sm text-muted-foreground mb-2">GDS plus all other debts:</p>
+            <ul class="text-body-sm space-y-1 list-disc list-inside">
+              <li>Credit card minimums (3% of balance)</li>
+              <li>Car loans / leases</li>
+              <li>Lines of credit</li>
+              <li>Student loans, child support</li>
+            </ul>
+            <p class="text-body-sm-medium mt-3">Max: 44% of gross monthly income (insured)</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Tools & Guides</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Main Renewal Calculator Suite", href: "/mortgage-renewal-calculator" },
+            { title: "Stress Test at Renewal (Full Guide)", href: "/stress-test-mortgage-renewal" },
+            { title: "Switch vs. Stay Break-Even", href: "/switch-vs-stay-calculator" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
+            { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal" },
+            { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Unsure If You'll Pass?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal" class="text-white underline">mortgage broker</a> can pre-qualify you with multiple lenders — including credit unions not bound by B-20. Free, no obligation.</p>
+      <a href="/book-a-call">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Assessment
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

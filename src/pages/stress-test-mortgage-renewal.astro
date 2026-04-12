@@ -1,0 +1,274 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Do I have to pass the stress test when I renew my mortgage in Canada?",
+    answer: "It depends on whether you're staying with your current lender, doing a straight switch to a new lender, or refinancing. If you stay with your current lender at renewal, no stress test is applied. Since November 21, 2024, OSFI has exempted uninsured straight-switch renewals (same balance, same amortization, no new money) from the MQR. Insured renewals have been exempt since the rules were introduced. If you refinance, add a co-borrower, increase the amortization, or take out new funds, the stress test applies."
+  },
+  {
+    question: "What is the Minimum Qualifying Rate (MQR) in 2026?",
+    answer: "The MQR is the greater of your contract rate plus 2% or a 5.25% floor. With 5-year fixed rates currently around 4.19% (April 2026), most borrowers are qualified at 6.19% — contract plus 2% — rather than the 5.25% floor. The floor only binds when contract rates fall below 3.25%."
+  },
+  {
+    question: "Does the November 2024 exemption apply if I change amortization or add money?",
+    answer: "No. The exemption is narrow by design. To qualify, the transferring mortgage must carry the same outstanding balance (up to about $3,000 can be added for switching fees), the same remaining amortization, and no new funds advanced. Adding a HELOC, taking cash out, or extending amortization to reduce payments all trigger a full refinance, which requires the stress test."
+  },
+  {
+    question: "Are credit unions subject to the stress test?",
+    answer: "Provincial credit unions are regulated provincially, not by OSFI, so B-20 does not technically apply. Many apply a comparable test voluntarily, but some will qualify you at the contract rate, giving you more borrowing power. Federally chartered credit unions (operating under federal charters) are bound by B-20. Your mortgage broker can identify which lenders are most flexible for your situation."
+  },
+  {
+    question: "Will OSFI replace the stress test with loan-to-income limits?",
+    answer: "OSFI has publicly indicated it is evaluating portfolio-level loan-to-income (LTI) limits as a complement to or eventual replacement for the MQR. Discussions continued into 2026. Any change would be phased in with lender consultation; the MQR and the straight-switch exemption remain in force as of April 2026."
+  },
+  {
+    question: "What happens if I can't pass the stress test at refinance?",
+    answer: "If you can't pass the MQR for a refinance, you have a few options: stay with your current lender (no stress test applies at simple renewal), do a straight switch to a new lender (no stress test post-Nov 2024), explore a provincial credit union that may qualify at contract rate, or reduce how much new money you're requesting. A broker familiar with B-20 exemptions can map these paths quickly."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Stress Test at Renewal Canada (2026 Guide)",
+    description: "OSFI B-20 stress test rules for Canadian mortgage renewals — including the November 2024 uninsured straight-switch exemption. Updated April 2026.",
+    slug: "stress-test-mortgage-renewal",
+    articleSection: "Guides",
+    about: "Canadian mortgage stress test",
+    keywords: ["mortgage stress test Canada", "OSFI B-20 renewal", "MQR 2026", "straight switch exemption", "uninsured renewal"],
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Stress Test at Renewal", url: "/stress-test-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "stress-test-mortgage-renewal"),
+  webPageNode({
+    slug: "stress-test-mortgage-renewal",
+    name: "Mortgage Stress Test at Renewal — Canada 2026 Guide",
+    description: "How the Canadian mortgage stress test works at renewal, the November 2024 OSFI exemption for uninsured straight switches, and what still triggers the MQR.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Stress Test at Mortgage Renewal in Canada (2026 Guide)"
+  description="How OSFI B-20 stress test rules work at renewal. The November 2024 straight-switch exemption, what still triggers the MQR, and credit union rules."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Stress Test at Mortgage Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 2026 · 10-minute read</div>
+    <h1 class="text-heading-1 mb-4">Mortgage Stress Test at Renewal in Canada: 2026 Guide</h1>
+    <p class="text-body-lg text-muted-foreground mb-8">
+      The stress test is the single biggest source of confusion at Canadian mortgage renewal. The rules changed materially in November 2024, and most borrowers — and many bank branches — still misstate them. This guide is the definitive, current explanation of when the Minimum Qualifying Rate applies at renewal, when it does not, and what to do if you're worried you can't pass.
+    </p>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-md">
+        <li>• OSFI's Minimum Qualifying Rate (MQR) under Guideline B-20 is the greater of contract rate + 2% or 5.25%. At today's ~4.19% 5-year rates, most borrowers are tested at 6.19%.</li>
+        <li>• As of <strong>November 21, 2024</strong>, OSFI exempts uninsured straight-switch renewals from the MQR — same balance, same amortization, no new money.</li>
+        <li>• Insured renewals (original down payment under 20%) have always been exempt at renewal.</li>
+        <li>• The exemption is still in force as of April 2026. OSFI is evaluating loan-to-income (LTI) limits as a potential future replacement.</li>
+        <li>• Provincial credit unions are not bound by B-20; many apply a similar test voluntarily, but some will qualify at the contract rate.</li>
+        <li>• Any refinance, new money, amortization change, or addition of a co-borrower still triggers the full stress test.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What the Stress Test Is, Exactly</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Canadian mortgage stress test is codified in <strong>OSFI Guideline B-20: Residential Mortgage Underwriting Practices and Procedures</strong>. It applies to all federally regulated financial institutions — the Big 6 banks, Equitable Bank, HSBC (now RBC), federally chartered trust companies, and monoline lenders that are federally regulated. CMHC applies a mirror test to insured mortgages under Guideline B-21.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The test requires the lender to qualify the borrower at the <strong>Minimum Qualifying Rate (MQR)</strong>: the greater of the contract rate plus 2% or a 5.25% floor. Your actual payments are calculated at your contract rate — the MQR is strictly a qualification test to ensure you could still afford the mortgage if rates climbed.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Contract Rate</th>
+            <th class="p-3 text-left">Contract + 2%</th>
+            <th class="p-3 text-left">5.25% Floor</th>
+            <th class="p-3 text-left">MQR (Greater Of)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3">3.00%</td>
+            <td class="p-3">5.00%</td>
+            <td class="p-3">5.25%</td>
+            <td class="p-3 font-semibold">5.25%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3">3.99%</td>
+            <td class="p-3">5.99%</td>
+            <td class="p-3">5.25%</td>
+            <td class="p-3 font-semibold">5.99%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">4.19% (current April 2026)</td>
+            <td class="p-3">6.19%</td>
+            <td class="p-3">5.25%</td>
+            <td class="p-3 font-semibold text-secondary-100">6.19%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3">4.99%</td>
+            <td class="p-3">6.99%</td>
+            <td class="p-3">5.25%</td>
+            <td class="p-3 font-semibold">6.99%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The November 2024 Exemption: The Most Important Rule Change</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      On November 21, 2024, OSFI announced that federally regulated lenders are no longer required to apply the MQR to uninsured mortgage <strong>straight switches</strong> at renewal. This was a response to a long-standing asymmetry: insured mortgages (originally purchased with less than 20% down) had always been exempt at renewal, but uninsured borrowers (20%+ down) were trapped — they couldn't pass the stress test at a new lender, which gave their existing lender leverage to offer uncompetitive renewal rates.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      OSFI's straight-switch exemption closed that gap. If you are moving your mortgage to a new federally regulated lender at renewal with no material change, the new lender qualifies you at the contract rate.
+    </p>
+
+    <div class="rounded-xl border border-secondary-50 bg-secondary-25 p-5 mb-6">
+      <h3 class="text-body-md-semibold text-secondary-200 mb-2">What Qualifies as a "Straight Switch"</h3>
+      <ul class="space-y-1 text-body-sm list-disc list-inside">
+        <li>Same outstanding mortgage balance (principal may rise up to ~$3,000 to roll in switching fees)</li>
+        <li>Same remaining amortization period</li>
+        <li>No new money advanced — no cash-back, no HELOC added, no equity take-out</li>
+        <li>No change to title or property</li>
+        <li>The new lender is a federally regulated institution</li>
+      </ul>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Read the full switching process in our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders at renewal guide</a>, and run the numbers on our <a href="/mortgage-stress-test-calculator/" class="text-secondary-100 hover:underline">stress test calculator</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When the Stress Test Still Applies at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The exemption is narrow. Any of the following trigger a full MQR qualification:
+    </p>
+    <ul class="space-y-2 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li><strong>Refinancing:</strong> Taking out equity, consolidating debt into the mortgage, or increasing the balance beyond the small fee buffer.</li>
+      <li><strong>Extending amortization:</strong> Stretching the amortization to lower payments is generally considered a refinance. See our guide on <a href="/lower-mortgage-payments-at-renewal/" class="text-secondary-100 hover:underline">lowering payments at renewal</a>.</li>
+      <li><strong>Adding a co-borrower:</strong> Adding a spouse, parent, or other co-signer to title at renewal triggers re-qualification.</li>
+      <li><strong>Removing a borrower:</strong> Common in <a href="/divorce-mortgage-renewal/" class="text-secondary-100 hover:underline">divorce or separation</a> scenarios — the remaining borrower is qualifying for the mortgage alone and must pass the MQR on their own income.</li>
+      <li><strong>Adding a HELOC or readvanceable product:</strong> Even if the mortgage portion is unchanged, adding a line of credit usually requires re-qualification.</li>
+      <li><strong>Changing from uninsured to insured (or vice versa):</strong> Rare but possible with certain portfolio insurance structures.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Staying with Your Current Lender: No Stress Test</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Many borrowers don't realize this: if you simply sign the renewal offer from your <strong>existing</strong> federally regulated lender, no stress test applies. OSFI has never required B-20 re-qualification for a straight renewal with the same lender — the bank has already confirmed you qualified for the original mortgage.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      This sounds borrower-friendly, but it's a double-edged sword. Because your current lender knows you may not be able to easily move, they have historically offered renewal rates well above their best available. The 2024 exemption now eliminates that leverage — you can shop with any federally regulated lender and still qualify at contract rate.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">GDS and TDS Ratio Limits</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Even when the MQR is waived, lenders still check your debt service ratios at contract rate. These are the second half of the qualification test.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="text-body-md-semibold mb-2">Gross Debt Service (GDS)</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">All housing costs divided by gross monthly income.</p>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Principal + interest (at qualifying rate)</li>
+          <li>Property taxes ÷ 12</li>
+          <li>Heating cost ÷ 12</li>
+          <li>50% of condo fees (if applicable)</li>
+        </ul>
+        <p class="text-body-sm-medium mt-3">Typical insured max: <strong>39%</strong></p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="text-body-md-semibold mb-2">Total Debt Service (TDS)</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">GDS plus all other debt obligations.</p>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Credit cards (3% of balance as min)</li>
+          <li>Car loans / leases</li>
+          <li>Lines of credit (3% of balance)</li>
+          <li>Student loans, child support</li>
+        </ul>
+        <p class="text-body-sm-medium mt-3">Typical insured max: <strong>44%</strong></p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Provincial Credit Unions: A Different Rulebook</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Provincial credit unions — Meridian (Ontario), Vancity (BC), Servus (Alberta), DUCA (Ontario), and many others — are regulated by provincial authorities (FSRA, BCFSA, etc.) rather than OSFI. B-20 does not technically bind them. In practice, most apply a similar stress test voluntarily to manage credit risk, but many will qualify at the contract rate in specific circumstances, giving borrowers additional purchasing power.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      A broker who works with the credit union channel can often surface a solution if you can't pass the MQR at a federally regulated lender. See our overview of <a href="/mortgage-lender-types-canada/" class="text-secondary-100 hover:underline">Canadian lender types</a> for how the channels compare.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Might Replace the MQR: Loan-to-Income Limits</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Since 2023, OSFI has publicly discussed moving away from the point-in-time MQR toward portfolio-level <strong>loan-to-income (LTI) limits</strong>. An LTI framework would cap the proportion of a lender's new originations that can go to highly leveraged borrowers (typically loans above 4.5x gross annual income), similar to the UK's approach.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      As of April 2026, LTI limits are still under consultation. Any change would be phased in with lender input, and the MQR plus the straight-switch exemption remain the operative rules. Our <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">rate forecast page</a> tracks related policy developments.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Practical Strategies If You're Worried About Passing</h2>
+    <ul class="space-y-3 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li><strong>Do a straight switch instead of refinancing.</strong> If your goal is a better rate only — not new money — the exemption applies and you simply move to the better offer.</li>
+      <li><strong>Pay down consumer debt before applying.</strong> Lowering credit card and car loan balances directly improves TDS and often adds tens of thousands to qualifying capacity.</li>
+      <li><strong>Delay extending amortization.</strong> If you want lower payments, see whether your current lender will extend it on simple renewal — otherwise a refinance is required.</li>
+      <li><strong>Work with a broker.</strong> A broker will run the MQR math across 30+ lenders, including credit unions, before you commit to any single application. Many <a href="/mortgage-renewal-mistakes/" class="text-secondary-100 hover:underline">renewal mistakes</a> stem from not knowing which lender to apply to.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-8">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Related Guides & Tools</h2>
+    <div class="grid sm:grid-cols-2 gap-3 mb-8">
+      {[
+        { title: "Stress Test Calculator", href: "/mortgage-stress-test-calculator/" },
+        { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+        { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+        { title: "Lower Mortgage Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+        { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal/" },
+        { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
+      ].map(link => (
+        <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+          <span class="text-secondary-100">→</span>
+          {link.title}
+        </a>
+      ))}
+    </div>
+
+    <p class="text-body-xs text-muted-foreground mb-6">
+      Sources: OSFI Guideline B-20 (Residential Mortgage Underwriting); OSFI November 21, 2024 notice exempting uninsured straight-switch renewals from the MQR; CMHC Guideline B-21; FCAC mortgage renewal guidance. This page is educational and does not constitute financial advice. Always verify current rules with a licensed mortgage professional.
+    </p>
+  </article>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Worried About Passing the Stress Test?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will map your options across federally regulated lenders and credit unions before you apply — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

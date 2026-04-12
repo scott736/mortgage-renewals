@@ -3,11 +3,14 @@ export const SITE_DESCRIPTION =
   "Canada's most comprehensive mortgage renewal resource. Compare rates, use our free calculators, and get expert guidance to save thousands at renewal.";
 
 export const PROVINCE_PAGES = [
-  { name: "Ontario", href: "/ontario-mortgage-renewal" },
-  { name: "British Columbia", href: "/bc-mortgage-renewal" },
-  { name: "Alberta", href: "/alberta-mortgage-renewal" },
-  { name: "Quebec", href: "/quebec-mortgage-renewal" },
-  { name: "Saskatchewan & Manitoba", href: "/saskatchewan-manitoba-mortgage-renewal" },
+  { name: "Ontario", href: "/ontario-mortgage-renewal/" },
+  { name: "British Columbia", href: "/bc-mortgage-renewal/" },
+  { name: "Alberta", href: "/alberta-mortgage-renewal/" },
+  { name: "Quebec", href: "/quebec-mortgage-renewal/" },
+  { name: "Manitoba", href: "/manitoba-mortgage-renewal/" },
+  { name: "Saskatchewan", href: "/saskatchewan-mortgage-renewal/" },
+  { name: "Atlantic Canada", href: "/atlantic-canada-mortgage-renewal/" },
+  { name: "Territories", href: "/territories-mortgage-renewal/" },
 ];
 
 export const SITE_METADATA = {

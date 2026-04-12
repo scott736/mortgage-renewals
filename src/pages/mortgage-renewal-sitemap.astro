@@ -1,0 +1,184 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const groups = [
+  {
+    name: "Start Here",
+    pages: [
+      { title: "Home", href: "/" },
+      { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal/" },
+      { title: "Complete Mortgage Renewal Guide (2026)", href: "/mortgage-renewal-guide/" },
+      { title: "Mortgage Renewal Checklist", href: "/mortgage-renewal-checklist/" },
+      { title: "Renewal Checklist PDF", href: "/mortgage-renewal-checklist-pdf/" },
+      { title: "Mortgage Renewal FAQ", href: "/mortgage-renewal-faq/" },
+      { title: "Mortgage Renewal Glossary", href: "/mortgage-renewal-glossary/" },
+      { title: "10 Biggest Renewal Mistakes", href: "/mortgage-renewal-mistakes/" },
+    ],
+  },
+  {
+    name: "Rates & Rate Strategy",
+    pages: [
+      { title: "Current Mortgage Rates Canada", href: "/current-mortgage-rates-canada/" },
+      { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+      { title: "Mortgage Rate Forecast 2026", href: "/mortgage-rate-forecast/" },
+      { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
+      { title: "Mortgage Renewal Term Lengths", href: "/mortgage-renewal-term-lengths/" },
+      { title: "Trigger Rates (Variable Mortgages)", href: "/trigger-rate-variable-mortgage-canada/" },
+      { title: "Rate Alerts", href: "/rate-alert/" },
+    ],
+  },
+  {
+    name: "Decisions: Switch, Stay, Refinance",
+    pages: [
+      { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+      { title: "Should I Switch? — Quiz", href: "/should-i-switch-quiz/" },
+      { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+      { title: "Mortgage Broker at Renewal", href: "/mortgage-broker-renewal/" },
+      { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
+      { title: "Collateral vs. Standard Charge", href: "/collateral-vs-standard-charge-mortgage/" },
+      { title: "Assuming a Mortgage in Canada", href: "/assuming-a-mortgage-canada/" },
+      { title: "Porting a Mortgage in Canada", href: "/porting-a-mortgage-canada/" },
+    ],
+  },
+  {
+    name: "Regulation & Qualification",
+    pages: [
+      { title: "Mortgage Stress Test at Renewal", href: "/stress-test-mortgage-renewal/" },
+      { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
+      { title: "Insured vs. Conventional Mortgages", href: "/insured-vs-conventional-mortgage-renewal/" },
+      { title: "30-Year Amortization Reform", href: "/30-year-amortization-mortgage-renewal/" },
+    ],
+  },
+  {
+    name: "Situational Renewals",
+    pages: [
+      { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal/" },
+      { title: "Bad Credit Mortgage Renewal", href: "/bad-credit-mortgage-renewal/" },
+      { title: "Divorce Mortgage Renewal", href: "/divorce-mortgage-renewal/" },
+      { title: "Divorce / Separation (Detailed)", href: "/mortgage-renewal-divorce-separation/" },
+      { title: "Investment Property Renewal", href: "/investment-property-mortgage-renewal/" },
+      { title: "Investment Property (Short Guide)", href: "/investment-property-renewal/" },
+      { title: "Seniors Mortgage Renewal", href: "/seniors-mortgage-renewal-canada/" },
+      { title: "Lower Mortgage Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
+    ],
+  },
+  {
+    name: "Calculators & Tools",
+    pages: [
+      { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+      { title: "Stress Test Calculator", href: "/mortgage-stress-test-calculator/" },
+      { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
+      { title: "Switch vs. Stay Calculator", href: "/switch-vs-stay-calculator/" },
+      { title: "HELOC vs. Refinance Calculator", href: "/heloc-vs-refinance-calculator/" },
+      { title: "Should I Switch Quiz", href: "/should-i-switch-quiz/" },
+      { title: "Renewal Reminder", href: "/renewal-reminder/" },
+      { title: "Rate Alerts", href: "/rate-alert/" },
+    ],
+  },
+  {
+    name: "Mortgage Mechanics",
+    pages: [
+      { title: "Mortgage Prepayment Privileges", href: "/mortgage-prepayment-privileges-canada/" },
+      { title: "Mortgage Payment Frequency", href: "/mortgage-payment-frequency-canada/" },
+    ],
+  },
+  {
+    name: "Provinces & Regions",
+    pages: [
+      { title: "Ontario Mortgage Renewal", href: "/ontario-mortgage-renewal/" },
+      { title: "Quebec Mortgage Renewal", href: "/quebec-mortgage-renewal/" },
+      { title: "British Columbia Mortgage Renewal", href: "/bc-mortgage-renewal/" },
+      { title: "Alberta Mortgage Renewal", href: "/alberta-mortgage-renewal/" },
+      { title: "Saskatchewan Mortgage Renewal", href: "/saskatchewan-mortgage-renewal/" },
+      { title: "Manitoba Mortgage Renewal", href: "/manitoba-mortgage-renewal/" },
+      { title: "Saskatchewan + Manitoba (Combined)", href: "/saskatchewan-manitoba-mortgage-renewal/" },
+      { title: "Atlantic Canada Mortgage Renewal", href: "/atlantic-canada-mortgage-renewal/" },
+      { title: "Territories Mortgage Renewal", href: "/territories-mortgage-renewal/" },
+    ],
+  },
+  {
+    name: "News & Case Studies",
+    pages: [
+      { title: "Mortgage Renewal News", href: "/mortgage-renewal-news/" },
+      { title: "Case Studies", href: "/case-studies/" },
+    ],
+  },
+  {
+    name: "About & Contact",
+    pages: [
+      { title: "About", href: "/about/" },
+      { title: "Contact", href: "/contact/" },
+      { title: "Book a Call", href: "/book-a-call/" },
+      { title: "Pricing", href: "/pricing/" },
+      { title: "FAQ", href: "/faq/" },
+    ],
+  },
+  {
+    name: "Legal",
+    pages: [
+      { title: "Privacy Policy", href: "/privacy/" },
+      { title: "Terms of Service", href: "/terms/" },
+      { title: "Cookie Policy", href: "/cookie-policy/" },
+    ],
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-renewal-sitemap",
+    name: "Sitemap — MortgageRenewalHub.ca",
+    description: "Human-readable sitemap of all pages on MortgageRenewalHub.ca, grouped by category.",
+  }),
+  breadcrumbSchema([
+    { name: "Sitemap", url: "/mortgage-renewal-sitemap" }
+  ]),
+);
+
+const totalPages = groups.reduce((n, g) => n + g.pages.length, 0);
+---
+
+<DefaultLayout
+  title="Sitemap — MortgageRenewalHub.ca"
+  description="Complete human-readable sitemap of MortgageRenewalHub.ca — every page grouped by category: rates, calculators, provinces, situations, and more."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Sitemap
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-10">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Site Directory</div>
+      <h1 class="text-heading-1 mb-4">Sitemap</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Every page on MortgageRenewalHub.ca, grouped by category. {totalPages} pages covering Canadian mortgage renewals, rates, calculators, provincial guides, and decision tools.
+      </p>
+    </div>
+
+    <div class="space-y-10">
+      {groups.map(group => (
+        <div>
+          <h2 class="text-heading-3 mb-4 pb-2 border-b border-gray-100">{group.name}</h2>
+          <ul class="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+            {group.pages.map(page => (
+              <li>
+                <a href={page.href} class="text-body-md text-foreground hover:text-secondary-200 hover:underline">
+                  {page.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 rounded-xl bg-gray-25 border border-gray-100 p-5 text-body-sm text-muted-foreground">
+      <p>
+        Looking for the machine-readable XML sitemap? It's at <a href="/sitemap-index.xml" class="text-secondary-100 hover:underline">/sitemap-index.xml</a>. For AI crawlers, see <a href="/llms.txt" class="text-secondary-100 hover:underline">/llms.txt</a>.
+      </p>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,0 +1,283 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is mortgage assumption in Canada?",
+    answer: "Mortgage assumption is the legal transfer of an existing mortgage — its rate, remaining term, amortization, and balance — from the current homeowner to a new owner. The mortgage itself does not get paid out and re-issued; it continues, with a new borrower stepping into the existing contract. In Canada, the lender must approve the new borrower (full qualification including the stress test, unless the mortgage is insured and the transfer meets Canadian Mortgage Charter criteria). Assumption is most valuable when the original mortgage has a below-market rate — for example, a 2020-era 1.79% fixed-rate mortgage being assumed in a 4%+ environment is worth many thousands of dollars to the buyer."
+  },
+  {
+    question: "Are all Canadian mortgages assumable?",
+    answer: "No. Standard-charge fixed-rate mortgages are generally assumable with lender approval. Variable-rate mortgages are usually assumable as well. However, collateral charge mortgages — the default product at TD Canada Trust and many National Bank mortgages — are frequently not assumable because of how they are registered against title. HELOCs and most readvanceable mortgages are also not assumable. Always read the mortgage commitment and charge registration document carefully, or ask your broker to pull the terms, before assuming assumability."
+  },
+  {
+    question: "Does the new borrower have to qualify when assuming a mortgage?",
+    answer: "Yes, in almost every case. The lender will require the incoming borrower to submit a full mortgage application: income verification, credit check, debt servicing ratios, and — for uninsured mortgages — the federal stress test (contract rate + 2% or 5.25%, whichever is higher). The only meaningful exception is spousal-buyout or estate-transfer scenarios on insured mortgages that fall under the Canadian Mortgage Charter, which can sometimes be treated as continuations rather than new qualifications. Your lender's assumption policy governs the specifics."
+  },
+  {
+    question: "What fees apply to a mortgage assumption?",
+    answer: "Big 6 banks typically charge an assumption fee in the range of $250 to $600. Monoline lenders vary — some waive the fee as a relationship gesture, others charge $300–$500. You may also incur legal fees ($500–$1,500) because a lawyer must register the ownership change and, in some cases, the lender's updated mortgage commitment. The original seller is usually released from liability on the mortgage once the assumption is approved in writing, but this release must be explicit — if omitted, the seller can remain jointly liable indefinitely."
+  },
+  {
+    question: "When does assuming a mortgage make financial sense?",
+    answer: "Assumption is valuable whenever the existing mortgage rate is materially lower than current market rates. The 2020–2021 cohort of Canadian mortgages signed at 1.5–2.5% fixed for 5 years is the clearest example: in today's 4%+ rate environment, assuming one of those mortgages can save the buyer $15,000–$40,000 over the remaining term depending on balance. It also makes sense for intra-family transfers (parent-to-child sales, spousal buyouts on insured mortgages, estate transfers) where avoiding a full new mortgage application is administratively simpler. When the existing rate is equal to or higher than today's market rates, assumption offers no rate benefit."
+  },
+  {
+    question: "What's the difference between assumption and porting?",
+    answer: "Porting moves your mortgage from your old property to a new property that you yourself are buying — the borrower stays the same, the collateral changes. Assumption moves the mortgage from the old owner to a new owner — the collateral stays the same, the borrower changes. Porting is a feature you use when selling one home and buying another; assumption is something the buyer of your home uses to take over your existing mortgage. Both require lender approval, and both can preserve a below-market rate."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "assuming-a-mortgage-canada",
+    name: "Assuming a Mortgage in Canada — 2026 Guide",
+    description: "How mortgage assumption works in Canada, when it pays off, which lenders allow it, and what the new borrower must qualify for.",
+  }),
+  articleSchema({
+    headline: "Assuming a Mortgage in Canada — Rules, Rates & When It Pays Off",
+    description: "Complete guide to assuming an existing mortgage in Canada — qualification, fees, which lenders allow it, and why low-rate 2020-era mortgages are suddenly valuable.",
+    slug: "assuming-a-mortgage-canada",
+    articleSection: "Mortgage Mechanics",
+    about: "Mortgage Assumption in Canada",
+    keywords: ["mortgage assumption Canada", "assume mortgage", "take over mortgage", "assumable mortgage rate"],
+  }),
+  breadcrumbSchema([
+    { name: "Assuming a Mortgage in Canada", url: "/assuming-a-mortgage-canada" }
+  ]),
+  faqSchema(faqs, "assuming-a-mortgage-canada"),
+);
+---
+
+<DefaultLayout
+  title="Assuming a Mortgage in Canada 2026 — Rules, Rates, Fees"
+  description="How mortgage assumption works in Canada: lender rules, qualification, stress test, fees, and when assuming a low-rate 2020-era mortgage pays off big."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Assuming a Mortgage in Canada
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Assuming a Mortgage in Canada: When It Pays Off and How It Works</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 10-minute read</p>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <p class="mb-6 text-base leading-relaxed">Mortgage assumption — the transfer of an existing mortgage from one homeowner to a new owner with the rate and term intact — is a relatively obscure corner of Canadian real estate. Most homebuyers in 2023 and 2024 had no interest in assuming existing mortgages; with rates climbing into the 5% and 6% range, new purchase mortgages were the norm. In 2026, with a substantial cohort of 2020–2021 mortgages signed at 1.5–2.5% still running, assumption is once again financially meaningful. This guide explains exactly how it works, when it pays off, and what the new borrower must qualify for.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Assumption transfers the existing mortgage (rate, term, amortization, balance) to a new borrower — the mortgage continues rather than being paid out.</li>
+            <li>• The new borrower must be approved by the lender through full qualification, including the stress test for uninsured mortgages.</li>
+            <li>• Standard-charge fixed and variable mortgages are typically assumable; collateral-charge mortgages (TD, some National Bank) generally are not.</li>
+            <li>• Big 6 banks charge assumption fees of $250–$600; monoline lenders vary.</li>
+            <li>• A 2020-vintage 1.79% fixed mortgage assumed in 2026 can save the new borrower $15,000–$40,000 over the remaining term.</li>
+            <li>• Common scenarios: intra-family property transfers, spousal buyout at separation, estate transfers after death, and private sales where the buyer values the existing below-market rate.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">What Exactly Is Mortgage Assumption?</h2>
+
+        <p class="mb-4 leading-relaxed">In a conventional home sale, the seller pays out their existing mortgage from the sale proceeds, and the buyer arranges a brand-new mortgage with whatever lender they choose. Two mortgages are involved: one ends, one begins.</p>
+
+        <p class="mb-4 leading-relaxed">In an assumption, no new mortgage is created. The seller's existing mortgage continues as-is — same rate, same remaining term, same amortization, same balance — but the name on the borrower line changes from the seller to the buyer. The lender, not the buyer, controls whether an assumption can happen. Every Canadian mortgage either contains an assumption clause in its commitment documents or it doesn't, and even when it's permitted, the incoming borrower must pass the lender's underwriting.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The 2020-Era Rate Cohort and Why Assumption Is Back</h2>
+
+        <p class="mb-4 leading-relaxed">In 2020 and 2021, the Bank of Canada's policy rate sat at 0.25% for an extended period. Five-year fixed mortgage rates bottomed out near 1.39%–1.89% in mid-2021. Borrowers who locked in those rates are currently approaching their 5-year renewal in 2025–2026 — but for those still inside the term (particularly ones originated late 2021), the remaining months or years at those rates have real financial value.</p>
+
+        <p class="mb-4 leading-relaxed">A simple example: a seller has 18 months remaining on a $500,000 mortgage at 1.89%. Current 5-year fixed rates are around 4.25%. If the buyer assumes the existing mortgage, they save roughly (4.25% − 1.89%) × $500,000 × 1.5 years ≈ $17,700 in interest over those 18 months — before they're forced to renew at then-current rates. In a competitive real estate market, sellers can reasonably expect buyers to pay a premium for that savings.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Which Mortgages Are Assumable?</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Mortgage Type</th>
+                <th class="p-3 text-left">Usually Assumable?</th>
+                <th class="p-3 text-left">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Standard-charge fixed rate</td>
+                <td class="p-3">Yes</td>
+                <td class="p-3">Most common assumable mortgage type</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Standard-charge variable rate</td>
+                <td class="p-3">Yes</td>
+                <td class="p-3">Assumable, but less financially attractive since rate follows BoC</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Collateral charge (TD default, many National Bank)</td>
+                <td class="p-3">Often no</td>
+                <td class="p-3">Collateral charges are tied to the lender's security, not the specific loan — harder to transfer</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">HELOC / readvanceable</td>
+                <td class="p-3">No</td>
+                <td class="p-3">HELOCs are relationship products, not assumable</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Insured (CMHC / Sagen / Canada Guaranty)</td>
+                <td class="p-3">Yes, with insurer approval</td>
+                <td class="p-3">Insurance stays attached; insurer must approve the new borrower</td>
+              </tr>
+              <tr style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Monoline (MCAP, First National, etc.)</td>
+                <td class="p-3">Usually yes</td>
+                <td class="p-3">Lender-specific; check the commitment. Most monolines allow assumption</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-6 leading-relaxed">For a full explanation of the charge types, see our dedicated guide on <a href="/collateral-vs-standard-charge-mortgage/" style="color: var(--secondary)">collateral vs. standard charge mortgages</a>.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How the New Borrower Qualifies</h2>
+
+        <p class="mb-4 leading-relaxed">Assumption is not a free pass on underwriting. The incoming borrower must submit a full mortgage application to the existing lender and pass the same qualification standards as any new mortgage applicant:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Income verification:</strong> Two years of T4s/NOAs, employment letters, or <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed documentation</a> depending on the borrower profile.</li>
+          <li><strong>Credit check:</strong> Full Equifax and/or TransUnion bureau review. Lenders typically want 650+ for A-channel assumption approval.</li>
+          <li><strong>Debt servicing:</strong> GDS under 39%, TDS under 44% (most lenders — credit unions may allow more).</li>
+          <li><strong>Stress test:</strong> For uninsured mortgages, qualification at the contract rate + 2% or 5.25% (whichever is higher). Insured mortgages assumed under Canadian Mortgage Charter provisions can sometimes skip the stress test.</li>
+          <li><strong>Down payment / equity:</strong> The buyer must bring the gap between the sale price and the assumed mortgage balance as a down payment. This often requires a secondary mortgage or personal funds.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Common Scenarios Where Assumption Works</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Intra-family sales</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Parent selling to an adult child, or sibling-to-sibling transfers. Assumption avoids early-payout penalties on the seller's mortgage and preserves a low rate for the buyer.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Spousal buyout at separation</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">One spouse removes the other from title and assumes the full mortgage. See our <a href="/spousal-buyout-mortgage-renewal/" style="color: var(--secondary)">spousal buyout</a> page for the insured-route mechanics.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Estate transfer after death</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">A surviving spouse or beneficiary assumes the deceased's mortgage. See <a href="/estate-mortgage-renewal/" style="color: var(--secondary)">estate mortgage renewal</a>.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Private sale with low-rate incentive</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Arm's-length buyer and seller agree that the existing low-rate mortgage is part of the deal's value — the buyer pays slightly above market for the property in exchange for assuming the below-market rate.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Seller's Side: Liability Release</h2>
+
+        <p class="mb-4 leading-relaxed">One of the most important details — and one that is frequently overlooked — is the seller's liability after an assumption. If the lender approves the assumption but does not issue a written release, the original seller can remain liable for the mortgage indefinitely. If the new borrower defaults three years later, the lender can pursue both the new borrower and the original seller.</p>
+
+        <p class="mb-4 leading-relaxed">To avoid this, the seller must request a release of covenant in writing from the lender at the time of assumption. Every major Canadian lender has a formal process for this, but it does not happen automatically. Always confirm with your lawyer that the assumption documents include an explicit release of the original borrower's obligations.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Fees and Legal Work</h2>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Lender assumption fee:</strong> $250–$600 at the Big 6; varies by monoline. Usually charged to the buyer.</li>
+          <li><strong>Legal fees:</strong> $500–$1,500 for the title transfer, registration of ownership change, and coordination with the lender.</li>
+          <li><strong>Insurer fee:</strong> If the mortgage is insured (CMHC, Sagen, Canada Guaranty), an insurer assumption fee may apply (typically under $300).</li>
+          <li><strong>Appraisal:</strong> Not always required for assumption, but lenders can order one at their discretion ($300–$500).</li>
+          <li><strong>Title insurance:</strong> Often re-issued for the new owner at roughly $200–$400.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">Compared to the typical closing costs of a brand-new mortgage (including land transfer tax, which still applies on assumption unless the transaction qualifies for a first-time-buyer exemption), these fees are generally lower than the cost of originating a new mortgage from scratch.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Assumption at Renewal — A Rarer Case</h2>
+
+        <p class="mb-4 leading-relaxed">Occasionally, a property changes hands very close to the seller's mortgage renewal date. If the assumption closes in the final 120 days of the term, the new borrower effectively inherits the renewal as well — the incoming lender will present renewal options to the new borrower rather than the original seller. In these situations, the buyer should consider whether they want to keep the renewal with the existing lender, or use the renewal as a moment to <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switch to a different lender</a> and obtain a more competitive rate and product for the new term.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/collateral-vs-standard-charge-mortgage/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Collateral vs. Standard Charge</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">The charge type determines whether your mortgage can be assumed.</p>
+            </a>
+            <a href="/spousal-buyout-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Spousal Buyout at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Insured-route buyout as an alternative to assumption.</p>
+            </a>
+            <a href="/estate-mortgage-renewal/" class="rounded-lg p-4" style="color: var(--primary); border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Estate & POA Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">How assumption fits into probate and estate transfers.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Alternative to assumption — re-originate with a new lender.</p>
+            </a>
+            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">What the incoming borrower must pass during assumption underwriting.</p>
+            </a>
+            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Which lenders allow assumption and which don't.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">What Assumption Is</a></li>
+              <li><a href="#" style="color: var(--secondary)">Why It's Back</a></li>
+              <li><a href="#" style="color: var(--secondary)">Which Mortgages</a></li>
+              <li><a href="#" style="color: var(--secondary)">Qualification</a></li>
+              <li><a href="#" style="color: var(--secondary)">Common Scenarios</a></li>
+              <li><a href="#" style="color: var(--secondary)">Seller Liability</a></li>
+              <li><a href="#" style="color: var(--secondary)">Fees</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Thinking About Assumption?</h3>
+            <p class="text-sm mb-4 opacity-90">Whether you're the buyer, seller, or executor, we'll check your mortgage terms for assumption eligibility and run the numbers.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Is the mortgage assumable? Let's check.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A broker can pull the charge type and commitment terms to confirm assumption eligibility in minutes.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

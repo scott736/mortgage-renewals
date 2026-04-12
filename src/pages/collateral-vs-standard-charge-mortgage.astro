@@ -1,0 +1,252 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the difference between a collateral charge and a standard charge mortgage?",
+    answer: "A standard charge is registered against your property for the exact mortgage amount and can be assigned (transferred) to a new lender at renewal without re-registration. A collateral charge is typically registered for an amount higher than the loan — often up to 125% of the property value — and is tied to the lender's general security. Collateral charges cannot be assigned, so switching lenders requires a full discharge and new registration, which incurs legal fees."
+  },
+  {
+    question: "Which banks use collateral charges by default?",
+    answer: "As of April 2026, TD Canada Trust has registered all of its mortgages as collateral charges since October 18, 2010. Tangerine uses collateral charges. Scotiabank's STEP (Scotia Total Equity Plan) is a collateral charge, though a standalone Scotia mortgage can be registered as standard on request. CIBC, RBC, BMO, and National Bank default to standard charges for regular mortgages but register their readvanceable products (Home Power Plan, Homeline, Homeowner ReadiLine, All-in-One) as collateral."
+  },
+  {
+    question: "Does a collateral charge cost more to switch?",
+    answer: "Yes. Because the charge cannot be assigned, switching involves discharging the existing registration and registering a new one with the new lender. Expect roughly $700 to $1,200 in legal and registration fees, though many new lenders offer to cover these costs as a switching incentive. Always ask your broker which lenders cover legal on transfers — savings from a lower rate typically justify the one-time cost even when you pay it yourself."
+  },
+  {
+    question: "Can I use a collateral charge to borrow more later without refinancing?",
+    answer: "That's the main selling point banks use for collateral charges. Because the charge is registered for more than the loan (often up to 125% of the property value), the bank can advance additional funds in the future without registering a new charge — a convenience for HELOCs, renovation loans, or second mortgages. The trade-off is reduced portability and lender lock-in. OSFI requires re-qualification for any additional funds regardless of the charge type."
+  },
+  {
+    question: "Can I convert a collateral charge to a standard charge?",
+    answer: "Not while it's with the same lender — the registration is structural. The only practical way to move from collateral to standard is to switch lenders and have the new lender register a standard charge. At renewal, this is often the ideal time since you're already paying discharge costs. Monoline lenders (First National, MCAP) and most non-TD banks will register new mortgages as standard charges by default."
+  },
+  {
+    question: "Are collateral charges ever better than standard charges?",
+    answer: "Sometimes. If you plan to stay with the same lender long-term and expect to access equity multiple times — for a HELOC, second mortgage, or renovation advances — a collateral charge saves re-registration costs on those future draws. For borrowers who prioritize flexibility and want to keep their options open for switching lenders at renewal, a standard charge is almost always preferable."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Collateral vs. Standard Charge Mortgages in Canada (2026)",
+    description: "Complete guide to collateral and standard charge mortgages in Canada. Lender-by-lender breakdown, switching costs, and how charges affect your renewal options.",
+    slug: "collateral-vs-standard-charge-mortgage",
+    articleSection: "Guides",
+    about: "Canadian mortgage charge types",
+    keywords: ["collateral mortgage", "standard charge mortgage", "TD collateral charge", "mortgage switching Canada", "mortgage registration"],
+  }),
+  breadcrumbSchema([
+    { name: "Collateral vs. Standard Charge", url: "/collateral-vs-standard-charge-mortgage" }
+  ]),
+  faqSchema(faqs, "collateral-vs-standard-charge-mortgage"),
+  webPageNode({
+    slug: "collateral-vs-standard-charge-mortgage",
+    name: "Collateral vs. Standard Charge Mortgages in Canada (2026)",
+    description: "How collateral and standard charge mortgages differ, which Canadian lenders use each, and what it means for your renewal and switching options.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Collateral vs. Standard Charge Mortgages Canada (2026)"
+  description="Collateral vs. standard charge mortgages in Canada. Lender-by-lender breakdown, switching costs, and how charges affect renewal and refinance flexibility."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Collateral vs. Standard Charge Mortgages
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 2026 · 9-minute read</div>
+    <h1 class="text-heading-1 mb-4">Collateral vs. Standard Charge Mortgages in Canada</h1>
+    <p class="text-body-lg text-muted-foreground mb-8">
+      How your mortgage is registered on title — as a collateral charge or a standard charge — quietly controls how much it costs to switch lenders, how flexible your borrowing is, and whether you can easily transfer at renewal. Most Canadians have no idea what type they have until they try to switch. This guide explains every lender's default, the real-dollar cost differences, and how to think about the choice at your next renewal.
+    </p>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-md">
+        <li>• <strong>Standard charge:</strong> Registered for the exact mortgage amount. Can be assigned to a new lender at renewal without re-registration.</li>
+        <li>• <strong>Collateral charge:</strong> Registered for more than the loan (often up to 125% of property value). Cannot be assigned — switching requires full discharge and new registration.</li>
+        <li>• TD Canada Trust has registered all mortgages as collateral charges since October 18, 2010. Tangerine is also collateral-only.</li>
+        <li>• Scotiabank's STEP is collateral; a standalone Scotia mortgage can be standard on request.</li>
+        <li>• RBC, BMO, CIBC, and National Bank register regular mortgages as standard charges but use collateral for readvanceable products (Homeline, Homeowner ReadiLine, Home Power Plan, All-in-One).</li>
+        <li>• Monoline lenders (First National, MCAP) default to standard charges.</li>
+        <li>• Extra cost to switch away from a collateral charge: roughly $700–$1,200 in legal/registration fees, often covered by the new lender.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Mortgages Are Registered on Title</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      When a lender advances a mortgage, it registers a "charge" against your property title at the provincial land registry. That charge is the public record that the lender has first rights to be paid out of the property's value before the owner. All Canadian mortgages carry a charge — the question is what <em>kind</em>.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      There are two main forms: a <strong>standard charge (also called a mortgage charge)</strong>, which is tied to the specific mortgage and registered for the exact amount, and a <strong>collateral charge</strong>, which is registered as security for a line of credit or general obligation, typically for an amount well above the mortgage balance.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Standard Charge: The Classic Registration</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A standard charge is the traditional mortgage registration. It sets out the specific loan amount, interest rate, amortization, and payment terms. Because the charge is tied to <em>this particular loan</em>, it can be <strong>assigned</strong> to a new lender at renewal — the old lender transfers the charge to the new lender without discharging it. The only legal work required is a simple assignment agreement.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      For borrowers, this means lower switching costs (often waived entirely by the new lender) and full flexibility to move at maturity. If you want to borrow more later, though, you need a new registration — which is why lenders have pushed collateral charges as the "convenience" alternative.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Collateral Charge: Registered for More Than You Borrow</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A collateral charge is registered against your property for an amount typically up to 125% of the property value at registration — even if your actual mortgage is much less. The charge secures the lender's general obligations against you, not a specific loan, which means the lender can advance additional funds later (a HELOC, a second mortgage, a renovation loan) without registering a new charge.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The flip side is structural: <strong>a collateral charge cannot be assigned to a new lender</strong>. If you want to switch at renewal, the old charge must be fully discharged and a new one registered — triggering full legal and land-registration fees. Expect $700–$1,200 in switching costs when leaving a collateral-charge mortgage, though many new lenders (especially monolines competing for switches) offer to cover these fees.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Canadian Lenders: Who Uses What (April 2026)</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Default Charge Type</th>
+            <th class="p-3 text-left">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">TD Canada Trust</td>
+            <td class="p-3 text-error-100">Collateral only</td>
+            <td class="p-3">All mortgages registered as collateral since Oct 18, 2010. No option to change.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">Tangerine</td>
+            <td class="p-3 text-error-100">Collateral only</td>
+            <td class="p-3">Standard mortgage product registered as collateral.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">Scotiabank</td>
+            <td class="p-3">Mixed</td>
+            <td class="p-3">STEP (Scotia Total Equity Plan) is collateral. Standalone Scotia mortgage can be registered as standard on request.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">CIBC</td>
+            <td class="p-3">Standard (default)</td>
+            <td class="p-3">Home Power Plan (readvanceable) is collateral. Regular CIBC mortgage = standard.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">RBC</td>
+            <td class="p-3">Standard (default)</td>
+            <td class="p-3">Homeline Plan (readvanceable) is collateral. Regular RBC mortgage = standard.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">BMO</td>
+            <td class="p-3">Standard (default)</td>
+            <td class="p-3">Homeowner ReadiLine (readvanceable) is collateral. Regular BMO mortgage = standard.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">National Bank</td>
+            <td class="p-3">Standard (default)</td>
+            <td class="p-3">All-in-One (readvanceable) is collateral. Regular National Bank mortgage = standard.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">First National</td>
+            <td class="p-3 text-secondary-200">Standard</td>
+            <td class="p-3">Monoline lender — typically standard charge for all products.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-semibold">MCAP</td>
+            <td class="p-3 text-secondary-200">Standard</td>
+            <td class="p-3">Monoline lender — standard charge default.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">Credit Unions</td>
+            <td class="p-3">Mixed — varies</td>
+            <td class="p-3">Default varies by credit union and product. Ask before signing.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Real-Dollar Cost of a Collateral Charge at Switching Time</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Say you have a $500,000 mortgage with TD (collateral charge by default) and your renewal is coming up. You find a new lender offering a 0.30% lower rate. Over a 5-year term on a 25-year amortization, that's about $8,700 in interest savings. The additional cost of switching away from a collateral charge — roughly $700–$1,200 — is a fraction of the savings.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      And in many cases, the new lender covers the legal and discharge fees entirely. Ask your <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> to identify lenders currently offering "legal-paid switches." Our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders guide</a> covers the full switching process and timing.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Banks Push Collateral Charges</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      From the bank's perspective, a collateral charge is a retention tool. Once it's registered, the borrower faces friction to leave — that friction is worth money. Collateral charges also allow the bank to link multiple credit products (HELOC, credit cards, overdraft) to the same security, simplifying cross-collateralization.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      For borrowers who value being able to draw additional equity without re-registering — for example, to fund a renovation, a second property, or periodic large expenses — a collateral charge can offer real convenience. For everyone else, the trade-off is rarely worth it. The same result can be achieved by switching to a new lender at renewal and negotiating a HELOC add-on at that time.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Find Out What Type You Have</h2>
+    <ul class="space-y-2 text-body-md mb-6 list-disc list-inside leading-relaxed">
+      <li><strong>Check your original mortgage documents.</strong> The term "collateral mortgage" or "collateral charge" will appear on the commitment letter and registration form.</li>
+      <li><strong>Look at your property title.</strong> A title search (available from a lawyer or the provincial registry) will show the registered amount. If it's substantially higher than your original loan, it's collateral.</li>
+      <li><strong>Ask your current lender.</strong> Any retention officer can tell you in under a minute.</li>
+      <li><strong>Ask your mortgage broker.</strong> If you're doing a renewal review, a broker will pull this during their preliminary assessment.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Should You Choose Standard or Collateral on Your Next Mortgage?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      For most borrowers — particularly those approaching renewal and focused on getting the best rate — <strong>standard charge is the better default</strong>. It preserves flexibility, keeps switching cheap, and does not prevent you from adding a HELOC later if needed.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Collateral makes sense primarily if you have an active plan to draw additional equity multiple times during the mortgage term (for investment properties, renovations, or business funding) and intend to stay with the same lender long-term. Even then, the cost savings from switching at renewal often outweigh the convenience of the collateral structure.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-8">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Related Guides & Tools</h2>
+    <div class="grid sm:grid-cols-2 gap-3 mb-8">
+      {[
+        { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+        { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
+        { title: "Using a Mortgage Broker at Renewal", href: "/mortgage-broker-renewal/" },
+        { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+        { title: "10 Biggest Renewal Mistakes", href: "/mortgage-renewal-mistakes/" },
+        { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+      ].map(link => (
+        <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+          <span class="text-secondary-100">→</span>
+          {link.title}
+        </a>
+      ))}
+    </div>
+
+    <p class="text-body-xs text-muted-foreground mb-6">
+      Sources: Provincial land registry documentation (Ontario Land Registration, BC Land Title & Survey Authority); bank product disclosures (TD, RBC, BMO, Scotiabank, CIBC, National Bank); FCAC consumer guidance on mortgage registration. Charge policies current as of April 2026 and may change without notice. Verify charge type on your specific mortgage with your lender or lawyer before making decisions.
+    </p>
+  </article>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Unsure What Type of Mortgage You Have?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will pull your title, confirm your charge type, and lay out your switching options — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

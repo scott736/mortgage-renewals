@@ -1,19 +1,23 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, howToSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, howToSchema, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
 
 const schema = combineSchemas(
   articleSchema({
-    headline: "How to Lower Your Mortgage Payment at Renewal — 11 Strategies",
+    headline: "How to Lower Your Mortgage Payment at Renewal — 11 Strategies for Canadians in 2026",
     description: "Facing higher payments at renewal? These 11 proven strategies can lower your mortgage payment in 2026 — from extending amortization to consolidating debt.",
     slug: "lower-mortgage-payments-at-renewal",
   }),
   breadcrumbSchema([
     { name: "Lower Mortgage Payments at Renewal", url: "/lower-mortgage-payments-at-renewal" }
   ]),
-  speakableSchema("lower-mortgage-payments-at-renewal"),
+  webPageNode({
+    slug: "lower-mortgage-payments-at-renewal",
+    name: "How to Lower Your Mortgage Payment at Renewal",
+    description: "11 proven strategies to reduce your monthly mortgage payment in 2026 — extending amortization, switching lenders, debt consolidation.",
+  }),
   howToSchema({
     name: "How to Lower Your Mortgage Payment at Renewal",
     description: "11 proven strategies to reduce your monthly mortgage payment when renewing in Canada.",
@@ -35,7 +39,7 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="How to Lower Your Mortgage Payment at Renewal — 11 Strategies"
+  title="Lower Your Mortgage Payment at Renewal — 11 Strategies"
   description="Facing higher payments at renewal? These 11 proven strategies can lower your mortgage payment in 2026 — from extending amortization to consolidating debt."
   schema={schema}
 >
@@ -53,12 +57,12 @@ const schema = combineSchemas(
           Millions of Canadians are renewing into higher payments in 2026. If your budget is stretched, here are 11 proven strategies to reduce what you owe each month — some requiring no qualifying at all.
         </p>
         <div class="flex flex-wrap gap-4">
-          <a href="/book-a-call">
+          <a href="/book-a-call/">
             <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-6 py-3 transition-colors">
               Talk to a Broker — Free
             </button>
           </a>
-          <a href="/mortgage-renewal-calculator">
+          <a href="/mortgage-renewal-calculator/">
             <button class="rounded-lg border-2 border-white/40 hover:border-white text-white font-semibold px-6 py-3 transition-colors">
               Calculate Your New Payment
             </button>
@@ -100,8 +104,8 @@ const schema = combineSchemas(
 
       <div class="not-prose mb-8 rounded-xl bg-primary-0 border border-primary-50 p-6">
         <h3 class="text-heading-5 text-primary-100 mb-2">Important: A Broker Can Do This For You</h3>
-        <p class="text-body-md text-muted-foreground mb-4">Every strategy on this page involves trade-offs. A licensed <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> can model the numbers for your exact situation — for free. They access 30+ lenders and can often find a rate your bank won't offer directly.</p>
-        <a href="/book-a-call" class="inline-flex rounded-lg bg-primary-100 px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90">
+        <p class="text-body-md text-muted-foreground mb-4">Every strategy on this page involves trade-offs. A licensed <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> can model the numbers for your exact situation — for free. They access 30+ lenders and can often find a rate your bank won't offer directly.</p>
+        <a href="/book-a-call/" class="inline-flex rounded-lg bg-primary-100 px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90">
           Book a Free Renewal Strategy Call →
         </a>
       </div>
@@ -146,7 +150,7 @@ const schema = combineSchemas(
         </div>
         <div class="ml-14 space-y-4 text-body-md text-muted-foreground">
           <p>
-            <a href="/mortgage-lender-types-canada" style="color: var(--secondary)">Monoline lenders</a> (MCAP, First National, RMG, Equitable Bank) specialize exclusively in mortgages. Because they have no branch networks or overhead, they consistently offer rates 0.1–0.4% below major banks. And since the 2024 rule change, switching lenders at renewal does not require a stress test — for any insured or insurable mortgage.
+            <a href="/mortgage-lender-types-canada/" style="color: var(--secondary)">Monoline lenders</a> (MCAP, First National, RMG, Equitable Bank) specialize exclusively in mortgages. Because they have no branch networks or overhead, they consistently offer rates 0.1–0.4% below major banks. And since the 2024 rule change, switching lenders at renewal does not require a stress test — for any insured or insurable mortgage.
           </p>
           <div class="rounded-lg bg-gray-25 border border-gray-100 p-4">
             <p class="text-body-sm"><strong>How to do it:</strong> A mortgage broker can access monoline rates directly. These lenders don't advertise publicly — the broker channel is their primary distribution.</p>
@@ -165,7 +169,7 @@ const schema = combineSchemas(
         </div>
         <div class="ml-14 space-y-4 text-body-md text-muted-foreground">
           <p>
-            The Bank of Canada has been cutting rates since mid-2024. If analysts are correct that further cuts are coming in 2026, locking in for 5 years at today's rate may not be optimal. A <a href="/mortgage-renewal-term-lengths" style="color: var(--secondary)">1-year or 2-year fixed term</a> may carry a lower rate than 5-year fixed — and allows you to renew again into a lower rate environment.
+            The Bank of Canada has been cutting rates since mid-2024. If analysts are correct that further cuts are coming in 2026, locking in for 5 years at today's rate may not be optimal. A <a href="/mortgage-renewal-term-lengths/" style="color: var(--secondary)">1-year or 2-year fixed term</a> may carry a lower rate than 5-year fixed — and allows you to renew again into a lower rate environment.
           </p>
           <div class="grid sm:grid-cols-3 gap-3 my-4">
             {[
@@ -196,7 +200,7 @@ const schema = combineSchemas(
         </div>
         <div class="ml-14 space-y-4 text-body-md text-muted-foreground">
           <p>
-            <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">Variable rate mortgages</a> are priced as Prime ± a spread. With the Bank of Canada's Prime rate at 5.45% (as of Q1 2026) and variable discounts of Prime - 0.5% to Prime - 1.0% available, variable rates may be at or below 5-year fixed rates right now.
+            <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">Variable rate mortgages</a> are priced as Prime ± a spread. With the Bank of Canada's Prime rate at 5.45% (as of Q1 2026) and variable discounts of Prime - 0.5% to Prime - 1.0% available, variable rates may be at or below 5-year fixed rates right now.
           </p>
           <p>
             If the BoC continues cutting, your payment automatically drops with each rate cut — without needing to refinance or pay penalties. With a variable rate, your payment adjusts (or principal allocation adjusts) as Prime moves.
@@ -240,7 +244,7 @@ const schema = combineSchemas(
           </div>
 
           <div class="rounded-lg bg-warning-0 border border-warning-50 p-4">
-            <p class="text-body-sm"><strong>Trade-off:</strong> Extending amortization reduces monthly payments but increases total lifetime interest paid significantly. Use the <a href="/mortgage-renewal-calculator" class="text-secondary-100 underline">amortization extension calculator</a> to see the full cost.</p>
+            <p class="text-body-sm"><strong>Trade-off:</strong> Extending amortization reduces monthly payments but increases total lifetime interest paid significantly. Use the <a href="/mortgage-renewal-calculator/" class="text-secondary-100 underline">amortization extension calculator</a> to see the full cost.</p>
           </div>
 
           <p>
@@ -309,7 +313,7 @@ const schema = combineSchemas(
           </div>
 
           <p>
-            This requires sufficient home equity (typically 20%+ after consolidation) and constitutes a <a href="/renewal-vs-refinancing" style="color: var(--secondary)">refinance rather than a simple renewal</a>. Your broker will assess your loan-to-value ratio and advise on eligibility.
+            This requires sufficient home equity (typically 20%+ after consolidation) and constitutes a <a href="/renewal-vs-refinancing/" style="color: var(--secondary)">refinance rather than a simple renewal</a>. Your broker will assess your loan-to-value ratio and advise on eligibility.
           </p>
 
           <div class="rounded-lg bg-warning-0 border border-warning-50 p-4">
@@ -463,12 +467,12 @@ const schema = combineSchemas(
         Every situation is different. A licensed mortgage broker can model these strategies using your actual numbers — balance, current rate, maturity date, and income — and recommend the combination that makes the most sense for you.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="/book-a-call">
+        <a href="/book-a-call/">
           <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
             Book Your Free Call
           </button>
         </a>
-        <a href="/mortgage-renewal-calculator">
+        <a href="/mortgage-renewal-calculator/">
           <button class="rounded-lg border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 text-lg transition-colors">
             Run the Numbers First
           </button>
@@ -484,10 +488,10 @@ const schema = combineSchemas(
       <h2 class="text-heading-3 mb-8">Related Guides</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide", desc: "Everything about the renewal process" },
-          { title: "Amortization Calculator", href: "/mortgage-renewal-calculator", desc: "Model extension scenarios" },
-          { title: "Switching Lenders", href: "/switching-lenders-at-renewal", desc: "No stress test required since 2024" },
-          { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal", desc: "Choose the right rate type" },
+          { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide/", desc: "Everything about the renewal process" },
+          { title: "Amortization Calculator", href: "/mortgage-renewal-calculator/", desc: "Model extension scenarios" },
+          { title: "Switching Lenders", href: "/switching-lenders-at-renewal/", desc: "No stress test required since 2024" },
+          { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal/", desc: "Choose the right rate type" },
         ].map(guide => (
           <a href={guide.href} class="group block rounded-xl border border-gray-100 bg-white p-5 hover:border-secondary-50 hover:shadow-sm transition-all">
             <h3 class="font-semibold text-gray-900 group-hover:text-secondary-100">{guide.title}</h3>
@@ -497,8 +501,4 @@ const schema = combineSchemas(
       </div>
     </div>
   </section>
-
-  <p class="container pb-8 text-xs text-muted-foreground text-center">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Payment examples are illustrative only. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

@@ -1,0 +1,329 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Are credit unions bound by the federal mortgage stress test?",
+    answer: "Only federal credit unions — such as Coast Capital and UNI Financial Cooperation — are directly bound by OSFI's B-20 Guideline and therefore required to apply the federal mortgage stress test. Provincial credit unions are regulated by their respective provincial Credit Union Deposit Insurance Corporations, not OSFI. Most provincial credit unions voluntarily apply a stress test equivalent to the federal standard, but some allow exceptions — particularly for members with long-standing relationships, strong equity positions, or self-employment income that doesn't fit the federal underwriting mould. This flexibility can make the difference for borrowers who are close to the qualification line."
+  },
+  {
+    question: "Can I switch to a credit union at renewal using the 2024 stress test exemption?",
+    answer: "Yes, if the credit union is federally regulated. The November 2024 OSFI change that eliminated the stress test on straight lender switches applies to all federally regulated lenders, which includes federal credit unions (Coast Capital, UNI) and all chartered banks. Switching to a provincial credit union is typically easier still because the provincial credit union wasn't required to apply the stress test to begin with — though they will still run their own underwriting. Either way, at renewal you can generally switch to a credit union for a straight transfer without re-passing the federal stress test."
+  },
+  {
+    question: "Do credit unions offer better mortgage rates than banks?",
+    answer: "Sometimes, but not always. Credit unions typically compete on flexibility and relationship pricing rather than the absolute lowest rate. A member with strong history at a credit union may receive a rate that rivals or beats a Big 6 posted rate. However, for pure rate shopping, monoline lenders (MCAP, First National, RMG) often beat both banks and credit unions through the broker channel. Credit unions are worth approaching at renewal if you already have a relationship, have income that's hard to document conventionally, or want more GDS/TDS flexibility."
+  },
+  {
+    question: "Which credit unions operate across multiple provinces?",
+    answer: "Most Canadian credit unions are provincially chartered and limited to one province, with a few exceptions. Desjardins operates in Quebec and, via subsidiaries, in Ontario. Coast Capital converted to a federal charter in 2018 and now serves members across Canada. UNI Financial Cooperation (formerly Caisse populaire acadienne) is federal and serves New Brunswick broadly with online services nationally. Atlantic credit unions participate in a shared services network (League Data / Atlantic Central). For most borrowers, the relevant credit unions are the provincial giants: Meridian, Alterna, DUCA, FirstOntario, and Libro in Ontario; Servus and connectFirst in Alberta; Vancity, BlueShore, and Prospera in BC."
+  },
+  {
+    question: "Are my deposits and mortgage safe at a credit union?",
+    answer: "Yes. Federal credit unions' deposits are insured by the Canada Deposit Insurance Corporation (CDIC) up to $100,000 per insured category. Provincial credit unions' deposits are insured by the provincial Credit Union Deposit Insurance Corporation — limits vary by province, with some provinces (Ontario's FSRA, Quebec's AMF) insuring up to $250,000 or providing unlimited coverage on certain deposit categories. Mortgages themselves are obligations you owe; the deposit insurance protects your savings, not the mortgage itself. Credit unions have been stable institutions in Canada for decades, with failures extremely rare."
+  },
+  {
+    question: "Does Desjardins work like other Canadian credit unions?",
+    answer: "Desjardins is structurally a cooperative like other credit unions but operates at a scale and with products that rival any Big 6 bank in Quebec. It is Canada's largest credit union network, regulated by the Autorité des marchés financiers (AMF) in Quebec, with approximately $400+ billion in assets. For Quebec homeowners renewing in 2026, Desjardins is typically the first place to get a quote — and its rate is often highly competitive. Desjardins mortgages are offered through branches (not broker channels). See our Quebec mortgage renewal page for provincial specifics."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "credit-union-mortgage-renewal-canada",
+    name: "Credit Union Mortgage Renewal in Canada — 2026 Deep Dive",
+    description: "How Canadian credit unions handle mortgage renewal — which are federal vs provincial, the stress test difference, and when a credit union beats a bank.",
+  }),
+  articleSchema({
+    headline: "Credit Union Mortgage Renewal in Canada — Full Guide (2026)",
+    description: "Complete guide to Canadian credit union mortgages at renewal: federal vs provincial regulation, stress test flexibility, relationship pricing, and a province-by-province lender list.",
+    slug: "credit-union-mortgage-renewal-canada",
+    articleSection: "Lender Types",
+    about: "Canadian Credit Union Mortgage Renewal",
+    keywords: ["credit union mortgage Canada", "Desjardins mortgage", "Meridian mortgage", "Vancity mortgage", "Coast Capital", "provincial credit union stress test"],
+  }),
+  breadcrumbSchema([
+    { name: "Credit Union Mortgage Renewal", url: "/credit-union-mortgage-renewal-canada" }
+  ]),
+  faqSchema(faqs, "credit-union-mortgage-renewal-canada"),
+);
+---
+
+<DefaultLayout
+  title="Credit Union Mortgage Renewal Canada 2026 — Complete Guide"
+  description="Complete guide to Canadian credit union mortgages at renewal: federal vs provincial regulation, stress test flexibility, relationship pricing, and provincial lender lists."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Credit Union Mortgage Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Credit Union Mortgage Renewal in Canada: A 2026 Deep Dive</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 13-minute read</p>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <p class="mb-6 text-base leading-relaxed">Credit unions occupy a distinct and occasionally undervalued corner of the Canadian mortgage market. Owned by their members (depositors), regulated mostly at the provincial level, and typically smaller than the Big 6 banks, credit unions compete on flexibility, relationship pricing, and local presence. For borrowers renewing in 2026 — particularly self-employed borrowers, those with unusual income structures, or those looking for more underwriting flexibility than a bank will offer — credit unions are worth serious consideration.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• Most Canadian credit unions are provincially regulated, not federally — which means OSFI's B-20 stress test is not legally binding on them.</li>
+            <li>• Federal credit unions (Coast Capital, UNI Financial) are bound by OSFI and the stress test, but still offer member-owned relationship benefits.</li>
+            <li>• Provincial credit unions typically apply a voluntary equivalent of the stress test but have latitude to make exceptions for long-standing members or borrowers with strong equity.</li>
+            <li>• Rate-wise, credit unions can be competitive but are rarely the absolute cheapest — broker-channel monolines often beat them on pure rate.</li>
+            <li>• Flexibility advantages include: higher GDS/TDS ratios for strong members, self-employed income treatment, and ease of working with unique properties.</li>
+            <li>• Deposits are insured by provincial Credit Union Deposit Insurance Corporations (federal credit unions use CDIC); coverage limits vary by province.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How Credit Unions Are Regulated</h2>
+
+        <p class="mb-4 leading-relaxed">Understanding credit union regulation is foundational to understanding their mortgage flexibility. Canadian credit unions fall into one of two regulatory buckets:</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+          <div class="rounded-lg p-6" style="border: 2px solid var(--primary); background: var(--card)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">Federal Credit Unions</h3>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">Regulated by OSFI and licensed federally under the Bank Act. Bound by B-20 Guideline and the federal mortgage stress test. Deposits insured by CDIC (up to $100,000 per insured category).</p>
+            <p class="text-xs font-bold mb-2" style="color: var(--primary)">Examples:</p>
+            <ul class="text-xs space-y-1" style="color: var(--muted-foreground)">
+              <li>• Coast Capital Savings (converted 2018)</li>
+              <li>• UNI Financial Cooperation (converted 2016)</li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-6" style="border: 2px solid var(--secondary); background: var(--card)">
+            <h3 class="font-bold mb-3" style="color: var(--secondary)">Provincial Credit Unions</h3>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">Regulated by provincial authorities — e.g., FSRA in Ontario, the AMF in Quebec, BCFSA in BC. B-20 does not directly bind them, though most voluntarily apply equivalent underwriting. Deposits insured by provincial CUDICs.</p>
+            <p class="text-xs font-bold mb-2" style="color: var(--secondary)">Examples:</p>
+            <ul class="text-xs space-y-1" style="color: var(--muted-foreground)">
+              <li>• Desjardins (QC), Meridian (ON), Servus (AB)</li>
+              <li>• Vancity (BC), Conexus (SK), Assiniboine (MB)</li>
+              <li>• Atlantic Central network (NS, NB, PEI, NL)</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Stress Test Flexibility Question</h2>
+
+        <p class="mb-4 leading-relaxed">Because B-20 doesn't legally bind provincial credit unions, there is a common perception that provincial credit unions are a stress-test-free escape hatch. That's only partially true.</p>
+
+        <p class="mb-4 leading-relaxed">In practice, virtually every major provincial credit union applies some form of stress test. Credit unions must demonstrate sound underwriting to their provincial regulator, and provincial regulators generally require underwriting equivalent to (or nearly equivalent to) OSFI's B-20. But — and this is the important part — provincial credit unions have more discretion to grant exceptions than federally regulated lenders.</p>
+
+        <p class="mb-4 leading-relaxed">Examples of realistic provincial credit union flexibility:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>A self-employed borrower with genuinely higher cash flow than T1-declared income, who can document bank statements, can sometimes qualify at a credit union when they wouldn't at a bank.</li>
+          <li>Borrowers with strong equity (LTV below 65%) may receive exceptions on debt-servicing ratios.</li>
+          <li>Long-standing credit union members (multi-decade deposit and borrowing relationships) receive consideration that no bank offers.</li>
+          <li>Unique properties (rural acreages, hobby farms, unusual condos) that don't fit bank templates are often welcomed at local credit unions.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">See our <a href="/stress-test-mortgage-renewal/" style="color: var(--secondary)">stress test at renewal</a> guide for the full mechanics and the 2024 federal exemption.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Major Credit Unions by Province</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Province</th>
+                <th class="p-3 text-left">Leading Credit Unions</th>
+                <th class="p-3 text-left">Regulator</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">British Columbia</td>
+                <td class="p-3">Vancity, BlueShore Financial, Prospera, Coast Capital (federal)</td>
+                <td class="p-3">BCFSA</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Alberta</td>
+                <td class="p-3">Servus, connectFirst, Vision CU</td>
+                <td class="p-3">Alberta Treasury Board</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Saskatchewan</td>
+                <td class="p-3">Conexus, Affinity, Synergy</td>
+                <td class="p-3">CUDGC Saskatchewan</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Manitoba</td>
+                <td class="p-3">Assiniboine, Cambrian, Access</td>
+                <td class="p-3">DGCM</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Ontario</td>
+                <td class="p-3">Meridian, Alterna, DUCA, FirstOntario, Libro</td>
+                <td class="p-3">FSRA</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Quebec</td>
+                <td class="p-3">Desjardins (dominant)</td>
+                <td class="p-3">AMF</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">Atlantic</td>
+                <td class="p-3">Atlantic Central network — East Coast CU, Bayview, Provincial CU (PEI), NLCU</td>
+                <td class="p-3">Provincial regulators + Atlantic Central</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Advantages of Renewing at a Credit Union</h2>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">Relationship pricing</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Long-tenured members often receive rate exceptions that are unavailable to new customers. If you've banked with your credit union for 15 years, ask directly.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">Underwriting flexibility</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Higher GDS/TDS allowances for strong profiles, more tolerance for <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed income</a>, and willingness to finance unique properties.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">Local decision-making</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Many credit unions still underwrite mortgages locally with human decision-makers rather than algorithmic engines. Marginal files get a second look.</p>
+          </div>
+          <div class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-2" style="color: var(--primary)">Profit-sharing / dividends</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">As a member-owner, you receive patronage dividends or rebates that banks don't offer. Over a 5-year term, this can offset a small rate premium.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Disadvantages to Consider</h2>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li><strong>Rates not always the lowest:</strong> Credit unions rarely run "special" promotional rates that match the deep discounts available through mortgage brokers and monolines.</li>
+          <li><strong>Membership required:</strong> You must become a member (buying a nominal share, usually $5–$25) before you can hold a mortgage. Most credit unions process this at application.</li>
+          <li><strong>Limited broker access:</strong> Most credit unions do not participate in the broker channel, so a broker cannot shop a credit union for you. You approach them directly.</li>
+          <li><strong>Geographic limitations:</strong> Most credit unions serve a single province. If you move across provincial lines, your credit union relationship may not travel with you.</li>
+          <li><strong>Digital tools sometimes weaker:</strong> Some (not all) credit unions lag the Big 6 on mobile apps, online transfer features, and integrated wealth products.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">When a Credit Union Makes Sense at Renewal</h2>
+
+        <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+          <p class="font-bold mb-2">Good fit scenarios</p>
+          <ul class="list-disc list-inside text-sm space-y-2">
+            <li>You are self-employed and your declared income doesn't match your real cash flow.</li>
+            <li>You have strong equity (LTV under 65%) but ratios are tight on a bank stress test.</li>
+            <li>You own a unique property — hobby farm, rural acreage, unusual condo, owner-built home — that national lenders avoid.</li>
+            <li>You have a multi-decade relationship with a specific credit union.</li>
+            <li>You value local, relationship-based service over the absolute lowest rate.</li>
+          </ul>
+        </div>
+
+        <div class="rounded-lg p-5 mb-6" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-bold mb-2">Poor fit scenarios</p>
+          <ul class="list-disc list-inside text-sm space-y-2" style="color: var(--muted-foreground)">
+            <li>Your file is clean and straightforward — a mortgage broker will usually find you a better rate with a monoline.</li>
+            <li>You live or plan to live across provincial lines.</li>
+            <li>You need a HELOC or readvanceable mortgage with the highest credit limit — banks generally offer larger HELOC limits.</li>
+            <li>You value seamless wealth-management integration (in-house investments, brokerage accounts, private banking).</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">How to Approach a Credit Union Renewal</h2>
+
+        <p class="mb-4 leading-relaxed">Most Canadian credit unions do not participate in the broker channel, which means the standard "broker shops for you" path doesn't apply. Here's a practical approach:</p>
+
+        <ol class="list-decimal list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Start your renewal shopping with a <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> who can quote bank and monoline rates — establish the competitive benchmark first.</li>
+          <li>Contact your local credit union directly. Ask for both the posted rate and the member/relationship rate.</li>
+          <li>Present the broker-sourced rate as your benchmark and ask the credit union to match or beat it, especially if you have a long-standing relationship.</li>
+          <li>Compare the two offers on apples-to-apples terms: rate, amortization, prepayment privileges, penalty structure.</li>
+          <li>Factor in the patronage dividend (if any) over the term — some credit unions distribute enough in dividends to offset a 0.05–0.10% rate premium.</li>
+        </ol>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, credit unions, B-lenders compared.</p>
+            </a>
+            <a href="/quebec-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Quebec Mortgage Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Desjardins dominates Quebec's credit union market.</p>
+            </a>
+            <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Credit unions are often the best bet for self-employed borrowers.</p>
+            </a>
+            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Full mechanics, including when credit unions can be flexible.</p>
+            </a>
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Establish benchmark rates before approaching a credit union.</p>
+            </a>
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">The full 8-step process and 2024 stress-test exemption.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">Regulation</a></li>
+              <li><a href="#" style="color: var(--secondary)">Stress Test Flexibility</a></li>
+              <li><a href="#" style="color: var(--secondary)">Credit Unions by Province</a></li>
+              <li><a href="#" style="color: var(--secondary)">Advantages</a></li>
+              <li><a href="#" style="color: var(--secondary)">Disadvantages</a></li>
+              <li><a href="#" style="color: var(--secondary)">When It Makes Sense</a></li>
+              <li><a href="#" style="color: var(--secondary)">How to Approach</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Credit Union vs. Broker Channel?</h3>
+            <p class="text-sm mb-4 opacity-90">Get a broker-sourced benchmark rate first — then negotiate with your credit union from a position of strength.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Know your benchmark before you negotiate</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">We'll quote you bank and monoline rates so you can walk into your credit union knowing exactly what to ask for.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

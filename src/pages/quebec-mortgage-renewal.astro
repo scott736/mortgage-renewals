@@ -1,25 +1,33 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "quebec-mortgage-renewal",
+    name: "Quebec Mortgage Renewal Guide 2026",
+    description: "Quebec-specific mortgage renewal guide — AMF brokers, notarial deed of loan, French-language rights, and 2026 strategies.",
+  }),
   articleSchema({
     headline: "Quebec Mortgage Renewal Guide 2026",
     description: "Quebec mortgage renewal: AMF brokers, notarial deed of loan system, why all switches require a notary ($800–$1,500), French language rights, and how to save more in Quebec.",
     slug: "quebec-mortgage-renewal",
+    areaServed: "Quebec, Canada",
+    articleSection: "Provincial Guides",
+    about: "Quebec Mortgage Renewal",
+    keywords: ["Quebec mortgage renewal", "AMF broker", "notarial deed of loan", "Montreal mortgage"],
   }),
   breadcrumbSchema([
     { name: "Quebec Mortgage Renewal", url: "/quebec-mortgage-renewal" }
   ]),
-  speakableSchema("quebec-mortgage-renewal"),
 );
 ---
 
 <DefaultLayout
-  title="Quebec Mortgage Renewal Guide 2026 — MortgageRenewalHub.ca"
-  description="Quebec mortgage renewal: AMF brokers, notarial deed of loan system, why all switches require a notary ($800–$1,500), French language rights, and how to save more in Quebec."
+  title="Quebec Mortgage Renewal Guide 2026 — Notary, AMF & Rates"
+  description="Quebec mortgage renewal: AMF brokers, notarial deed of loan, why all switches require a notary ($800–$1,500), and how to save more on your Quebec renewal."
   schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -38,13 +46,13 @@ const schema = combineSchemas(
 
     <p class="mb-4 leading-relaxed">Quebec mortgage brokers must hold a valid AMF licence and are required to provide services in French upon request. Borrowers can verify a broker's AMF licence at lautorite.qc.ca. The AMF also requires Quebec brokers to have professional liability insurance (errors and omissions coverage), providing an additional layer of consumer protection.</p>
 
-    <p class="mb-6 leading-relaxed">When searching for a <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> in Quebec, seek someone licensed with the AMF who specifically has experience with Quebec's notarial mortgage system. Not all brokers operating in other provinces have Quebec-specific expertise.</p>
+    <p class="mb-6 leading-relaxed">When searching for a <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> in Quebec, seek someone licensed with the AMF who specifically has experience with Quebec's notarial mortgage system. Not all brokers operating in other provinces have Quebec-specific expertise.</p>
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Notarial System: Quebec's Biggest Renewal Difference</h2>
 
     <p class="mb-4 leading-relaxed">This is the most significant structural difference affecting mortgage renewal costs in Quebec: <strong>every mortgage transaction in Quebec — including switching lenders at renewal — must be completed by a notary (notaire)</strong>. Unlike common-law provinces where lawyers handle mortgage registration, Quebec's civil law system requires notarial deeds for all real estate transactions.</p>
 
-    <p class="mb-4 leading-relaxed">The practical implication for renewal: in Ontario, BC, or Alberta, switching lenders at renewal can be completed by the new lender's lawyer at relatively low cost (often covered by the new lender). In Quebec, even a <a href="/switching-lenders-at-renewal" style="color: var(--secondary)">straight-switch renewal</a> requires a new notarial deed of loan — a legally required document that must be prepared and authenticated by a commissioned notary.</p>
+    <p class="mb-4 leading-relaxed">The practical implication for renewal: in Ontario, BC, or Alberta, switching lenders at renewal can be completed by the new lender's lawyer at relatively low cost (often covered by the new lender). In Quebec, even a <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">straight-switch renewal</a> requires a new notarial deed of loan — a legally required document that must be prepared and authenticated by a commissioned notary.</p>
 
     <p class="mb-4 leading-relaxed">Notary fees in Quebec for a mortgage transaction typically range from <strong>$800 to $1,500 or more</strong> depending on the complexity, the notary, and whether you're in Montreal (higher cost of living) or a smaller community. This cost applies every time you switch lenders — even on a straightforward straight-switch at renewal.</p>
 
@@ -81,13 +89,13 @@ const schema = combineSchemas(
 
     <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
       <li><strong>Desjardins Group:</strong> The dominant Quebec financial institution — a cooperative group of credit unions (caisses populaires). Desjardins has significant market share in Quebec residential mortgages and is known for competitive rates and strong member relationships. Mortgage products are primarily available through Desjardins branches, though some broker arrangements exist.</li>
-      <li><strong>National Bank (Banque Nationale):</strong> Quebec's own major bank with strong provincial presence. Note that National Bank uses omnibus hypothecs in Quebec, which creates the same switching complexity as collateral charges in other provinces. Choosing between <a href="/fixed-vs-variable-mortgage-renewal" style="color: var(--secondary)">fixed and variable rates</a> is also a key part of your Quebec renewal strategy.</li>
-      <li><strong>Monoline lenders (broker channel):</strong> First National, MCAP, and other monoline lenders operate in Quebec through the broker channel and are comfortable with the notarial system. They're a strong option for <a href="/best-mortgage-renewal-rates" style="color: var(--secondary)">competitive rates</a>, but the notary fee for switching still applies.</li>
+      <li><strong>National Bank (Banque Nationale):</strong> Quebec's own major bank with strong provincial presence. Note that National Bank uses omnibus hypothecs in Quebec, which creates the same switching complexity as collateral charges in other provinces. Choosing between <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed and variable rates</a> is also a key part of your Quebec renewal strategy.</li>
+      <li><strong>Monoline lenders (broker channel):</strong> First National, MCAP, and other monoline lenders operate in Quebec through the broker channel and are comfortable with the notarial system. They're a strong option for <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">competitive rates</a>, but the notary fee for switching still applies.</li>
     </ul>
 
     <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Quebec Renewal Strategy: When to Switch vs. Stay</h2>
 
-    <p class="mb-4 leading-relaxed">Given the mandatory notary fees for all lender switches in Quebec, the break-even analysis for switching is different than in other provinces — and understanding the <a href="/renewal-vs-refinancing" style="color: var(--secondary)">difference between renewal and refinancing</a> matters even more here. Here's a simple framework:</p>
+    <p class="mb-4 leading-relaxed">Given the mandatory notary fees for all lender switches in Quebec, the break-even analysis for switching is different than in other provinces — and understanding the <a href="/renewal-vs-refinancing/" style="color: var(--secondary)">difference between renewal and refinancing</a> matters even more here. Here's a simple framework:</p>
 
     <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
       <p class="font-bold mb-2">Quebec Switch Break-Even Analysis</p>
@@ -102,27 +110,27 @@ const schema = combineSchemas(
     <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
       <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Notary costs, no stress test on straight switches, 8-step process.</p>
         </a>
-        <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using an AMF-Licensed Broker</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Find an AMF-licensed broker with Quebec mortgage expertise.</p>
         </a>
-        <a href="/mortgage-lender-types-canada" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types in Canada</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Desjardins, National Bank, monolines — Quebec lender comparison.</p>
         </a>
-        <a href="/what-is-a-mortgage-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
           <p class="text-xs" style="color: var(--muted-foreground)">The complete guide to how Canadian mortgage renewals work.</p>
         </a>
-        <a href="/mortgage-renewal-checklist" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
           <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step action plan including booking your Quebec notary.</p>
         </a>
-        <a href="/mortgage-renewal-faq" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
           <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
           <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered including Quebec-relevant topics.</p>
         </a>
@@ -131,18 +139,14 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">Get a Free Broker Consultation</a>
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">Get a Free Broker Consultation</a>
   </div>
 
   <section class="py-12" style="background: var(--accent)">
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

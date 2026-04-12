@@ -1,0 +1,168 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-renewal-checklist-pdf",
+    name: "Free Mortgage Renewal Checklist PDF — 2026 Edition",
+    description: "Download a free, printable Canadian mortgage renewal checklist PDF. Covers the 120-day timeline, document list, and negotiation script.",
+  }),
+  articleSchema({
+    headline: "Free Mortgage Renewal Checklist PDF (2026)",
+    description: "A printable, one-page Canadian mortgage renewal checklist covering the 120-day timeline, documents to collect, and questions to ask your broker. Free download.",
+    slug: "mortgage-renewal-checklist-pdf",
+    about: "Mortgage Renewal Checklist PDF",
+  }),
+  breadcrumbSchema([
+    { name: "Renewal Checklist PDF", url: "/mortgage-renewal-checklist-pdf" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Free Mortgage Renewal Checklist PDF 2026"
+  description="Download a free printable Canadian mortgage renewal checklist PDF. Covers the 120-day timeline, documents, negotiation script, and broker questions."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Renewal Checklist PDF
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Download</div>
+        <h1 class="text-heading-1 mb-4">The 2026 Canadian Mortgage Renewal Checklist</h1>
+        <p class="text-body-lg text-muted-foreground mb-6">
+          A printable one-page PDF covering every step of a Canadian mortgage renewal — from 120 days out through funding day. Stick it on your fridge, check it off as you go.
+        </p>
+
+        <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 mb-6">
+          <h2 class="font-semibold mb-3">What's in the PDF</h2>
+          <ul class="space-y-2 text-body-sm">
+            <li class="flex gap-2"><span class="text-secondary-100">✓</span><span>The 120-day renewal timeline with checkpoints</span></li>
+            <li class="flex gap-2"><span class="text-secondary-100">✓</span><span>Document collection checklist (income, property, ID)</span></li>
+            <li class="flex gap-2"><span class="text-secondary-100">✓</span><span>Questions to ask your current lender's retention team</span></li>
+            <li class="flex gap-2"><span class="text-secondary-100">✓</span><span>Questions to ask a mortgage broker</span></li>
+            <li class="flex gap-2"><span class="text-secondary-100">✓</span><span>How to verify a straight-switch vs. refinance situation</span></li>
+            <li class="flex gap-2"><span class="text-secondary-100">✓</span><span>Negotiation script for getting a rate match</span></li>
+            <li class="flex gap-2"><span class="text-secondary-100">✓</span><span>Red flags that mean you should not sign yet</span></li>
+          </ul>
+        </div>
+
+        <a
+          href="/downloads/renewal-checklist-2026.pdf"
+          download
+          class="inline-flex items-center justify-center w-full sm:w-auto rounded-lg bg-primary-100 text-white px-8 py-4 text-lg font-semibold hover:opacity-90 transition-opacity"
+        >
+          Download the Free PDF
+          <span class="ml-2">↓</span>
+        </a>
+        <p class="text-body-xs text-muted-foreground mt-3">
+          Format: PDF · 2 pages · 340 KB · No signup required for the download.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
+        <div class="text-body-xs-medium text-secondary-100 uppercase tracking-wide mb-2">Want an Email Copy?</div>
+        <h2 class="text-heading-4 font-bold mb-3">Get the PDF + a weekly rate update</h2>
+        <p class="text-body-sm text-muted-foreground mb-5">
+          We'll email you the checklist plus a short weekly rate update — prime rate moves, BoC decisions, and anything material for Canadian renewers. Unsubscribe anytime.
+        </p>
+
+        <form action="/api/subscribe" method="post" class="space-y-4">
+          <div>
+            <label for="pdf-name" class="block text-body-sm-medium mb-1.5">First name</label>
+            <input
+              type="text"
+              id="pdf-name"
+              name="first_name"
+              required
+              placeholder="Alex"
+              class="w-full rounded-lg border border-gray-200 bg-background px-3 py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
+            />
+          </div>
+          <div>
+            <label for="pdf-email" class="block text-body-sm-medium mb-1.5">Email</label>
+            <input
+              type="email"
+              id="pdf-email"
+              name="email"
+              required
+              placeholder="you@example.com"
+              class="w-full rounded-lg border border-gray-200 bg-background px-3 py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
+            />
+          </div>
+          <div>
+            <label for="pdf-renewal" class="block text-body-sm-medium mb-1.5">Approx. renewal date (optional)</label>
+            <input
+              type="month"
+              id="pdf-renewal"
+              name="renewal_month"
+              class="w-full rounded-lg border border-gray-200 bg-background px-3 py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
+            />
+          </div>
+
+          <label class="flex items-start gap-2 text-body-sm text-muted-foreground">
+            <input type="checkbox" name="consent" required class="mt-1 flex-shrink-0" />
+            <span>I agree to receive the checklist and renewal-rate emails. I can unsubscribe anytime.</span>
+          </label>
+
+          <button type="submit" class="w-full rounded-lg bg-secondary-100 text-white font-semibold py-3 hover:opacity-90 transition-opacity">
+            Email Me the Checklist
+          </button>
+
+          <p class="text-body-xs text-muted-foreground text-center">
+            No spam. No sharing your email. Direct-download link above works without signup.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <div class="mt-12 space-y-6">
+      <div>
+        <h2 class="text-heading-3 mb-3">Why Use a Checklist?</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Most Canadians renew on autopilot — they get a letter from their bank 30 days before maturity, sign the posted rate, and move on. This checklist exists because that's almost always the wrong move. The borrowers who save the most at renewal are the ones who start 120 days out, gather documents early, and treat the renewal as a competitive negotiation rather than a formality.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          The checklist is one page for a reason: so you can actually print it and keep it somewhere visible. Every step is actionable. No vague "consider your options" filler.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Resources</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Full Mortgage Renewal Checklist (web version)", href: "/mortgage-renewal-checklist/" },
+            { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide/" },
+            { title: "Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+            { title: "Mortgage Renewal FAQ", href: "/mortgage-renewal-faq/" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+            { title: "10 Biggest Renewal Mistakes", href: "/mortgage-renewal-mistakes/" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Rather Have a Broker Walk You Through It?</h2>
+      <p class="text-white/80 mb-6">A 20-minute call with a licensed mortgage broker covers everything in the checklist — personalized to your file.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book a Free Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

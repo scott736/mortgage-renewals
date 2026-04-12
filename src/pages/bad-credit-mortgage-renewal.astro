@@ -1,9 +1,14 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 export const prerender = true;
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "bad-credit-mortgage-renewal",
+    name: "Bad Credit Mortgage Renewal in Canada",
+    description: "Options for renewing a Canadian mortgage with bad credit — B-lenders, private lenders, and broker-assisted strategies.",
+  }),
   articleSchema({
     headline: "Bad Credit Mortgage Renewal in Canada — Options When Your Score is Low",
     description: "Renewing your mortgage with bad credit in Canada? Learn your options by credit score range, B-lenders vs private lenders, strategies to improve before renewal, and how a broker helps.",
@@ -12,13 +17,12 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Bad Credit Mortgage Renewal", url: "/bad-credit-mortgage-renewal" }
   ]),
-  speakableSchema("bad-credit-mortgage-renewal"),
 );
 ---
 
 <DefaultLayout
-  title="Bad Credit Mortgage Renewal in Canada — Options When Your Score is Low — MortgageRenewalHub.ca"
-  description="Renewing your mortgage with bad credit in Canada? Learn your options by credit score range, B-lenders vs private lenders, strategies to improve before renewal, and how a broker helps."
+  title="Bad Credit Mortgage Renewal Canada — Low-Score Options"
+  description="Renewing with bad credit in Canada? Options by credit score range, B-lenders vs private lenders, and how a broker helps you get approved at renewal."
   schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -119,7 +123,7 @@ const schema = combineSchemas(
         </ul>
 
         <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">620–659 — B-Lenders (Alternative Lenders)</h3>
-        <p class="mb-4 leading-relaxed">Below 660, your primary options shift to <a href="/mortgage-lender-types-canada" style="color: var(--secondary)">B-lenders</a> — also called "alternative lenders" or "near-prime lenders." These are regulated financial institutions that specialize in serving borrowers with credit challenges, non-traditional income, or situations that don't fit A-lender criteria. In Canada, prominent B-lenders include Home Trust, Equitable Bank, Haventree Bank, and Bridgewater Bank.</p>
+        <p class="mb-4 leading-relaxed">Below 660, your primary options shift to <a href="/mortgage-lender-types-canada/" style="color: var(--secondary)">B-lenders</a> — also called "alternative lenders" or "near-prime lenders." These are regulated financial institutions that specialize in serving borrowers with credit challenges, non-traditional income, or situations that don't fit A-lender criteria. In Canada, prominent B-lenders include Home Trust, Equitable Bank, Haventree Bank, and Bridgewater Bank.</p>
         <p class="mb-4 leading-relaxed">What to expect with a B-lender at renewal:</p>
         <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
           <li><strong>Higher rate:</strong> Expect 0.50–2.00% above what A-lenders charge for comparable terms</li>
@@ -127,7 +131,7 @@ const schema = combineSchemas(
           <li><strong>Shorter terms:</strong> B-lenders often prefer 1- or 2-year terms, giving them frequent opportunities to reassess your creditworthiness</li>
           <li><strong>Exit strategy expected:</strong> B-lenders are a stepping stone — they'll want to see your plan to return to A-lender status at your next renewal</li>
         </ul>
-        <p class="mb-6 leading-relaxed">A <a href="/mortgage-broker-renewal" style="color: var(--secondary)">mortgage broker</a> is especially valuable in the B-lender space — brokers know which B-lenders have the most competitive rates for which credit profiles, and they shop multiple B-lenders simultaneously on your behalf.</p>
+        <p class="mb-6 leading-relaxed">A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> is especially valuable in the B-lender space — brokers know which B-lenders have the most competitive rates for which credit profiles, and they shop multiple B-lenders simultaneously on your behalf.</p>
 
         <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">580–619 — Private Lenders May Be Required</h3>
         <p class="mb-4 leading-relaxed">Below 620, some B-lenders become inaccessible or apply very restrictive conditions. You may be looking at private lending as your primary or backup option. Private lenders are individuals or syndicates (not regulated financial institutions) who lend their own capital. Their underwriting focuses heavily on the property itself — its value, your equity, and the lender's ability to recover the loan if you default — rather than on your credit score in the traditional sense.</p>
@@ -139,7 +143,7 @@ const schema = combineSchemas(
           <li><strong>Equity requirement:</strong> Most private lenders require 25–35% equity (maximum 65–75% LTV)</li>
           <li><strong>Legal costs:</strong> You pay your own legal costs and the lender's legal costs (typically $1,500–$2,500)</li>
         </ul>
-        <p class="mb-6 leading-relaxed">The goal with a private mortgage is never to stay there permanently — it's to hold your position while actively rebuilding credit, then <a href="/lower-mortgage-payments-at-renewal" style="color: var(--secondary)">refinance or renew with a B-lender or A-lender</a> at your next opportunity.</p>
+        <p class="mb-6 leading-relaxed">The goal with a private mortgage is never to stay there permanently — it's to hold your position while actively rebuilding credit, then <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">refinance or renew with a B-lender or A-lender</a> at your next opportunity.</p>
 
         <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">Below 580 — Private Lending and a Rebuilding Strategy</h3>
         <p class="mb-4 leading-relaxed">Below 580, you are firmly in private lender territory. Your home's equity is your most important asset — it's what gives lenders confidence to lend despite the credit challenges. If you have substantial equity (40%+ of your property's value), you have more leverage with private lenders and may access lower private rates.</p>
@@ -175,7 +179,7 @@ const schema = combineSchemas(
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">5 Strategies to Improve Your Credit Before Renewal</h2>
 
-        <p class="mb-4 leading-relaxed">If you have time before your renewal date — even 6–12 months — targeted action can meaningfully improve your credit score and your options. Use our <a href="/mortgage-renewal-checklist" style="color: var(--secondary)">renewal checklist</a> to build a timeline. Here are the five highest-impact steps:</p>
+        <p class="mb-4 leading-relaxed">If you have time before your renewal date — even 6–12 months — targeted action can meaningfully improve your credit score and your options. Use our <a href="/mortgage-renewal-checklist/" style="color: var(--secondary)">renewal checklist</a> to build a timeline. Here are the five highest-impact steps:</p>
 
         <ol class="space-y-5 mb-6">
           <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
@@ -301,27 +305,27 @@ const schema = combineSchemas(
         <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
           <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/mortgage-broker-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker at Renewal</p>
               <p class="text-xs" style="color: var(--muted-foreground)">How brokers access B-lenders and private options unavailable directly.</p>
             </a>
-            <a href="/switching-lenders-at-renewal" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Stress test exemption for straight switches since 2024.</p>
             </a>
-            <a href="/mortgage-renewal-glossary" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-renewal-glossary/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Glossary</p>
               <p class="text-xs" style="color: var(--muted-foreground)">B-lender, private lender, LTV, IRD — all defined in plain English.</p>
             </a>
-            <a href="/mortgage-renewal-calculator" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Calculator</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Model your new payment at different rates, including B-lender ranges.</p>
             </a>
-            <a href="/mortgage-renewal-mistakes" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Avoid the most costly errors — especially with credit challenges.</p>
             </a>
-            <a href="/mortgage-rate-forecast" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+            <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
               <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2026 Mortgage Rate Forecast</p>
               <p class="text-xs" style="color: var(--muted-foreground)">Where rates are and what to expect — relevant for your exit strategy.</p>
             </a>
@@ -350,14 +354,14 @@ const schema = combineSchemas(
           <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
             <h3 class="font-bold mb-3">We Find Options Others Won't</h3>
             <p class="text-sm mb-4 opacity-90">A broker who works with B-lenders and private solutions can find the path forward — no matter your score.</p>
-            <a href="/book-a-call" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
               Book a Free Call
             </a>
           </div>
           <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
             <h3 class="font-bold mb-2 text-sm" style="color: var(--primary)">Calculate Your Scenario</h3>
             <p class="text-xs mb-3" style="color: var(--muted-foreground)">See your new payment at B-lender and alternative rates.</p>
-            <a href="/mortgage-renewal-calculator" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--accent); color: var(--primary); border: 1px solid var(--border)">
+            <a href="/mortgage-renewal-calculator/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--accent); color: var(--primary); border: 1px solid var(--border)">
               Open Calculator
             </a>
           </div>
@@ -367,7 +371,7 @@ const schema = combineSchemas(
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
       Get a Free Broker Consultation
     </a>
   </div>
@@ -376,13 +380,9 @@ const schema = combineSchemas(
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Your credit situation has more options than you think.</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker who specializes in credit-challenged renewals can find options your bank will never show you — always free to use.</p>
-      <a href="/book-a-call" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
         Book Your Free Renewal Strategy Call
       </a>
     </div>
   </section>
-
-  <p class="container py-6 text-xs text-center" style="color: var(--muted-foreground)">
-    This content is for educational purposes only and does not constitute financial, credit, or mortgage advice. Credit products, lender criteria, and availability vary. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

@@ -4,12 +4,19 @@ import Banner from "@/components/sections/banner";
 import Footer from "@/components/sections/footer";
 import Navbar from "@/components/sections/navbar";
 
-const { title, description, schema, preloadImage } = Astro.props;
+const { title, description, schema, preloadImage, noindex, ogType } = Astro.props;
+
+// Auto-detect article type from schema if not explicitly set: any page that
+// includes an Article node in its schema array should advertise itself as
+// og:type="article" for richer Facebook/LinkedIn/social-card enrichment.
+const detectedOgType =
+  ogType ||
+  (schema && /"@type"\s*:\s*"Article"/.test(schema) ? "article" : "website");
 ---
 
 <html lang="en-CA" class="dark">
   <head>
-    <BaseHead title={title} description={description} schema={schema} preloadImage={preloadImage} />
+    <BaseHead title={title} description={description} schema={schema} preloadImage={preloadImage} noindex={noindex} ogType={detectedOgType} />
     <script is:inline>
       (() => {
         try {

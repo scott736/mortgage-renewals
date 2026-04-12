@@ -2,9 +2,23 @@
 import ZippayCtaCard from "@/components/sections/zippay-cta-card";
 import TermsContent from "@/content/terms.mdx";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { webPageNode, breadcrumbSchema, combineSchemas } from "@/lib/schema";
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "terms",
+    name: "Terms of Service — MortgageRenewalHub.ca",
+    description: "Terms and conditions governing use of MortgageRenewalHub.ca.",
+  }),
+  breadcrumbSchema([{ name: "Terms of Service", url: "/terms" }]),
+);
 ---
 
-<DefaultLayout title="Cookie Policy" description="How we use cookies.">
+<DefaultLayout
+  title="Terms of Service — MortgageRenewalHub.ca"
+  description="The terms and conditions that govern your use of MortgageRenewalHub.ca, including disclaimers about mortgage information, calculators, and broker referrals."
+  schema={schema}
+>
   <section class="bg-primary-300 px-6 py-16 text-white lg:py-24">
     <div class="container">
       <div class="mx-auto max-w-3xl text-center">

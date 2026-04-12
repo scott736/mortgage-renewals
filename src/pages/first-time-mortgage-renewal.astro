@@ -1,0 +1,239 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What should I expect at my first mortgage renewal in Canada?",
+    answer: "Your first renewal is the moment your original 5-year mortgage term ends and you must sign a new contract — typically for another 1 to 10 years. Your current lender will mail a renewal letter 21 days to 6 months before your maturity date with a rate offer. That initial offer is almost never your best rate. Most first-time renewers save $3,000-$10,000 over the next term by shopping with a mortgage broker instead of signing the first offer."
+  },
+  {
+    question: "Why is my renewal payment so much higher than my original mortgage?",
+    answer: "Most first-time renewers in 2025-2026 originally bought in 2020-2021 at 1.5-2.5% rates. Renewal rates are now 4.0-4.5%+. On a $500,000 mortgage with 25 years remaining, that's roughly a 20-30% jump in monthly payment. This is the 'payment shock' the OSFI and Bank of Canada have been warning about. Understanding this at the start of your renewal process helps you plan proactively."
+  },
+  {
+    question: "Should I switch lenders at my first renewal?",
+    answer: "Often, yes — if a different lender offers a meaningfully better rate and your broker confirms the total cost (including any switching fees) still comes out ahead. As of November 21, 2024, uninsured straight switches (same balance, same amortization, no new funds) are exempt from the stress test, which makes switching much easier than it was. Insured straight switches were already exempt."
+  },
+  {
+    question: "Do I need a mortgage broker for my first renewal?",
+    answer: "A broker is free to you (paid by the lender upon funding) and typically presents quotes from multiple lenders in one consultation. For first-time renewers who have never shopped a mortgage before, a broker is the single fastest way to see market pricing across banks, monolines, and credit unions. You are not obligated to take a broker-arranged offer — you can still renew with your existing lender if that's best."
+  },
+  {
+    question: "How far in advance should I start my first renewal?",
+    answer: "Start 4-6 months before your maturity date. Most lenders will hold a renewal rate for up to 120 days, so locking in early sets a rate floor and gives you time to continue shopping. If rates drop during that window, many brokers can re-price you to the lower rate before funding. Starting later than 60 days out limits your options."
+  },
+  {
+    question: "What's the biggest mistake first-time renewers make?",
+    answer: "Signing the first renewal letter without shopping. The renewal rate on that first letter is almost always 20-50 basis points above what's available in the market. On a $500,000 mortgage, that's $1,200-$3,000 per year — $6,000-$15,000 over a 5-year term. The renewal letter is a starting offer, not a final offer. Always verify it against at least two other quotes (a broker can provide those in one call)."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "first-time-mortgage-renewal",
+    name: "First-Time Mortgage Renewal in Canada — What to Expect",
+    description: "A complete guide for Canadians facing their first mortgage renewal in 2026: payment shock, shopping for rates, straight switch rules, and avoiding the top mistakes.",
+  }),
+  articleSchema({
+    headline: "First-Time Mortgage Renewal in Canada — What to Expect",
+    description: "First-time mortgage renewal guide for Canadians: understanding payment shock from 2020-2021 rates, shopping for the best rate, straight switch exemption, and avoiding costly mistakes.",
+    slug: "first-time-mortgage-renewal",
+    articleSection: "Persona Guides",
+    about: "First-Time Mortgage Renewal",
+    keywords: ["first time mortgage renewal", "first renewal Canada", "2020 mortgage renewal", "payment shock", "renewal letter mistakes"],
+  }),
+  breadcrumbSchema([
+    { name: "First-Time Mortgage Renewal", url: "/first-time-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "first-time-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="First-Time Mortgage Renewal Canada — 2026 Guide"
+  description="First-time mortgage renewal guide: payment shock from 2020-2021 rates, shopping for best renewal rate, straight switch exemption, avoiding top mistakes."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › First-Time Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 9-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">First-Time Mortgage Renewal in Canada — What to Expect</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">If you bought a home in 2020 or 2021, your first mortgage renewal is arriving now. Rates have moved from 1.5-2.5% to 4.0-4.5%+, which means payment shock is real. Here's exactly what to expect, how to shop the market, and the mistakes to avoid — so your first renewal protects your savings instead of costing you.</p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+          Get a Free Strategy Call
+        </a>
+        <a href="#process" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="border: 2px solid rgba(255,255,255,0.4); color: white">
+          See the Process
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• First-time renewer is distinct from first-time buyer — you already own the home, you just need to sign a new mortgage contract for the next term.</li>
+            <li>• Most 2020-2021 buyers face 20-30% payment increases at renewal (OSFI data) — payment shock is the defining feature of this renewal wave.</li>
+            <li>• Your current lender's renewal letter is a starting offer, not the final rate. Most borrowers save $3,000-$10,000 per term by shopping.</li>
+            <li>• As of November 21, 2024, uninsured straight switches are exempt from the stress test. Switching lenders is easier than it was pre-2024.</li>
+            <li>• Start your renewal process 4-6 months before maturity. Most lenders will hold a rate for up to 120 days.</li>
+            <li>• A mortgage broker is free to you and presents quotes from multiple lenders in one consultation.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The 2020-2021 Buyer Cohort, Renewing Now</h2>
+
+        <p class="mb-4 leading-relaxed">Between March 2020 and late 2021, Canadian 5-year fixed mortgage rates fell to historic lows — many borrowers locked in 5-year fixed at 1.99%, 1.79%, or even below 1.5%. It was, in retrospect, an extraordinary moment: pandemic-era Bank of Canada policy drove prime to 2.45% and stayed there for roughly 18 months.</p>
+
+        <p class="mb-4 leading-relaxed">That cohort is now your cohort. If you bought between March 2020 and late 2021, your 5-year fixed mortgage matures between March 2025 and late 2026. Millions of Canadians are in this position simultaneously — the "2026 renewal wave" the Bank of Canada and OSFI have discussed publicly.</p>
+
+        <p class="mb-6 leading-relaxed">The defining feature of this renewal cycle is rate reset. Your original rate of ~2% is now renewing at ~4.25%. On a $500,000 mortgage with 25 years remaining, that shift takes your monthly payment from roughly $2,120 at 2% to $2,700 at 4.25% — a 27% increase. OSFI has published data showing 20-30% payment increases are the norm for this cohort. If your mortgage is closer to $700K (common in the GTA and Lower Mainland), the dollar impact scales up linearly.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)" id="process">The First-Time Renewal Process: Step by Step</h2>
+
+        <ol class="space-y-4 mb-8">
+          <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">1. Find your maturity date (if you don't already know it)</h3>
+            <p class="text-sm leading-relaxed">Check your original mortgage documents, your most recent lender statement, or log in to your online banking. Your maturity date is the day your current 5-year term ends — typically 5 years after your closing date. Work backward 4-6 months from there to set your renewal shopping start date.</p>
+          </li>
+          <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">2. Wait for your renewal letter — but don't rely on it</h3>
+            <p class="text-sm leading-relaxed">FCAC rules require your lender to send a renewal notice at least 21 days before maturity; most lenders send it 3-6 months ahead. The rate quoted on that letter is a starting offer. It is almost never the best rate available. Read it carefully for facts (balance, maturity date, product options) but do not sign.</p>
+          </li>
+          <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">3. Call a licensed mortgage broker</h3>
+            <p class="text-sm leading-relaxed">A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> is free to you and accesses 30+ lenders. In one 30-minute call, they can present quotes from banks, monolines, and credit unions. This is typically the single highest-value action you take during your first renewal.</p>
+          </li>
+          <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">4. Compare rate and cost, not just rate</h3>
+            <p class="text-sm leading-relaxed">Prepayment privileges, portability, penalty calculation methodology, and discharge fees all materially affect the true 5-year cost. A 0.10% lower rate with a harsh IRD penalty calculation can easily cost more than a 0.10% higher rate with a fair IRD. Your broker will walk through these trade-offs.</p>
+          </li>
+          <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">5. Negotiate or switch</h3>
+            <p class="text-sm leading-relaxed">Armed with broker quotes, go back to your existing lender and ask them to match. Some will; some won't. If they won't, your broker can process a straight switch (same balance, same amortization, no new money) that is exempt from the stress test. The switching fee is typically $700-$1,500 and is often covered by a new-lender cash-back incentive.</p>
+          </li>
+          <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <h3 class="font-bold mb-2" style="color: var(--secondary)">6. Sign the new mortgage before maturity</h3>
+            <p class="text-sm leading-relaxed">Your broker will coordinate documentation, any legal work (for a switch), and funding before your maturity date. If you miss the maturity date, your existing lender may auto-renew you at an uncompetitive open-mortgage rate — a costly default. Plan backward from maturity so funding completes 1-2 weeks early.</p>
+          </li>
+        </ol>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Payment Shock: Running the Numbers</h2>
+
+        <p class="mb-4 leading-relaxed">Seeing your new payment in dollar terms helps you plan. Three representative scenarios for 2020-2021 buyers renewing in 2026:</p>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Scenario</th>
+                <th class="p-3 text-left">Original Rate (2021)</th>
+                <th class="p-3 text-left">Renewal Rate (2026)</th>
+                <th class="p-3 text-left">Original Payment</th>
+                <th class="p-3 text-left">New Payment</th>
+                <th class="p-3 text-left">Increase</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3">$400K, 25-yr amort</td>
+                <td class="p-3">1.99%</td>
+                <td class="p-3">4.29%</td>
+                <td class="p-3">~$1,691</td>
+                <td class="p-3">~$2,160</td>
+                <td class="p-3 font-semibold">+28%</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3">$500K, 25-yr amort</td>
+                <td class="p-3">1.99%</td>
+                <td class="p-3">4.29%</td>
+                <td class="p-3">~$2,114</td>
+                <td class="p-3">~$2,700</td>
+                <td class="p-3 font-semibold">+28%</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3">$700K, 25-yr amort</td>
+                <td class="p-3">1.99%</td>
+                <td class="p-3">4.29%</td>
+                <td class="p-3">~$2,960</td>
+                <td class="p-3">~$3,780</td>
+                <td class="p-3 font-semibold">+28%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mb-6 leading-relaxed">Use our <a href="/mortgage-renewal-calculator/" style="color: var(--secondary)">mortgage renewal calculator</a> to plug in your specific balance, remaining amortization, and current rate quotes to see your actual new payment.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Top First-Time Renewal Mistakes</h2>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-1" style="color: var(--secondary)">1. Signing the first renewal letter without shopping</p>
+            <p class="text-sm leading-relaxed">This is the single most expensive mistake. The renewal letter typically prices 20-50 bps above market. On $500K, that's $1,200-$3,000/year foregone.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-1" style="color: var(--secondary)">2. Starting too late</p>
+            <p class="text-sm leading-relaxed">Starting 30 days out eliminates most of your options. Lenders need time to process documentation, legal work, and funding. Start 4-6 months early.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-1" style="color: var(--secondary)">3. Comparing rate only, ignoring total cost</p>
+            <p class="text-sm leading-relaxed">A 0.10% rate advantage with a harsh penalty calculation can easily cost more than a 0.10% higher rate with better terms. Compare <a href="/mortgage-renewal-mistakes/" style="color: var(--secondary)">all features</a>, not just rate.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-1" style="color: var(--secondary)">4. Letting the mortgage auto-renew at maturity</p>
+            <p class="text-sm leading-relaxed">If you do nothing at maturity, your lender will auto-renew — often at an uncompetitive open-mortgage rate or a worst-case posted rate. Always actively sign your renewal, even if you're staying with your existing lender.</p>
+          </div>
+          <div class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+            <p class="font-bold text-sm mb-1" style="color: var(--secondary)">5. Picking the longest term out of fear</p>
+            <p class="text-sm leading-relaxed">Many first-time renewers lock in a 5-year fixed purely because "it feels safe." In a falling-rate environment, a 3-year fixed or variable may substantially outperform. Review the <a href="/mortgage-renewal-term-lengths/" style="color: var(--secondary)">term length decision</a> with your broker rather than defaulting.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Related -->
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">The complete primer — start here if you're new to the process.</p>
+        </a>
+        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Month-by-month timeline — print and use alongside this guide.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">No stress test on straight switches since November 2024.</p>
+        </a>
+        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Top Renewal Mistakes</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Common errors first-time renewers make — and how to avoid them.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Your first renewal shouldn't cost you thousands.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call compares your options across 30+ lenders in one conversation. No obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

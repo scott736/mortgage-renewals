@@ -12,61 +12,119 @@ interface Props {
   image?: string;
   schema?: string;
   preloadImage?: string;
+  noindex?: boolean;
+  /** OpenGraph object type. Defaults to "website"; pages with Article schema should set "article". */
+  ogType?: "website" | "article";
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+// Normalize canonical URL to always end with a single trailing slash so it
+// matches the sitemap output (Astro `trailingSlash: "always"`).
+const normalizedPath = Astro.url.pathname.endsWith("/")
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+const canonicalURL = new URL(normalizedPath, Astro.site);
 
-const { title, description, image, schema, preloadImage } = Astro.props;
+const { title, description, image, schema, preloadImage, noindex = false, ogType = "website" } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
 const finalImage = image || SITE_METADATA.openGraph.images[0].url;
 const imageURL = new URL(finalImage, Astro.url);
 
-const organizationSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "MortgageRenewalHub.ca",
-  "url": "https://mortgagerenewalhub.ca",
-  "logo": {
+const robotsContent = noindex
+  ? "noindex, nofollow"
+  : `${SITE_METADATA.robots.index ? "index" : "noindex"}, ${SITE_METADATA.robots.follow ? "follow" : "nofollow"}`;
+
+// Build a single connected @graph rather than disconnected nodes. This lets
+// schema parsers (Google, Perplexity, Claude) cross-reference the Organization
+// from Article publisher fields, and the WebSite from page-level WebPage nodes.
+const ORG_ID = "https://mortgagerenewalhub.ca/#organization";
+const SITE_ID = "https://mortgagerenewalhub.ca/#website";
+
+const organizationNode = {
+  "@type": ["Organization", "FinancialService"],
+  "@id": ORG_ID,
+  name: "MortgageRenewalHub.ca",
+  legalName: "LendCity Mortgages",
+  url: "https://mortgagerenewalhub.ca",
+  logo: {
     "@type": "ImageObject",
-    "url": "https://mortgagerenewalhub.ca/favicon/favicon-96x96.png",
-    "width": 96,
-    "height": 96
+    url: "https://mortgagerenewalhub.ca/favicon/favicon-96x96.png",
+    width: 96,
+    height: 96,
   },
-  "description": SITE_METADATA.description,
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "url": "https://mortgagerenewalhub.ca/contact"
+  image: "https://mortgagerenewalhub.ca/og-image.jpg",
+  description: SITE_METADATA.description,
+  foundingDate: "2024",
+  parentOrganization: {
+    "@type": "Organization",
+    name: "LendCity Mortgages",
+    url: "https://lendcity.ca",
+    telephone: "+1-519-960-0370",
   },
-  "areaServed": {
+  contactPoint: [
+    {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: "+1-519-960-0370",
+      url: "https://mortgagerenewalhub.ca/contact/",
+      availableLanguage: ["English", "French"],
+      areaServed: "CA",
+    },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "CA",
+  },
+  areaServed: {
     "@type": "Country",
-    "name": "Canada"
+    name: "Canada",
   },
-  "knowsAbout": [
+  knowsAbout: [
     "Mortgage Renewal",
     "Canadian Mortgage Rates",
     "Mortgage Refinancing",
     "Fixed vs Variable Mortgages",
-    "Mortgage Broker Services"
+    "Mortgage Broker Services",
+    "Canadian Mortgage Charter",
+    "Bank of Canada Policy Rate",
+    "Mortgage Stress Test",
   ],
-  "sameAs": []
-});
+  sameAs: ["https://lendcity.ca"],
+};
 
-const websiteSchema = JSON.stringify({
-  "@context": "https://schema.org",
+const websiteNode = {
   "@type": "WebSite",
-  "name": "MortgageRenewalHub.ca",
-  "url": "https://mortgagerenewalhub.ca",
-  "description": SITE_METADATA.description,
-  "potentialAction": {
+  "@id": SITE_ID,
+  name: "MortgageRenewalHub.ca",
+  url: "https://mortgagerenewalhub.ca",
+  description: SITE_METADATA.description,
+  publisher: { "@id": ORG_ID },
+  inLanguage: "en-CA",
+  potentialAction: {
     "@type": "SearchAction",
-    "target": {
+    target: {
       "@type": "EntryPoint",
-      "urlTemplate": "https://mortgagerenewalhub.ca/mortgage-renewal-calculator?q={search_term_string}"
+      urlTemplate:
+        "https://mortgagerenewalhub.ca/mortgage-renewal-calculator?q={search_term_string}",
     },
-    "query-input": "required name=search_term_string"
+    "query-input": "required name=search_term_string",
+  },
+};
+
+// If the page passed schema, parse it back out so we can merge into the @graph.
+let pageSchemaNodes: unknown[] = [];
+if (schema) {
+  try {
+    const parsed = JSON.parse(schema);
+    pageSchemaNodes = Array.isArray(parsed) ? parsed : [parsed];
+  } catch {
+    pageSchemaNodes = [];
   }
+}
+
+const graphSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [organizationNode, websiteNode, ...pageSchemaNodes],
 });
 ---
 
@@ -82,10 +140,8 @@ const websiteSchema = JSON.stringify({
 <Font cssVariable="--font-satoshi" preload />
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta
-  name="robots"
-  content={`${SITE_METADATA.robots.index ? "index" : "noindex"}, ${SITE_METADATA.robots.follow ? "follow" : "nofollow"}`}
-/>
+<meta name="robots" content={robotsContent} />
+<meta name="googlebot" content={robotsContent} />
 <meta name="keywords" content={SITE_METADATA.keywords.join(", ")} />
 <meta name="author" content={SITE_METADATA.authors[0].name} />
 <meta name="creator" content={SITE_METADATA.creator} />
@@ -130,8 +186,10 @@ const websiteSchema = JSON.stringify({
 />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Canonical URL -->
+<!-- Canonical URL (matches sitemap trailing-slash convention) -->
 <link rel="canonical" href={canonicalURL} />
+<link rel="alternate" hreflang="en-ca" href={canonicalURL} />
+<link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
 <title>{finalTitle}</title>
@@ -139,9 +197,9 @@ const websiteSchema = JSON.stringify({
 <meta name="description" content={finalDescription} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={ogType} />
 <meta property="og:locale" content="en_CA" />
-<meta property="og:url" content={Astro.url} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:site_name" content={SITE_METADATA.openGraph.siteName} />
 <meta property="og:title" content={finalTitle} />
 <meta property="og:description" content={finalDescription} />
@@ -158,17 +216,13 @@ const websiteSchema = JSON.stringify({
 
 <!-- Twitter -->
 <meta name="twitter:card" content={SITE_METADATA.twitter.card} />
-<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:url" content={canonicalURL} />
 <meta name="twitter:title" content={finalTitle} />
 <meta name="twitter:description" content={finalDescription} />
 <meta name="twitter:image" content={imageURL} />
-<meta name="twitter:creator" content={SITE_METADATA.twitter.creator} />
+{SITE_METADATA.twitter.creator && (
+  <meta name="twitter:creator" content={SITE_METADATA.twitter.creator} />
+)}
 
-<!-- Structured Data: Organization (always present) -->
-<script type="application/ld+json" set:html={organizationSchema} />
-
-<!-- Structured Data: WebSite (always present) -->
-<script type="application/ld+json" set:html={websiteSchema} />
-
-<!-- Structured Data: Page-specific schema (FAQPage, Article, BreadcrumbList, etc.) -->
-{schema && <script type="application/ld+json" set:html={schema} />}
+<!-- Structured Data: Single connected @graph (Organization + WebSite + page schemas) -->
+<script type="application/ld+json" set:html={graphSchema} />

@@ -9,16 +9,60 @@ import vercel from "@astrojs/vercel";
 // https://astro.build/config
 export default defineConfig({
   site: "https://mortgagerenewalhub.ca",
+  trailingSlash: "always",
   integrations: [
     mdx(),
     sitemap({
       filter: (page) => {
-        const redirects = [
+        const excluded = [
           '/investment-property-mortgage-renewal/',
           '/mortgage-renewal-divorce-separation/',
           '/faq/',
+          '/404/',
         ];
-        return !redirects.some((path) => page.endsWith(path));
+        if (excluded.some((path) => page.endsWith(path))) return false;
+        if (page.includes('/api/')) return false;
+        return true;
+      },
+      serialize(item) {
+        const url = new URL(item.url);
+        const path = url.pathname;
+
+        const tier1 = ['/'];
+        const tier2 = [
+          '/book-a-call/',
+          '/mortgage-renewal-calculator/',
+          '/mortgage-renewal-guide/',
+          '/best-mortgage-renewal-rates/',
+        ];
+        const tier3 = [
+          '/alberta-mortgage-renewal/',
+          '/bc-mortgage-renewal/',
+          '/ontario-mortgage-renewal/',
+          '/quebec-mortgage-renewal/',
+          '/saskatchewan-manitoba-mortgage-renewal/',
+          '/mortgage-rate-forecast/',
+          '/what-is-a-mortgage-renewal/',
+        ];
+        const legal = ['/privacy/', '/terms/', '/cookie-policy/'];
+        const weekly = [
+          '/',
+          '/mortgage-rate-forecast/',
+          '/best-mortgage-renewal-rates/',
+          '/mortgage-renewal-calculator/',
+        ];
+
+        if (tier1.includes(path)) item.priority = 1.0;
+        else if (tier2.includes(path)) item.priority = 0.9;
+        else if (tier3.includes(path)) item.priority = 0.8;
+        else if (legal.includes(path)) item.priority = 0.3;
+        else item.priority = 0.7;
+
+        if (legal.includes(path)) item.changefreq = 'yearly';
+        else if (weekly.includes(path)) item.changefreq = 'weekly';
+        else item.changefreq = 'monthly';
+
+        return item;
       },
     }),
     react(),

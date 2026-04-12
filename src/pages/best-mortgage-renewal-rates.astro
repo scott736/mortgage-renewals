@@ -1,8 +1,14 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, speakableSchema, combineSchemas } from '@/lib/schema';
+import LiveRatesTable from '@/components/sections/live-rates-table';
+import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
 
 const schema = combineSchemas(
+  webPageNode({
+    slug: "best-mortgage-renewal-rates",
+    name: "Best Mortgage Renewal Rates in Canada (2026)",
+    description: "Current Canadian mortgage renewal rates with side-by-side comparisons and how to get a better rate than your bank's first offer.",
+  }),
   articleSchema({
     headline: "Best Mortgage Renewal Rates in Canada (2026)",
     description: "Compare the best Canadian mortgage renewal rates for 2026. Learn how renewal rates work, why your bank's offer is never the best, and how to get a better rate.",
@@ -11,12 +17,11 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Best Mortgage Renewal Rates", url: "/best-mortgage-renewal-rates" }
   ]),
-  speakableSchema("best-mortgage-renewal-rates"),
 );
 ---
 
 <DefaultLayout
-  title="Best Mortgage Renewal Rates in Canada 2026 | MortgageRenewalHub.ca"
+  title="Best Mortgage Renewal Rates in Canada 2026"
   description="Compare the best Canadian mortgage renewal rates for 2026. Learn how renewal rates work, why your bank's offer is never the best, and how to get a better rate."
   schema={schema}
 >
@@ -24,11 +29,15 @@ const schema = combineSchemas(
     <a href="/" class="hover:underline">Home</a> › Best Mortgage Renewal Rates
   </nav>
 
+  <section class="container max-w-4xl pt-4 pb-6">
+    <LiveRatesTable client:load />
+  </section>
+
   <article class="container max-w-4xl py-10">
     <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Last Updated: April 2026</div>
     <h1 class="text-heading-1 mb-4">Best Mortgage Renewal Rates in Canada (2026)</h1>
     <p class="text-body-lg text-muted-foreground mb-8">
-      Your mortgage renewal is one of the most significant financial decisions you'll make. The rate you accept today will determine how much interest you pay over the next <a href="/mortgage-renewal-term-lengths" class="text-secondary-100 hover:underline">term</a> — often $5,000 to $30,000 worth of difference depending on your balance and how hard you shop. Use our <a href="/mortgage-renewal-calculator" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to see the impact on your specific numbers.
+      Your mortgage renewal is one of the most significant financial decisions you'll make. The rate you accept today will determine how much interest you pay over the next <a href="/mortgage-renewal-term-lengths/" class="text-secondary-100 hover:underline">term</a> — often $5,000 to $30,000 worth of difference depending on your balance and how hard you shop. Use our <a href="/mortgage-renewal-calculator/" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to see the impact on your specific numbers.
     </p>
 
     <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
@@ -79,17 +88,17 @@ const schema = combineSchemas(
           </tbody>
         </table>
       </div>
-      <p class="mt-3 text-body-xs text-muted-foreground">Rates shown are approximate best available through broker channel for insured mortgages in April 2026. Rates change daily. <a href="/book-a-call" class="underline text-secondary-100">Get your personalized rate quote.</a></p>
+      <p class="mt-3 text-body-xs text-muted-foreground">Rates shown are approximate best available through broker channel for insured mortgages in April 2026. Rates change daily. <a href="/book-a-call/" class="underline text-secondary-100">Get your personalized rate quote.</a></p>
     </div>
 
     <h2 class="text-heading-3 mb-4">How Renewal Rates Differ From Purchase Rates</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      At renewal, you may qualify for different rates than when you first bought. Key factors that have likely changed: your loan-to-value ratio (your home has likely appreciated), your overall debt load, and the regulatory environment. Importantly, the <a href="/switching-lenders-at-renewal" class="text-secondary-100 hover:underline">2024 regulatory change</a> means you no longer need a stress test to switch lenders on a straight renewal transfer.
+      At renewal, you may qualify for different rates than when you first bought. Key factors that have likely changed: your loan-to-value ratio (your home has likely appreciated), your overall debt load, and the regulatory environment. Importantly, the <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">2024 regulatory change</a> means you no longer need a stress test to switch lenders on a straight renewal transfer.
     </p>
 
     <h2 class="text-heading-3 mb-4">Why Your Bank's First Offer Is Rarely the Best Rate</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      Canada's Big 6 banks rely on inertia. They know that over 70% of Canadians will simply sign the renewal offer that arrives in the mail without shopping around — a costly <a href="/mortgage-renewal-mistakes" class="text-secondary-100 hover:underline">renewal mistake</a>. As a result, they often quote rates that are 0.25–0.75% higher than what you could get through a <a href="/mortgage-broker-renewal" class="text-secondary-100 hover:underline">mortgage broker</a>.
+      Canada's Big 6 banks rely on inertia. They know that over 70% of Canadians will simply sign the renewal offer that arrives in the mail without shopping around — a costly <a href="/mortgage-renewal-mistakes/" class="text-secondary-100 hover:underline">renewal mistake</a>. As a result, they often quote rates that are 0.25–0.75% higher than what you could get through a <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a>.
     </p>
     <p class="text-body-md text-muted-foreground mb-8">
       On a $600,000 mortgage, 0.5% in extra interest over 5 years costs approximately $15,000. The bank's strategy is profitable precisely because most Canadians never compare.
@@ -137,7 +146,7 @@ const schema = combineSchemas(
       With the Bank of Canada rate at 2.25% (prime at 4.45%), the gap between fixed and variable rates has narrowed significantly. Variable rates are currently close to or slightly below short-term fixed rates. The decision now depends heavily on your outlook for rates and your risk tolerance.
     </p>
     <p class="text-body-md text-muted-foreground mb-8">
-      See our full <a href="/fixed-vs-variable-mortgage-renewal" class="text-secondary-100 hover:underline">Fixed vs. Variable at Renewal guide</a> for a complete analysis.
+      See our full <a href="/fixed-vs-variable-mortgage-renewal/" class="text-secondary-100 hover:underline">Fixed vs. Variable at Renewal guide</a> for a complete analysis.
     </p>
 
     <h2 class="text-heading-3 mb-4">How to Get the Best Rate at Renewal</h2>
@@ -161,7 +170,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mb-4">Rate Forecast: 2026–2027</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      The Bank of Canada has held its overnight rate at 2.25% for three consecutive announcements (Jan, March, and the next decision is April 29, 2026). Most major bank economists (BMO, CIBC, RBC, TD, National Bank) expect the BoC rate to remain at 2.25% through end of 2026, with some upside rate risk if inflation re-accelerates due to Middle East energy prices. For a deeper analysis, see our full <a href="/mortgage-rate-forecast" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
+      The Bank of Canada has held its overnight rate at 2.25% for three consecutive announcements (Jan, March, and the next decision is April 29, 2026). Most major bank economists (BMO, CIBC, RBC, TD, National Bank) expect the BoC rate to remain at 2.25% through end of 2026, with some upside rate risk if inflation re-accelerates due to Middle East energy prices. For a deeper analysis, see our full <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
     </p>
     <p class="text-body-md text-muted-foreground mb-8">
       For fixed rates, the key driver is Canadian government bond yields. 5-year bond yields have been elevated due to inflation uncertainty and US tariff concerns. Fixed rates are unlikely to return to the sub-2% levels seen in 2020–2021.
@@ -180,12 +189,12 @@ const schema = combineSchemas(
       <h2 class="text-heading-4 mb-4">Related Guides</h2>
       <div class="grid sm:grid-cols-2 gap-3">
         {[
-          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator" },
-          { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal" },
-          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
-          { title: "How a Mortgage Broker Helps", href: "/mortgage-broker-renewal" },
-          { title: "Term Length Comparison", href: "/mortgage-renewal-term-lengths" },
-          { title: "Canada Rate Forecast", href: "/mortgage-rate-forecast" },
+          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+          { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
+          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+          { title: "How a Mortgage Broker Helps", href: "/mortgage-broker-renewal/" },
+          { title: "Term Length Comparison", href: "/mortgage-renewal-term-lengths/" },
+          { title: "Canada Rate Forecast", href: "/mortgage-rate-forecast/" },
         ].map(link => (
           <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
             <span class="text-secondary-100">→</span>
@@ -200,7 +209,7 @@ const schema = combineSchemas(
     <div class="container max-w-3xl text-center">
       <h2 class="text-heading-3 text-white mb-3">Get Your Personalized Rate Quote</h2>
       <p class="text-white/80 mb-6">Stop guessing. A broker will pull real quotes from 30+ lenders in minutes — free.</p>
-      <a href="/book-a-call">
+      <a href="/book-a-call/">
         <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
           Book Your Free Rate Comparison Call
         </button>
@@ -209,12 +218,8 @@ const schema = combineSchemas(
   </section>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
-    <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
+    <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
       Book Free Broker Consultation
     </a>
   </div>
-
-  <p class="container py-6 text-body-xs text-muted-foreground text-center">
-    Rates shown are approximate and change daily. This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

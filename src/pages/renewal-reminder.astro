@@ -1,0 +1,115 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import RenewalReminderForm from '@/components/interactive/renewal-reminder-form';
+import { serviceSchema, articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "renewal-reminder",
+    name: "Mortgage Renewal Timing Planner — 6 & 4 Months Out",
+    description: "Enter your mortgage renewal date to see your two key action windows — 6 months (start shopping) and 4 months (lock a rate hold). Free planning tool.",
+  }),
+  serviceSchema({
+    name: "Mortgage Renewal Timing Planner",
+    description: "Free interactive tool to plan your Canadian mortgage renewal timing. See your two key action windows (6 months and 4 months out) based on your maturity date.",
+    slug: "renewal-reminder",
+    serviceType: "Mortgage Renewal Planning",
+    price: "0",
+    priceCurrency: "CAD",
+  }),
+  articleSchema({
+    headline: "Mortgage Renewal Timing Planner — 6 & 4 Months Out",
+    description: "Interactive Canadian mortgage renewal planner. Enter your maturity date, see the 6-month shopping window and 4-month rate-hold window. Free, no signup.",
+    slug: "renewal-reminder",
+    about: "Mortgage Renewal Timing",
+  }),
+  breadcrumbSchema([
+    { name: "Renewal Reminder", url: "/renewal-reminder" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Timing Planner — 6 & 4 Months"
+  description="Enter your mortgage renewal date. See your two key action windows — 6 months (start shopping) and 4 months (lock a rate hold). Free planning tool."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Renewal Reminder
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Planning Tool</div>
+        <h1 class="text-heading-1 mb-4">Plan Your Renewal Timing</h1>
+        <p class="text-body-lg text-muted-foreground mb-6">
+          Enter your mortgage renewal date to see your two key action windows — <strong>6 months out</strong> (start shopping) and <strong>4 months out</strong> (lock a rate hold). Then book a free broker call to work the plan.
+        </p>
+
+        <div class="space-y-4 mb-6">
+          <div class="rounded-xl bg-secondary-25 border border-secondary-50 p-5">
+            <div class="flex items-start gap-3">
+              <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 bg-secondary-100 text-white">1</div>
+              <div>
+                <h3 class="font-semibold mb-1">6 months out — start shopping</h3>
+                <p class="text-body-sm text-muted-foreground">Pull your mortgage statement, confirm your charge type (standard vs. collateral), and line up a broker to start gathering competing offers.</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-xl bg-secondary-25 border border-secondary-50 p-5">
+            <div class="flex items-start gap-3">
+              <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 bg-secondary-100 text-white">2</div>
+              <div>
+                <h3 class="font-semibold mb-1">4 months out — lock a rate hold</h3>
+                <p class="text-body-sm text-muted-foreground">Most Canadian lenders hold a rate for up to 120 days. This is your window to secure today's best rate and use it as leverage against your current lender.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+          <p class="text-body-sm-medium mb-2">Why these two windows?</p>
+          <p class="text-body-sm text-muted-foreground">
+            4 months is the maximum rate hold Canadian lenders offer — lock before that and you're exposed to rate increases. 6 months gives you a runway to find the right broker, gather documents, and not feel rushed. Anything inside 3 months cuts your negotiation leverage.
+          </p>
+        </div>
+      </div>
+
+      <RenewalReminderForm client:load />
+    </div>
+
+    <div class="mt-12 space-y-6">
+      <div>
+        <h2 class="text-heading-3 mb-3">Why Not an Email Subscription?</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          A static reminder email 6 months from now doesn't beat what a broker can do today. When you book a free strategy call, a licensed broker builds a timeline based on your actual renewal date, locks a rate hold at the right moment (up to 120 days before maturity), and shops 30+ lenders on your behalf — not just the Big 6.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Too early to book? Bookmark this page and come back when you're inside 6 months of your renewal date. Add our <a href="/current-mortgage-rates-canada/" class="text-secondary-100 hover:underline">current rates page</a> to your bookmarks too — updated weekly.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Related Tools</h2>
+        <div class="grid sm:grid-cols-2 gap-3">
+          {[
+            { title: "Mortgage Renewal Checklist", href: "/mortgage-renewal-checklist/" },
+            { title: "Rate Alerts (target-rate)", href: "/rate-alert/" },
+            { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
+            { title: "Current Mortgage Rates", href: "/current-mortgage-rates-canada/" },
+            { title: "Should I Switch Quiz", href: "/should-i-switch-quiz/" },
+            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
+          ].map(link => (
+            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
+              <span class="text-secondary-100">→</span>
+              {link.title}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>

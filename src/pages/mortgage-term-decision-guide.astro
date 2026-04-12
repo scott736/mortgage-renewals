@@ -1,0 +1,377 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "In April 2026, what term length is most popular at renewal?",
+    answer: "2-year and 3-year fixed terms are currently among the most popular choices at renewal. Borrowers are hesitant to lock into a full 5-year term because the Bank of Canada has cut its policy rate to 2.25% as of April 2026 — the lowest since 2022 — and rate forecasts suggest further cuts may come over the next 12–24 months. Locking in 5 years at 4.19–4.29% feels premature if variable rates continue falling. The 2-3 year fixed window lets borrowers capture today's relatively low rates without committing to the full cycle."
+  },
+  {
+    question: "Has variable-rate really beaten fixed-rate 70% of the time?",
+    answer: "Historical studies conducted over the past 30+ years in Canada have consistently shown that borrowers who chose 5-year variable rates outperformed 5-year fixed rates roughly 70% of the time on a total-interest-paid basis. This is a long-term average across many rate environments. The result reflects a term premium — lenders charge extra to take the rate risk on a fixed product — which on average has favoured the variable borrower. However, past performance is not a guarantee: the last decade has seen periods where fixed clearly outperformed variable, particularly when BoC tightened aggressively in 2022–2023."
+  },
+  {
+    question: "Should I choose a 5-year fixed or a 5-year variable in April 2026?",
+    answer: "With 5-year fixed at 4.19–4.29% and 5-year variable at 3.30–3.35%, variable is nearly a full percentage point cheaper today. If the Bank of Canada holds or cuts further, variable wins clearly. If BoC reverses and hikes, fixed protects you. Three factors to weigh: (1) your tolerance for monthly payment fluctuation, (2) your time horizon — if you'll move or sell in under 5 years, a shorter fixed term or a variable with portability is better, and (3) whether you can withstand a rate increase of 1–2% without stress. Most Canadian brokers in 2026 are advising borrowers with high tolerance to take variable, and risk-averse borrowers to take 2–3 year fixed."
+  },
+  {
+    question: "Do life changes affect which term I should choose?",
+    answer: "Strongly. If you expect a major life change within your term window — job transition, home sale, separation, retirement, or relocation — a shorter term minimizes the risk of breaking the mortgage mid-term and paying a prepayment penalty. Even with a fair IRD from a monoline lender, breaking a 5-year fixed mortgage two years in can cost $5,000–$15,000. A 2-year or 3-year term would allow a clean natural expiry. Borrowers with stable plans can afford to take longer terms; borrowers in transition should prefer shorter."
+  },
+  {
+    question: "What is a 10-year fixed term and does anyone choose it?",
+    answer: "10-year fixed terms are available from most Canadian lenders but are chosen by a small minority of borrowers — typically those with a very strong rate-lock preference and a clear long-term horizon. The 10-year rate in April 2026 is around 4.69%, roughly 0.40% above the 5-year fixed. The key legal protection: under the federal Interest Act, after year 5 of any mortgage term, the prepayment penalty to break the mortgage is capped at 3 months of interest — meaning a 10-year borrower can break after year 5 for a known, modest penalty. This makes 10-year terms more flexible than they first appear."
+  },
+  {
+    question: "Can I split my mortgage between fixed and variable (a hybrid)?",
+    answer: "Yes, several Canadian lenders offer split or hybrid mortgages that divide the balance between a fixed-rate portion and a variable-rate portion. Scotia's Ultimate Variable, RBC's Special, and several other products allow you to choose the split — for example, 50% of the balance on a 5-year fixed at 4.19% and 50% on a 5-year variable at 3.30%. This approach hedges interest-rate exposure. The administrative complexity is slightly higher, but for borrowers who genuinely can't decide, a hybrid can be a reasonable compromise rather than a pure fixed-or-variable choice."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-term-decision-guide",
+    name: "Mortgage Term Decision Guide — Which Term Should You Pick?",
+    description: "Interactive decision guide for choosing the right Canadian mortgage term at renewal — 1, 2, 3, 5, or 10 year. Decision tree, rate table, and scenario-based recommendations.",
+  }),
+  articleSchema({
+    headline: "Mortgage Term Decision Guide 2026 — Which Term Length Should You Pick?",
+    description: "Step-by-step decision tree for choosing a mortgage term at 2026 renewal. Current rates, historical performance, life-stage fit, and scenario-based recommendations.",
+    slug: "mortgage-term-decision-guide",
+    articleSection: "Decision Guides",
+    about: "Canadian Mortgage Term Selection",
+    keywords: ["mortgage term decision", "which mortgage term", "5 year vs 3 year", "fixed vs variable", "Canadian mortgage term guide"],
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Term Decision Guide", url: "/mortgage-term-decision-guide" }
+  ]),
+  faqSchema(faqs, "mortgage-term-decision-guide"),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Term Decision Guide 2026 — Which Term Should You Pick?"
+  description="Interactive decision tree for choosing a 2026 mortgage term at renewal. Current rates, life-stage fit, historical performance, and scenario-based recommendations."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Mortgage Term Decision Guide
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Mortgage Term Decision Guide: Which Term Should You Pick in 2026?</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 13-minute read</p>
+
+    <div class="flex flex-col lg:flex-row gap-10">
+      <div class="flex-1">
+
+        <p class="mb-6 text-base leading-relaxed">The single most important choice you make at mortgage renewal — after choosing a lender — is your term length. In Canada, you can typically choose anywhere from a 1-year up to a 10-year term, with each length representing a different balance between rate certainty, flexibility, and the cost of the rate lock. With the Bank of Canada's policy rate at 2.25% in April 2026 and rate expectations unusually fluid, the decision matters more than usual. This guide walks you through a step-by-step decision tree tailored to 2026 conditions.</p>
+
+        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+          <ul class="space-y-2 text-sm leading-relaxed">
+            <li>• April 2026 rate snapshot: 5-year fixed 4.19–4.29%, 5-year variable 3.30–3.35%, 3-year fixed 3.80–3.90%, 2-year fixed 3.85–3.95%.</li>
+            <li>• BoC policy rate is 2.25% — the lowest since 2022 — with analysts forecasting potential further cuts in the next 12–24 months.</li>
+            <li>• Variable-rate mortgages have historically beaten 5-year fixed about 70% of the time over 30+ years of Canadian data.</li>
+            <li>• 2-year and 3-year fixed terms are popular in 2026 because they balance rate lock with the ability to re-shop in the near future.</li>
+            <li>• Your life plans matter as much as rate forecasts — expected moves, separations, or job changes favour shorter terms.</li>
+            <li>• Hybrid (split) mortgages — part fixed, part variable — are available from several lenders for borrowers who can't decide.</li>
+          </ul>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">April 2026 Rate Snapshot</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Term</th>
+                <th class="p-3 text-left">Rate Type</th>
+                <th class="p-3 text-left">April 2026 Discounted Rate</th>
+                <th class="p-3 text-left">Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">1 year</td>
+                <td class="p-3">Fixed</td>
+                <td class="p-3">4.50–4.80%</td>
+                <td class="p-3">Higher than longer terms — unusual shape reflects rate volatility</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">2 year</td>
+                <td class="p-3">Fixed</td>
+                <td class="p-3">3.85–3.95%</td>
+                <td class="p-3">Popular — locks in today's low rate without 5-year commitment</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">3 year</td>
+                <td class="p-3">Fixed</td>
+                <td class="p-3">3.80–3.90%</td>
+                <td class="p-3">Currently the cheapest fixed term; best of both worlds</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">4 year</td>
+                <td class="p-3">Fixed</td>
+                <td class="p-3">4.00–4.10%</td>
+                <td class="p-3">Less common — rarely the best value</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">5 year</td>
+                <td class="p-3">Fixed</td>
+                <td class="p-3">4.19–4.29%</td>
+                <td class="p-3">The traditional default; now slightly above 3-year</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">5 year</td>
+                <td class="p-3">Variable</td>
+                <td class="p-3">3.30–3.35%</td>
+                <td class="p-3">Nearly 1% cheaper than 5-year fixed today</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">10 year</td>
+                <td class="p-3">Fixed</td>
+                <td class="p-3">4.69%</td>
+                <td class="p-3">Rarely chosen; Interest Act caps penalty after year 5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="text-xs mb-8" style="color: var(--muted-foreground)">Source: broker-channel rates from major Canadian lenders, April 2026. Actual rates vary by borrower profile and lender. See our <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">best renewal rates page</a> for live quotes.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Decision Tree</h2>
+
+        <p class="mb-4 leading-relaxed">Work through these questions in order. Each answer steers you toward a recommended term.</p>
+
+        <div class="space-y-4 mb-8">
+          <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Q1. Will you sell, move, or refinance within the next 2 years?</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Yes →</strong> Choose a 1-year or 2-year fixed term. Pay the slightly higher rate in exchange for a clean, penalty-free expiry that matches your planned exit.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>No →</strong> Proceed to Q2.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Q2. Can your household absorb a 1.5–2% rate increase without stress?</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Yes →</strong> Consider a 5-year variable at 3.30–3.35%. Your rate will move with BoC, but the lower starting point gives you a significant buffer.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>No →</strong> Proceed to Q3 — a fixed rate is better for you.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Q3. How strongly do you value rate certainty over the full term?</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Strongly — I want zero surprises →</strong> Choose 5-year fixed at 4.19–4.29%, or 10-year fixed at 4.69% for the most extended certainty.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>Moderately — I'd prefer certainty but want to re-shop in a few years →</strong> Choose 3-year fixed at 3.80–3.90%. This is the sweet-spot term for 2026.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Q4. Do you have a major life event expected in 3–5 years?</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Yes (retirement, property sale, job change, separation) →</strong> Lean toward a 2-3 year fixed term that aligns with the event, avoiding a penalty-triggering break.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>No — plans are stable →</strong> Longer terms are appropriate. Choose 5-year based on Q2 and Q3 answers.</p>
+          </div>
+
+          <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
+            <p class="font-bold mb-2" style="color: var(--primary)">Q5. Still can't decide between fixed and variable?</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>Consider a 50/50 hybrid (split) mortgage.</strong> Scotia, RBC, and a few other lenders allow splitting the balance between fixed and variable — you get the average of both, without fully committing either way.</p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Rate Outlook Shapes Term Choice</h2>
+
+        <p class="mb-4 leading-relaxed">The Bank of Canada's policy rate sits at 2.25% in April 2026 — the lowest level since 2022. Market expectations, as implied by Bank of Canada policy communications and Government of Canada bond yields, are mixed but lean toward one more potential cut in 2026 or holding steady. See our <a href="/mortgage-rate-forecast/" style="color: var(--secondary)">rate forecast page</a> for the current view.</p>
+
+        <p class="mb-4 leading-relaxed">Two scenarios to consider:</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+          <div class="rounded-lg p-6" style="border: 2px solid var(--secondary); background: var(--card)">
+            <h3 class="font-bold mb-3" style="color: var(--secondary)">Scenario A: Rates stay flat or decline</h3>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">If BoC cuts to 2.0% and holds, variable rates could fall to 3.05–3.10% within the next 12 months. In this world, the variable borrower saves meaningfully while the 5-year fixed borrower is locked at 4.19%.</p>
+            <p class="text-xs font-bold" style="color: var(--secondary)">Winner: Variable rate or short-term fixed that can re-lock at lower rates.</p>
+          </div>
+          <div class="rounded-lg p-6" style="border: 2px solid var(--secondary); background: var(--card)">
+            <h3 class="font-bold mb-3" style="color: var(--secondary)">Scenario B: Rates rise due to inflation shock</h3>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">If a new inflation shock forces BoC back to 4.0–5.0%, variable rates could jump to 5.0–6.0%. The 5-year fixed borrower at 4.19% looks brilliant; the variable borrower absorbs the increase in real time.</p>
+            <p class="text-xs font-bold" style="color: var(--secondary)">Winner: 5-year fixed (or longer).</p>
+          </div>
+        </div>
+
+        <p class="mb-6 leading-relaxed">No one knows which scenario will unfold. Choose the term that fits your tolerance for being wrong about the direction.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Life-Stage Recommendations</h2>
+
+        <div class="overflow-x-auto mb-8">
+          <table class="w-full text-sm border-collapse">
+            <thead>
+              <tr style="background: var(--primary); color: white">
+                <th class="p-3 text-left">Situation</th>
+                <th class="p-3 text-left">Suggested Term</th>
+                <th class="p-3 text-left">Reasoning</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">First-time buyer in stable job</td>
+                <td class="p-3">5-year fixed or variable</td>
+                <td class="p-3">Long horizon; comfort with rate certainty</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Mid-career, planning to upsize in 3 years</td>
+                <td class="p-3">3-year fixed</td>
+                <td class="p-3">Aligns with planned move; avoids break penalty</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Self-employed with variable cash flow</td>
+                <td class="p-3">5-year fixed</td>
+                <td class="p-3">Payment certainty supports unpredictable income</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">Retiree on fixed pension income</td>
+                <td class="p-3">5-year fixed</td>
+                <td class="p-3">Minimize surprise; match to budgeted cash flow</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border)">
+                <td class="p-3 font-medium">Expecting retirement in 2 years</td>
+                <td class="p-3">2-year fixed</td>
+                <td class="p-3">Retirement may change qualification; reset terms at renewal</td>
+              </tr>
+              <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
+                <td class="p-3 font-medium">High income, aggressive debt paydown</td>
+                <td class="p-3">5-year variable</td>
+                <td class="p-3">Lowest rate; prepayments compound faster</td>
+              </tr>
+              <tr style="border-color: var(--border)">
+                <td class="p-3 font-medium">Newly separated, single-income qualifier</td>
+                <td class="p-3">2–3 year fixed</td>
+                <td class="p-3">Life in transition; revisit terms once stabilized</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The Historical Case for Variable</h2>
+
+        <p class="mb-4 leading-relaxed">Over 30+ years of Canadian mortgage data, studies conducted by academic researchers and industry associations have consistently shown that borrowers who chose 5-year variable rates outperformed 5-year fixed rates approximately 70% of the time on a total-interest-paid basis. This is because:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Lenders charge a term premium on fixed-rate mortgages to cover their own interest-rate risk — on average, you pay extra for the certainty.</li>
+          <li>Bank of Canada rate cycles are typically less volatile than the spread implied by long-term fixed pricing would suggest.</li>
+          <li>Variable-rate borrowers benefit disproportionately during easing cycles because the rate drop is immediate rather than captured only at renewal.</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">Caveat: "70% of the time" means variable also loses 30% of the time — and those losses can be significant in a sharp tightening cycle like 2022–2023. The historical advantage is an average, not a guarantee. See our <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed vs. variable</a> guide for a deeper dive.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Worked Example: $500,000 Renewal at Age 42</h2>
+
+        <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+          <p class="font-bold mb-2">Scenario</p>
+          <p class="text-sm leading-relaxed">Sarah, 42, has $500,000 remaining on her mortgage with 23 years of amortization left. Stable tech job, no planned move, can tolerate modest payment fluctuation. She's choosing between 5-year fixed (4.25%) and 5-year variable (3.32%).</p>
+        </div>
+
+        <p class="mb-4 leading-relaxed">Month-1 payment comparison (25-year amortization assumption):</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>5-year fixed @ 4.25%: approximately $2,704/month</li>
+          <li>5-year variable @ 3.32%: approximately $2,447/month</li>
+          <li>Monthly savings with variable: $257</li>
+          <li>5-year savings (assuming rate holds): $15,420</li>
+        </ul>
+
+        <p class="mb-6 leading-relaxed">If BoC holds or cuts, Sarah saves. If BoC hikes 1% over the term (variable rises to 4.32% average), her realized savings shrink but she's still roughly even with the fixed borrower. If BoC hikes 2%+, fixed wins. Based on her risk tolerance and current rate environment, a variable rate (or a 50/50 hybrid) is a reasonable choice.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">When to Book a Broker Consultation</h2>
+
+        <p class="mb-4 leading-relaxed">If after working through the decision tree you still aren't certain, book a broker call. A licensed broker will:</p>
+
+        <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+          <li>Quote rates across 30+ lenders for every term length simultaneously.</li>
+          <li>Model break-cost scenarios for each term (what happens if life changes 2 years in).</li>
+          <li>Stress-test your household to different rate paths.</li>
+          <li>Explain prepayment privileges, porting features, and <a href="/mortgage-flex-features-canada/" style="color: var(--secondary)">flex features</a> that vary by lender and product.</li>
+        </ul>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+
+        <div class="space-y-4 mb-10">
+          {faqs.map(f => (
+            <details class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+              <summary class="font-bold cursor-pointer" style="color: var(--primary)">{f.question}</summary>
+              <p class="mt-3 text-sm leading-relaxed" style="color: var(--muted-foreground)">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+
+        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Term Lengths Explained</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Deeper dive into how each term length works.</p>
+            </a>
+            <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Structural comparison of the two rate types.</p>
+            </a>
+            <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Rate Forecast</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Current BoC outlook and market expectations.</p>
+            </a>
+            <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Live rate comparison across Canadian lenders.</p>
+            </a>
+            <a href="/mortgage-flex-features-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Flex Features</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Prepayment and skip features that interact with term choice.</p>
+            </a>
+            <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Calculator</p>
+              <p class="text-xs" style="color: var(--muted-foreground)">Model payments across different term lengths.</p>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <aside class="w-full lg:w-64 flex-shrink-0">
+        <div class="sticky top-6 space-y-6">
+          <div class="rounded-lg p-5" style="background: var(--accent); border: 1px solid var(--border)">
+            <h3 class="font-bold mb-3" style="color: var(--primary)">On This Page</h3>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#" style="color: var(--secondary)">April 2026 Rates</a></li>
+              <li><a href="#" style="color: var(--secondary)">Decision Tree</a></li>
+              <li><a href="#" style="color: var(--secondary)">Rate Outlook</a></li>
+              <li><a href="#" style="color: var(--secondary)">Life-Stage Recs</a></li>
+              <li><a href="#" style="color: var(--secondary)">Historical Variable Case</a></li>
+              <li><a href="#" style="color: var(--secondary)">Worked Example</a></li>
+            </ul>
+          </div>
+          <div class="rounded-lg p-5 text-white" style="background: var(--primary)">
+            <h3 class="font-bold mb-3">Still Undecided?</h3>
+            <p class="text-sm mb-4 opacity-90">A broker will walk you through every term option for your specific file and help you land on the right choice.</p>
+            <a href="/book-a-call/" class="block w-full text-center rounded-lg py-2 font-semibold text-sm" style="background: var(--secondary)">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
+    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
+      Get a Free Broker Consultation
+    </a>
+  </div>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Get personalized term advice</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">Every file is different. A broker will model your specific numbers across every term and give you a clear recommendation — at no cost.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
+        Book Your Free Strategy Call
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

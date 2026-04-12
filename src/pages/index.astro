@@ -2,30 +2,37 @@
 import { Image } from 'astro:assets';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import RenewalCalculatorMini from '@/components/sections/renewal-calculator-mini';
-import { speakableSchema, combineSchemas } from '@/lib/schema';
+import { webPageNode, articleSchema, faqSchema, combineSchemas } from '@/lib/schema';
+
+const homeFaqs = [
+  { question: "Do I have to pass a stress test to switch lenders at renewal?", answer: "No. Since November 2024, Canadians switching lenders on a straight transfer (same balance, same amortization) do not need to pass the mortgage stress test. This applies to both insured and uninsured mortgages." },
+  { question: "How much can I save by shopping around at renewal?", answer: "Significantly. Even a 0.25% rate difference saves approximately $7,500 in interest over 5 years on a $600,000 mortgage. Canadians who shop around through a broker typically save 0.25–0.75% vs. their bank's first offer." },
+  { question: "Is a mortgage broker free to use?", answer: "Yes, in virtually all cases. Mortgage brokers are paid a finder's fee by the lender you ultimately choose — you pay nothing. Their service, advice, and access to 30+ lenders is free to you." },
+  { question: "What happens if I do nothing at renewal?", answer: "Your mortgage automatically renews at whatever rate your lender chooses — almost always the posted rate, which is nearly always the worst rate available. This is the most expensive option." },
+  { question: "When should I start thinking about my renewal?", answer: "12 months before your maturity date gives you the most options. At 120 days out, you can lock in a rate hold. At 30 days out, you should be finalizing your lender choice." },
+];
 
 const schema = combineSchemas(
-  speakableSchema("", ["h1", ".container > p"]),
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource",
-    "description": "Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
-    "url": "https://mortgagerenewalhub.ca",
-    "inLanguage": "en-CA",
-    "isPartOf": { "@type": "WebSite", "name": "MortgageRenewalHub.ca", "url": "https://mortgagerenewalhub.ca" },
-    "about": {
-      "@type": "FinancialProduct",
-      "name": "Mortgage Renewal",
-      "description": "Canadian mortgage renewal guidance, rates, calculators, and expert advice",
-      "provider": { "@type": "Organization", "name": "MortgageRenewalHub.ca" }
-    }
-  }
+  webPageNode({
+    slug: "",
+    name: "MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource",
+    description: "Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
+    speakableSelectors: ["h1", ".container > p", ".key-takeaways"],
+  }),
+  articleSchema({
+    headline: "Canada's Mortgage Renewal Resource",
+    description: "Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
+    slug: "",
+    articleSection: "Mortgage Renewal",
+    about: "Canadian Mortgage Renewal",
+    keywords: ["mortgage renewal Canada", "renewal rates", "mortgage broker"],
+  }),
+  faqSchema(homeFaqs, ""),
 );
 ---
 
 <DefaultLayout
-  title="MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource"
+  title="MortgageRenewalHub.ca — Canada's Mortgage Renewal Hub"
   description="Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal."
   preloadImage="/images/hero/hero-home.webp"
   schema={schema}
@@ -42,15 +49,15 @@ const schema = combineSchemas(
             Save Thousands at Your Mortgage Renewal
           </h1>
           <p class="text-xl text-white/80 mb-8 max-w-lg">
-            Over 1.8 million Canadians are renewing their mortgage in the next 12 months. Most will sign the first offer they receive — and overpay by thousands. Don't be one of them. Read our <a href="/mortgage-renewal-guide" class="text-white underline">complete renewal guide</a> to get started.
+            Over 1.8 million Canadians are renewing their mortgage in the next 12 months. Most will sign the first offer they receive — and overpay by thousands. Don't be one of them. Read our <a href="/mortgage-renewal-guide/" class="text-white underline">complete renewal guide</a> to get started.
           </p>
           <div class="flex flex-wrap gap-4">
-            <a href="/mortgage-renewal-calculator">
+            <a href="/mortgage-renewal-calculator/">
               <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
                 Use Our Calculator
               </button>
             </a>
-            <a href="/book-a-call">
+            <a href="/book-a-call/">
               <button class="rounded-lg border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 text-lg transition-colors">
                 Talk to a Broker — Free
               </button>
@@ -107,12 +114,12 @@ const schema = combineSchemas(
           <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">The Basics</div>
           <h2 class="text-heading-2 mb-4">What Is a Mortgage Renewal?</h2>
           <p class="text-body-lg text-muted-foreground mb-4">
-            A mortgage renewal is what happens at the end of your mortgage <strong>term</strong> — not the end of your mortgage entirely. Most Canadians have a 25-year mortgage but a 5-year <a href="/mortgage-renewal-term-lengths" class="text-secondary-100 hover:underline">term</a>. Every 5 years, that term ends and you renew.
+            A mortgage renewal is what happens at the end of your mortgage <strong>term</strong> — not the end of your mortgage entirely. Most Canadians have a 25-year mortgage but a 5-year <a href="/mortgage-renewal-term-lengths/" class="text-secondary-100 hover:underline">term</a>. Every 5 years, that term ends and you renew.
           </p>
           <p class="text-body-lg text-muted-foreground mb-6">
-            At renewal, your lender will send you an offer. You can accept it, negotiate for a better rate, or <a href="/switching-lenders-at-renewal" class="text-secondary-100 hover:underline">switch to a different lender</a> entirely — often with no cost and no stress test required.
+            At renewal, your lender will send you an offer. You can accept it, negotiate for a better rate, or <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switch to a different lender</a> entirely — often with no cost and no stress test required.
           </p>
-          <a href="/what-is-a-mortgage-renewal" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+          <a href="/what-is-a-mortgage-renewal/" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
             Read the Full Guide →
           </a>
         </div>
@@ -142,9 +149,9 @@ const schema = combineSchemas(
       <div class="text-4xl mb-4">⚠️</div>
       <h2 class="text-heading-3 mb-3">The #1 Mistake Canadians Make at Renewal</h2>
       <p class="text-body-lg text-muted-foreground mb-6">
-        Over <strong>70% of Canadians sign their bank's first renewal offer without shopping around</strong>. Banks count on this. A 0.5% rate difference on a $600,000 mortgage costs you over $15,000 in extra interest over 5 years. Compare <a href="/best-mortgage-renewal-rates" class="text-warning-200 hover:underline">today's best renewal rates</a> to see what you could be saving.
+        Over <strong>70% of Canadians sign their bank's first renewal offer without shopping around</strong>. Banks count on this. A 0.5% rate difference on a $600,000 mortgage costs you over $15,000 in extra interest over 5 years. Compare <a href="/best-mortgage-renewal-rates/" class="text-warning-200 hover:underline">today's best renewal rates</a> to see what you could be saving.
       </p>
-      <a href="/mortgage-renewal-mistakes" class="inline-flex items-center gap-2 text-warning-200 font-semibold hover:underline">
+      <a href="/mortgage-renewal-mistakes/" class="inline-flex items-center gap-2 text-warning-200 font-semibold hover:underline">
         See All 10 Renewal Mistakes to Avoid →
       </a>
     </div>
@@ -162,7 +169,7 @@ const schema = combineSchemas(
       </div>
       <RenewalCalculatorMini client:visible />
       <div class="text-center mt-6">
-        <a href="/mortgage-renewal-calculator" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+        <a href="/mortgage-renewal-calculator/" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
           See All 5 Calculators — Including Rate Comparison & Penalty Estimator →
         </a>
       </div>
@@ -182,37 +189,37 @@ const schema = combineSchemas(
             number: "01",
             title: "Shop Around — Don't Auto-Renew",
             desc: "Your bank's first offer is almost never their best rate. Getting one competing quote is often enough to save thousands.",
-            href: "/best-mortgage-renewal-rates",
+            href: "/best-mortgage-renewal-rates/",
           },
           {
             number: "02",
             title: "Use a Mortgage Broker",
             desc: "Brokers access 30+ lenders simultaneously — including monolines unavailable directly. And their service is free to you.",
-            href: "/mortgage-broker-renewal",
+            href: "/mortgage-broker-renewal/",
           },
           {
             number: "03",
             title: "Lock in a Rate Hold Early",
             desc: "Start shopping 120 days before your renewal. Lock in today's rate and you're protected if rates rise before your maturity date.",
-            href: "/mortgage-renewal-guide",
+            href: "/mortgage-renewal-guide/",
           },
           {
             number: "04",
             title: "Know Your Charge Type",
             desc: "Standard charge mortgages switch lenders easily. Collateral charges (TD and some others) require legal fees to move.",
-            href: "/switching-lenders-at-renewal",
+            href: "/switching-lenders-at-renewal/",
           },
           {
             number: "05",
             title: "Consider Your Term Length",
             desc: "A shorter term (1-2 year fixed) may offer a lower rate today and let you lock in again when rates fall further.",
-            href: "/mortgage-renewal-term-lengths",
+            href: "/mortgage-renewal-term-lengths/",
           },
           {
             number: "06",
             title: "Extend Your Amortization",
             desc: "If cash flow is tight, extending your amortization can reduce your payment by hundreds per month.",
-            href: "/lower-mortgage-payments-at-renewal",
+            href: "/lower-mortgage-payments-at-renewal/",
           },
         ].map(item => (
           <a href={item.href} class="group block bg-gray-25 hover:bg-primary-0 rounded-2xl p-6 border border-gray-100 hover:border-primary-50 transition-colors">
@@ -234,12 +241,12 @@ const schema = combineSchemas(
       </div>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
-          { title: "Complete Renewal Guide", desc: "Everything you need to know — from 12 months out to renewal day.", href: "/mortgage-renewal-guide", badge: "Most Popular" },
-          { title: "Best Renewal Rates", desc: "How renewal rates work, why your bank's offer is rarely the best, and where to find better.", href: "/best-mortgage-renewal-rates", badge: "Rates" },
-          { title: "Lower Your Payments", desc: "11 strategies for Canadians who are stretched financially and need payment relief.", href: "/lower-mortgage-payments-at-renewal", badge: "Affordability" },
-          { title: "Switching Lenders", desc: "No stress test required since 2024. Here's the complete step-by-step process.", href: "/switching-lenders-at-renewal", badge: "Save Money" },
-          { title: "Renewal Checklist", desc: "Printable timeline from 12 months before renewal all the way to renewal day.", href: "/mortgage-renewal-checklist", badge: "Checklist" },
-          { title: "Renewal FAQ", desc: "40+ questions answered — from the basics to complex scenarios.", href: "/mortgage-renewal-faq", badge: "FAQ" },
+          { title: "Complete Renewal Guide", desc: "Everything you need to know — from 12 months out to renewal day.", href: "/mortgage-renewal-guide/", badge: "Most Popular" },
+          { title: "Best Renewal Rates", desc: "How renewal rates work, why your bank's offer is rarely the best, and where to find better.", href: "/best-mortgage-renewal-rates/", badge: "Rates" },
+          { title: "Lower Your Payments", desc: "11 strategies for Canadians who are stretched financially and need payment relief.", href: "/lower-mortgage-payments-at-renewal/", badge: "Affordability" },
+          { title: "Switching Lenders", desc: "No stress test required since 2024. Here's the complete step-by-step process.", href: "/switching-lenders-at-renewal/", badge: "Save Money" },
+          { title: "Renewal Checklist", desc: "Printable timeline from 12 months before renewal all the way to renewal day.", href: "/mortgage-renewal-checklist/", badge: "Checklist" },
+          { title: "Renewal FAQ", desc: "40+ questions answered — from the basics to complex scenarios.", href: "/mortgage-renewal-faq/", badge: "FAQ" },
         ].map(item => (
           <a href={item.href} class="group block bg-white rounded-2xl p-6 border border-gray-100 hover:border-secondary-50 hover:shadow-md transition-all">
             <div class="inline-flex items-center rounded-full bg-secondary-25 px-3 py-1 text-body-xs text-secondary-200 mb-3">
@@ -289,7 +296,7 @@ const schema = combineSchemas(
         ))}
       </div>
       <div class="text-center mt-8">
-        <a href="/mortgage-renewal-checklist" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+        <a href="/mortgage-renewal-checklist/" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
           Get the Full Printable Checklist →
         </a>
       </div>
@@ -304,26 +311,20 @@ const schema = combineSchemas(
         <h2 class="text-heading-2">Mortgage Renewal FAQ</h2>
       </div>
       <div class="space-y-3">
-        {[
-          { q: "Do I have to pass a stress test to switch lenders at renewal?", a: "No. Since 2024, Canadians switching lenders on a straight transfer (same balance, same amortization) do not need to pass the mortgage stress test. This applies to both insured and uninsured mortgages." },
-          { q: "How much can I save by shopping around at renewal?", a: "Significantly. Even a 0.25% rate difference saves approximately $7,500 in interest over 5 years on a $600,000 mortgage. Canadians who shop around through a broker typically save 0.25–0.75% vs. their bank's first offer." },
-          { q: "Is a mortgage broker free to use?", a: "Yes, in virtually all cases. Mortgage brokers are paid a finder's fee by the lender you ultimately choose — you pay nothing. Their service, advice, and access to 30+ lenders is free to you." },
-          { q: "What happens if I do nothing at renewal?", a: "Your mortgage automatically renews at whatever rate your lender chooses — almost always the posted rate, which is nearly always the worst rate available. This is the most expensive option." },
-          { q: "When should I start thinking about my renewal?", a: "12 months before your maturity date gives you the most options. At 120 days out, you can lock in a rate hold. At 30 days out, you should be finalizing your lender choice." },
-        ].map(faq => (
+        {homeFaqs.map(faq => (
           <details class="group rounded-xl border border-gray-100 bg-white">
             <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-body-md-medium">
-              {faq.q}
+              {faq.question}
               <span class="ml-4 flex-shrink-0 text-muted-foreground group-open:rotate-180 transition-transform">▼</span>
             </summary>
             <div class="px-5 pb-5 text-body-md text-muted-foreground">
-              {faq.a}
+              {faq.answer}
             </div>
           </details>
         ))}
       </div>
       <div class="text-center mt-8">
-        <a href="/mortgage-renewal-faq" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
+        <a href="/mortgage-renewal-faq/" class="inline-flex items-center gap-2 text-secondary-100 font-semibold hover:underline">
           See All 40+ Questions →
         </a>
       </div>
@@ -335,15 +336,15 @@ const schema = combineSchemas(
     <div class="container max-w-3xl px-6 text-center">
       <h2 class="text-heading-2 text-white mb-4">Not Sure Where to Start?</h2>
       <p class="text-xl text-white/80 mb-8">
-        Talk to a licensed <a href="/mortgage-broker-renewal" class="text-white underline">mortgage broker</a> — it's completely free. We'll review your renewal options, compare rates from 30+ lenders, and build a personalized strategy.
+        Talk to a licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> — it's completely free. We'll review your renewal options, compare rates from 30+ lenders, and build a personalized strategy.
       </p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a href="/book-a-call">
+        <a href="/book-a-call/">
           <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
             Book Your Free Call
           </button>
         </a>
-        <a href="/mortgage-renewal-calculator">
+        <a href="/mortgage-renewal-calculator/">
           <button class="rounded-lg border-2 border-white/50 hover:border-white text-white font-semibold px-8 py-4 text-lg transition-colors">
             Use Our Calculator First
           </button>
@@ -355,12 +356,8 @@ const schema = combineSchemas(
 
   <!-- MOBILE STICKY CTA -->
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
-    <a href="/book-a-call" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold text-body-md-bold">
+    <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold text-body-md-bold">
       Book Free Broker Consultation
     </a>
   </div>
-
-  <p class="container py-6 text-body-xs text-muted-foreground text-center">
-    This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
-  </p>
 </DefaultLayout>

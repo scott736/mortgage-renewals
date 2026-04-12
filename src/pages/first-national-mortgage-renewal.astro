@@ -1,0 +1,215 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is First National and how is it different from a bank?",
+    answer: "First National Financial is Canada's largest non-bank mortgage lender — a monoline, meaning it specializes in residential and commercial mortgages with no chequing, credit cards, or branch network. First National operates exclusively through the broker channel; you cannot go directly to First National to get a mortgage. For borrowers, this means you access First National through a licensed mortgage broker, who will present First National alongside other options."
+  },
+  {
+    question: "How do First National's rates compare to the Big 6 banks?",
+    answer: "First National rates are typically 15-25 basis points below the Big 6 banks' special rates for comparable products. Because monolines don't have branch overhead or cross-selling incentives, they pass the cost savings back in rate. For a $500,000 mortgage, a 20 bps rate advantage saves approximately $5,000 over a 5-year term — which is why First National is a benchmark lender for Canadian mortgage brokers."
+  },
+  {
+    question: "What are First National's prepayment privileges?",
+    answer: "First National allows lump-sum prepayments of up to 15% of original principal per year, plus up to 15% regular payment increase (on fixed products). These privileges are comparable to TD and Scotiabank (15%) — less generous than BMO's 20%, more generous than RBC's 10%. For typical prepayment behavior, First National's terms are highly competitive."
+  },
+  {
+    question: "How does First National calculate IRD penalties — and why does it matter?",
+    answer: "First National uses contract-rate IRD, often called 'fair IRD,' which calculates the penalty based on your actual contract rate rather than an inflated posted rate. This typically produces penalties 40-60% lower than the posted-rate methodology used by Big 6 banks. If you might break your mortgage mid-term (sell, refinance, relocate), First National's fair IRD can save thousands of dollars compared to a Big 6 equivalent."
+  },
+  {
+    question: "Can I renew a First National mortgage directly, or do I need a broker?",
+    answer: "First National will send renewal letters directly to existing customers at maturity, so you can renew with First National without going through a broker. However, using a broker to benchmark the renewal offer and shop the full market is still valuable — the renewal offer from any lender, including First National, is often 10-20 bps above the best available rate in the market. A broker call verifies whether First National's offer is competitive at the time of your renewal."
+  },
+  {
+    question: "Does First National offer commercial mortgages?",
+    answer: "Yes. First National is Canada's largest commercial mortgage lender alongside its residential portfolio. For investment-property renewals, multi-unit residential, and small commercial mortgages, First National is one of the most experienced and competitive options. Commercial mortgages are also accessed through the broker channel, though a commercial specialist broker may be preferable to a residential-focused broker."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "first-national-mortgage-renewal",
+    name: "First National Mortgage Renewal 2026 — Canada's Largest Monoline",
+    description: "First National mortgage renewal guide: monoline pricing 15-25 bps below Big 6, 15% prepayment, contract-rate (fair) IRD, broker channel, and 2026 renewal strategy.",
+  }),
+  articleSchema({
+    headline: "First National Mortgage Renewal 2026 — Canada's Largest Monoline",
+    description: "First National mortgage renewal guide: monoline pricing (15-25 bps below Big 6 specials), 15% prepayment privileges, contract-rate (fair) IRD methodology, broker-only channel, and 2026 renewal strategy.",
+    slug: "first-national-mortgage-renewal",
+    articleSection: "Lender Renewal Guides",
+    about: "First National Financial",
+    keywords: ["First National mortgage renewal", "monoline mortgage lender", "First National Financial", "fair IRD", "broker channel mortgage"],
+  }),
+  breadcrumbSchema([
+    { name: "First National Mortgage Renewal", url: "/first-national-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "first-national-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="First National Mortgage Renewal 2026 — Canada's Largest Monoline"
+  description="First National mortgage renewal: monoline pricing 15-25 bps below Big 6, 15% prepayment, fair IRD, broker channel, and 2026 renewal strategy."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › First National Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 8-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">First National Mortgage Renewal in 2026</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">First National is Canada's largest monoline mortgage lender — a broker-only, no-branch, low-overhead lender that typically prices 15-25 basis points below the Big 6 banks' special rates. Here's what to know at your First National renewal in 2026.</p>
+      <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+        Benchmark First National at Renewal
+      </a>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex-1">
+
+      <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+        <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">First National at a Glance (April 2026)</h2>
+        <ul class="space-y-2 text-sm leading-relaxed">
+          <li>• <strong>Lender type:</strong> Monoline (residential + commercial mortgages only; no branches, no other banking products)</li>
+          <li>• <strong>Distribution:</strong> Exclusively broker channel for origination; direct renewal for existing customers</li>
+          <li>• <strong>5-year fixed:</strong> Typically 15-25 bps below Big 6 specials</li>
+          <li>• <strong>Prepayment privileges:</strong> 15% lump sum + 15% payment increase (fixed products)</li>
+          <li>• <strong>IRD methodology:</strong> Contract-rate (fair IRD) — typically 40-60% lower penalties than Big 6</li>
+          <li>• <strong>Charge type:</strong> Standard charge</li>
+          <li>• <strong>Portfolio:</strong> Canada's largest non-bank mortgage lender; significant commercial book</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">What Is a Monoline — and Why It Matters at Renewal</h2>
+
+      <p class="mb-4 leading-relaxed">A monoline is a specialized mortgage lender that focuses only on mortgages — no chequing accounts, no credit cards, no branch network, no wealth management business. First National is the largest Canadian monoline, with MCAP, RMG, Merix, and Lendwise among its peers.</p>
+
+      <p class="mb-4 leading-relaxed">Monolines fund their mortgages through the capital markets (NHA-MBS securitization, Canada Mortgage Bonds, and wholesale institutional funding) rather than through retail deposits. This cost structure is typically lower than a bank's branch-and-deposit model, and monolines pass those savings back to borrowers in the form of lower rates.</p>
+
+      <p class="mb-6 leading-relaxed">The typical monoline rate advantage over Big 6 special rates is 15-25 basis points — enough to make a meaningful difference over a 5-year term. On a $500,000 mortgage, 20 bps saves approximately $5,000 over 5 years.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">First National's Prepayment Privileges</h2>
+
+      <p class="mb-4 leading-relaxed">First National's standard prepayment privileges on fixed-rate products:</p>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li><strong>Lump-sum prepayments:</strong> Up to 15% of original principal per year, without penalty.</li>
+        <li><strong>Payment increase:</strong> Up to 15% regular payment increase without penalty.</li>
+        <li><strong>Anniversary flexibility:</strong> Prepayments permitted on any regular payment date.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">These privileges are competitive — comparable to TD and Scotiabank (15%), more generous than RBC and National Bank (10%), less than BMO's standard fixed (20%). For typical borrowers, First National's prepayment terms are more than sufficient.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">First National's Fair IRD — A Major Advantage</h2>
+
+      <p class="mb-4 leading-relaxed">First National uses <strong>contract-rate IRD</strong> (often called "fair IRD") rather than the posted-rate IRD used by Big 6 banks. This is one of the most significant — and underappreciated — advantages of monoline lenders.</p>
+
+      <p class="mb-4 leading-relaxed">Contract-rate IRD calculates the penalty based on your actual rate (the rate you're paying) rather than an inflated posted rate. A typical example: a customer with 3 years remaining on a 5-year fixed that breaks early might see:</p>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr style="background: var(--primary); color: white">
+              <th class="p-3 text-left">IRD Methodology</th>
+              <th class="p-3 text-left">Typical Penalty (3 yrs left on $500K)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b" style="border-color: var(--border)">
+              <td class="p-3 font-medium">Big 6 posted-rate IRD</td>
+              <td class="p-3">$15,000-$25,000</td>
+            </tr>
+            <tr style="border-color: var(--border); background: var(--muted)">
+              <td class="p-3 font-medium">First National contract-rate (fair) IRD</td>
+              <td class="p-3 font-semibold">$6,000-$12,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mb-6 leading-relaxed">The fair-IRD advantage doesn't matter if you hold to maturity — at renewal (maturity), no IRD applies for any lender. But if life events (sale, relocation, refinance) could trigger an early break, First National's methodology can save five figures versus a Big 6 equivalent.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Renewing a First National Mortgage</h2>
+
+      <p class="mb-4 leading-relaxed">First National sends renewal letters directly to existing customers 3-6 months before maturity. You can renew with First National without involving a broker — it's a direct-to-customer renewal for existing accounts.</p>
+
+      <p class="mb-4 leading-relaxed">However, the renewal letter rate is still a starting offer, not necessarily the best rate available. Even First National's renewal offer typically prices 10-20 bps above what's available in the market at that moment. A broker call serves two purposes:</p>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li><strong>Benchmark:</strong> Confirms whether First National's renewal offer is market-competitive, or whether a better rate is available at another monoline, bank, or credit union.</li>
+        <li><strong>Negotiation leverage:</strong> With a concrete competing quote, a broker can request a rate improvement from First National directly — or facilitate a switch if First National won't match.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">Because First National mortgages are registered as standard charges and switching costs are minimal, a 15-20 bps rate improvement at a different lender typically pays even net of switching costs.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">First National's Commercial Mortgage Portfolio</h2>
+
+      <p class="mb-4 leading-relaxed">Beyond residential, First National is one of Canada's largest commercial mortgage lenders. Investment properties (typically 1-4 units financed on residential paper), small multi-unit residential (5+ units, commercial paper), and CMHC-insured commercial products are all in First National's core offering.</p>
+
+      <p class="mb-6 leading-relaxed">If you hold <a href="/investment-property-renewal/" style="color: var(--secondary)">investment property mortgages</a>, First National is worth considering alongside the residential mortgage — a single broker relationship can cover both, and First National's commercial expertise is among the deepest in Canada.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The First National Renewal Playbook</h2>
+
+      <ol class="space-y-4 mb-8">
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">1. Read the First National renewal letter</h3>
+          <p class="text-sm leading-relaxed">Note your maturity date, balance, rate options, and prepayment terms. The rate offered is a starting point.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">2. Get broker benchmark quotes</h3>
+          <p class="text-sm leading-relaxed">A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">broker</a> can quickly confirm whether First National's offer is market-competitive or below market.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">3. Negotiate or switch</h3>
+          <p class="text-sm leading-relaxed">If a better rate is available at another lender, your broker can request a rate match from First National or process a straight switch. Since First National is a standard charge, switching costs are modest.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">4. Consider the fair IRD advantage if staying</h3>
+          <p class="text-sm leading-relaxed">If you might need flexibility during the next term (sale, relocation), the fair IRD methodology is a real reason to stay with First National even if a bank offers a slightly lower rate.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">5. Sign before maturity</h3>
+          <p class="text-sm leading-relaxed">Active renewal prevents auto-renewal at a potentially uncompetitive default rate.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types in Canada</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Monolines vs. banks vs. credit unions — understand the landscape.</p>
+        </a>
+        <a href="/td-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">TD Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Compare First National's fair IRD to TD's discounted-rate IRD.</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Straight switch rules — First National's standard charge keeps switching cheap.</p>
+        </a>
+        <a href="/investment-property-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Investment Property Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">First National is a leading lender for investment and commercial mortgages.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Benchmark First National before accepting.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call confirms whether First National's renewal is market-competitive — or whether a better offer exists. No obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,0 +1,170 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Does National Bank register mortgages as collateral or standard charges?",
+    answer: "National Bank's standalone residential mortgages are registered as standard charges. National Bank's All-in-One Banking account (the combined mortgage, HELOC, and chequing product) is registered as a collateral charge. Customers on a straight National Bank mortgage enjoy low switching friction; All-in-One customers face ~$700-$1,500 in legal fees to switch at renewal."
+  },
+  {
+    question: "Is National Bank only for Quebec residents?",
+    answer: "No — National Bank operates nationally, though it is headquartered in Montreal and has its largest branch network in Quebec. National Bank has been expanding its national presence, particularly in Ontario and Western Canada, and offers broker-channel mortgages across Canada. Quebec customers may receive additional relationship pricing, but national customers have access to the same product suite."
+  },
+  {
+    question: "What are National Bank's prepayment privileges?",
+    answer: "National Bank allows lump-sum prepayments of up to 10% of original principal per year, plus the ability to double any regular mortgage payment (Double-Up). These are mid-tier privileges — more flexible than RBC's base 10% but less than BMO's 20%. Specific terms can vary by product; confirm with your advisor or broker."
+  },
+  {
+    question: "How does National Bank calculate IRD penalties?",
+    answer: "National Bank uses a posted-rate IRD methodology typical of the Big 6. The comparison rate is National Bank's posted rate for the remaining term, less the discount you received at origination. Penalties are typically higher than monoline contract-rate methodology. IRD only applies mid-term; at renewal (maturity), no penalty applies."
+  },
+  {
+    question: "Should I switch away from National Bank at my renewal?",
+    answer: "If you're on a standalone National Bank mortgage (standard charge) and their renewal offer is within 15-20 bps of broker quotes, staying is often the simplest path. If National Bank trails broker quotes meaningfully, a straight-switch to a monoline or credit union at lower rate typically pays — especially given the low cost of switching a standard-charge mortgage. If on All-in-One, the higher switching cost requires a larger rate advantage to justify."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "national-bank-mortgage-renewal",
+    name: "National Bank Mortgage Renewal 2026 — Rates & Strategy",
+    description: "National Bank of Canada mortgage renewal guide: standard vs. All-in-One collateral charge, 2026 rates, prepayment privileges, IRD methodology, and negotiation.",
+  }),
+  articleSchema({
+    headline: "National Bank of Canada Mortgage Renewal 2026 — Rates & Strategy",
+    description: "National Bank mortgage renewal guide: standard charge vs. All-in-One Banking collateral charge, 2026 rates, 10% lump-sum prepayment with Double-Up, IRD methodology, and broker comparison.",
+    slug: "national-bank-mortgage-renewal",
+    articleSection: "Bank Renewal Guides",
+    about: "National Bank of Canada",
+    keywords: ["National Bank mortgage renewal", "Banque Nationale renewal", "All-in-One Banking", "National Bank prepayment", "Quebec mortgage renewal"],
+  }),
+  breadcrumbSchema([
+    { name: "National Bank Mortgage Renewal", url: "/national-bank-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "national-bank-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="National Bank Mortgage Renewal 2026 — Rates & Strategy"
+  description="National Bank mortgage renewal: standard vs. All-in-One collateral charge, 2026 rates, 10% prepayment with Double-Up, IRD methodology, and broker comparison."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › National Bank Mortgage Renewal
+  </nav>
+
+  <section class="py-16 text-white" style="background: var(--primary)">
+    <div class="container max-w-4xl">
+      <p class="text-sm font-semibold mb-3 uppercase tracking-wide opacity-80">Updated April 2026 · 7-minute read</p>
+      <h1 class="text-4xl font-bold mb-5 leading-tight">National Bank of Canada Mortgage Renewal in 2026</h1>
+      <p class="text-xl leading-relaxed opacity-90 mb-8">National Bank is the sixth-largest Canadian bank — Quebec-rooted but nationally active. Here's what to expect at your National Bank renewal in 2026: charge type, rate competitiveness, prepayment privileges, and when broker quotes pay off.</p>
+      <a href="/book-a-call/" class="inline-block rounded-lg px-7 py-3 font-semibold text-sm" style="background: var(--secondary); color: white">
+        Compare National Bank vs. Broker Quotes
+      </a>
+    </div>
+  </section>
+
+  <article class="container max-w-4xl py-12">
+    <div class="flex-1">
+
+      <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+        <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">National Bank at a Glance (April 2026)</h2>
+        <ul class="space-y-2 text-sm leading-relaxed">
+          <li>• <strong>Default charge type:</strong> Standard (All-in-One Banking is collateral)</li>
+          <li>• <strong>5-year fixed special:</strong> Competitive with Big 5 peers — get a specific quote at renewal</li>
+          <li>• <strong>Prepayment privileges:</strong> 10% lump sum per year + Double-Up payment</li>
+          <li>• <strong>IRD methodology:</strong> Posted-rate based</li>
+          <li>• <strong>Signature product:</strong> All-in-One Banking (combined mortgage, HELOC, chequing)</li>
+          <li>• <strong>Primary market:</strong> Quebec, with national presence and growing Ontario/Western Canada footprint</li>
+        </ul>
+      </div>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">National Bank's Charge Type: Standard vs. All-in-One</h2>
+
+      <p class="mb-4 leading-relaxed">National Bank's standalone residential mortgages use a <strong>standard charge</strong> — the simpler registration type that keeps switching costs modest. Legal fees for a switch to another lender are typically $300-$700, often covered by new-lender cash-back incentives.</p>
+
+      <p class="mb-6 leading-relaxed">National Bank's <strong>All-in-One Banking</strong> combines a mortgage, HELOC, and chequing account under a single collateral-charge registration. It's a flexible product for borrowers who want re-advanceable credit and integrated banking — but it carries the same switching friction as TD's collateral charges (~$700-$1,500 in legal fees at renewal switch). Confirm which product you're on before shopping.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">National Bank in Quebec vs. Nationally</h2>
+
+      <p class="mb-4 leading-relaxed">National Bank's historical core market is Quebec, where it has the largest branch network and deepest market share. Quebec customers may benefit from relationship pricing and the bank's French-language infrastructure.</p>
+
+      <p class="mb-6 leading-relaxed">Outside Quebec, National Bank has been expanding nationally — particularly through the broker channel and targeted Ontario branch growth. Customers renewing in Ontario, Alberta, BC, or the Atlantic provinces can access National Bank through a broker just as with any Big 6 lender. For <a href="/quebec-mortgage-renewal/" style="color: var(--secondary)">Quebec renewals</a> specifically, National Bank is often one of the most relationship-driven options.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">National Bank Prepayment Privileges</h2>
+
+      <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+        <li><strong>Lump-sum prepayments:</strong> Up to 10% of original principal per year, without penalty.</li>
+        <li><strong>Double-Up Payment:</strong> You can double any regular mortgage payment without penalty. If missed, the Double-Up opportunity does not carry forward.</li>
+        <li><strong>Anniversary flexibility:</strong> Lump-sum prepayments generally permitted on any regular payment date.</li>
+      </ul>
+
+      <p class="mb-6 leading-relaxed">Similar to RBC's structure — 10% lump-sum + Double-Up. More modest than TD's 15% or BMO's 20%. If aggressive prepayment is a priority, this is a consideration.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">National Bank's IRD Methodology</h2>
+
+      <p class="mb-4 leading-relaxed">National Bank uses a posted-rate IRD methodology standard across the Big 6. The comparison rate is National Bank's posted rate for the remaining term, less the discount you received at origination. Penalties are typically higher than monoline contract-rate methodology but consistent with Big 6 peers.</p>
+
+      <p class="mb-6 leading-relaxed">At renewal (maturity), no IRD applies. The methodology matters only if you break the mortgage mid-term.</p>
+
+      <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">The National Bank Renewal Playbook</h2>
+
+      <ol class="space-y-4 mb-8">
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">1. Confirm standalone vs. All-in-One</h3>
+          <p class="text-sm leading-relaxed">Check your mortgage product — this determines switching costs and whether the collateral-charge friction applies.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">2. Get broker quotes</h3>
+          <p class="text-sm leading-relaxed">A <a href="/mortgage-broker-renewal/" style="color: var(--secondary)">mortgage broker</a> can source quotes from monolines, credit unions, and competing banks — often including quotes from National Bank itself via the broker channel.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">3. Call National Bank retention</h3>
+          <p class="text-sm leading-relaxed">Present your best broker quote. National Bank's retention team typically responds constructively and will often match or come within 5-10 bps.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">4. Quebec customers: factor in notary costs for switches</h3>
+          <p class="text-sm leading-relaxed">Quebec mortgage switches require a notary (not a lawyer), and notary fees in Quebec are generally $1,200-$2,500 — higher than common-law provinces. Our <a href="/quebec-mortgage-renewal/" style="color: var(--secondary)">Quebec renewal guide</a> covers this in detail.</p>
+        </li>
+        <li class="rounded-lg p-5" style="border: 1px solid var(--border); background: var(--card)">
+          <h3 class="font-bold mb-2" style="color: var(--secondary)">5. Sign before maturity</h3>
+          <p class="text-sm leading-relaxed">Always actively sign your renewal — never let it auto-renew.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
+      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/quebec-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Quebec Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Essential reading for National Bank's Quebec customers.</p>
+        </a>
+        <a href="/rbc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">RBC Mortgage Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Similar prepayment structure to National Bank (10% + Double-Up).</p>
+        </a>
+        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Process for switching away from National Bank standard or All-in-One.</p>
+        </a>
+        <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
+          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates 2026</p>
+          <p class="text-xs" style="color: var(--muted-foreground)">Current market rates to benchmark National Bank's offer.</p>
+        </a>
+      </div>
+    </div>
+  </article>
+
+  <section class="py-12" style="background: var(--accent)">
+    <div class="container text-center">
+      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Benchmark National Bank's offer before signing.</h2>
+      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call delivers comparable quotes from monolines, credit unions, and competing banks. No obligation.</p>
+      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
+    </div>
+  </section>
+</DefaultLayout>
