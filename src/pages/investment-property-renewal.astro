@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -305,36 +306,7 @@ const schema = combineSchemas(
 
         <p class="mb-6 leading-relaxed font-medium" style="color: var(--primary)">Tax law is complex and changes regularly. Always consult a qualified CPA or tax advisor before making investment property mortgage decisions with tax implications.</p>
 
-        <!-- Related guides -->
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types Compared</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, B-lenders, portfolio lenders — the full landscape for investors.</p>
-            </a>
-            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinancing</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">When accessing equity or restructuring makes sense for rental property investors.</p>
-            </a>
-            <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Mortgage Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Many real estate investors are also self-employed — the income challenges compound.</p>
-            </a>
-            <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Cash flow implications of fixed vs. variable rate choice for investment properties.</p>
-            </a>
-            <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Mortgage Rate Forecast 2026</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Rate direction analysis — critical for cap rate vs. mortgage rate decisions.</p>
-            </a>
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Access portfolio lenders and B-lenders unavailable directly — essential for investors.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/investment-property-renewal/" />
 
       </div>
 

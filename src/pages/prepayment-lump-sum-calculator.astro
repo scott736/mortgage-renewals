@@ -1,0 +1,161 @@
+---
+import { PrepaymentLumpSum } from '@/components/calculators/prepayment-lump-sum';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a prepayment privilege on a Canadian mortgage?",
+    answer: "Most Canadian closed mortgages allow you to prepay 10–20% of the original principal each calendar year without penalty. Big 6 banks typically offer 10–15%, while monoline lenders and some Big 6 products (TD, CIBC) offer 20%. The privilege usually resets every 12 months from either the anniversary of your mortgage start date or calendar year — check your commitment letter."
+  },
+  {
+    question: "Should I apply a lump sum now or wait until renewal?",
+    answer: "Applying now compounds longer. A $25,000 lump sum at 4.29% applied today saves more interest than the same amount applied in 24 months — because it reduces principal immediately and every monthly payment thereafter goes further against the remaining balance. The only reason to wait is if you've already used your annual privilege this year."
+  },
+  {
+    question: "Does a lump sum reduce my mortgage payment?",
+    answer: "No — not automatically. A lump sum reduces your balance and shortens your amortization. Your payment stays the same, but more of each payment now goes to principal instead of interest. If you want a lower monthly payment, you need to also request a 're-amortization' from your lender, which is a separate (usually free) transaction at renewal."
+  },
+  {
+    question: "What happens if I exceed my prepayment privilege?",
+    answer: "The excess amount is treated as a partial prepayment and triggers a prepayment penalty — typically the 3-month interest or IRD calculation on just the over-privilege portion. Most borrowers hit the annual limit once and then stop — the penalty on excess erases the interest savings. Better strategy: save the overage and apply it on next year's anniversary."
+  },
+  {
+    question: "Can I combine lump sum, payment increase, and doubling up?",
+    answer: "Yes. Most Canadian lenders allow three separate prepayment tools: a lump-sum privilege (10–20% annual), a payment-increase privilege (usually 10–20% increase once per term), and double-up payments (match any regular payment). Using all three simultaneously can shave 5–10 years off a 25-year amortization."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "prepayment-lump-sum-calculator",
+    name: "Prepayment Lump Sum Calculator — Canadian Mortgage 2026",
+    description: "See how a lump-sum prepayment shortens your amortization and how much interest you save, respecting Canadian 10/15/20% privilege limits.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Lump Sum Prepayment Calculator",
+    description: "Free calculator showing interest saved and months shaved off when you apply a lump sum to your Canadian mortgage. Respects 10/15/20% annual privilege rules.",
+    slug: "prepayment-lump-sum-calculator",
+    features: [
+      "Interest saved over remaining amortization",
+      "Months shaved off amortization",
+      "10%, 15%, 20% privilege limits",
+      "Now vs. at renewal comparison",
+      "Canadian semi-annual compounding",
+    ],
+  }),
+  articleSchema({
+    headline: "Prepayment Lump Sum Calculator — Canadian Mortgage 2026",
+    description: "Calculate interest savings and amortization reduction from a lump-sum prepayment on a Canadian mortgage. Respects 10/15/20% privilege limits.",
+    slug: "prepayment-lump-sum-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage prepayment",
+    keywords: ["lump sum prepayment", "mortgage prepayment calculator", "prepayment privilege Canada", "pay off mortgage faster"],
+  }),
+  faqSchema(faqs, "prepayment-lump-sum-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Prepayment Lump Sum Calculator", url: "/prepayment-lump-sum-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Prepayment Lump Sum Calculator — Canadian Mortgage 2026"
+  description="Free Canadian lump-sum prepayment calculator. See interest saved and months shaved off when you apply a one-time payment against your mortgage principal."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Prepayment Lump Sum
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Prepayment Lump Sum Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        You've got $15,000, $50,000, or $100,000 you want to throw at your mortgage. Will it actually save you years and tens of thousands in interest? Run the math — and see exactly how your lender's 10/15/20% privilege limit caps the benefit.
+      </p>
+    </div>
+
+    <PrepaymentLumpSum client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How Canadian Prepayment Privileges Work</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Every closed Canadian mortgage comes with <strong>prepayment privileges</strong> — the amount of extra principal you can pay per year without triggering a penalty. These are set in your commitment letter and vary by lender:
+        </p>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside mb-3">
+          <li><strong>10%</strong> — Many Big 6 bank closed fixed mortgages (RBC, BMO, Scotiabank standard)</li>
+          <li><strong>15%</strong> — Scotiabank Flex Value, First National standard, many monolines</li>
+          <li><strong>20%</strong> — TD, CIBC, most monolines (MCAP, Strive, RFA, Equitable Bank)</li>
+          <li><strong>25%</strong> — Rare, sometimes available on open mortgages or premium products</li>
+        </ul>
+        <p class="text-body-md text-muted-foreground">
+          The percentage is usually calculated on <strong>original principal</strong>, not current balance, and resets each calendar year or on your mortgage anniversary. If you took out a $500,000 mortgage with 20% privileges, you can prepay up to $100,000 per year.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When a Lump Sum Makes Sense</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Work bonus, tax refund, inheritance</strong> — windfall money that you'd otherwise park in a savings account earning less than your mortgage rate</li>
+          <li><strong>At renewal</strong> — no privilege cap applies because there's no active term; you can put any amount down before signing the new mortgage</li>
+          <li><strong>Before a rate increase</strong> — maximizing principal reduction before rates reset higher lowers your renewal payment shock</li>
+          <li><strong>Ahead of amortization extension</strong> — If you're about to extend your amortization at renewal, a lump sum partly offsets the interest cost of the longer timeline</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When to Skip or Delay</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>You don't have an emergency fund</strong> — CFPB guidelines recommend 3–6 months of expenses in cash before aggressive mortgage prepayment</li>
+          <li><strong>You have higher-rate debt</strong> — 21.99% credit cards should always be paid before a 4.29% mortgage</li>
+          <li><strong>Your RRSP / TFSA isn't maxed</strong> — for marginal tax brackets above 43%, an RRSP contribution often beats mortgage prepayment after-tax</li>
+          <li><strong>Your GIC or HISA earns more than your mortgage rate</strong> — rare, but happens briefly when rates fall faster than GIC rates</li>
+          <li><strong>You're close to renewal</strong> — if you're within 120 days of renewal, wait and apply the money to the new balance penalty-free</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">The Compounding Power of an Early Lump Sum</h2>
+        <p class="text-body-md text-muted-foreground">
+          A $25,000 lump sum in year 1 of a $500,000 / 4.29% / 25-year mortgage saves roughly $21,000 in interest and shaves 2 years off the amortization. The same $25,000 in year 15 saves only $6,000 and shaves 7 months. The math is simple: interest compounds on the remaining balance, so reducing the balance early compounds harder. If you're going to make a lump sum, make it soon — and make it as large as your privilege allows.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/prepayment-lump-sum-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Make Sure Your Lump Sum Doesn't Trigger a Penalty</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can confirm your exact privilege limit and time the prepayment to max out savings — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

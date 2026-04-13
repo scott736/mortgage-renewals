@@ -1,0 +1,161 @@
+---
+import { RefinanceDebtConsolidation } from '@/components/calculators/refinance-debt-consolidation';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is the maximum I can refinance my home in Canada?",
+    answer: "Canadian federally regulated lenders are capped at 80% loan-to-value (LTV) on a conventional refinance — you cannot pull out more than 80% of your home's appraised value. For example, on an $800,000 home, the maximum refinanced mortgage is $640,000. Alternative lenders (B lenders, MICs, private) can go higher (85–95% LTV) but at substantially higher rates."
+  },
+  {
+    question: "Does refinancing to consolidate debt trigger the stress test?",
+    answer: "Yes. A cash-out refinance is 'new money' and you must qualify at the greater of contract rate + 2% or 5.25% per OSFI B-20 rules. This is a common roadblock — your existing mortgage was qualified at one rate, but the new, larger mortgage must pass today's stress test. Some monolines and credit unions (not OSFI-bound) offer more flexibility."
+  },
+  {
+    question: "Will consolidating debt save me money long-term?",
+    answer: "It reduces monthly payments dramatically but extends the repayment timeline. Rolling 21.99% credit card debt into a 4.39% mortgage cuts your rate by 17 percentage points, but if you amortize that debt over 25 years instead of paying it off in 3 years, total interest paid may be similar or slightly higher. The real win is cashflow relief. Use the freed cashflow to make lump-sum prepayments."
+  },
+  {
+    question: "Can I refinance mid-term, or do I have to wait for renewal?",
+    answer: "You can refinance mid-term, but breaking your current mortgage triggers a prepayment penalty — typically the greater of 3-month interest or IRD. If your penalty is small or your rate savings are large, mid-term refinancing can still make sense. Otherwise, time the refi for your renewal date. Our Mortgage Penalty Calculator estimates the break cost."
+  },
+  {
+    question: "What documents do I need for a debt consolidation refinance?",
+    answer: "Standard paperwork: most recent NOA (Notice of Assessment) from CRA, two recent paystubs, T1 General if self-employed, property tax bill, mortgage statement from your current lender, and full debt statements for each debt being consolidated. The lender will order a property appraisal (typically $350–$550, often refunded on closing)."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "refinance-debt-consolidation-calculator",
+    name: "Refinance Debt Consolidation Calculator — Canadian Mortgage 2026",
+    description: "See how much monthly cashflow you free up by rolling credit card, LOC, and car-loan debt into your mortgage at refi. Enforces 80% LTV cap.",
+  }),
+  webApplicationSchema({
+    name: "Debt Consolidation Refinance Calculator (Canada)",
+    description: "Free calculator that rolls multiple debts into a refinanced Canadian mortgage, enforces the 80% LTV cap, and shows monthly cashflow change plus lifetime interest impact.",
+    slug: "refinance-debt-consolidation-calculator",
+    features: [
+      "Multiple debt types: credit card, LOC, car loan, other",
+      "80% LTV cap enforcement",
+      "Monthly cashflow pre vs post",
+      "Lifetime interest comparison",
+      "Canadian semi-annual compounding",
+    ],
+  }),
+  articleSchema({
+    headline: "Refinance Debt Consolidation Calculator — Canadian Mortgage 2026",
+    description: "Free Canadian debt consolidation refinance calculator. Roll credit cards, LOC, and car loans into your mortgage and see exact cashflow impact.",
+    slug: "refinance-debt-consolidation-calculator",
+    articleSection: "Calculators",
+    about: "Debt consolidation refinance",
+    keywords: ["debt consolidation refinance", "refinance calculator Canada", "consolidate credit card debt", "cash-out refinance"],
+  }),
+  faqSchema(faqs, "refinance-debt-consolidation-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Refinance Debt Consolidation Calculator", url: "/refinance-debt-consolidation-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Refinance Debt Consolidation Calculator — Canadian Mortgage 2026"
+  description="Free Canadian debt consolidation refinance calculator. See the 80% LTV cap, monthly cashflow freed, and lifetime interest change."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Refinance Debt Consolidation
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Refinance Debt Consolidation Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Credit card at 21.99%, car loan at 7.49%, line of credit at 9.95% — all crushing your monthly cashflow. Rolling them into a 4.39% mortgage at refi can free up $1,500+/month. See exact numbers for your situation.
+      </p>
+    </div>
+
+    <RefinanceDebtConsolidation client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How Debt Consolidation Refinances Work in Canada</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          A <strong>cash-out refinance</strong> (also called "refi with equity take-out") replaces your existing mortgage with a new, larger mortgage. The difference between the old balance and the new balance is disbursed to you at closing — and you use it to pay off higher-interest debts. Your home acts as security for the combined total, so the interest rate is much lower than unsecured debt.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Canadian rules are strict: under OSFI B-20 and CMHC regulations, <strong>conventional refinances are capped at 80% LTV</strong> (loan-to-value). If your home is appraised at $800,000, the maximum new mortgage is $640,000 regardless of how much debt you want to consolidate. If your existing mortgage is already $500,000, you can pull out a maximum of $140,000 of equity.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Because a refinance creates "new money," it triggers the <strong>OSFI B-20 stress test</strong> — you must qualify at the greater of contract rate + 2% or 5.25%. This is a common failure point: borrowers who qualified at 2020 rates of 1.99% are now requalifying at 6.29% (4.29% + 2%) and finding they no longer fit B-20 ratios. Credit unions (provincially regulated, not OSFI-bound) can sometimes bridge this gap.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When Consolidation Makes Financial Sense</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Cashflow crisis</strong> — total min payments are crushing your monthly budget; rolling into mortgage halves the monthly outflow</li>
+          <li><strong>Trigger rate on variable</strong> — if your VRM has hit its trigger rate and negative amortization is occurring, consolidation + refi can reset the amortization</li>
+          <li><strong>Break-up / divorce</strong> — new sole owner needs to buy out spouse AND consolidate existing debts; one combined file is simpler</li>
+          <li><strong>Renovations with planning</strong> — roll a $75,000 reno budget into the mortgage instead of drawing a HELOC at prime + 1%</li>
+          <li><strong>Post-Canadian Mortgage Charter relief</strong> — if you qualify for distress-borrower flexibility, consolidation terms can be negotiated</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When Consolidation Costs More Than It Saves</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Small debts, almost paid off</strong> — if you'd clear the credit card in 8 months at $1,000/month, consolidating into a 25-year amortization pays more interest overall</li>
+          <li><strong>No behavioural change</strong> — if you consolidate and then run the cards back up, you've just doubled your debt and lost home equity</li>
+          <li><strong>Heavy prepayment penalty</strong> — mid-term penalties can erase 1–2 years of savings; wait for renewal when possible</li>
+          <li><strong>Stress test failure</strong> — if you can't qualify for the new balance at OSFI stress-test rates, a B lender will rate-shop you at 7–8%, which may exceed the blended rate of just keeping the debts</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Rules, Fees, and CMHC Considerations</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Consolidation refinances are <strong>never insured</strong> (no CMHC, Sagen, or Canada Guaranty insurance available on a refinance). You must have at least 20% equity remaining after the refi. Typical closing costs: appraisal $350–$550, legal $750–$1,500, title insurance $200–$400, plus any prepayment penalty from breaking the existing mortgage.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Under the November 2024 OSFI update, <strong>straight switch renewals</strong> (same balance, same amortization or shorter) no longer trigger the stress test. But a cash-out refinance is not a straight switch — the stress test always applies because you're adding new money.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/refinance-debt-consolidation-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Ready to Consolidate the Right Way?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can structure the refi without breaking stress-test rules and find lenders who cover penalty costs — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -54,7 +55,7 @@ const schema = combineSchemas(
 
 <DefaultLayout
   title="Reverse Mortgage at Renewal 2026 — CHIP, Flex, Bloom Options"
-  description="Reverse mortgage at Canadian renewal for homeowners 55+ — HomeEquity CHIP, Equitable Flex, Bloom Finance. Rates, eligibility, trade-offs, and when it makes sense."
+  description="Reverse mortgage for Canadians 55+ — HomeEquity CHIP, Equitable Flex, Bloom Finance. Rates, eligibility, trade-offs, and when it fits."
   schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -261,35 +262,7 @@ const schema = combineSchemas(
           ))}
         </div>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/lower-mortgage-payments-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lower Mortgage Payments</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Conventional alternatives to reverse mortgages.</p>
-            </a>
-            <a href="/estate-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Estate Mortgage Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How reverse mortgages interact with inheritance.</p>
-            </a>
-            <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Calculator</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Model conventional payments before committing to reverse.</p>
-            </a>
-            <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Term Lengths</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Shorter terms may ease transition to reverse later.</p>
-            </a>
-            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinance</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">A reverse mortgage is technically a refinance.</p>
-            </a>
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Brokers can quote all three reverse mortgage providers.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/reverse-mortgage-at-renewal/" />
 
       </div>
 

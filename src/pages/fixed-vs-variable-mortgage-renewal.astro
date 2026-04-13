@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 const schema = combineSchemas(
   webPageNode({
@@ -228,36 +229,7 @@ const schema = combineSchemas(
       </aside>
     </div>
 
-    <!-- Internal links -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Term Lengths Compared</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">1yr through 5yr fixed, variable, open — full comparison with pros and cons.</p>
-        </a>
-        <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2026 Canadian Mortgage Rate Forecast</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Current BoC rate, bond yields, and rate predictions for 2026–2027.</p>
-        </a>
-        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types and Penalty Structures</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Banks vs monolines: who has the most forgiving IRD penalties?</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">No stress test required for straight switches since 2024.</p>
-        </a>
-        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Avoid the most common and costly errors at renewal.</p>
-        </a>
-        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered across 7 categories.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/fixed-vs-variable-mortgage-renewal/" />
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">

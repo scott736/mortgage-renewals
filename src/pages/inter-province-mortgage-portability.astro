@@ -1,0 +1,309 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Can I port my mortgage between provinces in Canada?",
+    answer: "Yes in most cases. RBC, BMO, Scotiabank, CIBC, and National Bank all permit inter-provincial porting on standard-charge mortgages, provided the new property qualifies under that lender's underwriting and the lawyer can coordinate registration in the new province. TD inter-province ports are rare because TD registers collateral charges by default — a fresh registration in the new province is often required instead. Monolines (First National, MCAP, CMLS) generally allow inter-province ports on any standard-charge product. The port window (30–120 days) remains the same regardless of provinces involved."
+  },
+  {
+    question: "Does a cross-province port cost more than same-province?",
+    answer: "Usually yes, by $300–$800. The new province's registration fees apply (fresh mortgage charge registered in the destination province's land registry), and a lawyer in each province typically coordinates — one for the sale, one for the purchase. Quebec cross-province ports (to or from) cost the most because of notarial requirements and civil-law differences. Expect $1,500–$2,500 in total legal/notary fees on a Quebec-involved port, versus $1,000–$1,500 on a common-law to common-law port."
+  },
+  {
+    question: "Which provinces have the highest land transfer taxes on the new purchase?",
+    answer: "Ontario and British Columbia lead, with Toronto and Vancouver applying additional municipal land transfer taxes on top. On a $700,000 home: Ontario provincial LTT ~$10,475, Toronto municipal LTT another ~$10,475 = $20,950 combined. BC provincial LTT on $700K = $12,000. Alberta has no land transfer tax — instead a registration fee based on property value (typically $210–$500 on a $700K home). Manitoba and Saskatchewan have modest LTTs. Quebec has welcome tax (droit de mutation), progressive to roughly $7,500 on $700K. Land transfer tax is the buyer's obligation, paid at closing, separate from the mortgage itself."
+  },
+  {
+    question: "Why is Quebec different for inter-province porting?",
+    answer: "Quebec operates under a civil-law system (Civil Code of Quebec) while the rest of Canada uses common law. Mortgages in Quebec are technically hypothecs, registered in the Quebec Land Register through a notary. A common-law mortgage coming in from Ontario or Alberta must be discharged there and a new hypothec registered in Quebec — it can't be literally ported because the legal instruments are different. Most lenders treat Quebec-involved moves as a break-and-new rather than a true port. Notary fees run $1,000–$1,800 and timelines are longer."
+  },
+  {
+    question: "Can I port my mortgage to a reserve property or military base?",
+    answer: "Reserve properties (Section 95 First Nations reserve land) are generally non-portable because the land tenure is held by the Crown, not in fee simple. Mortgages on reserve properties exist but require specialized lenders with Indigenous-lending capacity (First Nations Bank, Peace Hills Trust, some credit unions) and custom security structures. Military housing on Canadian Forces Base property isn't privately mortgageable. If you're a CAF member relocating under the IRP (Integrated Relocation Program), CAF reimbursement programs cover mortgage penalties as part of relocation benefits — a more practical route than porting."
+  },
+  {
+    question: "Do I requalify when porting between provinces?",
+    answer: "Yes. Porting is always treated as a new mortgage application on a new property, whether the move is across town or across the country. The lender pulls credit, verifies income, orders an appraisal on the new property, and applies the OSFI B-20 stress test. The November 2024 straight-switch exemption does not apply to a port — it's not a renewal, it's a new loan on a new property. If your income situation has weakened or the new province's market leaves you at a higher LTV, approval isn't guaranteed even though you're an existing customer."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Porting a Canadian Mortgage Between Provinces (2026): Rules, Costs, and Traps",
+    description: "How inter-provincial mortgage porting works in Canada — Big 6 policies, registration differences by province, Quebec civil-law complications, land transfer tax on the new purchase, and reserve-property limitations.",
+    slug: "inter-province-mortgage-portability",
+    articleSection: "Mortgage Transfers",
+    about: "Inter-province mortgage portability in Canada",
+    keywords: ["port mortgage between provinces", "inter-province mortgage port", "Quebec mortgage portability", "cross-province mortgage move", "IRP military mortgage"],
+  }),
+  breadcrumbSchema([
+    { name: "Inter-Province Mortgage Portability", url: "/inter-province-mortgage-portability" }
+  ]),
+  faqSchema(faqs, "inter-province-mortgage-portability"),
+  webPageNode({
+    slug: "inter-province-mortgage-portability",
+    name: "Porting a Canadian Mortgage Between Provinces (2026)",
+    description: "Complete 2026 guide to inter-provincial mortgage porting — Big 6 policies, registration fee differences, Quebec civil-law complications, and land transfer tax considerations.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Inter-Province Mortgage Portability Canada (2026)"
+  description="How to port a Canadian mortgage between provinces — Big 6 policies, registration fee differences, Quebec civil-law complications, land transfer tax on new purchase, and IRP relocations."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Inter-Province Mortgage Portability
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Cross-Province Moves</div>
+      <h1 class="text-heading-1 mb-4">Porting a Canadian Mortgage Between Provinces</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Porting a mortgage from Ontario to Alberta, or BC to Ontario, generally works — but the registration rules, notary requirements, and land transfer costs vary substantially. Here's how each Canadian lender handles cross-province ports in 2026 and what the real total cost looks like.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>RBC, BMO, Scotia, CIBC, NBC</strong> allow inter-province ports on standard-charge mortgages; <strong>TD collateral charges</strong> usually cannot port across provinces.</li>
+        <li>• Most <strong>monolines</strong> (First National, MCAP, CMLS) allow inter-province ports freely on standard-charge products.</li>
+        <li>• Extra cost of a cross-province port: <strong>$300–$800</strong> common-law to common-law; <strong>$1,500–$2,500</strong> involving Quebec.</li>
+        <li>• <strong>Quebec ports</strong> are treated as break-and-new because hypothecs (civil law) and mortgages (common law) are different legal instruments.</li>
+        <li>• Land transfer tax on the new purchase varies massively: <strong>$20,950</strong> on Toronto $700K, <strong>$0</strong> in Alberta (registration fee only ~$400).</li>
+        <li>• <strong>Section 95 reserve properties</strong> are generally non-portable; <strong>CAF IRP relocations</strong> cover penalties rather than relying on porting.</li>
+        <li>• Full requalification applies to every port — <strong>OSFI stress test</strong> and credit check, regardless of province.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Cross-Province Porting Actually Works</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Mechanically, a port keeps your rate, term, and remaining balance intact while the security is moved from one property to another. Inter-province ports add a complication: the mortgage has to be discharged from the land registry in the old province and registered freshly in the new province. For common-law provinces (everywhere except Quebec), the mortgage instrument is functionally identical — the lawyer in the old province files a discharge, the lawyer in the new province files a new mortgage charge with the same terms. From the borrower's perspective, nothing about the loan changes.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Quebec is different. Quebec uses hypothecs under the Civil Code, registered by a notary in the Quebec Land Register. A common-law mortgage cannot literally be re-registered in Quebec as a hypothec — the legal instruments are distinct. In practice, lenders treat cross-province moves involving Quebec as a discharge of the old mortgage and origination of a new hypothec on the Quebec property, coordinating to preserve the original rate and term.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Lender Policies on Inter-Province Ports (April 2026)</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Inter-Province Port?</th>
+            <th class="p-3 text-left">Quebec Involvement</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">RBC Royal Bank</td>
+            <td class="p-3">Yes, standard charge</td>
+            <td class="p-3">Break-and-new with rate preservation</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">BMO</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Supported; longer timeline</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Scotiabank</td>
+            <td class="p-3">Yes (STEP and standard)</td>
+            <td class="p-3">Supported</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">CIBC</td>
+            <td class="p-3">Yes, standard charge</td>
+            <td class="p-3">Supported</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">TD Canada Trust</td>
+            <td class="p-3">Rare (collateral default)</td>
+            <td class="p-3">Usually treated as break</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">National Bank</td>
+            <td class="p-3">Yes, standard; not All-In-One</td>
+            <td class="p-3">Strong Quebec support</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">First National</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Supported</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">MCAP</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Supported</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">CMLS / RFA / Strive</td>
+            <td class="p-3">Yes on standard charge</td>
+            <td class="p-3">Varies by lender</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Credit unions</td>
+            <td class="p-3">Varies — most only lend in one province</td>
+            <td class="p-3">Usually requires new lender in destination</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Policies as of April 2026. Confirm with your specific commitment letter and the new property details.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Provincial Registration Systems</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canada's provinces use different land registration systems. Understanding the target province's system affects timelines and lawyer coordination:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Land Titles System</strong> (Alberta, BC, Saskatchewan, Manitoba, Ontario majority): Government-guaranteed title, fast registration (usually 1–5 business days). Most straightforward for ports.</li>
+      <li><strong>Registry System</strong> (Ontario minority, some Maritime): Chain-of-title, slower search, title insurance highly recommended. Most Ontario property has migrated to Land Titles (Teranet system).</li>
+      <li><strong>Quebec Land Register</strong>: Civil-law hypothec registration through notary. Slower (7–14 days typical) and requires different documentation.</li>
+      <li><strong>Nova Scotia Registry 2.0</strong>: Being migrated to Land Registration system province-by-province. Mixed system depending on property's migration status.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Land Transfer Tax on the New Purchase</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Whether you port or break, buying a home in a new province triggers that province's land transfer tax (or welcome tax, or registration fee). This is not part of the mortgage — it's owed by the buyer at closing. Cross-province movers often underestimate this cost because it doesn't exist in their origin province.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Province</th>
+            <th class="p-3 text-left">LTT on $700,000 Home</th>
+            <th class="p-3 text-left">First-Time Buyer Rebate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Ontario (Toronto)</td>
+            <td class="p-3">$20,950 (provincial + municipal)</td>
+            <td class="p-3">Up to $8,475</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Ontario (outside Toronto)</td>
+            <td class="p-3">$10,475</td>
+            <td class="p-3">Up to $4,000</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">British Columbia</td>
+            <td class="p-3">$12,000</td>
+            <td class="p-3">Up to $8,000</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Alberta</td>
+            <td class="p-3">~$400 registration fee only</td>
+            <td class="p-3">N/A</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Saskatchewan</td>
+            <td class="p-3">$2,100</td>
+            <td class="p-3">N/A</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Manitoba</td>
+            <td class="p-3">$10,650</td>
+            <td class="p-3">N/A</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Quebec (Welcome Tax)</td>
+            <td class="p-3">~$7,250</td>
+            <td class="p-3">Varies by municipality</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Nova Scotia (Halifax)</td>
+            <td class="p-3">$10,500 (1.5%)</td>
+            <td class="p-3">N/A</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">New Brunswick</td>
+            <td class="p-3">$7,000</td>
+            <td class="p-3">N/A</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">LTT rates as of April 2026. First-time buyer rebate rules exclude anyone who has owned a home anywhere globally.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Worked Example: Ontario to Alberta Port</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: Toronto to Calgary relocation, RBC mortgage</p>
+      <p class="text-body-sm leading-relaxed">
+        Existing: $475,000 at 2.69% (5-year fixed, 30 months remaining), Toronto property sold for $1,050,000.<br />
+        New: Calgary detached home, purchase price $685,000, requires $400,000 mortgage (downpayment from sale proceeds).<br /><br />
+        <strong>Port-and-decrease scenario:</strong><br />
+        Port $400,000 of existing mortgage at 2.69% (preserve rate); pay partial prepayment penalty on $75,000 reduction.<br />
+        Estimated IRD penalty on $75,000: ~$1,800 (30 months remaining × rate differential).<br /><br />
+        <strong>Transaction costs:</strong><br />
+        Ontario discharge: $80 + lawyer coordination $400<br />
+        Alberta new registration: $50 + ~$1,200/$5,000 on $400K = $170<br />
+        Alberta lawyer fee: $950<br />
+        Title insurance: $300<br /><br />
+        <strong>Plus Alberta land transfer costs:</strong><br />
+        Alberta property registration fee (separate from LTT — there is no LTT): ~$350<br /><br />
+        <strong>Port total transaction cost:</strong> ~$4,050<br /><br />
+        Versus break-and-new at 4.19% Calgary rate: extra interest of ~$6,000/year on $400,000 over 30 months = <strong>$15,000 saved by porting</strong>.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Military and CAF IRP Relocations</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian Armed Forces members relocating under the Integrated Relocation Program (IRP) have a parallel framework. CAF members are not required to port — the IRP covers mortgage prepayment penalties (up to published caps) as part of relocation benefits, making break-and-new the simpler choice in most cases. The CAF member gets a new mortgage in the destination province, often at prevailing rates, with penalties reimbursed by the program.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If the CAF member's existing rate is dramatically better than current market rates, porting may still make sense to preserve that rate for the remaining term. Base locations on CFB property itself cannot be privately mortgaged; housing on those bases is government-allocated. Off-base housing in towns near CFB locations uses standard civilian mortgages and ports normally.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">First Nations Reserve Property Limitations</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Section 95 First Nations reserve land is held by the Crown, not in fee simple. Standard Canadian mortgages cannot be registered against reserve property — there's no fee-simple title to mortgage. Specialized lending exists (First Nations Bank of Canada, Peace Hills Trust, Desjardins for some Quebec files, and certain credit unions) using custom security structures like leasehold, ministerial loan guarantees, or First Nations Financial Management Board-backed structures.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Porting a conventional mortgage onto reserve land is essentially impossible — the security instrument simply doesn't fit. Borrowers in this situation typically break their current mortgage and originate a new specialized loan. Status Indian / Indigenous buyers moving between reserve and off-reserve property are in scope for both types of loans but cannot port between them.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/inter-province-mortgage-portability/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Moving Provinces Mid-Term?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can map the port math across provinces and coordinate lawyers in both — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Cross-Province Port Analysis
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, howToSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -682,35 +683,7 @@ const schema = combineSchemas(
     </div>
 
     <!-- Internal links -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">The complete guide to how mortgage renewals work in Canada.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">When to switch, the 8-step process, costs covered by new lenders.</p>
-        </a>
-        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">The costly errors most Canadians make and how to avoid them.</p>
-        </a>
-        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Free to you. 30+ lenders. Complete broker guide for renewal.</p>
-        </a>
-        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Rate type decision framework for the 2026 rate environment.</p>
-        </a>
-        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered across 7 categories.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/mortgage-renewal-checklist/" />
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">

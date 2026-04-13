@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -185,27 +186,7 @@ const schema = combineSchemas(
       </div>
     </div>
 
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/lower-mortgage-payments-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lower Mortgage Payments at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Strategies to reduce payment including amortization extension.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Straight switch is exempt from stress test since November 2024.</p>
-        </a>
-        <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">What requalification looks like if you refinance vs. straight renew.</p>
-        </a>
-        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Credit-Challenged Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">If job loss has affected your credit, alternative options are available.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/job-loss-mortgage-renewal/" />
   </article>
 
   <section class="py-12" style="background: var(--accent)">

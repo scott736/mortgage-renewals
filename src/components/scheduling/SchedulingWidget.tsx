@@ -1,23 +1,25 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { useCallback,useEffect, useState } from 'react';
+
 import { Button } from '@/components/ui/button';
-import { ServiceSelector } from './ServiceSelector';
-import { AvailabilityPicker } from './AvailabilityPicker';
-import { BookingForm } from './BookingForm';
-import { BookingConfirmation } from './BookingConfirmation';
-import { PendingConfirmation } from './PendingConfirmation';
-import { cn } from '@/lib/utils';
 import type {
+  BookingConfirmation as BookingConfirmationType,
+  GuestInfo,
+  MeetingType,
+  SchedulingStep,
   Service,
   TeamMember,
   TimeSlot,
-  GuestInfo,
-  SchedulingStep,
-  BookingConfirmation as BookingConfirmationType,
-  MeetingType,
 } from '@/lib/nylas/types';
+import { cn } from '@/lib/utils';
+
+import { AvailabilityPicker } from './AvailabilityPicker';
+import { BookingConfirmation } from './BookingConfirmation';
+import { BookingForm } from './BookingForm';
+import { PendingConfirmation } from './PendingConfirmation';
+import { ServiceSelector } from './ServiceSelector';
 
 interface PendingBookingInfo {
   email: string;
@@ -55,7 +57,7 @@ export function SchedulingWidget({
   const [selectedSlot, setSelectedSlot] = useState<TimeSlot | null>(null);
   const [booking, setBooking] = useState<BookingConfirmationType | null>(null);
   const [pendingBooking, setPendingBooking] = useState<PendingBookingInfo | null>(null);
-  const [timezone, setTimezone] = useState(() => {
+  const [timezone, _setTimezone] = useState(() => {
     try {
       return Intl.DateTimeFormat().resolvedOptions().timeZone;
     } catch {
@@ -391,8 +393,8 @@ export function SchedulingWidget({
   );
 }
 
-export { ServiceSelector } from './ServiceSelector';
 export { AvailabilityPicker } from './AvailabilityPicker';
-export { BookingForm } from './BookingForm';
 export { BookingConfirmation } from './BookingConfirmation';
+export { BookingForm } from './BookingForm';
 export { PendingConfirmation } from './PendingConfirmation';
+export { ServiceSelector } from './ServiceSelector';

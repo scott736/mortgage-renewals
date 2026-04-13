@@ -1,0 +1,250 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the difference between a Canadian expat and a non-resident for mortgage purposes?",
+    answer: "A Canadian expat is a Canadian citizen (or permanent resident) who lives abroad — typically on a work assignment or secondment — but retains Canadian citizenship and often some residential ties to Canada. A non-resident, in the strict mortgage sense, is someone who is neither a citizen nor a permanent resident. Lenders generally treat expats more favourably than true non-residents: you may still qualify for resident-tier rates, higher LTV, and fewer documentation hurdles, particularly through expat-focused programs at RBC and Scotiabank."
+  },
+  {
+    question: "Am I a tax resident of Canada even though I live abroad?",
+    answer: "Possibly. CRA uses the 183-day physical presence rule plus a residential ties test. If you maintain significant ties to Canada — a home available for your use, a spouse or dependants in Canada, a primary bank account, health card, driver's licence — you may remain a Canadian tax resident even while living abroad. Many expats are 'factual residents' of Canada for tax purposes (continue to file Canadian tax returns on worldwide income). Others become non-residents (deemed departed). A cross-border accountant determines this during your first year abroad, and lenders typically ask to see your most recent Canadian NOA at renewal."
+  },
+  {
+    question: "Will my foreign-currency income be accepted for mortgage qualification?",
+    answer: "Most Canadian lenders accept USD, GBP, EUR, CHF, JPY, and AUD income relatively cleanly — they'll convert to CAD at a conservative rate (typically the Bank of Canada noon rate minus a 5–15% cushion to account for currency risk). Income in less-traded currencies or from jurisdictions with opaque tax reporting — parts of the GCC (Gulf Cooperation Council), some parts of Asia and Africa — can be more challenging, sometimes discounted 20–30% or requiring extra corroborating documents. RBC and Scotiabank have the most consistent expat-income policies."
+  },
+  {
+    question: "Which Canadian banks have formal expat programs?",
+    answer: "RBC's International Banking and Global Private Banking arm has the most established expat program — you can often open Canadian accounts, maintain a Canadian credit profile, and renew mortgages through dedicated expat relationship managers. Scotiabank's international presence (particularly in Latin America, the Caribbean, and parts of Asia) supports a coordinated expat-banking approach. BMO and TD service expats case-by-case through private banking. CIBC has a more limited program."
+  },
+  {
+    question: "Should I keep my Canadian bank account and credit cards active while abroad?",
+    answer: "Yes — this is one of the most important practical steps expats can take for mortgage purposes. An active Canadian chequing account and at least one Canadian credit card used periodically (with autopay) keeps your Canadian credit bureau file alive and current. Allowing Canadian credit to go dormant for two to three years can significantly complicate your renewal, especially if you want to switch lenders. A thin or stale Canadian credit file often forces you into the 'new to Canada' bucket at return."
+  },
+  {
+    question: "How do I manage currency risk on Canadian mortgage payments while earning abroad?",
+    answer: "Three common approaches: (1) Hold a CAD-denominated rental income (from tenants in the Canadian property) that services the mortgage directly, removing currency risk for the debt service; (2) Use a forward-contract or regular FX service (Wise, OFX, CIBC FX Online) to convert salary monthly at a rate better than retail bank spreads; (3) Time conversions around favourable CAD levels using a small CAD-buffer account, though this adds risk. Most expats use a combination — rental income where available, monthly FX conversions for the shortfall."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "canadian-expat-mortgage-renewal",
+    name: "Mortgage Renewal for Canadian Expats (2026)",
+    description: "How Canadians living abroad renew their Canadian mortgages — tax residency rules, foreign-income qualification, RBC and Scotiabank expat programs, and currency risk management.",
+  }),
+  articleSchema({
+    headline: "Mortgage Renewal for Canadian Expats (2026)",
+    description: "Renewal guide for Canadian citizens living and working abroad — factual vs. non-resident tax status, foreign-currency income underwriting, expat banking programs, and currency risk.",
+    slug: "canadian-expat-mortgage-renewal",
+    articleSection: "Expat Mortgages",
+    about: "Canadian expat mortgage renewal",
+    keywords: ["Canadian expat mortgage", "expat mortgage renewal", "foreign income mortgage Canada", "RBC expat banking", "183-day rule Canada"],
+  }),
+  faqSchema(faqs, "canadian-expat-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "Canadian Expat Mortgage Renewal", url: "/canadian-expat-mortgage-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Canadian Expat Mortgage Renewal (2026) | Foreign Income & Tax Residency"
+  description="Complete guide for Canadian citizens abroad — how to renew your Canadian mortgage while earning foreign income, tax residency rules, RBC/Scotiabank expat programs, and currency risk."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Canadian Expat Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Canadians Living Abroad</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Renewal for Canadian Expats</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. If you're a Canadian citizen working abroad — on secondment, diplomatic posting, remote work, or a longer-term international assignment — and you own Canadian property, your renewal sits in a distinct category from non-residents. This guide covers how lenders treat expat income, the tax residency rules that matter for underwriting, which banks run formal expat programs, and how to keep your file clean for the years you're away.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Canadian expats remain <strong>Canadian citizens</strong> — legally distinct from non-residents for mortgage underwriting.</li>
+        <li>• Many expats remain <strong>Canadian tax residents</strong> (factual residents) by maintaining significant ties — affecting both tax filing and lender documentation.</li>
+        <li>• The <strong>183-day physical presence rule</strong> and residential ties test determine CRA tax residency, not citizenship alone.</li>
+        <li>• <strong>USD, GBP, EUR, and OECD-currency income</strong> is widely accepted; GCC and emerging-market income is harder.</li>
+        <li>• <strong>RBC International</strong> and <strong>Scotiabank Global Client</strong> programs are the most expat-friendly Canadian banks.</li>
+        <li>• Keep at least one <strong>Canadian credit card active with autopay</strong> and a Canadian chequing account open while abroad.</li>
+        <li>• Renewal documentation typically includes: foreign employment letter, foreign tax returns, foreign bank statements, and current Canadian NOA.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Expat vs. Non-Resident: Why the Distinction Matters</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A Canadian citizen (or permanent resident) living abroad on assignment is fundamentally different from a foreign investor owning Canadian real estate from overseas. Both may live outside Canada for years at a time, but they're underwritten through different lender desks, under different policies, often at different rates.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Expats are typically offered resident-tier rates (or close to it), full LTV at renewal, and access to standard Canadian banking products. Non-residents — strictly, non-citizens living abroad — face 35% minimum equity, no access to CMHC insurance, and 25–75 bps rate premiums. See our <a href="/non-resident-mortgage-renewal/" class="text-secondary-100 hover:underline">non-resident renewal guide</a> for the full contrast.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Tax Residency: The 183-Day Rule and Residential Ties</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian income tax applies based on residency, not citizenship. Many expats remain Canadian tax residents (known as <em>factual residents</em>) throughout their posting because they maintain enough ties to Canada. CRA looks at:
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Primary Ties (heavily weighted)</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>A home available for your use in Canada</li>
+          <li>Spouse or common-law partner living in Canada</li>
+          <li>Dependants living in Canada</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Secondary Ties</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Canadian driver's licence, health card, passport</li>
+          <li>Canadian bank accounts and credit cards</li>
+          <li>Vehicle registered in Canada</li>
+          <li>Professional, religious, or social memberships</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If you maintain a home in Canada that's rented out (not simply available for your use) and your family has relocated with you, you may have cleanly broken residency. If your spouse and kids remain in Canada and you're commuting back frequently, you're almost certainly a factual resident regardless of day count. A cross-border tax accountant should confirm your status in your first year abroad — this single determination cascades through your tax obligations and your mortgage file.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Typical Expat Scenarios</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">Typical Tax Status</th>
+            <th class="p-3 text-left">Renewal Approach</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">2–3 year corporate secondment; family moves with you</td>
+            <td class="p-3">Often non-resident; home rented</td>
+            <td class="p-3">Expat-program renewal, foreign-income docs</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Diplomatic or CAF posting abroad</td>
+            <td class="p-3">Usually factual resident of Canada</td>
+            <td class="p-3">Standard resident renewal; foreign allowances accepted</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Remote work for a foreign employer, spouse in Canada</td>
+            <td class="p-3">Factual resident (spouse tie)</td>
+            <td class="p-3">Standard renewal; foreign income verified</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Moved abroad permanently; home rented out</td>
+            <td class="p-3">Non-resident (full departure)</td>
+            <td class="p-3">Expat-program renewal; NR4/NR6 for rental</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Retired abroad; maintain CA home</td>
+            <td class="p-3">Often factual resident</td>
+            <td class="p-3">Resident renewal; pension income verified</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Lenders Treat Foreign-Source Income</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian lender comfort with foreign-currency income varies by currency and country. The rough hierarchy:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Tier 1 — USD, GBP, EUR, CHF, JPY, AUD:</strong> accepted by virtually all expat-program lenders at a conservative FX (Bank of Canada rate less 5–15%). Documentation requirements: foreign employer letter, three to six months of foreign pay stubs or bank statements, most recent foreign tax return.</li>
+      <li><strong>Tier 2 — Singapore, Hong Kong, Taiwan, UAE, Qatar:</strong> accepted by RBC International and Scotiabank; some other lenders case-by-case. May require a 10–20% income haircut.</li>
+      <li><strong>Tier 3 — Saudi Arabia, Kuwait, Oman, emerging-market postings:</strong> Harder. RBC and Scotiabank will often still consider, but typically with 20–30% income discount and heavier corroborating documents (expat compound address, embassy registration, etc.).</li>
+      <li><strong>Tier 4 — jurisdictions with no formal income tax or opaque reporting:</strong> Very selective; Canadian-dollar assets may be required to offset.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If your current lender won't work with your foreign income at renewal, a broker can shop RBC International and Scotiabank's global desk, which have explicit mandates for cross-border files. Visit our <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">broker guide</a> for how the shopping process works from abroad.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Keeping Your Canadian Banking Relationship Active</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The single most valuable expat habit for renewal purposes: don't let your Canadian bureau file go dormant. Practical steps:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Keep at least one Canadian credit card open with a small recurring charge on autopay (Spotify, Netflix, a professional-association membership)</li>
+      <li>Keep a Canadian chequing account for property tax, property management, and mortgage payments</li>
+      <li>Update your mailing address to a trusted Canadian address (parent, sibling) or use your bank's mail-holding service — don't let statements bounce</li>
+      <li>File Canadian tax returns annually even if non-resident (for rental income under Section 216 or world income if factual resident)</li>
+      <li>Respond promptly to any CRA correspondence — unresolved CRA items show up on lender searches and can delay renewal</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Expats who do all five return home (or renew from abroad) with an intact Canadian credit bureau and straightforward underwriting. Expats who let everything lapse often find themselves treated like <a href="/new-to-canada-mortgage-renewal/" class="text-secondary-100 hover:underline">new immigrants</a> and lose negotiating leverage.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Managing Currency Risk on Mortgage Payments</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A Canadian-dollar mortgage paid from foreign-currency salary is exposed to FX volatility. Over five years, USD/CAD has moved a 10–15% range in most years; other currencies more. Practical mitigations:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Rent out the Canadian property and service the mortgage from CAD rental income</p>
+        <p class="text-body-sm text-muted-foreground">This is the cleanest hedge — the debt payment and the income are in the same currency. Remains available even if you're non-resident (with NR6/Section 216 tax treatment).</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Use a retail FX service (Wise, OFX, CIBC FX Online) for monthly transfers</p>
+        <p class="text-body-sm text-muted-foreground">Spreads of 0.3–0.8% vs. retail bank wire spreads of 2–3%. On a $3,000/month mortgage payment, that's $500–$800 per year saved.</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Maintain a small CAD buffer account</p>
+        <p class="text-body-sm text-muted-foreground">Holding three to six months of mortgage payments in CAD buys time to ride out adverse FX moves. Some expats build this by converting surplus pay during favourable FX windows.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Choosing a Fixed vs. Variable Rate as an Expat</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Currency risk alone is a reason many expats favour fixed rates at renewal — adding variable-rate volatility on top of FX volatility compounds uncertainty. If you're earning in a lower-volatility currency (USD, EUR, GBP) and servicing from Canadian rental income, variable may be fine. If you're earning in a volatile currency and paying from abroad, a five-year fixed term often makes the math easier to live with. See our <a href="/fixed-vs-variable-mortgage-renewal/" class="text-secondary-100 hover:underline">fixed vs. variable guide</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/canadian-expat-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Renewing While Living Abroad?</h2>
+      <p class="text-white/80 mb-6">A licensed broker with an expat book can match you to RBC International, Scotiabank Global Client, or other expat-friendly lenders — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Expat Renewal Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

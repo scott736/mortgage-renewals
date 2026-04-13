@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -309,24 +310,7 @@ const schema = combineSchemas(
       ))}
     </div>
 
-    <div>
-      <h2 class="text-heading-3 mb-4">Related Guides</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        {[
-          { title: "Mortgage Rate Forecast", href: "/mortgage-rate-forecast/" },
-          { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
-          { title: "Trigger Rate on Variable Mortgages", href: "/trigger-rate-variable-mortgage-canada/" },
-          { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
-          { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
-          { title: "Mortgage Renewal Term Lengths", href: "/mortgage-renewal-term-lengths/" },
-        ].map(link => (
-          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-            <span class="text-secondary-100">→</span>
-            {link.title}
-          </a>
-        ))}
-      </div>
-    </div>
+    <RelatedLinks slug="/bank-of-canada-rate-decisions/" />
   </section>
 
   <section class="bg-primary-100 py-12 mt-10">

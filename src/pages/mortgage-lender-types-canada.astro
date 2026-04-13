@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 const schema = combineSchemas(
   webPageNode({
@@ -181,35 +182,7 @@ const schema = combineSchemas(
     <p class="mb-6 leading-relaxed">Going directly to a single bank means you only see one option, at one institution's rates, with one set of penalties and conditions. A broker sees everything. That breadth of access, combined with the broker's expertise in matching profiles to lenders, is the foundation of why using a broker at renewal consistently outperforms going directly to a lender.</p>
 
     <!-- Internal links -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Free access to 30+ lenders. Everything a broker does for you at renewal.</p>
-        </a>
-        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable: IRD Penalties</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Why the penalty difference between bank and monoline can be $10,000+.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">No stress test on straight switches since 2024. 8-step process.</p>
-        </a>
-        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Bad Credit</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">B-lenders, private lending, and the path back to prime rates.</p>
-        </a>
-        <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Which lenders work best for self-employed borrowers at renewal.</p>
-        </a>
-        <a href="/mortgage-renewal-glossary/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Glossary</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">IRD, collateral charge, monoline, B-lender — all terms explained.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/mortgage-lender-types-canada/" />
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">

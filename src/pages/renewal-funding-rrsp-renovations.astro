@@ -1,0 +1,298 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Why is mortgage renewal the right time to refinance for RRSP or renovations?",
+    answer: "Three reasons. (1) No prepayment penalty — breaking mid-term to pull equity triggers an IRD penalty, often $5,000–$30,000. At renewal, the term is ending, so no penalty applies. (2) Low or waived legal and appraisal fees — most lenders waive these on a switch or refinance at renewal as acquisition cost, saving ~$1,500. (3) Fresh underwriting is happening anyway — folding a refinance into the renewal application is marginal incremental work for the broker and the lender."
+  },
+  {
+    question: "Is interest on an RRSP-contribution-funded mortgage draw tax-deductible?",
+    answer: "No. CRA is clear on this: interest on funds borrowed to contribute to an RRSP is NOT tax-deductible. The RRSP itself is a tax-sheltered account, so the income earned inside isn't taxable — which under ITA Section 20(1)(c) means the interest on borrowed funds used to contribute is not deductible. This is the key difference from the Smith Manoeuvre, where investments are held in a non-registered account. The RRSP refinance strategy is a cashflow arbitrage (tax refund now, future contribution room reclaimed) rather than a tax deduction play."
+  },
+  {
+    question: "Is interest on a refinance for rental-property renovations tax-deductible?",
+    answer: "Yes, for the portion used on the rental property. Interest on borrowed funds used to generate rental income (e.g., a basement apartment renovation in a house you rent out, or a full renovation of a pure investment property) is deductible under Section 20(1)(c). The renovation itself may be either a current expense (repairs — fully deductible in year incurred) or a capital expense (improvements — added to the cost base and depreciated via CCA). Keep clean tracing: the refinance funds should flow directly to the renovation, documented with invoices."
+  },
+  {
+    question: "What's the math on 'borrow to RRSP' as a cashflow arbitrage?",
+    answer: "Example: you refinance at renewal to pull out $30,000 at 4.5%. Contribute $30,000 to your RRSP — at 43% marginal tax rate, that generates a $12,900 tax refund. Apply the refund against the mortgage balance, reducing the effective loan to $17,100. Annual interest on $17,100 at 4.5% is ~$770. Annual RRSP contribution room recaptured: $30,000 (if you had unused room to use). Over a 25-year amortization, you've borrowed $30,000 at a net cost of ~$770/year for 25 years = $19,250 of interest, in exchange for $30,000 invested inside the RRSP with 25 years of tax-deferred compounding. At 6% annual return over 25 years, the RRSP grows to ~$128,000. Net benefit: meaningful, but slower and less efficient than contributing from salary cashflow if you have the capacity."
+  },
+  {
+    question: "How much home equity should I leave untouched as a buffer?",
+    answer: "Canadian refinance is capped at 80% LTV, so you legally can't go beyond that. Prudentially, most financial planners recommend leaving at least 20–30% equity untouched as a buffer against market downturns, emergencies, or future renovation needs. Pulling right to the 80% cap means you have zero unused capacity — if the market softens 10–15%, you're underwater or close to it. A moderate refinance (say, 70% LTV) gives you a 10-percentage-point buffer."
+  },
+  {
+    question: "Do all lenders permit refinance-at-renewal for any purpose?",
+    answer: "Most Canadian A-lenders permit refinances for any legal purpose including RRSP contributions, renovations, tuition, debt consolidation, emergency fund creation, and even vehicle purchase. However, some lenders apply slightly different underwriting for 'pull equity to invest' refinances — they want to see a clear plan and may limit certain purposes like margin-lending deposits. Renovation refinances are universally accepted. Large RRSP contribution refinances may require an investment plan letter. A mortgage broker can pre-flight the purpose with several lenders to ensure smooth approval."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "renewal-funding-rrsp-renovations",
+    name: "Using Mortgage Renewal to Fund RRSP Contributions or Renovations in Canada",
+    description: "How Canadians use the renewal window to refinance up to 80% LTV for RRSP contributions, renovations, education, or emergency fund — with CRA deductibility rules, worked math, and pitfalls.",
+  }),
+  articleSchema({
+    headline: "Using Mortgage Renewal to Fund RRSP Contributions or Renovations in Canada",
+    description: "How to refinance at renewal to fund RRSP contributions, home renovations, tuition, or an emergency fund — CRA deductibility rules, worked math on each purpose, lender appetite, and key risks.",
+    slug: "renewal-funding-rrsp-renovations",
+    articleSection: "Refinance Strategy",
+    about: "Mortgage renewal refinance for RRSP and renovations",
+    keywords: ["refinance for RRSP Canada", "mortgage renewal renovations", "80% LTV refinance", "borrow to RRSP", "home equity renovation loan"],
+  }),
+  faqSchema(faqs, "renewal-funding-rrsp-renovations"),
+  breadcrumbSchema([
+    { name: "Renewal Funding RRSP or Renovations", url: "/renewal-funding-rrsp-renovations" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Renewal to Fund RRSP or Renovations (2026) | Canadian Refinance Guide"
+  description="Use your Canadian mortgage renewal to refinance for RRSP contributions, renovations, education, or emergencies — 80% LTV cap, CRA deductibility rules, worked math, and pitfalls."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Renewal Funding RRSP or Renovations
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Refinance Strategy</div>
+      <h1 class="text-heading-1 mb-4">Using Mortgage Renewal to Fund RRSP Contributions or Renovations</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Your mortgage renewal is the single most efficient window for refinancing — no penalty, waived legal fees, and fresh underwriting already in progress. Pulling equity at renewal can fund a large RRSP contribution, kitchen renovation, basement suite build-out, child's tuition, or emergency fund. Here's the math on each purpose, the CRA deductibility rules, and the pitfalls that catch homeowners who treat their home equity as a free checking account.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Canadian refinance is capped at <strong>80% loan-to-value</strong> — the maximum new mortgage cannot exceed 80% of appraised home value.</li>
+        <li>• <strong>Renewal</strong> is the ideal time: no prepayment penalty, waived fees, fresh underwriting anyway.</li>
+        <li>• <strong>Interest on RRSP-contribution refinance is NOT deductible</strong> — it's a cashflow arbitrage, not a tax-deduction play.</li>
+        <li>• <strong>Interest on rental-property renovation refinance IS deductible</strong> for the rental portion.</li>
+        <li>• Typical purposes: RRSP contribution, kitchen/bath renovation, legal secondary suite, tuition, emergency fund.</li>
+        <li>• <strong>Leave a buffer</strong>: most planners recommend not going all the way to the 80% cap — leave 10–15 percentage points of untouched equity.</li>
+        <li>• A readvanceable mortgage can give you the same flexibility with pay-as-you-go HELOC access.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Refinance at Renewal Rather Than Mid-Term</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Refinancing mid-term means breaking your existing mortgage — paying the IRD or three-month interest penalty (typically $5,000–$30,000+), paying new legal fees ($1,000–$1,800), paying an appraisal ($400–$600), and originating fresh at whatever rates are available. The break-even timeline for that to make sense mid-term is usually 2–3+ years of savings.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      At renewal, your term is naturally ending — no penalty. Most lenders offer a switch with waived legal and appraisal fees as an acquisition incentive. Adding a refinance (for RRSP, renovations, etc.) to the switch is incremental rather than a separate transaction. In short: same effort, dramatically lower cost. See our <a href="/renewal-vs-refinancing/" class="text-secondary-100 hover:underline">renewal vs. refinancing guide</a> for the structural comparison.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Purpose 1: Funding an RRSP Contribution</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Refinancing to max out unused RRSP contribution room is a classic cashflow-arbitrage play. The tax refund generated by the contribution substantially offsets the additional mortgage interest, and the RRSP compounds tax-deferred for decades.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: RRSP Contribution from Refinance at Renewal</p>
+      <p class="text-body-sm leading-relaxed">
+        Home value $750,000. Existing mortgage at renewal: $300,000 (40% LTV). Refinance to $330,000 at 4.39% 5-year fixed — pulling out $30,000.<br /><br />
+        Contribute $30,000 to RRSP. At 43% marginal rate (Ontario six-figure bracket): tax refund ≈ $12,900.<br /><br />
+        Apply $12,900 refund as lump-sum prepayment against the new mortgage — effective net borrowing: $17,100.<br /><br />
+        Year 1 incremental interest on the $17,100: ~$750.<br /><br />
+        RRSP grows tax-deferred. At 6% annual return over 25 years, $30,000 grows to ~$128,000 inside the RRSP.<br /><br />
+        <strong>Lifetime incremental mortgage interest:</strong> ~$19,000 over 25 years (not deductible).<br />
+        <strong>Lifetime RRSP growth:</strong> ~$98,000 gain (tax-deferred).<br /><br />
+        <strong>Crucially:</strong> when you eventually withdraw from the RRSP in retirement, withdrawals are taxed at (ideally lower) retirement marginal rate. The net benefit depends heavily on the gap between today's marginal rate and your retirement marginal rate.
+      </p>
+    </div>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      <strong>Critical CRA note:</strong> Interest on funds borrowed to contribute to an RRSP is <strong>NOT deductible</strong>. The RRSP is a tax-sheltered account, so the income inside isn't taxable, which under Section 20(1)(c) means the borrowing interest isn't deductible. This distinguishes the RRSP refinance from the Smith Manoeuvre (which uses non-registered investments specifically to preserve deductibility). See our <a href="/smith-manoeuvre-at-renewal/" class="text-secondary-100 hover:underline">Smith Manoeuvre guide</a> for the alternative if tax deductibility is the goal.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Best candidates for RRSP refinance: high current marginal rate (40%+), expectation of lower retirement marginal rate, substantial unused RRSP contribution room, long investment horizon (15+ years), stable income to service the larger mortgage.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Purpose 2: Home Renovations</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Renovations are a classic refinance purpose. The rationale: renovations often increase the home's value, and financing them through mortgage at 4–5% is dramatically cheaper than financing through personal lines of credit at 8–11% or credit cards at 20%+.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Renovation</th>
+            <th class="p-3 text-left">Typical Cost (2026)</th>
+            <th class="p-3 text-left">Typical Value Added</th>
+            <th class="p-3 text-left">CRA Deductibility</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Kitchen mid-range renovation</td>
+            <td class="p-3">$35K–$70K</td>
+            <td class="p-3">60–75% of cost</td>
+            <td class="p-3">No (personal-use portion)</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Bathroom renovation</td>
+            <td class="p-3">$15K–$35K</td>
+            <td class="p-3">50–65%</td>
+            <td class="p-3">No</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Legal secondary suite (basement apt)</td>
+            <td class="p-3">$60K–$150K</td>
+            <td class="p-3">80–120% of cost + rental income</td>
+            <td class="p-3">Yes — interest on rental portion deductible</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Energy efficiency (windows, insulation, heat pump)</td>
+            <td class="p-3">$15K–$50K</td>
+            <td class="p-3">30–60% (plus energy savings)</td>
+            <td class="p-3">No (may qualify for Greener Homes rebate)</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Roof, foundation, major mechanical</td>
+            <td class="p-3">$10K–$40K</td>
+            <td class="p-3">Preserves value rather than adds</td>
+            <td class="p-3">No</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Legal secondary suites are the standout: they often generate rental income that services the incremental mortgage cost, AND the portion of mortgage interest attributable to the rental part of the house becomes tax-deductible. A $100,000 basement suite renovation that generates $1,800/month rent on a property with 20% floor-area attributable to the suite can be a genuine wealth-building play.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Purpose 3: Education (Tuition)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian post-secondary tuition for a four-year degree at a public university runs $40,000–$80,000 plus living costs. For parents whose RESPs fall short, refinancing at renewal to pull equity for tuition can be materially cheaper than a student line of credit (typically prime + 0–2%) and dramatically cheaper than private student loans.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Interest on education refinance is NOT deductible (education isn't an income-earning activity in the ITA sense). But the rate is typically 2–4 percentage points lower than the best student line of credit, which over the life of the loan is substantial. Consider structuring as a readvanceable so you only draw as tuition is due, not a lump sum upfront.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Purpose 4: Emergency Fund Seeding</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      For homeowners with thin emergency savings, refinancing at renewal to create a $20,000–$50,000 emergency fund (held in a TFSA high-interest savings account) can be appropriate. The cost: slightly higher mortgage interest. The benefit: a financial buffer that prevents credit card debt accumulation during a job loss, major car repair, or medical issue. Not mathematically optimal (you're paying 4.5% interest on money earning 3–4% in a HISA), but behaviourally sound for homeowners who can't otherwise accumulate savings. A readvanceable mortgage provides this capacity more efficiently than a full refinance — you draw only if needed.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Structure Choice: Lump-Sum Refinance vs. Readvanceable</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Lump-Sum Refinance</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Refinance to a new larger mortgage at a fixed rate. You get all the cash at closing. Simple, predictable, fixed-rate hedge.</p>
+        <p class="text-body-sm-medium">Best for: one-time large expense (RRSP contribution, full renovation, tuition paid upfront).</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Readvanceable Mortgage + HELOC</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Renew into a readvanceable. Draw only as needed. Pay interest only on drawn balance. HELOC rate is variable (prime + 0.5–1.5%).</p>
+        <p class="text-body-sm-medium">Best for: flexible or phased expenses (multi-year tuition, staged renovations, emergency buffer).</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Many Canadian homeowners use a hybrid: refinance to cover the known lump-sum portion (RRSP, major renovation), plus a readvanceable HELOC for flexible future needs. See our <a href="/smith-manoeuvre-at-renewal/" class="text-secondary-100 hover:underline">Smith Manoeuvre guide</a> for the readvanceable product list at Canadian lenders.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Lender Appetite by Purpose</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Purpose</th>
+            <th class="p-3 text-left">Lender Comfort</th>
+            <th class="p-3 text-left">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">RRSP contribution</td>
+            <td class="p-3">High</td>
+            <td class="p-3">May ask for investment plan; large contributions ($50K+) get more scrutiny</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Renovations</td>
+            <td class="p-3">Very high</td>
+            <td class="p-3">Universally accepted; quotes or contractor agreements may be requested</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Tuition</td>
+            <td class="p-3">High</td>
+            <td class="p-3">Usually accepted without documentation</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Debt consolidation</td>
+            <td class="p-3">High</td>
+            <td class="p-3">Most lenders active in consolidation refinances (see our <a href="/mortgage-renewal-debt-consolidation/">debt consolidation guide</a>)</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Non-registered investing (Smith Manoeuvre)</td>
+            <td class="p-3">Medium</td>
+            <td class="p-3">Better structured as readvanceable; some lenders hesitate on leverage-for-margin</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Business working capital</td>
+            <td class="p-3">Case-by-case</td>
+            <td class="p-3">Some lenders refuse; broker can identify the ones that will</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Gifting to children (down payment assist)</td>
+            <td class="p-3">High</td>
+            <td class="p-3">Documented gift letter; no issue</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Pitfalls to Avoid</h2>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Pulling to the 80% cap with no buffer.</strong> Leaves you underwater if the market softens 10–15%. Leave 10–20 percentage points of unused equity.</li>
+      <li><strong>Treating home equity as general spending money.</strong> Once you refinance up, that equity is gone and is carrying 25-year amortization.</li>
+      <li><strong>Mixing borrowed funds with personal cash for Smith-Manoeuvre purposes.</strong> CRA tracing rules are strict — sloppy execution kills the deduction.</li>
+      <li><strong>Forgetting that refinancing adds 25 years of amortization to the new debt.</strong> Always calculate lifetime interest, not just monthly payment.</li>
+      <li><strong>Over-borrowing for renovations that don't increase value.</strong> A $150K kitchen in a $600K house rarely recoups — check neighbourhood comps before committing.</li>
+      <li><strong>Refinancing for consumption without a plan.</strong> Vacation on home equity ages badly.</li>
+      <li><strong>Not shopping the refinance rate.</strong> Renewal shopping gets you the best first-mortgage rate; the incremental cash can often be better structured through a separate HELOC at a lower blended cost.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/renewal-funding-rrsp-renovations/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Refinancing at Renewal for RRSP or Renovations?</h2>
+      <p class="text-white/80 mb-6">A licensed broker can structure the refinance, compare readvanceable vs. lump-sum, and model the lifetime cost — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Refinance Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

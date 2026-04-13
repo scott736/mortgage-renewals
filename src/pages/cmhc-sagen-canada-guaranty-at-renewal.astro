@@ -1,0 +1,337 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Who are the three mortgage default insurers in Canada?",
+    answer: "Canada has three federally approved mortgage default insurers: CMHC (Canada Mortgage and Housing Corporation — the federal Crown corporation), Sagen Mortgage Insurance (formerly Genworth Canada, privatised in 2020), and Canada Guaranty Mortgage Insurance Company (jointly owned by Ontario Teachers' Pension Plan and the Stoker family). All three insure high-ratio mortgages (less than 20% down) and are backed by the federal government — CMHC fully, Sagen and Canada Guaranty at 90% under the Protection of Residential Mortgage or Hypothecary Insurance Act (PRMHIA)."
+  },
+  {
+    question: "Does my mortgage default insurance transfer when I switch lenders at renewal?",
+    answer: "Yes. Mortgage default insurance is attached to the loan, not the lender. When you do a straight switch at renewal, the insurance moves with you — the existing insurer (CMHC, Sagen, or Canada Guaranty) simply reassigns the policy to the new lender. You do not pay a new premium, and you do not re-underwrite the insurance. The new lender must be on the insurer's approved lender list (nearly all federally regulated lenders and most credit unions are), and must be willing to accept an insured deal in their book."
+  },
+  {
+    question: "Can I get my CMHC premium refunded if I pay off the mortgage early?",
+    answer: "No. The mortgage default insurance premium is paid once at origination, added to the mortgage principal, and amortised over the life of the loan. It is non-refundable even if you pay off the mortgage, sell the property, or refinance. The only partial refund available is for energy-efficient homes that qualify for the CMHC Eco Plus premium refund (up to 25% of the premium), but this is claimed in the first year — not at renewal."
+  },
+  {
+    question: "Can I refinance an insured mortgage to pull out equity at renewal?",
+    answer: "No. The 2016 federal rules prohibit new insured refinances. If you want to refinance and pull equity out at renewal, you move to an uninsured (conventional) mortgage — which loses the insured rate advantage and requires you to pass the OSFI B-20 stress test at the new lender. If you simply renew the existing balance with the same or a new lender, the insurance carries over and you keep the lower insured pricing."
+  },
+  {
+    question: "Is the 30-year amortization for first-time buyers available at renewal?",
+    answer: "The December 2024 extension of 30-year insured amortizations applies at origination for first-time homebuyers and for any buyer purchasing a newly built home. At renewal, you cannot extend your amortization above the original schedule without losing the insurance — insured mortgages are locked to their original 25-year (or 30-year if you qualified) amortization. Extending amortization at renewal is only possible by refinancing to an uninsured mortgage."
+  },
+  {
+    question: "Are the rules different between CMHC, Sagen, and Canada Guaranty at switch?",
+    answer: "Functionally they are nearly identical — all three follow the same federal premium schedule and qualifying rules. The subtle differences show up on non-conforming files: Canada Guaranty is generally the most flexible on rental income, business-for-self documentation, and unique properties; CMHC tends to be the most conservative on non-standard properties (acreages, mixed-use, log homes); Sagen sits between them. At straight switch, the insurer usually does not change — the new lender takes assignment of the existing policy from whichever insurer underwrote the original deal."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "cmhc-sagen-canada-guaranty-at-renewal",
+    name: "CMHC vs. Sagen vs. Canada Guaranty: Insurer Rules at Renewal (2026)",
+    description: "How Canada's three mortgage default insurers — CMHC, Sagen, and Canada Guaranty — handle mortgage renewals, straight switches, premium portability, and 30-year amortization rules.",
+  }),
+  articleSchema({
+    headline: "CMHC vs. Sagen vs. Canada Guaranty: Insurer Rules at Mortgage Renewal (2026)",
+    description: "A side-by-side comparison of Canada's three default insurers — CMHC, Sagen, Canada Guaranty — and how each handles renewals, lender switches, refinances, and amortization at renewal.",
+    slug: "cmhc-sagen-canada-guaranty-at-renewal",
+    articleSection: "Mortgage Default Insurance",
+    about: "Canadian mortgage default insurers at renewal",
+    keywords: ["CMHC renewal", "Sagen mortgage insurance", "Canada Guaranty", "insured mortgage switch", "mortgage default insurance renewal"],
+  }),
+  faqSchema(faqs, "cmhc-sagen-canada-guaranty-at-renewal"),
+  breadcrumbSchema([
+    { name: "CMHC vs. Sagen vs. Canada Guaranty at Renewal", url: "/cmhc-sagen-canada-guaranty-at-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="CMHC vs. Sagen vs. Canada Guaranty at Renewal (2026)"
+  description="How Canada's three mortgage default insurers handle renewals — straight-switch rules, premium portability, refinance bans, and the 30-year amortization exception."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › CMHC vs. Sagen vs. Canada Guaranty at Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Mortgage Default Insurance</div>
+      <h1 class="text-heading-1 mb-4">CMHC vs. Sagen vs. Canada Guaranty: Insurer Rules at Renewal</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Canada has three federally approved mortgage default insurers. If you put less than 20% down when you bought, your mortgage is still insured today — and that insurance follows you through every renewal for the life of the loan. Here's what each insurer allows, how the rules differ, and what happens when you switch lenders.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>Three insurers:</strong> CMHC (federal Crown), Sagen (private), and Canada Guaranty (private). Roughly 60% / 25% / 15% market share.</li>
+        <li>• Insurance is <strong>required</strong> on any mortgage with less than 20% down at origination — and <strong>stays with the loan for life</strong>, even at renewal.</li>
+        <li>• At a straight switch, the <strong>existing insurance transfers free</strong> to the new lender. No new premium, no re-underwriting.</li>
+        <li>• Insured mortgages get <strong>lower renewal rates</strong> because the lender faces zero default risk — but you are locked to the original amortization schedule.</li>
+        <li>• <strong>Refinances of insured mortgages are banned</strong> (2016 rule). Pulling equity requires moving to uninsured pricing.</li>
+        <li>• <strong>December 2024 update:</strong> first-time buyers and new-build buyers can get 30-year insured amortization at origination (not retroactive to existing loans).</li>
+        <li>• The premium is <strong>non-refundable</strong>. You paid once at origination; it rides with the mortgage until discharge.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Three Insurers: Who's Who</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Under the federal Protection of Residential Mortgage or Hypothecary Insurance Act (PRMHIA), only three companies are licensed to insure residential mortgages in Canada. All federally regulated lenders (banks, trust companies, federal credit unions) must use one of these three when originating a high-ratio mortgage.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Insurer</th>
+            <th class="p-3 text-left">Type</th>
+            <th class="p-3 text-left">Government Backing</th>
+            <th class="p-3 text-left">Approx. Market Share</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">CMHC</td>
+            <td class="p-3">Federal Crown corporation (1946)</td>
+            <td class="p-3">100% (full government guarantee)</td>
+            <td class="p-3">~60%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Sagen Mortgage Insurance</td>
+            <td class="p-3">Private (rebranded from Genworth, 2020)</td>
+            <td class="p-3">90% (under PRMHIA)</td>
+            <td class="p-3">~25%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Canada Guaranty</td>
+            <td class="p-3">Private (Ontario Teachers' + Stoker family)</td>
+            <td class="p-3">90% (under PRMHIA)</td>
+            <td class="p-3">~15%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      From the borrower's perspective, the three are effectively interchangeable — they all charge the same federally mandated premium schedule, apply the same qualifying rules, and offer the same lender-side benefits. The lender chooses the insurer when they originate the deal, often based on which one has the most capacity or the loosest underwriting on that particular file.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When Default Insurance Applies</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Mortgage default insurance (also called "CMHC insurance" colloquially, even when underwritten by Sagen or Canada Guaranty) is legally required whenever a federally regulated lender originates a mortgage with a loan-to-value (LTV) ratio above 80% — meaning less than 20% down.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The 2026 federal premium schedule is unchanged from 2016:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Down Payment</th>
+            <th class="p-3 text-left">Loan-to-Value</th>
+            <th class="p-3 text-left">Premium (% of mortgage)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">5% to 9.99%</td>
+            <td class="p-3">90.01% – 95%</td>
+            <td class="p-3">4.00%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">10% to 14.99%</td>
+            <td class="p-3">85.01% – 90%</td>
+            <td class="p-3">3.10%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">15% to 19.99%</td>
+            <td class="p-3">80.01% – 85%</td>
+            <td class="p-3">2.80%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">20%+</td>
+            <td class="p-3">80% or less</td>
+            <td class="p-3">Not required</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The premium is paid once at origination and added to the mortgage principal (in most provinces PST applies on the premium and must be paid in cash at closing — 8% in Ontario, 7% in Manitoba, 9% in Quebec). From that point forward, it's simply part of your mortgage balance being amortised down. Every renewal after that carries the same insurance, free of additional cost. See our <a href="/insured-vs-conventional-mortgage-renewal/" class="text-secondary-100 hover:underline">insured vs. conventional comparison</a> for a deeper dive.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Insurance Affects Your Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Being an insured borrower at renewal is actually advantageous in one important way and restrictive in another.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-success-25 border border-success-100 p-5">
+        <h3 class="font-semibold mb-2 text-success-300">The Advantage: Lower Rates</h3>
+        <p class="text-body-sm mb-2">
+          Lenders charge insured borrowers <strong>10–25 basis points less</strong> than uninsured borrowers on an equivalent fixed or variable product. Reason: if you default, the insurer makes the lender whole — the lender takes zero loss.
+        </p>
+        <p class="text-body-sm">
+          On a $500,000 mortgage at 20 bps savings, that's roughly $1,000/year in interest over the term.
+        </p>
+      </div>
+      <div class="rounded-xl bg-warning-25 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2 text-warning-300">The Restriction: Locked Amortization</h3>
+        <p class="text-body-sm mb-2">
+          Your insured mortgage is locked to the <strong>original amortization schedule</strong> — almost always 25 years from the original closing date (30 years if you qualified under the December 2024 first-time buyer extension).
+        </p>
+        <p class="text-body-sm">
+          You cannot extend the amortization at renewal without losing the insurance (and the rate benefit).
+        </p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Straight Switch: Transferring Insurance to a New Lender</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      One of the biggest misconceptions about insured mortgages is that you're somehow stuck with your original lender. You're not. At renewal, you can do what's called a "straight switch" — a transfer of your existing mortgage balance to a new lender — and the mortgage default insurance follows you automatically.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Here's what happens mechanically:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>The new lender pulls your current mortgage statement (balance, rate, maturity date, insurance certificate number).</li>
+      <li>They confirm with the original insurer (CMHC, Sagen, or Canada Guaranty) that the certificate is valid and the deal is assignable. This is an administrative check, not new underwriting.</li>
+      <li>The insurer reassigns the policy to the new lender at no cost to you.</li>
+      <li>The new lender funds the new mortgage, pays out the old lender on closing day, and registers its own charge on title.</li>
+      <li>You continue making payments — just to a new lender, at the new renewal rate you negotiated.</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Because the insurance risk stays the same from the insurer's perspective (same property, same borrower, same amortization), no new premium is charged and no new qualification is required from the insurer. This is a key part of why the November 2024 OSFI straight-switch exemption (removing the stress test for uninsured borrowers) essentially brought uninsured borrowers to parity with insured borrowers, who already had this kind of mobility at renewal. See <a href="/osfi-b20-stress-test-at-renewal/" class="text-secondary-100 hover:underline">OSFI B-20 at renewal</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">CMHC vs. Sagen vs. Canada Guaranty: Subtle Differences at Switch</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      At straight switch, 99% of files are identical across the three insurers. The differences surface on non-conforming or edge-case properties. Brokers know which insurer underwrote the original deal (it's on the commitment letter) and plan the switch accordingly.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">CMHC</th>
+            <th class="p-3 text-left">Sagen</th>
+            <th class="p-3 text-left">Canada Guaranty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Standard urban home</td>
+            <td class="p-3">Accepted</td>
+            <td class="p-3">Accepted</td>
+            <td class="p-3">Accepted</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Rural acreage &gt; 10 acres</td>
+            <td class="p-3">Tightest (often declined)</td>
+            <td class="p-3">Conditional</td>
+            <td class="p-3">Most flexible</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Non-warrantable condo</td>
+            <td class="p-3">Declined</td>
+            <td class="p-3">Case-by-case</td>
+            <td class="p-3">Case-by-case</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Self-employed (limited docs)</td>
+            <td class="p-3">Strict</td>
+            <td class="p-3">Moderate</td>
+            <td class="p-3">Most accommodating</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Log home / non-standard</td>
+            <td class="p-3">Often declined</td>
+            <td class="p-3">Case-by-case</td>
+            <td class="p-3">More flexible</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      In practice, the insurer does not change when you switch lenders — the new lender accepts assignment of the existing policy from whichever insurer was on the original deal. But if you ever end up in a scenario where the new lender refuses to accept CMHC and wants to re-insure (extremely rare), Canada Guaranty is usually the insurer with the best chance of approval.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The December 2024 30-Year Amortization Update</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      On December 15, 2024, Finance Canada extended 30-year insured amortizations to two groups:
+    </p>
+
+    <ul class="list-disc list-inside mb-4 space-y-2 text-body-md leading-relaxed">
+      <li><strong>First-time homebuyers</strong> (defined as never having owned a home, or not having owned in the preceding 4 years) purchasing any home type.</li>
+      <li><strong>Any buyer</strong> (first-time or not) purchasing a newly constructed home — including purpose-built rental units.</li>
+    </ul>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      This applies at origination only. If you bought under the old 25-year rule, you cannot convert to 30 years at renewal without losing insurance. If you are a first-time buyer who originated after December 15, 2024 under the 30-year rule, that 30-year amortization schedule rides with the mortgage through every renewal.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See our full <a href="/30-year-amortization-mortgage-renewal/" class="text-secondary-100 hover:underline">30-year amortization guide</a> for details on the cost and eligibility rules.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The 2016 Insured Refinance Ban</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      In November 2016, Finance Canada banned new government-backed insurance on refinance transactions. Since then, you cannot refinance an insured mortgage and keep the insurance. Your options at renewal if you want to pull equity out are:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Move to an uninsured refinance</strong> — lose the insured rate discount, pay an appraisal, pass the OSFI stress test, and take on conventional pricing. Your new LTV must be 80% or less.</li>
+      <li><strong>Add a HELOC alongside the renewal</strong> — renew the insured first mortgage at the insured rate, and set up a home equity line of credit (HELOC) for the equity portion. The HELOC is uninsured and stress-tested separately.</li>
+      <li><strong>Just renew and skip the equity takeout</strong> — simpler, cheaper, and keeps you on insured pricing.</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See <a href="/renewal-vs-refinancing/" class="text-secondary-100 hover:underline">renewal vs. refinancing</a> for a full breakdown of when each makes sense.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/cmhc-sagen-canada-guaranty-at-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Have an Insured Mortgage Coming Up for Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can transfer your insurance to any competing lender — free, no obligation, no new premium.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Insured Renewal Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

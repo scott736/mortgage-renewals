@@ -1,7 +1,8 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { PaymentFrequencyCalculator } from '@/components/calculators/additional-calculators';
-import { articleSchema, breadcrumbSchema, webPageNode, webApplicationSchema, faqSchema, combineSchemas } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -66,7 +67,7 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Mortgage Payment Frequency in Canada (2026 Guide + Calculator)"
+  title="Mortgage Payment Frequency Canada (2026 Guide + Calculator)"
   description="Accelerated biweekly vs. monthly vs. weekly mortgage payments in Canada. $30K+ savings on a typical mortgage. Free calculator included."
   schema={schema}
 >
@@ -261,22 +262,7 @@ const schema = combineSchemas(
       ))}
     </div>
 
-    <h2 class="text-heading-3 mt-10 mb-4">Related Guides & Tools</h2>
-    <div class="grid sm:grid-cols-2 gap-3 mb-8">
-      {[
-        { title: "Prepayment Privileges in Canada", href: "/mortgage-prepayment-privileges-canada/" },
-        { title: "Lower Mortgage Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
-        { title: "Main Renewal Calculator Suite", href: "/mortgage-renewal-calculator/" },
-        { title: "Mortgage Renewal Checklist", href: "/mortgage-renewal-checklist/" },
-        { title: "IRD vs. 3-Month Interest Penalty", href: "/ird-vs-three-month-interest-penalty/" },
-        { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
-      ].map(link => (
-        <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-          <span class="text-secondary-100">→</span>
-          {link.title}
-        </a>
-      ))}
-    </div>
+    <RelatedLinks slug="/mortgage-payment-frequency-canada/" />
 
     <p class="text-body-xs text-muted-foreground mb-6">
       Sources: FCAC mortgage payment guidance; lender servicing documentation (TD, RBC, BMO, Scotiabank, CIBC, National Bank); Canadian Mortgage Charter (2024). All calculations use Canadian semi-annual compounding as legislated under the federal <em>Interest Act</em>. Rates current as of April 2026.

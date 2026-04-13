@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -302,35 +303,7 @@ const schema = combineSchemas(
           <li>Portability is distinct from renewal — if you're staying in the same home and just renewing, portability does not apply</li>
         </ul>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How brokers access B-lenders and private options unavailable directly.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Stress test exemption for straight switches since 2024.</p>
-            </a>
-            <a href="/mortgage-renewal-glossary/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Glossary</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">B-lender, private lender, LTV, IRD — all defined in plain English.</p>
-            </a>
-            <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Calculator</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Model your new payment at different rates, including B-lender ranges.</p>
-            </a>
-            <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Avoid the most costly errors — especially with credit challenges.</p>
-            </a>
-            <a href="/mortgage-rate-forecast/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">2026 Mortgage Rate Forecast</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Where rates are and what to expect — relevant for your exit strategy.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/bad-credit-mortgage-renewal/" />
 
       </div>
 

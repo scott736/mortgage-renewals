@@ -1,8 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import RenewalCalculatorMini from '@/components/sections/renewal-calculator-mini';
-import { webPageNode, articleSchema, faqSchema, combineSchemas } from '@/lib/schema';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 const homeFaqs = [
   { question: "Do I have to pass a stress test to switch lenders at renewal?", answer: "No. Since November 2024, Canadians switching lenders on a straight transfer (same balance, same amortization) do not need to pass the mortgage stress test. This applies to both insured and uninsured mortgages." },
@@ -328,6 +330,12 @@ const schema = combineSchemas(
           See All 40+ Questions →
         </a>
       </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="container max-w-screen-xl px-6">
+      <RelatedLinks slug="/" />
     </div>
   </section>
 

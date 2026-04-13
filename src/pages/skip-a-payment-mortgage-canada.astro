@@ -1,0 +1,318 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Which Canadian lenders offer skip-a-payment on mortgages in 2026?",
+    answer: "RBC, BMO, Scotiabank, and National Bank all offer a formal skip-a-payment feature on most residential mortgages. TD and CIBC limit skips to 4 per year on qualifying accounts. Most monolines (First National, MCAP, CMLS, RFA) do not offer a true skip-a-payment — they require a formal hardship deferral application instead. Credit unions vary widely; some (Meridian, Vancity) offer 4 skips annually, others offer none. Eligibility typically requires the mortgage to be current, no prior skips in the cooling-off window, and the property to not be on a hardship deferral."
+  },
+  {
+    question: "What's the difference between skip-a-payment and a hardship deferral?",
+    answer: "Skip-a-payment is a product feature built into the mortgage contract — a discretionary privilege you use whenever you want, within the lender's annual limit. No application, no underwriting, just a self-service request. Hardship deferrals are workout arrangements the lender grants when you're in financial distress — they require documentation, credit-bureau implications may apply, and they usually appear in your file as a collection risk. Skip-a-payment is a feature. Hardship deferral is a crisis intervention."
+  },
+  {
+    question: "What happens to my mortgage balance when I skip a payment?",
+    answer: "Interest that would have been paid during the skipped period is capitalized — added to the principal balance. Your amortization stretches slightly, and every future payment pays a bit more interest and a bit less principal. One skip on a $400,000 mortgage at 4.5% adds roughly $1,500 to the principal over the life of the loan. Five skips over 25 years can add $8,000–$12,000 to total interest paid. It's a real cost, just deferred."
+  },
+  {
+    question: "How many skip-a-payments can I take per year?",
+    answer: "Typical limits in 2026: RBC up to 4 per calendar year (non-cumulative, one at a time), BMO 4 per year with a 90-day cooling-off between skips, Scotiabank 1 skip per year (monthly) or up to 15 weekly-equivalent skips, National Bank 4 per year, TD and CIBC 4 per year with conditions. Some lenders cap total skips over the term — for example 15 skipped weekly payments total. Always check your specific mortgage commitment letter."
+  },
+  {
+    question: "Did the 2020 pandemic skip-a-payment program hurt borrowers later?",
+    answer: "It hurt many of them in two ways. First, interest capitalized during 6-month deferrals averaged $5,500–$9,000 per borrower on a typical 2020 mortgage — a balance increase that compounded for the next five years. Second, when those mortgages came up for renewal in 2025–26, the higher balance combined with much higher renewal rates (2–3% higher than the original term) produced sharp payment shock. The pandemic deferral was a necessary emergency measure, but it illustrated exactly why skip-a-payment should be used only in a true liquidity crunch — not as a convenience."
+  },
+  {
+    question: "What alternatives exist to skipping a payment?",
+    answer: "Several. Recast (re-amortize) your mortgage at renewal — stretching amortization from, say, 20 years to 25 years drops the payment by 10–15% permanently. Switch payment frequency from accelerated bi-weekly back to monthly — roughly 10% payment drop. Use your lender's prepayment privileges in reverse — some offer 'payment lower' features that reduce scheduled payments by 10–20%. For sustained hardship, call your lender's workout team before skipping — they have tools (temporary interest-only, short-term deferral, principal reduction negotiation) you don't see in the consumer-facing product."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Skip-a-Payment Mortgages in Canada (2026): How It Works and When to Use It",
+    description: "Which Canadian lenders offer skip-a-payment, the interest capitalization math, 2020 pandemic deferral aftermath, and smarter alternatives for payment relief.",
+    slug: "skip-a-payment-mortgage-canada",
+    articleSection: "Renewal Mechanics",
+    about: "Skip-a-payment mortgages in Canada",
+    keywords: ["skip a payment Canada", "mortgage payment vacation", "interest capitalization", "mortgage deferral", "hardship mortgage deferral"],
+  }),
+  breadcrumbSchema([
+    { name: "Skip-a-Payment Mortgages in Canada", url: "/skip-a-payment-mortgage-canada" }
+  ]),
+  faqSchema(faqs, "skip-a-payment-mortgage-canada"),
+  webPageNode({
+    slug: "skip-a-payment-mortgage-canada",
+    name: "Skip-a-Payment Mortgages in Canada (2026)",
+    description: "Complete guide to skip-a-payment mortgages in Canada — which lenders offer it, interest capitalization impact, 2020 deferral aftermath, and smarter alternatives.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Skip-a-Payment Mortgages Canada (2026) — How It Works"
+  description="Skip-a-payment mortgages in Canada — which lenders offer it, interest capitalization math, 2020 pandemic deferral aftermath, and smarter alternatives at renewal."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Skip-a-Payment Mortgages in Canada
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Payment Flex Features</div>
+      <h1 class="text-heading-1 mb-4">Skip-a-Payment Mortgages in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Skip-a-payment is a feature, not a cure. Used for a true emergency it's a lifeline. Used for convenience it quietly adds thousands in lifetime interest. Here's which Canadian lenders offer it, the real math of interest capitalization, and what the 2020 pandemic deferral wave taught us about using this tool wisely.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>RBC, BMO, Scotia, and National Bank</strong> offer a formal skip-a-payment. <strong>Most monolines don't</strong> — only hardship deferrals.</li>
+        <li>• Skipped interest is <strong>capitalized into principal</strong> — adding roughly $1,500 per skip on a $400,000 mortgage.</li>
+        <li>• Typical annual limit: <strong>4 skips per year</strong>, one at a time, with cooling-off periods between skips.</li>
+        <li>• The <strong>2020 pandemic deferral</strong> added $5,500–$9,000 to the average deferring borrower's balance over 6 months.</li>
+        <li>• Skip-a-payment is a <strong>product feature</strong>; hardship deferral is a workout arrangement requiring an application.</li>
+        <li>• Better alternatives exist: <strong>recast amortization</strong> at renewal, change payment frequency, use your lender's "payment lower" feature.</li>
+        <li>• Call your lender's <strong>workout team</strong> before skipping if you're in sustained hardship — they have tools the self-serve feature doesn't.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Skip-a-Payment Actually Is</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Skip-a-payment is a contractual option baked into some Canadian mortgages letting the borrower miss a scheduled payment without triggering default, late fees, or credit-bureau reporting. The lender doesn't forgive the payment — they capitalize the interest portion into principal and keep amortization running. You resume paying on the next scheduled date.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      It was a competitive feature introduced heavily in the 2000s when the Big 6 and National Bank were differentiating mortgage products. Most monolines (First National, MCAP, CMLS, RFA) never adopted it because their lower rates come with leaner feature sets. You'll generally only find it on Big 6 and large credit-union mortgages in 2026.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Which Canadian Lenders Offer Skip-a-Payment in 2026</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Available?</th>
+            <th class="p-3 text-left">Annual Limit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">RBC Royal Bank</td>
+            <td class="p-3">Yes (Homeline and mortgage)</td>
+            <td class="p-3">4 skips per year</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">BMO</td>
+            <td class="p-3">Yes (Readiline and standard)</td>
+            <td class="p-3">4 skips per year, 90-day cooldown</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Scotiabank</td>
+            <td class="p-3">Yes (STEP and standard)</td>
+            <td class="p-3">1 monthly or 15 weekly lifetime</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">TD Canada Trust</td>
+            <td class="p-3">Limited (select products only)</td>
+            <td class="p-3">Up to 4 per year on qualifying files</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">CIBC</td>
+            <td class="p-3">Yes (Home Power and standard)</td>
+            <td class="p-3">4 per year</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">National Bank</td>
+            <td class="p-3">Yes (All-In-One and standard)</td>
+            <td class="p-3">4 per year</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">First National</td>
+            <td class="p-3">No (hardship deferral only)</td>
+            <td class="p-3">—</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">MCAP</td>
+            <td class="p-3">No (hardship deferral only)</td>
+            <td class="p-3">—</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">CMLS / RFA / Strive</td>
+            <td class="p-3">No</td>
+            <td class="p-3">—</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Meridian Credit Union</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">4 per year</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Vancity Credit Union</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Up to 4 per year</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Policies as of April 2026. Check your mortgage commitment letter — product features vary.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Interest Capitalization Math</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      When you skip a payment, the interest portion that should have been paid gets added to the principal balance. The principal portion of the payment simply doesn't get paid — your amortization stretches slightly. The next payment calculates interest on a slightly larger balance, so a bit more of it goes to interest. Over time, this compounds.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: Cost of one skip on a typical mortgage</p>
+      <p class="text-body-sm leading-relaxed">
+        Mortgage: $425,000, 25-year amortization, 4.29% fixed, monthly payment $2,304.<br />
+        Year 3 of term (~$395,000 balance, ~$1,413 interest/month, ~$891 principal/month).<br /><br />
+        Skip one month:<br />
+        — Interest owing for the skipped month: $1,413<br />
+        — Capitalized into principal: new balance $396,413<br />
+        — Principal payment skipped: $891 (never caught up)<br /><br />
+        <strong>Lifetime cost of this one skip:</strong><br />
+        Compounding interest on the capitalized $1,413 plus the lost $891 principal payment, carried over 22 remaining years, totals roughly <strong>$3,100</strong> in additional interest paid over the life of the mortgage.<br /><br />
+        Four skips over the term: roughly <strong>$12,400</strong> in lifetime cost — the price of three one-month budget reliefs.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The 2020 Pandemic Deferral Aftermath</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      In March 2020, federally regulated Canadian lenders offered broad mortgage deferrals (up to 6 months) to any borrower requesting one, to absorb COVID-19 financial shock. Approximately 795,000 Canadian mortgages deferred at least one payment, per CBA data. The average deferring borrower capitalized $5,500–$9,000 of interest into principal over the 6-month window.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Five years later, those mortgages started renewing into a rate environment 200–300 basis points higher than origination. The capitalized balance compounded this shock — a $9,000 deferral on a $450,000 mortgage renewing at 4.5% instead of 2.1% meant the borrower saw their payment jump from roughly $1,921 to $2,510 (+31%), with roughly $55 of that monthly increase attributable solely to the deferred interest, not rate changes.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The lesson: deferrals (and skips) are emergency tools. They trade short-term liquidity for long-term cost, and the cost compounds with rate changes at renewal. For 2026 borrowers facing sustained hardship, the right framework is to treat a skip as a <em>30-day emergency bridge</em>, not as a structural affordability solution.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When Skip-a-Payment Makes Sense</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Smart Uses</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Unexpected one-time expense (major car repair, medical)</li>
+          <li>Temporary income gap (job change, parental leave transition)</li>
+          <li>Cash flow smoothing for self-employed borrowers around tax payment deadlines</li>
+          <li>Bridging before a scheduled bonus or RRSP withdrawal</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Red Flags — Call Your Lender Instead</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>You've already taken 2+ skips in the past year</li>
+          <li>Your monthly budget doesn't balance on a normal month</li>
+          <li>You've missed other bills or carry revolving credit card debt</li>
+          <li>You're approaching renewal with higher rates looming</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Smarter Alternatives at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If your mortgage payment is chronically tight, renewal is the right moment to restructure permanently rather than patch with skips. Options:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Extend amortization</strong> at renewal — a switch lender can re-amortize up to 30 years (25 on insured). Stretches the amortization, lowers monthly payment 8–15%. See our <a href="/30-year-amortization-mortgage-renewal/" class="text-secondary-100 hover:underline">30-year amortization guide</a>.</li>
+      <li><strong>Change payment frequency</strong> from accelerated bi-weekly to monthly — roughly 10% payment drop, though you pay slightly more total interest.</li>
+      <li><strong>Refinance to consolidate</strong> high-interest debt — if you're carrying credit card balances at 20%+, rolling them into the mortgage at 4.5% can drop overall monthly obligation significantly.</li>
+      <li><strong>Lower-payment flex features</strong> — some lenders offer a permanent 10–20% payment reduction option (different from skip) that adjusts your scheduled payment downward.</li>
+      <li><strong>Hardship workout program</strong> — if you're in sustained distress, the lender's workout team has tools (interest-only terms, payment reduction, temporary forbearance) that don't show up in the consumer self-service menu.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Skip vs. Formal Hardship Deferral</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      These are different products with different consequences:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Aspect</th>
+            <th class="p-3 text-left">Skip-a-Payment</th>
+            <th class="p-3 text-left">Hardship Deferral</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Application required</td>
+            <td class="p-3">No — self-service</td>
+            <td class="p-3">Yes, with documentation</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Duration</td>
+            <td class="p-3">Single payment (bi-weekly or monthly)</td>
+            <td class="p-3">Up to 6 months typically</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Credit bureau impact</td>
+            <td class="p-3">None</td>
+            <td class="p-3">None if approved; depends on lender reporting</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Interest capitalization</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Available from monolines</td>
+            <td class="p-3">No</td>
+            <td class="p-3">Yes (all major monolines)</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Frequency allowed</td>
+            <td class="p-3">Up to 4 per year</td>
+            <td class="p-3">Rare, event-driven</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If you're approaching renewal while financially stretched, the right move is usually to restructure at renewal (recast amortization, refinance to consolidate debt) rather than lean on skip features mid-term. A broker specializing in <a href="/lower-mortgage-payments-at-renewal/" class="text-secondary-100 hover:underline">payment-shock renewals</a> can model the numbers for free.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/skip-a-payment-mortgage-canada/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Payment Too Tight? Restructure at Renewal</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can model recast, frequency change, and consolidation scenarios — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Payment Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

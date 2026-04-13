@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, definedTermSetSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,definedTermSetSchema, webPageNode } from '@/lib/schema';
 export const prerender = true;
 
 // Curated subset of high-value terms for the DefinedTermSet schema. The visible
@@ -408,28 +409,7 @@ const schema = combineSchemas(
     </div>
 
     <!-- CTA / Related -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Ready to Put These Terms to Work?</h2>
-      <p class="mb-6 leading-relaxed">Understanding your mortgage vocabulary is just the start. A licensed mortgage broker can apply all of this to your specific situation — comparing lenders, terms, and strategies to find your optimal renewal.</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Mortgage Renewal Guide</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Everything you need to know about the renewal process from start to finish.</p>
-        </a>
-        <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Calculator</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Model your new payment with different rates and terms.</p>
-        </a>
-        <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Term Lengths Compared</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">6-month through 5-year — which is right for your situation?</p>
-        </a>
-        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">ARM, VRM, IRD penalties, trigger rates, and the 2026 rate environment.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/mortgage-renewal-glossary/" />
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">

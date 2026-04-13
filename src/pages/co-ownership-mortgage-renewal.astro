@@ -1,0 +1,261 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the difference between joint tenancy and tenancy in common in Canada?",
+    answer: "Joint tenancy means owners hold equal, undivided interest in the property with right of survivorship — when one owner dies, their share passes automatically to the surviving owner(s) outside probate. Tenancy in common means each owner holds a defined share (could be equal or unequal, such as 60/40), and on death that share passes by the owner's will rather than to the other owners. Joint tenancy is common for spouses and life partners; tenancy in common is common for investors, siblings, or blended-family situations."
+  },
+  {
+    question: "Do all co-owners need to sign the renewal?",
+    answer: "Yes. Every person listed on title and on the mortgage must sign the renewal documents — whether it's a straight renewal with the existing lender, a switch to a new lender, or a refinance. No co-owner can sign on behalf of the others without a power of attorney. This is why co-ownership renewals require coordinating schedules of multiple people, which is particularly relevant for families with co-owners in different cities or countries."
+  },
+  {
+    question: "Can I buy out a co-owner at renewal?",
+    answer: "Yes, and renewal is the ideal time to do it because no prepayment penalty applies. The mechanic is a refinance: you refinance the property in your sole name (or in the names of the remaining owners) for an amount that equals the existing balance plus the buyout payment to the departing co-owner. The refinance is capped at 80% LTV. The departing owner signs a transfer removing themselves from title and receives their payment through the lawyer's trust account at closing."
+  },
+  {
+    question: "What happens if one co-owner wants out mid-term and the others don't agree?",
+    answer: "Legally, any co-owner can bring a Partition and Sale action under provincial legislation (Ontario's Partition Act, BC's Partition of Property Act, etc.) to force a sale. Courts generally grant partition unless there's a valid reason to deny it — a cohabitation agreement, a clear prejudice to the other owners, or limited exceptions. In practice, most co-owners reach a negotiated buyout rather than litigating, because partition actions are expensive and slow. A family lawyer and a mortgage broker can coordinate a structured buyout at the next renewal."
+  },
+  {
+    question: "How does lender qualification work for house-hacking or rental co-ownership?",
+    answer: "If you co-own with a partner and rent out a portion of the property (a basement suite, a secondary unit, shared rooms), most A-lenders will let you add rental income to qualification. Typical treatment: 50% to 80% of the documented rental income counts as qualifying income depending on lender, with a full T776 or lease agreement as documentation. Some lenders now accept 100% of rental income on legal secondary suites with proper permits. This can substantially expand your qualifying capacity at renewal, especially if the property has grown in value and you can refinance to pull equity for further investment."
+  },
+  {
+    question: "What happens to my co-owner's share if they die?",
+    answer: "Depends on the ownership structure. In joint tenancy, the share passes automatically to the surviving joint tenant(s) — outside probate, regardless of what the deceased's will says. In tenancy in common, the share passes per the deceased's will: potentially to a spouse, children, or estate beneficiaries who now become co-owners with you. This is why blended families and investment-partner co-owners usually prefer tenancy in common — it preserves estate planning flexibility. The lender also needs to be notified of the death; mortgage continues but title requires a transmission application. See our <a href='/estate-mortgage-renewal/'>estate renewal guide</a>."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "co-ownership-mortgage-renewal",
+    name: "Co-Ownership Mortgage Renewal in Canada (2026)",
+    description: "Mortgage renewal for co-owned properties — joint tenancy vs. tenancy in common, buying out a co-owner, house-hacking qualification, and estate planning at renewal.",
+  }),
+  articleSchema({
+    headline: "Co-Ownership Mortgage Renewal: Tenants in Common and Joint Tenants in Canada",
+    description: "Complete renewal guide for co-owned Canadian properties — JT vs. TIC, buyout mechanics at renewal, house-hacking income qualification, partition rights, and estate implications.",
+    slug: "co-ownership-mortgage-renewal",
+    articleSection: "Co-Ownership",
+    about: "Co-ownership mortgage renewal in Canada",
+    keywords: ["co-ownership mortgage renewal", "joint tenancy vs tenancy in common", "buy out co-owner mortgage", "house hacking Canada", "partition and sale Canada"],
+  }),
+  faqSchema(faqs, "co-ownership-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "Co-Ownership Mortgage Renewal", url: "/co-ownership-mortgage-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Co-Ownership Mortgage Renewal in Canada (2026) | JT vs. TIC"
+  description="How co-owned Canadian mortgages renew — joint tenancy vs. tenancy in common, buying out a co-owner, rental income qualification, and estate planning implications at renewal."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Co-Ownership Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Co-Owned Properties</div>
+      <h1 class="text-heading-1 mb-4">Co-Ownership Mortgage Renewal: Tenants in Common and Joint Tenants</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Co-ownership — with a spouse, sibling, parent, friend, or investment partner — changes the renewal conversation in concrete ways. Title structure affects estate planning; all owners must sign; income from co-owners can expand qualifying capacity; and buying someone out is easier at renewal than mid-term. Here's the full picture.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Two main co-ownership structures in Canadian common-law provinces: <strong>joint tenancy</strong> (right of survivorship) and <strong>tenancy in common</strong> (defined shares, willable).</li>
+        <li>• All co-owners (on title and on the mortgage) must sign the renewal — no shortcuts.</li>
+        <li>• <strong>Renewal is the efficient time to buy out a co-owner</strong> — no prepayment penalty, refinance up to 80% LTV.</li>
+        <li>• <strong>House-hacking rental income</strong> (secondary suite, shared rooms) counts at 50–100% toward qualification depending on lender and documentation.</li>
+        <li>• A co-owner can force a sale through <strong>Partition and Sale</strong> under provincial legislation if disagreement deadlocks.</li>
+        <li>• On death of a co-owner, joint tenancy bypasses probate (passes to survivor); tenancy in common goes through the deceased's will.</li>
+        <li>• The <strong>FTHBI shared-equity program</strong> wound down in 2024; provincial shared-equity programs in BC and select municipalities continue.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Joint Tenancy vs. Tenancy in Common</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Joint Tenancy (JT)</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside mb-3">
+          <li>Equal, undivided interest</li>
+          <li>Right of survivorship — share passes to survivor on death</li>
+          <li>Bypasses probate fully</li>
+          <li>Cannot be willed to a third party</li>
+          <li>Can be severed unilaterally (becomes TIC)</li>
+        </ul>
+        <p class="text-body-sm font-semibold">Common for: married couples, common-law partners, life partners wanting simple inheritance.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Tenancy in Common (TIC)</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside mb-3">
+          <li>Defined shares (equal or unequal — 60/40, 50/25/25, etc.)</li>
+          <li>No survivorship — share passes per deceased's will</li>
+          <li>Goes through probate</li>
+          <li>Each owner can will their share to anyone</li>
+          <li>Each owner can (subject to mortgage) transfer their share</li>
+        </ul>
+        <p class="text-body-sm font-semibold">Common for: investment partners, siblings, blended families, parents co-signing with adult children.</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Quebec civil law uses indivision (similar to tenancy in common) as the default; joint tenancy is not part of Quebec's default title framework though some arrangements functionally mirror it. Quebec notaries structure co-ownership contracts explicitly.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Renewal Mechanics When You Co-Own</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A straight renewal at maturity, with no change to ownership or amount, is the simplest path. Steps:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>All co-owners receive the renewal offer from the existing lender 90–120 days before maturity</li>
+      <li>All sign the renewal agreement (in person, digitally via e-sign platform, or at branch — must be all, not some)</li>
+      <li>If switching lenders, all co-owners sign the new mortgage application and commitment</li>
+      <li>All sign the discharge of the old mortgage and registration of the new mortgage at closing</li>
+      <li>Lawyer coordinates execution across all co-owners; remote signing common via video</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If a co-owner is abroad or unavailable, a <strong>Power of Attorney for Property</strong> can authorize another co-owner (or a lawyer) to sign on their behalf. The POA must be executed in advance and drafted to specifically include mortgage-related authority. Lenders scrutinize POAs carefully for mortgage renewals because of fraud risk.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Buying Out a Co-Owner at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The most common non-routine co-ownership renewal event: one owner wants out, the others want to keep the property. Renewal is the efficient time because the existing term is ending — no break penalty, fresh underwriting anyway.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: Buying Out a Co-Owner at Renewal</p>
+      <p class="text-body-sm leading-relaxed">
+        Property fair market value: $900,000. Existing mortgage balance: $400,000 (maturity in 45 days). Joint tenants, equal shares.<br /><br />
+        Total equity: $500,000. Each owner's share: $250,000.<br /><br />
+        Remaining owner qualifies on own income for refinance to $650,000 (existing balance $400,000 + buyout $250,000). LTV = 72.2% — inside the 80% refinance cap.<br /><br />
+        At closing:<br />
+        • New mortgage of $650,000 in remaining owner's sole name<br />
+        • Old mortgage of $400,000 discharged<br />
+        • $250,000 paid to departing owner via lawyer's trust<br />
+        • Transfer removes departing owner from title<br /><br />
+        All executed in one closing. Legal cost typically $1,200–$2,000 depending on province. Land transfer tax may apply in some provinces on the transfer portion (exemptions for spousal transfers common).
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">House-Hacking and Co-Ownership Qualification</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      "House-hacking" — buying a property with a co-owner and renting out a portion (basement apartment, secondary suite, or individual rooms) to service the mortgage — has become more common in high-priced Canadian markets. Lenders have adapted:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Rental Situation</th>
+            <th class="p-3 text-left">Typical Lender Treatment</th>
+            <th class="p-3 text-left">Documentation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Owner-occupied + legal secondary suite</td>
+            <td class="p-3">50–100% of rental income added</td>
+            <td class="p-3">Lease + municipal legal-suite confirmation</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Owner-occupied + room rentals</td>
+            <td class="p-3">50% of rental income added</td>
+            <td class="p-3">Lease or room agreement; some lenders don't accept</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Owner-occupied duplex (unit rented)</td>
+            <td class="p-3">75–100% of rental income added</td>
+            <td class="p-3">Lease; T776 at renewal (2nd year +)</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Short-term rental (Airbnb, VRBO)</td>
+            <td class="p-3">Typically NOT accepted for qualification</td>
+            <td class="p-3">Some niche lenders accept 50% of T776 trailing 24 months</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      At renewal, a documented two-year history of legal rental income (reported on T776) gives you the strongest position — lenders prefer seeing actual CRA-reported income over projected lease amounts. See our <a href="/investment-property-renewal/" class="text-secondary-100 hover:underline">investment property renewal guide</a> for the full rental-income framework.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When Co-Owners Disagree: Partition and Sale</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If co-owners can't agree on keeping, selling, or refinancing at renewal — and especially if one wants out and the others refuse to buy them out — the legal remedy is a <strong>Partition and Sale</strong> action under provincial legislation (Ontario's Partition Act, BC's Partition of Property Act, Alberta's Law of Property Act, etc.).
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      How it works: the applying co-owner files a court application for partition or sale. Courts default toward granting partition (physical division of the property — rarely practical for a house) or sale (forced listing, proceeds divided per ownership shares). Defences are limited — typically requiring a contractual agreement between the owners not to partition, or clear unfair prejudice.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Partition is slow (6–18 months typical) and expensive ($15,000–$50,000+ in legal costs). The looming threat of partition is usually enough to bring co-owners to a negotiated buyout at renewal, which is dramatically cheaper and faster. A <strong>cohabitation agreement</strong> or <strong>co-ownership agreement</strong> executed when the property was originally purchased can set out buyout mechanics, valuation methods, and notice periods — making renewal-time transitions far smoother.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Shared-Equity Programs at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The federal <strong>First-Time Home Buyer Incentive (FTHBI)</strong>, which provided shared-equity co-investment by CMHC, was wound down for new applications in March 2024. Existing FTHBI participants, however, still have an active shared-equity arrangement with CMHC that must be managed at renewal.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Key points for existing FTHBI participants:
+    </p>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>CMHC's shared-equity position (5% or 10% of original purchase) remains registered on title</li>
+      <li>At renewal, the primary mortgage renews normally — FTHBI isn't triggered</li>
+      <li>Refinance, sale, or 25-year milestone triggers FTHBI repayment (at current fair market value percentage)</li>
+      <li>FTHBI repayment amount can be substantial if property has appreciated significantly — 10% of a $700,000 home is $70,000 even if you originally received $50,000</li>
+      <li>Some homeowners refinance at renewal specifically to repay FTHBI early and capture future appreciation</li>
+    </ul>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Provincial shared-equity programs continue in some jurisdictions (BC's Housing Hub, select municipal programs). These have their own renewal and repayment mechanics.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Estate and Divorce Implications</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Co-ownership interacts with <a href="/estate-mortgage-renewal/" class="text-secondary-100 hover:underline">estate planning</a> and <a href="/divorce-mortgage-renewal/" class="text-secondary-100 hover:underline">divorce</a> in ways that JT vs. TIC significantly affects. Joint tenancy protects the surviving owner from probate complications but removes estate-planning flexibility. Tenancy in common preserves flexibility but creates probate exposure. If relationship or estate plans have changed since the mortgage was originated, renewal is an opportunity to restructure title — with real estate and estate-planning lawyers involved.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/co-ownership-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Buying Out or Adding a Co-Owner?</h2>
+      <p class="text-white/80 mb-6">A licensed broker can structure the refinance math and sequence signatures at your renewal — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Co-Ownership Renewal Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

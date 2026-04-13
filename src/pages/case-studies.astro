@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -96,7 +97,7 @@ const schema = combineSchemas(
 
 <DefaultLayout
   title="Mortgage Renewal Case Studies — Canadian Scenarios"
-  description="Six Canadian mortgage renewal case studies: switching savings, self-employed approval, co-signer removal, blend-and-extend, divorce buyout, and reverse mortgage."
+  description="Six Canadian mortgage renewal case studies: switching, self-employed, co-signer removal, blend-and-extend, divorce buyout, and reverse."
   schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
@@ -159,24 +160,7 @@ const schema = combineSchemas(
       </div>
     </div>
 
-    <div class="mt-12">
-      <h2 class="text-heading-3 mb-4">Related Guides</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        {[
-          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
-          { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal/" },
-          { title: "Divorce Mortgage Renewal", href: "/divorce-mortgage-renewal/" },
-          { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
-          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
-          { title: "Bad Credit Mortgage Renewal", href: "/bad-credit-mortgage-renewal/" },
-        ].map(link => (
-          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-            <span class="text-secondary-100">→</span>
-            {link.title}
-          </a>
-        ))}
-      </div>
-    </div>
+    <RelatedLinks slug="/case-studies/" />
   </section>
 
   <section class="bg-primary-100 py-12 mt-10">

@@ -1,0 +1,175 @@
+---
+import { AffordabilityRequalification } from '@/components/calculators/affordability-requalification';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What are GDS and TDS in Canadian mortgage qualification?",
+    answer: "GDS (Gross Debt Service ratio) is housing costs divided by gross monthly income. Housing costs = principal + interest + property tax + heat (+ 50% of condo fees, if applicable). TDS (Total Debt Service) adds all other debt obligations on top: car loans, credit card minimums, student loans, line of credit minimums. OSFI B-20 caps insured mortgages at 39% GDS and 44% TDS. Uninsured lenders typically use similar limits."
+  },
+  {
+    question: "Do I need to requalify at renewal under the stress test?",
+    answer: "Since November 21, 2024, OSFI waives the stress test on uninsured straight-switch renewals — same balance, same or shorter amortization, no new money. If you're taking cash out, extending amortization, or adding a borrower, you must requalify at the stress-test qualifying rate (greater of contract + 2% or 5.25%)."
+  },
+  {
+    question: "What qualifying rate applies to renewals in 2026?",
+    answer: "For straight-switch renewals at the same lender or a new federally regulated lender: no stress test. For refinances, equity take-outs, and any change that adds new money: qualifying rate is the greater of your contract rate + 2% or 5.25%. At today's market rates of ~4.29%, that's 6.29%. At 5.50% contract rate, it's 7.50%."
+  },
+  {
+    question: "Can credit unions ignore the stress test?",
+    answer: "Yes — credit unions are provincially regulated and not bound by OSFI B-20 rules. Most of them voluntarily apply stress tests to manage risk, but they can use lower qualifying rates (contract rate + 1%, or even the contract rate itself) or waive the test entirely for existing members. This is a major reason credit unions are a strategic option when you fail the Big 6 stress test."
+  },
+  {
+    question: "What happens if my GDS/TDS ratios exceed the OSFI limits?",
+    answer: "A federally regulated lender (Big 6 banks, most monolines) will decline the application. You have three options: reduce debts before reapplying, provide a larger down payment to lower the mortgage, or move to an alternative lender — a credit union, a B lender, or a MIC. B lenders charge 150–300 basis points more than A lenders and often require a 1–2% lender fee."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "affordability-requalification-calculator",
+    name: "Affordability & Requalification Calculator — Canadian Mortgage 2026",
+    description: "Calculate GDS, TDS, and max mortgage under OSFI B-20 stress-test rules. See whether you qualify for a refi or new purchase at 2026 rates.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Mortgage Affordability Calculator (OSFI B-20)",
+    description: "Free calculator that computes GDS, TDS, and maximum qualifying mortgage under OSFI B-20 stress-test rules, using the 5.25% floor or contract rate + 2% qualifying rate.",
+    slug: "affordability-requalification-calculator",
+    features: [
+      "GDS and TDS ratio calculation",
+      "OSFI B-20 stress test qualifying rate",
+      "Max mortgage under qualifying rate",
+      "Max mortgage at contract rate (actual payment)",
+      "Canadian semi-annual compounding",
+    ],
+  }),
+  articleSchema({
+    headline: "Affordability & Requalification Calculator — Canadian Mortgage 2026",
+    description: "Free OSFI B-20 affordability calculator. See your GDS, TDS, and max qualifying mortgage under 2026 Canadian stress-test rules.",
+    slug: "affordability-requalification-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage affordability",
+    keywords: ["OSFI B-20", "GDS TDS calculator", "mortgage stress test", "affordability Canada", "requalification"],
+  }),
+  faqSchema(faqs, "affordability-requalification-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Affordability Requalification Calculator", url: "/affordability-requalification-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Affordability & Requalification Calculator — Canadian Mortgage 2026"
+  description="Free OSFI B-20 affordability calculator. GDS, TDS, and max qualifying mortgage under 2026 Canadian stress-test rules."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Affordability
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Affordability & Requalification Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Renewing, refinancing, or buying? See if you pass the OSFI B-20 stress test — and what the max mortgage is under Canadian qualifying rules at 2026 rates.
+      </p>
+    </div>
+
+    <AffordabilityRequalification client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How the OSFI B-20 Stress Test Works</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Since 2018, every federally regulated Canadian mortgage lender (Big 6 banks plus most monolines — First National, MCAP, CMLS, Strive, RFA, Equitable Bank) must qualify borrowers at the <strong>qualifying rate</strong>, which is the greater of:
+        </p>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside mb-3">
+          <li>The <strong>contract rate + 2%</strong>, or</li>
+          <li>A <strong>5.25% floor</strong></li>
+        </ul>
+        <p class="text-body-md text-muted-foreground mb-3">
+          At today's market rate of ~4.29%, the qualifying rate is 6.29%. At a 5.50% contract rate, it jumps to 7.50%. You must show that your debt ratios (GDS and TDS) stay within OSFI limits at this higher, hypothetical rate — even though your actual payment is at the contract rate.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          <strong>The November 2024 OSFI update</strong> removed this requirement for <strong>uninsured straight-switch renewals</strong>. If you're moving from one federally regulated lender to another at renewal, with the same balance and same or shorter amortization, no stress test applies. This was a major win for borrowers who would otherwise have been trapped with their existing lender.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">GDS & TDS Ratios Explained</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          <strong>Gross Debt Service (GDS)</strong> = (P + I + Property Tax + Heat + 50% Condo Fees) ÷ Gross Monthly Income. OSFI caps insured mortgages at <strong>39%</strong>. Uninsured lenders typically use 35–39%.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          <strong>Total Debt Service (TDS)</strong> = GDS numerator + all other monthly debt payments (car loan, credit card minimum, line of credit minimum, student loan, spousal/child support). OSFI caps insured mortgages at <strong>44%</strong>. Uninsured lenders typically use 42–44%.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Note: credit card and LOC debts are calculated at their <strong>minimum payment</strong>, which is usually 3% of balance on unsecured lines. Revolving debts you've paid off but not closed still count at the full limit × 3% at some lenders, so close old cards before applying if you can.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When This Calculator Applies</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Buying a new home</strong> — full stress test applies</li>
+          <li><strong>Refinancing / cash-out refi</strong> — full stress test applies because it's "new money"</li>
+          <li><strong>Extending amortization at renewal</strong> — stress test applies (no longer a "straight switch")</li>
+          <li><strong>Adding a co-borrower at renewal</strong> — stress test applies</li>
+          <li><strong>Changing from insured to uninsured</strong> — stress test applies</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When the Stress Test Is Waived</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Uninsured straight-switch renewal</strong> — same balance, same or shorter amortization, no new money (per Nov 2024 OSFI update)</li>
+          <li><strong>Insured-to-insured transfers</strong> — mortgage insurance travels with the borrower, no requalification</li>
+          <li><strong>Credit union renewals / new mortgages</strong> — provincially regulated, can waive internally</li>
+          <li><strong>Private / MIC / B lender</strong> — not OSFI-bound, use their own internal guidelines</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Caveats & Real-World Differences</h2>
+        <p class="text-body-md text-muted-foreground">
+          Our calculator uses OSFI insured limits (39/44). Uninsured lenders often tighten these (35/42) in rising-rate environments. Some lenders add rent-payment equivalents if you're moving from a rental, and some apply a higher deemed rate on variable rate applications. Self-employed applicants use "stated income" programs with different rules entirely. For a personalised qualification estimate, speak with a licensed broker who can run scenarios against multiple lenders' internal guidelines.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/affordability-requalification-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Worried You Won't Qualify?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can test your file against every major Canadian lender's internal guidelines — free, with no credit pull until you're ready.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

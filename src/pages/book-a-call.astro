@@ -1,10 +1,11 @@
 ---
 export const prerender = false;
 
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import { SchedulingWidgetWithBoundary } from '@/components/scheduling/scheduling-with-boundary';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { services, teamMembers } from '@/lib/nylas/config';
-import { webPageNode, breadcrumbSchema, serviceSchema, combineSchemas } from '@/lib/schema';
+import { breadcrumbSchema, combineSchemas,serviceSchema, webPageNode } from '@/lib/schema';
 
 const schema = combineSchemas(
   webPageNode({
@@ -68,6 +69,8 @@ const schema = combineSchemas(
       <p class="mt-8 text-center text-body-xs text-muted-foreground max-w-xl mx-auto">
         This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
       </p>
+
+      <RelatedLinks slug="/book-a-call/" />
     </div>
   </section>
 </DefaultLayout>

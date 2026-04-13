@@ -1,0 +1,166 @@
+---
+import { RateComparison } from '@/components/calculators/rate-comparison';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Should I pick a 3-year or 5-year fixed-rate mortgage in 2026?",
+    answer: "It depends on your rate-cycle view. A 3-year fixed is typically 20–30 basis points lower than a 5-year fixed, so it's cheaper today — but if rates rise by your renewal, you could lose the savings and more. With the Bank of Canada policy rate at its current 2026 level, brokers are split. If you believe rates will keep falling, take the 3-year. If you want certainty, the 5-year locks in peace of mind."
+  },
+  {
+    question: "What's the real cost difference between a bank and a monoline?",
+    answer: "Posted rates are similar between Big 6 banks and monolines at renewal, but monolines usually beat banks by 10–40 bps on best discretionary rates, and they use fair 3-month interest penalties instead of posted-rate IRD. Over a 5-year term, that's typically a $3,000–$12,000 advantage for monolines on a $500k mortgage, factoring in the lower penalty risk."
+  },
+  {
+    question: "Are upfront costs deductible from my true cost?",
+    answer: "For investment properties, yes — appraisal, legal, and discharge fees are deductible as financing expenses. For principal residences, no. This calculator shows you the true cost over the term (payments + upfront costs) regardless of tax treatment, so you can rank scenarios on economics alone. Consult a CPA for tax-specific strategies."
+  },
+  {
+    question: "What's the 120-day rate hold rule?",
+    answer: "Canadian lenders can hold a rate for 120 days from application approval, meaning once you're approved at 4.19%, you have 120 days to close at that rate even if market rates rise. At renewal, most lenders let you lock in the renewal rate up to 120 days before your maturity date. Start shopping 4+ months before renewal to maximise rate-hold leverage."
+  },
+  {
+    question: "How do cash-back offers change the calculation?",
+    answer: "Big 6 banks sometimes advertise 'cash-back' at renewal — e.g., $3,000 cash on a $500k mortgage at a slightly higher rate. Subtract the cash-back from your upfront costs (effectively negative costs). But: cash-back is typically clawed back if you break the mortgage mid-term, and the rate surcharge (often 15–30 bps) outweighs the cash over 5 years. Usually not worth it."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "rate-comparison-calculator",
+    name: "Mortgage Rate Comparison Calculator — Canadian 2026",
+    description: "Compare up to 4 mortgage rate scenarios with upfront costs factored in. Shows monthly payment, end-of-term balance, total cost, and ranks cheapest.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Mortgage Rate Comparison Calculator",
+    description: "Free calculator that compares up to 4 mortgage rate scenarios side-by-side, including upfront costs (penalty, legal, appraisal). Ranks cheapest over term.",
+    slug: "rate-comparison-calculator",
+    features: [
+      "Compare 4 scenarios side-by-side",
+      "Monthly payment per scenario",
+      "End-of-term balance calculation",
+      "Total cost with upfront fees",
+      "Automatic ranking by true cost",
+    ],
+  }),
+  articleSchema({
+    headline: "Mortgage Rate Comparison Calculator — Canadian 2026",
+    description: "Free Canadian mortgage rate comparison calculator. Rank up to 4 scenarios by true cost over term, including upfront switching costs.",
+    slug: "rate-comparison-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage rate comparison",
+    keywords: ["mortgage rate comparison", "compare mortgage rates Canada", "best renewal rate", "rate scenario calculator"],
+  }),
+  faqSchema(faqs, "rate-comparison-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Rate Comparison Calculator", url: "/rate-comparison-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Rate Comparison Calculator — Canadian 2026"
+  description="Free Canadian mortgage rate comparison calculator. Rank 4 scenarios by true cost over term, including upfront switching costs and end-of-term balances."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Rate Comparison
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Rate Comparison Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Your bank offers 4.89%. A broker offers 4.19% with $550 in legal costs. A 3-year fixed at 3.99% is also on the table. Run all four scenarios side by side — ranked by true cost over the term.
+      </p>
+    </div>
+
+    <RateComparison client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How to Compare Canadian Mortgage Rates Accurately</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Comparing mortgage rates is more complex than "which number is lowest." Three variables drive the true cost:
+        </p>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside mb-3">
+          <li><strong>Interest rate</strong> — obvious, but only one piece of the puzzle</li>
+          <li><strong>Term length</strong> — a lower 3-year rate vs a higher 5-year rate creates renewal risk</li>
+          <li><strong>Upfront costs</strong> — penalty, legal, appraisal, discharge, and title insurance</li>
+        </ul>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Our calculator combines all three. For each scenario, it computes the monthly payment (at the stated rate), the balance at the end of the term (how much equity you've built), and the true cost = (monthly × term months) + upfront costs − equity built. The cheapest true-cost scenario wins, regardless of headline rate.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          <strong>Watch out for</strong>: lenders that offer a low rate with a 5-year closed / no-switch clause, "enhanced IRD" prepayment formulas that trap you, bundled HELOCs that require re-qualification, and mortgage insurance stacking that changes your effective cost.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Big 6 Banks vs Monolines vs Credit Unions in 2026</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          <strong>Big 6 Banks</strong> (TD, RBC, BMO, Scotiabank, CIBC, National Bank) — Best renewal rates for existing customers (often offered only after negotiation), bundled products, branch network. Watch for posted-rate IRD penalties on break.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          <strong>Monoline Lenders</strong> (First National, MCAP, Strive, RFA, CMLS, Equitable Bank) — Typically the lowest broker-channel rates; fair 3-month interest penalties; standard-charge mortgages (easier to leave). Work only through mortgage brokers.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          <strong>Credit Unions</strong> (Meridian, Coast Capital, Vancity, Desjardins, Alterna, etc.) — Provincially regulated, often exempt from OSFI stress test, flexible ratios. Rates often match or beat banks. Must be a member to borrow.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When to Use This Calculator</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Renewal shopping</strong> — drop in your lender's offer + 3 broker quotes and see which wins</li>
+          <li><strong>New purchase</strong> — compare bank, monoline, and credit union offers after pre-approval</li>
+          <li><strong>Mid-term switch</strong> — include the penalty as an upfront cost to see if switching pays off</li>
+          <li><strong>Fixed vs variable</strong> — model both as separate scenarios using today's projected variable rate</li>
+          <li><strong>Short vs long term</strong> — compare 3-year, 5-year, 7-year fixed to see which rides the rate cycle best</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Caveats</h2>
+        <p class="text-body-md text-muted-foreground">
+          The calculator assumes you hold each scenario to the end of its term. If you break early, add the break penalty. The end-of-term balance assumes constant-rate amortization; your real balance will match the lender's amortization schedule down to a few cents. Scenarios with different terms are rigourously comparable only up to the shortest term — after that, you're estimating renewal rates. For multi-cycle forecasting, speak to a broker who can model rate assumptions.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/rate-comparison-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want Real Lender Quotes to Compare?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will pull quotes from every major Canadian lender — free, in 48 hours, no credit pull until you're ready.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

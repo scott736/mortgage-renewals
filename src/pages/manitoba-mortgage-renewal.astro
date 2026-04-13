@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -259,6 +260,12 @@ const schema = combineSchemas(
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="py-8">
+    <div class="container max-w-5xl">
+      <RelatedLinks slug="/manitoba-mortgage-renewal/" />
     </div>
   </section>
 

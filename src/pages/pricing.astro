@@ -1,7 +1,8 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import ZippayCtaCard from "@/components/sections/zippay-cta-card";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -172,6 +173,10 @@ const schema = combineSchemas(
         ))}
       </div>
     </div>
+  </section>
+
+  <section class="container max-w-screen-xl px-6 pb-12">
+    <RelatedLinks slug="/pricing/" />
   </section>
 
   <ZippayCtaCard />

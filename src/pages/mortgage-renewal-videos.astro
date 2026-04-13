@@ -1,0 +1,289 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "When will the full video library be live?",
+    answer: "Our video production schedule runs April through July 2026. Fundamentals and Calculations Walk-throughs ship first (late April), Scenarios and Case Studies follow in May and June, and the Rate Watch monthly series begins with the April 29 2026 Bank of Canada decision. Subscribe to the newsletter to be notified as each video is published."
+  },
+  {
+    question: "Will the videos replace the written guides?",
+    answer: "No — videos complement the written guides. Every video is paired with the corresponding long-form written article on the same topic, and every video page includes a full transcript for accessibility and AI search indexing. If you prefer to read, every topic is already covered in depth in our written library."
+  },
+  {
+    question: "Who presents the videos?",
+    answer: "Scott Dillingham, principal broker at LendCity Mortgages and the named expert author for MortgageRenewalHub.ca, presents all videos. Each video follows the same E-E-A-T standards as the written content — 2026 Canadian rules, real numbers, and no affiliate pressure."
+  },
+  {
+    question: "Can I request a video topic?",
+    answer: "Yes. Send requests via our contact form. Frequently-requested specific scenarios — divorce renewals, rental property stress test walk-throughs, self-employed renewal packaging — get queued for production. Popular requests often ship faster than the default calendar."
+  },
+  {
+    question: "Are the videos Canadian-specific, or do they mix U.S. content?",
+    answer: "100% Canadian. All calculations use semi-annual compounding, all regulatory references are to OSFI B-20 and FCAC rules, and all rate examples are from Canadian lenders. We do not discuss U.S. mortgage products, since the structures are not interchangeable."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Renewal Video Library (Canada 2026)",
+    description: "Video library covering Canadian mortgage renewal fundamentals, calculation walk-throughs, scenarios, case studies, and monthly rate watch updates.",
+    slug: "mortgage-renewal-videos",
+    articleSection: "Videos",
+    about: "Canadian mortgage renewal videos",
+    keywords: ["mortgage renewal video", "Canadian mortgage video library", "mortgage renewal explainer", "rate watch Canada"],
+  }),
+  breadcrumbSchema([
+    { name: "Video Library", url: "/mortgage-renewal-videos" }
+  ]),
+  faqSchema(faqs, "mortgage-renewal-videos"),
+  webPageNode({
+    slug: "mortgage-renewal-videos",
+    name: "Mortgage Renewal Video Library (Canada 2026)",
+    description: "Video library covering Canadian mortgage renewal fundamentals, calculation walk-throughs, scenarios, case studies, and monthly Rate Watch updates.",
+  }),
+);
+
+type Video = {
+  title: string;
+  description: string;
+  transcript: string;
+  ytId: string;
+  comingLabel: string;
+};
+
+type Section = {
+  heading: string;
+  description: string;
+  videos: Video[];
+};
+
+const sections: Section[] = [
+  {
+    heading: "Fundamentals",
+    description: "Core concepts every Canadian homeowner should understand before their renewal date.",
+    videos: [
+      {
+        title: "How a Canadian Mortgage Renewal Actually Works",
+        description: "A 6-minute walk-through of the renewal process — maturity date, renewal letter, 120-day rate hold, signature options, and the November 2024 OSFI stress-test exemption.",
+        transcript: "In this video we cover the full lifecycle of a Canadian mortgage renewal, from the arrival of the renewal letter 21–30 days before maturity to the signature-and-go option that most borrowers use by default. We walk through the straight-switch rule introduced by OSFI in November 2024, which exempts same-amount, same-amortization renewals from the stress test even when switching lenders. Finally we cover the 120-day rate hold window that both banks and brokers offer — and why negotiating in that window produces materially better rates than accepting the letter offer.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming April 2026",
+      },
+      {
+        title: "Fixed vs. Variable at Renewal: 2026 Framework",
+        description: "How to choose between fixed and variable given the April 2026 rate environment — with Bank of Canada trajectory, forward-curve reading, and risk tolerance.",
+        transcript: "This video explains the decision framework between fixed and variable Canadian mortgages at renewal. We cover the spread between 5-year fixed and prime-minus-variable rates as of April 2026, interpret the Bank of Canada April 29 rate decision and April 16 Monetary Policy Report, and work through two borrower profiles — one rate-sensitive, one payment-stability-focused — to show how the fixed/variable choice should differ. We also address the variable-rate stress test formula and what happens to payments at each BoC overnight rate move.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming April 2026",
+      },
+      {
+        title: "Straight Switch vs. Refinance: Which Am I Doing?",
+        description: "Clear explanation of the difference between a straight-switch renewal (no stress test) and a refinance (full underwriting), and how to know which path applies to you.",
+        transcript: "We walk through the OSFI definition of a straight switch — same amount, same amortization, same borrowers, same property — and compare it to a refinance, which involves a change in at least one of those variables. The video covers the stress test exemption that applies to straight switches, the consequences of accidentally triggering a refinance (full underwriting, stress test, potential rejection), and the typical document package for each path. Practical guidance on when to consolidate debt via refinance versus holding off until your next renewal.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming May 2026",
+      },
+    ],
+  },
+  {
+    heading: "Calculations Walk-throughs",
+    description: "Screen-recorded calculator demos with real Canadian numbers.",
+    videos: [
+      {
+        title: "Penalty Calculator Walk-through: $500K Mortgage Break",
+        description: "A step-by-step walk-through of our penalty calculator using a $500,000 Big 6 fixed-rate mortgage with 24 months remaining, showing posted-rate IRD vs. 3-month interest.",
+        transcript: "In this screen recording we open the penalty calculator and input the scenario of a $500,000 TD fixed-rate mortgage at 5.04% with 24 months remaining, where today's matching-term rate is 4.24%. We calculate the Interest Rate Differential using TD's posted-rate methodology and show how it produces a penalty of approximately $14,000 — substantially more than the $6,300 that a 3-month interest calculation would produce on the same mortgage. We then compare this to an equivalent $500,000 First National mortgage where only the 3-month interest penalty applies, and show the 5-year savings math of switching.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming April 2026",
+      },
+      {
+        title: "Blend-and-Extend Calculator: Is Your Bank's Offer Good?",
+        description: "Walk-through of the blend-and-extend calculator with a typical bank offer — compares blend math against breaking and switching at today's rates.",
+        transcript: "This video walks through the blend-and-extend calculator with a worked example: a $400,000 mortgage at 5.25% with 24 months remaining, where the bank is offering to blend to a new 5-year term at 4.49%. We compute the weighted-average blend rate formula, show the month-by-month cash flow, and compare against the alternative of breaking (paying the IRD penalty) and switching to a new 4.04% five-year fixed from a competing lender. The comparison reveals that blend-and-extend usually loses when more than 18 months remain, because it preserves too much of the high contract rate.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming April 2026",
+      },
+      {
+        title: "Stress Test Calculator: Will I Qualify to Switch Lenders?",
+        description: "Demonstrates the OSFI B-20 stress test calculation using the greater of contract rate + 2% or 5.25%, with refinance-versus-straight-switch comparison.",
+        transcript: "We walk through the Canadian stress test calculator, showing how OSFI B-20 requires lenders to qualify borrowers at the greater of the contract rate plus 2% or the 5.25% benchmark rate. The video works through two cases: a straight-switch renewal (no stress test required under the November 2024 exemption) and a refinance where debt is being consolidated (stress test applies, and can disqualify borrowers whose income hasn't grown). Includes GDS/TDS ratio calculations and typical lender ratio ceilings.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming May 2026",
+      },
+    ],
+  },
+  {
+    heading: "Scenarios",
+    description: "Specific borrower situations explained end-to-end.",
+    videos: [
+      {
+        title: "Self-Employed Renewal Packaging",
+        description: "How self-employed borrowers should prepare their renewal file — two years of T1s, NOAs, T2125 or corporate financials, and business bank statements.",
+        transcript: "This video covers how self-employed borrowers — sole proprietors, incorporated professionals, commission earners — should prepare their renewal file to meet OSFI B-20 income verification standards. We review the two-year income requirement, the difference between T1 personal returns and T2 corporate returns, how lenders interpret T2125 business schedules, and which lenders are self-employed-friendly versus strict. Practical tips on timing the renewal around tax filing to use the most recent NOA.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming May 2026",
+      },
+      {
+        title: "Divorce and Separation at Renewal",
+        description: "How to handle a mortgage renewal when one borrower is being removed from title — qualification on single income, spousal buyout, and legal fee reality.",
+        transcript: "We walk through the process of removing a borrower from a mortgage at renewal during a divorce or separation. The video covers the spousal buyout program (CMHC-insured up to 95% LTV for the remaining borrower), the qualification challenge of going from dual-income to single-income stress test, timing considerations with the separation agreement, and the legal fee and discharge cost reality. We also address common mistakes like forgetting to remove the other spouse from title, and the role of the family lawyer versus the mortgage lawyer.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming June 2026",
+      },
+      {
+        title: "Rental Property Renewal Walk-through",
+        description: "End-to-end walk-through of a rental property renewal — T776, rental offset rules, commercial vs. residential treatment, and lender-specific overlays.",
+        transcript: "This video covers the renewal of a Canadian rental property mortgage — one to four units. We review the rental offset formula (most lenders use 50–80% of gross rent depending on whether you have a primary-residence mortgage with them too), T776 Statement of Real Estate Rentals requirements, the current-lease-agreement requirement, and which lenders apply the least restrictive stress test on rental portfolios. We finish with a comparison of specialised rental lenders like Community Trust and the monoline channels.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming June 2026",
+      },
+    ],
+  },
+  {
+    heading: "Case Studies",
+    description: "Anonymised real-client outcomes from LendCity Mortgages.",
+    videos: [
+      {
+        title: "Case Study: Ottawa Couple Saved $18,400 on 5-Year Switch",
+        description: "Real client switched from TD at 5.34% to First National at 4.04% on a $680,000 renewal. Shows the decision math, switch process, and the Ontario fee structure.",
+        transcript: "This case study walks through the April 2026 renewal of an Ottawa couple with a $680,000 mortgage, previously with TD at 5.34% from 2021. TD's renewal offer was 4.74%; a competing broker quote from First National was 4.04% with legal fees covered. Over a new 5-year term, the rate difference of 0.70% generates approximately $18,400 in interest savings on a declining balance schedule. The couple switched lenders. We walk through the Ontario fee structure (Teranet registration, legal fees, discharge), the straight-switch stress-test exemption, and the 21-day timeline from broker engagement to funding.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming June 2026",
+      },
+    ],
+  },
+  {
+    heading: "Rate Watch",
+    description: "Monthly updates tied to Bank of Canada decisions and rate-environment changes.",
+    videos: [
+      {
+        title: "Rate Watch: April 2026 BoC Decision",
+        description: "Post-decision analysis of the Bank of Canada's April 29, 2026 rate announcement — overnight rate, forward guidance, and impact on renewals in Q2 2026.",
+        transcript: "This month's Rate Watch unpacks the April 29, 2026 Bank of Canada rate announcement and the accompanying Monetary Policy Report from April 16. We cover the overnight rate decision, the revised inflation projection, and the forward guidance the Governing Council provided. We then translate the monetary policy moves into practical impact on Canadian mortgage renewals — specifically the 5-year fixed rate (tied to bond yields) and prime-minus-variable rate (tied directly to the overnight rate). Includes specific guidance for borrowers renewing in May, June, and July 2026.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming April 30, 2026",
+      },
+      {
+        title: "Rate Forecast Q2 2026: Fixed Rate Direction",
+        description: "Forward-looking analysis of 5-year Canadian fixed mortgage rate direction through Q2 2026 using GoC 5-year bond yield, bank spreads, and broker channel data.",
+        transcript: "We examine the drivers of the Canadian 5-year fixed mortgage rate through Q2 2026 — the Government of Canada 5-year bond yield, bank funding spreads, and competitive dynamics in the broker channel. Using current April 2026 market data we build a forecast range for fixed rates over the May–July period and discuss how borrowers currently in rate holds should interpret the forecast versus locking in. Paired with our written Rate Forecast page for full methodology.",
+        ytId: "dQw4w9WgXcQ",
+        comingLabel: "Video coming May 2026",
+      },
+    ],
+  },
+];
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Video Library (Canada 2026)"
+  description="Canadian mortgage renewal video library — fundamentals, calculations, scenarios, case studies, and monthly Rate Watch. All videos shipping April–July 2026."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Video Library
+  </nav>
+
+  <section class="container max-w-5xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Video Library</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Renewal Video Library</h1>
+      <p class="text-body-lg text-muted-foreground max-w-3xl">
+        Canadian mortgage renewal explained on camera. We're producing a library of 2026-dated explainers, calculation walk-throughs, borrower scenarios, case studies, and monthly Rate Watch updates. All content is Canadian-specific, 2026-dated, and paired with our long-form written guides.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Five video tracks: <strong>Fundamentals, Calculations, Scenarios, Case Studies, Rate Watch</strong>.</li>
+        <li>• Presented by Scott Dillingham (LendCity Mortgages) — the same expert author as the written guides.</li>
+        <li>• Every video includes a <strong>full transcript</strong> for accessibility and AI search.</li>
+        <li>• Shipping on a rolling basis April through July 2026; Rate Watch is monthly after that.</li>
+        <li>• <a href="/mortgage-renewal-newsletter/" class="text-secondary-100 hover:underline">Subscribe to the newsletter</a> to be notified when new videos go live.</li>
+      </ul>
+    </div>
+
+    {sections.map((section) => (
+      <div class="mb-12">
+        <h2 class="text-heading-3 mb-2">{section.heading}</h2>
+        <p class="text-body-md text-muted-foreground mb-6">{section.description}</p>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          {section.videos.map((v) => (
+            <div class="rounded-2xl border border-gray-100 bg-white p-5 flex flex-col">
+              <div class="aspect-video w-full bg-gray-25 rounded-lg overflow-hidden mb-4 relative">
+                <iframe
+                  src={`https://www.youtube.com/embed/${v.ytId}`}
+                  title={v.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  class="w-full h-full"
+                ></iframe>
+                <div class="absolute top-2 right-2 bg-warning-100 text-gray-900 text-body-xs-medium px-2 py-1 rounded">
+                  {v.comingLabel}
+                </div>
+              </div>
+              <h3 class="font-semibold text-body-md-medium mb-2">{v.title}</h3>
+              <p class="text-body-sm text-muted-foreground mb-3">{v.description}</p>
+              <details class="mt-auto">
+                <summary class="cursor-pointer text-body-sm-medium text-secondary-100">
+                  Read transcript preview
+                </summary>
+                <p class="mt-2 text-body-sm text-muted-foreground leading-relaxed">
+                  {v.transcript}
+                </p>
+              </details>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+
+    <div class="rounded-2xl bg-secondary-25 border border-secondary-50 p-6 mb-10">
+      <h2 class="text-heading-4 mb-2">Get notified when videos drop</h2>
+      <p class="text-body-sm text-muted-foreground mb-4">
+        Subscribe to our free weekly newsletter and we'll send you a short note each time a new video goes live — along with the usual rate moves and renewal tactics.
+      </p>
+      <a
+        href="/mortgage-renewal-newsletter/"
+        class="inline-block rounded-lg bg-primary-100 text-white font-semibold px-6 py-3 hover:opacity-90 transition-opacity"
+      >
+        Subscribe to the Newsletter
+      </a>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/mortgage-renewal-videos/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Prefer to talk to a human?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can answer any question on the video list — live, tailored to your file.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

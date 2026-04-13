@@ -1,9 +1,10 @@
 'use client';
 
-import { CheckCircle2, Calendar, Clock, Video, Download, ExternalLink } from 'lucide-react';
+import { Calendar, CheckCircle2, Clock, Download, ExternalLink,Video } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import type { BookingConfirmation as BookingConfirmationType } from '@/lib/nylas/types';
+import { cn } from '@/lib/utils';
 
 interface BookingConfirmationProps {
   booking: BookingConfirmationType;

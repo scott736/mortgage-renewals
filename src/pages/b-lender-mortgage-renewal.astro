@@ -1,0 +1,249 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What exactly is a B-lender in Canada?",
+    answer: "A B-lender is an alternative federally regulated mortgage lender that serves borrowers who don't quite fit A-lender (Big 6 / monoline) criteria — typically due to bruised credit, hard-to-document self-employed income, new-to-Canada status, or higher debt ratios. Canadian B-lenders include Equitable Bank, Home Trust, Haventree Bank, MCAP Eclipse, Community Trust, CMLS Aveo, and Strive Capital. They operate under OSFI oversight but with more flexible underwriting."
+  },
+  {
+    question: "What rate will I pay at a B-lender in 2026?",
+    answer: "B-lender rates in April 2026 typically run 1.5% to 3.0% above best A-lender rates. With A-lender 5-year fixed around 4.49%–4.79%, B-lender equivalents are roughly 5.99%–7.79% depending on credit score, LTV, and lender fees. Most B-lenders also charge a lender fee of 0.5%–1.5% of the mortgage amount, either paid upfront or added to the mortgage."
+  },
+  {
+    question: "Who typically ends up at a B-lender at renewal?",
+    answer: "Five common profiles: (1) self-employed borrowers with strong revenue but low declared net income; (2) borrowers with bruised credit from divorce, job loss, or illness; (3) new immigrants without enough Canadian credit history for an A-lender; (4) borrowers whose debt ratios have crept too high for A-lender stress-test math; (5) borrowers with unusual property types (rural, non-conforming) that A-lenders decline."
+  },
+  {
+    question: "How long should I stay at a B-lender?",
+    answer: "B-lenders are almost always a 1–3 year bridge, not a destination. The typical plan: renew at a B-lender for a 1 or 2-year term, use that time to rehabilitate credit (pay down cards, no late payments), restructure self-employed income documentation, or build Canadian credit history. At the next renewal, qualify back into A-lender pricing and save 1.5%–3% annually in interest — often tens of thousands over a 25-year amortization."
+  },
+  {
+    question: "Does the November 2024 OSFI stress test exemption apply at B-lenders?",
+    answer: "Yes — the exemption applies to all federally regulated lenders, including B-lenders. If you're doing a straight switch renewal (same balance, same or shorter amortization, no new money), the receiving lender can waive the stress test. However, B-lenders still underwrite credit and income at their own standards, so even without the formal stress test, you need to qualify by the B-lender's internal criteria."
+  },
+  {
+    question: "What happens if I stay at a B-lender indefinitely?",
+    answer: "You pay a rate premium of 1.5%–3% every year forever. On a $500,000 mortgage over a 25-year amortization, that's $150,000–$300,000 in extra interest compared to A-lender pricing. Plus you're locked out of the more competitive rate products, features like readvanceable combos, and relationship pricing. Staying at a B-lender makes sense only if you genuinely can't qualify for A-lender and won't in the future."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "b-lender-mortgage-renewal",
+    name: "B-Lender Mortgage Renewal in Canada (2026)",
+    description: "Complete guide to renewing at a Canadian B-lender — Equitable, Home Trust, Haventree, MCAP Eclipse, Community Trust. 2026 rate premiums, fees, exit plans, and OSFI guardrails.",
+  }),
+  articleSchema({
+    headline: "B-Lender Mortgage Renewal in Canada (2026)",
+    description: "How to renew with a Canadian B-lender in 2026 — who qualifies, rate premium of 1.5%–3%, 0.5%–1.5% lender fees, 1–3 year terms, and how to return to A-lender pricing.",
+    slug: "b-lender-mortgage-renewal",
+    articleSection: "Alternative Lending",
+    about: "B-lender mortgage renewal in Canada",
+    keywords: ["B-lender Canada", "Equitable Bank mortgage", "Home Trust renewal", "Haventree Bank", "MCAP Eclipse", "Community Trust", "alternative mortgage lender Canada"],
+  }),
+  faqSchema(faqs, "b-lender-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "B-Lender Mortgage Renewal", url: "/b-lender-mortgage-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="B-Lender Mortgage Renewal in Canada (2026) | Rates & Strategy"
+  description="2026 guide to B-lender mortgage renewal — Equitable, Home Trust, Haventree, MCAP Eclipse, Community Trust. Rate premiums, fees, 1–3 year terms, and A-lender exit plan."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › B-Lender Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Alternative Lending</div>
+      <h1 class="text-heading-1 mb-4">B-Lender Mortgage Renewal in Canada (2026)</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. B-lenders like Equitable Bank, Home Trust, and Haventree serve Canadians who don't quite fit A-lender criteria. Here's who uses them, what they cost, and how to build a plan to return to A-lender pricing at your next renewal.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• B-lenders are <strong>federally regulated alternative lenders</strong> — Equitable, Home Trust, Haventree, MCAP Eclipse, Community Trust, CMLS Aveo, Strive.</li>
+        <li>• 2026 rates run <strong>A-lender + 1.5% to 3.0%</strong> (roughly 5.99%–7.79% for a 5-year fixed).</li>
+        <li>• Expect a <strong>lender fee of 0.5%–1.5%</strong> of the mortgage amount on top of the rate.</li>
+        <li>• Typical terms are <strong>1–3 years</strong> — designed as a bridge, not a destination.</li>
+        <li>• Common borrower profiles: self-employed non-provable, bruised credit, new immigrants, high debt ratios, unusual properties.</li>
+        <li>• The November 2024 OSFI <strong>stress test exemption applies</strong> at B-lenders for straight-switch renewals.</li>
+        <li>• Exit plan: rehabilitate credit / income / ratios over 1–3 years, then renew back into A-lender pricing.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Makes a Lender a "B-Lender"</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian mortgage lenders fall into three broad tiers: A-lenders (Big 6 banks, credit unions, monolines like First National and MCAP prime channels), B-lenders (alternative federally regulated lenders with more flexible underwriting), and private lenders (MICs and individual investors). B-lenders occupy a middle ground — they're still regulated by OSFI and must follow B-20 guidelines, but their credit and income requirements are looser than A-lenders.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Most B-lender files come through the mortgage broker channel — these lenders don't operate branches and don't compete directly with the Big 6 for vanilla prime files. Their business model is the underserved slice of the market that A-lenders decline or overprice.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Canadian B-Lender Lineup</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Specialty</th>
+            <th class="p-3 text-left">Typical Rate Premium (2026)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Equitable Bank (EQB)</td>
+            <td class="p-3">Publicly traded; self-employed, bruised credit, newcomers</td>
+            <td class="p-3">+1.5% to +2.5%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Home Trust</td>
+            <td class="p-3">Accelerator program; long-established B-lender</td>
+            <td class="p-3">+1.5% to +3.0%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Haventree Bank</td>
+            <td class="p-3">Alt-A focus, business-for-self specialty</td>
+            <td class="p-3">+1.75% to +3.0%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">MCAP Eclipse</td>
+            <td class="p-3">MCAP's alt channel for BFS and bruised credit</td>
+            <td class="p-3">+1.5% to +2.5%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Community Trust</td>
+            <td class="p-3">Ontario / BC focus; strong on BFS files</td>
+            <td class="p-3">+1.75% to +3.0%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">CMLS Aveo</td>
+            <td class="p-3">CMLS alt channel, launched in the 2020s</td>
+            <td class="p-3">+1.5% to +2.5%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Strive Capital</td>
+            <td class="p-3">Newer entrant; tech-forward application process</td>
+            <td class="p-3">+1.75% to +2.75%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Premiums shown above A-lender best rate of approximately 4.49%–4.79% as of April 2026.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Who Uses B-Lenders at Renewal</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Self-employed, non-provable</h3>
+        <p class="text-body-sm text-muted-foreground">Strong gross revenue but net income on T1/NOA is too low for A-lender qualification. B-lenders accept bank statements, business stated income programs. See <a href="/self-employed-mortgage-renewal/" class="text-secondary-100 hover:underline">self-employed renewals</a>.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Bruised credit</h3>
+        <p class="text-body-sm text-muted-foreground">Credit score in the 580–660 range from divorce, job loss, medical, late payments. B-lenders often go as low as 550 with strong equity.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">New immigrants</h3>
+        <p class="text-body-sm text-muted-foreground">Less than 2 years of Canadian credit history but strong income and down payment. Several B-lenders have newcomer programs.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">High debt ratios</h3>
+        <p class="text-body-sm text-muted-foreground">GDS/TDS ratios over A-lender limits (39%/44%) but equity is strong. B-lenders often go to 45%/50% TDS with sufficient LTV cushion.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Worked Example: The Cost of a B-Lender Renewal</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Scenario: Self-employed borrower, $450,000 mortgage</p>
+      <p class="text-body-sm leading-relaxed">
+        Home value: $700,000 | LTV: 64%<br />
+        Credit: 660 | Business revenue: strong but net income low<br /><br />
+        <strong>A-lender decline.</strong> Broker places with Equitable Bank Alt.<br />
+        Rate: 6.24% (A-lender best was 4.49% — 175 bps premium)<br />
+        Lender fee: 1% = $4,500 (added to mortgage)<br />
+        Term: 2 years<br /><br />
+        <strong>Monthly payment (25-yr amort):</strong> $2,967 vs. A-lender $2,512 = <strong>$455/month more</strong><br />
+        <strong>Extra interest over 2 years:</strong> ~$14,500<br /><br />
+        <strong>Exit plan:</strong> 24 months to rehab NOA income documentation → return to A-lender at next renewal, saving $5,500+/year going forward.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Exit Plan: Return to A-Lender</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A B-lender renewal should always come with a written plan to return to A-lender pricing. Without that plan, you risk staying at B-lender indefinitely — paying 1.5%–3% above market every year forever. Here's how to structure the exit:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Diagnose the decline reason.</strong> What specific A-lender criterion did you fail? Credit score, income documentation, debt ratios, property type?</li>
+      <li><strong>Pick a 1 or 2-year B-term</strong> — not 3 or 5. Short terms force you to revisit the file and act on the plan.</li>
+      <li><strong>Execute the fix.</strong> Credit: pay cards below 30% utilization, no missed payments, no new credit inquiries. Self-employed: document income better, adjust tax strategy. Ratios: pay down unsecured debt.</li>
+      <li><strong>Reapply to A-lenders 90 days before B renewal.</strong> Broker pulls credit, runs income through stress test, confirms A-lender approval.</li>
+      <li><strong>Straight-switch from B to A</strong> under the OSFI exemption (same balance) or refinance if pulling cash out.</li>
+    </ol>
+
+    <h2 class="text-heading-3 mt-10 mb-4">OSFI Guardrails at B-Lenders</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      B-lenders are federally regulated and must follow OSFI Guideline B-20 — just with more flexibility on credit and income than A-lenders apply. Key rules still apply:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>80% LTV cap</strong> on conventional mortgages (no insured B-lender refinances above 80%).</li>
+      <li><strong>Stress test applies</strong> on new money (any refinance or new purchase) at contract + 2% or 5.25%.</li>
+      <li><strong>Straight-switch renewal exemption</strong> from stress test (November 2024) applies at B-lenders too.</li>
+      <li>Mortgage default insurance is available on purchases under 80% LTV if insured — but uninsured is more common at B.</li>
+      <li>Lender fees and legal costs are fully disclosed in the mortgage commitment.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Alternative Lender Renewal Mechanics</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Renewing at a B-lender works very similarly to renewing at an A-lender. Roughly 90 days before maturity, the existing B-lender sends a renewal offer. You (or your broker) should shop the market — both other B-lenders and any A-lenders you might now qualify for — before signing. Straight-switches to another federally regulated lender benefit from the OSFI stress test exemption if the balance and amortization aren't increasing.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      One important note: some B-lenders charge higher renewal fees or require broker involvement at renewal time. Read your commitment carefully. A broker can negotiate the renewal on your behalf and compare offers across the full alt-lender market — typically at no cost to you, since the new lender pays the broker commission.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/b-lender-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">B-Lender Renewal Coming Up?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can shop B-lenders, check A-lender eligibility, and build an exit plan — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free B-Lender Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

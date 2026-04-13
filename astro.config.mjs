@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
 import mdx from "@astrojs/mdx";
-import sitemap from "@astrojs/sitemap";
+import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
@@ -58,9 +58,9 @@ export default defineConfig({
         else if (legal.includes(path)) item.priority = 0.3;
         else item.priority = 0.7;
 
-        if (legal.includes(path)) item.changefreq = 'yearly';
-        else if (weekly.includes(path)) item.changefreq = 'weekly';
-        else item.changefreq = 'monthly';
+        if (legal.includes(path)) item.changefreq = ChangeFreqEnum.YEARLY;
+        else if (weekly.includes(path)) item.changefreq = ChangeFreqEnum.WEEKLY;
+        else item.changefreq = ChangeFreqEnum.MONTHLY;
 
         return item;
       },

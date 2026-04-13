@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -137,27 +138,7 @@ const schema = combineSchemas(
       </ol>
     </div>
 
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/quebec-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Quebec Mortgage Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Essential reading for National Bank's Quebec customers.</p>
-        </a>
-        <a href="/rbc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">RBC Mortgage Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Similar prepayment structure to National Bank (10% + Double-Up).</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Process for switching away from National Bank standard or All-in-One.</p>
-        </a>
-        <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates 2026</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Current market rates to benchmark National Bank's offer.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/national-bank-mortgage-renewal/" />
   </article>
 
   <section class="py-12" style="background: var(--accent)">

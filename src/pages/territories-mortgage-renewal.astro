@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -227,35 +228,7 @@ const schema = combineSchemas(
         </div>
 
         <!-- INTERNAL LINKS -->
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/bc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">BC Mortgage Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Closest major provincial market to Yukon — similar broker strategies apply.</p>
-            </a>
-            <a href="/alberta-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Alberta Mortgage Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Alberta lenders frequently lend into NWT — relevant for Yellowknife borrowers.</p>
-            </a>
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">How a Broker Helps at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Broker access matters most in thin markets — here's why.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">The 8-step process plus the 2024 stress-test exemption.</p>
-            </a>
-            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Banks, credit unions, monolines, and B-lenders compared.</p>
-            </a>
-            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Renewal Guide</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Everything Canadians need for a successful 2026 renewal.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/territories-mortgage-renewal/" />
       </div>
 
       <!-- SIDEBAR -->

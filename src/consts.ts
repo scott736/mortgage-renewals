@@ -2,6 +2,36 @@ export const SITE_TITLE = "MortgageRenewalHub.ca — Canada's Mortgage Renewal R
 export const SITE_DESCRIPTION =
   "Canada's most comprehensive mortgage renewal resource. Compare rates, use our free calculators, and get expert guidance to save thousands at renewal.";
 
+export const BUSINESS = {
+  phone: {
+    e164: "+1-519-960-0370",
+    tel: "tel:+15199600370",
+    display: "(519) 960-0370",
+    displayDashed: "1-519-960-0370",
+  },
+  address: {
+    streetAddress: "4769 Wyandotte Street East",
+    addressLocality: "Windsor",
+    addressRegion: "ON",
+    postalCode: "N8T 1E6",
+    addressCountry: "CA",
+    oneLine: "4769 Wyandotte St E, Windsor, ON N8T 1E6",
+  },
+  parent: {
+    name: "LendCity Mortgages",
+    url: "https://lendcity.ca",
+  },
+} as const;
+
+export const POSTAL_ADDRESS_NODE = {
+  "@type": "PostalAddress",
+  streetAddress: BUSINESS.address.streetAddress,
+  addressLocality: BUSINESS.address.addressLocality,
+  addressRegion: BUSINESS.address.addressRegion,
+  postalCode: BUSINESS.address.postalCode,
+  addressCountry: BUSINESS.address.addressCountry,
+} as const;
+
 export const PROVINCE_PAGES = [
   { name: "Ontario", href: "/ontario-mortgage-renewal/" },
   { name: "British Columbia", href: "/bc-mortgage-renewal/" },

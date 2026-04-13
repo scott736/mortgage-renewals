@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { serviceSchema, articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas,serviceSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -113,24 +114,7 @@ const schema = combineSchemas(
         </p>
       </div>
 
-      <div>
-        <h2 class="text-heading-3 mb-4">Related Tools</h2>
-        <div class="grid sm:grid-cols-2 gap-3">
-          {[
-            { title: "Current Mortgage Rates Canada", href: "/current-mortgage-rates-canada/" },
-            { title: "Mortgage Rate Forecast 2026", href: "/mortgage-rate-forecast/" },
-            { title: "Renewal Reminder (date-based)", href: "/renewal-reminder/" },
-            { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
-            { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
-            { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
-          ].map(link => (
-            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-              <span class="text-secondary-100">→</span>
-              {link.title}
-            </a>
-          ))}
-        </div>
-      </div>
+      <RelatedLinks slug="/rate-alert/" />
     </div>
   </section>
 </DefaultLayout>

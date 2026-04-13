@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -228,35 +229,7 @@ const schema = combineSchemas(
           ))}
         </div>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, credit unions, B-lenders compared.</p>
-            </a>
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">MCAP is only accessible through licensed brokers.</p>
-            </a>
-            <a href="/mortgage-flex-features-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Flex Features</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How MCAP's 20/20 compares to competitor prepayment privileges.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">The 8-step process and 2024 stress-test exemption.</p>
-            </a>
-            <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">MCAP Fusion is one of the top Alt-A options for self-employed borrowers.</p>
-            </a>
-            <a href="/collateral-vs-standard-charge-mortgage/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Charge Types Explained</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">MCAP uses standard charges — why this matters for switches.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/mcap-mortgage-renewal/" />
 
       </div>
 

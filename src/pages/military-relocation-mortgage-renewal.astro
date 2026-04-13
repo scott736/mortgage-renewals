@@ -1,0 +1,259 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is the CAF Integrated Relocation Program (IRP)?",
+    answer: "The Canadian Armed Forces Integrated Relocation Program (IRP) is the benefit structure that supports CAF members and their families when posted to a new base. Administered through BGRS (Brookfield Global Relocation Services) under Treasury Board authority, IRP reimburses or directly pays for a broad menu of relocation costs — including real estate commissions on home sale, legal fees on purchase and sale, movers, travel, and critically, mortgage-related charges like prepayment penalties (IRD or three-month interest), discharge fees, and mortgage transfer costs."
+  },
+  {
+    question: "Will IRP pay my mortgage prepayment penalty if I have to sell mid-term?",
+    answer: "Yes, in most cases. Section 8.2.10 of the IRP Directive provides for reimbursement of mortgage prepayment penalties and early termination fees when the sale is driven by a posting. There are documentation requirements — you need an accounting from your lender showing the penalty calculation, and you need to submit through your relocation coordinator. Caps and scrutiny have tightened in recent years, but penalties are generally covered when tied to a genuine posting."
+  },
+  {
+    question: "What if I'd rather keep the home and rent it out during the posting?",
+    answer: "Many CAF families do this — keep the existing home as a rental during posting, then return to it at end of posting. Under IRP you lose the sale-related reimbursements (since you aren't selling), but you avoid the prepayment penalty issue entirely because the mortgage stays in place. You will need to notify your lender that the property is being tenanted (insurance provisions, lender policy on owner-occupied vs. rental). Some lenders are relaxed; others require a formal switch to an investment-property product at renewal."
+  },
+  {
+    question: "Is porting my mortgage a good option for a military move?",
+    answer: "Sometimes. If your current mortgage is portable and you're buying a new home at the new base within your port window (typically 30–90 days, up to 120 for some lenders), porting preserves your rate and term and avoids the penalty entirely. That can be better than selling, paying the penalty, and originating a new mortgage — though IRP would reimburse the penalty, so the decision is really about rate: if your current contract rate is lower than today's market, port; if today's rates are lower, break (with IRP covering the penalty). See our <a href='/porting-a-mortgage-canada/'>porting guide</a> for the mechanic."
+  },
+  {
+    question: "Will lenders accept my military pension as income at renewal?",
+    answer: "Yes. Canadian lenders uniformly accept CAF pension income, VAC disability pension, and DND employment income at face value. Treasury Board pay scales are well-documented, pay stubs and employment letters are issued on standard templates, and lenders recognize CAF career stability as lower-risk than many civilian employment situations. A pension income statement from VAC or DND's Pension Centre, plus your most recent T4/T4A, is usually sufficient documentation."
+  },
+  {
+    question: "Are there mortgage products specifically designed for CAF members?",
+    answer: "Yes. VMC Veterans Mortgage Corporation offers veteran-specific products including purchase, refinance, and renewal options with a focus on CAF pension and disability income. BMO and TD have formal military banking desks with dedicated mortgage specialists familiar with IRP paperwork and posting cycles. Several credit unions (particularly in base-heavy regions like Kingston, Petawawa, Halifax, and Esquimalt) carry military-friendly programs. And SISIP (Service Income Security Insurance Plan) partnerships with major banks offer discounted products to CAF members and their families."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "military-relocation-mortgage-renewal",
+    name: "Military Relocation (IRP) and Mortgage Renewal in Canada",
+    description: "How the CAF Integrated Relocation Program interacts with mortgage renewal — penalty reimbursement, porting, rental during posting, VMC, BMO military, TD military, and VAC income acceptance.",
+  }),
+  articleSchema({
+    headline: "Military Relocation (IRP) and Mortgage Renewal in Canada",
+    description: "Complete renewal guide for Canadian Armed Forces members and families — IRP coverage of prepayment penalties, porting vs. break at posting, keeping the home as a rental, and military-friendly lenders.",
+    slug: "military-relocation-mortgage-renewal",
+    articleSection: "Military Mortgages",
+    about: "Military relocation mortgage renewal Canada",
+    keywords: ["CAF mortgage renewal", "IRP mortgage", "military relocation mortgage", "VMC Veterans Mortgage Corporation", "BMO military banking", "DND mortgage"],
+  }),
+  faqSchema(faqs, "military-relocation-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "Military Relocation Mortgage Renewal", url: "/military-relocation-mortgage-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Military Relocation & Mortgage Renewal in Canada (IRP Guide 2026)"
+  description="How CAF members navigate mortgage renewal around a posting — IRP penalty coverage, porting vs. break-and-new math, keeping the home as a rental, and military-friendly lenders including VMC, BMO, and TD."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Military Relocation Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">CAF Members & Families</div>
+      <h1 class="text-heading-1 mb-4">Military Relocation (IRP) and Mortgage Renewal</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. A posting doesn't have to wreck your mortgage. The CAF Integrated Relocation Program reimburses a broad set of mortgage-related costs — including prepayment penalties in most cases — and several Canadian lenders have dedicated military programs that understand posting cycles. Here's how to structure your renewal around a move, keep rates favourable, and use IRP properly.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>IRP</strong> (Integrated Relocation Program), administered through BGRS, reimburses posting-driven sale and purchase costs including mortgage penalties.</li>
+        <li>• <strong>Section 8.2.10</strong> of the IRP Directive specifically covers mortgage prepayment penalties when sale is posting-driven.</li>
+        <li>• Three main options at a posting: <strong>sell and buy</strong>, <strong>port the mortgage</strong>, or <strong>keep and rent out</strong> the existing home.</li>
+        <li>• If your contract rate is low and today's rates higher, <strong>porting</strong> preserves the rate; if rates have fallen, break (IRP covers the penalty).</li>
+        <li>• <strong>VMC Veterans Mortgage Corporation</strong>, <strong>BMO</strong>, and <strong>TD</strong> have formal military desks; many regional credit unions near bases offer CAF-friendly products.</li>
+        <li>• <strong>VAC disability pension</strong> and <strong>CAF regular pay</strong> are universally accepted as qualifying income by all A-lenders.</li>
+        <li>• Always consult your <strong>relocation coordinator</strong> and the IRP section on Canada.ca before making mortgage decisions tied to a posting.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Integrated Relocation Program in One Page</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The CAF IRP is the benefit package that covers the costs of a service-driven move. It's administered by BGRS (Brookfield Global Relocation Services) under Treasury Board authority and is written into Volume 1 of the IRP Directive, updated periodically. At a high level, the program provides:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Real estate commission</strong> on sale of existing home (up to a cap, typically 5–6%)</li>
+      <li><strong>Legal fees and disbursements</strong> on sale and purchase</li>
+      <li><strong>Home inspection and appraisal</strong> on purchase</li>
+      <li><strong>Home equity assistance</strong> if the market has moved against you</li>
+      <li><strong>Mortgage prepayment penalties</strong> and discharge costs (subject to documentation and posting-linkage)</li>
+      <li><strong>Mortgage transfer and origination fees</strong> on the new property</li>
+      <li><strong>Moving costs</strong> (movers, storage, travel for member and family)</li>
+      <li><strong>Temporary duty allowance</strong> for house-hunting trips</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The IRP benefit is claimed through your local relocation coordinator during the posting window. You don't claim it generically — every component needs a submission and supporting documents. Keep every receipt and every lender statement.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Three Paths Through a Posting With Your Mortgage</h2>
+
+    <div class="grid sm:grid-cols-3 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Sell + Buy</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Sell existing home, pay penalty, originate new mortgage at new base. IRP reimburses penalty + commission + legal + buying costs.</p>
+        <p class="text-body-sm-medium">Best when you need fresh equity or new home significantly different.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Port Existing Mortgage</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Sell, buy, port rate + term to new address within port window. No penalty, preserves rate, requalify on new property.</p>
+        <p class="text-body-sm-medium">Best when contract rate is below today's market.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Keep + Rent Out</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Rent existing home during posting, rent at new base, return at end of posting. No penalty; some IRP benefits lost.</p>
+        <p class="text-body-sm-medium">Best for shorter postings or long-term equity play.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When Porting Wins and When Breaking Wins</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The classic port-vs-break math applies — but with an IRP twist. In a civilian move, breaking and starting fresh means paying a penalty out of pocket. For a CAF member on a posting, IRP covers the penalty, so the decision reduces to pure rate comparison:
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: Mid-Term Posting with IRP Coverage</p>
+      <p class="text-body-sm leading-relaxed">
+        Existing 5-year fixed at 2.49%, 30 months remaining, balance $500,000. IRD penalty ~$18,000. New home at new base requires $550,000 mortgage.<br /><br />
+        <strong>Option A — Port and blend:</strong> Blended rate on $550K = (500K × 2.49% + 50K × 4.24%) / 550K = 2.65%. No penalty out-of-pocket. Rate stays great.<br /><br />
+        <strong>Option B — Break and originate:</strong> IRP pays $18K penalty. New 5-year at 4.24% on $550K. Rate is materially higher but term resets; fresh product features; possibly different lender.<br /><br />
+        <strong>Monthly difference:</strong> ~$450/month more on Option B. Option A (porting) saves ~$27K over the remaining 30 months even with IRP covering the Option B penalty.
+      </p>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The math flips if you originated at a high rate and today's rates have fallen — then IRP-funded breaking is the winning move. A mortgage broker familiar with IRP can run both scenarios side by side. See our <a href="/porting-a-mortgage-canada/" class="text-secondary-100 hover:underline">porting guide</a> for port mechanics and <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">penalty rules</a> for how IRD is calculated.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Home Equity Assistance (HEA)</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      A quieter but important IRP benefit: if the market has moved against you and your home sells for less than you paid, <strong>Home Equity Assistance</strong> can reimburse a portion of the loss. The amount and eligibility are set out in the IRP Directive and depend on market-specific thresholds set by Treasury Board. In cooling markets this matters — a CAF family forced to sell into a 10–15% correction may recover a meaningful portion of the equity loss through HEA, which changes the mortgage math at the destination.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Keeping the Home and Renting It Out</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      For 18–36 month postings or members close to pension, many CAF families keep the home and rent it out during the posting, then return at end of posting. Mortgage-side considerations:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Notify your lender that the property will be tenant-occupied — some lender commitments require this disclosure</li>
+      <li>Switch home insurance to a rental/landlord policy (usually a small premium bump, sometimes owner consent required for tenants to insure contents)</li>
+      <li>At next renewal, the lender may classify the mortgage as an investment-property product (small rate premium of 10–25 bps typical)</li>
+      <li>CRA: rental income is reported on T776, expenses (mortgage interest, property tax, insurance, repairs, property management) deductible</li>
+      <li>IRP does NOT cover mortgage payments or maintenance during the rental period — that's a personal expense</li>
+      <li>If you later sell, the period-of-rental portion may be subject to capital gains tax (principal residence exemption complications)</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See our <a href="/investment-property-renewal/" class="text-secondary-100 hover:underline">investment property renewal guide</a> for the rental-property renewal mechanics.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Military-Friendly Lenders</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Military Offering</th>
+            <th class="p-3 text-left">Notable</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">VMC Veterans Mortgage Corporation</td>
+            <td class="p-3">Veteran-focused purchase, refinance, renewal</td>
+            <td class="p-3">Specialty lender; works with VAC pension, disability awards</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">BMO</td>
+            <td class="p-3">Dedicated Military Banking Program</td>
+            <td class="p-3">Pricing concessions, IRP paperwork familiar, branches at/near bases</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">TD Canada Trust</td>
+            <td class="p-3">TD Military Banking</td>
+            <td class="p-3">Military mortgage specialists; competitive rates for CAF members</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Scotiabank</td>
+            <td class="p-3">Defence Community Banking Program</td>
+            <td class="p-3">Rate discounts and fee waivers for CAF and DND civilians</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Credit Unions near major bases</td>
+            <td class="p-3">Local military programs</td>
+            <td class="p-3">Meridian (Kingston, Petawawa), Coast Capital (Esquimalt), East Coast CUs (Halifax)</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">RBC, CIBC, National Bank</td>
+            <td class="p-3">Standard products; no formal military desk</td>
+            <td class="p-3">Competitive pricing case-by-case; less IRP expertise</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">VAC Pension and Military Income at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      CAF regular force pay, reserve pay (with a two-year history), CAF pension after release, and VAC disability pension are all accepted by Canadian A-lenders as qualifying income. Typical documentation:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Most recent two pay stubs from CAF or DND Pay Centre</li>
+      <li>Most recent T4 showing regular force or civilian DND income</li>
+      <li>For pensioners: VAC or DND Pension Centre benefit statement + most recent T4A</li>
+      <li>For disability awards: VAC correspondence confirming monthly amount (tax-free, but still qualifies as income)</li>
+      <li>CAF member ID or recent certificate of service may be requested for program-specific pricing</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      VAC disability pensions are tax-free, which most lenders gross up by a factor (typically 1.25x or 1.35x depending on lender) when using the income for GDS/TDS qualification — effectively treating a $30,000 VAC pension as $37,500–$40,500 of equivalent taxable income.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/military-relocation-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Facing a Posting With a Mortgage Mid-Term?</h2>
+      <p class="text-white/80 mb-6">A licensed broker familiar with IRP can run port-vs-break-vs-rent scenarios for you — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Military Relocation Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

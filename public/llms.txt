@@ -11,6 +11,14 @@
 - Audience: Canadian homeowners approaching mortgage renewal
 - Content Type: Educational guides, tools, calculators, FAQs
 
+## Contact
+
+- Office Address: 4769 Wyandotte Street East, Windsor, Ontario, N8T 1E6, Canada
+- Telephone: +1-519-960-0370
+- Contact Page: https://mortgagerenewalhub.ca/contact/
+- Book a Call: https://mortgagerenewalhub.ca/book-a-call/
+- Parent Organization: LendCity Mortgages (https://lendcity.ca)
+
 ## Core Pages
 
 - [Home](https://mortgagerenewalhub.ca/): Overview of mortgage renewal resources and tools
@@ -29,6 +37,16 @@
 - [Switch vs. Stay Break-Even Calculator](https://mortgagerenewalhub.ca/switch-vs-stay-calculator/): Factor in discharge, legal, appraisal, and title costs
 - [HELOC vs. Refinance Calculator](https://mortgagerenewalhub.ca/heloc-vs-refinance-calculator/): Compare equity access options
 - [Payment Frequency Calculator](https://mortgagerenewalhub.ca/mortgage-payment-frequency-canada/): See savings from accelerated bi-weekly or weekly payments
+- [Mortgage Penalty Calculator](https://mortgagerenewalhub.ca/mortgage-penalty-calculator/): IRD vs. 3-month interest calculator with Big 6 posted-rate method
+- [Prepayment / Lump-Sum Calculator](https://mortgagerenewalhub.ca/prepayment-lump-sum-calculator/): Interest saved and years shaved off amortization from a lump sum
+- [Amortization Schedule Calculator](https://mortgagerenewalhub.ca/amortization-schedule-calculator/): Year-by-year amortization table with Canadian payment frequencies
+- [Accelerated Payment Calculator](https://mortgagerenewalhub.ca/accelerated-payment-calculator/): Monthly vs. accelerated bi-weekly vs. accelerated weekly comparison
+- [Refinance / Debt Consolidation Calculator](https://mortgagerenewalhub.ca/refinance-debt-consolidation-calculator/): Roll credit-card, LOC, car-loan debt into mortgage at 80% LTV
+- [Affordability Requalification Calculator](https://mortgagerenewalhub.ca/affordability-requalification-calculator/): GDS/TDS check against OSFI B-20 rules at renewal
+- [Rate Comparison Calculator](https://mortgagerenewalhub.ca/rate-comparison-calculator/): Compare up to 4 lender scenarios including upfront costs
+- [Rental Income Qualifying Calculator](https://mortgagerenewalhub.ca/rental-income-qualifying-calculator/): 50% add-back, 80% offset, and DCR rental worksheet comparisons
+- [Break-Even Switch Calculator](https://mortgagerenewalhub.ca/break-even-switch-calculator/): Months to recoup switch costs and verdict on switching now vs. at renewal
+- [Renewal Document Checklist Generator](https://mortgagerenewalhub.ca/renewal-document-checklist-generator/): Tailored document list by situation (salaried, self-employed, rental, co-signed)
 - [Should I Switch? Quiz](https://mortgagerenewalhub.ca/should-i-switch-quiz/): 5-question decision aid
 - [Mortgage Term Decision Guide](https://mortgagerenewalhub.ca/mortgage-term-decision-guide/): Interactive decision framework for picking term length
 - [Renewal Date Reminder](https://mortgagerenewalhub.ca/renewal-reminder/): Get notified 6 months and 4 months before your renewal
@@ -62,6 +80,29 @@
 - [Renewal Mistakes](https://mortgagerenewalhub.ca/mortgage-renewal-mistakes/): Common pitfalls to avoid
 - [Mortgage Lender Types in Canada](https://mortgagerenewalhub.ca/mortgage-lender-types-canada/): A-lenders, B-lenders, monolines, private lenders
 - [Using a Mortgage Broker](https://mortgagerenewalhub.ca/mortgage-broker-renewal/): Benefits and process
+- [Mortgage Appraisal at Renewal](https://mortgagerenewalhub.ca/mortgage-appraisal-at-renewal/): When appraisals are required, cost tiers ($150 AVM vs $300-$600 full), appraisal-free switch programs
+- [Discharge Fees in Canada](https://mortgagerenewalhub.ca/mortgage-discharge-fees-canada/): Lender-by-lender discharge fees, provincial registration fees, legal/notary costs at switch
+- [Title Insurance & Legal Fees When Switching](https://mortgagerenewalhub.ca/title-insurance-legal-fees-switching/): FCT, Stewart, TitlePLUS, Chicago Title title insurance and switch legal fee breakdown
+- [Early Mortgage Renewal](https://mortgagerenewalhub.ca/early-mortgage-renewal/): Big 6 early-renewal windows (120/150/180 days), rate holds vs. commitments
+- [Skip-a-Payment in Canada](https://mortgagerenewalhub.ca/skip-a-payment-mortgage-canada/): Which lenders offer payment vacations, capitalized interest impact, alternatives
+- [Renewing with Arrears](https://mortgagerenewalhub.ca/renewing-mortgage-with-arrears/): R2/R3/R4 credit codes, power-of-sale/foreclosure timelines, lender workout options
+- [Inter-Province Mortgage Portability](https://mortgagerenewalhub.ca/inter-province-mortgage-portability/): Cross-province port rules, Quebec notary complications, reserve property limits
+- [Canadian HELOC Guide](https://mortgagerenewalhub.ca/canadian-heloc-guide/): 65% LTV rules, prime + 0.50 pricing, Big 6 HELOC products, adding a HELOC at renewal
+- [Mortgage Refinance in Canada](https://mortgagerenewalhub.ca/mortgage-refinance-canada/): 80% LTV refinance cap, uses, costs, and timing relative to renewal
+- [Second Mortgage at Renewal](https://mortgagerenewalhub.ca/second-mortgage-at-renewal/): Equitable, Home Trust, Community Trust, private 2nd mortgages — rate tiers and exit strategy
+- [Readvanceable Mortgages in Canada](https://mortgagerenewalhub.ca/readvanceable-mortgage-canada/): Scotia STEP, Manulife One, NBC All-In-One, Homeline, ReadiLine, Home Power, TD bundle
+- [B-Lender Mortgage Renewal](https://mortgagerenewalhub.ca/b-lender-mortgage-renewal/): Equitable, Home Trust, Haventree, MCAP Eclipse, Community Trust, CMLS Aveo, Strive
+- [Private Mortgage Renewal](https://mortgagerenewalhub.ca/private-mortgage-renewal/): MIC vs. individual lender pricing, Criminal Code 35% cap, provincial regulators, exit ladder
+- [Bridge Financing at Renewal](https://mortgagerenewalhub.ca/bridge-financing-at-renewal/): Prime+2 to prime+5 pricing, sold vs. unsold bridge, HELOC bridge alternatives
+- [CMHC vs. Sagen vs. Canada Guaranty at Renewal](https://mortgagerenewalhub.ca/cmhc-sagen-canada-guaranty-at-renewal/): Mortgage default insurer rules at switch, portability of premium, straight-switch transfers
+- [OSFI B-20 Stress Test at Renewal](https://mortgagerenewalhub.ca/osfi-b20-stress-test-at-renewal/): Minimum Qualifying Rate, Nov 2024 straight-switch exemption, credit-union exemption
+- [Mortgage Insurance at Switch](https://mortgagerenewalhub.ca/mortgage-insurance-at-switch/): Fire/home, creditor, term life, and mortgage-default insurance at lender switch
+- [FCAC / OBSI Mortgage Complaints](https://mortgagerenewalhub.ca/fcac-obsi-mortgage-complaints/): Canadian Mortgage Charter complaints, OBSI as single external complaints body since Nov 2024
+- [Smith Manoeuvre at Renewal](https://mortgagerenewalhub.ca/smith-manoeuvre-at-renewal/): Making Canadian mortgage interest tax-deductible via a readvanceable at renewal
+- [Debt Consolidation at Renewal](https://mortgagerenewalhub.ca/mortgage-renewal-debt-consolidation/): Rolling high-interest debt into the mortgage at refinance, math and behavioural risks
+- [Fund RRSP / Renovations at Renewal](https://mortgagerenewalhub.ca/renewal-funding-rrsp-renovations/): Equity take-out for RRSPs, renovations, and education
+- [Negotiation Scripts & Templates](https://mortgagerenewalhub.ca/mortgage-negotiation-scripts/): Phone scripts, email templates, Big 6 retention desk negotiation
+- [Canadian Lender Cheat Sheet](https://mortgagerenewalhub.ca/canadian-lender-cheat-sheet/): Lender-by-lender comparison table (charge type, portable, IRD method, prepay %, blend, skip-a-pay)
 
 ## Bank & Lender Renewal Pages
 
@@ -88,6 +129,12 @@
 - [Remove a Co-Signer](https://mortgagerenewalhub.ca/remove-co-signer-mortgage-renewal/): Refinance process for co-signer removal
 - [Investment Property Renewal](https://mortgagerenewalhub.ca/investment-property-renewal/): Rental property renewal considerations
 - [New to Canada](https://mortgagerenewalhub.ca/new-to-canada-mortgage-renewal/): PR and newcomer renewal
+- [Non-Resident Mortgage Renewal](https://mortgagerenewalhub.ca/non-resident-mortgage-renewal/): Non-Canadian-resident owners, Section 216, NR4/NR6, Foreign Buyer Ban context
+- [Canadian Expat Mortgage Renewal](https://mortgagerenewalhub.ca/canadian-expat-mortgage-renewal/): Canadians living abroad — tax residency, foreign income, RBC/Scotia expat programs
+- [Common-Law Partner Renewal](https://mortgagerenewalhub.ca/common-law-mortgage-renewal/): Cohabitation thresholds, adding/removing partners at renewal, provincial family law
+- [Military Relocation (IRP) Renewal](https://mortgagerenewalhub.ca/military-relocation-mortgage-renewal/): CAF Integrated Relocation Program coverage of discharge/switch costs
+- [Co-Ownership / Tenants in Common](https://mortgagerenewalhub.ca/co-ownership-mortgage-renewal/): Joint tenant vs. tenant-in-common renewal mechanics, buyouts, partition rules
+- [Rent-to-Own First Renewal](https://mortgagerenewalhub.ca/rent-to-own-first-mortgage-renewal/): Post-RTO graduation first mortgage renewal, credit rehab to A-lender path
 - [Estate / POA Renewal](https://mortgagerenewalhub.ca/estate-mortgage-renewal/): Death, probate, and power of attorney scenarios
 
 ## Provincial Guides
@@ -105,6 +152,8 @@
 
 - [News & Market Updates](https://mortgagerenewalhub.ca/mortgage-renewal-news/): Bank of Canada decisions and renewal news
 - [Case Studies](https://mortgagerenewalhub.ca/case-studies/): Canadian renewal success stories
+- [Video Library](https://mortgagerenewalhub.ca/mortgage-renewal-videos/): Mortgage renewal video walkthroughs organized by fundamentals, calculations, scenarios, case studies, and rate watch
+- [Newsletter](https://mortgagerenewalhub.ca/mortgage-renewal-newsletter/): CASL-compliant email signup for rate moves, BoC decisions, and renewal tips
 - [Downloadable PDF Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist-pdf/): Free PDF renewal checklist
 
 ## About

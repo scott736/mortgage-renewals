@@ -1,9 +1,15 @@
 /**
  * Nylas Booking Email Templates
- * Sends confirmation and notification emails via Resend
+ * Sends confirmation and notification emails via Elastic Email
  */
 
-import { sendEmail, escapeHtml } from '@/lib/email';
+import { escapeHtml,sendEmail } from '@/lib/email';
+
+// Absolute URL for emails. SVG renders in most modern clients (Apple Mail,
+// Gmail web, iOS Mail); Outlook desktop will fall back to the alt text.
+// Swap to a PNG here if broader Outlook support is needed.
+const LOGO_URL = 'https://mortgagerenewalhub.ca/images/layout/logo.svg';
+const SITE_URL = 'https://mortgagerenewalhub.ca';
 
 // ============================================================================
 // Types
@@ -106,6 +112,11 @@ export async function sendBookingConfirmationEmail(
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; margin: 0; padding: 20px;">
   <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <div style="padding: 24px 40px; text-align: center; background: #ffffff;">
+      <a href="${SITE_URL}" style="display: inline-block; text-decoration: none;">
+        <img src="${LOGO_URL}" alt="MortgageRenewalHub.ca" width="180" style="max-width: 180px; height: auto; display: inline-block;" />
+      </a>
+    </div>
     <div style="background: #0D2B45; padding: 32px 40px;">
       <h1 style="color: white; margin: 0; font-size: 22px;">MortgageRenewal<span style="color: #00A896;">Hub</span>.ca</h1>
     </div>
@@ -174,6 +185,11 @@ export async function sendBookingConfirmedEmail(
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; margin: 0; padding: 20px;">
   <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+    <div style="padding: 24px 40px; text-align: center; background: #ffffff;">
+      <a href="${SITE_URL}" style="display: inline-block; text-decoration: none;">
+        <img src="${LOGO_URL}" alt="MortgageRenewalHub.ca" width="180" style="max-width: 180px; height: auto; display: inline-block;" />
+      </a>
+    </div>
     <div style="background: #0D2B45; padding: 32px 40px;">
       <h1 style="color: white; margin: 0; font-size: 22px;">MortgageRenewal<span style="color: #00A896;">Hub</span>.ca</h1>
     </div>
@@ -228,7 +244,7 @@ export async function sendBookingNotificationEmail(
 ): Promise<void> {
   const {
     teamMemberEmail,
-    teamMemberName,
+    teamMemberName: _teamMemberName,
     guestName,
     guestEmail,
     guestPhone,
@@ -247,6 +263,11 @@ export async function sendBookingNotificationEmail(
 <!DOCTYPE html>
 <html>
 <body style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="text-align: center; padding: 12px 0 20px;">
+    <a href="${SITE_URL}" style="display: inline-block; text-decoration: none;">
+      <img src="${LOGO_URL}" alt="MortgageRenewalHub.ca" width="160" style="max-width: 160px; height: auto;" />
+    </a>
+  </div>
   <h2 style="color: #0D2B45;">New Booking — ${escapeHtml(serviceName)}</h2>
   <table style="width: 100%; border-collapse: collapse;">
     <tr><td style="padding: 8px 0; color: #555; font-weight: 600; width: 140px;">Guest</td><td style="padding: 8px 0;">${escapeHtml(guestName)}</td></tr>

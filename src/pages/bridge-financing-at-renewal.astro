@@ -1,0 +1,281 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is bridge financing in Canada, exactly?",
+    answer: "Bridge financing is a short-term loan that covers the gap between the purchase closing date of a new home and the sale closing date of your existing home. The lender advances funds using the equity in your existing home (tied to a firm, unconditional sale agreement) to fund the down payment and closing costs on the new purchase. Bridge loans in Canada are typically 30 to 120 days and are repaid in full from the sale proceeds when the old home closes."
+  },
+  {
+    question: "What do bridge loans cost in Canada in 2026?",
+    answer: "Bridge rates in April 2026 typically range from prime + 2% to prime + 5% — roughly 6.95%–9.95% with Big 6 prime at 4.95%. Most lenders charge an administrative fee of $200–$500 on top. Because bridge terms are so short (30–120 days), the dollar cost is usually modest: a $100,000 bridge for 60 days at 8% costs about $1,315 in interest plus a $300 setup fee. Much cheaper than reverse-contingent offers or breaking a mortgage."
+  },
+  {
+    question: "What do I need to qualify for bridge financing?",
+    answer: "Most bridge lenders require: (1) a firm, unconditional sale agreement on your existing home (no financing condition, no inspection condition); (2) a firm purchase agreement on the new home; (3) sufficient equity in the old home to cover the bridge amount; (4) the bridge must be taken from the same lender funding the new purchase mortgage, or from a specialty bridge lender. Without a firm sale, most A-lenders decline; alternative lenders may still bridge but at much higher cost."
+  },
+  {
+    question: "Can I bridge if I haven't sold my old home yet?",
+    answer: "It's much harder. Most A-lenders require a firm sale before they'll offer bridge financing. Some alternative lenders and private lenders will bridge on an 'unsold bridge' basis — you have listed the home but not yet sold — but rates jump to 10%–14% and fees to 2%–4%. A better alternative is often a HELOC on the existing home, drawn temporarily and repaid when the sale closes."
+  },
+  {
+    question: "How does bridge financing relate to mortgage renewal?",
+    answer: "Bridge financing isn't directly tied to renewal, but there are rare cases where they intersect: (1) you're moving homes around the same time as your existing mortgage maturity — bridge covers the timing gap while the new mortgage originates at the new lender; (2) you're refinancing at renewal to extract equity for a second property purchase where closings don't line up. In most cases, bridge is a standalone product used alongside a new mortgage or port."
+  },
+  {
+    question: "What happens if my old home doesn't sell during the bridge period?",
+    answer: "If your old home hasn't sold by bridge maturity, you typically have three options: (1) extend the bridge with the lender (most allow 30–60 day extensions with higher rates); (2) convert the bridge into a longer-term mortgage or HELOC on the old home; (3) lower the list price to force a sale. Most Canadian bridge lenders require a firm sale before funding, specifically to avoid this scenario — which is why unsold bridge financing is so much more expensive."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "bridge-financing-at-renewal",
+    name: "Bridge Financing in Canada",
+    description: "Complete 2026 guide to Canadian bridge financing — when bridge loans are needed, typical rates (prime + 2 to prime + 5), 30–120 day terms, qualification, and alternatives.",
+  }),
+  articleSchema({
+    headline: "Bridge Financing in Canada: Using Bridge Loans to Close a Timing Gap",
+    description: "How Canadian bridge financing works in 2026 — rates of prime + 2 to prime + 5, $200–$500 admin fees, firm sale requirement, 30–120 day terms, and HELOC alternatives.",
+    slug: "bridge-financing-at-renewal",
+    articleSection: "Bridge Financing",
+    about: "Bridge financing in Canada",
+    keywords: ["bridge financing Canada", "bridge loan mortgage", "bridge loan rates 2026", "closing gap bridge", "bridge vs HELOC", "unsold bridge financing"],
+  }),
+  faqSchema(faqs, "bridge-financing-at-renewal"),
+  breadcrumbSchema([
+    { name: "Bridge Financing at Renewal", url: "/bridge-financing-at-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Bridge Financing in Canada (2026) | Bridge Loans Explained"
+  description="How bridge financing works in Canada — 2026 rates of prime + 2 to prime + 5, firm-sale requirement, 30–120 day terms, qualification, and HELOC alternatives."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Bridge Financing at Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Bridge Financing</div>
+      <h1 class="text-heading-1 mb-4">Bridge Financing in Canada: Using Bridge Loans to Close a Timing Gap</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Bridge financing lets you buy a new home before your existing one closes. Here's how Canadian bridge loans are priced, who qualifies, and when a HELOC is a smarter alternative.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Bridge financing covers the <strong>timing gap</strong> between a new-home purchase closing and an existing-home sale closing.</li>
+        <li>• 2026 rates: <strong>prime + 2% to prime + 5%</strong>, roughly 6.95%–9.95% with Big 6 prime at 4.95%.</li>
+        <li>• Admin/setup fees: <strong>$200–$500</strong>, sometimes higher at alternative lenders.</li>
+        <li>• Terms are <strong>30 to 120 days</strong>; most Canadian bridges are under 60 days.</li>
+        <li>• Qualification usually requires a <strong>firm, unconditional sale</strong> of the existing home.</li>
+        <li>• <strong>HELOC bridge</strong> is often cheaper if you already have one — prime + 0.50% vs. prime + 3% or more.</li>
+        <li>• Rarely connected to renewal directly, but can be used when refinancing at renewal to purchase an investment property mid-term.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When Bridge Financing Is Needed</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The most common Canadian bridge scenario: you've sold your current home with a closing date of, say, June 30, and you're buying a new home that closes June 15. For two weeks, you need to own (and pay the down payment on) the new home while your old home's sale proceeds aren't yet available. A bridge loan funds that gap — typically using the equity in your sold-but-not-yet-closed old home as security.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Less common but legitimate scenarios:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Renovating one property while moving into another short-term.</li>
+      <li>Buying a second property (cottage, investment) before selling a first.</li>
+      <li>Refinancing at renewal to extract equity for an investment purchase, where the refi funds and purchase closing don't align.</li>
+      <li>Executing a port with overlapping closings that fall outside the lender's port window.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">2026 Bridge Financing Pricing</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">Typical Rate (April 2026)</th>
+            <th class="p-3 text-left">Setup Fee</th>
+            <th class="p-3 text-left">Lender Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Sold bridge, A-lender</td>
+            <td class="p-3">Prime + 2% to + 3% (6.95%–7.95%)</td>
+            <td class="p-3">$250–$400</td>
+            <td class="p-3">Big 6, monoline</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Sold bridge, alt lender</td>
+            <td class="p-3">Prime + 3% to + 5% (7.95%–9.95%)</td>
+            <td class="p-3">$400–$600</td>
+            <td class="p-3">B-lender</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Unsold bridge (private)</td>
+            <td class="p-3">10%–14%+</td>
+            <td class="p-3">2%–4% of loan</td>
+            <td class="p-3">MIC, private</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">HELOC bridge (existing HELOC)</td>
+            <td class="p-3">Prime + 0.50% (5.45%)</td>
+            <td class="p-3">$0</td>
+            <td class="p-3">Any HELOC lender</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: Typical 45-Day A-Lender Bridge</p>
+      <p class="text-body-sm leading-relaxed">
+        Bridge amount: $250,000 (down payment on new purchase)<br />
+        Bridge period: 45 days<br />
+        Rate: 7.45% (prime + 2.50%)<br /><br />
+        <strong>Interest cost:</strong> $250,000 × 7.45% × (45/365) = <strong>$2,296</strong><br />
+        <strong>Admin fee:</strong> $300<br />
+        <strong>Total cost:</strong> <strong>$2,596</strong> — typically rolled into closing costs<br /><br />
+        Compare to breaking a port: IRD penalty on a $400,000 mortgage at 2.79% vs. today's 4.49% could be $8,000–$15,000. Bridge is dramatically cheaper.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Qualify for Bridge Financing</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Most Canadian A-lenders that offer bridge financing require all of the following:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Firm, unconditional sale agreement</strong> on your existing home — financing condition removed, inspection condition removed, deposit paid.</li>
+      <li><strong>Firm purchase agreement</strong> on the new home, also with conditions removed.</li>
+      <li><strong>Approved mortgage</strong> on the new home (the bridge is a companion product, not a standalone).</li>
+      <li><strong>Sufficient equity</strong> in the existing home — the bridge amount must be comfortably covered by the sale proceeds minus existing mortgage payout and closing costs.</li>
+      <li><strong>Both closing dates confirmed</strong> in the respective agreements.</li>
+    </ol>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The lender is essentially lending against certain future cash — the proceeds from your firm sale. That's why "unsold bridge" (where the existing home is listed but not yet sold firm) is so much more expensive. The lender has no certain exit and prices the risk accordingly.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Bridge vs. HELOC: The Cheaper Alternative</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you already have a HELOC on your existing home — or can obtain one before selling — drawing from the HELOC to fund the new-home closing is usually cheaper than a formal bridge loan. HELOCs run at prime + 0.50% (5.45% in April 2026), while bridges run at prime + 2% to prime + 3% (6.95%–7.95%).
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Feature</th>
+            <th class="p-3 text-left">Bridge Loan</th>
+            <th class="p-3 text-left">HELOC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Rate (April 2026)</td>
+            <td class="p-3">Prime + 2% to + 3%</td>
+            <td class="p-3">Prime + 0.50%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Setup fee</td>
+            <td class="p-3">$200–$500</td>
+            <td class="p-3">$0 if HELOC already in place</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Firm sale required?</td>
+            <td class="p-3">Yes (for A-lender)</td>
+            <td class="p-3">No</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Speed to access</td>
+            <td class="p-3">Funds at new-home close</td>
+            <td class="p-3">Instant (if HELOC pre-existing)</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Max amount</td>
+            <td class="p-3">Up to sale proceeds minus payout</td>
+            <td class="p-3">Up to HELOC limit (65% LTV standalone)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The catch: you need to have set up the HELOC before you firmed up the sale, because most lenders won't underwrite a new HELOC on a property you've just sold. If you think you might need bridge capacity down the road, setting up a HELOC proactively is the cheaper play. See <a href="/canadian-heloc-guide/" class="text-secondary-100 hover:underline">our HELOC guide</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Bridge Relates to Mortgage Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Bridge financing isn't directly tied to renewals — it's a product used when buying and selling homes, which usually happens mid-term. But there are three renewal-adjacent scenarios where bridge can come into play:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Coincident moving and renewing.</strong> Your renewal happens around the same time as a move. The bridge covers the timing gap; the new mortgage is originated on the new home with a fresh term.</li>
+      <li><strong>Refinancing at renewal for investment purchase.</strong> You refinance your current home up to 80% LTV at renewal to extract cash for a rental property down payment. Bridge covers the few days between refi funding and rental purchase closing.</li>
+      <li><strong>Port-plus-bridge.</strong> You're porting your mortgage to a new home but the closings don't line up within the port window. Bridge handles the gap without breaking the port. See <a href="/porting-a-mortgage-canada/" class="text-secondary-100 hover:underline">porting a mortgage</a>.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Risks and Practical Warnings</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Sale falls through</h3>
+        <p class="text-body-sm">If the buyer of your existing home backs out after conditions are removed, you're still liable for the bridge. Deposit forfeiture lawsuits can recover but take time.</p>
+      </div>
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Extension cost</h3>
+        <p class="text-body-sm">If your new home's closing delays, the bridge may extend — but often at a higher renewed rate. Build a 2-week cushion into your planned bridge period.</p>
+      </div>
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Unsold bridge pricing</h3>
+        <p class="text-body-sm">If you need bridge without a firm sale, rates and fees can double or triple. Usually better to list aggressively, accept a lower offer, and keep the firm-sale A-lender bridge.</p>
+      </div>
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Same-lender requirement</h3>
+        <p class="text-body-sm">Most A-lenders require that the bridge and the new mortgage both be with them. If you want to switch lenders for the new home, bridge options narrow.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/bridge-financing-at-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Moving Homes and Need Bridge Financing?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can compare bridge loans, HELOC bridges, and port options — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Bridge Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

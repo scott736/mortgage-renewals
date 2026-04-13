@@ -1,0 +1,160 @@
+---
+import { AmortizationSchedule } from '@/components/calculators/amortization-schedule';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Why do Canadian mortgage calculators use semi-annual compounding?",
+    answer: "The Interest Act (Canada) section 6 requires that interest on Canadian mortgages be calculated no more frequently than semi-annually, not in advance. This differs from the US, where most mortgages compound monthly. Semi-annual compounding results in a slightly lower effective rate than a US-style monthly calculation — a 5.00% nominal Canadian mortgage is equivalent to about 5.06% monthly-compounded."
+  },
+  {
+    question: "How do accelerated payments reduce my amortization?",
+    answer: "Accelerated bi-weekly payments divide your monthly payment by 2 and pay that every two weeks — 26 payments a year instead of the 24 you'd make with standard bi-weekly. The extra payment each year goes entirely to principal, shaving roughly 3–5 years off a 25-year amortization. Accelerated weekly divides the monthly payment by 4, making 52 payments per year."
+  },
+  {
+    question: "Can I change payment frequency without changing my mortgage?",
+    answer: "Yes — most Canadian lenders allow you to change payment frequency once per year for free, or at renewal. You don't need to qualify again. Call your lender or log into online banking and request the change. It usually takes effect on your next scheduled payment."
+  },
+  {
+    question: "Does paying bi-weekly really save money?",
+    answer: "Only accelerated bi-weekly saves significant money. Standard bi-weekly is just monthly × 12 ÷ 26 — same total paid per year, so amortization is identical. Accelerated bi-weekly is monthly ÷ 2 × 26 = one extra monthly payment per year. Verify which one your lender set up — many default to standard bi-weekly unless you specifically request accelerated."
+  },
+  {
+    question: "How do I verify my amortization schedule from the bank?",
+    answer: "Your lender's online banking usually has an amortization schedule or statement of interest and principal for each year. If it's not there, request a 'disclosure statement' or 'amortization schedule' from the servicing team. Cross-check against this calculator using your mortgage balance, rate, and payment — small differences (a few dollars per year) are normal due to rounding and exact payment dates."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "amortization-schedule-calculator",
+    name: "Amortization Schedule Calculator — Canadian Mortgage 2026",
+    description: "Year-by-year amortization breakdown showing interest, principal, and balance for Canadian mortgages. Supports all 5 payment frequencies.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Amortization Schedule Calculator",
+    description: "Free calculator that generates a complete year-by-year amortization schedule for a Canadian mortgage, using semi-annual compounding.",
+    slug: "amortization-schedule-calculator",
+    features: [
+      "Year-by-year principal and interest breakdown",
+      "Monthly, bi-weekly, weekly, accelerated options",
+      "Canadian semi-annual compounding (Interest Act)",
+      "Full schedule toggle",
+      "Free — no email required",
+    ],
+  }),
+  articleSchema({
+    headline: "Amortization Schedule Calculator — Canadian Mortgage 2026",
+    description: "Free Canadian amortization calculator. Year-by-year interest and principal breakdown using semi-annual compounding. 5 payment frequencies supported.",
+    slug: "amortization-schedule-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage amortization",
+    keywords: ["amortization schedule", "mortgage amortization calculator", "Canadian mortgage schedule", "semi-annual compounding"],
+  }),
+  faqSchema(faqs, "amortization-schedule-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Amortization Schedule Calculator", url: "/amortization-schedule-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Amortization Schedule Calculator — Canadian Mortgage 2026"
+  description="Free Canadian amortization schedule calculator. Year-by-year interest, principal, and balance breakdown for all payment frequencies."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Amortization Schedule
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Amortization Schedule Calculator (Canada)</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        See exactly how much of each year's mortgage payment goes to interest vs principal — and how your balance drops over time. Uses Canadian semi-annual compounding per the Interest Act.
+      </p>
+    </div>
+
+    <AmortizationSchedule client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How Canadian Amortization Works</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Amortization is the process by which your mortgage balance decreases over time. In the early years, most of your payment goes to <strong>interest</strong> — the bank is making money. As years pass and your balance shrinks, more of each payment goes to <strong>principal</strong>, accelerating the payoff.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          On a $500,000 mortgage at 4.29% over 25 years, your first year's payments are roughly 77% interest and 23% principal. By year 15, that flips — 54% interest, 46% principal. By year 24, it's 98% principal. This front-loading of interest is why <strong>lump sum prepayments early in the amortization</strong> have massive compounding benefits.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Canadian mortgages compound <strong>semi-annually, not in advance</strong>, per Section 6 of the federal Interest Act. This means a 5.00% Canadian mortgage has an effective monthly rate of (1 + 0.05/2)^(1/6) - 1 ≈ 0.4124%. A US mortgage at the same nominal rate would use 5.00% / 12 = 0.4167% monthly — slightly higher. This is why you cannot use a US mortgage calculator for Canadian mortgage math; the numbers will be off.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Payment Frequency Choices</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Monthly</strong> — 12 payments per year. Standard default.</li>
+          <li><strong>Semi-Monthly</strong> — 24 payments per year (1st and 15th). Same total as monthly.</li>
+          <li><strong>Bi-Weekly</strong> — 26 payments per year (monthly × 12 ÷ 26). Same total as monthly.</li>
+          <li><strong>Accelerated Bi-Weekly</strong> — 26 payments per year at monthly ÷ 2. Adds one extra monthly payment per year, shaves 3–5 years.</li>
+          <li><strong>Weekly</strong> — 52 payments per year (monthly × 12 ÷ 52). Same total as monthly.</li>
+          <li><strong>Accelerated Weekly</strong> — 52 payments per year at monthly ÷ 4. Slightly faster payoff than accelerated bi-weekly.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When to Use the Schedule</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Tax planning</strong> — for rental properties, your annual interest is deductible; read it off the schedule</li>
+          <li><strong>Renewal prep</strong> — see what your balance will be at the end of your current term to plan the renewal</li>
+          <li><strong>Sale planning</strong> — know the balance you'll pay out at closing</li>
+          <li><strong>Prepayment strategy</strong> — identify years where extra payments have the biggest impact</li>
+          <li><strong>Net worth tracking</strong> — your mortgage paydown is a forced savings plan; the schedule shows exactly how much equity you're building each year</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Caveats</h2>
+        <p class="text-body-md text-muted-foreground">
+          This calculator assumes a constant interest rate for the full amortization period. In reality, your rate resets at each renewal (typically every 5 years), so your real-world schedule will have rate breaks. For a multi-rate projection, use our renewal-rate modelling tool. Also note: this schedule ignores property tax, insurance, and condo fees — it shows only principal and interest.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/amortization-schedule-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Ready to Optimize Your Amortization?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can rebuild your amortization schedule with a lower rate or a smarter payment strategy — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

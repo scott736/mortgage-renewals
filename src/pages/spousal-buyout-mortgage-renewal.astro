@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -215,35 +216,7 @@ const schema = combineSchemas(
           ))}
         </div>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/divorce-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Divorce & Mortgage Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Broader divorce-scenario renewal strategies.</p>
-            </a>
-            <a href="/assuming-a-mortgage-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Assumption</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Alternative to buyout when existing rate is favorable.</p>
-            </a>
-            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Single-income qualification mechanics.</p>
-            </a>
-            <a href="/insured-vs-conventional-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Insured vs. Conventional</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">The 95% LTV buyout is always insured.</p>
-            </a>
-            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinance</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Why buyout is its own category, not a refinance.</p>
-            </a>
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Buyouts are specialty files — broker experience matters.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/spousal-buyout-mortgage-renewal/" />
 
       </div>
 

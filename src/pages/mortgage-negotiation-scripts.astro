@@ -1,0 +1,279 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "When should I first call my current lender about my renewal rate?",
+    answer: "The ideal first call is 120 to 150 days before your maturity date — roughly 4 to 5 months out. That's the window when your lender's systems can honour a rate hold and match a broker's competing offer. Calling earlier often results in 'we can't quote yet, it's too early'; calling inside 30 days leaves you no leverage. Bring a written broker quote to the first call; don't call empty-handed."
+  },
+  {
+    question: "Does asking my lender for a better rate actually work?",
+    answer: "Yes — Canadian mortgage renewals are one of the most negotiable consumer financial products in the country. The posted rate on your renewal letter is a starting anchor that very few borrowers actually pay. Big 6 banks routinely drop 0.30-0.80% off the posted renewal rate when presented with a written competing offer. Retention desks have specific discretionary authority to match or come within a few basis points of broker rates to keep the account. The only variable is how hard you push."
+  },
+  {
+    question: "What's the difference between the branch and the retention desk?",
+    answer: "A branch mortgage specialist can usually quote you only a pre-set rate from their system, often with limited authority to negotiate. The retention desk (also called 'mortgage retention team' or 'renewal specialist group') is a separate centralised team whose performance is measured on keeping accounts from leaving. They have materially more discretion. If your branch quote is weak, politely ask to be transferred to retention by saying 'I have a written competing offer from a broker and I'd like to speak with your retention or renewals team before I decide.'"
+  },
+  {
+    question: "Should I tell them the exact rate I've been quoted, or keep it vague?",
+    answer: "Tell them the exact rate — and be prepared to email the written quote if they ask. Vague claims ('I've been offered something better') get vague responses. A specific number like '4.04% 5-year fixed from a competing broker, legal fees included, 120-day rate hold' gets a specific counter. Lenders verify broker quotes internally; inflated numbers backfire and destroy your credibility on subsequent calls."
+  },
+  {
+    question: "Is it worth using a mortgage broker just to negotiate with my current lender?",
+    answer: "Often yes. A licensed broker can deliver a written competing quote on their letterhead in 1-2 business days at no cost, and many will coach you through the call or make it for you. Even if you ultimately stay with your current lender, the broker quote typically extracts 0.15-0.40% of additional discount — worth thousands of dollars over a 5-year term. Brokers are paid by the new lender only if you switch, so the quote is genuinely free."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Renewal Negotiation Scripts and Email Templates (Canada 2026)",
+    description: "Ready-to-use phone scripts, email templates, and texts for negotiating your Canadian mortgage renewal. Big 6 bank tactics, monoline rules, retention desk scripts.",
+    slug: "mortgage-negotiation-scripts",
+    articleSection: "Negotiation",
+    about: "Mortgage renewal negotiation",
+    keywords: ["mortgage negotiation script", "mortgage renewal email template", "bank retention desk", "mortgage renewal negotiation", "Canadian mortgage leverage"],
+  }),
+  breadcrumbSchema([
+    { name: "Negotiation Scripts", url: "/mortgage-negotiation-scripts" }
+  ]),
+  faqSchema(faqs, "mortgage-negotiation-scripts"),
+  webPageNode({
+    slug: "mortgage-negotiation-scripts",
+    name: "Mortgage Renewal Negotiation Scripts (Canada 2026)",
+    description: "Phone scripts, email templates, and SMS drafts for negotiating your Canadian mortgage renewal — Big 6, monolines, retention desk tactics.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Negotiation Scripts (Canada 2026)"
+  description="Ready-to-use phone scripts, email templates, and SMS drafts for negotiating your Canadian mortgage renewal rate. Big 6, monolines, retention desk tactics."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Negotiation Scripts
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Renewal Negotiation Toolkit</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Renewal Negotiation Scripts and Email Templates</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. The words you use on the renewal call matter. Below are the exact phone scripts, email templates, and SMS drafts that Canadian homeowners use to shave 0.30-0.80% off their renewal rate — with bank-specific tactics for the Big 6 and pointers for monolines.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Start negotiating <strong>120–150 days</strong> before maturity — that's when rate holds are honoured.</li>
+        <li>• Always go in with a <strong>written competing offer</strong> from a broker — vague claims get vague responses.</li>
+        <li>• Escalate to the <strong>retention desk</strong>; branch staff usually can't match a broker quote.</li>
+        <li>• Big 6 banks discount posted rates by 0.30–0.80% when pushed; monolines offer tighter, less negotiable rates.</li>
+        <li>• Demand every offer <strong>in writing</strong> before accepting — the verbal quote often isn't the final quote.</li>
+        <li>• Second-round asks (legal fees, discharge fees, term flexibility) usually succeed once rate is close to market.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Phone Script 1: The First Call (120–150 Days Out)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Use this when your renewal letter arrives, or proactively four to five months before maturity. Call your lender's mortgage renewal or retention line (not the branch — retention has more authority).
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Script</p>
+      <p class="text-body-sm leading-relaxed italic">
+        "Hi, my name is [Name]. My mortgage is up for renewal on [date] and I received my renewal letter. I've also been quoted <strong>4.04% on a 5-year fixed</strong> by a competing mortgage broker, with legal fees covered on a switch. Before I commit either way, I wanted to give you the chance to beat or match it. What's your best offer today?"
+      </p>
+    </div>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Why this works: you've established four things in one sentence — you know your maturity date, you have a specific competing number, the offer is genuine (legal fees included is a real switch-cost signal), and you're giving the lender a chance to win. Retention reps are trained to respond to this structure.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Phone Script 2: Second-Round Ask (When Rate Is Close)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Once the lender's rate is within 0.05–0.10% of the competing broker quote, pivot to the ancillary asks. This is where the real additional value lives.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Script</p>
+      <p class="text-body-sm leading-relaxed italic">
+        "That's better — appreciate you working on that. The broker offer also covers legal fees and comes with a <strong>120-day rate hold</strong>. If I stay with you, can you cover the discharge / legal fees? Also, can you quote me a <strong>3-year fixed</strong> alongside the 5-year so I can compare?  And can you email this to me in writing today — I don't want to commit off a verbal rate."
+      </p>
+    </div>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The written quote request is the most important thing on this call. Verbal rates drift — the quote you hear on the phone is sometimes 0.05–0.10% higher when it shows up in the system 48 hours later. A written email with the rate, term, and offer expiry locks it in.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Phone Script 3: When They Escalate to Retention</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If the initial rep says "let me see if I can do better" and transfers you, or asks you to hold for a supervisor, that's usually retention or a senior renewal officer. Don't restart from scratch — they already have the notes.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Script</p>
+      <p class="text-body-sm leading-relaxed italic">
+        "Thanks for picking up. Just to summarise where we are — the best your colleague offered is [X%] on a 5-year fixed. The broker quote is [Y%] with legal fees covered. I've been a customer for [N] years, never missed a payment, and I'd prefer to stay — but not at 0.20% above market. What's your best final number, and can you include something on the discharge or legal fees?"
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Email Template: Sending Your Broker Quote to Your Current Lender</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Use this email after the first phone call, or as a starting move if you'd rather begin in writing. Send to your branch advisor and ask them to forward it to retention if they can't match.
+    </p>
+
+    <div class="rounded-lg bg-white border border-gray-200 p-5 mb-6 font-mono text-body-sm leading-relaxed whitespace-pre-line">
+{`Subject: Mortgage Renewal — Competing Offer, Requesting Best Rate
+
+Hi [Branch Advisor / Mortgage Renewal Team],
+
+My mortgage (account ending [last 4 digits]) renews on [maturity date].
+
+I've been quoted 4.04% on a 5-year fixed by a licensed mortgage broker, with:
+  - Legal / switch-in fees covered by the new lender
+  - 120-day rate hold
+  - Standard prepayment privileges (20/20)
+
+Before I commit to the switch, I'd like [Bank Name] to provide a best-and-final
+offer. Please include:
+  1. Best 5-year fixed rate available to me today
+  2. Best 3-year fixed rate, for comparison
+  3. Any coverage of discharge / administrative fees
+  4. The offer in writing, with an expiry date
+
+If the offer is competitive, I'd prefer to stay. If not, I'll proceed with the
+switch before my renewal closes.
+
+Thanks,
+[Your Name]
+[Phone Number]`}
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Short SMS / WhatsApp Template (Mobile Advisor)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If your advisor has sent you their cell or prefers texts, use a short version:
+    </p>
+
+    <div class="rounded-lg bg-white border border-gray-200 p-5 mb-6 font-mono text-body-sm leading-relaxed whitespace-pre-line">
+{`Hi [Name] — my renewal's coming up on [date]. Been quoted 4.04% 5yr fixed
+by a broker (legals covered, 120-day hold). Can you beat it? Need your
+best-and-final in writing by Friday. Thanks!`}
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Posted Rate vs. Discretionary Rate: Understanding the Lever</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Every Canadian bank publishes a <strong>posted rate</strong> — the headline number on their website and on your renewal letter. The actual rate they charge is the <strong>discretionary rate</strong> or <strong>best rate</strong>, which is 0.80–1.50% lower and is applied through a discount code in the bank's system. Retention reps and branch advisors have authority to apply larger discounts when account loss is imminent. The negotiation lever is the gap between posted and the deepest discount code available.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Crucially, some Big 6 banks — especially TD and RBC historically — use the <em>posted rate</em> to calculate Interest Rate Differential (IRD) penalties. This means the posted rate matters for penalty math even though you'll never actually pay it. More on this in our <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD vs. 3-month interest penalty</a> guide.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Bank-Specific Negotiation Notes (Big 6)</h2>
+    <div class="space-y-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">RBC Royal Bank</h3>
+        <p class="text-body-sm text-muted-foreground">Aggressive retention — will usually match broker quotes within 0.05%. Ask specifically about "RateCapper" and renewal loyalty discount stacking. <a href="/rbc-mortgage-renewal/" class="text-secondary-100 hover:underline">RBC renewal guide</a>.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">TD Canada Trust</h3>
+        <p class="text-body-sm text-muted-foreground">Known for stubborn first offers and heavy use of posted-rate IRD on any broken term. Tends to soften only after a firm written broker quote is in hand. Ask about TD Home Equity FlexLine pricing if you have one. <a href="/td-mortgage-renewal/" class="text-secondary-100 hover:underline">TD renewal guide</a>.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">BMO</h3>
+        <p class="text-body-sm text-muted-foreground">Retention moves faster than branch. BMO's no-frills "Smart Fixed" historically matches broker rates closely. <a href="/bmo-mortgage-renewal/" class="text-secondary-100 hover:underline">BMO renewal guide</a>.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">Scotiabank</h3>
+        <p class="text-body-sm text-muted-foreground">The Scotia STEP collateral structure complicates transfers to a new lender — use this as leverage ("your own product makes it expensive for me to leave, but I will if the rate gap holds"). <a href="/scotiabank-mortgage-renewal/" class="text-secondary-100 hover:underline">Scotiabank renewal guide</a>.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">CIBC</h3>
+        <p class="text-body-sm text-muted-foreground">Flexible retention, especially for accounts with deposit and investment relationships. Reference your other CIBC products by name. <a href="/cibc-mortgage-renewal/" class="text-secondary-100 hover:underline">CIBC renewal guide</a>.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">National Bank</h3>
+        <p class="text-body-sm text-muted-foreground">Historically stronger in Quebec; renewal retention is thinner than other Big 6. Broker channel is often cheaper — use it as leverage. <a href="/national-bank-mortgage-renewal/" class="text-secondary-100 hover:underline">National Bank renewal guide</a>.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Monoline Lenders: Why Scripts Are Shorter</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Monoline lenders — <a href="/first-national-mortgage-renewal/" class="text-secondary-100 hover:underline">First National</a>, <a href="/mcap-mortgage-renewal/" class="text-secondary-100 hover:underline">MCAP</a>, CMLS, RMG, Merix — sell almost exclusively through brokers. Their rates at renewal are already close to their best possible rate; the posted-vs-discretionary gap is small (often 0.10–0.20%), not the 0.80%+ you see at a Big 6. The negotiation is typically one round: "My broker can get me X elsewhere — can you match?" and they either can or they can't.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Because monoline renewal retention is thinner, the typical monoline play is to have your broker run the renewal quote as part of a competitive multi-lender shop. The broker's own lender rotation often produces the best result regardless of whether you stay or leave.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Broker-Assisted Negotiation: The Script They Use</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you engage a broker to handle the negotiation for you, they'll typically structure the conversation like this. It's included here so you can see what a professional approach sounds like, and replicate it if you go solo.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Broker Script to Current Lender</p>
+      <p class="text-body-sm leading-relaxed italic">
+        "Hi, this is [Broker Name], calling on behalf of my client [Client Name], mortgage account [#]. They're up for renewal on [date]. I have a written approval at 4.04% on a 5-year fixed with legal fees covered from [Lender]. My client prefers to stay with you if the math works. What's your best retention offer? I need it in writing by [deadline] to include in the client's decision package."
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Timing Rules That Change Outcomes</h2>
+    <div class="grid sm:grid-cols-3 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">150+ days out</h3>
+        <p class="text-body-sm text-muted-foreground">Too early for rate holds at most lenders. Focus on getting a broker quote to anchor expectations.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">120 days out</h3>
+        <p class="text-body-sm text-muted-foreground">Rate holds activate. Make your first negotiation call. Maximum leverage window.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-1">Inside 30 days</h3>
+        <p class="text-body-sm text-muted-foreground">Leverage shrinks — switching requires faster underwriting. Lenders know this.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What NOT to Say</h2>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>"I'm just looking for your best rate"</strong> — vague. You'll get the vague renewal rate.</li>
+      <li><strong>"I'll probably just stay"</strong> — signals no flight risk, no discount deployed.</li>
+      <li><strong>"A neighbour / coworker told me they got 3.99%"</strong> — unverifiable, dismissed.</li>
+      <li><strong>"Can you go lower?"</strong> without a number to beat — reps have nothing to counter against.</li>
+      <li><strong>Accepting verbally</strong> — always insist on the written offer with an expiry.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/mortgage-negotiation-scripts/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want a broker to make the call for you?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can deliver a written quote in 1–2 business days and run the negotiation — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Negotiation Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

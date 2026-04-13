@@ -1,0 +1,244 @@
+---
+import DocumentChecklistGenerator from '@/components/interactive/document-checklist-generator';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Why do I need to submit documents at all if I'm just renewing?",
+    answer: "If you're renewing with your same lender on a straight-switch basis (no change to term, amortization, or borrowers), the lender can legally roll you over with minimal paperwork — usually just your signature on the renewal letter. But any material change — switching lenders, increasing the balance, removing a borrower, changing amortization, adding a HELOC — triggers a full underwriting review under OSFI Guideline B-20, which means you re-submit identification, income, property, and liability documents as if it were a fresh application."
+  },
+  {
+    question: "How fresh do my pay stubs and bank statements need to be?",
+    answer: "Canadian lenders typically require pay stubs dated within the last 30 days and bank statements within the last 60 days. Notices of Assessment must be from the most recent tax year (2025 NOAs are required for 2026 applications after April). Employment letters must be dated within 30 days and signed by HR or your direct supervisor with a verifiable phone number. Documents older than these thresholds will be returned and you'll be asked to refresh before the file can close."
+  },
+  {
+    question: "Are self-employed document requirements really that different from salaried?",
+    answer: "Yes — meaningfully. Self-employed borrowers must prove two full years of income history under OSFI B-20, which means two years of T1 General returns (all pages and schedules), two years of Notices of Assessment, and either a T2125 (sole proprietor) or full corporate financials (incorporated). Lenders also confirm no CRA balance owing. If you owe back taxes, you'll need proof of a formal payment plan or full clearance before the mortgage will close."
+  },
+  {
+    question: "What documents do I need for a rental or investment property?",
+    answer: "For rental property renewals you need the standard document set plus: T776 Statement of Real Estate Rentals from your T1 return (two years), current signed lease agreements for each unit, three months of rent receipts or bank deposits confirming rent collection, and landlord/rented-dwelling insurance (not homeowner coverage). Lenders apply a rental offset (usually 50-80 percent of gross rent) rather than counting the full rent as income."
+  },
+  {
+    question: "Can I upload these documents digitally, or do I need to hand them in physically?",
+    answer: "Virtually all Canadian lenders and mortgage brokers now use secure digital upload portals — Finmo, Velocity, Lender Spotlight, or a broker's proprietary portal. You upload PDFs or phone photos and the system encrypts them end-to-end. Physical delivery is rarely required except for bank drafts or original signatures at closing (handled by your lawyer). Emailing documents unsecured is strongly discouraged because of the sensitivity of SIN, income, and banking information."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "renewal-document-checklist-generator",
+    name: "Mortgage Renewal Document Checklist Generator (Canada 2026)",
+    description: "Free interactive tool — answer 5 questions and generate a personalised document checklist for your Canadian mortgage renewal.",
+  }),
+  webApplicationSchema({
+    name: "Mortgage Renewal Document Checklist Generator",
+    description: "Generate a tailored document checklist for your Canadian mortgage renewal based on income type, lender path, co-signer, investment property, and HELOC status.",
+    slug: "renewal-document-checklist-generator",
+    features: [
+      "Tailored by income type (salaried, self-employed, rental)",
+      "Adjusts for same-lender vs. switch path",
+      "Handles co-signer, investment property, HELOC scenarios",
+      "Print-friendly output",
+      "Copy-to-clipboard checklist",
+      "Free — no email required",
+    ],
+  }),
+  articleSchema({
+    headline: "Mortgage Renewal Document Checklist Generator (Canada 2026)",
+    description: "Free personalised document checklist for your Canadian mortgage renewal. Covers OSFI B-20 income rules, lender differences, freshness requirements.",
+    slug: "renewal-document-checklist-generator",
+    articleSection: "Tools",
+    about: "Mortgage renewal document requirements",
+    keywords: ["mortgage renewal documents", "renewal document checklist", "OSFI B-20 income verification", "Canadian mortgage paperwork"],
+  }),
+  faqSchema(faqs, "renewal-document-checklist-generator"),
+  breadcrumbSchema([
+    { name: "Tools", url: "/mortgage-renewal-calculator" },
+    { name: "Document Checklist Generator", url: "/renewal-document-checklist-generator" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Renewal Document Checklist Generator (Canada 2026)"
+  description="Free interactive tool — answer 5 questions and get a tailored document checklist for your Canadian mortgage renewal. Print or copy."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Tools</a> › Document Checklist Generator
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Interactive Tool</div>
+      <h1 class="text-heading-1 mb-4">Renewal Document Checklist Generator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Answer five short questions. We'll produce a tailored document list for your Canadian mortgage renewal — taking into account your income type, whether you're switching lenders, and the specific wrinkles of your file. Print or copy it to share with your broker or lender.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• A straight-switch renewal with your same lender requires minimal paperwork; <strong>switching lenders or changing terms</strong> triggers a full document package.</li>
+        <li>• Salaried borrowers need two pay stubs (<strong>within 30 days</strong>), an employment letter, and their most recent NOA.</li>
+        <li>• Self-employed borrowers need <strong>two years</strong> of T1s, NOAs, and business financials (OSFI B-20 rule).</li>
+        <li>• Rental properties need T776, current leases, and rent deposit evidence — plus landlord insurance.</li>
+        <li>• HELOCs and second mortgages are stress-tested and must be disclosed, even if the balance is zero.</li>
+        <li>• Every borrower on title must provide dual ID under FINTRAC rules.</li>
+      </ul>
+    </div>
+
+    <DocumentChecklistGenerator client:load />
+
+    <h2 class="text-heading-3 mt-12 mb-4">Why Lenders Ask For This Much Paperwork</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian mortgage underwriting is governed by OSFI Guideline B-20 (for federally regulated lenders — the Big 6 banks, most monolines, and trust companies) and parallel provincial rules for credit unions. B-20 requires lenders to make a reasonable determination of a borrower's ability to repay the mortgage, which in turn means verifying identity, income, property value, property insurance, existing debt, and credit history. Every document on your checklist maps to one of those verification requirements.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      When you renew with your <strong>same lender</strong> on an identical-terms basis, the lender can rely on its existing underwriting file and the federal exemption that excuses a same-lender renewal from the stress test. This is why a renewal letter sometimes arrives needing just your signature. The moment anything material changes — lender, balance, borrowers, amortization, term length beyond what was originally approved, the addition of a HELOC — B-20 requires the lender to re-underwrite, and that means a fresh document package.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Long Are Documents "Fresh" For?</h2>
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Document</th>
+            <th class="p-3 text-left">Freshness Required</th>
+            <th class="p-3 text-left">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Pay stubs</td>
+            <td class="p-3">Within 30 days</td>
+            <td class="p-3">Two most recent. Must show YTD and employer name.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Employment letter</td>
+            <td class="p-3">Within 30 days</td>
+            <td class="p-3">Must have signatory contact info for lender verification call.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Notice of Assessment (NOA)</td>
+            <td class="p-3">Most recent tax year</td>
+            <td class="p-3">After April, last year's NOA is required; CRA MyAccount PDF accepted.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Bank statements</td>
+            <td class="p-3">Within 60 days</td>
+            <td class="p-3">Full page, includes account holder name and account number.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Property tax bill</td>
+            <td class="p-3">Current year</td>
+            <td class="p-3">Interim or final bill; receipts required if paid privately.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Insurance binder</td>
+            <td class="p-3">Valid on closing date</td>
+            <td class="p-3">New lender listed as loss payee; dwelling coverage ≥ replacement cost.</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Mortgage statement (current)</td>
+            <td class="p-3">Within 30 days</td>
+            <td class="p-3">Shows balance, rate, maturity, and payment.</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Appraisal (when required)</td>
+            <td class="p-3">Within 6 months</td>
+            <td class="p-3">Lender-ordered through approved AMC in most cases.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Income Verification: Salaried vs. Self-Employed vs. Rental</h2>
+
+    <div class="grid sm:grid-cols-3 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Salaried (T4)</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside text-muted-foreground">
+          <li>2 pay stubs (last 30 days)</li>
+          <li>Employment letter</li>
+          <li>Most recent NOA</li>
+          <li>Most recent T4</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Self-Employed</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside text-muted-foreground">
+          <li>2 years T1 Generals</li>
+          <li>2 years NOAs</li>
+          <li>T2125 or corporate financials</li>
+          <li>Business licence / incorporation</li>
+          <li>6 months business bank statements</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Rental Income</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside text-muted-foreground">
+          <li>2 years T1 with T776</li>
+          <li>Current signed leases</li>
+          <li>3 months rent deposits</li>
+          <li>Landlord insurance</li>
+          <li>Primary job income (if any)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Lender Differences: Big 6 vs. Monoline vs. Credit Union</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      While the OSFI B-20 floor is the same, each lender adds its own overlays. The Big 6 banks (RBC, TD, BMO, Scotiabank, CIBC, National Bank) typically ask for broader documentation including a full 60-day snapshot of chequing and savings accounts — they're looking for undisclosed debts and large irregular deposits. Monolines (First National, MCAP, CMLS) usually run leaner files because they rely heavily on the broker's upfront packaging. Credit unions vary widely: Meridian and Vancity mirror Big 6 requirements, while smaller credit unions may accept a lighter income proof standard because they're provincially regulated.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      B-lenders (Equitable, Home Trust, Haventree) apply the strictest documentation review because they underwrite to non-conforming profiles — expect bank statements for every account, a written income summary, and often a stated-income affidavit. Expect the application to take longer, too.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Common Reasons a File Gets Rejected or Delayed</h2>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Pay stubs older than 30 days</strong> — the single most common refresh request.</li>
+      <li><strong>Employment letter lacks verification contact</strong> — HR signoff with direct phone number is mandatory.</li>
+      <li><strong>CRA balance owing</strong> on NOA — triggers a payment-plan or payoff requirement before close.</li>
+      <li><strong>Undisclosed second mortgage or HELOC</strong> surfacing in the title search — causes underwriter distrust.</li>
+      <li><strong>Insurance binder missing loss payee</strong> — lender cannot fund without being listed.</li>
+      <li><strong>Cash deposits in bank statements</strong> that can't be sourced — FINTRAC AML concern.</li>
+      <li><strong>Self-employed borrower with only one year of T1s</strong> — B-20 requires two years minimum.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/renewal-document-checklist-generator/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want help gathering your documents?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will provide a secure upload portal and walk you through each item — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Renewal Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

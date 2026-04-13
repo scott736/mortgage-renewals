@@ -1,0 +1,261 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the maximum HELOC I can get in Canada in 2026?",
+    answer: "Under OSFI Guideline B-20, a standalone HELOC is capped at 65% of your home's appraised value. When combined with a mortgage, the total secured borrowing against the property can reach up to 80% loan-to-value — so the HELOC portion may be smaller if you still carry a mortgage. Example: on an $800,000 home with a $400,000 mortgage (50% LTV), you could add a HELOC of up to $240,000 to reach the 80% combined cap."
+  },
+  {
+    question: "What interest rate will I pay on a HELOC in 2026?",
+    answer: "Canadian HELOCs are prime-linked. As of April 2026, most Big 6 HELOCs are priced at prime + 0.50%, which works out to roughly 5.45%–5.95% depending on the lender's prime rate and your relationship pricing. Higher-risk profiles (new immigrants, bruised credit, self-employed) may pay prime + 1.00% to prime + 2.00% at alternative lenders."
+  },
+  {
+    question: "Do I have to pay down the principal on a HELOC?",
+    answer: "No — that's the defining feature of a HELOC. The minimum monthly payment is interest only on the outstanding balance. You can pay as little or as much principal as you want, whenever you want, with no penalty. The risk is that borrowers often make only the minimum payment for years, building no equity back and staying permanently indebted."
+  },
+  {
+    question: "Do I need to pass the stress test to qualify for a HELOC at renewal?",
+    answer: "Yes. HELOCs are fully subject to the OSFI B-20 stress test — qualifying rate is the greater of contract rate plus 2% or 5.25%. The November 2024 OSFI exemption that removed the stress test for straight-switch renewals does not apply to HELOCs or any new borrowing. If you want to add or increase a HELOC at renewal, you must requalify."
+  },
+  {
+    question: "Is a HELOC registered as a collateral charge?",
+    answer: "Yes. Virtually all Canadian HELOCs are registered as collateral charges, typically for 100%–125% of the home's value. This gives the lender flexibility to re-advance funds without re-registering, but it also means you usually cannot transfer the HELOC to another lender without discharging and re-registering — which involves legal fees of $700–$1,500. Our guide on collateral vs. standard charge mortgages explains the trade-offs."
+  },
+  {
+    question: "Can I get a HELOC when I renew my mortgage?",
+    answer: "Yes, but it's treated as a new application, not a renewal. You'll need to requalify with income, credit, and the stress test. If you're already with a lender that offers a readvanceable mortgage (Scotia STEP, RBC Homeline, BMO ReadiLine), you can often add a HELOC component during renewal with less friction. Switching lenders and adding a HELOC at the same time is more complex because the new HELOC requires a collateral charge registration."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "canadian-heloc-guide",
+    name: "Canadian HELOC Guide (2026)",
+    description: "How Home Equity Lines of Credit work in Canada — 65% LTV rules, prime + 0.50 pricing, Big 6 HELOC products, stress test requirements, and renewal strategy.",
+  }),
+  articleSchema({
+    headline: "Canadian HELOC Guide: How Home Equity Lines of Credit Work in 2026",
+    description: "Complete Canadian HELOC guide — 65% LTV cap, 80% combined with mortgage, prime + 0.50% pricing, Big 6 HELOC names, collateral charge rules, and how to add one at renewal.",
+    slug: "canadian-heloc-guide",
+    articleSection: "Home Equity Products",
+    about: "Home Equity Line of Credit in Canada",
+    keywords: ["HELOC Canada", "home equity line of credit", "readvanceable mortgage", "Scotia STEP", "RBC Homeline", "HELOC rates 2026", "65% LTV HELOC"],
+  }),
+  faqSchema(faqs, "canadian-heloc-guide"),
+  breadcrumbSchema([
+    { name: "Canadian HELOC Guide", url: "/canadian-heloc-guide" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Canadian HELOC Guide (2026) | How HELOCs Work in Canada"
+  description="Complete 2026 guide to Canadian HELOCs — 65% LTV cap, prime + 0.50 rates, Big 6 products, collateral charge rules, and how to add a HELOC at renewal."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Canadian HELOC Guide
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Home Equity Products</div>
+      <h1 class="text-heading-1 mb-4">Canadian HELOC Guide: How Home Equity Lines of Credit Work in 2026</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. A HELOC (Home Equity Line of Credit) lets you borrow against your home's equity on a revolving, interest-only basis. Here's how Canadian HELOCs are regulated, priced, and best used — especially at renewal.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• A standalone HELOC is capped at <strong>65% of home value</strong> under OSFI B-20; combined with a mortgage, total secured debt is capped at <strong>80% LTV</strong>.</li>
+        <li>• HELOC rates in April 2026 typically sit at <strong>prime + 0.50%</strong> (roughly 5.45%–5.95% with Big 6 prime at 4.95%).</li>
+        <li>• Minimum payments are <strong>interest-only</strong> — the borrower decides whether and when to pay principal.</li>
+        <li>• HELOCs are <strong>fully subject to the stress test</strong> (contract rate + 2% or 5.25%, whichever is higher). No OSFI exemption applies.</li>
+        <li>• Nearly all HELOCs are registered as <strong>collateral charges</strong>, making lender switching more expensive.</li>
+        <li>• Every Big 6 sells a readvanceable or standalone HELOC: RBC Homeline, Scotia STEP, BMO ReadiLine, TD HELOC, CIBC Home Power, National Bank All-In-One.</li>
+        <li>• The biggest risk isn't the HELOC itself — it's <strong>making only interest payments indefinitely</strong> and never rebuilding equity.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What a HELOC Actually Is</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A HELOC is a revolving line of credit secured against your home. Unlike a mortgage — which is a closed-end loan paid down on a fixed schedule — a HELOC behaves more like a credit card: you draw what you need, pay interest on the drawn balance, and can redraw against the limit as you pay it down. Because the loan is secured by real estate, the interest rate is dramatically lower than unsecured credit (credit cards at 19.99%, unsecured lines at 10%+).
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      In Canada, HELOCs come in two flavours: <strong>standalone HELOCs</strong> (a line of credit with no mortgage component, capped at 65% LTV) and <strong>readvanceable mortgages</strong> (a HELOC paired with a traditional mortgage under a single collateral charge, combined cap 80% LTV). The Big 6 products — RBC Homeline, Scotia STEP, BMO ReadiLine, CIBC Home Power, National Bank All-In-One — are all readvanceable structures. TD's HELOC is typically standalone.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The 65% and 80% LTV Rules</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      OSFI Guideline B-20 sets the regulatory ceiling on HELOCs for federally regulated lenders. The rules:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>65% LTV cap on the revolving HELOC portion</strong> — this is a hard ceiling regardless of income or credit.</li>
+      <li><strong>80% combined LTV cap</strong> on total secured debt (mortgage + HELOC) against the same property.</li>
+      <li>The 15% gap between 65% and 80% must be held as <strong>amortizing debt</strong> — a regular mortgage that pays down over time.</li>
+    </ul>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: Maximum HELOC at Renewal</p>
+      <p class="text-body-sm leading-relaxed">
+        Home appraised value: $900,000<br />
+        Existing mortgage balance: $380,000 (42.2% LTV)<br /><br />
+        <strong>80% combined LTV cap:</strong> $900,000 × 80% = $720,000 max total secured debt<br />
+        <strong>Available HELOC capacity:</strong> $720,000 − $380,000 = <strong>$340,000</strong><br /><br />
+        <strong>65% HELOC cap check:</strong> $900,000 × 65% = $585,000 — not binding here because $340,000 is below the cap.<br />
+        The borrower can obtain a HELOC of up to $340,000 at renewal, subject to qualifying for the payment on the stress-tested rate.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">HELOC Pricing in 2026</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian HELOCs are variable by design — the rate is <strong>prime + a spread</strong>, and it moves every time prime moves. As of April 2026, Big 6 prime is 4.95%, so a prime + 0.50% HELOC sits at 5.45%. Here's the typical pricing grid:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Borrower Profile</th>
+            <th class="p-3 text-left">Typical HELOC Rate (April 2026)</th>
+            <th class="p-3 text-left">Lender Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">A-lender, strong credit (680+), 50% LTV</td>
+            <td class="p-3">Prime + 0.50% (5.45%)</td>
+            <td class="p-3">Big 6, credit unions</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">A-lender, 75%+ combined LTV</td>
+            <td class="p-3">Prime + 0.75% (5.70%)</td>
+            <td class="p-3">Big 6 rate uplift</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Alt lender (Equitable, Home Trust)</td>
+            <td class="p-3">Prime + 1.50% to prime + 2.00% (6.45%–6.95%)</td>
+            <td class="p-3">B-lender</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Private HELOC</td>
+            <td class="p-3">8%–14%+ plus fees</td>
+            <td class="p-3">MIC / private lender</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">HELOC rates shown as of April 2026 with Big 6 prime at 4.95%.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Big 6 HELOC Products</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">RBC Homeline Plan</h3>
+        <p class="text-body-sm text-muted-foreground">Readvanceable. Mortgage + HELOC under a single collateral charge. Standalone HELOC also available.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Scotiabank STEP</h3>
+        <p class="text-body-sm text-muted-foreground">Fully readvanceable — as you pay down mortgage principal, HELOC limit grows automatically. Popular for Smith Manoeuvre.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">BMO ReadiLine</h3>
+        <p class="text-body-sm text-muted-foreground">Readvanceable combo. Sub-accounts let you segment personal and investment borrowings.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">TD HELOC</h3>
+        <p class="text-body-sm text-muted-foreground">Standalone line. TD's flagship readvanceable (FlexLine) was discontinued; today TD bundles mortgage + HELOC as separate products under the collateral charge.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">CIBC Home Power Plan</h3>
+        <p class="text-body-sm text-muted-foreground">Standalone HELOC up to 65% LTV. CIBC also offers a readvanceable mortgage combo.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">National Bank All-In-One</h3>
+        <p class="text-body-sm text-muted-foreground">Single account combining chequing, HELOC, and mortgage. Every dollar deposited reduces interest immediately — similar to Manulife One.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Interest-Only Payments: Feature and Trap</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The defining feature of a HELOC is the interest-only minimum payment. On a $100,000 HELOC drawn balance at 5.45%, the minimum monthly payment is approximately $454 — just the interest. There is no scheduled principal paydown. You can pay any amount of principal whenever you want, with zero penalty, but nothing in the product structure forces you to.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      This flexibility is the feature — it's why HELOCs are useful for renovations, bridge financing, investment, and cash-flow smoothing. But it's also the trap. FCAC research consistently finds that a large share of Canadian HELOC holders make only the minimum payment for years, carrying HELOC balances into retirement. If you're treating your HELOC like a mortgage, set an internal amortization schedule (e.g., 20-year payoff) and commit to paying the calculated principal + interest amount each month.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Add a HELOC at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Your renewal is often the best moment to add a HELOC because the lender is already pulling updated paperwork. Three scenarios:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Staying with your current lender:</strong> ask to add a HELOC sub-account to your renewed mortgage. If your lender offers a readvanceable product (Scotia STEP, RBC Homeline, BMO ReadiLine), they can add it under the existing collateral charge without new legal registration.</li>
+      <li><strong>Switching lenders to one with a readvanceable:</strong> the new lender discharges your old mortgage and registers a new collateral charge for the full mortgage + HELOC combined limit. Legal fees apply ($800–$1,500) but many lenders offer a switch allowance that covers these costs.</li>
+      <li><strong>Keeping your mortgage, adding a standalone HELOC:</strong> a second lender registers a second charge. Less common because second-position HELOCs are expensive and hard to get.</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Adding a HELOC triggers the full stress test and a fresh underwrite — income verification, credit pull, and appraisal. Our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders at renewal</a> guide covers the mechanics in detail.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Real Risks of a HELOC</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Rate shock risk</h3>
+        <p class="text-body-sm">HELOCs are prime-linked — a 200 bps Bank of Canada hike adds 200 bps to your HELOC interest cost instantly. Stress-test your ability to pay at prime + 3% or higher before drawing.</p>
+      </div>
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Endless interest-only</h3>
+        <p class="text-body-sm">Making only the minimum payment for a decade means you've paid $50,000–$75,000 in interest with zero equity rebuild. Commit to a payoff schedule.</p>
+      </div>
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Collateral charge lock-in</h3>
+        <p class="text-body-sm">Switching lenders mid-term costs $800–$1,500 in legal fees because the collateral charge must be discharged. See <a href="/collateral-vs-standard-charge-mortgage/" class="text-secondary-100 hover:underline">collateral vs. standard charge</a>.</p>
+      </div>
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Callable on demand</h3>
+        <p class="text-body-sm">HELOCs are technically demand facilities. Lenders rarely call them, but the contractual right exists — especially if the home's value drops or your credit deteriorates materially.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/canadian-heloc-guide/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Thinking About Adding a HELOC at Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can compare Big 6 and alt-lender HELOCs side-by-side — free and no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free HELOC Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

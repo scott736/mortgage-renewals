@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -54,7 +55,7 @@ const schema = combineSchemas(
 
 <DefaultLayout
   title="Estate & POA Mortgage Renewal in Canada 2026"
-  description="Estate and Power of Attorney mortgage renewal in Canada — death during term, probate requirements, beneficiary assumption, and lender options during administration."
+  description="Estate & POA mortgage renewal in Canada — death during term, probate, beneficiary assumption, and lender options during administration."
   schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -223,35 +224,7 @@ const schema = combineSchemas(
           ))}
         </div>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/assuming-a-mortgage-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Assumption</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How a beneficiary takes over an existing mortgage.</p>
-            </a>
-            <a href="/reverse-mortgage-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Reverse Mortgage at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Often relevant for seniors and estate planning.</p>
-            </a>
-            <a href="/spousal-buyout-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Spousal Buyout</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Related but distinct — for living separations rather than estates.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Probate doesn't prevent a lender switch.</p>
-            </a>
-            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="color: var(--primary); border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Beneficiaries face individual qualification at renewal.</p>
-            </a>
-            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Renewal Guide</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Full reference for 2026 renewals.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/estate-mortgage-renewal/" />
 
       </div>
 

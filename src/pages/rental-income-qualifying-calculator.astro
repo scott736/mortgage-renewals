@@ -1,0 +1,173 @@
+---
+import { RentalIncomeQualifying } from '@/components/calculators/rental-income-qualifying';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is the 50% add-back method for rental income?",
+    answer: "The 50% add-back method credits 50% of gross rental income as additional qualifying income. If your rental property earns $3,200/month gross rent, $1,600 is added to your other income. This is the most conservative and widely accepted method — all insured (CMHC/Sagen/CG) lenders and most uninsured Big 6 banks use it by default."
+  },
+  {
+    question: "How does the 80% offset method work?",
+    answer: "The 80% offset method takes 80% of gross rent and applies it against the rental property's PITH (principal + interest + property tax + heat). If rent × 80% is greater than PITH, the property is 'self-sustaining' and adds nothing to debt. If rent × 80% is less than PITH, the shortfall is added to your TDS as a debt. Surplus is ignored — no income boost."
+  },
+  {
+    question: "What is a Debt Coverage Ratio (DCR)?",
+    answer: "DCR = Gross Rent ÷ PITH. A DCR of 1.10 means rent is 110% of property carrying costs. Monoline lenders use DCR 1.10 (rental worksheet) as the minimum threshold to count rental income as a positive income contribution. Some monolines (Strive, RFA, CMLS) accept DCR 1.00. If DCR is below 1.00, the rental is losing money and becomes a debt liability."
+  },
+  {
+    question: "Which rental income method gives me the most qualifying income?",
+    answer: "It depends on your numbers. For highly cashflow-positive rentals (rent ≫ PITH), DCR 1.10 rental worksheet gives the most because net cashflow is added 100%. For moderately positive (rent just above PITH), 50% add-back wins. For cashflow-negative rentals, no method helps — you lose qualifying capacity. Run all four in this calculator to find your best match."
+  },
+  {
+    question: "Can I use rental income from a basement suite on my principal residence?",
+    answer: "Yes — most Canadian lenders accept basement/rental suite income on owner-occupied properties. CMHC-insured mortgages allow 50% add-back of legal suite income. Some uninsured lenders accept 100% of documented rent if the suite is legal (registered with the municipality) and has a lease. Illegal suites are usually excluded entirely."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "rental-income-qualifying-calculator",
+    name: "Rental Income Qualifying Calculator — Canadian Mortgage 2026",
+    description: "Compare 50% add-back, 80% offset, DCR 1.10, and DCR 1.00 methods. See how each Canadian lender rule credits your rental income toward mortgage qualification.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Rental Income Qualification Calculator",
+    description: "Free calculator showing how each major Canadian lender rental income method (50% add-back, 80% offset, DCR 1.10, DCR 1.00) credits your rental income for mortgage qualification.",
+    slug: "rental-income-qualifying-calculator",
+    features: [
+      "4 lender methods compared",
+      "DCR calculation (rental worksheet)",
+      "Insured vs uninsured rules",
+      "Best-case method identified",
+      "PITH-based rental offset analysis",
+    ],
+  }),
+  articleSchema({
+    headline: "Rental Income Qualifying Calculator — Canadian Mortgage 2026",
+    description: "Free calculator showing how Canadian lender rental income methods differ. Compare 50% add-back, 80% offset, DCR 1.10, and DCR 1.00.",
+    slug: "rental-income-qualifying-calculator",
+    articleSection: "Calculators",
+    about: "Rental income qualification",
+    keywords: ["rental income qualifying", "DCR rental worksheet", "50% add-back", "80% offset rental", "landlord mortgage"],
+  }),
+  faqSchema(faqs, "rental-income-qualifying-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Rental Income Qualifying Calculator", url: "/rental-income-qualifying-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Rental Income Qualifying Calculator — Canadian Mortgage 2026"
+  description="Free calculator comparing Canadian lender rental income methods: 50% add-back, 80% offset, DCR 1.10, DCR 1.00."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Rental Income
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Rental Income Qualifying Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Every Canadian lender uses a different formula to credit rental income toward your qualification. One might give you $1,600/month; another might give you $0. See all four methods side by side.
+      </p>
+    </div>
+
+    <RentalIncomeQualifying client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">The Four Main Rental Income Methods in Canada</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Canadian lenders don't agree on how to count rental income. There are four primary frameworks, each used by different lender types:
+        </p>
+        <p class="text-body-md text-muted-foreground mb-2"><strong>1. 50% Add-Back (universal)</strong></p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Takes 50% of gross rent and adds it to your total income. Used by all CMHC-insured lenders and most Big 6 banks. Simple, predictable, conservative. Reduces effective rental income credit by half but nothing is counted as debt.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-2"><strong>2. 80% Rental Offset (CMHC default for rentals)</strong></p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Takes 80% of gross rent, subtracts PITH (principal + interest + property tax + heat). If the result is positive, the property is "washed" (neutral to qualification). If negative, the shortfall is added to TDS. Surplus is ignored, which is worse than add-back for strong rentals but better for weak ones.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-2"><strong>3. DCR 1.10 Rental Worksheet (uninsured monolines)</strong></p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Requires Debt Coverage Ratio of 1.10 (rent ≥ 110% of PITH). If the property passes, 100% of net cashflow (rent − PITH) is added as qualifying income. This is typically the most generous for strong cashflow-positive rentals.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-2"><strong>4. DCR 1.00 (alternative monolines)</strong></p>
+        <p class="text-body-md text-muted-foreground">
+          Requires only DCR 1.00 — rent ≥ PITH. Some monolines (MCAP, Strive, RFA) and most B lenders use this. More forgiving on marginal rentals but less commonly available for insured or A-tier mortgages.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Choosing the Right Lender for Your Rental</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Cashflow strong (DCR 1.30+)</strong> — DCR 1.10 monoline lenders give highest qualifying income</li>
+          <li><strong>Cashflow moderate (DCR 1.05–1.15)</strong> — 50% add-back from a Big 6 is safer; DCR methods may fail</li>
+          <li><strong>Cashflow weak (DCR 0.95–1.05)</strong> — 80% offset from a CMHC-insured lender is probably best; the property washes even if it doesn't add income</li>
+          <li><strong>Cashflow negative (DCR &lt; 0.95)</strong> — you'll need to show other income; rental may be treated as a liability across all lenders</li>
+          <li><strong>Multi-rental portfolio (3+ rentals)</strong> — portfolio lenders (Equitable, Home Trust commercial, monolines) use blended DCR or portfolio cashflow approaches</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Why This Matters at Renewal</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Rental property owners often face a renewal problem: taxes, insurance, and interest rates have risen sharply since 2020, but rents haven't kept pace in many Canadian markets. This can push a property from DCR 1.30 (2020) to DCR 1.05 (2026) — too low for rental worksheet methods. If your original lender used a DCR method, you may no longer pass their criteria at renewal for the same mortgage.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          The workaround: <strong>straight-switch renewals are exempt from stress-test requalification</strong> under the November 2024 OSFI update. You can move your rental to a lender that still uses 50% add-back without redoing the full rental worksheet. A broker can find the lenders that match.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Documentation You'll Need</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>T1 General with Statement of Real Estate Rentals (T776)</strong> — two years if possible, shows historical rent and expenses</li>
+          <li><strong>Current signed lease(s)</strong> or 12 months of deposit history to validate current rent</li>
+          <li><strong>Property tax bill</strong> for the rental</li>
+          <li><strong>Insurance declaration page</strong> (landlord policy)</li>
+          <li><strong>Condo fees statement</strong> if applicable</li>
+          <li><strong>Mortgage statement</strong> for existing rental mortgage</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/rental-income-qualifying-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Landlord? Talk to a Broker Who Knows Rentals</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> knows which lenders use which rental income method, and can structure a renewal or refi that maximises your qualifying income — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

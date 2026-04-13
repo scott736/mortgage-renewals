@@ -1,0 +1,278 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Can I renew my mortgage if I have missed payments?",
+    answer: "Almost always yes with your current lender, even with one or two recent missed payments — they already have the loan and would rather continue collecting than foreclose. Switching to a new lender becomes effectively impossible once your bureau shows any mortgage arrears: no A-lender (Big 6 or prime monoline) will accept a file with a late mortgage payment in the last 12 months. Your options narrow to staying with your current lender, moving to a B-lender (Home Trust, Equitable, CMLS alt), or private financing (MICs)."
+  },
+  {
+    question: "Does a missed mortgage payment show up on my credit report?",
+    answer: "Yes, but with a delay. Canadian lenders typically report to Equifax and TransUnion when a payment is more than 30 days past due. A 30-day late is the first bruise; 60-day is much worse; 90-day is severe and blocks virtually all A-lender refinancing. After 90 days, the lender is usually within their right to commence power-of-sale or foreclosure proceedings depending on province. Reporting continues until the account is brought current or charged off."
+  },
+  {
+    question: "What happens in each province at 90 days past due?",
+    answer: "Ontario, Alberta, Saskatchewan, Manitoba, Nova Scotia, New Brunswick, PEI, and Newfoundland use power of sale — the lender serves a demand letter, typically waits 35–45 days, then files a notice of sale. Homeowner has roughly 45 days to cure before the property is listed. BC uses judicial foreclosure with a court-supervised redemption period of 6 months typical (up to 2 years with cause). Quebec uses taking in payment or judicial sale through the superior court — slower but formal. See a specialist broker immediately if you're at 60+ days."
+  },
+  {
+    question: "Does OSFI B-20 apply to a borrower in arrears at renewal?",
+    answer: "For a straight renewal with the existing lender, the November 2024 OSFI straight-switch exemption from the stress test applies — arrears don't change that because the lender already holds the loan. For switching lenders, B-20 full qualification applies, and any recent mortgage delinquency effectively disqualifies the borrower from A-lenders. B-lenders have their own income verification standards that may be somewhat relaxed but still test debt-service ratios. Private lenders (MICs) focus on equity rather than income, so arrears matter less."
+  },
+  {
+    question: "What is a lender workout arrangement?",
+    answer: "A workout is a negotiated modification the lender offers when a borrower is in distress but willing to continue paying. Tools include temporary interest-only payments (3–12 months), adding arrears to principal (capitalization), extending amortization to reduce monthly payment, or a short-term forbearance. Big 6 and major monolines all have workout teams — usually called 'Special Servicing' or 'Collections & Recovery.' Call them proactively at 30 days past due, not 90. A broker experienced in distressed files can sometimes negotiate more than an individual borrower can."
+  },
+  {
+    question: "Is selling the home a better option than fighting for a renewal?",
+    answer: "Often yes, if equity exists. A controlled sale at market value — ideally 60–90 days before foreclosure proceedings commence — realizes your equity and gives you a clean start. A power-of-sale or foreclosure sale typically produces 10–25% less than market because the lender sells fast and cheap. If you have meaningful equity (30%+) and your income isn't recovering, selling preserves more wealth than fighting for a renewal you can't sustainably afford. A specialist broker and real estate agent working together can help you decide."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Renewing Your Mortgage in Canada with Missed Payments or Arrears (2026)",
+    description: "How lenders handle renewals when arrears exist, why switching is blocked, provincial foreclosure timelines, workout options, and when to call a distressed-file specialist.",
+    slug: "renewing-mortgage-with-arrears",
+    articleSection: "Distressed Renewals",
+    about: "Renewing a Canadian mortgage with missed payments",
+    keywords: ["mortgage arrears renewal", "missed mortgage payment", "distressed mortgage renewal", "power of sale Canada", "B-lender renewal"],
+  }),
+  breadcrumbSchema([
+    { name: "Renewing a Mortgage With Arrears", url: "/renewing-mortgage-with-arrears" }
+  ]),
+  faqSchema(faqs, "renewing-mortgage-with-arrears"),
+  webPageNode({
+    slug: "renewing-mortgage-with-arrears",
+    name: "Renewing a Mortgage With Missed Payments in Canada (2026)",
+    description: "What happens at Canadian mortgage renewal when you have arrears — lender options, provincial foreclosure timelines, workout tools, and when to call a distressed-file specialist.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Renewing Mortgage With Arrears Canada (2026)"
+  description="How Canadian lenders handle renewals with missed payments — what happens at 30/60/90 days past due, provincial foreclosure timelines, workout options, and B-lender/private alternatives."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Renewing a Mortgage With Arrears
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Distressed Renewals</div>
+      <h1 class="text-heading-1 mb-4">Renewing a Mortgage With Missed Payments</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. A missed mortgage payment isn't the end of the story — but it does change the playbook dramatically. Here's what the lender is thinking, what the provincial clock looks like, and the workout tools available if you call early.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Your <strong>existing lender</strong> will almost always offer a renewal even with arrears — they prefer performing loans to foreclosure.</li>
+        <li>• <strong>Switching lenders is almost impossible</strong> with a recent missed mortgage payment on bureau — no A-lender accepts it.</li>
+        <li>• At <strong>30 days past due</strong> the arrears report to credit bureaus; at 60 the lender escalates; at 90 foreclosure/power-of-sale is on the table.</li>
+        <li>• Ontario, AB, SK, MB, NS, NB, PEI, NL use <strong>power of sale</strong>; BC uses <strong>judicial foreclosure</strong>; Quebec uses <strong>taking in payment</strong> or judicial sale.</li>
+        <li>• <strong>B-lenders</strong> (Home Trust, Equitable, CMLS Alt) may still approve; <strong>private/MIC</strong> lenders focus on equity not income.</li>
+        <li>• <strong>Workout arrangements</strong> exist — interest-only, amortization extension, capitalizing arrears — call the lender's Special Servicing team proactively.</li>
+        <li>• <strong>Controlled sale</strong> often preserves more equity than fighting a renewal you can't sustainably afford.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Lenders See When You're In Arrears</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      When a payment is more than 30 days past due, your current lender's system flags the file and starts calling. Collections activity begins. The mortgage is reported to Equifax and TransUnion as 30-days-late — the first credit bureau bruise. If you cure within 30 days (bring the account current) the bureau reporting stays on file for 6–7 years but doesn't escalate.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      At 60 days past due, the file moves to Special Servicing (or whatever the lender's workout team is called — "Collections & Recovery" at TD, "Advisory Services" at Scotia, "Mortgage Recovery" at First National). You'll get a letter proposing a modification or demanding a plan. This is the moment to engage: workout options exist, but only if you communicate. At 90 days, the lender can lawfully begin power-of-sale or foreclosure proceedings depending on your province.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The 30 / 60 / 90-Day Timeline</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Days Past Due</th>
+            <th class="p-3 text-left">What Happens</th>
+            <th class="p-3 text-left">Your Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">1–29 days</td>
+            <td class="p-3">Late fee charged; lender calls</td>
+            <td class="p-3">Catch up immediately; no bureau impact</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">30 days</td>
+            <td class="p-3">Reported to Equifax/TransUnion as R2</td>
+            <td class="p-3">Call workout team; explore skip-a-payment if eligible</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">60 days</td>
+            <td class="p-3">Reported as R3; file in Special Servicing</td>
+            <td class="p-3">Negotiate capitalization or interest-only workout</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">90 days</td>
+            <td class="p-3">R4 status; demand letter typically issued</td>
+            <td class="p-3">Specialist broker; consider controlled sale</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">120+ days</td>
+            <td class="p-3">Power of sale / foreclosure proceedings commence</td>
+            <td class="p-3">Legal advice; cure period depends on province</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Provincial Foreclosure / Power-of-Sale Timelines</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Power of Sale Provinces</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Ontario, Alberta, Saskatchewan, Manitoba, Nova Scotia, New Brunswick, PEI, Newfoundland &amp; Labrador.</p>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Lender serves Notice of Sale after default</li>
+          <li>Cure period typically 35–45 days</li>
+          <li>Property listed after cure period expires</li>
+          <li>Surplus proceeds returned to borrower</li>
+          <li>No court involvement required</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Judicial Foreclosure Provinces</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">British Columbia and Quebec (with variations).</p>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Court application by lender</li>
+          <li>BC: redemption period 6 months typical, up to 2 years</li>
+          <li>Quebec: prise en paiement or judicial sale through Superior Court</li>
+          <li>Slower process; more formal defenses available</li>
+          <li>Surplus proceeds returned to borrower</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Timelines are minimums — in practice most lenders move slower than statutory minimums if the borrower is communicating and proposing a plan. Silence accelerates the timeline; engagement slows it down.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Workout Tools Available from Canadian Lenders</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The workout team has a menu of options that don't appear in consumer-facing product disclosures. In rough order of frequency:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Arrears capitalization</strong> — missed payments added to principal, amortization adjusted, fresh start. Typical for 2–4 month delinquency if income has recovered.</li>
+      <li><strong>Temporary interest-only</strong> — 3–12 months at interest-only, usually while the borrower gets back on their feet. Not available at all lenders.</li>
+      <li><strong>Amortization extension</strong> — stretch remaining amortization to lower monthly payment (e.g., 19 years remaining → 30 years). Most lenders will do this up to 30 years on uninsured mortgages.</li>
+      <li><strong>Short-term forbearance</strong> — lender agrees not to enforce for 60–180 days while the borrower markets the property for sale. Common when equity is strong but income is gone.</li>
+      <li><strong>Principal reduction</strong> (rare) — lender writes down a portion of balance to avoid a loss on forced sale. Only on files where equity is slim and sale would underperform.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">A-Lender, B-Lender, or Private?</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender Tier</th>
+            <th class="p-3 text-left">Accepts Borrower With Arrears?</th>
+            <th class="p-3 text-left">Typical Rate Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">A-Lenders (Big 6, First National, MCAP)</td>
+            <td class="p-3">Existing client only; not for switch</td>
+            <td class="p-3">Standard posted rate</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">B-Lenders (Home Trust, Equitable, CMLS Alt)</td>
+            <td class="p-3">Yes if arrears cured and story makes sense</td>
+            <td class="p-3">+1% to +2% over A-lender rate</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Private / MIC</td>
+            <td class="p-3">Yes — equity-based lending</td>
+            <td class="p-3">+4% to +8% over A-lender rate + lender fee</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Pricing as of April 2026. B-lender and private rates vary weekly.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Worked Example: Arrears Capitalization Workout</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: Job loss + 3 missed payments + renewal approaching</p>
+      <p class="text-body-sm leading-relaxed">
+        Mortgage: $415,000 at 2.99%, 18 months left on 5-year term. Payment: $1,965/month.<br />
+        Borrower: Lost job in January 2026, missed Feb / Mar / Apr payments, just started new job in mid-April.<br />
+        Arrears owed: $5,895 + $195 late fees = <strong>$6,090</strong>.<br /><br />
+        Renewal looming July 2027. Current lender (RBC) options offered through workout:<br /><br />
+        <strong>Option 1: Capitalize arrears + extend amortization</strong><br />
+        New balance: $421,090. Amortization extended from 22 years to 30 years.<br />
+        Monthly payment after capitalization: ~$1,775 (lower than pre-crisis)<br />
+        Fresh bureau reporting resumes — arrears entry stays but no ongoing delinquency<br /><br />
+        <strong>Option 2: Pay $6,090 lump sum + resume normal schedule</strong><br />
+        Requires the borrower to actually have $6,090 available. If a family member can lend, this is cleanest.<br /><br />
+        <strong>Recommendation:</strong> Option 1. Resolves the default, right-sizes the payment for recovery, keeps the mortgage with the existing lender, and avoids forced sale.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Switching Is Effectively Blocked</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A new A-lender accepting a switch application sees the borrower's bureau showing recent mortgage delinquency. Their internal credit policies — which reflect OSFI B-20 guidance on underwriting discipline — typically reject any file with a 30+ day mortgage late in the previous 12 months. Even CMHC-insured switches require a clean bureau. The borrower is captive to the existing lender until the arrears clears the bureau display (6–7 years for the entry to drop off, but only 12–24 months for it to stop blocking A-lender approvals, typically).
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If the existing lender offers a punishing renewal rate, a <strong>B-lender switch</strong> may be possible after the arrears is cured and a few months of clean payment history are established. This is where a broker specializing in distressed files earns their keep — they know which B-lender credit policies will overlook a recent arrears once cured. See our <a href="/bad-credit-mortgage-renewal/" class="text-secondary-100 hover:underline">bad-credit renewal guide</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When a Controlled Sale Beats a Fight</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Not every distressed renewal should be defended. If the underlying affordability isn't coming back — permanent income loss, disability, divorce forcing departure, or sustained inability to carry even a workout mortgage — selling voluntarily preserves vastly more wealth than losing equity to a power-of-sale.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      A power-of-sale property typically sells for 10–25% below market because the lender prices for speed. A voluntary sale done at 60–90 days into default — listed with a motivated agent, priced at market, open to showings — almost always clears at fair value. On a $550,000 property with a $410,000 mortgage, the difference between a controlled $550K sale and a forced $465K sale is $85,000 in the borrower's pocket. That's often the difference between a bankruptcy filing and a clean restart with a rental deposit and moving truck.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/renewing-mortgage-with-arrears/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Distressed Renewal? Call Early.</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">broker experienced with distressed files</a> can negotiate workouts and arrange B-lender alternatives — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Confidential Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

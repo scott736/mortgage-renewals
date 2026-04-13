@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -238,22 +239,7 @@ const schema = combineSchemas(
       ))}
     </div>
 
-    <h2 class="text-heading-3 mt-10 mb-4">Related Guides & Tools</h2>
-    <div class="grid sm:grid-cols-2 gap-3 mb-8">
-      {[
-        { title: "Stress Test Calculator", href: "/mortgage-stress-test-calculator/" },
-        { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
-        { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
-        { title: "Lower Mortgage Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
-        { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal/" },
-        { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
-      ].map(link => (
-        <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-          <span class="text-secondary-100">→</span>
-          {link.title}
-        </a>
-      ))}
-    </div>
+    <RelatedLinks slug="/stress-test-mortgage-renewal/" />
 
     <p class="text-body-xs text-muted-foreground mb-6">
       Sources: OSFI Guideline B-20 (Residential Mortgage Underwriting); OSFI November 21, 2024 notice exempting uninsured straight-switch renewals from the MQR; CMHC Guideline B-21; FCAC mortgage renewal guidance. This page is educational and does not constitute financial advice. Always verify current rules with a licensed mortgage professional.

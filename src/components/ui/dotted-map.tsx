@@ -177,6 +177,7 @@ const DEFAULT_WORLD_REGION: Region = {
   lng: { min: -179, max: 179 },
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const computeGeojsonBox = (geojson: any): Region => {
   const { type, features, geometry, coordinates } = geojson;
   if (type === 'FeatureCollection') {
@@ -279,6 +280,7 @@ const getMap = ({
         pointGoogle,
       );
 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       if (inside(wgs84Point as [number, number], poly as any)) {
         points[[x, y].join(';')] = { x: localx, y: localy };
       }

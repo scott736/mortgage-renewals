@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -213,24 +214,7 @@ const schema = combineSchemas(
       ))}
     </div>
 
-    <div>
-      <h2 class="text-heading-3 mb-4">Related Guides</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        {[
-          { title: "Insured vs. Conventional at Renewal", href: "/insured-vs-conventional-mortgage-renewal/" },
-          { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
-          { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
-          { title: "Lower Your Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
-          { title: "Mortgage Renewal Term Lengths", href: "/mortgage-renewal-term-lengths/" },
-          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
-        ].map(link => (
-          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-            <span class="text-secondary-100">→</span>
-            {link.title}
-          </a>
-        ))}
-      </div>
-    </div>
+    <RelatedLinks slug="/30-year-amortization-mortgage-renewal/" />
   </section>
 
   <section class="bg-primary-100 py-12 mt-10">

@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -24,8 +24,10 @@ const groups = [
       { title: "Current Mortgage Rates Canada", href: "/current-mortgage-rates-canada/" },
       { title: "Best Mortgage Renewal Rates", href: "/best-mortgage-renewal-rates/" },
       { title: "Mortgage Rate Forecast 2026", href: "/mortgage-rate-forecast/" },
+      { title: "Bank of Canada Rate Decisions", href: "/bank-of-canada-rate-decisions/" },
       { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
       { title: "Mortgage Renewal Term Lengths", href: "/mortgage-renewal-term-lengths/" },
+      { title: "Mortgage Term Decision Guide", href: "/mortgage-term-decision-guide/" },
       { title: "Trigger Rates (Variable Mortgages)", href: "/trigger-rate-variable-mortgage-canada/" },
       { title: "Rate Alerts", href: "/rate-alert/" },
     ],
@@ -47,9 +49,15 @@ const groups = [
     name: "Regulation & Qualification",
     pages: [
       { title: "Mortgage Stress Test at Renewal", href: "/stress-test-mortgage-renewal/" },
+      { title: "OSFI B-20 Stress Test at Renewal", href: "/osfi-b20-stress-test-at-renewal/" },
       { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
       { title: "Insured vs. Conventional Mortgages", href: "/insured-vs-conventional-mortgage-renewal/" },
+      { title: "CMHC vs. Sagen vs. Canada Guaranty", href: "/cmhc-sagen-canada-guaranty-at-renewal/" },
+      { title: "Mortgage Insurance at Switch", href: "/mortgage-insurance-at-switch/" },
       { title: "30-Year Amortization Reform", href: "/30-year-amortization-mortgage-renewal/" },
+      { title: "IRD vs. 3-Month Interest Penalty", href: "/ird-vs-three-month-interest-penalty/" },
+      { title: "FCAC / OBSI Mortgage Complaints", href: "/fcac-obsi-mortgage-complaints/" },
+      { title: "Mortgage Flex Features Canada", href: "/mortgage-flex-features-canada/" },
     ],
   },
   {
@@ -57,11 +65,22 @@ const groups = [
     pages: [
       { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal/" },
       { title: "Bad Credit Mortgage Renewal", href: "/bad-credit-mortgage-renewal/" },
+      { title: "First-Time Mortgage Renewal", href: "/first-time-mortgage-renewal/" },
       { title: "Divorce Mortgage Renewal", href: "/divorce-mortgage-renewal/" },
-      { title: "Divorce / Separation (Detailed)", href: "/mortgage-renewal-divorce-separation/" },
-      { title: "Investment Property Renewal", href: "/investment-property-mortgage-renewal/" },
-      { title: "Investment Property (Short Guide)", href: "/investment-property-renewal/" },
+      { title: "Spousal Buyout at Renewal", href: "/spousal-buyout-mortgage-renewal/" },
+      { title: "Remove a Co-Signer at Renewal", href: "/remove-co-signer-mortgage-renewal/" },
+      { title: "Common-Law Partner Renewal", href: "/common-law-mortgage-renewal/" },
+      { title: "Co-Ownership / Tenants in Common", href: "/co-ownership-mortgage-renewal/" },
+      { title: "Job Loss at Renewal", href: "/job-loss-mortgage-renewal/" },
+      { title: "Estate & POA Renewal", href: "/estate-mortgage-renewal/" },
+      { title: "New to Canada Mortgage Renewal", href: "/new-to-canada-mortgage-renewal/" },
+      { title: "Non-Resident Mortgage Renewal", href: "/non-resident-mortgage-renewal/" },
+      { title: "Canadian Expat Mortgage Renewal", href: "/canadian-expat-mortgage-renewal/" },
+      { title: "Military Relocation (IRP)", href: "/military-relocation-mortgage-renewal/" },
+      { title: "Rent-to-Own First Renewal", href: "/rent-to-own-first-mortgage-renewal/" },
       { title: "Seniors Mortgage Renewal", href: "/seniors-mortgage-renewal-canada/" },
+      { title: "Reverse Mortgage at Renewal", href: "/reverse-mortgage-at-renewal/" },
+      { title: "Investment Property Renewal", href: "/investment-property-renewal/" },
       { title: "Lower Mortgage Payments at Renewal", href: "/lower-mortgage-payments-at-renewal/" },
     ],
   },
@@ -73,6 +92,16 @@ const groups = [
       { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
       { title: "Switch vs. Stay Calculator", href: "/switch-vs-stay-calculator/" },
       { title: "HELOC vs. Refinance Calculator", href: "/heloc-vs-refinance-calculator/" },
+      { title: "Mortgage Penalty Calculator", href: "/mortgage-penalty-calculator/" },
+      { title: "Prepayment / Lump-Sum Calculator", href: "/prepayment-lump-sum-calculator/" },
+      { title: "Amortization Schedule Calculator", href: "/amortization-schedule-calculator/" },
+      { title: "Accelerated Payment Calculator", href: "/accelerated-payment-calculator/" },
+      { title: "Refinance / Debt Consolidation Calculator", href: "/refinance-debt-consolidation-calculator/" },
+      { title: "Affordability Requalification Calculator", href: "/affordability-requalification-calculator/" },
+      { title: "Rate Comparison Calculator", href: "/rate-comparison-calculator/" },
+      { title: "Rental Income Qualifying Calculator", href: "/rental-income-qualifying-calculator/" },
+      { title: "Break-Even Switch Calculator", href: "/break-even-switch-calculator/" },
+      { title: "Document Checklist Generator", href: "/renewal-document-checklist-generator/" },
       { title: "Should I Switch Quiz", href: "/should-i-switch-quiz/" },
       { title: "Renewal Reminder", href: "/renewal-reminder/" },
       { title: "Rate Alerts", href: "/rate-alert/" },
@@ -83,6 +112,49 @@ const groups = [
     pages: [
       { title: "Mortgage Prepayment Privileges", href: "/mortgage-prepayment-privileges-canada/" },
       { title: "Mortgage Payment Frequency", href: "/mortgage-payment-frequency-canada/" },
+      { title: "Mortgage Appraisal at Renewal", href: "/mortgage-appraisal-at-renewal/" },
+      { title: "Discharge Fees in Canada", href: "/mortgage-discharge-fees-canada/" },
+      { title: "Title Insurance & Legal Fees at Switch", href: "/title-insurance-legal-fees-switching/" },
+      { title: "Early Mortgage Renewal", href: "/early-mortgage-renewal/" },
+      { title: "Skip-a-Payment", href: "/skip-a-payment-mortgage-canada/" },
+      { title: "Renewing with Arrears", href: "/renewing-mortgage-with-arrears/" },
+      { title: "Inter-Province Mortgage Portability", href: "/inter-province-mortgage-portability/" },
+    ],
+  },
+  {
+    name: "Mortgage Products",
+    pages: [
+      { title: "Canadian HELOC Guide", href: "/canadian-heloc-guide/" },
+      { title: "Mortgage Refinance in Canada", href: "/mortgage-refinance-canada/" },
+      { title: "Second Mortgage at Renewal", href: "/second-mortgage-at-renewal/" },
+      { title: "Readvanceable Mortgages", href: "/readvanceable-mortgage-canada/" },
+      { title: "B-Lender Mortgage Renewal", href: "/b-lender-mortgage-renewal/" },
+      { title: "Private Mortgage Renewal", href: "/private-mortgage-renewal/" },
+      { title: "Bridge Financing at Renewal", href: "/bridge-financing-at-renewal/" },
+    ],
+  },
+  {
+    name: "Strategy & Tax Optimization",
+    pages: [
+      { title: "Smith Manoeuvre at Renewal", href: "/smith-manoeuvre-at-renewal/" },
+      { title: "Debt Consolidation at Renewal", href: "/mortgage-renewal-debt-consolidation/" },
+      { title: "Fund RRSP / Renovations at Renewal", href: "/renewal-funding-rrsp-renovations/" },
+      { title: "Negotiation Scripts & Templates", href: "/mortgage-negotiation-scripts/" },
+    ],
+  },
+  {
+    name: "Bank & Lender Renewal Guides",
+    pages: [
+      { title: "TD Canada Trust Renewal", href: "/td-mortgage-renewal/" },
+      { title: "RBC Royal Bank Renewal", href: "/rbc-mortgage-renewal/" },
+      { title: "BMO Bank of Montreal Renewal", href: "/bmo-mortgage-renewal/" },
+      { title: "Scotiabank Renewal", href: "/scotiabank-mortgage-renewal/" },
+      { title: "CIBC Renewal", href: "/cibc-mortgage-renewal/" },
+      { title: "National Bank Renewal", href: "/national-bank-mortgage-renewal/" },
+      { title: "First National (Monoline) Renewal", href: "/first-national-mortgage-renewal/" },
+      { title: "MCAP (Monoline) Renewal", href: "/mcap-mortgage-renewal/" },
+      { title: "Credit Union Mortgage Renewal", href: "/credit-union-mortgage-renewal-canada/" },
+      { title: "Canadian Lender Cheat Sheet", href: "/canadian-lender-cheat-sheet/" },
     ],
   },
   {
@@ -94,16 +166,17 @@ const groups = [
       { title: "Alberta Mortgage Renewal", href: "/alberta-mortgage-renewal/" },
       { title: "Saskatchewan Mortgage Renewal", href: "/saskatchewan-mortgage-renewal/" },
       { title: "Manitoba Mortgage Renewal", href: "/manitoba-mortgage-renewal/" },
-      { title: "Saskatchewan + Manitoba (Combined)", href: "/saskatchewan-manitoba-mortgage-renewal/" },
       { title: "Atlantic Canada Mortgage Renewal", href: "/atlantic-canada-mortgage-renewal/" },
       { title: "Territories Mortgage Renewal", href: "/territories-mortgage-renewal/" },
     ],
   },
   {
-    name: "News & Case Studies",
+    name: "News, Video & Case Studies",
     pages: [
       { title: "Mortgage Renewal News", href: "/mortgage-renewal-news/" },
       { title: "Case Studies", href: "/case-studies/" },
+      { title: "Video Library", href: "/mortgage-renewal-videos/" },
+      { title: "Newsletter", href: "/mortgage-renewal-newsletter/" },
     ],
   },
   {
@@ -113,7 +186,6 @@ const groups = [
       { title: "Contact", href: "/contact/" },
       { title: "Book a Call", href: "/book-a-call/" },
       { title: "Pricing", href: "/pricing/" },
-      { title: "FAQ", href: "/faq/" },
     ],
   },
   {
@@ -133,7 +205,7 @@ const schema = combineSchemas(
     description: "Human-readable sitemap of all pages on MortgageRenewalHub.ca, grouped by category.",
   }),
   breadcrumbSchema([
-    { name: "Sitemap", url: "/mortgage-renewal-sitemap" }
+    { name: "Sitemap", url: "/mortgage-renewal-sitemap/" }
   ]),
 );
 

@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -205,28 +206,7 @@ const schema = combineSchemas(
       </div>
     </div>
 
-    <!-- Related -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">The complete primer — start here if you're new to the process.</p>
-        </a>
-        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Month-by-month timeline — print and use alongside this guide.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">No stress test on straight switches since November 2024.</p>
-        </a>
-        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Top Renewal Mistakes</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Common errors first-time renewers make — and how to avoid them.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/first-time-mortgage-renewal/" />
   </article>
 
   <section class="py-12" style="background: var(--accent)">

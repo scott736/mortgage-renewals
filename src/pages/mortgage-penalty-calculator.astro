@@ -1,0 +1,165 @@
+---
+import { MortgagePenalty } from '@/components/calculators/mortgage-penalty';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "How is a mortgage penalty calculated in Canada?",
+    answer: "Canadian fixed-rate mortgage penalties are calculated two ways: the 3-month interest penalty (balance × effective monthly rate × 3) and the Interest Rate Differential (IRD). Lenders charge the greater of the two. Variable-rate mortgages almost always use the 3-month method only."
+  },
+  {
+    question: "Why are Big 6 bank IRD penalties so much larger than monoline penalties?",
+    answer: "Big 6 banks (TD, RBC, BMO, Scotiabank, CIBC, National Bank) calculate IRD using their inflated posted rates rather than their actual discounted rates. This creates a large artificial rate gap that blows up the penalty. Monoline lenders (First National, MCAP, Strive, RFA, CMLS) use the fair 3-month method, producing penalties that are often 3–10× smaller."
+  },
+  {
+    question: "Does the 2023 Canadian Mortgage Charter reduce my penalty?",
+    answer: "The Canadian Mortgage Charter requires federally regulated lenders to offer relief options (amortization extension, payment deferral, penalty waivers) to borrowers experiencing financial difficulty. It does not automatically reduce penalties for borrowers in good standing, but it can be a negotiating tool if you're refinancing to consolidate debt or dealing with a trigger event."
+  },
+  {
+    question: "Can I avoid a penalty by porting my mortgage?",
+    answer: "Yes, most Canadian lenders let you port your existing rate and remaining term to a new home without triggering a penalty. You typically have 30–120 days to close on the new purchase after selling your current home. If the new mortgage is larger, the new portion is added at today's rate using a blended structure."
+  },
+  {
+    question: "Is my penalty tax deductible?",
+    answer: "The prepayment penalty on an owner-occupied principal residence is not tax deductible. On a rental property it generally is, because it counts as a financing expense. On a refinance used to pull out equity to invest in a non-registered account, the penalty may be partially deductible under Canadian interest-deductibility rules. Consult a CPA."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-penalty-calculator",
+    name: "Mortgage Penalty Calculator — 3-Month Interest vs IRD (Canada 2026)",
+    description: "Estimate the penalty to break your Canadian fixed-rate mortgage. Compares 3-month interest vs posted-rate IRD used by Big 6 banks.",
+  }),
+  webApplicationSchema({
+    name: "Canadian Mortgage Penalty Calculator",
+    description: "Free calculator that estimates your prepayment penalty using both the 3-month interest method and the posted-rate IRD method used by Big 6 Canadian banks.",
+    slug: "mortgage-penalty-calculator",
+    features: [
+      "3-month interest penalty calculation",
+      "Posted-rate IRD (Big 6 method)",
+      "Big 6 vs monoline comparison",
+      "Canadian semi-annual compounding",
+      "Free — no email required",
+    ],
+  }),
+  articleSchema({
+    headline: "Mortgage Penalty Calculator — 3-Month Interest vs IRD (Canada 2026)",
+    description: "Free calculator for Canadian mortgage prepayment penalties. Models both 3-month interest and IRD so you know what breaking your mortgage really costs.",
+    slug: "mortgage-penalty-calculator",
+    articleSection: "Calculators",
+    about: "Mortgage prepayment penalty",
+    keywords: ["mortgage penalty calculator", "IRD penalty", "3-month interest penalty", "break mortgage Canada"],
+  }),
+  faqSchema(faqs, "mortgage-penalty-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Mortgage Penalty Calculator", url: "/mortgage-penalty-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Penalty Calculator — 3-Month Interest vs IRD (Canada 2026)"
+  description="Free Canadian mortgage penalty calculator. Estimates both 3-month interest and Big-6 posted-rate IRD penalties — see which one applies and why."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Mortgage Penalty
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Penalty Calculator (Canada)</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Thinking about breaking your mortgage early? The penalty depends on whether your lender uses the fair 3-month interest method or the inflated posted-rate IRD calculation that Big 6 banks default to. This calculator shows both.
+      </p>
+    </div>
+
+    <MortgagePenalty client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How Penalty Calculations Work in Canada</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          When you break a closed fixed-rate mortgage in Canada, your lender charges the <strong>greater</strong> of two penalty methods. The first is the <strong>3-month interest penalty</strong>, which is simply your balance multiplied by your effective monthly interest rate, times three. On a $500,000 mortgage at 5.25%, that's roughly $6,500 — predictable and fair.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          The second method is the <strong>Interest Rate Differential (IRD)</strong>. IRD tries to compensate the lender for the interest they'll lose because you're breaking early. In principle, it's the difference between your contract rate and the lender's current rate for the remaining term, multiplied by balance and remaining months.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          In practice, Big 6 Canadian banks use their <strong>posted rates</strong> — the sticker-price rates they advertise but rarely charge anyone. A typical Big 6 posted rate might be 6.79%, while their actual discounted rate is 4.29%. The bank treats that 2.50% spread as the "discount" you received, and uses posted rates on both sides of the differential. The result: IRD penalties of $15,000–$30,000 on balances that would otherwise produce $5,000 3-month penalties.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          Monoline lenders — First National, MCAP, Strive, RFA, CMLS, Equitable Bank — use the <strong>fair 3-month interest</strong> method almost exclusively. They have no posted-rate book and no incentive to inflate the differential. This is why brokers often steer clients to monolines for mortgages with any possibility of being broken mid-term (divorce, job transfer, death, debt consolidation, sale).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When You'll Actually Pay a Penalty</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Breaking mid-term to switch lenders</strong> for a lower rate</li>
+          <li><strong>Refinancing to access equity</strong> (cash-out refi, debt consolidation)</li>
+          <li><strong>Selling and not porting</strong> the mortgage to a new home</li>
+          <li><strong>Divorce / separation</strong> where one spouse keeps the home on a new mortgage</li>
+          <li><strong>Major debt consolidation</strong> that requires restructuring the mortgage</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When You Won't Pay a Penalty</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>At renewal</strong> — once your term matures, you can move to any lender without penalty.</li>
+          <li><strong>Within 120 days of renewal</strong> — most lenders honour the new rate early.</li>
+          <li><strong>Open mortgages</strong> — designed to be broken, but carry higher rates.</li>
+          <li><strong>Variable rate at 3-month interest only</strong> — most Canadian VRMs cap the penalty at 3 months.</li>
+          <li><strong>Porting to a new home</strong> — transfers your rate and term to the new purchase.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Penalty Math Caveats</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          Our calculator simplifies the IRD formula using the posted-rate spread you enter. Actual lender IRD calculations can include: the posted rate on the day you signed minus the posted rate for the <em>nearest remaining term</em> today (not the market rate), discount adjustments, cash-back clawbacks, and administrative fees. Your true penalty can be 10–20% higher than our estimate.
+        </p>
+        <p class="text-body-md text-muted-foreground">
+          The only way to know your exact penalty is to request a <strong>payout statement</strong> from your lender. It's free and non-binding. Brokers request these every day.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/mortgage-penalty-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Want Your Exact Penalty Number?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can pull your official payout statement and compare it against switch savings — free, in one call.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

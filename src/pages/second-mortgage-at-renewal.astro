@@ -1,0 +1,277 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a second mortgage, exactly?",
+    answer: "A second mortgage is a loan secured against your home, registered behind your existing first mortgage on title. If the home is sold or foreclosed, the first mortgage is paid out in full before the second mortgage sees any funds — which is why second mortgages carry higher rates. In Canada in 2026, second mortgages typically come from alt lenders (Equitable, Home Trust, Community Trust) or private lenders / MICs."
+  },
+  {
+    question: "What interest rate will I pay on a second mortgage in 2026?",
+    answer: "In April 2026, second mortgages from alt B-lenders (Equitable, Home Trust, Community Trust) typically run 8%–11% with 0.5%–1.5% lender fees. Private second mortgages run 10%–14% with 2%–5% lender fees plus 1%–2% broker fees. Rates are higher than firsts because the lender is in second position and takes the loss first if foreclosure proceeds don't fully repay both loans."
+  },
+  {
+    question: "When would someone take a second mortgage instead of refinancing?",
+    answer: "Three main reasons: (1) the existing first mortgage has a very low rate and a large IRD penalty, making it too expensive to break; (2) the borrower can't requalify for a refinance under the current stress test; (3) the borrower needs money quickly and refinancing would take 30–45 days while a second can close in 5–10. Second mortgages are usually a bridge — not a long-term solution."
+  },
+  {
+    question: "How long are second mortgage terms in Canada?",
+    answer: "Typically 1–2 years, sometimes open (no prepayment penalty). Short terms are intentional — the lender expects the borrower to refinance into a single first mortgage at the next renewal, paying off both the first and second. Open terms give flexibility but carry a rate premium. Private seconds are often 6–12 months with renewal fees of 1%–2%."
+  },
+  {
+    question: "Is a second mortgage a good idea at renewal?",
+    answer: "Almost never as a destination — but sometimes as a temporary tool. At renewal, if you can refinance into a single 80% LTV first mortgage, that's almost always cheaper and cleaner than keeping a first and adding a second. A second only makes sense at renewal when: the first mortgage has to stay put for a business reason, or the borrower's income/credit can't support a full refinance right now but will improve in 12–24 months."
+  },
+  {
+    question: "How do I get out of a second mortgage?",
+    answer: "The standard exit is a refinance of the first mortgage that pulls enough equity to pay off the second. At 80% LTV, if your total debt (first + second) is already at or under 80%, this is usually straightforward. If you're stretched higher than 80% combined LTV, you'll need to pay the second down from other sources (selling an asset, using a lump-sum from work) or rehabilitate credit so an alt-lender refinance at higher combined LTV becomes possible."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "second-mortgage-at-renewal",
+    name: "Second Mortgage at Renewal in Canada",
+    description: "When a second mortgage makes sense at renewal, typical 2026 rates (8%–14%), lenders like Equitable and Home Trust, registration mechanics, exit strategy, and alternatives.",
+  }),
+  articleSchema({
+    headline: "Second Mortgage at Renewal in Canada: When It Makes Sense",
+    description: "When to consider a second mortgage at renewal, 2026 rates and fees, A/B/private lender options, exit strategy to a single first mortgage, and alternatives.",
+    slug: "second-mortgage-at-renewal",
+    articleSection: "Second Mortgages",
+    about: "Second mortgages in Canada",
+    keywords: ["second mortgage Canada", "second mortgage at renewal", "Equitable Bank second", "Home Trust second", "private second mortgage", "second mortgage rates 2026"],
+  }),
+  faqSchema(faqs, "second-mortgage-at-renewal"),
+  breadcrumbSchema([
+    { name: "Second Mortgage at Renewal", url: "/second-mortgage-at-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Second Mortgage at Renewal in Canada (2026) | Rates & Lenders"
+  description="When a second mortgage makes sense at renewal in Canada — 2026 rates from 8% to 14%+, Equitable, Home Trust, and private lender options, plus exit strategy."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Second Mortgage at Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Second Mortgages</div>
+      <h1 class="text-heading-1 mb-4">Second Mortgage at Renewal in Canada: When It Makes Sense</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. A second mortgage is a loan registered behind your existing first mortgage — higher rates, shorter terms, and almost always a temporary tool. Here's when it makes sense at renewal, how much it costs, and how to exit cleanly.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• A second mortgage sits <strong>behind your first</strong> on title — if the home sells, the first gets paid out before the second sees a cent.</li>
+        <li>• 2026 rates: <strong>8%–11% at alt B-lenders</strong> (Equitable, Home Trust, Community Trust), <strong>10%–14%+ at private lenders / MICs</strong>.</li>
+        <li>• Lender fees run <strong>0.5%–5% of the loan amount</strong> depending on risk tier; broker fees of 1%–2% are common on private deals.</li>
+        <li>• Terms are typically <strong>1–2 years</strong> (sometimes open), designed as a bridge not a destination.</li>
+        <li>• Most common at renewal when the first has a low rate and large IRD, so breaking the first is too expensive.</li>
+        <li>• Exit strategy is <strong>always required</strong>: refinance the first into a single mortgage at 80% LTV at the next renewal.</li>
+        <li>• Alternatives: HELOC, refinance the first mortgage, unsecured line of credit — often cheaper than a second.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What a Second Mortgage Is</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A second mortgage is a separate loan secured against your home, registered on title behind your existing first mortgage. In legal priority, if the home is ever sold through power of sale or foreclosure, the first mortgage lender gets paid out in full before the second mortgage lender sees any proceeds. That junior position is the reason second mortgages charge materially higher rates than firsts — the lender is wearing the loss if the sale proceeds don't cover both debts.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      In Canada, second mortgages almost always come from alt lenders or private investors. A-lenders (the Big 6, credit unions, monolines like First National and MCAP) very rarely originate seconds because their risk models are built for first-position conventional lending.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why People Take Second Mortgages at Renewal</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Can't break the first</h3>
+        <p class="text-body-sm text-muted-foreground">First mortgage has 24 months left at 2.19% with a $30,000+ IRD penalty. Breaking to refinance destroys the rate advantage — a second is a workaround.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Can't requalify</h3>
+        <p class="text-body-sm text-muted-foreground">Credit score dropped, self-employed income hard to document, or debt ratios now too tight to pass the stress test on a full refinance.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Need cash fast</h3>
+        <p class="text-body-sm text-muted-foreground">Medical, CRA debt, business emergency. Second mortgages close in 5–10 business days vs. 30–45 for a refinance.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Bad credit / recent late payments</h3>
+        <p class="text-body-sm text-muted-foreground">A-lenders say no, but an alt or private second will look past recent dings if equity is strong.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Typical Second Mortgage Pricing in 2026</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender Tier</th>
+            <th class="p-3 text-left">Rate Range (April 2026)</th>
+            <th class="p-3 text-left">Lender Fee</th>
+            <th class="p-3 text-left">Broker Fee</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Alt B-lender (Equitable, Home Trust, Community Trust)</td>
+            <td class="p-3">8.00%–10.50%</td>
+            <td class="p-3">0.5%–1.5%</td>
+            <td class="p-3">0%–1%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Private MIC (regulated, public)</td>
+            <td class="p-3">9.50%–12.00%</td>
+            <td class="p-3">1.5%–3%</td>
+            <td class="p-3">1%–2%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Private individual investor</td>
+            <td class="p-3">10.00%–14.00%+</td>
+            <td class="p-3">2%–5%</td>
+            <td class="p-3">1%–2%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: All-in Cost of a Private Second</p>
+      <p class="text-body-sm leading-relaxed">
+        Home value: $700,000 | First mortgage: $400,000 (57% LTV)<br />
+        Second mortgage request: $100,000 | Combined LTV: 71%<br />
+        Rate: 11.25% | Lender fee: 3% ($3,000) | Broker fee: 1% ($1,000) | Legal: $1,500<br /><br />
+        <strong>Net cash to borrower:</strong> $100,000 − $3,000 − $1,000 − $1,500 = <strong>$94,500</strong><br />
+        <strong>Monthly interest payment:</strong> $100,000 × 11.25% ÷ 12 = <strong>$937.50</strong><br />
+        <strong>Annualized effective cost (including setup):</strong> ~16% on the funds actually received over a 1-year term.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Who Lends on Seconds in Canada</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Equitable Bank</h3>
+        <p class="text-body-sm text-muted-foreground">Public alt-lender (EQB). Offers second mortgages to 80% combined LTV in most major markets. Rates typically 8%–10%.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Home Trust</h3>
+        <p class="text-body-sm text-muted-foreground">One of Canada's largest alt lenders. Seconds through the Accelerator program; focus on bruised-credit and self-employed borrowers.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Community Trust</h3>
+        <p class="text-body-sm text-muted-foreground">Alt lender active in second mortgages, particularly on BFS (business-for-self) files in Ontario and BC.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Private MICs & individuals</h3>
+        <p class="text-body-sm text-muted-foreground">Hundreds of provincially regulated MICs (Mortgage Investment Corporations) and individual investors. Access through licensed mortgage brokers only.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Registration and Legal Priority</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A second mortgage is registered as a separate charge on title, explicitly behind the first. The first-mortgage lender usually must be notified (and in some cases consent, especially for collateral charges). When you sell or refinance, both charges must be cleared from title.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      One practical consequence: if your first mortgage is registered as a <a href="/collateral-vs-standard-charge-mortgage/" class="text-secondary-100 hover:underline">collateral charge</a> for 100%+ of the home's value (common with TD, Scotia STEP, RBC Homeline), there's often no room behind it for a second, because the collateral charge notionally occupies all available equity. Borrowers with collateral-charge firsts frequently have to either refinance the first or work with the same lender for additional funds.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why This Is (Almost) Always Temporary</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Carrying a second mortgage indefinitely is financially punishing. At 11% on $100,000, interest-only payments of $917/month produce zero principal paydown. Over a 5-year period, that's $55,000 in interest with the principal still owing. Compare to rolling that $100,000 into a refinanced first at 4.79%: interest cost drops to $4,790/year, and some principal gets paid down with each payment.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The proper way to use a second mortgage:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Take it for a specific reason with a defined exit (e.g., "I'll consolidate this at the next renewal in 14 months").</li>
+      <li>Use the term to repair whatever prevented a full refinance (credit rehabilitation, re-establishing income, paying down ratios).</li>
+      <li>At the next first-mortgage renewal, refinance the first up to 80% LTV and use the proceeds to fully discharge the second.</li>
+      <li>Never renew the second a second time unless unavoidable — each renewal racks up another 1%–3% in fees.</li>
+    </ol>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Alternatives to a Second Mortgage</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Alternative</th>
+            <th class="p-3 text-left">When It's Better</th>
+            <th class="p-3 text-left">Typical Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">HELOC</td>
+            <td class="p-3">You qualify, have equity room under 80% combined</td>
+            <td class="p-3">Prime + 0.50% (5.45%)</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Refinance the first</td>
+            <td class="p-3">You're at/near renewal with no big IRD penalty</td>
+            <td class="p-3">4.49%–5.19%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Unsecured line of credit</td>
+            <td class="p-3">Need under $25,000 and have strong credit</td>
+            <td class="p-3">Prime + 2% to prime + 5%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Reverse mortgage (55+)</td>
+            <td class="p-3">Retired, no monthly payment capacity</td>
+            <td class="p-3">7.5%–8.5%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See <a href="/canadian-heloc-guide/" class="text-secondary-100 hover:underline">our HELOC guide</a> and <a href="/mortgage-refinance-canada/" class="text-secondary-100 hover:underline">refinance guide</a> for deeper comparisons.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/second-mortgage-at-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Considering a Second Mortgage at Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can compare alt-lender seconds, private options, and full-refinance alternatives side-by-side — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Second Mortgage Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

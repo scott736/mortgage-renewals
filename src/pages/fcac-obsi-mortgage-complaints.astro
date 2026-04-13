@@ -1,0 +1,288 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Where do I file a complaint about my Canadian mortgage?",
+    answer: "Complaints about federally regulated mortgages (banks, federal trust companies, federal credit unions) start internally with the lender's three-step escalation process: the branch or account manager first, then the lender's regional complaints officer, then the bank's internal Ombudsman. After 56 days, if the complaint is not resolved, you can escalate externally to the Ombudsman for Banking Services and Investments (OBSI), which became the sole external complaints body for all federally regulated banks on November 1, 2024. The Financial Consumer Agency of Canada (FCAC) handles market-conduct breaches of federal law but does not resolve individual disputes."
+  },
+  {
+    question: "What is the Canadian Mortgage Charter?",
+    answer: "The Canadian Mortgage Charter is a 2024 federal policy framework setting out how federally regulated lenders must treat borrowers facing mortgage stress. Key requirements: lenders must proactively contact borrowers at renewal at least 4-6 months in advance, offer hardship options to borrowers in financial difficulty (temporary amortization extensions, interest-only payments, lump sum prepayment privileges), waive certain fees for qualifying hardship cases, and allow insured borrowers to switch at renewal without re-applying the stress test. The Charter is not a statute — it is enforced through OSFI and FCAC supervisory expectations."
+  },
+  {
+    question: "Who is OBSI and what can they investigate?",
+    answer: "OBSI (the Ombudsman for Banking Services and Investments) is an independent, industry-funded external dispute resolution body based in Toronto. As of November 1, 2024, OBSI is the single external complaints body for every federally regulated bank in Canada — replacing the previous dual-system that included ADR Chambers Banking Ombuds Office (ADROBC). OBSI investigates complaints about banking products (including mortgages), assesses whether the bank treated the complainant fairly, and can recommend compensation up to $350,000 per complaint. OBSI recommendations are not legally binding on the bank, but banks almost always accept them — refusals are publicly reported and draw regulatory scrutiny."
+  },
+  {
+    question: "What's the timeline for filing a complaint?",
+    answer: "From the time you first raise the complaint with your lender, the lender has 56 days to provide a final written response (this timeline was reduced from 90 days in 2022). If you receive the final response and are not satisfied, you have 180 days to file with OBSI. If the 56 days elapse and you have not received a final response, you can go directly to OBSI without waiting. Separately, FCAC accepts complaints at any time — you don't need to go through the lender first for market-conduct issues (forced insurance sales, failure to provide required disclosures, etc.)."
+  },
+  {
+    question: "My mortgage is with a credit union, not a bank. Who handles my complaint?",
+    answer: "Provincial credit unions (Meridian, Vancity, Servus, Desjardins caisses, most Atlantic credit unions) are not federally regulated and are not covered by FCAC or OBSI. Complaints go through the credit union's internal process first, then to the provincial regulator: FSRA in Ontario, BCFSA in British Columbia, AMF in Quebec (for Desjardins), Credit Union Deposit Guarantee Corporation of Saskatchewan, Credit Union Deposit Guarantee Corporation of Alberta, Deposit Guarantee Corporation of Manitoba, or the relevant Atlantic provincial body. A handful of federal credit unions (UNI Financial in New Brunswick, Innovation Federal Credit Union) are federally regulated and do fall under FCAC/OBSI."
+  },
+  {
+    question: "What should I include in a strong mortgage complaint?",
+    answer: "A well-documented complaint has five elements: (1) a clear statement of what the lender did wrong, tied to a specific date and mortgage section or statutory duty; (2) all relevant documents — commitment letter, renewal offer, payout statement, email correspondence, call logs with names and dates; (3) the specific outcome you want (fee waiver, rate adjustment, penalty recalculation, interest reimbursement); (4) a timeline showing how you tried to resolve it internally with the lender; (5) references to relevant rules where applicable (Canadian Mortgage Charter, Bank Act prepayment disclosure, B-20, FCAC commissioner guidance). OBSI and FCAC both review more favourably when complainants have done this groundwork."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "fcac-obsi-mortgage-complaints",
+    name: "FCAC and OBSI: How to File a Mortgage Complaint in Canada (2026)",
+    description: "Step-by-step guide to filing a mortgage complaint against a Canadian lender — the Canadian Mortgage Charter, internal escalation, FCAC, and the single-OBSI external dispute resolution regime.",
+  }),
+  articleSchema({
+    headline: "FCAC and OBSI: How to File a Mortgage Complaint in Canada (2026)",
+    description: "Complete guide to the Canadian mortgage complaint system — the Canadian Mortgage Charter, internal escalation, FCAC market-conduct enforcement, and the single-OBSI external dispute resolution regime effective November 2024.",
+    slug: "fcac-obsi-mortgage-complaints",
+    articleSection: "Mortgage Regulation and Consumer Rights",
+    about: "Canadian mortgage complaint process",
+    keywords: ["FCAC complaint", "OBSI mortgage", "Canadian Mortgage Charter", "bank ombudsman Canada", "mortgage dispute Canada"],
+  }),
+  faqSchema(faqs, "fcac-obsi-mortgage-complaints"),
+  breadcrumbSchema([
+    { name: "FCAC and OBSI Mortgage Complaints", url: "/fcac-obsi-mortgage-complaints" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="FCAC and OBSI Mortgage Complaints (2026) | Canada"
+  description="How to file a mortgage complaint in Canada — the Canadian Mortgage Charter, internal escalation, FCAC market-conduct enforcement, and the single-OBSI external regime."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › FCAC and OBSI Mortgage Complaints
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Consumer Rights and Complaints</div>
+      <h1 class="text-heading-1 mb-4">FCAC and OBSI: How to File a Mortgage Complaint in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Canada's mortgage complaints system changed significantly in November 2024 when OBSI became the single external dispute resolution body for all federally regulated banks. Here's how to raise a mortgage complaint the right way — from the branch manager all the way to a $350,000 OBSI recommendation.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>Start internally.</strong> Every federally regulated lender has a three-step escalation: branch → regional complaints officer → bank's internal Ombudsman.</li>
+        <li>• <strong>56-day rule.</strong> Lenders must issue a final written response within 56 days of the complaint being raised.</li>
+        <li>• <strong>OBSI is now the single external body</strong> for all federally regulated banks (effective November 1, 2024). ADROBC was replaced.</li>
+        <li>• <strong>OBSI can recommend up to $350,000</strong> in compensation. Recommendations are not legally binding but are almost always accepted.</li>
+        <li>• <strong>FCAC</strong> enforces federal market-conduct rules (forced insurance, disclosure failures, Charter breaches) — it does not resolve individual disputes.</li>
+        <li>• The <strong>Canadian Mortgage Charter</strong> (2024) requires proactive renewal contact, hardship options, and no stress test on insured straight switches.</li>
+        <li>• <strong>Credit union complaints</strong> go to the provincial regulator (FSRA, BCFSA, AMF, etc.), not FCAC or OBSI.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Canadian Mortgage Charter</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Introduced in the 2023 Fall Economic Statement and refined through 2024, the Canadian Mortgage Charter is a federal policy framework that codifies how banks and federally regulated lenders must treat mortgage borrowers — especially those facing payment shock at renewal. It is not a statute; it is enforced through OSFI supervisory expectations and FCAC market-conduct oversight.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Charter's six core requirements:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Early renewal contact.</strong> Lenders must contact borrowers 4-6 months before renewal (many now send letters up to 9 months out).</li>
+      <li><strong>Proactive outreach for borrowers at risk.</strong> Lenders must identify borrowers likely to struggle and reach out with options before they default.</li>
+      <li><strong>Temporary amortization extensions.</strong> Allow temporary extensions of amortization for qualifying hardship cases — up to the original remaining amortization.</li>
+      <li><strong>Waive certain fees.</strong> No prepayment penalty on hardship-driven sales; no fees for making lump sum prepayments from severance or other qualifying sources.</li>
+      <li><strong>No stress test on insured straight switches.</strong> Mirrors the November 2024 OSFI exemption that later extended to uninsured borrowers.</li>
+      <li><strong>Permit interest-only payments on mortgages in serious hardship</strong> temporarily while the borrower regains stability.</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If your lender fails to honour these — for example, refuses to discuss hardship options when you're clearly struggling, or imposes a fee the Charter prohibits — the failure itself is a ground for a complaint. See <a href="/canadian-mortgage-charter/" class="text-secondary-100 hover:underline">the full Charter guide</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Step 1: Internal Complaint Process</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Every federally regulated bank in Canada has the same three-tier internal complaints process, mandated by the Bank Act and OSFI guideline E-23. You must work through these steps (or at minimum attempt to) before escalating externally.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Step</th>
+            <th class="p-3 text-left">Who</th>
+            <th class="p-3 text-left">Typical Timeline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">1. First contact</td>
+            <td class="p-3">Account manager, branch manager, or the person who made the decision</td>
+            <td class="p-3">Same week</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">2. Regional complaints officer</td>
+            <td class="p-3">Dedicated escalation team (every bank has one)</td>
+            <td class="p-3">Within 30 days</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">3. Bank's internal Ombudsman</td>
+            <td class="p-3">RBC Office of the Ombudsman, Scotiabank Office of the Ombudsman, etc.</td>
+            <td class="p-3">Completes the 56-day window</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      At the end of the internal process, the bank must issue a written final response. Keep this document — you will need it for OBSI.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Step 2: External Escalation — OBSI</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      On November 1, 2024, OBSI became the sole external complaints body for all federally regulated banks. Before this change, the major banks (RBC, TD, BMO, and for a period Scotiabank) had used ADR Chambers Banking Ombuds Office (ADROBC), while others used OBSI — creating an inconsistent two-tier system critics had flagged for over a decade. The federal government's 2024 reform consolidated everything under OBSI.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      OBSI's process:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>File your complaint</strong> with OBSI online (obsi.ca), by phone, or by mail. You have 180 days from the bank's final response.</li>
+      <li><strong>OBSI triages the file</strong> and contacts the bank for its records (usually 30 days).</li>
+      <li><strong>Investigation phase.</strong> An OBSI investigator reviews both sides' evidence, asks questions, and assesses whether the bank treated the complainant fairly according to the Bank Act, Charter, and general standards of good banking practice. Typical investigations take 3-6 months.</li>
+      <li><strong>Recommendation.</strong> OBSI issues a written recommendation. If in your favour, this can include monetary compensation up to $350,000 per complaint (the cap was raised from $350,000 in 2021 from the earlier $350,000 limit — it remains $350,000 as of 2026).</li>
+      <li><strong>Bank response.</strong> The bank has the option to accept or refuse. Refusals are publicly reported in OBSI's annual report and draw OSFI and FCAC scrutiny. In practice, acceptance rates are above 99%.</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      OBSI is free for the complainant. It is funded by banks and investment dealers through an industry levy.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">FCAC: The Market-Conduct Regulator</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Financial Consumer Agency of Canada (FCAC) is the federal market-conduct regulator for banks and federal insurers. It does not resolve individual disputes. Instead, it enforces federal consumer-protection rules — and if it finds a pattern of non-compliance, it can issue violations, fines, and public naming.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      FCAC handles complaints in two ways:
+    </p>
+
+    <ul class="list-disc list-inside mb-4 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Intelligence gathering.</strong> Every complaint to FCAC feeds the supervisory intelligence that informs its regulatory priorities. Individual complaints are not resolved, but they shape enforcement action.</li>
+      <li><strong>Direct enforcement.</strong> When FCAC identifies clear breaches — for example, tied selling (requiring mortgage insurance as a condition of the mortgage, which is illegal under the Bank Act), failure to provide prepayment penalty disclosure as required, or systematic violations of the Canadian Mortgage Charter — it can issue Notices of Violation, administrative monetary penalties, and compliance orders.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Filing with FCAC is free and can be done in parallel with OBSI. FCAC's website has a standard complaint form; they accept complaints even if you haven't gone through the internal process first.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Typical Complaint Scenarios</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Here are four common complaint types and how they tend to be resolved:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Complaint</th>
+            <th class="p-3 text-left">Rule Breached</th>
+            <th class="p-3 text-left">Typical Outcome</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Hidden posted-rate IRD on a fixed-rate break</td>
+            <td class="p-3">Bank Act prepayment disclosure rules</td>
+            <td class="p-3">Recalculation at discount-rate IRD; refund of difference</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Lender blocked a straight-switch renewal</td>
+            <td class="p-3">OSFI Nov 2024 exemption + Charter</td>
+            <td class="p-3">Compliance order; switch permitted; fee waivers</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Forced creditor insurance as mortgage condition</td>
+            <td class="p-3">Bank Act tied-selling prohibition</td>
+            <td class="p-3">FCAC fine; premium refunded; admonition</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Suspicious discharge fee ($500+ unexplained)</td>
+            <td class="p-3">Charter fee rules + provincial consumer law</td>
+            <td class="p-3">Fee waived or refunded; reasonableness review</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See our guide to <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD vs. 3-month interest</a> for how hidden posted-rate IRD penalties arise and <a href="/mortgage-renewal-mistakes/" class="text-secondary-100 hover:underline">common renewal mistakes</a> for patterns that often produce complaints.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Documentation Checklist for a Strong Complaint</h2>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 mb-6">
+      <h3 class="font-semibold mb-3">Gather Before You File</h3>
+      <ul class="text-body-sm space-y-2 list-disc list-inside leading-relaxed">
+        <li><strong>Mortgage commitment letter</strong> from origination (or most recent renewal)</li>
+        <li><strong>Renewal offer letter</strong> or correspondence from the lender</li>
+        <li><strong>Payout statement</strong> showing the penalty or fee calculation in dispute</li>
+        <li><strong>Email/letter correspondence</strong> with the lender — dated, with names</li>
+        <li><strong>Call log</strong> — date, time, name of representative, summary of what was said</li>
+        <li><strong>Copies of any disclosures</strong> the lender provided (or didn't)</li>
+        <li><strong>Written final response</strong> from the bank's internal Ombudsman</li>
+        <li><strong>The specific outcome you want</strong> — in dollars, percentage, or action</li>
+        <li><strong>Calculation of any financial loss</strong> (comparison to what should have happened)</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Credit Union and Provincial Lender Complaints</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Provincial credit unions are not covered by FCAC or OBSI. The complaint path is:
+    </p>
+
+    <ul class="list-disc list-inside mb-4 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Internal process first</strong> — credit unions have their own escalation procedures, often shorter (some resolve at the branch).</li>
+      <li><strong>Provincial regulator</strong> — FSRA (Ontario), BCFSA (BC), AMF (Quebec), provincial Credit Union Deposit Guarantee Corp (Prairies and Atlantic).</li>
+      <li><strong>Quebec specifics</strong> — Desjardins and its caisses are regulated by the AMF, which has broader consumer-protection powers than most provincial regulators.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Non-federally-regulated private lenders and MICs are regulated at the provincial level under mortgage broker legislation (FSRA in Ontario, BCFSA in BC, etc.). Complaints about mortgage brokers or private lender conduct go to the same provincial regulator. See <a href="/mortgage-lender-types-canada/" class="text-secondary-100 hover:underline">lender types in Canada</a> for the regulatory breakdown and <a href="/credit-union-mortgage-renewal-canada/" class="text-secondary-100 hover:underline">credit union renewals</a> for provincial specifics.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/fcac-obsi-mortgage-complaints/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Think Your Lender Got Something Wrong?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can review your file and tell you whether you have a legitimate complaint before you escalate — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Complaint Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

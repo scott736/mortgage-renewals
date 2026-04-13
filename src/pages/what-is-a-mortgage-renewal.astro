@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, howToSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
 
 const schema = combineSchemas(
   articleSchema({
@@ -316,36 +317,7 @@ const schema = combineSchemas(
       </aside>
     </div>
 
-    <!-- Internal links -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4 transition-colors" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">How to save $10,000+ by switching — and how the 2024 stress test rules changed everything.</p>
-        </a>
-        <a href="/renewal-vs-refinancing/" class="rounded-lg p-4 transition-colors" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinancing</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Side-by-side comparison: when to simply renew and when to refinance instead.</p>
-        </a>
-        <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4 transition-colors" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Which rate type is right for your next term? Risk, penalties, and the current rate environment.</p>
-        </a>
-        <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4 transition-colors" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">From auto-renewing without shopping to signing too early — avoid these costly errors.</p>
-        </a>
-        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4 transition-colors" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal Checklist</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">A step-by-step checklist from 12 months before renewal to renewal day itself.</p>
-        </a>
-        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4 transition-colors" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">How a Broker Helps at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Free to use, accesses 30+ lenders. Here's what a broker actually does for you.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/what-is-a-mortgage-renewal/" />
   </article>
 
   <!-- Sticky mobile CTA -->

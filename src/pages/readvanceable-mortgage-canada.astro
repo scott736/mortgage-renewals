@@ -1,0 +1,264 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What does 'readvanceable' actually mean?",
+    answer: "A readvanceable mortgage is a mortgage + HELOC combo under a single collateral charge, where the HELOC limit automatically grows (readvances) as you pay down mortgage principal. Every $1,000 of principal you pay on the amortizing side increases the HELOC limit by $1,000 — up to the combined 80% LTV cap. Scotia STEP is the most famous example; Manulife One, NBC All-In-One, and RBC Homeline all work on the same principle."
+  },
+  {
+    question: "Which Canadian banks sell readvanceable mortgages?",
+    answer: "Scotiabank (STEP), Manulife Bank (Manulife One), National Bank (All-In-One), RBC (Homeline Plan), and BMO (ReadiLine). CIBC's Home Power Plan can be structured similarly. TD's FlexLine was discontinued, though TD still offers mortgage + HELOC bundled under a single collateral charge. All readvanceable products in Canada require a collateral charge registration."
+  },
+  {
+    question: "What is the Smith Manoeuvre and how does a readvanceable mortgage enable it?",
+    answer: "The Smith Manoeuvre is a Canadian tax strategy that converts non-deductible mortgage interest into tax-deductible investment loan interest. As you pay down mortgage principal, the readvanceable HELOC limit grows; you draw from the HELOC to invest in income-producing securities, and the interest on that HELOC draw becomes tax-deductible. Over 25 years this can save a high-bracket investor tens of thousands in taxes. Requires discipline and a good accountant."
+  },
+  {
+    question: "Can I add a readvanceable mortgage when I switch lenders at renewal?",
+    answer: "Yes, but it's more complex than simply switching a standard-charge mortgage. The new lender must register a new collateral charge (typically for 100%–125% of home value), which means legal fees ($800–$1,500) and a fresh appraisal. Many switch allowances from the new lender cover these costs. Adding readvanceability mid-term to an existing mortgage is not possible — it requires a new collateral charge registration."
+  },
+  {
+    question: "What are the downsides of a readvanceable mortgage?",
+    answer: "Three main drawbacks: (1) collateral charge lock-in — switching lenders later requires discharging and re-registering, costing $800–$1,500; (2) posted-rate temptation — lenders often quote readvanceable combos at higher posted rates than standalone mortgages; (3) discipline required — easy access to growing HELOC room tempts borrowers to stay perpetually indebted. Worth it for Smith Manoeuvre users and disciplined investors; overkill for families who just want a simple mortgage."
+  },
+  {
+    question: "How do I discharge a readvanceable mortgage if I want to switch?",
+    answer: "At renewal: the new lender's lawyer pays out both the mortgage and HELOC portions, the old lender discharges the collateral charge, and the new lender registers its own charge. Expect $1,000–$2,000 in total legal and appraisal costs, though switch allowances often cover most. Mid-term: same process plus prepayment penalty on the mortgage portion. HELOC portions typically have no prepayment penalty — only the administrative fee on discharge."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "readvanceable-mortgage-canada",
+    name: "Readvanceable Mortgages in Canada",
+    description: "Readvanceable mortgages explained — Scotia STEP, Manulife One, National Bank All-In-One, RBC Homeline, BMO ReadiLine. Smith Manoeuvre strategy, pros, cons, and discharge mechanics.",
+  }),
+  articleSchema({
+    headline: "Readvanceable Mortgages in Canada: Scotia STEP, National Bank All-In-One, Manulife One",
+    description: "Complete 2026 guide to readvanceable mortgages in Canada — the product lineup, Smith Manoeuvre strategy, collateral charge implications, and how to add or switch one at renewal.",
+    slug: "readvanceable-mortgage-canada",
+    articleSection: "Readvanceable Mortgages",
+    about: "Readvanceable mortgages in Canada",
+    keywords: ["readvanceable mortgage", "Scotia STEP", "Manulife One", "National Bank All-In-One", "RBC Homeline", "BMO ReadiLine", "Smith Manoeuvre"],
+  }),
+  faqSchema(faqs, "readvanceable-mortgage-canada"),
+  breadcrumbSchema([
+    { name: "Readvanceable Mortgages in Canada", url: "/readvanceable-mortgage-canada" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Readvanceable Mortgages in Canada (2026) | STEP, Manulife One, All-In-One"
+  description="How readvanceable mortgages work in Canada — Scotia STEP, Manulife One, NBC All-In-One, RBC Homeline. Smith Manoeuvre, pros, cons, and renewal strategy."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Readvanceable Mortgages in Canada
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Readvanceable Mortgages</div>
+      <h1 class="text-heading-1 mb-4">Readvanceable Mortgages in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. A readvanceable mortgage is a HELOC that grows automatically as you pay your mortgage down. Here's how Canada's lineup (Scotia STEP, Manulife One, NBC All-In-One, RBC Homeline, BMO ReadiLine) works, the Smith Manoeuvre tax strategy, and the trade-offs to weigh at renewal.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Readvanceable = <strong>mortgage + HELOC under one collateral charge</strong>; HELOC limit automatically increases as mortgage principal drops.</li>
+        <li>• Combined limit is capped at <strong>80% of home value</strong>, with the HELOC portion capped at 65% LTV.</li>
+        <li>• Key Canadian products: <strong>Scotia STEP, Manulife One, NBC All-In-One, RBC Homeline, BMO ReadiLine, CIBC Home Power combo, TD collateral bundle</strong>.</li>
+        <li>• Enables the <strong>Smith Manoeuvre</strong> — converting non-deductible mortgage interest into tax-deductible investment loan interest.</li>
+        <li>• Downsides: <strong>collateral charge lock-in, posted-rate temptation, discipline required</strong> to avoid permanent indebtedness.</li>
+        <li>• Adding one at renewal is possible but harder than at origination — new collateral charge, legal fees, fresh appraisal.</li>
+        <li>• Discharge costs $1,000–$2,000 at switch time; switch allowances often cover this if you move to another Big 6.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Readvanceable Actually Means</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A standard Canadian mortgage is a closed-end amortizing loan: you borrow $500,000, pay it down on schedule over 25 years, and you're done. A HELOC is a separate revolving line of credit you have to apply for and qualify for each time you want to increase the limit.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      A readvanceable mortgage combines both under a single collateral charge registration — and critically, the HELOC limit <strong>grows automatically</strong> as you pay down mortgage principal. Every $1,000 of principal repayment reduces your mortgage balance by $1,000 and increases your HELOC limit by $1,000. There's no requalification to access the new room. As long as you're current, the growing HELOC limit is yours to draw on whenever.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Canadian Readvanceable Lineup</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Product</th>
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Structure</th>
+            <th class="p-3 text-left">Notable Features</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Scotia STEP</td>
+            <td class="p-3">Scotiabank</td>
+            <td class="p-3">Mortgage + revolving HELOC sub-accounts</td>
+            <td class="p-3">Most popular for Smith Manoeuvre; multiple sub-accounts</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Manulife One</td>
+            <td class="p-3">Manulife Bank</td>
+            <td class="p-3">Single combined account (chequing + mortgage + HELOC)</td>
+            <td class="p-3">Paychecks deposit and reduce mortgage immediately; all-in-one</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">National Bank All-In-One</td>
+            <td class="p-3">National Bank</td>
+            <td class="p-3">Single combined account, similar to Manulife One</td>
+            <td class="p-3">Strong in Quebec; multi-sub-account flexibility</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">RBC Homeline Plan</td>
+            <td class="p-3">RBC</td>
+            <td class="p-3">Mortgage + HELOC under single collateral charge</td>
+            <td class="p-3">Widest branch footprint; strong for newcomers</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">BMO ReadiLine</td>
+            <td class="p-3">BMO</td>
+            <td class="p-3">Mortgage + readvanceable HELOC combo</td>
+            <td class="p-3">Sub-accounts for segregating personal vs. investment</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">CIBC Home Power Plan</td>
+            <td class="p-3">CIBC</td>
+            <td class="p-3">Mortgage + HELOC combo (not auto-readvancing — apply to increase)</td>
+            <td class="p-3">Not fully readvanceable; requires reapplication for limit increases</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">TD Mortgage + HELOC</td>
+            <td class="p-3">TD Canada Trust</td>
+            <td class="p-3">Two separate products under TD's collateral charge</td>
+            <td class="p-3">FlexLine (fully readvanceable) discontinued; manual limit increases</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Product features as of April 2026. Confirm current structure with the specific lender.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Smith Manoeuvre: Why Advanced Investors Use Readvanceable Mortgages</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Smith Manoeuvre, developed by BC financial planner Fraser Smith, is a Canadian tax strategy that uses a readvanceable mortgage to systematically convert non-deductible mortgage interest (paid on the family home) into tax-deductible investment loan interest. The mechanics:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Every month you make your regular mortgage payment, reducing mortgage principal by some amount (e.g., $800).</li>
+      <li>The readvanceable HELOC limit automatically increases by that same $800.</li>
+      <li>You immediately draw that $800 from the HELOC and invest it in a non-registered, income-producing portfolio (dividend stocks, ETFs, etc.).</li>
+      <li>Because the HELOC draw was used for investment, the interest paid on that HELOC portion is <strong>tax-deductible under Canadian tax rules</strong>.</li>
+      <li>Over 25 years, the non-deductible mortgage balance slowly shrinks to zero and the tax-deductible HELOC balance grows to the original mortgage amount — with a portfolio attached.</li>
+    </ol>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: Smith Manoeuvre Tax Savings</p>
+      <p class="text-body-sm leading-relaxed">
+        Mortgage balance: $500,000 | Amortization: 25 years at 4.79%<br />
+        Annual principal paydown (year 1): ~$11,000 → HELOC grows by $11,000 → invested<br /><br />
+        After 10 years: ~$150,000 of HELOC investment balance<br />
+        Annual HELOC interest at 5.45%: $150,000 × 5.45% = $8,175<br />
+        Tax deduction at 43% marginal rate: <strong>$3,515/year in tax savings</strong><br /><br />
+        Plus the portfolio itself generates dividends/capital gains taxed at preferential rates.
+      </p>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The Smith Manoeuvre requires discipline (never withdraw from the investment side), proper tax documentation (CRA expects a clear audit trail), and an accountant familiar with the strategy. It's not appropriate for everyone — particularly anyone who might need to draw on investments before mortgage payoff.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Pros and Cons of Readvanceable Mortgages</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-success-50/30 border border-success-100 p-5">
+        <h3 class="font-semibold mb-2">Pros</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Smith Manoeuvre enables systematic tax savings</li>
+          <li>Automatic HELOC growth with no requalification</li>
+          <li>Single collateral charge = simpler title over time</li>
+          <li>Flexibility to fund renovations, investments, emergencies without reapplying</li>
+          <li>Accelerated mortgage payoff if you dump surplus cash in (especially Manulife One / NBC All-In-One)</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-warning-50/30 border border-warning-100 p-5">
+        <h3 class="font-semibold mb-2">Cons</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Collateral charge makes switching lenders expensive ($1,000–$2,000)</li>
+          <li>Lenders sometimes quote higher posted rates on readvanceable combos</li>
+          <li>Temptation to keep drawing — minimum interest-only payments enable permanent indebtedness</li>
+          <li>Smith Manoeuvre discipline is hard; accountant fees ($500–$1,500/year) required</li>
+          <li>Manulife One-style combined accounts can be confusing to track</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Adding a Readvanceable at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you're renewing with a lender that already has you on a standard charge mortgage and you want to switch to readvanceable, expect a full re-registration: the existing charge is discharged and a new collateral charge is registered for the full mortgage + HELOC combined limit. This costs $800–$1,500 in legal fees and requires an updated appraisal. Some lenders run a "switch promo" with a rebate that covers these costs.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you're switching lenders entirely (e.g., moving from a monoline to Scotia STEP), the same process applies — fresh appraisal, new collateral charge, legal registration. This is why adding readvanceability at origination (when you first buy) is much simpler than adding it at renewal or switch. See our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders guide</a> for the mechanics.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Discharge a Readvanceable Mortgage</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      When you eventually leave a readvanceable product — whether to switch lenders at a future renewal, sell the home, or consolidate — the discharge is slightly more involved than a standard mortgage:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Both the mortgage balance AND any drawn HELOC balance must be paid out in full.</li>
+      <li>The collateral charge is discharged (your lawyer handles this).</li>
+      <li>New lender registers a new charge (standard or collateral, depending on product).</li>
+      <li>Total legal + registration cost: $800–$1,500 typically.</li>
+      <li>Prepayment penalty applies to the mortgage portion if mid-term; HELOC portion usually penalty-free.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      At renewal this is significantly cheaper because there's no prepayment penalty — just the legal and re-registration costs, which many switch allowances cover in full.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/readvanceable-mortgage-canada/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Exploring a Readvanceable Mortgage at Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can compare STEP, Manulife One, All-In-One, and Homeline side-by-side — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Readvanceable Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

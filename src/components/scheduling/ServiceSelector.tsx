@@ -1,9 +1,10 @@
 'use client';
 
+import { CheckCircle2, Clock, Globe, Lock } from 'lucide-react';
 import { useState } from 'react';
-import { Clock, Globe, CheckCircle2, Lock } from 'lucide-react';
+
+import type { Service, ServiceRegion,TeamMember } from '@/lib/nylas/types';
 import { cn } from '@/lib/utils';
-import type { Service, TeamMember, ServiceRegion } from '@/lib/nylas/types';
 
 interface ServiceSelectorProps {
   services: Service[];
@@ -134,7 +135,7 @@ export function ServiceSelector({
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {filteredServices.map((service) => {
-                const members = getTeamMembersForService(service);
+                const _members = getTeamMembersForService(service);
                 const isSelected = selectedService?.id === service.id;
 
                 return (

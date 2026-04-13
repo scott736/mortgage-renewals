@@ -4,7 +4,8 @@
 import "../styles/global.css";
 
 import { Font } from "astro:assets";
-import { SITE_METADATA, SITE_TITLE } from "../consts";
+
+import { BUSINESS, POSTAL_ADDRESS_NODE, SITE_METADATA, SITE_TITLE } from "../consts";
 
 interface Props {
   title: string;
@@ -55,26 +56,25 @@ const organizationNode = {
   image: "https://mortgagerenewalhub.ca/og-image.jpg",
   description: SITE_METADATA.description,
   foundingDate: "2024",
+  telephone: BUSINESS.phone.e164,
   parentOrganization: {
     "@type": "Organization",
-    name: "LendCity Mortgages",
-    url: "https://lendcity.ca",
-    telephone: "+1-519-960-0370",
+    name: BUSINESS.parent.name,
+    url: BUSINESS.parent.url,
+    telephone: BUSINESS.phone.e164,
+    address: POSTAL_ADDRESS_NODE,
   },
   contactPoint: [
     {
       "@type": "ContactPoint",
       contactType: "customer service",
-      telephone: "+1-519-960-0370",
+      telephone: BUSINESS.phone.e164,
       url: "https://mortgagerenewalhub.ca/contact/",
       availableLanguage: ["English", "French"],
       areaServed: "CA",
     },
   ],
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "CA",
-  },
+  address: POSTAL_ADDRESS_NODE,
   areaServed: {
     "@type": "Country",
     name: "Canada",

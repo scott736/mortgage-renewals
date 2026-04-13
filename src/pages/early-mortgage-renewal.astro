@@ -1,0 +1,277 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "How early can I renew my mortgage in Canada?",
+    answer: "Most Canadian lenders let you commit to a renewal 120 to 180 days before your maturity date. In 2026, TD, Scotia, BMO, RBC, CIBC, and National Bank all offer at least a 120-day early renewal window, and several (notably RBC and Scotiabank) extend to 150 or 180 days depending on market conditions. Monolines like First National and MCAP typically offer 120 days. Credit unions vary widely — some offer 90 days, others match the Big 6 at 120. The 'rate hold' component is often longer than the 'commit to renew' component, so you can lock a rate without irrevocably signing."
+  },
+  {
+    question: "What's the difference between a rate hold and committing to renew early?",
+    answer: "A rate hold is a one-way option: the lender guarantees a rate for a set period (typically 120 days), and you decide later whether to take it. If rates drop during the hold, most lenders will 'float down' to the lower rate. Committing to renew means signing the renewal contract — rate, term, and start date are locked. You can't change your mind without breaking the new contract. Most Canadians should take a rate hold first and commit only closer to maturity, unless rates are clearly rising and you want to lock both sides."
+  },
+  {
+    question: "Does the new term start immediately or at my maturity date?",
+    answer: "It depends on the product. A 'blend-and-extend' early renewal starts the new term immediately, blending your current rate with today's rate on a weighted-average basis. A traditional early renewal (really a pre-committed renewal) keeps your old term running until maturity and then rolls cleanly into the new term on the scheduled date — no rate blending. Big 6 'early renewal specials' are usually the second type: a locked-in renewal offer honored at maturity, not a blend. Confirm in writing which product you're signing."
+  },
+  {
+    question: "Is early renewal the same as blend-and-extend?",
+    answer: "Not quite. Blend-and-extend means terminating your existing term mid-stream and starting a brand-new term today at a blended rate — the term extends further into the future. Early renewal (in the Big 6 sense) means pre-committing to the renewal rate 120–180 days before your existing term naturally ends, without blending. The new term then starts on the maturity date at the locked rate. Blend-and-extend triggers a recalculation now; early renewal waits until the original term expires."
+  },
+  {
+    question: "Are there penalties for renewing early in the 120-day window?",
+    answer: "No penalty if you're renewing within your lender's early-renewal window (120–180 days before maturity) and staying with the same lender. The lender honors the renewal offer at maturity with no prepayment penalty. If you break the term earlier than the renewal window to blend-and-extend, a prepayment penalty applies — typically three months' interest on a variable-rate mortgage, or the IRD penalty on fixed. See our guide on the two penalty calculations."
+  },
+  {
+    question: "Which Canadian lenders offer 180-day rate holds in 2026?",
+    answer: "As of April 2026, RBC and Scotiabank offer the longest formal rate holds at 150–180 days on selected products, particularly for strong borrowers with insured or low-ratio mortgages. TD offers 120 days standard, extendable to 150 for existing clients. BMO, CIBC, and National Bank offer 120 days. In the broker channel, First National, MCAP, Strive, and CMLS offer 120–130 day holds — typically one-way (float-down if rates drop) but cannot be extended. Longer holds are a competitive feature that changes quarter-by-quarter."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Early Mortgage Renewal in Canada (2026): 120–180 Day Rate Holds and Locking In",
+    description: "How early renewal works at Canadian banks — 120-180 day rate holds, rate hold vs commit, the math on locking early, and which lenders offer 180-day holds in 2026.",
+    slug: "early-mortgage-renewal",
+    articleSection: "Renewal Mechanics",
+    about: "Early mortgage renewal in Canada",
+    keywords: ["early mortgage renewal Canada", "120 day rate hold", "180 day rate hold", "pre-commit renewal", "lock in mortgage rate"],
+  }),
+  breadcrumbSchema([
+    { name: "Early Mortgage Renewal", url: "/early-mortgage-renewal" }
+  ]),
+  faqSchema(faqs, "early-mortgage-renewal"),
+  webPageNode({
+    slug: "early-mortgage-renewal",
+    name: "Early Mortgage Renewal in Canada (2026)",
+    description: "Complete guide to locking in a Canadian mortgage rate early — 120 to 180 day rate holds, pre-commit vs rate hold, blend-and-extend, and current 2026 lender windows.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Early Mortgage Renewal Canada (2026) — 120-180 Day Rate Holds"
+  description="How to lock in a renewal rate 120–180 days early — rate hold vs commit, Big 6 windows, blend-and-extend comparison, and the math on early renewal in 2026."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Early Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Renewal Timing</div>
+      <h1 class="text-heading-1 mb-4">Early Mortgage Renewal in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Most Canadian lenders let you lock in your renewal rate 120 to 180 days before your maturity date. The strategic question isn't whether to do it — it's which lender's hold window, which product structure, and which math beats the alternative of waiting.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Big 6 <strong>early renewal windows</strong>: 120 days standard, 150–180 at RBC and Scotia on select products.</li>
+        <li>• A <strong>rate hold</strong> is one-way (float-down if rates drop) but non-binding until you sign the renewal.</li>
+        <li>• A <strong>commit to renew</strong> is binding — new rate locked, maturity-date start, no changing your mind.</li>
+        <li>• Traditional early renewal <strong>starts at your maturity date</strong>; blend-and-extend starts today at a blended rate.</li>
+        <li>• No prepayment penalty applies when you renew <strong>inside the early-renewal window</strong> with your existing lender.</li>
+        <li>• Use a long rate hold as <strong>downside insurance</strong> — if rates fall, most lenders honor the lower rate anyway.</li>
+        <li>• Broker channel lenders offer <strong>120–130 day holds</strong>; credit unions vary from 90 to 150 days.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Rate Hold vs. Commit: Two Distinct Products</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The single most common confusion about early renewal is mixing up a rate hold with a binding renewal commitment. These are different products with different consequences.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Rate Hold</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">A one-way option the lender grants you. You're guaranteed the rate if you choose to take it, but you don't owe the lender anything. If rates drop during the hold, most lenders float you down.</p>
+        <p class="text-body-sm-medium">Recommended default for most renewers.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Pre-Commit Renewal</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">A binding contract. You've signed the renewal, the rate is locked, and the new term starts on your maturity date. Changing your mind means breaking the contract.</p>
+        <p class="text-body-sm-medium">Useful only if rates are clearly rising.</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      In 2026, most major Canadian lenders default to a rate hold structure during the 120-day window and convert it to a binding commitment at your direction closer to maturity. Ask explicitly which product you're being offered, and request the float-down provision in writing.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Canadian Lender Early Renewal Windows (April 2026)</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Early Renewal Window</th>
+            <th class="p-3 text-left">Float-Down</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">RBC Royal Bank</td>
+            <td class="p-3">150 days (180 on select files)</td>
+            <td class="p-3">Yes, automatic</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Scotiabank</td>
+            <td class="p-3">150 days (180 promo periods)</td>
+            <td class="p-3">Yes, on request</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">TD Canada Trust</td>
+            <td class="p-3">120 days (150 for existing clients)</td>
+            <td class="p-3">Yes, on request</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">BMO</td>
+            <td class="p-3">130 days</td>
+            <td class="p-3">Yes, automatic</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">CIBC</td>
+            <td class="p-3">120 days</td>
+            <td class="p-3">Yes, on request</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">National Bank</td>
+            <td class="p-3">120 days</td>
+            <td class="p-3">Yes, on request</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">First National (broker)</td>
+            <td class="p-3">120 days</td>
+            <td class="p-3">One-way</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">MCAP (broker)</td>
+            <td class="p-3">120 days</td>
+            <td class="p-3">One-way</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Strive / CMLS / RFA</td>
+            <td class="p-3">120 days</td>
+            <td class="p-3">One-way</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Credit unions (Meridian, Vancity, Servus)</td>
+            <td class="p-3">90–150 days</td>
+            <td class="p-3">Varies by institution</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Policies as of April 2026. Long-hold promos change quarterly and sometimes offer 175–180 days.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Early Renewal vs. Blend-and-Extend: Different Products</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Early renewal and blend-and-extend both let you lock in a rate before your term ends, but they work differently:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Early renewal / pre-commit:</strong> Your current term runs to maturity. The new term starts on your maturity date at the locked rate. No blending, no early termination, no penalty.</li>
+      <li><strong>Blend-and-extend:</strong> Your current term terminates today. A new term starts today at a blended weighted-average rate (old rate and today's rate combined). The maturity date shifts forward.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Blend-and-extend can make sense if you need to stretch commitments for a larger balance, or if you want to lock in a dramatically better rate today and fear it'll rise by maturity. Early renewal is usually better when rates are steady or falling — it preserves your existing (often lower) rate for the remainder of the term and locks the next one.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Worked Example: Is Early Renewal Worth It?</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: Locking a 5-year fixed 120 days out</p>
+      <p class="text-body-sm leading-relaxed">
+        Current mortgage: $395,000 at 2.54% 5-year fixed, maturing August 15, 2026.<br />
+        Today: April 12, 2026 (125 days from maturity).<br />
+        Your lender's 5-year fixed early-renewal rate: <strong>4.19%</strong>.<br />
+        Market forecast at maturity date (Bank of Canada path): <strong>3.95%–4.30%</strong>.<br /><br />
+        <strong>Scenario A — Lock at 4.19% today:</strong><br />
+        Guaranteed rate. If rates drop to 3.95%, float-down kicks in. If rates rise to 4.50%, you're protected.<br /><br />
+        <strong>Scenario B — Wait until August:</strong><br />
+        Possible rate 3.95%: you save $475/year on $395,000.<br />
+        Possible rate 4.30%: you pay $435/year more on $395,000.<br /><br />
+        Expected value of waiting ≈ break-even. <strong>Taking the hold is low-regret downside insurance</strong>, especially with automatic float-down at the Big 6.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When Early Renewal Is Definitely Worth It</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Lock Early When</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Market rates are clearly trending up (Bank of Canada tightening cycle)</li>
+          <li>You want certainty for budgeting purposes</li>
+          <li>Your lender offers automatic float-down — you get protection without giving anything up</li>
+          <li>Your term matures in a historically volatile month</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Consider Waiting When</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Rates are clearly falling and no float-down is offered</li>
+          <li>You plan to switch lenders — get broker-channel rate holds instead</li>
+          <li>The lender offers a 180-day hold but a very stale rate (rarely competitive)</li>
+          <li>You're within 30 days of maturity — negotiating leverage is highest there</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Switching Lenders Early: The Broker Angle</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Your existing lender isn't the only one offering an early rate hold — any new lender will too. If you work with a mortgage broker 120 days before maturity, they can shop 40+ lenders and secure the best rate hold from whichever one wins your file. The switch paperwork is prepared during the rate hold window and closes exactly at your maturity date, so the new mortgage starts on the same day the old one ends.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      This is the most common strategic use of the 120-day window: shop, compare, negotiate, and either get your current lender to match the broker's offer, or switch cleanly at maturity with a legal-paid switch program. See our guides on <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders at renewal</a> and <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">working with a broker at renewal</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Variable-to-Fixed Conversion Using Early Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you're currently in a variable-rate mortgage and want to convert to fixed at renewal, the early-renewal window is the cleanest mechanism. Lock in the fixed rate 120 days out, then your variable continues until maturity and seamlessly converts to the locked fixed rate on the maturity date. No penalty, no blending.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      This is a favored strategy for borrowers who've been riding prime cuts throughout 2025–26 but want rate certainty for the next term. The Bank of Canada's overnight rate path and forecaster consensus are useful inputs here — see our <a href="/bank-of-canada-rate-decisions/" class="text-secondary-100 hover:underline">BoC tracker</a> and <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">rate forecast</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/early-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Lock In Your Rate Early</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can secure a 120–180 day rate hold from 40+ lenders — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Rate Hold Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

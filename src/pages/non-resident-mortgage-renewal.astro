@@ -1,0 +1,243 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Who qualifies as a non-resident for Canadian mortgage purposes?",
+    answer: "A non-resident is someone who is neither a Canadian citizen nor a permanent resident and who lives outside Canada for tax purposes — typically fewer than 183 days in Canada per year and without significant residential ties (primary home, spouse, dependants in Canada). Non-residents can own Canadian real estate and carry Canadian mortgages, but are underwritten more conservatively and taxed differently than residents."
+  },
+  {
+    question: "Does the Foreign Buyer Ban affect my renewal?",
+    answer: "No. The Prohibition on the Purchase of Residential Property by Non-Canadians Act (commonly called the Foreign Buyer Ban), which has been extended through January 1, 2027, only restricts new purchases by non-Canadians. Renewing an existing mortgage on property you already own is not a purchase and is not captured by the ban. You can renew, refinance with your existing lender, and in most cases switch lenders if you can find one willing to underwrite your non-resident file."
+  },
+  {
+    question: "What down payment or equity position do non-residents typically need?",
+    answer: "At origination, most Canadian lenders require non-residents to put down 35% (so a maximum 65% loan-to-value ratio). That's the standard Big 6 policy. At renewal, you're already inside that envelope so a straight renewal is usually available — but if you want to refinance or pull equity, you'll be capped at 65% LTV rather than the 80% LTV available to residents."
+  },
+  {
+    question: "How is rental income taxed for non-resident landlords?",
+    answer: "Non-residents receiving Canadian rental income are subject to a 25% withholding on gross rents under Part XIII of the Income Tax Act. The payer (tenant or property manager) is legally required to withhold and remit to CRA. You can elect under Section 216 by filing NR6 with CRA in advance to have the withholding reduced to net rental income (after expenses), and then file a Section 216 return annually. Most non-resident landlords work with a Canadian property manager and cross-border accountant to manage this correctly."
+  },
+  {
+    question: "Which Canadian lenders accept non-resident mortgage renewals?",
+    answer: "Among the Big 6, RBC, BMO, and Scotiabank are most consistently open to non-resident files. TD and CIBC are more selective. Some monoline lenders and credit unions participate, but many do not. Non-residents typically pay a rate premium of roughly 25 to 75 basis points over posted resident rates, reflecting the higher underwriting cost and perceived risk. A mortgage broker experienced with non-resident files can shop the market for you."
+  },
+  {
+    question: "What happens when I eventually sell a Canadian property as a non-resident?",
+    answer: "When a non-resident sells Canadian real estate, CRA's Section 116 process applies: the buyer is required to withhold 25% of the gross sale price (50% for certain property types) and remit to CRA unless the seller obtains a Certificate of Compliance in advance. Getting the certificate requires reporting the disposition to CRA, paying tax on the gain, and waiting for issuance — typically 4 to 12 weeks. Plan the timeline well ahead of closing, with a cross-border tax accountant involved."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "non-resident-mortgage-renewal",
+    name: "Non-Resident Mortgage Renewal in Canada (2026)",
+    description: "How non-residents renew Canadian mortgages — Foreign Buyer Ban rules, 35% down at origination, rental withholding, NR4/NR6, and lenders that accept non-resident files.",
+  }),
+  articleSchema({
+    headline: "Non-Resident Mortgage Renewal in Canada (2026)",
+    description: "Complete guide for non-residents renewing a Canadian mortgage — how the Foreign Buyer Ban applies, lender appetite, rental withholding rules, and Section 116 at eventual sale.",
+    slug: "non-resident-mortgage-renewal",
+    articleSection: "Non-Resident Mortgages",
+    about: "Non-resident mortgage renewal in Canada",
+    keywords: ["non-resident mortgage Canada", "foreign buyer mortgage renewal", "NR6 rental income", "Section 116 Canada", "non-resident refinance"],
+  }),
+  faqSchema(faqs, "non-resident-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "Non-Resident Mortgage Renewal", url: "/non-resident-mortgage-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Non-Resident Mortgage Renewal in Canada (2026) | Rules & Lenders"
+  description="How non-residents renew Canadian mortgages in 2026 — Foreign Buyer Ban impact, 35% LTV cap at origination, rental withholding, NR4/NR6 forms, and which Canadian lenders participate."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Non-Resident Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Cross-Border Ownership</div>
+      <h1 class="text-heading-1 mb-4">Non-Resident Mortgage Renewal in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. If you own Canadian real estate but live abroad and aren't a Canadian citizen or permanent resident, your renewal is fundamentally different from a resident's. Here's how the Foreign Buyer Ban applies (hint: it doesn't block your renewal), which lenders participate, how rental withholding works, and what happens when you eventually sell.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• A <strong>non-resident</strong> is neither a Canadian citizen nor a permanent resident, and lives outside Canada for tax purposes.</li>
+        <li>• The <strong>Foreign Buyer Ban</strong> (extended to January 1, 2027) restricts new purchases, not renewals of existing mortgages.</li>
+        <li>• At origination, non-residents typically put down <strong>35%</strong> — maximum LTV of 65% on purchase.</li>
+        <li>• Renewal is generally available with your existing lender; switching is possible but requires a lender that accepts non-resident files.</li>
+        <li>• Rates are typically <strong>25–75 bps higher</strong> than resident posted rates.</li>
+        <li>• Rental income is subject to <strong>25% withholding</strong> under Part XIII unless you elect net-income treatment via <strong>NR6</strong> and file <strong>Section 216</strong> annually.</li>
+        <li>• At eventual sale, <strong>CRA Section 116</strong> requires a Certificate of Compliance or the buyer withholds 25% of gross proceeds.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Defining "Non-Resident" for Mortgage Purposes</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian lenders and CRA both rely on residency status — but they look at it slightly differently. For CRA tax-residency purposes, you're a non-resident if you don't live in Canada for 183+ days in a year and don't maintain significant residential ties (a home available for your use, a spouse or dependants in Canada, and secondary ties like a driver's licence, health card, and bank accounts). For mortgage underwriting, lenders rely on your immigration status (citizenship or permanent resident card) plus your stated country of residence on the application.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      It's possible to be a Canadian citizen living abroad (an expat — covered separately in our <a href="/canadian-expat-mortgage-renewal/" class="text-secondary-100 hover:underline">expat renewal guide</a>) or a non-citizen non-permanent-resident investor living abroad (a true non-resident). This page focuses on the latter.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Foreign Buyer Ban and Why It Doesn't Block Your Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The <em>Prohibition on the Purchase of Residential Property by Non-Canadians Act</em> came into force January 1, 2023 and was extended by Order in Council through January 1, 2027. It prohibits most non-Canadians from purchasing residential property in Census Metropolitan Areas and Census Agglomerations, with exceptions for refugees, temporary residents meeting work or study conditions, and certain diplomats.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Crucially, the Act regulates <strong>purchases</strong> — acquiring title. Renewing the mortgage on property you already own is not a purchase. Neither is refinancing, porting, or switching lenders on the same property. So the ban doesn't keep you from renewing a Canadian mortgage you already hold.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      What it does affect: if you were counting on buying a second Canadian investment property while the ban is in force, most of those transactions are off the table until 2027 at the earliest. For existing ownership, you carry on.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Down Payment, LTV, and Rate Pricing</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Non-residents are treated as higher-risk at origination. The industry norm is 35% down, putting you at a maximum 65% loan-to-value ratio on purchase. This is meaningfully tighter than the 80% LTV available to residents on a conventional mortgage and far tighter than the 95% LTV available through CMHC insurance (which is off-limits to non-residents). At renewal, the equity position you originated with has typically grown — so unless you want to refinance or pull out equity, you're well inside the 65% LTV envelope.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">Resident</th>
+            <th class="p-3 text-left">Non-Resident</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Minimum down payment (owner-occupied)</td>
+            <td class="p-3">5% (up to $500K)</td>
+            <td class="p-3">35% across the board</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Maximum refinance LTV</td>
+            <td class="p-3">80%</td>
+            <td class="p-3">65%</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">CMHC / default insurance</td>
+            <td class="p-3">Available</td>
+            <td class="p-3">Not available</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Rate premium vs. resident posted</td>
+            <td class="p-3">0</td>
+            <td class="p-3">+25 to +75 bps typical</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Documentation depth</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Heavy — foreign tax returns, global assets, foreign bank statements</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Income Verification From Abroad</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The single biggest challenge at a non-resident renewal — especially if you're switching lenders — is documenting foreign-source income in a way Canadian underwriters can rely on. Expect to provide:
+    </p>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Two years of foreign tax returns (translated and notarized if not in English or French)</li>
+      <li>Foreign employer letter on company letterhead confirming position, start date, and income</li>
+      <li>Three to six months of foreign bank statements showing salary deposits</li>
+      <li>Proof of foreign residence (utility bill, lease, or mortgage statement)</li>
+      <li>Passport copy and immigration documentation for the country you reside in</li>
+      <li>Canadian property details — property tax statements, existing mortgage statement, insurance declaration</li>
+    </ul>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Income from G7 and OECD countries is generally accepted at face value. Income from jurisdictions with opaque tax systems (some Middle Eastern, Asian, and African countries) may be discounted 20–30% or require additional corroborating evidence. A mortgage broker with cross-border experience is far more efficient here than walking into a branch cold.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Rental Income: NR4, NR6, and Section 216</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you rent out your Canadian property — common for non-resident owners — the taxation is quite different from residents:
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Default treatment: 25% gross withholding</p>
+      <p class="text-body-sm leading-relaxed">
+        Under Part XIII of the Income Tax Act, the person paying rent to a non-resident (the tenant directly, or more commonly a Canadian property manager acting as payer) is required to withhold 25% of the <strong>gross rent</strong> and remit to CRA each month. An NR4 slip is issued annually summarizing the withholding. No expenses are deductible at the withholding stage.
+      </p>
+    </div>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Elective treatment: NR6 + Section 216</p>
+      <p class="text-body-sm leading-relaxed">
+        By filing <strong>Form NR6</strong> with CRA before the start of each tax year, you elect to have withholding calculated on <strong>net rental income</strong> (after expenses — mortgage interest, property tax, insurance, management fees, repairs). You then file a <strong>Section 216 return</strong> after year-end to reconcile. The effective tax is the same graduated rate as a resident landlord, not a flat 25%. Almost every non-resident landlord elects into NR6/Section 216 because the cashflow impact is enormous.
+      </p>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      A cross-border accountant typically charges $500–$1,500 annually to manage NR4, NR6, and Section 216 filings. Skipping the filings creates CRA exposure that can jeopardize future mortgage approvals and create problems at sale under Section 116.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Which Canadian Lenders Work With Non-Residents?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Not every Canadian lender will renew a non-resident file. Based on 2026 market practice:
+    </p>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>RBC Royal Bank</strong> — well-established non-resident program, strong for US-resident Canadians and high-net-worth global clients</li>
+      <li><strong>BMO</strong> — accepts non-residents, particularly through private banking channels</li>
+      <li><strong>Scotiabank</strong> — has a formal international client desk; one of the more flexible Big 6 on non-resident renewals</li>
+      <li><strong>TD and CIBC</strong> — accept non-residents selectively; case-by-case underwriting</li>
+      <li><strong>HSBC Canada</strong> (now part of RBC) — historically the leader here; programs integrated into RBC International</li>
+      <li><strong>Select monolines and credit unions</strong> — a handful (check with broker); the majority do not participate</li>
+    </ul>
+    <p class="text-body-md mb-6 leading-relaxed">
+      A <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> with a non-resident book can shop multiple lenders simultaneously — useful if your current lender is quoting an unattractive renewal offer. See also our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders guide</a> for the mechanics of a switch.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">At Eventual Sale: Section 116 Compliance</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      This isn't a renewal topic per se but matters when planning your Canadian holding. When a non-resident disposes of taxable Canadian property, <strong>CRA Section 116</strong> requires the purchaser to withhold 25% of the gross sale price (50% for certain depreciable property like some rental buildings) and remit to CRA — unless the seller first obtains a <strong>Certificate of Compliance</strong>.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Certificate process runs through the CRA International Tax Services Office: you file Form T2062 (and T2062A for depreciable property), report the disposition and gain, pay tax owing on the gain (typically 25% of the gain rather than the gross price), and CRA issues the Certificate. Timeline is typically 4–12 weeks. Without the Certificate, your lawyer will hold back 25% of gross proceeds in trust until CRA clearance arrives — which can mean six figures sitting in escrow for months.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Build this timeline into any sale plan. Start the Certificate process as soon as an offer is firm.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/non-resident-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Renewing From Abroad?</h2>
+      <p class="text-white/80 mb-6">A licensed broker experienced with cross-border files can shop non-resident-friendly lenders for you — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Non-Resident Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

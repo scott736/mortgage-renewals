@@ -3,7 +3,7 @@
  * MortgageRenewalHub.ca — single service, round-robin to full LendCity team
  */
 
-import type { TeamMember, Service, AvailabilityRule } from './types';
+import type { AvailabilityRule,Service, TeamMember } from './types';
 
 // ============================================================================
 // Default Availability (Mon-Fri 9am-5pm EST)

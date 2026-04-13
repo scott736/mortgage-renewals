@@ -1,6 +1,8 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { BUSINESS } from "@/consts";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -123,18 +125,29 @@ const schema = combineSchemas(
       <p class="text-body-lg text-muted-foreground mb-6">
         MortgageRenewalHub.ca is owned and operated by <a href="https://lendcity.ca" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a> — a full-service Canadian mortgage brokerage helping homeowners, investors, and first-time buyers across the country secure better rates and smarter mortgage strategies.
       </p>
+      <address class="not-italic text-body-md text-muted-foreground mb-6 leading-relaxed">
+        {BUSINESS.address.streetAddress}<br />
+        {BUSINESS.address.addressLocality}, Ontario {BUSINESS.address.postalCode}<br />
+        <a href={BUSINESS.phone.tel} style="color: var(--secondary)">{BUSINESS.phone.display}</a>
+      </address>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="https://lendcity.ca" target="_blank" rel="noopener">
           <button class="rounded-lg bg-primary-100 hover:opacity-90 text-white font-semibold px-8 py-4 text-lg transition-colors">
             Visit LendCity.ca →
           </button>
         </a>
-        <a href="tel:+15199600370">
+        <a href={BUSINESS.phone.tel}>
           <button class="rounded-lg border-2 border-primary-100 hover:bg-primary-0 text-primary-100 font-semibold px-8 py-4 text-lg transition-colors">
-            📞 1-519-960-0370
+            📞 {BUSINESS.phone.displayDashed}
           </button>
         </a>
       </div>
+    </div>
+  </section>
+
+  <section class="py-12">
+    <div class="container max-w-screen-xl px-6">
+      <RelatedLinks slug="/about/" />
     </div>
   </section>
 

@@ -1,16 +1,17 @@
 'use client';
 
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Calendar, Clock, Loader2, Phone, User, Video } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ArrowLeft, Calendar, Clock, Loader2, Phone, User, Video } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import type { GuestInfo, MeetingType,Service, TeamMember, TimeSlot } from '@/lib/nylas/types';
 import { cn } from '@/lib/utils';
-import type { GuestInfo, Service, TeamMember, TimeSlot, MeetingType } from '@/lib/nylas/types';
 
 const MEETING_TYPE_OPTIONS: { type: MeetingType; label: string; description: string }[] = [
   { type: 'phone', label: 'Phone Call', description: "We'll call you at the scheduled time." },
@@ -45,7 +46,7 @@ export function BookingForm({
   selectedSlot,
   timezone,
   onSubmit,
-  onBack,
+  onBack: _onBack,
   className,
   selectedMeetingType,
   onMeetingTypeChange,
@@ -207,7 +208,7 @@ export function BookingForm({
             {/* Honeypot field - hidden from users */}
             <input
               type="text"
-              {...register('website' as any)}
+              {...register('website' as never)}
               className="absolute left-[-9999px]"
               tabIndex={-1}
               autoComplete="off"

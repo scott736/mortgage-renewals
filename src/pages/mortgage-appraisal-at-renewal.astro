@@ -1,0 +1,273 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Do I need an appraisal to renew my mortgage with the same lender?",
+    answer: "No. A straight renewal with your existing lender — same balance, same amortization, same collateral — does not require an appraisal. Your lender already holds the security and only needs to issue a new rate sheet. Appraisals only come into play when there is a new loan decision being made: switching to a new lender, refinancing to pull equity, or qualifying for a different product tier. The November 2024 OSFI straight-switch exemption reinforces that no requalification (and therefore no appraisal) applies at a true renewal."
+  },
+  {
+    question: "Who pays for an appraisal when I switch lenders at renewal?",
+    answer: "In 2026, most of the Big 6 and major monolines (First National, MCAP, RFA, CMLS) waive the appraisal cost on insured switch transfers and often cover it on uninsured switches as well — it's a customer-acquisition expense absorbed by the lender to win the file. When it isn't covered, the borrower pays $300–$600 for a full appraisal, $150–$250 for a drive-by, or $0–$80 for an automated valuation model (AVM). Your mortgage broker should confirm in writing before you sign the switch application whether the appraisal is paid by the lender."
+  },
+  {
+    question: "What types of appraisals are used at a mortgage switch?",
+    answer: "Three tiers. (1) AVM — automated valuation model, a software-driven estimate using comparable sales, tax assessments, and MLS data; free or $50–$80, used for low-risk insured switches. (2) Drive-by or exterior-only appraisal — an AIC-designated appraiser confirms the property exists and photographs the exterior; $150–$250. (3) Full interior appraisal — the appraiser enters the home, measures rooms, and writes a full report; $300–$600 standard, more for rural or high-value properties. The lender picks the tier based on LTV, loan size, rural location, and whether the property is insured."
+  },
+  {
+    question: "What happens if the appraisal comes in lower than expected?",
+    answer: "The lender bases the new mortgage on the lower of the purchase price (if applicable) or the appraised value. At a switch, this matters most if you were counting on equity to keep your loan-to-value under 80% — the OSFI ceiling for uninsured refinances. If the appraisal is light, you have three options: bring cash to close to lower the balance, abandon the switch and renew with your existing lender (who doesn't need a new appraisal), or dispute the appraisal with comparable sales data. Your broker can order a second-opinion appraisal for $300–$500."
+  },
+  {
+    question: "Are there appraisal-free switch programs in Canada?",
+    answer: "Yes. As of 2026, Scotia's eHOME switch, First National's Excalibur switch, MCAP's Preferred switch, and RBC's Simplified Switch all include automated-valuation-based approval for insured transfers under roughly $750,000 in major urban markets. These programs use AVMs plus title insurance in place of a full appraisal and solicitor review. Rural properties, unique homes, condos outside major centres, and loans over the program caps still require a conventional appraisal."
+  },
+  {
+    question: "Can a low appraisal block a straight-switch transfer?",
+    answer: "Yes, even under the November 2024 OSFI exemption from the stress test, the new lender still needs to confirm the collateral's value. If the appraisal lands below the mortgage balance, the new lender can't fund the switch (the loan-to-value would exceed 100%). In that situation you stay with your current lender and negotiate the renewal there. This is uncommon unless the property has declined significantly, is in a distressed regional market, or had cosmetic condition issues the lender wasn't expecting."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Mortgage Appraisal at Renewal: When It's Required, Who Pays, and What It Costs in Canada (2026)",
+    description: "When lenders require an appraisal at Canadian mortgage renewal or switch, the cost tiers ($150 AVM vs $300–$600 full), who pays, and appraisal-free programs from RBC, Scotia, First National, and MCAP.",
+    slug: "mortgage-appraisal-at-renewal",
+    articleSection: "Renewal Mechanics",
+    about: "Mortgage appraisal at Canadian renewal and switch",
+    keywords: ["mortgage appraisal renewal", "appraisal switch lender Canada", "appraisal cost Canada", "AVM mortgage", "appraisal free switch"],
+  }),
+  breadcrumbSchema([
+    { name: "Mortgage Appraisal at Renewal", url: "/mortgage-appraisal-at-renewal" }
+  ]),
+  faqSchema(faqs, "mortgage-appraisal-at-renewal"),
+  webPageNode({
+    slug: "mortgage-appraisal-at-renewal",
+    name: "Mortgage Appraisal at Renewal in Canada (2026)",
+    description: "Complete guide to when Canadian lenders require an appraisal at renewal or switch — appraisal tiers, cost ranges, who pays, and appraisal-free programs.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Appraisal at Renewal 2026 — Cost & Who Pays"
+  description="When Canadian lenders order an appraisal at renewal or switch — $150 AVM vs $300–$600 full, who pays, and appraisal-free programs from major lenders."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Mortgage Appraisal at Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Renewal Mechanics</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Appraisal at Renewal</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Whether your Canadian lender orders an appraisal at renewal depends entirely on whether you're staying or switching. Here's the OSFI rulebook, the cost tiers in 2026, who actually pays, and the appraisal-free switch programs now offered by the Big 6 and major monolines.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• A <strong>straight renewal</strong> with your existing lender never requires an appraisal — the lender already holds the security.</li>
+        <li>• A <strong>switch to a new lender</strong> usually triggers some form of valuation: AVM, drive-by, or full interior appraisal.</li>
+        <li>• 2026 cost tiers: <strong>AVM $0–$80</strong>, <strong>drive-by $150–$250</strong>, <strong>full appraisal $300–$600</strong>, more for rural or unique homes.</li>
+        <li>• Major Canadian lenders now <strong>cover appraisal costs</strong> on most insured switch transfers as a customer-acquisition expense.</li>
+        <li>• A <strong>refinance</strong> (pulling equity) always requires a full appraisal — OSFI B-20 caps uninsured refis at 80% LTV.</li>
+        <li>• Appraisal-free programs exist at <strong>Scotia eHOME, RBC Simplified Switch, First National Excalibur, MCAP Preferred</strong> for qualifying insured switches.</li>
+        <li>• A low appraisal can derail a switch — but you can always fall back to renewing with your existing lender appraisal-free.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When Canadian Lenders Require an Appraisal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      An appraisal exists to give the lender an independent opinion of the property's current market value. The lender doesn't need one if nothing changes about the loan-to-collateral relationship. That's why a straight renewal is always appraisal-free: the balance is roughly the same, the amortization is continuing, the property is the same, and the lender's security position hasn't changed.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The moment a new lending decision is made, OSFI's B-20 guideline requires the lender to confirm the collateral value. That includes switching to a new lender (they have no historical knowledge of the property), refinancing for more money (leverage is being added), or moving to a different product tier where pricing depends on LTV.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The November 2024 OSFI straight-switch exemption removed the stress test for insured switches, but it did not remove the valuation requirement. The new lender still needs to confirm the property is worth at least the mortgage amount — they just no longer have to requalify your income.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Three Appraisal Tiers in 2026</h2>
+
+    <div class="grid sm:grid-cols-3 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">AVM (Automated Valuation)</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Software-driven estimate using MLS sales, tax assessments, and regression models. No one visits the property.</p>
+        <p class="text-body-sm-medium">$0–$80. Used for low-risk insured switches in major urban markets.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Drive-By / Exterior</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">AIC-designated appraiser confirms the property exists and photographs the exterior. No interior inspection.</p>
+        <p class="text-body-sm-medium">$150–$250. Used for mid-tier switches and uninsured transfers.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Full Interior Appraisal</h3>
+        <p class="text-body-sm text-muted-foreground mb-2">Appraiser enters, measures, photographs interior, and writes a full narrative report with three comparable sales.</p>
+        <p class="text-body-sm-medium">$300–$600 standard, $700–$1,200 rural or unique.</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The lender chooses the tier based on loan size, loan-to-value, property type, and location. A $500,000 switch on a downtown Toronto condo will almost always clear with an AVM. A $900,000 switch on a rural acreage in Saskatchewan will always require a full interior appraisal — sometimes two, because the lender wants to triangulate.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Who Pays for the Appraisal in 2026?</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">Who Pays</th>
+            <th class="p-3 text-left">Typical 2026 Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Straight renewal (same lender)</td>
+            <td class="p-3">No appraisal</td>
+            <td class="p-3">$0</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Insured switch to new lender</td>
+            <td class="p-3">Lender usually absorbs</td>
+            <td class="p-3">$0 to borrower</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Uninsured switch (Big 6)</td>
+            <td class="p-3">Lender often absorbs on promo</td>
+            <td class="p-3">$0–$400</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Uninsured switch (monoline)</td>
+            <td class="p-3">Lender or broker absorbs</td>
+            <td class="p-3">$0–$500</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Refinance pulling equity</td>
+            <td class="p-3">Borrower pays</td>
+            <td class="p-3">$350–$600</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Rural or unique property</td>
+            <td class="p-3">Borrower pays</td>
+            <td class="p-3">$600–$1,200</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">B-lender or private renewal</td>
+            <td class="p-3">Borrower always pays</td>
+            <td class="p-3">$400–$800</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Costs as of April 2026. Confirm with your lender's current switch promotion before signing.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Appraisal-Free Switch Programs</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Starting in 2022 and expanding through 2025, the major Canadian lenders built "simplified switch" programs that pair AVMs with title insurance (FCT, Stewart, TitlePLUS) to eliminate both the appraisal and the full solicitor review. The result: switches that close in 10–14 days instead of 30–45, with no out-of-pocket cost to the borrower.
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Scotia eHOME Switch</strong> — insured and low-ratio uninsured switches up to roughly $1M in major urban markets, AVM + title insurance, typical close 14 days.</li>
+      <li><strong>RBC Simplified Switch</strong> — insured switches under $750K, AVM-approved, appraisal waived on most urban files.</li>
+      <li><strong>First National Excalibur Switch</strong> — broker channel, AVM + title insurance, appraisal paid by lender when a full one is required.</li>
+      <li><strong>MCAP Preferred Switch</strong> — insured and insurable switches, lender-paid appraisal or AVM, legal fees covered up to $1,000.</li>
+      <li><strong>CMLS / RFA / Strive</strong> — similar programs, appraisal costs absorbed on qualifying switch transfers.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Eligibility is tighter than a standard switch: typically urban properties only, loan sizes under program caps, detached / townhouse / standard condo, and strong borrower credit. If you're outside those bounds, a conventional switch with a standard appraisal still happens — and the lender often still absorbs the cost as a competitive gesture, especially if a broker is involved.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Worked Example: Switch with a Full Appraisal</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: $580,000 uninsured switch in suburban Calgary</p>
+      <p class="text-body-sm leading-relaxed">
+        Property value (estimate): $820,000<br />
+        Existing mortgage balance: $580,000<br />
+        Loan-to-value: 70.7% — under the 80% OSFI refi cap, so the switch is eligible.<br /><br />
+        Current lender: TD (collateral charge).<br />
+        New lender: First National via broker, offering 0.18% below TD's posted renewal.<br /><br />
+        <strong>Costs at switch:</strong><br />
+        Full interior appraisal: $425 — <em>absorbed by lender promo</em><br />
+        Legal / title insurance: $550 — <em>absorbed by lender promo</em><br />
+        Discharge fee at TD: $340 — paid by borrower<br />
+        Net out-of-pocket: <strong>$340</strong><br /><br />
+        Annual interest savings at 0.18% on $580,000: <strong>$1,044/year</strong> — recouped in under 4 months.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When the Appraisal Comes in Low</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A low appraisal can compromise a switch in three ways:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>The mortgage balance ends up over 80% LTV on an uninsured file — OSFI B-20 forbids this, the new lender can't fund.</li>
+      <li>The loan-to-value crosses a pricing band (e.g., from under-70% to over-75%) and the rate offered drops, eroding the switch savings.</li>
+      <li>In extreme cases, the balance exceeds the appraised value — the switch is dead and you stay with your current lender.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The good news: straight renewal with your existing lender is always available and doesn't need an appraisal. If a switch appraisal surprises you on the downside, you simply sign the renewal offer from your current lender (after negotiating with them — see our <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">broker guide</a>). You can also order a second-opinion appraisal for $300–$500, though the second appraiser must be on the lender's approved panel.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Rural, Unique, and Condo Considerations</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      AVMs fail on properties that don't look like the comparable sales data they're built from. In 2026, these categories typically still require a full interior appraisal:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Rural properties with acreage over 10 acres</li>
+      <li>Leasehold or Section 95 (First Nations reserve) properties — often unswitchable regardless</li>
+      <li>Condos in buildings the lender hasn't pre-approved (status certificate review also required)</li>
+      <li>Log homes, geodesic domes, manufactured housing on owned land</li>
+      <li>Any property over roughly $1.5M (varies by market)</li>
+      <li>Properties with legal non-conforming use, agricultural zoning, or recent major additions</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      For these files, expect $500–$1,200 in appraisal costs, and factor that into the switch economics. On a smaller switch the appraisal fee alone can erase the first-year savings — at which point renewing with your current lender and using your prepayment privileges to accelerate payoff may deliver more value.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/mortgage-appraisal-at-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Thinking About a Switch?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can confirm whether the lender covers the appraisal before you sign — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Switch Analysis
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

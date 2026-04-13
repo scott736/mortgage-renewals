@@ -9,7 +9,7 @@
  */
 
 import { createBooking } from './client';
-import type { BookingRequest, BookingConfirmation } from './types';
+import type { BookingConfirmation,BookingRequest } from './types';
 
 // ============================================================================
 // Types

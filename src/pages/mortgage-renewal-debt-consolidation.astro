@@ -1,0 +1,273 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Why is renewal the best time to consolidate high-interest debt into a mortgage?",
+    answer: "Two main reasons. First, no prepayment penalty — consolidating mid-term requires breaking the mortgage, which triggers an IRD or three-month interest penalty often worth $5,000–$30,000+. At renewal, the term is naturally ending so no penalty applies. Second, legal and switch costs are minimal at renewal — many lenders fully cover the appraisal and legal fees on a switch or refinance at renewal as an acquisition incentive. This combination makes renewal uniquely efficient for debt consolidation."
+  },
+  {
+    question: "How much can I consolidate — what's the LTV limit?",
+    answer: "In Canada, you can refinance up to 80% of your home's appraised value (the refinance LTV cap set by OSFI and the federal Insured Mortgages regulations). So if your home is worth $700,000 and you have an existing mortgage of $350,000 (50% LTV), you have room to refinance up to $560,000 — meaning $210,000 of new borrowing capacity. That room can absorb the debt you want to consolidate, subject also to qualifying on the new total at the stress-tested rate. CMHC insurance is not available on refinances, so you're doing this as a conventional refinance."
+  },
+  {
+    question: "What's the math on typical debt consolidation savings?",
+    answer: "Credit card debt in Canada sits in the 19.99–21.99% range. Unsecured line of credit is typically prime + 3–6% (roughly 8.5–11.5% in 2026). Mortgage refinance rates in 2026 are in the 4.19–5.49% range. Consolidating $40,000 of credit card debt from 20% to 4.5% saves roughly $6,200 in interest per year. The caveat: you're amortizing that $40,000 over 25 years instead of paying it down in 3–5 years, so total lifetime interest can actually be higher unless you aggressively accelerate principal payments on the mortgage afterward."
+  },
+  {
+    question: "Will consolidating hurt my credit score?",
+    answer: "Initially, slightly. Closing credit cards and lines of credit reduces your available credit and can shift your utilization ratios, which may drop your score 20–40 points temporarily. Over 6–12 months, as you keep the accounts paid down and make mortgage payments on time, the score usually recovers and often improves beyond its pre-consolidation level. Critically: don't run the cards back up. That's the behavioural risk — many consolidators pay off cards through refinance, then re-accumulate balances, ending up with mortgage debt AND new credit card debt."
+  },
+  {
+    question: "What are the alternatives to refinancing at renewal for debt consolidation?",
+    answer: "Three main alternatives. (1) A HELOC in addition to your renewal — keep the first mortgage separate, add a HELOC for the consolidation amount. This keeps flexibility but HELOCs are variable-rate, so your interest cost moves with prime. (2) A second mortgage — a second-position mortgage from a B-lender or private lender, typically at 7–12%, gives you the cash without touching your first mortgage. (3) Consumer proposal or debt consolidation loan — if home equity isn't available, a bank debt consolidation loan (typically 8–14%) can consolidate without touching the mortgage. A mortgage broker can compare all four options side by side."
+  },
+  {
+    question: "What's the discipline plan to make debt consolidation actually work?",
+    answer: "Close the credit cards or cut up the cards — don't just pay them off. Keep one credit card open with a modest limit for emergencies only. Set up automatic monthly contributions that equal your old credit card payments but flow to an accelerated mortgage principal paydown or a TFSA savings account. Track spending for 60–90 days to identify the habits that caused the original debt. Work with a credit counsellor or financial planner if the behavioural side is the core issue. The math of consolidation only works if you don't recreate the original debt — without discipline, it's a temporary reduction in monthly payments followed by a worse total-debt position in 18 months."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-renewal-debt-consolidation",
+    name: "Using Mortgage Renewal to Consolidate Debt in Canada (2026)",
+    description: "How Canadians use the mortgage renewal window to consolidate high-interest debt — 80% LTV rule, refinance math, alternatives, and the discipline plan to avoid re-accumulation.",
+  }),
+  articleSchema({
+    headline: "Using Your Mortgage Renewal to Consolidate High-Interest Debt in Canada (2026)",
+    description: "Complete guide to debt consolidation at mortgage renewal — why renewal beats mid-term, 80% refinance LTV cap, worked numeric examples, HELOC/second-mortgage alternatives, and behavioural safeguards.",
+    slug: "mortgage-renewal-debt-consolidation",
+    articleSection: "Refinance Strategy",
+    about: "Mortgage renewal debt consolidation Canada",
+    keywords: ["mortgage debt consolidation Canada", "refinance consolidate credit card", "80% LTV refinance", "renewal refinance strategy", "consolidate debt at mortgage renewal"],
+  }),
+  faqSchema(faqs, "mortgage-renewal-debt-consolidation"),
+  breadcrumbSchema([
+    { name: "Mortgage Renewal Debt Consolidation", url: "/mortgage-renewal-debt-consolidation" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Debt Consolidation at Mortgage Renewal (2026) | Canadian Strategy Guide"
+  description="How to use your Canadian mortgage renewal to consolidate high-interest debt — 80% LTV refinance cap, worked savings examples, HELOC and second-mortgage alternatives, and avoiding re-accumulation."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Mortgage Renewal Debt Consolidation
+
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Refinance Strategy</div>
+      <h1 class="text-heading-1 mb-4">Using Your Mortgage Renewal to Consolidate High-Interest Debt</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. If you're carrying credit card balances, unsecured lines of credit, or a car loan alongside your mortgage, renewal is often the single best moment to consolidate — no prepayment penalty, low or waived legal fees, and potentially a 15-percentage-point rate reduction on the consolidated debt. Here's how the math works, how to avoid over-extending, and how to make sure consolidation actually sticks.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Canadian refinance is capped at <strong>80% loan-to-value</strong> — your maximum new mortgage cannot exceed 80% of appraised home value.</li>
+        <li>• Renewal is the optimal consolidation moment because <strong>no prepayment penalty applies</strong>.</li>
+        <li>• Typical 2026 math: consolidating $40K of credit card debt from 20% to 4.5% saves <strong>~$6,200/year</strong> in interest.</li>
+        <li>• Amortizing short-term debt over 25 years increases <strong>lifetime interest</strong> unless you accelerate payments afterward.</li>
+        <li>• Credit score typically <strong>drops 20–40 points</strong> initially, then recovers and improves within 6–12 months.</li>
+        <li>• <strong>Alternatives:</strong> HELOC add-on, second mortgage, bank debt consolidation loan.</li>
+        <li>• <strong>Behavioural discipline</strong> (close cards, not just pay them off) is what separates success from failure.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Renewal Is the Prime Consolidation Moment</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Three structural factors align at renewal:
+    </p>
+
+    <div class="grid sm:grid-cols-3 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">No Prepayment Penalty</h3>
+        <p class="text-body-sm text-muted-foreground">Your existing term is ending. You're not breaking a contract — you're signing a new one. The $5,000–$30,000 IRD penalty that would apply mid-term is simply not a factor.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Fee Waivers Common</h3>
+        <p class="text-body-sm text-muted-foreground">Most Canadian lenders will cover appraisal and legal fees on a switch at renewal (typical $1,000–$1,800 value) as an acquisition incentive. Mid-term, those fees come out of your pocket.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Fresh Underwriting Anyway</h3>
+        <p class="text-body-sm text-muted-foreground">A switch at renewal involves a new application and documentation. Adding a refinance component to the new application is incremental effort, not a separate process.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The 80% LTV Refinance Cap</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Canadian refinances are capped by OSFI and federal regulations at 80% of the home's current appraised value. High-ratio insurance (CMHC, Sagen, Canada Guaranty) is not available on refinances — only on purchases. This is the hard limit on how much you can consolidate.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Calculating Your Consolidation Room</p>
+      <p class="text-body-sm leading-relaxed">
+        Home appraised value: $700,000<br />
+        80% LTV cap: $560,000 maximum new mortgage<br />
+        Existing mortgage balance at renewal: $350,000<br /><br />
+        <strong>Maximum refinance room: $560,000 − $350,000 = $210,000</strong><br /><br />
+        That $210,000 is the upper bound of what you can pull out to consolidate. You also need to qualify at the stress-tested rate (greater of contract rate + 2% or 5.25%) on the full $560,000 — not just the $350,000 you're renewing.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Consolidation Math — Worked Example</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: Consolidating $40K of Credit Card Debt at Renewal</p>
+      <p class="text-body-sm leading-relaxed">
+        Home value $700,000. Existing mortgage $350,000 renewing at 4.19% 5-year fixed. Credit card debt $40,000 at 20.99%. Existing 25-year amortization remains.<br /><br />
+        <strong>Before consolidation:</strong><br />
+        • Mortgage payment: $1,878/month (25-year amort)<br />
+        • Credit card minimum payment: ~$1,200/month (to actually pay down in 5 years)<br />
+        • Total monthly: $3,078<br />
+        • Credit card interest year 1: ~$7,500<br /><br />
+        <strong>After consolidation (refinance to $390,000 at 4.19%):</strong><br />
+        • New mortgage payment: $2,093/month (25-year amort)<br />
+        • Credit card payment: $0<br />
+        • Total monthly: $2,093 — a $985/month reduction<br />
+        • Year 1 interest (on the extra $40K portion): ~$1,650<br /><br />
+        <strong>Year 1 interest savings: $7,500 − $1,650 = $5,850</strong><br /><br />
+        <strong>BUT:</strong> the $40K is now amortizing over 25 years. If you only make the minimum payment, total interest on that $40K over 25 years is ~$23,000 — versus $11,000 on the credit card if paid off in 5 years. To truly save, you should direct the $985/month savings toward accelerated principal paydown on the mortgage.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Amortization: The Hidden Lifetime Cost</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      This is the single most-missed point in consolidation pitches. Rolling credit card debt into a 25-year mortgage dramatically reduces the monthly cost but can substantially increase total lifetime interest unless you accelerate payments.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">Monthly Payment</th>
+            <th class="p-3 text-left">Total Interest Paid</th>
+            <th class="p-3 text-left">Payoff Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">$40K credit card @ 20% paid off in 5 years</td>
+            <td class="p-3">~$1,060</td>
+            <td class="p-3">~$23,600</td>
+            <td class="p-3">5 years</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">$40K rolled into 25-year mortgage @ 4.5%</td>
+            <td class="p-3">~$222</td>
+            <td class="p-3">~$26,700</td>
+            <td class="p-3">25 years</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">$40K consolidated + disciplined 5-year pre-payment at mortgage rate</td>
+            <td class="p-3">~$745</td>
+            <td class="p-3">~$4,700</td>
+            <td class="p-3">5 years</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The third row — consolidated AND accelerated — is the winning strategy. Use <a href="/mortgage-prepayment-privileges-canada/" class="text-secondary-100 hover:underline">prepayment privileges</a> (typically 15–20% annual lump sum capacity plus 15–20% monthly payment increase) to push extra principal at the mortgage. This captures both the rate reduction and a similar payoff timeline.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Alternatives to Full Refinance</h2>
+
+    <div class="space-y-4 mb-6">
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Option 1: Renewal + HELOC Add-On</p>
+        <p class="text-body-sm text-muted-foreground">Renew the first mortgage at the new best rate you can find, and separately open a HELOC for the consolidation amount. Keeps flexibility — you can pay down the HELOC as fast as you like. HELOC rates are variable (prime + 0.5–1.5% in 2026, roughly 5.9–7%) — higher than fixed mortgage but lower than credit cards. Works well when you want to pay off the consolidation in 2–4 years rather than amortize over 25.</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Option 2: Second Mortgage</p>
+        <p class="text-body-sm text-muted-foreground">A second-position mortgage from a B-lender or private lender gives you consolidation cash without touching the first mortgage. Rates are 7–12% in 2026 — much better than credit cards, worse than first-mortgage refinance. Useful when your existing first mortgage has a great rate you don't want to disturb.</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Option 3: Unsecured Debt Consolidation Loan</p>
+        <p class="text-body-sm text-muted-foreground">Most banks offer debt consolidation loans at 8–14% for qualified borrowers. No equity involved, no mortgage change, faster to set up. Works when home equity isn't accessible or when you want to protect your mortgage terms.</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Option 4: Consumer Proposal or Bankruptcy</p>
+        <p class="text-body-sm text-muted-foreground">If debt is beyond reasonable consolidation (&gt;50% of income in unsecured debt, multiple judgments, ongoing default), a licensed insolvency trustee can structure a consumer proposal that settles debt at 30–60% of face value over 5 years. Significantly more severe credit impact than consolidation. Talk to a trustee before making decisions.</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      A <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> can compare all four options side by side with real numbers on your file. See also our <a href="/renewal-vs-refinancing/" class="text-secondary-100 hover:underline">renewal vs. refinancing guide</a> for the structural comparison.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Credit Score Effects</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Consolidating debt affects your credit score through several channels:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Paying off balances</strong> improves score (reduced utilization) — positive effect</li>
+      <li><strong>Closing credit card accounts</strong> reduces total available credit and can increase utilization on remaining cards — negative effect short-term</li>
+      <li><strong>New mortgage hard pull</strong> drops score 5–15 points temporarily</li>
+      <li><strong>Length of credit history</strong> isn't affected by closing cards (the history stays on report for ~10 years)</li>
+      <li><strong>Credit mix</strong> slightly worsens if you close all consumer accounts — keep at least one card open</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Net effect: typically a 20–40 point drop in the first 60 days, recovering and often surpassing pre-consolidation score within 6–12 months of consistent mortgage payments. Don't apply for new credit during this recovery window.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Discipline Plan — Making It Actually Work</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Mortgage brokers see this pattern often: a client consolidates $40,000 of credit card debt into a refinance, feels relieved by the lower monthly payment, and within 18 months has $20,000+ of new credit card debt on top of the (now larger) mortgage. The consolidation didn't fix anything — it freed up credit capacity that got consumed again.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      To make consolidation stick:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Close the cards, don't just pay them off.</strong> Keep one card open with a modest limit for emergencies only.</li>
+      <li><strong>Redirect the cashflow savings to accelerated mortgage principal.</strong> The $985/month in our worked example should flow to lump-sum prepayments, not to lifestyle inflation.</li>
+      <li><strong>Set a 90-day spending review.</strong> Track every expense for 90 days after consolidation to identify the habits that created the original debt.</li>
+      <li><strong>Build a 3-month emergency fund</strong> in a TFSA or high-interest savings account. Without a buffer, the first car repair or medical expense goes back on a credit card.</li>
+      <li><strong>Work with a credit counsellor</strong> if behavioural debt is the core issue. Credit Counselling Canada (non-profit) provides free sessions.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/mortgage-renewal-debt-consolidation/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Consolidating Debt at Your Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed broker can run refinance vs. HELOC vs. second-mortgage math for you — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Consolidation Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

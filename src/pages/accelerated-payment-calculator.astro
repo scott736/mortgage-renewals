@@ -1,0 +1,159 @@
+---
+import { AcceleratedPayment } from '@/components/calculators/accelerated-payment';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the difference between bi-weekly and accelerated bi-weekly?",
+    answer: "Standard bi-weekly = monthly payment × 12 ÷ 26. Same total paid per year as monthly — no amortization benefit. Accelerated bi-weekly = monthly payment ÷ 2, paid every two weeks. That's 26 payments × half-month = one extra monthly payment per year, shaving 3–5 years off a 25-year amortization. Verify with your lender which one you're on — 'bi-weekly' without 'accelerated' is just a scheduling preference."
+  },
+  {
+    question: "Can I switch from monthly to accelerated bi-weekly mid-term?",
+    answer: "Yes — all major Canadian lenders allow a payment-frequency change once per year, free of charge, without re-qualifying. You can request it through online banking or by phone. It takes effect on your next scheduled payment cycle."
+  },
+  {
+    question: "Does accelerated weekly beat accelerated bi-weekly?",
+    answer: "Yes, but only marginally. Accelerated weekly = monthly ÷ 4 × 52, which equals the same annual total as accelerated bi-weekly but compounds slightly faster. The interest savings difference on a $500,000 / 25-year mortgage is typically $200–$800 over the full term — negligible compared to the ~$30,000 savings vs. standard monthly."
+  },
+  {
+    question: "Is accelerated bi-weekly better than a lump sum?",
+    answer: "They're different tools. Accelerated bi-weekly is an ongoing drip — slightly more to principal each year, compounding over time. A lump sum is a one-shot, bigger-impact move. The best strategy is often both: accelerated bi-weekly as your default, plus one lump sum at each anniversary using your privilege. Use our Prepayment Lump Sum Calculator to compare."
+  },
+  {
+    question: "Will my monthly budget feel the difference with accelerated payments?",
+    answer: "Slightly. Accelerated bi-weekly costs ~8.3% more per year (one extra monthly payment ÷ 12 months). On a $2,500/month payment, that's an extra ~$210/month spread across 26 payments. Most households hardly notice, but if cashflow is tight, the standard schedule with annual lump sums may be more sustainable."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "accelerated-payment-calculator",
+    name: "Accelerated Payment Calculator — Canadian Mortgage 2026",
+    description: "Compare monthly, bi-weekly, weekly, and accelerated payment schedules to see years and interest saved on a Canadian mortgage.",
+  }),
+  webApplicationSchema({
+    name: "Accelerated Mortgage Payment Calculator (Canada)",
+    description: "Free calculator that compares monthly, bi-weekly, weekly, accelerated bi-weekly, and accelerated weekly payment schedules using Canadian semi-annual compounding.",
+    slug: "accelerated-payment-calculator",
+    features: [
+      "5-frequency side-by-side comparison",
+      "Years to payoff for each schedule",
+      "Total interest per schedule",
+      "Savings vs your current frequency",
+      "Canadian semi-annual compounding",
+    ],
+  }),
+  articleSchema({
+    headline: "Accelerated Payment Calculator — Canadian Mortgage 2026",
+    description: "Free Canadian accelerated payment calculator. See exactly how much you save by switching from monthly to accelerated bi-weekly or weekly.",
+    slug: "accelerated-payment-calculator",
+    articleSection: "Calculators",
+    about: "Accelerated mortgage payments",
+    keywords: ["accelerated bi-weekly", "accelerated payment calculator", "pay off mortgage faster Canada", "payment frequency"],
+  }),
+  faqSchema(faqs, "accelerated-payment-calculator"),
+  breadcrumbSchema([
+    { name: "Calculators", url: "/mortgage-renewal-calculator/" },
+    { name: "Accelerated Payment Calculator", url: "/accelerated-payment-calculator/" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Accelerated Payment Calculator — Canadian Mortgage 2026"
+  description="Free Canadian accelerated payment calculator. Compare monthly vs. accelerated bi-weekly vs. accelerated weekly and see years and interest saved."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Accelerated Payment
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tool</div>
+      <h1 class="text-heading-1 mb-4">Accelerated Payment Calculator</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Switching to accelerated bi-weekly or accelerated weekly payments is the single most effective no-cost way to pay off a Canadian mortgage years early. See the exact numbers for your mortgage below.
+      </p>
+    </div>
+
+    <AcceleratedPayment client:load />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">How Accelerated Payments Work</h2>
+        <p class="text-body-md text-muted-foreground mb-3">
+          "Accelerated" is a specific term in Canadian mortgage banking. It means your payment is set to a fraction of the monthly amount (÷ 2 for bi-weekly, ÷ 4 for weekly) rather than a pro-rata share of the annual total. The effect is that you make 26 half-payments or 52 quarter-payments per year — mathematically equivalent to <strong>13 monthly payments</strong> annually instead of 12.
+        </p>
+        <p class="text-body-md text-muted-foreground mb-3">
+          That one extra monthly payment per year goes entirely to principal. On a $500,000 / 4.29% / 25-year mortgage, accelerated bi-weekly:
+        </p>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside mb-3">
+          <li>Pays off the mortgage in about <strong>21.5 years</strong> instead of 25</li>
+          <li>Saves approximately <strong>$35,000–$45,000</strong> in interest over the amortization</li>
+          <li>Costs only about $210 extra per month — barely noticeable in most household budgets</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">When Accelerated Payments Are a Slam Dunk</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>At renewal</strong> — you're already changing your mortgage, so toggle the frequency while you're at it</li>
+          <li><strong>Early in amortization</strong> — the extra principal compounds harder, larger dollar savings</li>
+          <li><strong>Bi-weekly income</strong> — align payments with paydays, makes it feel painless</li>
+          <li><strong>No higher-rate debt</strong> — if credit cards or LOCs are paid off, extra cashflow is best used here</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Caveats & When to Stay Monthly</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Cashflow sensitive</strong> — the extra payment is real money; if you're on tight budget, stay monthly and use your privilege for an annual lump sum</li>
+          <li><strong>Planning to sell or move</strong> — if you'll sell in 1–3 years, the savings are tiny and not worth the setup</li>
+          <li><strong>No prepayment privilege</strong> — some niche lenders consider accelerated payments as prepayment and cap them; check your commitment letter</li>
+          <li><strong>Better marginal uses</strong> — if your TFSA or RRSP isn't maxed and you're in a high tax bracket, contributing there may beat mortgage prepayment</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">How to Switch</h2>
+        <p class="text-body-md text-muted-foreground">
+          Call your lender or log into online banking. All Big 6 banks (TD, RBC, BMO, Scotiabank, CIBC, National Bank) and all major monolines (First National, MCAP, Strive, RFA, CMLS, Equitable Bank) allow free payment-frequency changes, typically once per year. Specify "<strong>accelerated bi-weekly</strong>" explicitly — just saying "bi-weekly" gets you the non-accelerated version that saves nothing.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          {faqs.map(f => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+
+      <RelatedLinks slug="/accelerated-payment-calculator/" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Switching at Renewal? Lock Acceleration In</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will set up accelerated bi-weekly on your new mortgage and negotiate a lower rate to multiply the savings — free.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

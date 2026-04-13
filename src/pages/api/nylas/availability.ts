@@ -1,6 +1,7 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
+
 import { getAvailability, isNylasConfigured } from '@/lib/nylas/client';
 import { getServiceById, getTeamMemberById, schedulingConfig } from '@/lib/nylas/config';
 import type { AvailabilityRequest, DayAvailability, TimeSlot } from '@/lib/nylas/types';

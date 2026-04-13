@@ -1,7 +1,8 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import LiveRatesTable from '@/components/sections/live-rates-table';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 const schema = combineSchemas(
   webPageNode({
@@ -185,24 +186,7 @@ const schema = combineSchemas(
       </div>
     </div>
 
-    <div class="mt-12 border-t pt-8">
-      <h2 class="text-heading-4 mb-4">Related Guides</h2>
-      <div class="grid sm:grid-cols-2 gap-3">
-        {[
-          { title: "Mortgage Renewal Calculator", href: "/mortgage-renewal-calculator/" },
-          { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
-          { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
-          { title: "How a Mortgage Broker Helps", href: "/mortgage-broker-renewal/" },
-          { title: "Term Length Comparison", href: "/mortgage-renewal-term-lengths/" },
-          { title: "Canada Rate Forecast", href: "/mortgage-rate-forecast/" },
-        ].map(link => (
-          <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-            <span class="text-secondary-100">→</span>
-            {link.title}
-          </a>
-        ))}
-      </div>
-    </div>
+    <RelatedLinks slug="/best-mortgage-renewal-rates/" />
   </article>
 
   <section class="bg-primary-100 py-12">

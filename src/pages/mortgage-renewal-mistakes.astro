@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -192,36 +193,7 @@ const schema = combineSchemas(
 
     </div>
 
-    <!-- Internal links -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">The foundational guide to how Canadian mortgage renewals work.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">How to save $10,000+ and the 2024 stress test change that makes it easier.</p>
-        </a>
-        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Your step-by-step action plan from 12 months out to renewal day.</p>
-        </a>
-        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Free to you, accesses 30+ lenders. Here's exactly what they do.</p>
-        </a>
-        <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal with Bad Credit</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Options when your credit score has declined before renewal.</p>
-        </a>
-        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered. Everything you need to know.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/mortgage-renewal-mistakes/" />
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">

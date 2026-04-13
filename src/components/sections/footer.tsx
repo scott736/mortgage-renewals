@@ -1,4 +1,4 @@
-import { PROVINCE_PAGES } from "@/consts";
+import { BUSINESS, PROVINCE_PAGES } from "@/consts";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -125,12 +125,14 @@ export default function Footer() {
               {" "}Resource
             </span>
             <a
-              href="tel:+15199600370"
-              className="inline-flex items-center gap-1 text-white/70 hover:text-white"
+              href={BUSINESS.phone.tel}
+              className="text-white/70 hover:text-white"
             >
-              <span aria-hidden="true">📞</span>
-              <span>1-519-960-0370</span>
+              📞 {BUSINESS.phone.displayDashed}
             </a>
+            <span className="text-white/70">
+              📍 {BUSINESS.address.oneLine}
+            </span>
           </p>
           <p className="text-xs text-white/40 max-w-xl">
             For educational purposes only. Not financial advice. Always consult a licensed mortgage professional for advice specific to your situation.

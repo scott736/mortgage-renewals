@@ -9,7 +9,7 @@
  */
 
 const SITE_URL = "https://mortgagerenewalhub.ca";
-const ORG_NAME = "MortgageRenewalHub.ca";
+const _ORG_NAME = "MortgageRenewalHub.ca";
 const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;

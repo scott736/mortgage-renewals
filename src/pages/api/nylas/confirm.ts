@@ -1,9 +1,10 @@
 export const prerender = false;
 
 import type { APIRoute } from 'astro';
-import { confirmPendingBooking, getPendingBookingByToken } from '@/lib/nylas/pending-bookings';
+
 import { getServiceById, getTeamMemberById } from '@/lib/nylas/config';
 import { sendBookingConfirmedEmail, sendBookingNotificationEmail } from '@/lib/nylas/emails';
+import { confirmPendingBooking, getPendingBookingByToken } from '@/lib/nylas/pending-bookings';
 
 /**
  * POST /api/nylas/confirm

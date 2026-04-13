@@ -1,7 +1,8 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { StressTestCalculator } from '@/components/calculators/additional-calculators';
-import { articleSchema, breadcrumbSchema, webPageNode, webApplicationSchema, faqSchema, combineSchemas } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -68,7 +69,7 @@ const schema = combineSchemas(
   schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
-    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator" class="hover:underline">Calculators</a> › Stress Test
+    <a href="/" class="hover:underline">Home</a> › <a href="/mortgage-renewal-calculator/" class="hover:underline">Calculators</a> › Stress Test
   </nav>
 
   <section class="container max-w-4xl py-10">
@@ -104,7 +105,7 @@ const schema = combineSchemas(
           <li>No cash taken out, no new money advanced</li>
         </ul>
         <p class="text-body-md text-muted-foreground">
-          …the new lender is <strong>not required</strong> to apply the MQR. You qualify at the contract rate. This change mirrors the insured-mortgage exemption already in place and finally put uninsured borrowers on equal footing with their insured counterparts. See our <a href="/switching-lenders-at-renewal" class="text-secondary-100 hover:underline">switching lenders guide</a> for the full process.
+          …the new lender is <strong>not required</strong> to apply the MQR. You qualify at the contract rate. This change mirrors the insured-mortgage exemption already in place and finally put uninsured borrowers on equal footing with their insured counterparts. See our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders guide</a> for the full process.
         </p>
       </div>
 
@@ -151,32 +152,15 @@ const schema = combineSchemas(
         </div>
       </div>
 
-      <div>
-        <h2 class="text-heading-3 mb-4">Related Tools & Guides</h2>
-        <div class="grid sm:grid-cols-2 gap-3">
-          {[
-            { title: "Main Renewal Calculator Suite", href: "/mortgage-renewal-calculator" },
-            { title: "Stress Test at Renewal (Full Guide)", href: "/stress-test-mortgage-renewal" },
-            { title: "Switch vs. Stay Break-Even", href: "/switch-vs-stay-calculator" },
-            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal" },
-            { title: "Self-Employed Mortgage Renewal", href: "/self-employed-mortgage-renewal" },
-            { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada" },
-          ].map(link => (
-            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-              <span class="text-secondary-100">→</span>
-              {link.title}
-            </a>
-          ))}
-        </div>
-      </div>
+      <RelatedLinks slug="/mortgage-stress-test-calculator/" />
     </div>
   </section>
 
   <section class="bg-primary-100 py-12 mt-10">
     <div class="container max-w-3xl text-center">
       <h2 class="text-heading-3 text-white mb-3">Unsure If You'll Pass?</h2>
-      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal" class="text-white underline">mortgage broker</a> can pre-qualify you with multiple lenders — including credit unions not bound by B-20. Free, no obligation.</p>
-      <a href="/book-a-call">
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can pre-qualify you with multiple lenders — including credit unions not bound by B-20. Free, no obligation.</p>
+      <a href="/book-a-call/">
         <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
           Book Your Free Assessment
         </button>

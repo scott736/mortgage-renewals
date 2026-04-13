@@ -1,0 +1,262 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "How does rent-to-own work in Canada and what mortgage do you have at the end?",
+    answer: "A Canadian rent-to-own (RTO) arrangement is typically a 2-to-4-year lease paired with an option to purchase the property at a pre-agreed price at the end of the term. During the lease, a portion of each rent payment is set aside as an 'option credit' intended to build toward your down payment. At the end of the RTO term, you either exercise the option (originating a traditional mortgage to buy the property) or walk away (forfeiting the option credits). The mortgage that funds the purchase at option exercise is your first traditional mortgage — typically a 3-year fixed term, which is what comes up for renewal first."
+  },
+  {
+    question: "Does my accumulated rent credit count as down payment when I exercise the option?",
+    answer: "Not straightforwardly, under CMHC rules. CMHC requires that down payment come from genuine equity — personal savings, RRSP under the Home Buyers' Plan, a gift from an immediate relative, or proceeds from sale of another asset. The rent premium credit accumulated during an RTO is not explicitly recognized as down payment by CMHC in all cases. Some lenders and some RTO structures are designed to satisfy the documentation — particularly if the RTO operator structures the credit as forgiveness of a portion of the purchase price rather than cash. Work with a broker who specializes in RTO-to-mortgage transitions: the paperwork matters."
+  },
+  {
+    question: "Who are the lenders for first-time mortgage originations out of an RTO?",
+    answer: "Broadly three buckets. (1) If your credit has rehabilitated to a B+/A- score (620–659) and your income is provable, you're often in the Alt-A space: Home Trust, Equitable Bank, Haventree, CMLS. (2) If your credit is solid (660+) and income is strong, conventional A-lenders (Big 6, First National, MCAP) will work. (3) If credit is still weak (below 620), you may need a B-lender or a private lender for the bridging origination, with a plan to flip to A at the next renewal. Community credit unions in Alberta, Ontario, and BC also actively lend on RTO-exit purchases."
+  },
+  {
+    question: "What should I do 6–12 months before my option exercise date?",
+    answer: "Treat it like a mortgage application prep runway. Pull your credit reports from Equifax and TransUnion, dispute errors, pay down revolving balances to under 30% utilization, don't apply for new credit. Confirm your income documentation is clean (last two years of NOAs, T4s, or self-employment filings). Start conversations with a mortgage broker who handles RTO exits — they can pre-qualify you and identify which lenders are most likely to fund your purchase. Confirm with the RTO operator exactly what credit goes toward the purchase, and how it's documented. The bigger the gap between credit at RTO start and credit at exercise, the better your rate options."
+  },
+  {
+    question: "What happens at the first real renewal after RTO exercise?",
+    answer: "This is where many RTO graduates can flip to a materially better rate. If you originated on a 3-year term from an Alt-A lender at, say, 6.99%, and by first renewal your credit has continued to strengthen, your income is well-documented, and mortgage market rates have come back to normal, you can usually switch to a conventional A-lender at the standard renewal rate (4–5% range in 2026). That might represent a 100–300 bps reduction — materially lower payments. The prepayment penalty doesn't apply at maturity, so renewal is the natural flip point. A broker runs the switch."
+  },
+  {
+    question: "What are the biggest risks with rent-to-own as a path to homeownership?",
+    answer: "Three main risks. (1) Option forfeiture — if you can't qualify for a mortgage at exercise date, you lose the accumulated option credit (often $20,000–$60,000) and the RTO operator keeps the upside. (2) Overpaying on the pre-set purchase price — the option price was set at RTO inception, and if the market has been flat or falling, you may be buying at above-market. (3) Operator quality — the RTO space has seen fraud and high-pressure marketing; confirm the operator is reputable, the contract is reviewed by your own lawyer, and the exit conditions are realistic given your credit trajectory."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "rent-to-own-first-mortgage-renewal",
+    name: "Rent-to-Own First Mortgage Renewal in Canada (2026)",
+    description: "What happens after a Canadian rent-to-own exercise — originating the first mortgage, CMHC down-payment rules on rent credits, Alt-A lenders, and flipping to A-lender at first renewal.",
+  }),
+  articleSchema({
+    headline: "Rent-to-Own First Mortgage Renewal in Canada (2026)",
+    description: "RTO-to-mortgage transition guide — option exercise, CMHC down-payment rules on rent credits, Alt-A origination lenders, credit rehab trajectory, and flipping to a conventional lender at first renewal.",
+    slug: "rent-to-own-first-mortgage-renewal",
+    articleSection: "Alternative Homeownership",
+    about: "Rent-to-own first mortgage renewal",
+    keywords: ["rent to own Canada", "RTO mortgage renewal", "first mortgage after rent to own", "HomeOwnerSoon", "Alta West Capital RTO"],
+  }),
+  faqSchema(faqs, "rent-to-own-first-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "Rent-to-Own First Mortgage Renewal", url: "/rent-to-own-first-mortgage-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Rent-to-Own First Mortgage Renewal (2026) | Canada"
+  description="What happens after you exercise a Canadian rent-to-own option — originating your first mortgage, CMHC rules on rent credits, Alt-A lenders, and upgrading to an A-lender at first renewal."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Rent-to-Own First Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Alternative Paths to Ownership</div>
+      <h1 class="text-heading-1 mb-4">Rent-to-Own First Mortgage Renewal in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. A rent-to-own contract doesn't automatically end with a mortgage — it ends with an option to purchase, and the mortgage you originate at that moment is usually a short 3-year term. Your first real renewal then happens three years later, and that's often the moment you can flip from an Alt-A specialist lender to a conventional A-lender at a materially better rate. Here's how to plan the full RTO-to-renewal arc.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Canadian RTOs are typically <strong>2-to-4-year lease + option to purchase</strong> at a pre-agreed price.</li>
+        <li>• At option exercise, you originate a <strong>first traditional mortgage</strong> — usually a 3-year term from an Alt-A lender.</li>
+        <li>• <strong>CMHC down payment rules</strong> do not automatically recognize accumulated rent credits; structure matters.</li>
+        <li>• <strong>Credit rehabilitation</strong> during the RTO period is the single most important predictor of successful option exercise.</li>
+        <li>• Specialist RTO lenders include community credit unions and select Alt-A lenders; major RTO operators in Canada include <strong>HomeOwnerSoon</strong> and <strong>Approved Rent-to-Own</strong>.</li>
+        <li>• <strong>First real renewal</strong> (3 years after exercise) is the prime moment to flip to an A-lender at mainstream rates.</li>
+        <li>• Start planning renewal strategy 6–12 months before maturity — brokers can pre-qualify you for A-lender products.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The RTO-to-Mortgage Transition</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A Canadian rent-to-own is structured as two legal documents working in tandem: a lease agreement (you're a tenant paying rent) and an option to purchase (you have the right but not the obligation to buy the property at a set price on or before a set date). Typical RTO terms run 24 to 48 months.
+    </p>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Each month you pay rent that's slightly above market — the "rent premium" — and a portion of that premium is set aside as an option credit. At the option date, you have three choices:
+    </p>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Exercise the option:</strong> qualify for a mortgage and buy the property at the pre-agreed price, with accumulated option credit going toward the down payment or directly reducing the purchase price</li>
+      <li><strong>Extend the RTO:</strong> if offered by the operator, stretch the term 6–12 more months (credit may or may not continue accruing)</li>
+      <li><strong>Walk away:</strong> forfeit the accumulated option credit; move out; owner retains property</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The CMHC Down Payment Trap</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Here's where many RTO participants get tripped up. CMHC's mortgage insurance rules (also applied by Sagen and Canada Guaranty) require that down payment on a high-ratio mortgage come from specific "own resources":
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Personal savings or investment accounts</li>
+      <li>RRSP withdrawal under the Home Buyers' Plan (up to $60,000 as of 2024)</li>
+      <li>Gift from an immediate family member (with signed gift letter)</li>
+      <li>Proceeds from sale of another property or investment</li>
+      <li>Grant or forgivable loan from a non-profit housing organization (case-by-case)</li>
+    </ul>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Accumulated rent credits from an RTO aren't in that list. CMHC has historically questioned whether the credit represents "genuine equity" — since the rent premium was paid in excess of market rent precisely to build it, the argument goes that it's effectively the landlord's savings on your behalf.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The workaround that reputable RTO operators use: structure the credit as a <strong>reduction of the option purchase price</strong> rather than a cash down payment. If the option price is $500,000 and you have $40,000 in accumulated credit, the actual contract purchase price at closing becomes $460,000 — and you bring your own independent down payment (saved savings, RRSP HBP) on the reduced price. This works with CMHC and most lenders. If your RTO isn't structured this way, a conventional (80% LTV) origination at purchase that doesn't need CMHC insurance can sidestep the issue entirely, but requires you to have accumulated 20% in actual cash — defeating some of the RTO purpose.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Credit Rehabilitation During the RTO Period</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The main reason most Canadians enter an RTO is that their credit or income wasn't strong enough to qualify for a traditional mortgage at the start. The RTO period is a planned rehabilitation runway. A disciplined borrower can go from a sub-600 credit score at RTO inception to a 660–700+ score by option exercise through:
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Score-Building Habits</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Pay every rent payment on time (some operators report to bureaus)</li>
+          <li>Keep credit card utilization below 30%, ideally below 10%</li>
+          <li>Don't open new credit facilities in the 6–12 months pre-exercise</li>
+          <li>Pay off or settle collections appearing on the bureau</li>
+          <li>Dispute and remove bureau errors</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Income Strengthening</h3>
+        <ul class="text-body-sm space-y-1 list-disc list-inside">
+          <li>Maintain stable employment — avoid job changes in final 12 months</li>
+          <li>If self-employed, minimize write-offs in last two tax years</li>
+          <li>Keep debt-service ratios low — pay down consumer debt</li>
+          <li>Have two years of documented clean tax filings by exercise date</li>
+          <li>Avoid NSFs and overdraft on chequing</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Lenders for First Mortgage at RTO Exit</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Credit at Exercise</th>
+            <th class="p-3 text-left">Likely Lender Type</th>
+            <th class="p-3 text-left">Typical Rate Tier (2026)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">680+ (A credit)</td>
+            <td class="p-3">Big 6, MCAP, First National</td>
+            <td class="p-3">Conventional renewal rates</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">640–679 (B+)</td>
+            <td class="p-3">Home Trust, Equitable, Haventree, CMLS</td>
+            <td class="p-3">+50 to +150 bps over conventional</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">600–639 (B)</td>
+            <td class="p-3">Alt-A specialist; credit unions</td>
+            <td class="p-3">+100 to +250 bps</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Below 600 (C)</td>
+            <td class="p-3">B-lender or private; Alta West, community credit union</td>
+            <td class="p-3">+250 to +500 bps, short terms (1–2 yr)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      In all scenarios, expect to take a 3-year fixed term at origination. This short term is deliberate: it sets up your first real renewal three years later when your credit will have strengthened further and you can flip to a mainstream lender. Starting with a 5-year term locks you into the Alt-A rate premium longer than necessary.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">First Renewal Three Years Later: The Flip-Up</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      This is the meaningful financial moment for most RTO graduates. Three years after originating your first mortgage — which for Alt-A borrowers is often at +100–200 bps over conventional rates — your renewal comes up. By this point:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>You've built three years of on-time mortgage payment history — a powerful credit positive</li>
+      <li>Your credit score has likely continued to strengthen</li>
+      <li>You have three years of documented Canadian income tax filings</li>
+      <li>Your LTV has dropped (paydown plus any appreciation)</li>
+      <li>Your original Alt-A lender's renewal offer is likely still at Alt-A pricing</li>
+    </ul>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      A <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switch at renewal</a> to an A-lender can save materially. An example:
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: RTO Graduate's First Renewal Flip-Up</p>
+      <p class="text-body-sm leading-relaxed">
+        Original mortgage at RTO exit: $450,000, 3-year fixed at 6.49% (Alt-A lender, credit was 620 at origination). Monthly payment: ~$3,007.<br /><br />
+        Three years later at first renewal: balance is $416,000, credit score now 690, income well-documented, market rate for A-lender 5-year fixed is 4.39%.<br /><br />
+        Switch to A-lender at renewal: new 5-year fixed $416,000 at 4.39%. Monthly payment: ~$2,276.<br /><br />
+        <strong>Monthly savings: ~$731/month = $8,772/year = $43,860 over new 5-year term.</strong><br />
+        Typical switch costs: $1,000–$1,800 (often waived by new lender on switches). Net benefit: meaningful.
+      </p>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If your current Alt-A lender matches the A-lender offer (they sometimes will, to retain you), you can stay put with the better rate. Either way, the leverage at renewal is real — don't passively accept the renewal letter from the Alt-A lender.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Common RTO Operators and Lender Contacts in Canada</h2>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>HomeOwnerSoon</strong> — national RTO program; structured to interface with CMHC-insured exit mortgages</li>
+      <li><strong>Approved Rent-to-Own</strong> — Ontario, Alberta, BC presence; provides tenant coaching through the RTO period</li>
+      <li><strong>Regional RTO operators</strong> — many smaller operators in Atlantic Canada, Manitoba, and Saskatchewan; quality varies significantly</li>
+      <li><strong>Alta West Capital</strong> — Alt-A lender that specifically funds RTO-exit purchases</li>
+      <li><strong>Community credit unions</strong> — Libro (Ontario), Vancity (BC), Meridian (Ontario), Assiniboine (Manitoba) — all active in this space</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Due diligence on the operator matters: the RTO space has seen high-pressure sales operations and a handful of fraudulent schemes. Before signing, have your own real estate lawyer review the option agreement and lease; confirm the option price is no higher than fair market value; confirm the credit mechanic is CMHC-compatible; and confirm the operator's track record with past exercises.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/rent-to-own-first-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Coming Out of a Rent-to-Own?</h2>
+      <p class="text-white/80 mb-6">A licensed broker can plan your option exercise and first renewal together — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your RTO-to-Mortgage Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

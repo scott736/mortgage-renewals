@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -231,35 +232,7 @@ const schema = combineSchemas(
           ))}
         </div>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/insured-vs-conventional-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Insured vs. Conventional</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How insured (including New to Canada) mortgages renew.</p>
-            </a>
-            <a href="/self-employed-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Self-Employed Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Many newcomer entrepreneurs land here at renewal.</p>
-            </a>
-            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">The 2024 exemption and how it applies to newcomers.</p>
-            </a>
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Broker</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Most valuable for newcomers with unusual income profiles.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">The 8-step process and 2024 stress-test exemption.</p>
-            </a>
-            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Renewal Guide</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Everything you need to know for a 2026 renewal.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/new-to-canada-mortgage-renewal/" />
 
       </div>
 

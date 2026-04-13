@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -139,27 +140,7 @@ const schema = combineSchemas(
       </ol>
     </div>
 
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/td-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">TD Mortgage Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Compare RBC's standard charge approach to TD's collateral charge.</p>
-        </a>
-        <a href="/bmo-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">BMO Mortgage Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">BMO offers 20% prepayment privileges — compare with RBC's 10%.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step switch guide — straightforward for standard-charge RBC mortgages.</p>
-        </a>
-        <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates 2026</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Current market rates to benchmark your RBC offer against.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/rbc-mortgage-renewal/" />
   </article>
 
   <section class="py-12" style="background: var(--accent)">

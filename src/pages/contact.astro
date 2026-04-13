@@ -1,7 +1,9 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import ZippayContactForm from "@/components/sections/zippay-contact-form";
+import { BUSINESS } from "@/consts";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
-import { webPageNode, breadcrumbSchema, combineSchemas } from '@/lib/schema';
+import { breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 const SITE = "https://mortgagerenewalhub.ca";
 const ORG_ID = `${SITE}/#organization`;
@@ -21,9 +23,8 @@ const schema = combineSchemas(
     url: `${SITE}/contact/`,
     inLanguage: "en-CA",
     isPartOf: { "@id": `${SITE}/#website` },
-    mainEntity: {
-      "@id": ORG_ID,
-    },
+    mainEntity: { "@id": ORG_ID },
+    about: { "@id": ORG_ID },
   },
 );
 ---
@@ -33,5 +34,41 @@ const schema = combineSchemas(
   description="Get in touch with MortgageRenewalHub.ca. Questions about your mortgage renewal? We're here to help connect you with licensed Canadian mortgage professionals."
   schema={schema}
 >
+  <section class="bg-primary-100 py-12 lg:py-16">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid gap-8 lg:grid-cols-3">
+        <div class="rounded-xl bg-white/5 border border-white/10 p-6">
+          <div class="text-2xl mb-2" aria-hidden="true">📞</div>
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-white/70 mb-2">Call Us</h2>
+          <a href={BUSINESS.phone.tel} class="text-xl font-bold text-white hover:underline">
+            {BUSINESS.phone.display}
+          </a>
+          <p class="mt-2 text-sm text-white/70">Licensed mortgage professionals, ready to help.</p>
+        </div>
+        <div class="rounded-xl bg-white/5 border border-white/10 p-6">
+          <div class="text-2xl mb-2" aria-hidden="true">📍</div>
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-white/70 mb-2">Visit Us</h2>
+          <address class="not-italic text-white leading-relaxed">
+            {BUSINESS.address.streetAddress}<br />
+            {BUSINESS.address.addressLocality}, Ontario {BUSINESS.address.postalCode}<br />
+            Canada
+          </address>
+        </div>
+        <div class="rounded-xl bg-white/5 border border-white/10 p-6">
+          <div class="text-2xl mb-2" aria-hidden="true">📅</div>
+          <h2 class="text-sm font-semibold uppercase tracking-widest text-white/70 mb-2">Book a Call</h2>
+          <p class="text-white leading-relaxed mb-3">Schedule a free 30-minute renewal strategy call.</p>
+          <a href="/book-a-call/" class="inline-flex rounded-lg bg-white px-4 py-2 text-sm font-semibold text-primary-100 hover:opacity-90">
+            Book Free Call →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <ZippayContactForm />
+
+  <section class="container max-w-screen-xl px-6 py-12">
+    <RelatedLinks slug="/contact/" />
+  </section>
 </DefaultLayout>

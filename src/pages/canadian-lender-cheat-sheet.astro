@@ -1,0 +1,457 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the single most important thing this cheat sheet tells me?",
+    answer: "The charge type column. If your existing mortgage is a collateral charge (common at TD, sometimes Scotiabank STEP, sometimes National Bank All-In-One), switching to a new lender involves discharging and re-registering the mortgage — roughly $700–$1,500 in legal fees. Standard charge mortgages can be 'assigned' to a new lender, which many lenders cover under legal-paid switch programs. Knowing your charge type changes the whole switching math."
+  },
+  {
+    question: "Why do Big 6 banks use posted-rate IRD when monolines use fair 3-month interest?",
+    answer: "It's a commercial choice. Posted-rate IRD penalties — calculated using the bank's inflated posted rate rather than the discounted rate the customer actually pays — produce dramatically larger penalty amounts, especially in falling-rate environments. First National, MCAP, CMLS, and most monolines use a straightforward 3-month interest penalty (or a discounted-rate IRD), which is typically a fraction of what a Big 6 borrower pays to break the same-size mortgage. This is a well-documented structural cost difference that our IRD explainer covers in detail."
+  },
+  {
+    question: "Are credit union mortgages provincially regulated or federally regulated?",
+    answer: "Most Canadian credit unions are provincially regulated — Meridian (Ontario), Vancity (BC), Desjardins (Quebec), Coast Capital Savings (BC), DUCA (Ontario). Provincial regulation means they're not bound by OSFI Guideline B-20 in the same way federally regulated lenders are, though most apply equivalent stress tests voluntarily. A few credit unions, like Coast Capital Savings after its 2020 federal charter, are now federally regulated."
+  },
+  {
+    question: "Which lenders offer the most generous prepayment privileges?",
+    answer: "Most Big 6 and monoline lenders offer 15/15 or 20/20 prepayment privileges — meaning you can increase your payment by 15-20% and make lump-sum payments of up to 15-20% of the original balance per year. CIBC's Better Than Prime and some First National products offer 20/20. Monolines tend to be slightly more generous on average, and credit unions vary widely (some as low as 10/10, some as generous as 25/25)."
+  },
+  {
+    question: "What does 'bona fide sale' clause mean in the cheat sheet?",
+    answer: "A bona fide sale clause restricts when you can break the mortgage — specifically, it says you can only pay out the mortgage (and the associated IRD penalty) if you are genuinely selling the property to an arm's-length buyer. You cannot break to refinance with a different lender. These clauses are most common in no-frills mortgages at CIBC, RBC, and some monolines, in exchange for a rate discount of roughly 0.10-0.15%. Avoid them unless you are certain you won't want to refinance mid-term."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Canadian Mortgage Lender Cheat Sheet 2026: Charge Type, Portability, IRD, Prepay",
+    description: "Comprehensive 2026 comparison table of Canadian mortgage lenders — charge type, portability, IRD method, blend-and-extend, skip-a-payment, prepayment privileges. Big 6, monolines, credit unions, B-lenders.",
+    slug: "canadian-lender-cheat-sheet",
+    articleSection: "Reference",
+    about: "Canadian mortgage lender comparison",
+    keywords: ["Canadian mortgage lenders", "collateral vs standard charge", "IRD method", "mortgage lender comparison", "prepayment privileges Canada"],
+  }),
+  breadcrumbSchema([
+    { name: "Canadian Lender Cheat Sheet", url: "/canadian-lender-cheat-sheet" }
+  ]),
+  faqSchema(faqs, "canadian-lender-cheat-sheet"),
+  webPageNode({
+    slug: "canadian-lender-cheat-sheet",
+    name: "Canadian Mortgage Lender Cheat Sheet (2026)",
+    description: "Comprehensive comparison of Canadian mortgage lenders — charge type, portability, IRD method, prepayment privileges, and 2026 stance.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Canadian Mortgage Lender Cheat Sheet (2026) | Compare Big 6, Monolines, CUs"
+  description="Comprehensive 2026 comparison of Canadian mortgage lenders — charge type, portability, IRD method, blend, skip-a-payment, prepay. Big 6, monolines, credit unions, B-lenders."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Canadian Lender Cheat Sheet
+  </nav>
+
+  <section class="container max-w-5xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Reference Guide</div>
+      <h1 class="text-heading-1 mb-4">Canadian Mortgage Lender Cheat Sheet (2026)</h1>
+      <p class="text-body-lg text-muted-foreground max-w-3xl">
+        Updated April 2026. A single reference table covering every major Canadian mortgage lender — Big 6 banks, monolines, credit unions, and B-lenders — with the fields that actually matter when choosing where to renew: charge type, portability, IRD calculation method, blend-and-extend availability, skip-a-payment, prepayment privileges, and the lender's 2026 stance.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>Charge type</strong> (standard vs. collateral) is the single biggest factor in switching cost — TD and Scotiabank STEP use collateral by default.</li>
+        <li>• <strong>IRD method</strong> matters if you break mid-term: Big 6 posted-rate IRD often creates penalties 2–3× what monolines charge.</li>
+        <li>• <strong>HSBC Canada</strong> was absorbed by RBC in 2024; existing HSBC mortgages renew through RBC systems.</li>
+        <li>• <strong>Equitable Bank</strong> and <strong>Home Trust</strong> serve the B-lender segment; 1–3 year terms are more common than 5-year.</li>
+        <li>• Credit unions set their own rules — Meridian, Vancity, Coast Capital, Desjardins, and DUCA all differ materially.</li>
+        <li>• Most Big 6 standard-charge mortgages are portable; collateral charges usually are not.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Section 1: Lender Comparison Table</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      All data reflects lender practice as of April 2026 based on published commitment letters, broker channel communications, and customer-facing product sheets. Always verify specifics against your own commitment letter — individual products vary within a lender.
+    </p>
+
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-body-sm border-collapse min-w-[900px]">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Charge Type</th>
+            <th class="p-3 text-left">Portable?</th>
+            <th class="p-3 text-left">IRD Method</th>
+            <th class="p-3 text-left">Blend?</th>
+            <th class="p-3 text-left">Skip-a-Pay?</th>
+            <th class="p-3 text-left">Prepay</th>
+            <th class="p-3 text-left">2026 Stance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">RBC</td>
+            <td class="p-3">Standard (default)</td>
+            <td class="p-3">Yes (120 days)</td>
+            <td class="p-3">Posted-rate IRD</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">15/15</td>
+            <td class="p-3">Aggressive retention; absorbed HSBC book</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">TD</td>
+            <td class="p-3">Collateral (default)</td>
+            <td class="p-3">Rarely</td>
+            <td class="p-3">Posted-rate IRD</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">15/15</td>
+            <td class="p-3">Stubborn first offers; collateral lock-in</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">BMO</td>
+            <td class="p-3">Standard (default)</td>
+            <td class="p-3">Yes (90 days)</td>
+            <td class="p-3">Posted-rate IRD</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">Retention responsive; "Smart Fixed" competitive</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Scotiabank</td>
+            <td class="p-3">Collateral (STEP) / Standard</td>
+            <td class="p-3">Yes (120 days)</td>
+            <td class="p-3">Posted-rate IRD</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">15/15</td>
+            <td class="p-3">STEP collateral complicates switches</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">CIBC</td>
+            <td class="p-3">Standard (default)</td>
+            <td class="p-3">Yes (90 days)</td>
+            <td class="p-3">Posted-rate IRD</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">Flexible retention; watch for bona fide sale clauses</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">National Bank</td>
+            <td class="p-3">Collateral (All-in-One) / Standard</td>
+            <td class="p-3">Standard only</td>
+            <td class="p-3">Posted-rate IRD</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Limited</td>
+            <td class="p-3">10/10 to 15/15</td>
+            <td class="p-3">Quebec-heavy; thinner retention</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">HSBC Canada</td>
+            <td class="p-3">Absorbed by RBC (2024)</td>
+            <td class="p-3">See RBC</td>
+            <td class="p-3">See RBC</td>
+            <td class="p-3">See RBC</td>
+            <td class="p-3">See RBC</td>
+            <td class="p-3">See RBC</td>
+            <td class="p-3">Existing book renews through RBC</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">First National</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Yes (60–90 days)</td>
+            <td class="p-3">Fair 3-month interest only</td>
+            <td class="p-3">No</td>
+            <td class="p-3">No</td>
+            <td class="p-3">15/15 to 20/20</td>
+            <td class="p-3">Fair penalty; broker-only; tight rates</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">MCAP</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Yes (90 days)</td>
+            <td class="p-3">Discounted-rate IRD or 3-month</td>
+            <td class="p-3">No</td>
+            <td class="p-3">No</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">Broker-only; strong Gen-Y programs</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">CMLS</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Yes (60 days)</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">No</td>
+            <td class="p-3">No</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">Broker-only; no-frills, very tight rates</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Equitable Bank</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Limited</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">No</td>
+            <td class="p-3">No</td>
+            <td class="p-3">10/10 to 15/15</td>
+            <td class="p-3">B-lender; 1–3 year terms common; higher rates</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Home Trust</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Limited</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">No</td>
+            <td class="p-3">No</td>
+            <td class="p-3">10/10 to 15/15</td>
+            <td class="p-3">B-lender; bruised-credit focus</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Haventree</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Rarely</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">No</td>
+            <td class="p-3">No</td>
+            <td class="p-3">10/10</td>
+            <td class="p-3">Alt-A / B-lender; expect rate premium</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Meridian Credit Union</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Discounted-rate IRD</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">Ontario; competitive on renewals</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Vancity</td>
+            <td class="p-3">Standard / Collateral</td>
+            <td class="p-3">Yes (standard)</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">BC; values-aligned; fair penalties</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Coast Capital Savings</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">BC; federally chartered since 2020</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">DUCA</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">20/20</td>
+            <td class="p-3">Ontario; community-owned; renewal specials</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Desjardins</td>
+            <td class="p-3">Standard</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">3-month interest</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">Yes</td>
+            <td class="p-3">15/15</td>
+            <td class="p-3">Quebec-dominant; retention moderate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Prepay notation: "15/15" = up to 15% lump sum of original balance per year + up to 15% payment increase. "20/20" = 20% / 20%. Policies as of April 2026; confirm with your specific commitment letter.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Section 2: Provincial Transfer and Discharge Fee Ranges (2026)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Switching lenders or discharging a collateral charge requires re-registration of the mortgage at provincial land titles. Fees vary by province and are usually bundled with legal fees paid to the lawyer handling closing. These are the typical all-in ranges for an average renewal switch or payout.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Province</th>
+            <th class="p-3 text-left">Discharge Fee (current lender)</th>
+            <th class="p-3 text-left">Registration Fee (new lender)</th>
+            <th class="p-3 text-left">Legal Fees (lawyer)</th>
+            <th class="p-3 text-left">Typical All-In</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Ontario</td>
+            <td class="p-3">$250 – $400</td>
+            <td class="p-3">~$80 (Teranet)</td>
+            <td class="p-3">$700 – $1,200</td>
+            <td class="p-3">$1,100 – $1,700</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">British Columbia</td>
+            <td class="p-3">$250 – $350</td>
+            <td class="p-3">$80 – $150 (LTSA)</td>
+            <td class="p-3">$800 – $1,400</td>
+            <td class="p-3">$1,200 – $1,900</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Alberta</td>
+            <td class="p-3">$250 – $400</td>
+            <td class="p-3">$50 + 0.04% of principal</td>
+            <td class="p-3">$700 – $1,200</td>
+            <td class="p-3">$1,100 – $1,900</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Quebec</td>
+            <td class="p-3">$300 – $450</td>
+            <td class="p-3">$150 – $200 (notary)</td>
+            <td class="p-3">$900 – $1,500 (notary)</td>
+            <td class="p-3">$1,400 – $2,200</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Manitoba</td>
+            <td class="p-3">$250 – $350</td>
+            <td class="p-3">~$100</td>
+            <td class="p-3">$700 – $1,100</td>
+            <td class="p-3">$1,050 – $1,550</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Saskatchewan</td>
+            <td class="p-3">$250 – $350</td>
+            <td class="p-3">0.3% of principal (ISC)</td>
+            <td class="p-3">$700 – $1,100</td>
+            <td class="p-3">$1,250 – $1,900</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Nova Scotia</td>
+            <td class="p-3">$250 – $400</td>
+            <td class="p-3">~$100</td>
+            <td class="p-3">$800 – $1,300</td>
+            <td class="p-3">$1,150 – $1,800</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">New Brunswick</td>
+            <td class="p-3">$250 – $400</td>
+            <td class="p-3">~$100</td>
+            <td class="p-3">$750 – $1,200</td>
+            <td class="p-3">$1,100 – $1,700</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Newfoundland & Labrador</td>
+            <td class="p-3">$300 – $400</td>
+            <td class="p-3">$100 – $150</td>
+            <td class="p-3">$750 – $1,200</td>
+            <td class="p-3">$1,150 – $1,750</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Prince Edward Island</td>
+            <td class="p-3">$250 – $350</td>
+            <td class="p-3">~$100</td>
+            <td class="p-3">$700 – $1,100</td>
+            <td class="p-3">$1,050 – $1,550</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">On a "legal-paid switch" program, the new lender reimburses the legal and discharge fees directly to the lawyer — meaning $0 out-of-pocket for standard-charge mortgages. Collateral charges typically require full legal work and aren't always covered.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Section 3: Lender "Gotchas" at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Each lender family has its own structural traps that show up at renewal or when you try to break a term. These are the most common ones borrowers encounter.
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="rounded-xl bg-warning-25 border border-warning-50 p-5">
+        <h3 class="font-semibold mb-1">Big 6 Posted-Rate IRD</h3>
+        <p class="text-body-sm text-muted-foreground">
+          RBC, TD, BMO, Scotiabank, CIBC, and National Bank all calculate Interest Rate Differential using their posted rate rather than the discounted rate you actually pay. This inflates the penalty dramatically when rates have fallen — often to $10,000+ on a mid-term break. Monolines use the actual contract rate or a 3-month interest penalty, typically 3–5x smaller. Full detail in our <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD vs. 3-month penalty guide</a>.
+        </p>
+      </div>
+      <div class="rounded-xl bg-warning-25 border border-warning-50 p-5">
+        <h3 class="font-semibold mb-1">Collateral Charge Lock-In</h3>
+        <p class="text-body-sm text-muted-foreground">
+          TD registers mortgages as collateral charges by default (up to 125% of home value), and Scotia's STEP product is also collateral. The collateral charge cannot be assigned to another lender — it must be discharged and re-registered, which costs $700–$1,500 in legal fees that "legal-paid switch" programs don't usually cover. See our <a href="/collateral-vs-standard-charge-mortgage/" class="text-secondary-100 hover:underline">charge-type explainer</a>.
+        </p>
+      </div>
+      <div class="rounded-xl bg-warning-25 border border-warning-50 p-5">
+        <h3 class="font-semibold mb-1">Bona Fide Sale Clauses</h3>
+        <p class="text-body-sm text-muted-foreground">
+          Some low-rate "no-frills" products (CIBC Better Than Prime, certain RBC specials, a few monolines) include a bona fide sale clause — meaning you can only pay out the mortgage mid-term if you're selling the home to an arm's-length buyer. You cannot refinance with a different lender. The rate discount is usually 0.10–0.15%; the flexibility cost can be tens of thousands if rates move.
+        </p>
+      </div>
+      <div class="rounded-xl bg-warning-25 border border-warning-50 p-5">
+        <h3 class="font-semibold mb-1">Retention Rate Decay</h3>
+        <p class="text-body-sm text-muted-foreground">
+          The best Big 6 retention rate is often available 90–120 days out, not at renewal itself. Borrowers who wait until their maturity date — when the bank has already printed the renewal letter with a generic posted discount — typically pay 0.20–0.50% more than those who negotiated earlier.
+        </p>
+      </div>
+      <div class="rounded-xl bg-warning-25 border border-warning-50 p-5">
+        <h3 class="font-semibold mb-1">Credit Union Portability Gaps</h3>
+        <p class="text-body-sm text-muted-foreground">
+          Credit union portability is often advertised as unlimited but is actually capped at the province or region they operate in — a Vancity mortgage can't port to Ontario; a Meridian mortgage can't port to BC. If you're likely to move provinces, factor this in.
+        </p>
+      </div>
+      <div class="rounded-xl bg-warning-25 border border-warning-50 p-5">
+        <h3 class="font-semibold mb-1">B-Lender Short Terms</h3>
+        <p class="text-body-sm text-muted-foreground">
+          Equitable, Home Trust, and Haventree typically offer 1, 2, and 3-year terms rather than 5-year. This works for the B-lender business model (shorter commitment, rate-reset opportunities) but traps borrowers in repeated renewal and transfer cycles. Aim to move to an A-lender as soon as credit rebuilds.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Use This Cheat Sheet</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Find your current lender in the first table, note the charge type and IRD method. If you're considering switching at renewal, check whether the new lender covers legal fees under a standard-charge switch program (most do). If your charge is collateral, budget $1,100–$1,900 depending on province. If you're mid-term and contemplating a break, the IRD method row tells you roughly how painful the penalty will be — and our <a href="/mortgage-renewal-calculator/" class="text-secondary-100 hover:underline">penalty calculator</a> produces the actual dollar figure.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/canadian-lender-cheat-sheet/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Need help interpreting your commitment letter?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can read your charge type, penalty clause, and portability rules — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

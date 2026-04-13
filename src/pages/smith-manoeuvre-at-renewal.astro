@@ -1,0 +1,283 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is the Smith Manoeuvre in plain language?",
+    answer: "The Smith Manoeuvre is a legal Canadian tax strategy that converts non-deductible mortgage interest into tax-deductible investment loan interest. Each month as you pay down your mortgage principal, you borrow the same amount from a HELOC attached to your home and invest it in a non-registered (taxable) account. Because the borrowed funds are being used to earn income from investments, the HELOC interest becomes deductible under ITA Section 20(1)(c). Over a 20–25 year period, your entire mortgage can theoretically be converted from deductible-nothing to a deductible investment loan of equal size — effectively making your mortgage interest tax-deductible."
+  },
+  {
+    question: "Why is a readvanceable mortgage required for the Smith Manoeuvre?",
+    answer: "A readvanceable mortgage is one where the HELOC limit automatically increases as the mortgage principal is paid down, keeping total available credit at the original combined limit (typically 80% of home value). This is mechanically essential for the Smith Manoeuvre because without automatic re-advancement, you'd have to manually apply for each HELOC increase — costly and operationally impossible month-to-month. Canadian readvanceable products include Scotiabank STEP, National Bank All-In-One, Manulife One, RBC Homeline Plan, and BMO Readiline. CIBC and TD have similar products under different names."
+  },
+  {
+    question: "Why is renewal the best time to set up a Smith Manoeuvre?",
+    answer: "Three reasons. (1) No prepayment penalty — moving from a conventional mortgage to a readvanceable mortgage mid-term would trigger an IRD penalty, potentially $5,000–$30,000. At renewal, the term is naturally ending, so there's no penalty. (2) You're already shopping lenders — the switch from a standard mortgage to a readvanceable one is just one more factor in the shopping process. (3) The readvanceable set-up is more complex than a standard renewal — fresh underwriting, legal work to register the new instrument, decision on HELOC sub-account structure. Doing it at renewal lets you handle everything in one coordinated transaction with your broker and lawyer."
+  },
+  {
+    question: "Is the Smith Manoeuvre risky?",
+    answer: "Yes — meaningfully. It's a leveraged investment strategy. The core risk is that the investments (typically Canadian dividend-paying equities or ETFs in a non-registered account) decline in value while you still owe the HELOC balance in full. The 2022–2023 environment provided a real example: readvanceable HELOC rates moved from roughly 2.5% to over 7% while the S&P/TSX was essentially flat for 18 months. Borrowers who had Smith-Manoeuvred aggressively in 2021 faced sharp cashflow pressure as HELOC payments rose and investment returns stalled. Smith Manoeuvre requires conviction, a long time horizon, and an emotional tolerance for leverage — not appropriate for every homeowner."
+  },
+  {
+    question: "What are the CRA tracing requirements for the Smith Manoeuvre?",
+    answer: "Strict. Under CRA's interpretation of ITA Section 20(1)(c), interest is deductible only when the borrowed funds can be directly traced to the income-earning investment. You must use a clean separation: money drawn from the HELOC flows directly to the investment account, and the investments are held in a non-registered (taxable) account generating interest, dividends, or royalties. Common mistakes that break tracing: mixing HELOC funds with personal cash in a chequing account before investing, using HELOC funds for a vacation and then reinvesting equivalent savings (this fails 'direct use' tracing), or holding the investments in an RRSP or TFSA (no deductibility because the income isn't taxable). Document every transaction and get your accountant to review the first year's deductions before filing."
+  },
+  {
+    question: "Who are the recognized Canadian authorities on Smith Manoeuvre?",
+    answer: "The strategy originated with Fraser Smith in the 1980s and was codified in his 2002 book 'The Smith Manoeuvre.' His son Robinson Smith now runs The Smith Manoeuvre organization and publishes updated educational content. Ed Rempel (financial planner, blogger) has written extensively about the practical mechanics and risk management. Talbot Stevens has also covered leveraged investing frameworks. For implementation, use a fee-based financial planner and CPA familiar with the strategy — not every advisor understands the tracing rules, and errors can result in denied deductions and reassessments with penalties and interest."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "smith-manoeuvre-at-renewal",
+    name: "Smith Manoeuvre at Mortgage Renewal (2026)",
+    description: "How to set up the Smith Manoeuvre at mortgage renewal — readvanceable products (Scotia STEP, NBC All-In-One, Manulife One, RBC Homeline), CRA tracing rules, tax-deductibility, and leverage risks.",
+  }),
+  articleSchema({
+    headline: "Smith Manoeuvre at Mortgage Renewal (2026): Making Canadian Mortgage Interest Tax-Deductible",
+    description: "Guide to setting up a Smith Manoeuvre at renewal — why renewal is the optimal timing, which readvanceable mortgage products support it, CRA tracing under Section 20(1)(c), and rate-shock risks.",
+    slug: "smith-manoeuvre-at-renewal",
+    articleSection: "Tax Strategy",
+    about: "Smith Manoeuvre mortgage renewal Canada",
+    keywords: ["Smith Manoeuvre Canada", "readvanceable mortgage", "Scotia STEP", "Manulife One", "tax-deductible mortgage interest", "Section 20(1)(c)"],
+  }),
+  faqSchema(faqs, "smith-manoeuvre-at-renewal"),
+  breadcrumbSchema([
+    { name: "Smith Manoeuvre at Renewal", url: "/smith-manoeuvre-at-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Smith Manoeuvre at Mortgage Renewal (2026) | Canada Tax-Deductible Mortgage Strategy"
+  description="How to set up the Smith Manoeuvre at Canadian mortgage renewal — readvanceable mortgages, CRA tracing rules, Scotia STEP, NBC All-In-One, Manulife One, RBC Homeline, and realistic risks."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Smith Manoeuvre at Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Advanced Tax Strategy</div>
+      <h1 class="text-heading-1 mb-4">Smith Manoeuvre at Mortgage Renewal</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. The Smith Manoeuvre is the most recognized legal Canadian strategy for converting non-deductible mortgage interest into deductible investment loan interest. It requires a readvanceable mortgage, non-registered investments, disciplined CRA tracing, and genuine tolerance for leverage. Mortgage renewal is the right time to set it up. Here's how it works, which products support it, and the risks that matter.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• The Smith Manoeuvre converts non-deductible mortgage interest into deductible investment-loan interest via a <strong>readvanceable mortgage</strong> and non-registered investments.</li>
+        <li>• Legal authority: <strong>ITA Section 20(1)(c)</strong> permits deducting interest on money borrowed to earn income from investments.</li>
+        <li>• Required products: <strong>Scotia STEP, NBC All-In-One, Manulife One, RBC Homeline, BMO Readiline</strong> — or similar at CIBC/TD.</li>
+        <li>• <strong>Renewal is the optimal set-up moment</strong> — no break penalty, fresh underwriting, single closing.</li>
+        <li>• <strong>CRA direct-tracing rules</strong> are strict — sloppy bookkeeping kills the deduction.</li>
+        <li>• Investments must be held in a <strong>non-registered (taxable) account</strong> — RRSP/TFSA investments disqualify the deduction.</li>
+        <li>• Leverage <strong>amplifies both gains and losses</strong> — 2022–2023 rate shock is the cautionary recent example.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How the Smith Manoeuvre Actually Works</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The mechanic is elegant but depends on a specific mortgage product: a <strong>readvanceable mortgage</strong>. A readvanceable is a split facility — a traditional amortizing mortgage sub-account, plus a HELOC sub-account — where the HELOC limit automatically grows by the same dollar amount your mortgage principal decreases each month. Total approved credit stays constant at roughly 80% of home value.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Each month:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>You make your regular mortgage payment — principal and interest</li>
+      <li>Principal paydown (say, $1,200) automatically increases HELOC available room by $1,200</li>
+      <li>You draw $1,200 from the HELOC and transfer directly to a non-registered investment account</li>
+      <li>You buy investments (typically dividend-paying Canadian equities or an eligible ETF)</li>
+      <li>The HELOC interest is tax-deductible because the borrowed funds earn investment income</li>
+      <li>Any investment dividends can be applied back to the mortgage principal, accelerating the whole cycle (the "Cashflow Dam" variant)</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      After 20–25 years of consistent execution, your mortgage balance approaches zero and you hold an investment loan equal to the original mortgage — but the interest on that investment loan is deductible, unlike your original mortgage interest. Over the life of the strategy, the tax savings fund additional investment and accelerate debt extinction.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Renewal Is the Right Set-Up Moment</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Smith Manoeuvre requires a readvanceable mortgage. If you currently have a standard fixed-rate mortgage, switching to a readvanceable mid-term would mean:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Breaking the existing mortgage (triggering an IRD penalty of $5,000–$30,000 depending on balance, contract rate, and comparison rate)</li>
+      <li>Originating a new readvanceable at today's rates regardless of whether today's rates are good</li>
+      <li>Registering new collateral charge security (readvanceables are almost always registered as collateral charges, not standard charges)</li>
+      <li>Legal fees of $1,000–$2,000</li>
+    </ul>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      At renewal, the old term is naturally ending — no penalty. You're already shopping lenders, so the readvanceable choice is one more variable. The set-up cost drops to effectively just the legal work (often waived on a switch by the new lender), and you're making the decision at a moment when shopping lenders is efficient anyway.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching at renewal guide</a> for the switch mechanic and <a href="/collateral-vs-standard-charge-mortgage/" class="text-secondary-100 hover:underline">charge-type guide</a> for what a collateral charge means for future flexibility.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Canadian Readvanceable Mortgage Products</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Product</th>
+            <th class="p-3 text-left">Lender</th>
+            <th class="p-3 text-left">Notable Features</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">STEP (Scotia Total Equity Plan)</td>
+            <td class="p-3">Scotiabank</td>
+            <td class="p-3">Multiple sub-accounts; very flexible; the most common Smith Manoeuvre vehicle</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">All-In-One Banking</td>
+            <td class="p-3">National Bank</td>
+            <td class="p-3">Single-facility offset product; chequing, mortgage, HELOC integrated</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Manulife One</td>
+            <td class="p-3">Manulife Bank</td>
+            <td class="p-3">Single-account approach; prime-based pricing; strong for self-employed Smith Manoeuvre</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Homeline Plan</td>
+            <td class="p-3">RBC Royal Bank</td>
+            <td class="p-3">Classic readvanceable; multiple sub-accounts supported</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Readiline</td>
+            <td class="p-3">BMO</td>
+            <td class="p-3">Functional readvanceable; slightly less flexibility than STEP or Homeline</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Home Power Plan</td>
+            <td class="p-3">CIBC</td>
+            <td class="p-3">Readvanceable offering; Smith-compatible</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">HELOC + Mortgage</td>
+            <td class="p-3">TD</td>
+            <td class="p-3">TD's readvanceable structure; registered as collateral charge</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Almost all readvanceables are registered as <strong>collateral charges</strong>, which means future portability and switches are harder than with a standard-charge mortgage. This is an important trade-off: the Smith Manoeuvre flexibility costs you some lender-shopping optionality at future renewals.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">CRA Section 20(1)(c) and the Tracing Rules</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The entire tax benefit depends on CRA accepting that the HELOC interest is deductible investment-loan interest. The governing rule is <strong>Income Tax Act Section 20(1)(c)</strong>, which permits deduction of interest paid on money borrowed for the purpose of earning income from a business or property.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      CRA's interpretation (set out in Income Tax Folio S3-F6-C1 and related bulletins) requires:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Direct use</strong> — a clean line from HELOC draw to investment purchase. Funds cannot mix with personal money along the way.</li>
+      <li><strong>Current use</strong> — the borrowed funds must still be supporting an income-earning investment. Selling the investment and spending proceeds on a vacation ends the deductibility of that portion.</li>
+      <li><strong>Income-earning purpose</strong> — investments must generate or reasonably be expected to generate interest, dividends, or royalties. Pure capital gain speculation doesn't qualify (though most dividend-paying equities and eligible ETFs work).</li>
+      <li><strong>Not in a tax-sheltered account</strong> — investments in an RRSP or TFSA generate no taxable income, so interest on funds borrowed to contribute is NOT deductible.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Operationally, this means: each month, the HELOC funds move directly to a dedicated non-registered brokerage account. No comingling with personal cash. Every transaction documented. Your accountant reviews the first year of deductions before filing. Many Smith Manoeuvre practitioners maintain a separate tracking spreadsheet or use dedicated software to prove tracing in the event of a CRA review.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Worked Numeric Example</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Year 1 of Smith Manoeuvre at Renewal</p>
+      <p class="text-body-sm leading-relaxed">
+        Renewed mortgage: $500,000 as a Scotia STEP. Mortgage sub-account $500,000 at 4.19% fixed (5-year). HELOC sub-account $0 initial, limit grows with principal paydown. HELOC rate: prime + 0.5% = 5.95% (prime 5.45% April 2026).<br /><br />
+        Year 1 principal paydown: ~$12,000. Total HELOC balance end of year 1: $12,000. HELOC interest paid year 1 (averaged over accumulating balance): ~$360.<br /><br />
+        <strong>At marginal tax rate of 43% (Ontario high-income bracket):</strong><br />
+        Tax deduction value: $360 × 43% = $155 in year 1<br /><br />
+        <strong>Investment side:</strong> $12,000 invested gradually over year 1. Assuming 5% dividend yield on Canadian dividend ETFs (eligible dividend, ~25% effective tax): ~$300 pretax dividend, ~$225 after-tax.<br /><br />
+        <strong>Year 1 math:</strong> HELOC interest $360 vs. dividend income $300. Net cashflow cost: $60. Tax deduction worth $155. Net benefit: ~$95 plus any capital appreciation.<br /><br />
+        By Year 10, accumulated HELOC balance is ~$150,000; accumulated portfolio much larger if market has performed.
+      </p>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Year 1 benefits are modest — the real wealth effect compounds over 15–25 years as the portfolio grows and the tax deductions scale with the HELOC balance. Patience is a prerequisite.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Risks and When NOT to Use the Smith Manoeuvre</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The Smith Manoeuvre is leverage. The risks are real and occasionally severe:
+    </p>
+
+    <div class="space-y-4 mb-6">
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Rate shock on the HELOC</p>
+        <p class="text-body-sm text-muted-foreground">HELOCs are variable-rate. Between 2022 and early 2024, HELOC rates moved from under 3% to over 7%. On a $200,000 accumulated HELOC balance, that's roughly $700/month of additional interest — from a borrowed source that suddenly costs more than the investments are returning.</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Investment drawdown</p>
+        <p class="text-body-sm text-muted-foreground">The S&P/TSX fell over 10% in 2022. Canadian dividend ETFs held up better but still saw drawdowns. You still owe the HELOC balance in full even when investments are down — there's no downward adjustment.</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">CRA review risk</p>
+        <p class="text-body-sm text-muted-foreground">Large interest deductions on readvanceable accounts can trigger CRA review. If tracing is sloppy, reassessments come with penalties and interest. Keep pristine records.</p>
+      </div>
+      <div class="rounded-lg p-4 border border-gray-100 bg-white">
+        <p class="font-semibold mb-2">Emotional stress</p>
+        <p class="text-body-sm text-muted-foreground">Watching a leveraged portfolio decline while HELOC rates rise is uncomfortable. Many Smith practitioners who started aggressively in 2020–2021 found 2022–2023 genuinely distressing. Know yourself.</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      The Smith Manoeuvre is not appropriate for homeowners with uncertain employment, limited long-term investment experience, low risk tolerance, or a mortgage balance that already stretches their GDS/TDS tight. It is appropriate for high-income earners with long time horizons, stable employment, investment experience, and meaningful excess cashflow.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Further Reading</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      The canonical reference is Fraser Smith's 2002 book <em>The Smith Manoeuvre: Is Your Mortgage Tax Deductible?</em> Robinson Smith (Fraser's son) continues the educational work at the Smith Manoeuvre organization. Ed Rempel's blog has practical implementation notes and cautionary case studies. For CRA specifics, see Income Tax Folio S3-F6-C1 on interest deductibility. For implementation, work with a fee-based financial planner and a CPA familiar with the strategy — and a mortgage broker who can set up the readvanceable at your renewal.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/smith-manoeuvre-at-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Setting Up a Smith Manoeuvre at Your Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed broker can set up Scotia STEP, Manulife One, or RBC Homeline at renewal with no break penalty — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Smith Manoeuvre Setup Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

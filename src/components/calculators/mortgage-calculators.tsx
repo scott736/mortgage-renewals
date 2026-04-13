@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding
@@ -261,7 +261,7 @@ export function PenaltyEstimator() {
   const threeMonthInterest = balance * effectiveMonthlyRate(currentRate) * 3;
 
   // IRD penalty — bank uses posted rate (approximate posted as contract + 1.5% for banks)
-  const postedRate = lenderType === 'bank' ? currentRate + 1.5 : currentRate;
+  const _postedRate = lenderType === 'bank' ? currentRate + 1.5 : currentRate;
   const rateSpread = Math.max(0, currentRate - newRate);
   const irdMonthly = balance * effectiveMonthlyRate(rateSpread);
   const ird = irdMonthly * monthsRemaining;

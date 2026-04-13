@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { SchedulingWidget } from '@/components/scheduling/SchedulingWidget';
 import type { Service, TeamMember } from '@/lib/nylas/types';
 

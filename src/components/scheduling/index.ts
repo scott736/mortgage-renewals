@@ -1,6 +1,6 @@
+export { AvailabilityPicker } from './AvailabilityPicker';
+export { BookingConfirmation } from './BookingConfirmation';
+export { BookingForm } from './BookingForm';
+export { PendingConfirmation } from './PendingConfirmation';
 export { SchedulingWidget } from './SchedulingWidget';
 export { ServiceSelector } from './ServiceSelector';
-export { AvailabilityPicker } from './AvailabilityPicker';
-export { BookingForm } from './BookingForm';
-export { BookingConfirmation } from './BookingConfirmation';
-export { PendingConfirmation } from './PendingConfirmation';

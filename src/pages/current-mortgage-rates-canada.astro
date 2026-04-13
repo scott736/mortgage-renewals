@@ -1,7 +1,8 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import LiveRatesTable from '@/components/sections/live-rates-table';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -9,16 +10,16 @@ const schema = combineSchemas(
   webPageNode({
     slug: "current-mortgage-rates-canada",
     name: "Current Mortgage Rates Canada (April 2026)",
-    description: "Live Canadian mortgage rates for April 11, 2026 — best broker-negotiated rates for 1 through 5-year terms and 5-year variable, plus Big 5 comparison.",
+    description: "Live Canadian mortgage rates for April 2026 — best broker-negotiated rates for 1 through 5-year terms and 5-year variable, plus Big 5 comparison.",
   }),
   articleSchema({
-    headline: "Current Mortgage Rates in Canada (April 11, 2026)",
+    headline: "Current Mortgage Rates in Canada (April 2026)",
     description: "Today's best mortgage rates across Canada: 3.94% insured 5-year fixed, 3.30% 5-year variable at prime minus 1.15%. Updated weekly.",
     slug: "current-mortgage-rates-canada",
     articleSection: "Rates",
     about: "Canadian Mortgage Rates",
     keywords: ["current mortgage rates Canada", "best 5-year rates", "mortgage rates April 2026", "Canadian mortgage rates today"],
-    dateModified: "2026-04-11",
+    dateModified: "2026-04-12",
   }),
   breadcrumbSchema([
     { name: "Current Mortgage Rates", url: "/current-mortgage-rates-canada" }
@@ -27,7 +28,7 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Current Mortgage Rates Canada — April 11, 2026"
+  title="Current Mortgage Rates Canada — April 2026"
   description="Today's best Canadian mortgage rates: 3.94% insured 5-yr fixed, 3.30% variable. Big 5 bank comparison, broker rates, and BoC prime at 4.45%."
   schema={schema}
 >
@@ -37,7 +38,7 @@ const schema = combineSchemas(
 
   <section class="container max-w-4xl py-10">
     <div class="mb-8">
-      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 11, 2026</div>
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 2026</div>
       <h1 class="text-heading-1 mb-4">Current Mortgage Rates in Canada</h1>
       <p class="text-body-lg text-muted-foreground max-w-2xl">
         Today's best broker-negotiated rates for Canadian homeowners. Refreshed weekly from 30+ lenders, compared against the Big 5 bank special-offer rates. No posted bank fluff — these are the rates you can actually get.
@@ -124,24 +125,7 @@ const schema = combineSchemas(
         </ul>
       </div>
 
-      <div>
-        <h2 class="text-heading-3 mb-4">Related Pages</h2>
-        <div class="grid sm:grid-cols-2 gap-3">
-          {[
-            { title: "Best Mortgage Renewal Rates Guide", href: "/best-mortgage-renewal-rates/" },
-            { title: "Mortgage Rate Forecast 2026", href: "/mortgage-rate-forecast/" },
-            { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
-            { title: "Renewal Calculator", href: "/mortgage-renewal-calculator/" },
-            { title: "Switching Lenders at Renewal", href: "/switching-lenders-at-renewal/" },
-            { title: "Set a Rate Alert", href: "/rate-alert/" },
-          ].map(link => (
-            <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-              <span class="text-secondary-100">→</span>
-              {link.title}
-            </a>
-          ))}
-        </div>
-      </div>
+      <RelatedLinks slug="/current-mortgage-rates-canada/" />
     </div>
   </section>
 

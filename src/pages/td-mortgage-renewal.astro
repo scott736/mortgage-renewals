@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -168,27 +169,7 @@ const schema = combineSchemas(
       <p class="mb-6 leading-relaxed">The key is making an informed decision. A free broker call gives you the benchmark — then you can negotiate with TD from a position of information or switch with confidence.</p>
     </div>
 
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/rbc-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">RBC Mortgage Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Compare RBC's standard charge to TD's collateral charge approach.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step guide — applies to TD customers moving to another lender.</p>
-        </a>
-        <a href="/best-mortgage-renewal-rates/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Best Renewal Rates 2026</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Current market rates to benchmark TD's offer against.</p>
-        </a>
-        <a href="/first-national-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">First National Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Compare a monoline's rates and IRD methodology to TD.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/td-mortgage-renewal/" />
   </article>
 
   <section class="py-12" style="background: var(--accent)">

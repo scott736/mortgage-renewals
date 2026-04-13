@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -107,35 +108,7 @@ const schema = combineSchemas(
     <p class="mb-6 leading-relaxed">Always ask your broker whether the new lender will contribute to notarial fees. Some lenders in the Quebec market do offer contributions toward legal/notary costs — ask explicitly before assuming you pay the full amount.</p>
 
     <!-- Internal links -->
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Notary costs, no stress test on straight switches, 8-step process.</p>
-        </a>
-        <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using an AMF-Licensed Broker</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Find an AMF-licensed broker with Quebec mortgage expertise.</p>
-        </a>
-        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types in Canada</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Desjardins, National Bank, monolines — Quebec lender comparison.</p>
-        </a>
-        <a href="/what-is-a-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">What Is a Mortgage Renewal?</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">The complete guide to how Canadian mortgage renewals work.</p>
-        </a>
-        <a href="/mortgage-renewal-checklist/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Checklist</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Step-by-step action plan including booking your Quebec notary.</p>
-        </a>
-        <a href="/mortgage-renewal-faq/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Renewal FAQ</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">40+ questions answered including Quebec-relevant topics.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/quebec-mortgage-renewal/" />
   </article>
 
   <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">

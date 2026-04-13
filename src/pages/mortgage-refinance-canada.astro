@@ -1,0 +1,263 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What's the maximum I can refinance my mortgage for in Canada in 2026?",
+    answer: "Conventional refinances are capped at 80% of the home's current appraised value under OSFI Guideline B-20. Insured refinances were eliminated by the federal government in November 2016, so no refinance above 80% LTV is possible at a federally regulated A-lender. Alt lenders and private lenders may go higher but at materially higher cost."
+  },
+  {
+    question: "When does it make sense to refinance instead of waiting until renewal?",
+    answer: "Refinance mid-term when: (1) rates have dropped materially and the savings outweigh the prepayment penalty, (2) you need cash urgently and can't wait for renewal, (3) you're consolidating high-interest debt and the monthly savings more than offset the penalty over the remaining term. Otherwise, refinancing AT renewal is almost always cheaper because no penalty applies."
+  },
+  {
+    question: "What does a refinance actually cost in Canada?",
+    answer: "Typical refinance costs in 2026: prepayment penalty ($0 at renewal, or 3 months' interest/IRD mid-term), appraisal ($400–$600), legal fees ($800–$1,500), discharge fee ($300–$400), and title insurance ($200–$300). If refinancing through a broker with a lender offering a switch allowance, legal and appraisal can be covered. Total out-of-pocket at renewal is often $0–$500; mid-term it can reach $10,000–$20,000+ depending on penalty."
+  },
+  {
+    question: "Do I need to pass the stress test when I refinance?",
+    answer: "Yes. All refinances — whether at renewal or mid-term — are fully subject to the OSFI B-20 stress test at the greater of contract rate + 2% or 5.25%. The November 2024 OSFI exemption only applies to straight-switch renewals where the balance and amortization stay the same. Any new money (cash out, increased amortization) requalifies as a refinance and triggers the full stress test."
+  },
+  {
+    question: "Should I refinance or take out a HELOC?",
+    answer: "Refinance when you want a lower overall blended rate, a fixed payment, and to roll high-interest debt into the mortgage. HELOC when you want access to a flexible pool you may or may not use, you can handle variable-rate exposure, and you want interest-only payments. Many Canadians combine both via a readvanceable mortgage. See our HELOC vs. refinance calculator to run the numbers."
+  },
+  {
+    question: "Can I refinance to pay off my spouse in a separation?",
+    answer: "Yes — this is called a spousal buyout refinance. Through CMHC's Spousal Buyout Program (an exception to the insured refinance rule), the remaining spouse can refinance up to 95% LTV with mortgage default insurance, as long as the funds go directly to buy out the departing spouse's share. This is one of the very few ways to refinance above 80% LTV on a federally regulated A-lender."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-refinance-canada",
+    name: "Mortgage Refinance in Canada (2026)",
+    description: "When to refinance a Canadian mortgage, how much you can pull out (80% LTV cap), total cost breakdown, and why renewal is often the smartest time to refinance.",
+  }),
+  articleSchema({
+    headline: "Mortgage Refinance in Canada (2026): When to Refinance and How Much You Can Pull Out",
+    description: "Complete 2026 Canadian refinance guide — 80% LTV cap, the elimination of insured refinances, cost breakdown, stress test rules, and why refinancing at renewal saves the most.",
+    slug: "mortgage-refinance-canada",
+    articleSection: "Mortgage Refinance",
+    about: "Mortgage refinancing in Canada",
+    keywords: ["mortgage refinance Canada", "refinance mortgage 2026", "80% LTV refinance", "refinance at renewal", "spousal buyout refinance", "cash out refinance Canada"],
+  }),
+  faqSchema(faqs, "mortgage-refinance-canada"),
+  breadcrumbSchema([
+    { name: "Mortgage Refinance in Canada", url: "/mortgage-refinance-canada" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Refinance in Canada (2026) | How Much Can You Pull Out?"
+  description="When to refinance a Canadian mortgage in 2026, the 80% LTV cap, cost breakdown, and why refinancing at renewal is almost always cheaper than mid-term."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Mortgage Refinance in Canada
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Mortgage Refinance</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Refinance in Canada (2026)</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. A refinance rewrites your mortgage — new balance, new term, new amortization — often with cash out. Here's how Canadian refinance rules work, how much you can pull out, and why renewal is almost always the smartest time to do it.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Maximum refinance in Canada is <strong>80% of appraised value</strong>. Insured refinances were ended November 2016.</li>
+        <li>• <strong>Common uses:</strong> debt consolidation, home renovations, investment capital, education, business investment.</li>
+        <li>• Typical mid-term refinance costs: <strong>penalty + $1,500–$2,500</strong> in legal, appraisal, and discharge fees.</li>
+        <li>• All refinances trigger the <strong>full stress test</strong> at contract + 2% or 5.25% — no OSFI exemption.</li>
+        <li>• <strong>Refinancing AT renewal</strong> avoids the prepayment penalty entirely — often the biggest single cost.</li>
+        <li>• The <strong>CMHC Spousal Buyout Program</strong> is the one exception allowing refinance up to 95% LTV.</li>
+        <li>• Alternatives: HELOC, second mortgage, reverse mortgage, or readvanceable mortgage — each with different cost and flexibility profiles.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What a Refinance Actually Does</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Refinancing a Canadian mortgage means replacing your existing mortgage with a new one — typically with a new balance, new term, and new amortization. Unlike a renewal, where you're simply signing for a new term at the end of your current one, a refinance happens when you want to change the mortgage itself: pull equity out as cash, reset the amortization to lower payments, or switch product types.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The mechanics are straightforward. The new mortgage funds, pays off the old mortgage (triggering a prepayment penalty if done mid-term), and the difference — minus closing costs — goes to you as cash or pays off the debts you're consolidating. The new mortgage is re-registered against the property.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The 80% LTV Rule (And Why It Matters)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Since November 2016, the federal government has not insured any refinance. That means every refinance in Canada at a federally regulated A-lender is a <strong>conventional (uninsured) refinance</strong>, and OSFI caps conventional LTV at 80%. You can only refinance up to 80% of your home's appraised value — period.
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: Maximum Cash Out</p>
+      <p class="text-body-sm leading-relaxed">
+        Home appraised value: $750,000<br />
+        Existing mortgage balance: $310,000<br /><br />
+        <strong>80% LTV cap:</strong> $750,000 × 80% = $600,000<br />
+        <strong>Available refinance proceeds:</strong> $600,000 − $310,000 = <strong>$290,000</strong><br /><br />
+        Less closing costs (~$2,000) and, if mid-term, IRD penalty (could be $8,000–$20,000+).<br />
+        Net cash to borrower: approximately $270,000–$288,000.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What Canadians Actually Use Refinances For</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Debt consolidation</h3>
+        <p class="text-body-sm text-muted-foreground">Roll $40,000 of credit card debt at 19.99% into mortgage at 4.79%. Monthly savings often $500–$1,000 even after refi costs.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Home renovations</h3>
+        <p class="text-body-sm text-muted-foreground">Kitchen, basement suite, addition. Often increases appraised value enough to offset the refinance cost.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Investment capital</h3>
+        <p class="text-body-sm text-muted-foreground">Down payment on a rental property or funding a non-registered portfolio. Interest may be tax-deductible (Smith Manoeuvre).</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Education</h3>
+        <p class="text-body-sm text-muted-foreground">Tuition for a child or career change. Mortgage rates dramatically below private student loan rates.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Full Cost Breakdown</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Cost</th>
+            <th class="p-3 text-left">Mid-Term Refinance</th>
+            <th class="p-3 text-left">At Renewal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Prepayment penalty</td>
+            <td class="p-3">IRD (fixed) or 3 months' interest (variable) — often $8,000–$20,000+</td>
+            <td class="p-3">$0</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Appraisal</td>
+            <td class="p-3">$400–$600</td>
+            <td class="p-3">$400–$600 (often waived)</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Legal fees</td>
+            <td class="p-3">$800–$1,500</td>
+            <td class="p-3">$800–$1,500 (often covered)</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Discharge fee</td>
+            <td class="p-3">$300–$400</td>
+            <td class="p-3">$300–$400</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Title insurance</td>
+            <td class="p-3">$200–$300</td>
+            <td class="p-3">$200–$300</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium"><strong>Typical total</strong></td>
+            <td class="p-3"><strong>$10,000–$22,000+</strong></td>
+            <td class="p-3"><strong>$0–$2,500</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Mid-term penalty dominates the total. See <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD vs. 3-month interest penalty</a> for how to calculate yours.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Refinancing at Renewal Is Almost Always Smartest</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The prepayment penalty is usually the single largest cost of a mid-term refinance. At renewal, that cost is zero — the term has ended, the contract is over, and you can rewrite the mortgage however you want. If you're considering a refinance and your renewal is within 6–12 months, waiting is almost always the better move.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Exception: if rates have dropped enough that the interest savings over the remaining term outweigh the penalty, breaking and refinancing mid-term can net you more. A broker can run both scenarios with your lender's actual penalty quote — usually in under an hour.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Refinance vs. HELOC vs. Second Mortgage vs. Reverse</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Product</th>
+            <th class="p-3 text-left">Max LTV</th>
+            <th class="p-3 text-left">Typical Rate (2026)</th>
+            <th class="p-3 text-left">Best For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Refinance</td>
+            <td class="p-3">80%</td>
+            <td class="p-3">4.49%–5.19%</td>
+            <td class="p-3">Large one-time need, debt consolidation</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">HELOC</td>
+            <td class="p-3">65% standalone / 80% combined</td>
+            <td class="p-3">Prime + 0.50 (5.45%)</td>
+            <td class="p-3">Flexible access, renovations, bridge</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Second mortgage</td>
+            <td class="p-3">80–85% (alt/private)</td>
+            <td class="p-3">8%–14%</td>
+            <td class="p-3">Can't qualify for refi or HELOC</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Reverse mortgage (55+)</td>
+            <td class="p-3">Up to 55% by age</td>
+            <td class="p-3">7.5%–8.5%</td>
+            <td class="p-3">Retirees, no monthly payments</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See our dedicated guides on <a href="/canadian-heloc-guide/" class="text-secondary-100 hover:underline">HELOCs</a>, <a href="/second-mortgage-at-renewal/" class="text-secondary-100 hover:underline">second mortgages</a>, and <a href="/reverse-mortgage-at-renewal/" class="text-secondary-100 hover:underline">reverse mortgages</a> for deeper comparisons.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/mortgage-refinance-canada/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Thinking About a Refinance?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will run the numbers for you — refinance now, refinance at renewal, or use a HELOC instead. Free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Refinance Analysis
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

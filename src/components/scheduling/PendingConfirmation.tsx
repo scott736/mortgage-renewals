@@ -1,9 +1,10 @@
 'use client';
 
-import { Mail, Clock, Calendar, User, CheckCircle2 } from 'lucide-react';
+import { Calendar, Clock, Mail } from 'lucide-react';
+
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
 import type { TeamMember } from '@/lib/nylas/types';
+import { cn } from '@/lib/utils';
 
 interface PendingConfirmationProps {
   email: string;

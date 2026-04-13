@@ -1,0 +1,267 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Do I need new home insurance when I switch mortgage lenders?",
+    answer: "You don't need a new home insurance policy, but you do need to update the 'loss payee' on your existing policy to reflect the new lender. Home insurance (also called fire or property insurance) is required by every Canadian lender throughout the life of the mortgage. At switch, the new lender will ask your insurance broker to issue a certificate of insurance naming the new lender as loss payee — this is usually a free, same-day change. Failing to provide this certificate delays closing. Cancelling the policy outright would be a serious mistake and would trigger force-placed insurance by the lender."
+  },
+  {
+    question: "Does my creditor mortgage life insurance transfer when I switch lenders?",
+    answer: "No. Creditor insurance (mortgage life, disability, or critical illness insurance sold by your bank) is a contract between you and the lender's insurance subsidiary — it is not portable. When you switch lenders, your existing creditor insurance is cancelled automatically on the discharge of the old mortgage. If you want coverage at the new lender, you must reapply, be re-underwritten, and pay the premiums on the new lender's terms. If your health has declined since origination, you could be declined — which is why financial advisers typically recommend standalone term life insurance instead."
+  },
+  {
+    question: "What is the difference between creditor insurance and term life insurance?",
+    answer: "Creditor insurance pays off the remaining mortgage balance to the lender if you die; the benefit declines as you pay down the mortgage. It's sold by the bank at the point of mortgage application, is not portable between lenders, and is often subject to post-claim underwriting (meaning the insurer reviews your application only at the time of a claim, which can result in denied claims for minor omissions). Term life insurance is a standalone policy that pays a fixed death benefit to your chosen beneficiary — typically a spouse — who then decides what to do with the money (including paying off the mortgage). It's fully portable, health is underwritten upfront, and premiums for a healthy 35-year-old are typically 30-50% lower for the same coverage."
+  },
+  {
+    question: "When should I cancel my old creditor insurance after switching lenders?",
+    answer: "Timing matters. You should have new coverage (either replacement creditor insurance at the new lender or, ideally, a standalone term life policy) in force before cancelling the old policy. In practice, if you're replacing creditor insurance with term life, the term life policy should be approved and issued before your switch closes. If you're replacing creditor insurance with new creditor insurance at the new lender, coverage typically begins automatically on closing day of the new mortgage and the old coverage ends simultaneously — but confirm this with both lenders and do not assume."
+  },
+  {
+    question: "Are the insurance rules different in Quebec?",
+    answer: "Yes. Quebec is a civil-law jurisdiction with its own consumer protection laws governing insurance. Home insurance requirements by lenders are similar, but the regulator is the Autorité des marchés financiers (AMF) rather than provincial insurance commissions elsewhere. Creditor insurance sold by Desjardins and other Quebec lenders must comply with Quebec's Act Respecting the Distribution of Financial Products and Services. Quebec also has a stronger consumer right to cancel creditor insurance within 10 days of purchase (versus the standard 30 days in some other provinces). Title insurance is less common in Quebec because the notary-based land transfer system performs many of the same functions."
+  },
+  {
+    question: "What happens to my mortgage default insurance (CMHC, Sagen, Canada Guaranty) when I switch lenders?",
+    answer: "Mortgage default insurance (the premium you paid if you put less than 20% down) is completely separate from the insurance types discussed on this page. It transfers automatically with the mortgage when you switch lenders at renewal — free, with no new premium and no re-underwriting. The existing insurer reassigns the policy to the new lender. This is explained in detail in our CMHC, Sagen, and Canada Guaranty guide."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "mortgage-insurance-at-switch",
+    name: "Mortgage Insurance at Switch: Fire, Home, Creditor Life in Canada (2026)",
+    description: "The four types of mortgage-related insurance in Canada — property/fire, creditor life, term life, and default insurance — and how each changes when you switch lenders.",
+  }),
+  articleSchema({
+    headline: "Mortgage Insurance at Switch: Fire, Home, Creditor Life, and Default Insurance in Canada (2026)",
+    description: "Complete guide to the four insurance types tied to a Canadian mortgage — what transfers at a lender switch, what must be reapplied for, and how to time cancellations safely.",
+    slug: "mortgage-insurance-at-switch",
+    articleSection: "Mortgage Insurance",
+    about: "Mortgage-related insurance at a lender switch",
+    keywords: ["mortgage insurance switch", "creditor insurance", "fire insurance lender", "home insurance switch", "term life mortgage"],
+  }),
+  faqSchema(faqs, "mortgage-insurance-at-switch"),
+  breadcrumbSchema([
+    { name: "Mortgage Insurance at Switch", url: "/mortgage-insurance-at-switch" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Insurance at Switch (2026) | Home, Creditor, Life"
+  description="How the four types of mortgage-related insurance — home, creditor life, term life, and default insurance — behave when you switch Canadian mortgage lenders."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Mortgage Insurance at Switch
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Insurance at a Lender Switch</div>
+      <h1 class="text-heading-1 mb-4">Mortgage Insurance at Switch: Home, Creditor, Life, and Default</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. There are four different insurance products tied to a Canadian mortgage, and each one behaves differently when you switch lenders at renewal. Here's exactly what transfers, what has to be reapplied for, and what can trip up your closing.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>Home insurance</strong> (fire/property) — required by every lender; the policy stays the same but the "loss payee" must be updated to the new lender.</li>
+        <li>• <strong>Creditor mortgage life insurance</strong> (sold by the bank) — does NOT transfer. Ends on discharge of the old mortgage. Must reapply at the new lender (health re-underwritten).</li>
+        <li>• <strong>Term life insurance</strong> (standalone) — fully independent of the mortgage. Not affected by a lender switch at all. Portable for life.</li>
+        <li>• <strong>Mortgage default insurance</strong> (CMHC / Sagen / Canada Guaranty) — follows the mortgage automatically when you switch. No new premium.</li>
+        <li>• Never cancel creditor insurance or a home insurance policy before the new coverage is confirmed in force.</li>
+        <li>• FCAC has repeatedly flagged <strong>creditor insurance</strong> for post-claim underwriting and declining benefit — standalone term life is usually the better product.</li>
+        <li>• <strong>Quebec</strong> has its own civil-law regime under the AMF with stronger cancellation rights on creditor insurance.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Four Insurance Types — Side by Side</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      People lump all of these together as "mortgage insurance" in conversation, but they are four distinct products from different issuers with different rules. At a lender switch, they behave completely differently.
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Type</th>
+            <th class="p-3 text-left">Who Issues It</th>
+            <th class="p-3 text-left">Who It Protects</th>
+            <th class="p-3 text-left">Transfers at Switch?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Home / fire / property</td>
+            <td class="p-3">A P&amp;C insurer you choose (Intact, Aviva, etc.)</td>
+            <td class="p-3">You + lender (loss payee)</td>
+            <td class="p-3">Yes — update loss payee</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Creditor mortgage life</td>
+            <td class="p-3">Lender's insurance subsidiary</td>
+            <td class="p-3">Lender only</td>
+            <td class="p-3">No — reapply</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Term life (standalone)</td>
+            <td class="p-3">A life insurer of your choice (Canada Life, Manulife, etc.)</td>
+            <td class="p-3">Your named beneficiary</td>
+            <td class="p-3">N/A — independent of mortgage</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Mortgage default</td>
+            <td class="p-3">CMHC / Sagen / Canada Guaranty</td>
+            <td class="p-3">Lender only (makes them whole if you default)</td>
+            <td class="p-3">Yes — automatic reassignment</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">1. Home / Fire / Property Insurance</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Every Canadian lender requires continuous property insurance covering the full replacement cost of the dwelling for the life of the mortgage. This is a standard P&amp;C (property &amp; casualty) policy — typically a homeowners policy from Intact, Aviva, TD Insurance, The Co-operators, or any other licensed P&amp;C insurer. The lender does not sell this; you buy it from a broker or directly from the insurer.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      The lender appears on the policy as a <strong>"loss payee"</strong> (also called mortgagee in some policies). This means that if the home is destroyed and a claim is paid out, the insurer writes the cheque jointly to you and the lender — protecting the lender's security interest.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      <strong>At switch:</strong> the policy itself does not need to change — it's your policy, not the lender's. What must happen:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Contact your insurance broker or direct insurer at least 2 weeks before closing.</li>
+      <li>Ask them to issue a new Certificate of Insurance naming the new lender as loss payee, effective the closing date of the new mortgage.</li>
+      <li>Provide this certificate to the new lender (or your lawyer/notary) ahead of closing — the new lender's legal department must have this before funding.</li>
+      <li>The old lender drops off title on discharge; no action is needed to remove them as loss payee (it's functionally irrelevant once the mortgage is paid).</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Most insurers do this change for free in about 10 minutes and send the certificate by email the same day. This is the most common cause of delayed closings on switches — start early.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">2. Creditor Mortgage Life Insurance (Sold by the Lender)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Creditor insurance is the optional coverage the bank offered you when you first signed your mortgage — usually something like "Mortgage Life Insurance," "Mortgage Disability Insurance," or a combined package. The premium is added to your mortgage payment, and if you die (or become disabled, depending on the coverage), the insurer pays the remaining balance to the <em>lender</em>.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Creditor insurance has several well-documented problems — all flagged by the Financial Consumer Agency of Canada (FCAC):
+    </p>
+
+    <ul class="list-disc list-inside mb-4 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Declining benefit, level premium.</strong> As you pay down the mortgage, the death benefit shrinks — but the premium does not.</li>
+      <li><strong>Post-claim underwriting.</strong> The insurer does not review your medical history at the time you buy it. They review it at the time of claim. If any answer on the original application was incorrect, the claim can be denied.</li>
+      <li><strong>Not portable.</strong> If you switch lenders or refinance, the policy ends.</li>
+      <li><strong>Lender is the beneficiary.</strong> The payout goes to the bank, not to your family — who may have wanted a different option (sell the home, invest the funds, etc.).</li>
+      <li><strong>No choice in coverage amount.</strong> The death benefit always equals the mortgage balance — you can't add coverage for income replacement, children's costs, or funeral expenses.</li>
+    </ul>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      <strong>At switch:</strong> creditor insurance is automatically cancelled when the old mortgage is discharged. If you had been paying it, payments stop. The new lender will offer you their own creditor insurance at the new mortgage application — and you can accept, decline, or replace with standalone term life.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      If you have a health condition that has emerged since the original mortgage, you may not qualify for new creditor insurance at the new lender. This is the single most important scenario where a standalone term life policy — arranged before you switch — protects you.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">3. Standalone Term Life Insurance</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Term life insurance is a separate policy from your mortgage. You apply directly with a life insurance company (or through a life insurance broker), go through medical underwriting upfront (paramedical exam, blood test, etc.), and receive a policy with a fixed face amount that pays to your named beneficiary on death. Common terms are 10, 20, or 30 years.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      Advantages over creditor insurance:
+    </p>
+
+    <ul class="list-disc list-inside mb-4 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Level benefit.</strong> The full face amount is paid regardless of mortgage balance.</li>
+      <li><strong>Pre-issue underwriting.</strong> Once you're approved, the insurer cannot later deny the claim based on medical history.</li>
+      <li><strong>Fully portable.</strong> Switch lenders, refinance, sell, move — the policy is unaffected.</li>
+      <li><strong>Your choice of beneficiary.</strong> Spouse, children, estate — not the bank.</li>
+      <li><strong>Typically cheaper.</strong> A healthy 35-year-old non-smoker paying $40/month for $500,000 of creditor insurance can typically get $500,000 of 20-year term life for $20-$25/month.</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      <strong>At switch:</strong> nothing happens. A standalone term life policy is entirely independent of the mortgage. It continues uninterrupted.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">4. Mortgage Default Insurance (CMHC / Sagen / Canada Guaranty)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Mortgage default insurance is entirely different from the three above — it protects the lender, not you, and is required on all mortgages with less than 20% down at origination. The premium was paid once at closing and ridden into the mortgage balance.
+    </p>
+
+    <p class="text-body-md mb-4 leading-relaxed">
+      At a switch, default insurance transfers automatically with the mortgage. No new premium, no re-underwriting. The new lender simply takes assignment of the existing policy.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      See our full guide: <a href="/cmhc-sagen-canada-guaranty-at-renewal/" class="text-secondary-100 hover:underline">CMHC vs. Sagen vs. Canada Guaranty at renewal</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Timing the Cancellation of Creditor Insurance</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you've decided to replace creditor insurance with standalone term life at the same time as a lender switch, sequence matters. Do this in the right order:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Apply for term life first</strong> (ideally 2-3 months before the switch). Complete the medical, get approved, receive the policy in force.</li>
+      <li><strong>Pay the first premium on the term life</strong> — coverage is now active.</li>
+      <li><strong>Close the mortgage switch.</strong> Creditor insurance on the old mortgage ends automatically on discharge.</li>
+      <li><strong>Decline creditor insurance at the new lender</strong> when signing the new mortgage documents.</li>
+    </ol>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Do not cancel your creditor insurance <em>before</em> applying for term life — if you're declined for the term life due to a new health issue, you'd be left without coverage.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Title Insurance — A Brief Note</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Title insurance is a separate product, typically purchased once at the original home purchase, that protects against fraud, survey errors, and title defects. At a lender switch (which doesn't change ownership), your existing title insurance remains in force and the new lender typically arranges a small supplementary lender title policy during the switch. This is handled by the lawyer/notary — you don't need to do anything. See <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders at renewal</a> for the full closing checklist.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Quebec: Civil-Law Specifics</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Quebec operates under civil law and regulates insurance through the Autorité des marchés financiers (AMF). Key differences: creditor insurance must comply with the Act Respecting the Distribution of Financial Products and Services, giving consumers a 10-day free-look period. Home insurance requirements are similar but policies are written under Quebec's Civil Code rather than common-law standards. Title insurance is uncommon because Quebec's notary-registered land transfer system performs verification functions that title insurance covers elsewhere. If you're switching a mortgage in Quebec, your <strong>notaire</strong> (not a lawyer) handles the closing and coordinates the insurance updates.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/mortgage-insurance-at-switch/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Switching Lenders Soon?</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can coordinate your insurance updates with the switch so nothing falls through the cracks — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Switch Coordination Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

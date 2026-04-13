@@ -1,0 +1,275 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Is title insurance required when I switch mortgage lenders in Canada?",
+    answer: "Effectively yes on every modern switch. Since around 2018, Canadian lenders have shifted from requiring a full solicitor's opinion on title to accepting a lender policy of title insurance (TitlePLUS, Stewart Title, FCT, Chicago Title) as the alternative. The title insurer covers the new lender against defects in title for a one-time premium of $250–$400. Legal-paid switch programs now rely on title insurance as the fast-track mechanism — without it, the full solicitor review adds $400–$800 and weeks to the close. Borrowers may optionally buy an owner's policy too ($150–$250 add-on) for their own protection."
+  },
+  {
+    question: "How much are legal fees when switching lenders?",
+    answer: "In 2026, a straight insured switch using title insurance runs $500–$900 in solicitor fees across most common-law provinces. A switch involving a collateral charge discharge (TD, Scotia STEP, NBC All-In-One) runs $800–$1,400 because the lawyer must do a full solicitor review rather than rely on title insurance shortcuts. Quebec notary fees run $700–$1,400 regardless of charge type. These fees are separate from title insurance premiums, land registration fees, and the outgoing lender's discharge fee."
+  },
+  {
+    question: "Why did lenders start requiring title insurance instead of solicitor review?",
+    answer: "Title insurance is faster and cheaper for the lender than a full solicitor review. Before the shift, every switch required the new lender's lawyer to search title, review the survey, confirm zoning compliance, check for liens, and issue a formal opinion on title — 20+ hours of work. Title insurance outsources that risk to the insurer for a flat premium. It cut switch closing times from 40–50 days to 10–20 days and enabled the appraisal-free / legal-paid programs that Big 6 and monolines now market heavily."
+  },
+  {
+    question: "When is a full legal review still required?",
+    answer: "Three scenarios in 2026: (1) discharging a collateral charge — the new lender's lawyer must confirm no lingering obligations remain and re-register a fresh charge; (2) any refinance that adds funds or changes co-borrowers; (3) rural properties over roughly 10 acres, non-standard zoning, legal non-conforming use, or title chain issues the insurer won't cover. Properties with known title defects (old liens, easement disputes, survey conflicts) also fall back to solicitor review."
+  },
+  {
+    question: "Does my current homeowner's title insurance policy transfer to a new lender?",
+    answer: "No. Title insurance is issued in two types: a lender policy (covers the lender, lapses when mortgage is discharged) and an owner policy (covers you, stays with you as long as you own the home). Your existing owner policy remains in force, but the outgoing lender's policy dies with the discharge and the new lender will require its own fresh policy. The new lender policy premium is typically paid at closing out of the switch promo funds."
+  },
+  {
+    question: "What's different about Quebec legal fees at a switch?",
+    answer: "Quebec uses civil-law notaries, not common-law lawyers, and the notarial act itself has statutory formal requirements that take longer than a common-law closing. Quebec switches often involve two notaries (outgoing lender's and new lender's), and title insurance is less universally used — some Quebec lenders still want a full notarial title opinion. Expect $700–$1,400 in notary fees, plus hypothec radiation charges of roughly $200. Fewer switch promos cover Quebec notary fees fully, so out-of-pocket costs are higher and the break-even math is slower."
+  }
+];
+
+const schema = combineSchemas(
+  articleSchema({
+    headline: "Title Insurance and Legal Fees When Switching Mortgage Lenders in Canada (2026)",
+    description: "What title insurance costs ($250–$400), how it replaces solicitor review, legal fee breakdown ($500–$1,400), and provincial differences for Canadian mortgage switches in 2026.",
+    slug: "title-insurance-legal-fees-switching",
+    articleSection: "Renewal Mechanics",
+    about: "Title insurance and legal fees when switching lenders",
+    keywords: ["title insurance mortgage switch", "legal fees switching lenders Canada", "TitlePLUS FCT Stewart", "collateral discharge legal", "Quebec notary mortgage"],
+  }),
+  breadcrumbSchema([
+    { name: "Title Insurance & Legal Fees When Switching", url: "/title-insurance-legal-fees-switching" }
+  ]),
+  faqSchema(faqs, "title-insurance-legal-fees-switching"),
+  webPageNode({
+    slug: "title-insurance-legal-fees-switching",
+    name: "Title Insurance and Legal Fees When Switching in Canada (2026)",
+    description: "Complete guide to title insurance and legal fees at Canadian mortgage switches — cost breakdown, provincial differences, and when a full solicitor review is still required.",
+  }),
+);
+---
+
+<DefaultLayout
+  title="Title Insurance & Legal Fees Switching Lenders Canada (2026)"
+  description="Title insurance ($250–$400) and legal fees ($500–$1,400) when switching mortgage lenders in Canada — cost breakdown, provincial differences, and legal-paid switch programs."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Title Insurance & Legal Fees When Switching
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Switching Costs</div>
+      <h1 class="text-heading-1 mb-4">Title Insurance and Legal Fees When Switching Lenders</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Title insurance is the unsung reason modern Canadian lender switches close in two weeks instead of two months. Here's what title insurance actually is, what you and your lawyer pay, and how the legal-fee breakdown looks province by province.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>Title insurance</strong> (TitlePLUS, FCT, Stewart, Chicago Title) costs $250–$400 one-time and replaces most solicitor title review.</li>
+        <li>• <strong>Legal fees</strong> at a switch: $500–$900 title-insured; $800–$1,400 collateral-charge discharge; $700–$1,400 Quebec notary.</li>
+        <li>• Title insurance made <strong>10–20 day switches</strong> possible — before, they took 40–50 days.</li>
+        <li>• Lender policy dies when the mortgage is discharged; your <strong>owner policy</strong> (optional $150–$250 add-on) stays with you.</li>
+        <li>• Full solicitor review is still required for <strong>collateral-charge</strong> discharges, refinances, and rural or complex title properties.</li>
+        <li>• <strong>Legal-paid switch</strong> promos from Scotia eHOME, RBC, First National, MCAP cover title insurance and most legal fees.</li>
+        <li>• Quebec notary fees are higher and <strong>less frequently covered</strong> by switch promos.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Title Insurance Exists in a Mortgage Switch</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A lender funding your new mortgage wants certainty that the title is clean — no prior undisclosed liens, no conflicting survey boundaries, no zoning violations, no outstanding work orders, no fraudulent transfers, and no legal restrictions on the property. Historically, the lender's lawyer obtained that certainty by running a multi-hour title search, reviewing the survey, and issuing a formal opinion. That cost $800–$1,400 and took weeks.
+    </p>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Title insurance outsources that risk to a specialized insurer. The insurer does its own rapid title search plus statistical underwriting, issues a lender policy, and if anything goes wrong later, the insurer pays the lender's loss. The one-time premium runs $250–$400 for a lender policy. From the lender's perspective, title insurance is faster and costs less to administer — which is why every major Canadian lender switched to accepting title insurance in lieu of solicitor review between 2018 and 2022.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Four Main Canadian Title Insurers</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">FCT (First Canadian Title)</h3>
+        <p class="text-body-sm text-muted-foreground">Largest Canadian title insurer. Default partner for most Big 6 simplified switch programs. Owns the dominant appraisal + title insurance bundle used by First National, MCAP, CMLS.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Stewart Title</h3>
+        <p class="text-body-sm text-muted-foreground">Strong presence in Ontario, BC, Alberta. Used heavily by TD, RBC, and credit unions. Known for faster underwriting on non-standard properties.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">TitlePLUS</h3>
+        <p class="text-body-sm text-muted-foreground">LAWPRO-owned, Ontario-focused, sold through Ontario lawyers as part of their retainer. Combined with solicitor opinion for belt-and-suspenders coverage.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Chicago Title</h3>
+        <p class="text-body-sm text-muted-foreground">US parent (Fidelity National), smaller Canadian presence, used by some monolines and commercial files. Specialized coverage for complex properties.</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Your lender typically picks the insurer — it's not a consumer shopping decision — but your lawyer or notary may offer an option. Premiums are within $25 of each other for standard residential switches, so the choice rarely matters financially.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Legal Fees by Scenario (2026)</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">Title Insurance</th>
+            <th class="p-3 text-left">Legal / Notary Fee</th>
+            <th class="p-3 text-left">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Title-insured insured switch (ON, BC, AB)</td>
+            <td class="p-3">$275</td>
+            <td class="p-3">$500–$750</td>
+            <td class="p-3">$775–$1,025</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Uninsured switch with title insurance</td>
+            <td class="p-3">$325</td>
+            <td class="p-3">$600–$900</td>
+            <td class="p-3">$925–$1,225</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Collateral-charge discharge switch</td>
+            <td class="p-3">$325</td>
+            <td class="p-3">$900–$1,400</td>
+            <td class="p-3">$1,225–$1,725</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Refinance adding funds</td>
+            <td class="p-3">$375</td>
+            <td class="p-3">$900–$1,400</td>
+            <td class="p-3">$1,275–$1,775</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Quebec notary switch</td>
+            <td class="p-3">$275 (if used)</td>
+            <td class="p-3">$700–$1,400</td>
+            <td class="p-3">$975–$1,675</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Rural / complex title</td>
+            <td class="p-3">$400+</td>
+            <td class="p-3">$1,200–$2,000</td>
+            <td class="p-3">$1,600–$2,400</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-sm text-muted-foreground mb-8">Fees as of April 2026. Regional variation within provinces is substantial — urban downtown offices charge more than smaller suburban ones.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What a Legal-Paid Switch Program Actually Covers</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      The major Canadian switch promotions in 2026 fold appraisal, title insurance, legal fees, and (partially) the outgoing discharge fee into one lender-paid bundle. Here's what a typical program covers:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Appraisal or AVM</strong> — full coverage up to $500</li>
+      <li><strong>Title insurance lender policy</strong> — full coverage</li>
+      <li><strong>Solicitor's legal fee</strong> — covered up to roughly $850 via a network-lawyer program (FCT, Deeded, AXESS)</li>
+      <li><strong>Provincial land registration</strong> — covered</li>
+      <li><strong>Outgoing discharge fee</strong> — partial coverage, often up to $500</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Borrower is typically responsible for: any gap between program cap and actual fee, any owner's title insurance add-on, and anything triggered by a collateral charge or non-standard property. Confirm all fee coverage in writing before you sign. See our <a href="/mortgage-discharge-fees-canada/" class="text-secondary-100 hover:underline">discharge fee guide</a> for the outgoing-lender side.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Worked Example: Legal Fee Stack at a BC Switch</h2>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Example: $625,000 title-insured switch in Vancouver</p>
+      <p class="text-body-sm leading-relaxed">
+        Outgoing lender: Scotiabank (STEP collateral charge)<br />
+        New lender: MCAP via broker, appraisal-free program<br /><br />
+        <strong>Full cost stack:</strong><br />
+        Scotia discharge fee: $340<br />
+        BC mortgage registration: $77<br />
+        BC discharge registration: $77<br />
+        FCT title insurance (lender policy): $325<br />
+        Solicitor fee (collateral discharge): $1,150<br />
+        Appraisal (AVM): $0<br /><br />
+        <strong>Gross total: $1,969</strong><br /><br />
+        MCAP Preferred Switch covers:<br />
+        — AVM / appraisal: $0 (free)<br />
+        — Title insurance: $325<br />
+        — Legal fee: capped at $1,000<br />
+        — Registration: $154<br /><br />
+        <strong>Net out-of-pocket:</strong><br />
+        — Scotia discharge: $340<br />
+        — Legal fee gap ($1,150 − $1,000): $150<br />
+        — Total: <strong>$490</strong>
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When a Full Solicitor Review Is Still Required</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Title insurance shortcuts aren't available in three scenarios:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>Collateral-charge discharge</strong> — The outgoing lender's security is tied to all your obligations with them, not just the mortgage. The new lender's lawyer must do a full review to ensure no HELOC balance, no overdraft, no linked credit card debt is secured. Legal fees climb to $900–$1,400.</li>
+      <li><strong>Refinancing with added funds</strong> — Any transaction that increases the mortgage amount requires a full review (title search, survey, zoning confirmation, lien search) because the lender is advancing new money.</li>
+      <li><strong>Non-standard property</strong> — Rural acreage over 10 acres, leasehold, Section 95 reserve land, legal non-conforming use, pending litigation, or known title defects push the file to full solicitor review regardless of whether title insurance is available.</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Owner's Title Insurance: Worth Adding?</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Lender title insurance covers the lender, not you. If the title is defective and the mortgage gets paid out when you sell, the lender policy ends and you have no recourse. An owner's policy ($150–$250 add-on to the lender premium, one-time, lasts as long as you own the property) protects you against:
+    </p>
+
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Title fraud — increasingly common in Toronto, Vancouver, and Calgary</li>
+      <li>Undisclosed liens from prior owners</li>
+      <li>Survey or boundary disputes</li>
+      <li>Errors in public records affecting your ownership</li>
+      <li>Zoning or work-order surprises</li>
+    </ul>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      Most Canadian lawyers recommend adding the owner's policy at a switch — it's cheap relative to the risk, it's a one-time cost, and it covers lifetime ownership. If you already bought an owner's policy when you purchased the home, it remains in force; you don't need a new one at each switch.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/title-insurance-legal-fees-switching/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Find a Legal-Paid Switch</h2>
+      <p class="text-white/80 mb-6">A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> can match your file with a lender that covers title insurance, legal fees, and the appraisal — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Free Switch Cost Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

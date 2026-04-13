@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -53,7 +54,7 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Mortgage Flex Features Canada — Skip, Double-Up & More (2026)"
+  title="Mortgage Flex Features Canada — Skip, Double-Up & More"
   description="Every Canadian mortgage flex feature explained — skip-a-payment, double-up, payment increases, re-amortization — with lender-by-lender comparison for 2026."
   schema={schema}
 >
@@ -202,35 +203,7 @@ const schema = combineSchemas(
           ))}
         </div>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/lower-mortgage-payments-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lower Mortgage Payments</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How to structurally lower payments at renewal.</p>
-            </a>
-            <a href="/mortgage-renewal-mistakes/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">10 Biggest Renewal Mistakes</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Cash-back traps and ignoring prepayment privileges.</p>
-            </a>
-            <a href="/mortgage-renewal-term-lengths/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Mortgage Term Lengths</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How term length interacts with flex features.</p>
-            </a>
-            <a href="/fixed-vs-variable-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Fixed vs. Variable</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Rate structure affects which flex features are most valuable.</p>
-            </a>
-            <a href="/mortgage-renewal-calculator/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal Calculator</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Model the impact of payment increases and lump sums.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Compare flex features across lenders at renewal time.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/mortgage-flex-features-canada/" />
 
       </div>
 

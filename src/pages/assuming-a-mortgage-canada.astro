@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -208,35 +209,7 @@ const schema = combineSchemas(
           ))}
         </div>
 
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/collateral-vs-standard-charge-mortgage/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Collateral vs. Standard Charge</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">The charge type determines whether your mortgage can be assumed.</p>
-            </a>
-            <a href="/spousal-buyout-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Spousal Buyout at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Insured-route buyout as an alternative to assumption.</p>
-            </a>
-            <a href="/estate-mortgage-renewal/" class="rounded-lg p-4" style="color: var(--primary); border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Estate & POA Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">How assumption fits into probate and estate transfers.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Alternative to assumption — re-originate with a new lender.</p>
-            </a>
-            <a href="/stress-test-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Stress Test at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">What the incoming borrower must pass during assumption underwriting.</p>
-            </a>
-            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Which lenders allow assumption and which don't.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/assuming-a-mortgage-canada/" />
       </div>
 
       <aside class="w-full lg:w-64 flex-shrink-0">

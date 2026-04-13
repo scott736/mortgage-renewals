@@ -1,6 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
 
@@ -226,22 +227,7 @@ const schema = combineSchemas(
       ))}
     </div>
 
-    <h2 class="text-heading-3 mt-10 mb-4">Related Guides & Tools</h2>
-    <div class="grid sm:grid-cols-2 gap-3 mb-8">
-      {[
-        { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
-        { title: "Switch vs. Stay Calculator", href: "/switch-vs-stay-calculator/" },
-        { title: "Mortgage Prepayment Privileges", href: "/mortgage-prepayment-privileges-canada/" },
-        { title: "Fixed vs. Variable at Renewal", href: "/fixed-vs-variable-mortgage-renewal/" },
-        { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
-        { title: "Mortgage Lender Types in Canada", href: "/mortgage-lender-types-canada/" },
-      ].map(link => (
-        <a href={link.href} class="flex items-center gap-2 rounded-lg border border-gray-100 p-4 hover:border-secondary-50 hover:bg-gray-25 transition-colors text-body-sm-medium">
-          <span class="text-secondary-100">→</span>
-          {link.title}
-        </a>
-      ))}
-    </div>
+    <RelatedLinks slug="/ird-vs-three-month-interest-penalty/" />
 
     <p class="text-body-xs text-muted-foreground mb-6">
       Sources: Canadian Mortgage Charter (2024); FCAC prepayment penalty guidance; lender prepayment disclosures (TD, RBC, BMO, Scotiabank, CIBC, National Bank, First National, MCAP); industry analysis via pragmatic.mortgage and ratehub.ca. Figures illustrative — always obtain a written quote from your lender before making break decisions. Posted rates and contract rates as of April 2026.

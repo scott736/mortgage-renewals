@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, faqSchema, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -53,7 +54,7 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="First National Mortgage Renewal 2026 — Canada's Largest Monoline"
+  title="First National Mortgage Renewal 2026 — Monoline Pricing"
   description="First National mortgage renewal: monoline pricing 15-25 bps below Big 6, 15% prepayment, fair IRD, broker channel, and 2026 renewal strategy."
   schema={schema}
 >
@@ -182,27 +183,7 @@ const schema = combineSchemas(
       </ol>
     </div>
 
-    <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-      <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Lender Types in Canada</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Monolines vs. banks vs. credit unions — understand the landscape.</p>
-        </a>
-        <a href="/td-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">TD Mortgage Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Compare First National's fair IRD to TD's discounted-rate IRD.</p>
-        </a>
-        <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">Straight switch rules — First National's standard charge keeps switching cheap.</p>
-        </a>
-        <a href="/investment-property-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-          <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Investment Property Renewal</p>
-          <p class="text-xs" style="color: var(--muted-foreground)">First National is a leading lender for investment and commercial mortgages.</p>
-        </a>
-      </div>
-    </div>
+    <RelatedLinks slug="/first-national-mortgage-renewal/" />
   </article>
 
   <section class="py-12" style="background: var(--accent)">

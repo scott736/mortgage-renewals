@@ -1,6 +1,7 @@
 ---
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, webPageNode, combineSchemas } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -326,36 +327,7 @@ const schema = combineSchemas(
           </div>
         </div>
 
-        <!-- Related guides -->
-        <div class="mt-12 border-t pt-8" style="border-color: var(--border)">
-          <h2 class="text-xl font-bold mb-4" style="color: var(--primary)">Related Guides</h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <a href="/mortgage-lender-types-canada/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Canadian Lender Types Compared</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Banks, monolines, B-lenders, private — which is right for self-employed borrowers.</p>
-            </a>
-            <a href="/bad-credit-mortgage-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Bad Credit Mortgage Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">If write-offs and income challenges have also impacted your credit score.</p>
-            </a>
-            <a href="/mortgage-broker-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Using a Mortgage Broker at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Especially valuable for self-employed files — brokers know which lenders work for your profile.</p>
-            </a>
-            <a href="/switching-lenders-at-renewal/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Switching Lenders at Renewal</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">No stress test for straight switches since 2024. What you need to qualify.</p>
-            </a>
-            <a href="/renewal-vs-refinancing/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Renewal vs. Refinancing</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Self-employed borrowers sometimes use refinance to access equity or restructure.</p>
-            </a>
-            <a href="/mortgage-renewal-guide/" class="rounded-lg p-4" style="border: 1px solid var(--border); background: var(--card)">
-              <p class="font-semibold text-sm mb-1" style="color: var(--primary)">Complete Mortgage Renewal Guide</p>
-              <p class="text-xs" style="color: var(--muted-foreground)">Everything Canadians need to know about the renewal process in 2026.</p>
-            </a>
-          </div>
-        </div>
+        <RelatedLinks slug="/self-employed-mortgage-renewal/" />
 
       </div>
 

@@ -1,0 +1,257 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "When am I considered common-law in Canada?",
+    answer: "For federal income tax (CRA), you're common-law after 12 continuous months of cohabiting in a conjugal relationship, or immediately if you have a child together by birth or adoption. Provincial family law varies: Ontario, BC, Alberta, Saskatchewan, Manitoba, and Newfoundland all use a 12-month (sometimes three-year for spousal support) standard. Quebec treats unmarried couples entirely differently — common-law partners in Quebec historically had no automatic spousal-support or property rights, though recent reforms extend some protections. Lenders use the CRA definition for mortgage applications."
+  },
+  {
+    question: "Do I have to disclose a common-law partner on my mortgage application?",
+    answer: "Yes. Every Canadian mortgage application asks marital status: single, married, common-law, separated, divorced, or widowed. Declaring 'single' when you're actually common-law can constitute application fraud and may void your insurance, invalidate your commitment, or create problems at renewal. The lender needs to know because a common-law partner's income can be added to qualifying calculations and because partner debts and assets may affect the file."
+  },
+  {
+    question: "How do I add my common-law partner to title and mortgage at renewal?",
+    answer: "Adding someone to title is a legal conveyance: a real estate lawyer prepares a transfer adding your partner as a joint tenant or tenant-in-common. Land transfer tax may apply depending on the province and whether consideration is involved (in Ontario, adding a spouse is typically LTT-exempt for the matrimonial home; in BC, similar exemptions apply). Adding to mortgage is a lender underwriting event: the lender re-qualifies both of you, pulls both credit bureaus, and issues a new commitment. Doing both at renewal is efficient because no break penalty applies."
+  },
+  {
+    question: "How do I remove a common-law partner from title and mortgage at renewal?",
+    answer: "Removing a partner requires their agreement (or a court order). At renewal, you can refinance solely in your name if you qualify on your own income — the refinance proceeds pay out the departing partner for their equity share, their name comes off title, and the new mortgage is in your sole name. This is why <a href='/spousal-buyout-mortgage-renewal/'>renewal timing is so important for separations</a>. Mid-term, the same action requires breaking the mortgage and paying a prepayment penalty."
+  },
+  {
+    question: "Is common-law treated the same as marriage for provincial property division?",
+    answer: "No — this is the biggest legal trap. Marriage triggers an automatic equalization of net family property (in Ontario) or division of family property (in BC, Alberta). Common-law, depending on the province, may or may not trigger similar division. Ontario's Family Law Act gives married couples equalization rights that common-law partners don't automatically have (though constructive trust and unjust enrichment claims are available). BC's Family Law Act was amended in 2013 to extend most property rights to common-law partners after two years. Quebec provides very limited automatic rights to de facto couples. Consult a family lawyer before big financial decisions."
+  },
+  {
+    question: "Do lenders ask about common-law in the same way they ask about marriage?",
+    answer: "Effectively, yes. Lenders ask marital/common-law status and, separately, whether anyone else has an interest in the property (beneficial ownership, spousal interest, matrimonial home status). In most provinces, the matrimonial home has special protections that require both spouses' signatures to encumber or sell — common-law partners may have constructive-trust interests that surface at refinance or sale. Lenders want the full picture so they can structure security and signatures correctly."
+  }
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "common-law-mortgage-renewal",
+    name: "Common-Law Partner Mortgage Renewal in Canada (2026)",
+    description: "How common-law partners approach a Canadian mortgage renewal — adding or removing a partner at title, income qualification, provincial family law differences, and the Quebec exception.",
+  }),
+  articleSchema({
+    headline: "Common-Law Partner Mortgage Renewal in Canada (2026)",
+    description: "Complete guide to common-law mortgage renewals — the 12-month threshold, adding or removing a partner from title, provincial family law differences, and disclosure requirements.",
+    slug: "common-law-mortgage-renewal",
+    articleSection: "Relationship & Renewal",
+    about: "Common-law mortgage renewal in Canada",
+    keywords: ["common-law mortgage Canada", "add partner to mortgage", "remove common-law from title", "Ontario Family Law Act mortgage", "BC Family Law Act common-law"],
+  }),
+  faqSchema(faqs, "common-law-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "Common-Law Mortgage Renewal", url: "/common-law-mortgage-renewal" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Common-Law Mortgage Renewal in Canada (2026) | Add or Remove a Partner"
+  description="Mortgage renewal for common-law couples in Canada — the 12-month threshold, disclosure, adding or removing a partner from title, provincial family law differences, and the Quebec rule."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Common-Law Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Relationship Changes</div>
+      <h1 class="text-heading-1 mb-4">Common-Law Partner Mortgage Renewal in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated April 2026. Whether you're renewing and adding a partner to the title, removing one after a separation, or simply confirming status, common-law relationships create specific obligations and opportunities at renewal. Here's what Canadian lenders actually ask, how the rules differ province by province, and where Quebec stands apart.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Common-law status for CRA and most lenders: <strong>12 months of continuous cohabitation</strong> (or immediately if you have a child together).</li>
+        <li>• Disclosing common-law status on a mortgage application is <strong>legally required</strong> — misrepresentation can void the file.</li>
+        <li>• Adding a partner's income can materially <strong>improve qualifying GDS/TDS</strong>, often enabling a better rate tier or higher loan.</li>
+        <li>• Renewal is the most efficient time to <strong>add or remove a partner</strong> from the mortgage — no break penalty applies.</li>
+        <li>• Provincial family law varies: ON Family Law Act, BC Family Law Act (post-2013), Alberta's Family Property Act (post-2020), all extend different property rights to common-law partners.</li>
+        <li>• <strong>Quebec</strong> treats "conjoints de fait" differently — historically very limited automatic property rights, though recent reforms are shifting.</li>
+        <li>• Consult a family lawyer before signing a renewal that changes title — irrevocable rights can be created.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">What "Common-Law" Means for Your Mortgage</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      In Canadian mortgage underwriting, common-law status is usually read from CRA's definition: you're in a common-law partnership if you've cohabited in a conjugal relationship for at least 12 continuous months, or if you share a child by birth or adoption. Lenders rely on this because that's the status you declared on your most recent tax return, and they can corroborate it against your NOA when required.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Every mortgage application asks "marital status." The available options are single, married, common-law, separated, divorced, or widowed. Selecting the wrong one is a misrepresentation — one that lenders increasingly cross-reference against CRA and other data sources. Even at renewal with your existing lender, an updated application signs off on current marital status.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Lenders Ask About Common-Law Status</h2>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Income and Qualification Math</h3>
+        <p class="text-body-sm text-muted-foreground">A common-law partner's income can be added to qualification if they co-sign. This can lower GDS/TDS ratios and unlock a better rate tier or a larger loan. Without adding the partner, only the applicant's income qualifies.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Matrimonial Home Protections</h3>
+        <p class="text-body-sm text-muted-foreground">Several provinces require both spouses to sign off when the matrimonial home is encumbered or sold. Lenders need to know whether a common-law partner has a matrimonial-home interest in the property before drafting security documents.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Insurance and Beneficiary Implications</h3>
+        <p class="text-body-sm text-muted-foreground">Mortgage default insurance, life insurance, and disability insurance all use marital status to determine benefit structure. Common-law declaration can affect premiums and policy design.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Debt and Asset Picture</h3>
+        <p class="text-body-sm text-muted-foreground">If your partner has significant debt, that's relevant even if they aren't on the mortgage — joint household obligations factor into stress-test scenarios. The lender wants the full household financial picture.</p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Adding a Common-Law Partner at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Renewal is the single most efficient time to add a partner to title and mortgage because no prepayment penalty applies — your current term is ending, and a new mortgage is being originated regardless. The steps:
+    </p>
+
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Both partners submit a joint mortgage application with income, credit, and debt disclosure</li>
+      <li>Lender pulls both credit bureaus and underwrites using the lower-scored applicant for risk pricing</li>
+      <li>New commitment letter issued in both names; both sign</li>
+      <li>Real estate lawyer prepares a transfer of land adding partner as joint tenant or tenant-in-common</li>
+      <li>Land transfer tax (LTT) is usually exempt for a spouse or common-law partner transfer of the matrimonial home in most provinces; check provincial rules</li>
+      <li>New mortgage registers in both names; old discharge registers simultaneously</li>
+      <li>Total legal cost typically $800–$1,500 when handled as part of a renewal switch or refinance</li>
+    </ol>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Removing a Common-Law Partner at Renewal</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Separation is the other common scenario. If the partners have agreed on an equity split — or if a separation agreement or court order sets the numbers — renewal provides a clean break point. The mechanic is a refinance in one partner's sole name, with refinance proceeds used to pay out the departing partner. See our <a href="/spousal-buyout-mortgage-renewal/" class="text-secondary-100 hover:underline">spousal buyout guide</a> for the detailed structure (common-law buyouts work the same way).
+    </p>
+
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="font-semibold mb-2">Worked Example: Removing a Common-Law Partner at Renewal</p>
+      <p class="text-body-sm leading-relaxed">
+        Property worth $800,000. Existing mortgage balance $300,000 maturing in 60 days. Agreed equity split 50/50, so departing partner is owed $250,000 ($500,000 equity ÷ 2).<br /><br />
+        At renewal, remaining partner refinances to $550,000 (old balance $300,000 + buyout $250,000) — at 68.75% LTV, within the 80% refinance cap. They qualify on their income alone (this is the constraint point).<br /><br />
+        Funds from refinance pay out the original $300,000 and issue $250,000 to the departing partner via lawyer's trust. Departing partner signs off on title. Done in one closing at renewal with no break penalty.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Provincial Family Law Differences</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Province</th>
+            <th class="p-3 text-left">Common-Law Threshold</th>
+            <th class="p-3 text-left">Property Rights on Separation</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Ontario</td>
+            <td class="p-3">3 years cohabitation (or child together)</td>
+            <td class="p-3">No automatic equalization (married only); constructive trust available</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">British Columbia</td>
+            <td class="p-3">2 years cohabitation (or child together)</td>
+            <td class="p-3">Full family property rights under Family Law Act (post-2013)</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Alberta</td>
+            <td class="p-3">3 years (or Adult Interdependent Relationship)</td>
+            <td class="p-3">Family Property Act extended to AIR partners (post-2020)</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Saskatchewan</td>
+            <td class="p-3">2 years cohabitation</td>
+            <td class="p-3">Family Property Act applies</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Manitoba</td>
+            <td class="p-3">3 years (or registered common-law)</td>
+            <td class="p-3">Family Property Act applies after registration</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Atlantic Provinces</td>
+            <td class="p-3">Generally 2–3 years</td>
+            <td class="p-3">Varies — NS registered domestic partners full rights; NB, PEI, NL limited automatic rights</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Quebec</td>
+            <td class="p-3">No fixed period — "conjoint de fait"</td>
+            <td class="p-3">Historically very limited automatic rights; recent reforms shifting</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      This matters at renewal because adding a partner to title in a jurisdiction with strong common-law property rights (BC, Alberta AIR, Saskatchewan) creates substantial future claims that survive separation. In Ontario and Quebec, the automatic rights are weaker — but constructive trust and unjust enrichment claims can still arise. A real estate lawyer or family lawyer should advise before title changes, not after.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The Quebec Exception</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Quebec's civil law treats unmarried couples (conjoints de fait) fundamentally differently from the common-law provinces. Historically, Quebec de facto partners had no automatic right to spousal support after separation, no family patrimony rights, and no automatic division of property — a situation confirmed by the Supreme Court in Quebec (AG) v. A in 2013.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Reforms passed in 2024 extend certain protections (particularly related to children and primary residence) to Quebec de facto partners, but the framework remains more limited than in other provinces. Quebec couples who want mutual rights typically execute a civil union, a marriage, or a cohabitation agreement (convention de vie commune) explicitly setting out property and support terms. At renewal, a Quebec common-law partner may still want to be added to title — but the automatic provincial protections are far weaker than elsewhere.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Joint Tenancy vs. Tenancy in Common for Couples</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      When adding a partner to title, the two main ownership structures in Canadian common-law provinces:
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Joint Tenancy</h3>
+        <p class="text-body-sm mb-2">Right of survivorship — on death of one partner, their share passes automatically to the survivor outside the estate.</p>
+        <p class="text-body-sm text-muted-foreground">Common for couples; avoids probate; simplest for mortgage; cannot be willed to a third party.</p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Tenancy in Common</h3>
+        <p class="text-body-sm mb-2">Defined shares (e.g., 60/40) — on death, the deceased's share passes by their will, not to the other owner.</p>
+        <p class="text-body-sm text-muted-foreground">Common for blended families, investment partners, or unequal contributions; goes through probate.</p>
+      </div>
+    </div>
+
+    <p class="text-body-md mb-6 leading-relaxed">
+      For couples, joint tenancy is the common default. For couples with children from prior relationships (blended families), tenancy-in-common with explicit wills can preserve estate flexibility. See our <a href="/co-ownership-mortgage-renewal/" class="text-secondary-100 hover:underline">co-ownership renewal guide</a> for the broader comparison.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+
+    <RelatedLinks slug="/common-law-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Adding or Removing a Partner at Renewal?</h2>
+      <p class="text-white/80 mb-6">A licensed mortgage broker can run the qualification math and time the title change to your renewal — free, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book Your Common-Law Renewal Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

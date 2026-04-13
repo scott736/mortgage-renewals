@@ -4,15 +4,10 @@
  */
 
 import Nylas from 'nylas';
-import type {
-  TimeSlot,
-  AvailabilityRequest,
-  BookingRequest,
-  BookingConfirmation,
-  NylasEvent,
-  TeamMember,
-  Service,
-} from './types';
+
+import { timingSafeCompare } from '@/lib/crypto-utils';
+import { escapeHtml } from '@/lib/email';
+
 import {
   getServiceById,
   getTeamMemberById,
@@ -20,8 +15,15 @@ import {
   schedulingConfig,
 } from './config';
 import { enrichTeamMember, enrichTeamMembers } from './grants';
-import { timingSafeCompare } from '@/lib/crypto-utils';
-import { escapeHtml } from '@/lib/email';
+import type {
+  AvailabilityRequest,
+  BookingConfirmation,
+  BookingRequest,
+  NylasEvent,
+  Service,
+  TeamMember,
+  TimeSlot,
+} from './types';
 
 // ============================================================================
 // Environment Variables
@@ -265,7 +267,7 @@ function getPrimaryGrantId(member: TeamMember): string | undefined {
  * For Microsoft 365, we use 'primary' keyword which resolves to the default calendar
  */
 function getCalendarId(member: TeamMember): string {
-  const grant = getPrimaryGrant(member);
+  const _grant = getPrimaryGrant(member);
 
   // For Microsoft providers, 'primary' should work, but if not, try email
   // The calendar ID 'primary' is a Nylas convention that works across providers
@@ -282,7 +284,7 @@ function getCalendarId(member: TeamMember): string {
  * Checks ALL connected calendars (Google + Microsoft) for conflicts
  */
 export async function getAvailability(request: AvailabilityRequest): Promise<TimeSlot[]> {
-  const nylas = getNylasClient();
+  const _nylas = getNylasClient();
   const service = getServiceById(request.serviceId);
 
   if (!service) {
@@ -540,7 +542,7 @@ export async function createBooking(request: BookingRequest): Promise<BookingCon
 
   // Get the calendar ID (handles Microsoft vs Google differences)
   const calendarId = getCalendarId(teamMember);
-  const grant = getPrimaryGrant(teamMember);
+  const _grant = getPrimaryGrant(teamMember);
 
   // Create the calendar event on the primary calendar
   const eventRequest: Parameters<typeof nylas.events.create>[0] = {
