@@ -1,5 +1,5 @@
-import { ChevronRight } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import { ArrowLeft, ArrowRight, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -10,321 +10,540 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { PROVINCE_PAGES } from "@/consts";
 import { cn } from "@/lib/utils";
 
-const ITEMS = [
+type MegaLink = { label: string; href: string };
+type MegaSection = { title: string; links: MegaLink[] };
+type MegaItem = {
+  key:
+    | "calculators"
+    | "guides"
+    | "rates"
+    | "lenders"
+    | "situations"
+    | "resources";
+  label: string;
+  href: string;
+  featured: { title: string; description: string; href: string; cta: string };
+  sections: MegaSection[];
+};
+
+const MEGA_NAV: MegaItem[] = [
   {
+    key: "calculators",
     label: "Calculators",
     href: "/mortgage-renewal-calculator/",
-    dropdownItems: [
-      { title: "All Renewal Calculators", href: "/mortgage-renewal-calculator/" },
-      { title: "Stress Test Calculator", href: "/mortgage-stress-test-calculator/" },
-      { title: "Blend-and-Extend Calculator", href: "/blend-and-extend-calculator/" },
-      { title: "Switch vs. Stay Break-Even", href: "/switch-vs-stay-calculator/" },
-      { title: "HELOC vs. Refinance", href: "/heloc-vs-refinance-calculator/" },
-      { title: "Payment Frequency Calculator", href: "/mortgage-payment-frequency-canada/" },
-      { title: "Mortgage Penalty Calculator", href: "/mortgage-penalty-calculator/" },
-      { title: "Prepayment / Lump-Sum", href: "/prepayment-lump-sum-calculator/" },
-      { title: "Amortization Schedule", href: "/amortization-schedule-calculator/" },
-      { title: "Accelerated Payment Savings", href: "/accelerated-payment-calculator/" },
-      { title: "Refinance / Debt Consolidation", href: "/refinance-debt-consolidation-calculator/" },
-      { title: "Affordability Requalification", href: "/affordability-requalification-calculator/" },
-      { title: "Rate Comparison (Scenarios)", href: "/rate-comparison-calculator/" },
-      { title: "Rental Income Qualifying", href: "/rental-income-qualifying-calculator/" },
-      { title: "Break-Even Switch", href: "/break-even-switch-calculator/" },
-      { title: "Should I Switch? (Quiz)", href: "/should-i-switch-quiz/" },
+    featured: {
+      title: "Calculate your new payment",
+      description:
+        "Start with the renewal calculator — see payments at today's rates in under a minute.",
+      href: "/mortgage-renewal-calculator/",
+      cta: "Run the numbers",
+    },
+    sections: [
+      {
+        title: "Payment & Renewal",
+        links: [
+          { label: "All Renewal Calculators", href: "/mortgage-renewal-calculator/" },
+          { label: "Stress Test Calculator", href: "/mortgage-stress-test-calculator/" },
+          { label: "Amortization Schedule", href: "/amortization-schedule-calculator/" },
+          { label: "Payment Frequency", href: "/mortgage-payment-frequency-canada/" },
+          { label: "Accelerated Payment Savings", href: "/accelerated-payment-calculator/" },
+          { label: "Prepayment / Lump-Sum", href: "/prepayment-lump-sum-calculator/" },
+        ],
+      },
+      {
+        title: "Switch & Savings",
+        links: [
+          { label: "Switch vs. Stay Break-Even", href: "/switch-vs-stay-calculator/" },
+          { label: "Break-Even Switch", href: "/break-even-switch-calculator/" },
+          { label: "Should I Switch? (Quiz)", href: "/should-i-switch-quiz/" },
+          { label: "Rate Comparison (Scenarios)", href: "/rate-comparison-calculator/" },
+          { label: "Blend-and-Extend", href: "/blend-and-extend-calculator/" },
+        ],
+      },
+      {
+        title: "Costs & Strategy",
+        links: [
+          { label: "Mortgage Penalty", href: "/mortgage-penalty-calculator/" },
+          { label: "HELOC vs. Refinance", href: "/heloc-vs-refinance-calculator/" },
+          { label: "Refinance / Debt Consolidation", href: "/refinance-debt-consolidation-calculator/" },
+          { label: "Affordability Requalification", href: "/affordability-requalification-calculator/" },
+          { label: "Rental Income Qualifying", href: "/rental-income-qualifying-calculator/" },
+        ],
+      },
     ],
   },
   {
+    key: "guides",
     label: "Guides",
     href: "/mortgage-renewal-guide/",
-    dropdownItems: [
-      { title: "Complete Renewal Guide", href: "/mortgage-renewal-guide/" },
-      { title: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal/" },
-      { title: "Switching Lenders", href: "/switching-lenders-at-renewal/" },
-      { title: "Early Mortgage Renewal", href: "/early-mortgage-renewal/" },
-      { title: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
-      { title: "Mortgage Appraisal at Renewal", href: "/mortgage-appraisal-at-renewal/" },
-      { title: "Discharge Fees (Canada)", href: "/mortgage-discharge-fees-canada/" },
-      { title: "Title Insurance & Legal Fees", href: "/title-insurance-legal-fees-switching/" },
-      { title: "Skip-a-Payment", href: "/skip-a-payment-mortgage-canada/" },
-      { title: "Renewing with Arrears", href: "/renewing-mortgage-with-arrears/" },
-      { title: "Porting a Mortgage", href: "/porting-a-mortgage-canada/" },
-      { title: "Inter-Province Portability", href: "/inter-province-mortgage-portability/" },
-      { title: "Collateral vs. Standard Charge", href: "/collateral-vs-standard-charge-mortgage/" },
-      { title: "Prepayment Privileges", href: "/mortgage-prepayment-privileges-canada/" },
-      { title: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal/" },
-      { title: "Insured vs. Conventional", href: "/insured-vs-conventional-mortgage-renewal/" },
-      { title: "CMHC / Sagen / CG Rules", href: "/cmhc-sagen-canada-guaranty-at-renewal/" },
-      { title: "OSFI B-20 Stress Test", href: "/osfi-b20-stress-test-at-renewal/" },
-      { title: "Stress Test at Renewal", href: "/stress-test-mortgage-renewal/" },
-      { title: "Insurance at Switch", href: "/mortgage-insurance-at-switch/" },
-      { title: "30-Year Amortization Rules", href: "/30-year-amortization-mortgage-renewal/" },
-      { title: "Trigger Rate (Variable)", href: "/trigger-rate-variable-mortgage-canada/" },
-      { title: "IRD vs. 3-Month Penalty", href: "/ird-vs-three-month-interest-penalty/" },
-      { title: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
-      { title: "Renewal Mistakes", href: "/mortgage-renewal-mistakes/" },
-      { title: "Mortgage Glossary", href: "/mortgage-renewal-glossary/" },
+    featured: {
+      title: "The complete renewal guide",
+      description:
+        "Everything Canadian homeowners need to know before signing their next mortgage term.",
+      href: "/mortgage-renewal-guide/",
+      cta: "Read the guide",
+    },
+    sections: [
+      {
+        title: "Getting Started",
+        links: [
+          { label: "Complete Renewal Guide", href: "/mortgage-renewal-guide/" },
+          { label: "What Is a Mortgage Renewal?", href: "/what-is-a-mortgage-renewal/" },
+          { label: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
+          { label: "Early Mortgage Renewal", href: "/early-mortgage-renewal/" },
+          { label: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes/" },
+          { label: "Mortgage Glossary", href: "/mortgage-renewal-glossary/" },
+        ],
+      },
+      {
+        title: "Switching & Porting",
+        links: [
+          { label: "Switching Lenders", href: "/switching-lenders-at-renewal/" },
+          { label: "Porting a Mortgage", href: "/porting-a-mortgage-canada/" },
+          { label: "Inter-Province Portability", href: "/inter-province-mortgage-portability/" },
+          { label: "Discharge Fees (Canada)", href: "/mortgage-discharge-fees-canada/" },
+          { label: "Title Insurance & Legal Fees", href: "/title-insurance-legal-fees-switching/" },
+          { label: "Insurance at Switch", href: "/mortgage-insurance-at-switch/" },
+          { label: "Appraisal at Renewal", href: "/mortgage-appraisal-at-renewal/" },
+        ],
+      },
+      {
+        title: "Rules, Rates & Options",
+        links: [
+          { label: "Fixed vs. Variable", href: "/fixed-vs-variable-mortgage-renewal/" },
+          { label: "Insured vs. Conventional", href: "/insured-vs-conventional-mortgage-renewal/" },
+          { label: "CMHC / Sagen / CG Rules", href: "/cmhc-sagen-canada-guaranty-at-renewal/" },
+          { label: "OSFI B-20 Stress Test", href: "/osfi-b20-stress-test-at-renewal/" },
+          { label: "Stress Test at Renewal", href: "/stress-test-mortgage-renewal/" },
+          { label: "30-Year Amortization Rules", href: "/30-year-amortization-mortgage-renewal/" },
+          { label: "Trigger Rate (Variable)", href: "/trigger-rate-variable-mortgage-canada/" },
+          { label: "IRD vs. 3-Month Penalty", href: "/ird-vs-three-month-interest-penalty/" },
+          { label: "Prepayment Privileges", href: "/mortgage-prepayment-privileges-canada/" },
+          { label: "Collateral vs. Standard Charge", href: "/collateral-vs-standard-charge-mortgage/" },
+          { label: "Skip-a-Payment", href: "/skip-a-payment-mortgage-canada/" },
+          { label: "Renewing with Arrears", href: "/renewing-mortgage-with-arrears/" },
+          { label: "Canadian Mortgage Charter", href: "/canadian-mortgage-charter/" },
+        ],
+      },
     ],
   },
   {
+    key: "rates",
     label: "Rates",
     href: "/best-mortgage-renewal-rates/",
-    dropdownItems: [
-      { title: "Best Renewal Rates", href: "/best-mortgage-renewal-rates/" },
-      { title: "Current Mortgage Rates", href: "/current-mortgage-rates-canada/" },
-      { title: "Rate Forecast", href: "/mortgage-rate-forecast/" },
-      { title: "Bank of Canada Decisions", href: "/bank-of-canada-rate-decisions/" },
-      { title: "Rate Alert Signup", href: "/rate-alert/" },
+    featured: {
+      title: "Today's best renewal rates",
+      description:
+        "Compare current Canadian mortgage rates across banks, monolines, and brokers.",
+      href: "/best-mortgage-renewal-rates/",
+      cta: "See today's rates",
+    },
+    sections: [
+      {
+        title: "Live Rates",
+        links: [
+          { label: "Best Renewal Rates", href: "/best-mortgage-renewal-rates/" },
+          { label: "Current Mortgage Rates", href: "/current-mortgage-rates-canada/" },
+          { label: "Rate Forecast", href: "/mortgage-rate-forecast/" },
+        ],
+      },
+      {
+        title: "Stay Informed",
+        links: [
+          { label: "Bank of Canada Decisions", href: "/bank-of-canada-rate-decisions/" },
+          { label: "Rate Alert Signup", href: "/rate-alert/" },
+        ],
+      },
     ],
   },
   {
-    label: "Lenders & Products",
+    key: "lenders",
+    label: "Lenders",
     href: "/mortgage-lender-types-canada/",
-    dropdownItems: [
-      { title: "All Canadian Lender Types", href: "/mortgage-lender-types-canada/" },
-      { title: "Mortgage Broker at Renewal", href: "/mortgage-broker-renewal/" },
-      { title: "TD Canada Trust", href: "/td-mortgage-renewal/" },
-      { title: "RBC Royal Bank", href: "/rbc-mortgage-renewal/" },
-      { title: "BMO Bank of Montreal", href: "/bmo-mortgage-renewal/" },
-      { title: "Scotiabank", href: "/scotiabank-mortgage-renewal/" },
-      { title: "CIBC", href: "/cibc-mortgage-renewal/" },
-      { title: "National Bank", href: "/national-bank-mortgage-renewal/" },
-      { title: "First National (Monoline)", href: "/first-national-mortgage-renewal/" },
-      { title: "MCAP (Monoline)", href: "/mcap-mortgage-renewal/" },
-      { title: "Credit Unions", href: "/credit-union-mortgage-renewal-canada/" },
-      { title: "B-Lender Renewal", href: "/b-lender-mortgage-renewal/" },
-      { title: "Private Mortgage Renewal", href: "/private-mortgage-renewal/" },
-      { title: "Canadian HELOC Guide", href: "/canadian-heloc-guide/" },
-      { title: "Refinance in Canada", href: "/mortgage-refinance-canada/" },
-      { title: "Second Mortgage at Renewal", href: "/second-mortgage-at-renewal/" },
-      { title: "Readvanceable Mortgages", href: "/readvanceable-mortgage-canada/" },
-      { title: "Bridge Financing", href: "/bridge-financing-at-renewal/" },
-      { title: "Lender Cheat Sheet", href: "/canadian-lender-cheat-sheet/" },
+    featured: {
+      title: "Not sure which lender fits?",
+      description:
+        "A broker shops 50+ lenders for you — no cost, no obligation to switch.",
+      href: "/mortgage-broker-renewal/",
+      cta: "Talk to a broker",
+    },
+    sections: [
+      {
+        title: "Big Banks",
+        links: [
+          { label: "TD Canada Trust", href: "/td-mortgage-renewal/" },
+          { label: "RBC Royal Bank", href: "/rbc-mortgage-renewal/" },
+          { label: "BMO Bank of Montreal", href: "/bmo-mortgage-renewal/" },
+          { label: "Scotiabank", href: "/scotiabank-mortgage-renewal/" },
+          { label: "CIBC", href: "/cibc-mortgage-renewal/" },
+          { label: "National Bank", href: "/national-bank-mortgage-renewal/" },
+        ],
+      },
+      {
+        title: "Alternatives",
+        links: [
+          { label: "All Canadian Lender Types", href: "/mortgage-lender-types-canada/" },
+          { label: "First National (Monoline)", href: "/first-national-mortgage-renewal/" },
+          { label: "MCAP (Monoline)", href: "/mcap-mortgage-renewal/" },
+          { label: "Credit Unions", href: "/credit-union-mortgage-renewal-canada/" },
+          { label: "B-Lender Renewal", href: "/b-lender-mortgage-renewal/" },
+          { label: "Private Mortgage Renewal", href: "/private-mortgage-renewal/" },
+          { label: "Lender Cheat Sheet", href: "/canadian-lender-cheat-sheet/" },
+        ],
+      },
+      {
+        title: "Products & Options",
+        links: [
+          { label: "Broker at Renewal", href: "/mortgage-broker-renewal/" },
+          { label: "Canadian HELOC Guide", href: "/canadian-heloc-guide/" },
+          { label: "Refinance in Canada", href: "/mortgage-refinance-canada/" },
+          { label: "Second Mortgage at Renewal", href: "/second-mortgage-at-renewal/" },
+          { label: "Readvanceable Mortgages", href: "/readvanceable-mortgage-canada/" },
+          { label: "Bridge Financing", href: "/bridge-financing-at-renewal/" },
+        ],
+      },
     ],
   },
   {
+    key: "situations",
     label: "Situations",
     href: "/self-employed-mortgage-renewal/",
-    dropdownItems: [
-      { title: "Self-Employed", href: "/self-employed-mortgage-renewal/" },
-      { title: "Bad Credit", href: "/bad-credit-mortgage-renewal/" },
-      { title: "First-Time Renewer", href: "/first-time-mortgage-renewal/" },
-      { title: "Seniors / Retirees", href: "/seniors-mortgage-renewal-canada/" },
-      { title: "Reverse Mortgage Option", href: "/reverse-mortgage-at-renewal/" },
-      { title: "Job Loss at Renewal", href: "/job-loss-mortgage-renewal/" },
-      { title: "Divorce", href: "/divorce-mortgage-renewal/" },
-      { title: "Spousal Buyout", href: "/spousal-buyout-mortgage-renewal/" },
-      { title: "Remove a Co-Signer", href: "/remove-co-signer-mortgage-renewal/" },
-      { title: "Investment Property", href: "/investment-property-renewal/" },
-      { title: "New to Canada", href: "/new-to-canada-mortgage-renewal/" },
-      { title: "Non-Resident Renewal", href: "/non-resident-mortgage-renewal/" },
-      { title: "Canadian Expat", href: "/canadian-expat-mortgage-renewal/" },
-      { title: "Common-Law Partners", href: "/common-law-mortgage-renewal/" },
-      { title: "Military Relocation (IRP)", href: "/military-relocation-mortgage-renewal/" },
-      { title: "Co-Ownership / TIC", href: "/co-ownership-mortgage-renewal/" },
-      { title: "Rent-to-Own Graduate", href: "/rent-to-own-first-mortgage-renewal/" },
-      { title: "Estate / POA", href: "/estate-mortgage-renewal/" },
-      { title: "Assuming a Mortgage", href: "/assuming-a-mortgage-canada/" },
+    featured: {
+      title: "Every renewal is different",
+      description:
+        "Book a free 30-minute call and we'll walk through options for your situation.",
+      href: "/book-a-call/",
+      cta: "Book free call",
+    },
+    sections: [
+      {
+        title: "Life Events",
+        links: [
+          { label: "Divorce", href: "/divorce-mortgage-renewal/" },
+          { label: "Spousal Buyout", href: "/spousal-buyout-mortgage-renewal/" },
+          { label: "Remove a Co-Signer", href: "/remove-co-signer-mortgage-renewal/" },
+          { label: "Job Loss at Renewal", href: "/job-loss-mortgage-renewal/" },
+          { label: "Estate / Power of Attorney", href: "/estate-mortgage-renewal/" },
+          { label: "Common-Law Partners", href: "/common-law-mortgage-renewal/" },
+        ],
+      },
+      {
+        title: "Income & Credit",
+        links: [
+          { label: "Self-Employed", href: "/self-employed-mortgage-renewal/" },
+          { label: "Bad Credit", href: "/bad-credit-mortgage-renewal/" },
+          { label: "First-Time Renewer", href: "/first-time-mortgage-renewal/" },
+          { label: "Rent-to-Own Graduate", href: "/rent-to-own-first-mortgage-renewal/" },
+          { label: "Assuming a Mortgage", href: "/assuming-a-mortgage-canada/" },
+        ],
+      },
+      {
+        title: "Special Cases",
+        links: [
+          { label: "Seniors / Retirees", href: "/seniors-mortgage-renewal-canada/" },
+          { label: "Reverse Mortgage Option", href: "/reverse-mortgage-at-renewal/" },
+          { label: "Investment Property", href: "/investment-property-renewal/" },
+          { label: "New to Canada", href: "/new-to-canada-mortgage-renewal/" },
+          { label: "Non-Resident Renewal", href: "/non-resident-mortgage-renewal/" },
+          { label: "Canadian Expat", href: "/canadian-expat-mortgage-renewal/" },
+          { label: "Military Relocation (IRP)", href: "/military-relocation-mortgage-renewal/" },
+          { label: "Co-Ownership / TIC", href: "/co-ownership-mortgage-renewal/" },
+        ],
+      },
     ],
   },
   {
-    label: "Provinces",
-    href: "/ontario-mortgage-renewal/",
-    dropdownItems: PROVINCE_PAGES.map((p) => ({ title: p.name, href: p.href })),
-  },
-  {
+    key: "resources",
     label: "Resources",
-    href: "/mortgage-renewal-faq/",
-    dropdownItems: [
-      { title: "FAQ", href: "/mortgage-renewal-faq/" },
-      { title: "News & Updates", href: "/mortgage-renewal-news/" },
-      { title: "Case Studies", href: "/case-studies/" },
-      { title: "Renewal Checklist", href: "/mortgage-renewal-checklist/" },
-      { title: "PDF Checklist Download", href: "/mortgage-renewal-checklist-pdf/" },
-      { title: "Document Checklist Generator", href: "/renewal-document-checklist-generator/" },
-      { title: "Renewal Date Reminder", href: "/renewal-reminder/" },
-      { title: "Negotiation Scripts", href: "/mortgage-negotiation-scripts/" },
-      { title: "Term Decision Guide", href: "/mortgage-term-decision-guide/" },
-      { title: "Flex Features", href: "/mortgage-flex-features-canada/" },
-      { title: "Smith Manoeuvre at Renewal", href: "/smith-manoeuvre-at-renewal/" },
-      { title: "Debt Consolidation at Renewal", href: "/mortgage-renewal-debt-consolidation/" },
-      { title: "Fund RRSP / Renovations", href: "/renewal-funding-rrsp-renovations/" },
-      { title: "FCAC / OBSI Complaints", href: "/fcac-obsi-mortgage-complaints/" },
-      { title: "Site Map", href: "/mortgage-renewal-sitemap/" },
+    href: "/mortgage-renewal-checklist/",
+    featured: {
+      title: "The renewal checklist",
+      description:
+        "A printable step-by-step checklist so nothing slips through the cracks before renewal day.",
+      href: "/mortgage-renewal-checklist/",
+      cta: "Get the checklist",
+    },
+    sections: [
+      {
+        title: "By Province",
+        links: [
+          { label: "Ontario", href: "/ontario-mortgage-renewal/" },
+          { label: "British Columbia", href: "/bc-mortgage-renewal/" },
+          { label: "Alberta", href: "/alberta-mortgage-renewal/" },
+          { label: "Quebec", href: "/quebec-mortgage-renewal/" },
+          { label: "Manitoba", href: "/manitoba-mortgage-renewal/" },
+          { label: "Saskatchewan", href: "/saskatchewan-mortgage-renewal/" },
+          { label: "Atlantic Canada", href: "/atlantic-canada-mortgage-renewal/" },
+          { label: "Territories", href: "/territories-mortgage-renewal/" },
+        ],
+      },
+      {
+        title: "Planning Tools",
+        links: [
+          { label: "Renewal Checklist", href: "/mortgage-renewal-checklist/" },
+          { label: "PDF Checklist Download", href: "/mortgage-renewal-checklist-pdf/" },
+          { label: "Document Checklist Generator", href: "/renewal-document-checklist-generator/" },
+          { label: "Renewal Date Reminder", href: "/renewal-reminder/" },
+          { label: "Term Decision Guide", href: "/mortgage-term-decision-guide/" },
+          { label: "Negotiation Scripts", href: "/mortgage-negotiation-scripts/" },
+          { label: "Flex Features", href: "/mortgage-flex-features-canada/" },
+        ],
+      },
+      {
+        title: "More Resources",
+        links: [
+          { label: "FAQ", href: "/mortgage-renewal-faq/" },
+          { label: "News & Updates", href: "/mortgage-renewal-news/" },
+          { label: "Case Studies", href: "/case-studies/" },
+          { label: "Smith Manoeuvre at Renewal", href: "/smith-manoeuvre-at-renewal/" },
+          { label: "Debt Consolidation at Renewal", href: "/mortgage-renewal-debt-consolidation/" },
+          { label: "Fund RRSP / Renovations", href: "/renewal-funding-rrsp-renovations/" },
+          { label: "FCAC / OBSI Complaints", href: "/fcac-obsi-mortgage-complaints/" },
+          { label: "Site Map", href: "/mortgage-renewal-sitemap/" },
+        ],
+      },
     ],
   },
 ];
 
-const Navbar: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [isMenuOpen]);
-
+const MegaMenuPanel = ({ item }: { item: MegaItem }) => {
+  const colClass =
+    item.sections.length === 2 ? "md:grid-cols-3" : "md:grid-cols-4";
   return (
-    <header
+    <div
       className={cn(
-        "lg:h-22 relative z-50 h-16 border-b border-b-gray-50 px-2.5 lg:px-0",
-        "bg-background",
+        "grid w-[min(calc(100vw-3rem),1100px)] gap-8 p-8",
+        colClass,
       )}
     >
-      <div className="lg:h-22 container flex h-16 items-center">
-        <div className="flex w-full items-center justify-between px-3.5 lg:px-6">
-          {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
-            <span className="text-xl font-bold tracking-tight text-primary">
-              MortgageRenewal<span className="text-secondary-100">Hub</span>.ca
-            </span>
-          </a>
-
-          {/* Desktop Navigation */}
-          <div className="flex items-center justify-center">
-            <NavigationMenu className="mr-4 hidden items-center gap-8 lg:flex">
-              <NavigationMenuList>
-                {ITEMS.map((link) =>
-                  link.dropdownItems ? (
-                    <NavigationMenuItem
-                      key={link.label}
-                      className="text-body-sm-medium"
-                    >
-                      <NavigationMenuTrigger
-                        className={cn(
-                          "text-foreground text-body-sm-medium bg-transparent",
-                          "hover:bg-transparent focus:bg-transparent active:bg-transparent",
-                          "hover:text-muted-foreground focus:text-muted-foreground",
-                          "data-[state=open]:text-muted-foreground data-[state=open]:bg-transparent",
-                          "transition-none",
-                        )}
-                      >
-                        {link.label}
-                      </NavigationMenuTrigger>
-                      <NavigationMenuContent
-                        className={cn("bg-gray-0 rounded-2xl")}
-                      >
-                        <ul className="bg-gray-0 w-[400px] p-3">
-                          {link.dropdownItems.map((item) => (
-                            <li key={item.title}>
-                              <NavigationMenuLink asChild>
-                                <a
-                                  href={item.href}
-                                  className="hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground outline-hidden flex select-none items-center rounded-xl p-3 leading-none no-underline transition-colors hover:bg-gray-50"
-                                >
-                                  <div className="flex gap-2">
-                                    <div className="space-y-1.5">
-                                      <div className="text-foreground text-body-sm-medium font-medium leading-none">
-                                        {item.title}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </a>
-                              </NavigationMenuLink>
-                            </li>
-                          ))}
-                        </ul>
-                      </NavigationMenuContent>
-                    </NavigationMenuItem>
-                  ) : (
-                    <NavigationMenuItem key={link.label}>
-                      <a
-                        href={link.href}
-                        className={cn(
-                          "text-foreground hover:text-muted-foreground text-body-sm-medium p-2",
-                        )}
-                      >
-                        {link.label}
-                      </a>
-                    </NavigationMenuItem>
-                  ),
-                )}
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex items-center gap-2.5">
-            <a href="/book-a-call/" className="hidden lg:block">
-              <Button size="sm" variant="secondary">
-                Book Free Call
-              </Button>
-            </a>
-            <a href="/mortgage-renewal-calculator/" className="hidden lg:block">
-              <Button size="sm">Compare Rates</Button>
-            </a>
-
-            {/* Hamburger (Mobile) */}
-            <button
-              className="text-muted-foreground relative flex size-8 lg:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-expanded={isMenuOpen}
-              aria-controls="mobile-menu"
-            >
-              <span className="sr-only">Open main menu</span>
-              <div className="absolute left-1/2 top-1/2 block w-[18px] -translate-x-1/2 -translate-y-1/2">
-                <span aria-hidden="true" className={cn("absolute block h-0.5 w-full rounded-full bg-gray-900 transition duration-500 ease-in-out", isMenuOpen ? "rotate-45" : "-translate-y-1.5")} />
-                <span aria-hidden="true" className={cn("absolute block h-0.5 w-full rounded-full bg-gray-900 transition duration-500 ease-in-out", isMenuOpen ? "opacity-0" : "")} />
-                <span aria-hidden="true" className={cn("absolute block h-0.5 w-full rounded-full bg-gray-900 transition duration-500 ease-in-out", isMenuOpen ? "-rotate-45" : "translate-y-1.5")} />
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <div
-        id="mobile-menu"
-        className={cn(
-          "container absolute inset-x-0 top-full flex h-[calc(100vh-64px)] flex-col px-2.5 lg:px-0",
-          "transition duration-300 ease-in-out lg:hidden",
-          isMenuOpen ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-full opacity-0",
-          "bg-background",
-        )}
+      <a
+        href={item.featured.href}
+        className="group bg-primary text-primary-foreground relative flex min-h-[200px] flex-col justify-between overflow-hidden rounded-lg p-6"
       >
-        <div className="flex h-[calc(100vh-80px)] flex-col px-5">
-          <nav className="mt-6 flex flex-1 flex-col gap-6">
-            {ITEMS.map((link) =>
-              link.dropdownItems ? (
-                <div key={link.label}>
-                  <button
-                    onClick={() => setOpenDropdown(openDropdown === link.label ? null : link.label)}
-                    className="text-foreground text-body-lg-medium flex w-full items-center justify-between tracking-[-0.36px]"
-                    aria-label={`${link.label} menu`}
-                    aria-expanded={openDropdown === link.label}
+        <div>
+          <div className="text-primary-foreground/70 mb-3 text-xs font-medium tracking-wider uppercase">
+            {item.label}
+          </div>
+          <h3 className="mb-2 text-base leading-tight font-semibold tracking-tight">
+            {item.featured.title}
+          </h3>
+          <p className="text-primary-foreground/85 text-xs leading-relaxed">
+            {item.featured.description}
+          </p>
+        </div>
+        <div className="mt-4 flex items-center text-xs font-medium">
+          {item.featured.cta}
+          <ArrowRight className="ml-1 size-3.5 transition-transform group-hover:translate-x-1" />
+        </div>
+      </a>
+
+      {item.sections.map((section) => (
+        <div key={section.title} className="min-w-0">
+          <div className="text-muted-foreground border-border mb-3 border-b pb-2 text-xs font-medium tracking-wider uppercase">
+            {section.title}
+          </div>
+          <ul className="space-y-0.5">
+            {section.links.map((link) => (
+              <li key={link.href}>
+                <NavigationMenuLink asChild>
+                  <a
+                    href={link.href}
+                    className="text-foreground/75 hover:text-foreground hover:bg-muted block rounded-md px-2 py-1.5 text-sm leading-snug transition-colors"
                   >
                     {link.label}
-                    <ChevronRight className={cn("h-4 w-4 transition-transform", openDropdown === link.label ? "rotate-90" : "")} aria-hidden="true" />
-                  </button>
-                  <div className={cn("ml-1 space-y-3 overflow-hidden border-b border-b-gray-50 transition-all", openDropdown === link.label ? "mt-3 max-h-[1000px] pb-6 opacity-100" : "max-h-0 opacity-0")}>
-                    {link.dropdownItems.map((item) => (
-                      <a key={item.title} href={item.href} onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }} className="hover:bg-accent flex items-start gap-3 rounded-xl p-2">
-                        <div className="text-foreground font-medium">{item.title}</div>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <a key={link.label} href={link.href} className={cn("text-foreground text-body-lg-medium tracking-[-0.36px]")} onClick={() => setIsMenuOpen(false)}>
-                  {link.label}
-                </a>
-              ),
-            )}
-            <div className="flex flex-col gap-3 pb-20 sm:gap-4 lg:flex-row">
-              <a href="/book-a-call/"><Button variant="secondary" className="w-full" onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }}>Book Free Call</Button></a>
-              <a href="/mortgage-renewal-calculator/"><Button className="w-full" onClick={() => { setIsMenuOpen(false); setOpenDropdown(null); }}>Compare Rates</Button></a>
-            </div>
-          </nav>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+            ))}
+          </ul>
         </div>
+      ))}
+    </div>
+  );
+};
+
+const MobileMegaPanel = ({
+  item,
+  onClose,
+}: {
+  item: MegaItem;
+  onClose: () => void;
+}) => (
+  <div className="space-y-8">
+    <a
+      href={item.featured.href}
+      onClick={onClose}
+      className="bg-primary text-primary-foreground group block rounded-lg p-5"
+    >
+      <div className="text-primary-foreground/70 mb-2 text-xs font-medium tracking-wider uppercase">
+        {item.label}
       </div>
+      <h3 className="mb-2 text-base font-semibold">{item.featured.title}</h3>
+      <p className="text-primary-foreground/85 mb-3 text-xs leading-relaxed">
+        {item.featured.description}
+      </p>
+      <div className="flex items-center text-xs font-medium">
+        {item.featured.cta}
+        <ArrowRight className="ml-1 size-3.5 transition-transform group-hover:translate-x-1" />
+      </div>
+    </a>
+
+    {item.sections.map((section) => (
+      <div key={section.title}>
+        <div className="text-muted-foreground mb-2 text-xs font-medium tracking-wider uppercase">
+          {section.title}
+        </div>
+        <ul className="divide-border border-border divide-y border-t">
+          {section.links.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                onClick={onClose}
+                className="text-foreground/85 hover:text-foreground flex items-center justify-between py-3 text-sm"
+              >
+                {link.label}
+                <ArrowRight className="size-4 opacity-40" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+);
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [submenuKey, setSubmenuKey] = useState<MegaItem["key"] | null>(null);
+
+  useEffect(() => {
+    document.body.classList.toggle("overflow-hidden", isOpen);
+    return () => document.body.classList.remove("overflow-hidden");
+  }, [isOpen]);
+
+  const closeMobile = () => {
+    setIsOpen(false);
+    setSubmenuKey(null);
+  };
+
+  const activeSubmenu = MEGA_NAV.find((x) => x.key === submenuKey) ?? null;
+
+  return (
+    <header className="bg-background border-border relative z-50 border-b">
+      <div className="container">
+        <NavigationMenu className="w-full max-w-full justify-start">
+          <div className="flex h-20 w-full items-center justify-between gap-4 px-3.5 lg:px-6">
+            <a href="/" className="flex shrink-0 items-center">
+              <span className="text-primary text-xl font-bold tracking-tight">
+                MortgageRenewal
+                <span className="text-secondary-100">Hub</span>.ca
+              </span>
+            </a>
+
+            <NavigationMenuList className="hidden xl:flex">
+              {MEGA_NAV.map((item) => (
+                <NavigationMenuItem key={item.key}>
+                  <NavigationMenuTrigger className="text-sm">
+                    {item.label}
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <MegaMenuPanel item={item} />
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+              ))}
+            </NavigationMenuList>
+
+            <div className="flex items-center gap-2.5">
+              <a href="/book-a-call/" className="hidden xl:block">
+                <Button size="sm" variant="secondary">
+                  Book Free Call
+                </Button>
+              </a>
+              <a href="/mortgage-renewal-calculator/" className="hidden xl:block">
+                <Button size="sm">Compare Rates</Button>
+              </a>
+              <button
+                className="text-muted-foreground relative flex size-8 items-center justify-center xl:hidden"
+                onClick={() => {
+                  if (isOpen) closeMobile();
+                  else setIsOpen(true);
+                }}
+                aria-label="Toggle main menu"
+                aria-expanded={isOpen}
+              >
+                {!isOpen ? (
+                  <Menu className="size-5" />
+                ) : (
+                  <X className="size-5" />
+                )}
+              </button>
+            </div>
+          </div>
+        </NavigationMenu>
+      </div>
+
+      {isOpen && (
+        <div
+          className="bg-background fixed inset-x-0 top-20 bottom-0 z-40 overflow-y-auto xl:hidden"
+          aria-modal="true"
+          role="dialog"
+        >
+          <div className="container px-6 py-6">
+            {activeSubmenu ? (
+              <>
+                <button
+                  type="button"
+                  onClick={() => setSubmenuKey(null)}
+                  className="text-muted-foreground hover:text-foreground -ml-2 mb-4 flex items-center gap-2 rounded-md px-2 py-1 text-sm font-medium"
+                >
+                  <ArrowLeft className="size-4" />
+                  All sections
+                </button>
+                <h2 className="mb-6 text-xl font-semibold tracking-tight">
+                  {activeSubmenu.label}
+                </h2>
+                <MobileMegaPanel item={activeSubmenu} onClose={closeMobile} />
+              </>
+            ) : (
+              <>
+                <ul className="divide-border border-border divide-y border-t">
+                  {MEGA_NAV.map((item) => (
+                    <li key={item.key}>
+                      <button
+                        type="button"
+                        onClick={() => setSubmenuKey(item.key)}
+                        className="flex w-full items-center justify-between py-4 text-left"
+                      >
+                        <span className="text-base font-medium">
+                          {item.label}
+                        </span>
+                        <ArrowRight className="size-4 opacity-40" />
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-8 flex flex-col gap-3 pb-12">
+                  <a href="/book-a-call/" onClick={closeMobile}>
+                    <Button variant="secondary" className="w-full" size="lg">
+                      Book Free Call
+                    </Button>
+                  </a>
+                  <a
+                    href="/mortgage-renewal-calculator/"
+                    onClick={closeMobile}
+                  >
+                    <Button className="w-full" size="lg">
+                      Compare Rates
+                    </Button>
+                  </a>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 };

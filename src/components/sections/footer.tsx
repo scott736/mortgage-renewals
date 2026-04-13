@@ -110,30 +110,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 border-t border-white/10 pt-8 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left">
-          <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-white/60 sm:justify-start">
-            <span>© {year} MortgageRenewalHub.ca</span>
-            <span aria-hidden="true" className="text-white/30">—</span>
-            <span>
-              A{" "}
-              <a
-                href="https://lendcity.ca"
-                target="_blank"
-                rel="noopener"
-                className="font-semibold text-white underline-offset-2 hover:underline"
-              >
-                LendCity
-              </a>
-              {" "}Resource
-            </span>
-            <a
-              href={BUSINESS.phone.tel}
-              className="text-white/70 hover:text-white"
-            >
-              📞 {BUSINESS.phone.displayDashed}
-            </a>
-            <span className="text-white/70">
-              📍 {BUSINESS.address.oneLine}
-            </span>
+          <p className="text-xs text-white/60">
+            © {year} LendCity Mortgages. All rights reserved. Powered by Mortgage Architects FSRA # 12728
           </p>
           <p className="text-xs text-white/40 max-w-xl">
             For educational purposes only. Not financial advice. Always consult a licensed mortgage professional for advice specific to your situation.
