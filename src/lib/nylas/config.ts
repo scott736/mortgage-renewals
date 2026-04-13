@@ -17,6 +17,10 @@ const DEFAULT_AVAILABILITY: AvailabilityRule[] = [
   { dayOfWeek: 5, startTime: '09:00', endTime: '17:00' },
 ];
 
+// Empty string = let Nylas resolve to the user's default calendar via the
+// 'primary' keyword (see getCalendarId in client.ts). This works for every
+// Microsoft 365 account in the team list today. If a team member needs events
+// on a non-default calendar, set an explicit calendar ID here instead of ''.
 const DEFAULT_CALENDAR = { primary: '' };
 const DEFAULT_TZ = { timezone: 'America/Toronto', rules: DEFAULT_AVAILABILITY };
 

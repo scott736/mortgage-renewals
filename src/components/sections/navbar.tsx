@@ -141,8 +141,6 @@ const ITEMS = [
       { title: "FAQ", href: "/mortgage-renewal-faq/" },
       { title: "News & Updates", href: "/mortgage-renewal-news/" },
       { title: "Case Studies", href: "/case-studies/" },
-      { title: "Video Library", href: "/mortgage-renewal-videos/" },
-      { title: "Newsletter", href: "/mortgage-renewal-newsletter/" },
       { title: "Renewal Checklist", href: "/mortgage-renewal-checklist/" },
       { title: "PDF Checklist Download", href: "/mortgage-renewal-checklist-pdf/" },
       { title: "Document Checklist Generator", href: "/renewal-document-checklist-generator/" },

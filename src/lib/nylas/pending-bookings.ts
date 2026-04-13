@@ -1,15 +1,21 @@
 /**
- * Pending Bookings — In-Memory Implementation
+ * Pending Bookings — Durable Storage
  *
- * Stores unconfirmed bookings in server memory until the user clicks the
- * confirmation link. On confirmation, creates the actual Nylas calendar event.
+ * Stores unconfirmed bookings until the user clicks the confirmation link in
+ * their email. On confirmation, creates the actual Nylas calendar event.
  *
- * Note: In-memory storage is cleared on server restart. This is acceptable
- * for this satellite site. For persistence, migrate to a database.
+ * Primary store: Upstash Redis (via @upstash/redis REST client). Auto-populated
+ * by the Vercel Marketplace Upstash integration as UPSTASH_REDIS_REST_URL /
+ * UPSTASH_REDIS_REST_TOKEN. Entries TTL after 30 minutes.
+ *
+ * Fallback: in-memory Map (local dev only — lost between serverless invocations,
+ * which is why Redis is required in production).
  */
 
+import { Redis } from '@upstash/redis';
+
 import { createBooking } from './client';
-import type { BookingConfirmation,BookingRequest } from './types';
+import type { BookingConfirmation, BookingRequest } from './types';
 
 // ============================================================================
 // Types
@@ -35,29 +41,109 @@ export interface PendingBooking {
 }
 
 interface PendingBookingStore extends PendingBooking {
-  expiresAt: Date;
   bookingRequest: BookingRequest;
 }
 
 // ============================================================================
-// In-Memory Store
+// Storage Adapter
 // ============================================================================
 
-// Global store (survives across requests in the same server process)
-const pendingBookings = new Map<string, PendingBookingStore>();
-const emailPendingCounts = new Map<string, number>();
+const PENDING_EXPIRY_MINUTES = 30;
+const MAX_PENDING_PER_EMAIL = 3;
+const TOKEN_KEY = (token: string) => `pb:token:${token}`;
+const EMAIL_KEY = (email: string) => `pb:email:${email.toLowerCase()}`;
 
-// Cleanup interval: remove expired bookings every 10 minutes
-function pruneExpired() {
-  const now = new Date();
-  for (const [token, booking] of pendingBookings.entries()) {
-    if (booking.expiresAt < now) {
+const redisUrl = import.meta.env.UPSTASH_REDIS_REST_URL
+  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_URL : undefined);
+const redisToken = import.meta.env.UPSTASH_REDIS_REST_TOKEN
+  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_TOKEN : undefined);
+
+const redis = redisUrl && redisToken
+  ? new Redis({ url: redisUrl, token: redisToken })
+  : null;
+
+// In-memory fallback (local dev only)
+const memoryStore = new Map<string, PendingBookingStore>();
+const memoryEmailCounts = new Map<string, number>();
+
+function pruneMemory() {
+  const now = Date.now();
+  for (const [token, booking] of memoryStore.entries()) {
+    if (new Date(booking.expires_at).getTime() < now) {
       const emailKey = booking.guest_email.toLowerCase();
-      const count = emailPendingCounts.get(emailKey) ?? 0;
-      if (count > 0) emailPendingCounts.set(emailKey, count - 1);
-      pendingBookings.delete(token);
+      const count = memoryEmailCounts.get(emailKey) ?? 0;
+      if (count > 0) memoryEmailCounts.set(emailKey, count - 1);
+      memoryStore.delete(token);
     }
   }
+}
+
+async function storeGet(token: string): Promise<PendingBookingStore | null> {
+  if (redis) {
+    return (await redis.get<PendingBookingStore>(TOKEN_KEY(token))) ?? null;
+  }
+  pruneMemory();
+  return memoryStore.get(token) ?? null;
+}
+
+async function storeSet(
+  token: string,
+  booking: PendingBookingStore,
+  ttlSeconds: number,
+): Promise<void> {
+  if (redis) {
+    await redis.set(TOKEN_KEY(token), booking, { ex: ttlSeconds });
+    return;
+  }
+  memoryStore.set(token, booking);
+}
+
+async function storeUpdate(
+  token: string,
+  booking: PendingBookingStore,
+): Promise<void> {
+  if (redis) {
+    const ttl = Math.max(
+      60,
+      Math.floor((new Date(booking.expires_at).getTime() - Date.now()) / 1000),
+    );
+    await redis.set(TOKEN_KEY(token), booking, { ex: ttl });
+    return;
+  }
+  memoryStore.set(token, booking);
+}
+
+async function emailIncr(email: string): Promise<number> {
+  const key = EMAIL_KEY(email);
+  if (redis) {
+    const count = await redis.incr(key);
+    if (count === 1) await redis.expire(key, PENDING_EXPIRY_MINUTES * 60);
+    return count;
+  }
+  pruneMemory();
+  const next = (memoryEmailCounts.get(email.toLowerCase()) ?? 0) + 1;
+  memoryEmailCounts.set(email.toLowerCase(), next);
+  return next;
+}
+
+async function emailDecr(email: string): Promise<void> {
+  const key = EMAIL_KEY(email);
+  if (redis) {
+    const count = await redis.decr(key);
+    if (count <= 0) await redis.del(key);
+    return;
+  }
+  const current = memoryEmailCounts.get(email.toLowerCase()) ?? 0;
+  if (current > 0) memoryEmailCounts.set(email.toLowerCase(), current - 1);
+}
+
+async function emailCount(email: string): Promise<number> {
+  if (redis) {
+    const value = await redis.get<number>(EMAIL_KEY(email));
+    return value ?? 0;
+  }
+  pruneMemory();
+  return memoryEmailCounts.get(email.toLowerCase()) ?? 0;
 }
 
 // ============================================================================
@@ -76,30 +162,17 @@ function generateToken(): string {
     .join('');
 }
 
-const PENDING_EXPIRY_MINUTES = 30;
-const MAX_PENDING_PER_EMAIL = 3;
-
 // ============================================================================
 // Public Functions
 // ============================================================================
 
-/**
- * Check if an email address has too many pending (unconfirmed) bookings
- */
 export async function hasReachedPendingLimit(email: string): Promise<boolean> {
-  pruneExpired();
-  const count = emailPendingCounts.get(email.toLowerCase()) ?? 0;
-  return count >= MAX_PENDING_PER_EMAIL;
+  return (await emailCount(email)) >= MAX_PENDING_PER_EMAIL;
 }
 
-/**
- * Create a new pending booking (pre-confirmation step)
- */
 export async function createPendingBooking(
-  bookingRequest: BookingRequest
+  bookingRequest: BookingRequest,
 ): Promise<{ id: string; token: string; expiresAt: Date }> {
-  pruneExpired();
-
   const id = generateId();
   const token = generateToken();
   const expiresAt = new Date(Date.now() + PENDING_EXPIRY_MINUTES * 60 * 1000);
@@ -121,42 +194,28 @@ export async function createPendingBooking(
     status: 'pending',
     expires_at: expiresAt.toISOString(),
     created_at: now,
-    expiresAt,
     bookingRequest,
   };
 
-  pendingBookings.set(token, store);
-
-  const emailKey = bookingRequest.guestEmail.toLowerCase();
-  emailPendingCounts.set(emailKey, (emailPendingCounts.get(emailKey) ?? 0) + 1);
+  await storeSet(token, store, PENDING_EXPIRY_MINUTES * 60);
+  await emailIncr(bookingRequest.guestEmail);
 
   return { id, token, expiresAt };
 }
 
-/**
- * Get a pending booking by its confirmation token
- */
 export async function getPendingBookingByToken(
-  token: string
+  token: string,
 ): Promise<PendingBooking | null> {
-  pruneExpired();
-  const booking = pendingBookings.get(token);
+  const booking = await storeGet(token);
   if (!booking) return null;
-
-  // Return without internal fields
-  const { expiresAt: _exp, bookingRequest: _req, ...rest } = booking;
+  const { bookingRequest: _req, ...rest } = booking;
   return rest;
 }
 
-/**
- * Confirm a pending booking by creating the Nylas calendar event
- */
 export async function confirmPendingBooking(
-  token: string
+  token: string,
 ): Promise<{ success: boolean; booking?: BookingConfirmation; error?: string }> {
-  pruneExpired();
-
-  const store = pendingBookings.get(token);
+  const store = await storeGet(token);
 
   if (!store) {
     return { success: false, error: 'Booking not found or expired. Please try booking again.' };
@@ -170,24 +229,18 @@ export async function confirmPendingBooking(
     return { success: false, error: 'This booking was cancelled.' };
   }
 
-  if (new Date() > store.expiresAt) {
+  if (Date.now() > new Date(store.expires_at).getTime()) {
     store.status = 'expired';
+    await storeUpdate(token, store);
     return { success: false, error: 'This confirmation link has expired. Please book again.' };
   }
 
   try {
-    // Create the actual Nylas event
     const booking = await createBooking(store.bookingRequest);
-
-    // Mark as confirmed
     store.status = 'confirmed';
     store.confirmed_at = new Date().toISOString();
-
-    // Reduce pending count for this email
-    const emailKey = store.guest_email.toLowerCase();
-    const count = emailPendingCounts.get(emailKey) ?? 0;
-    if (count > 0) emailPendingCounts.set(emailKey, count - 1);
-
+    await storeUpdate(token, store);
+    await emailDecr(store.guest_email);
     return { success: true, booking };
   } catch (error) {
     console.error('[pending-bookings] Error confirming booking:', error);
@@ -198,16 +251,10 @@ export async function confirmPendingBooking(
   }
 }
 
-/**
- * Cancel a pending booking (e.g., when user selects a new time)
- */
 export async function cancelPendingBooking(token: string): Promise<void> {
-  const store = pendingBookings.get(token);
+  const store = await storeGet(token);
   if (!store) return;
-
   store.status = 'cancelled';
-
-  const emailKey = store.guest_email.toLowerCase();
-  const count = emailPendingCounts.get(emailKey) ?? 0;
-  if (count > 0) emailPendingCounts.set(emailKey, count - 1);
+  await storeUpdate(token, store);
+  await emailDecr(store.guest_email);
 }

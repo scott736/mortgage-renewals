@@ -5,7 +5,7 @@ import "../styles/global.css";
 
 import { Font } from "astro:assets";
 
-import { BUSINESS, POSTAL_ADDRESS_NODE, SITE_METADATA, SITE_TITLE } from "../consts";
+import { BUSINESS, POSTAL_ADDRESS_NODE, SITE_METADATA } from "../consts";
 
 interface Props {
   title: string;
@@ -178,12 +178,6 @@ const graphSchema = JSON.stringify({
 }
 
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link
-  rel="alternate"
-  type="application/rss+xml"
-  title={SITE_TITLE}
-  href={new URL("rss.xml", Astro.site)}
-/>
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL (matches sitemap trailing-slash convention) -->

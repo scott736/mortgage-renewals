@@ -420,14 +420,6 @@ export const LINK_META: Record<string, LinkMeta> = {
     title: "Renewal News",
     blurb: "Latest Canadian mortgage and renewal headlines.",
   },
-  "/mortgage-renewal-newsletter/": {
-    title: "Renewal Newsletter",
-    blurb: "Monthly rate roundup and renewal strategy notes.",
-  },
-  "/mortgage-renewal-videos/": {
-    title: "Renewal Video Library",
-    blurb: "Short videos walking through every step of a renewal.",
-  },
   "/renewal-document-checklist-generator/": {
     title: "Document Checklist Generator",
     blurb: "Custom doc checklist based on your income type and lender.",
@@ -1052,7 +1044,7 @@ export const RELATED: Record<string, string[]> = {
     "/mortgage-rate-forecast/",
     "/bank-of-canada-rate-decisions/",
     "/renewal-reminder/",
-    "/mortgage-renewal-newsletter/",
+    "/book-a-call/",
   ],
 
   // ─── Situations ───────────────────────────────────────────────────
@@ -1287,7 +1279,7 @@ export const RELATED: Record<string, string[]> = {
     "/renewal-document-checklist-generator/",
     "/renewal-reminder/",
     "/mortgage-renewal-guide/",
-    "/mortgage-renewal-newsletter/",
+    "/book-a-call/",
     "/mortgage-renewal-faq/",
   ],
   "/mortgage-renewal-glossary/": [
@@ -1310,24 +1302,8 @@ export const RELATED: Record<string, string[]> = {
     "/bank-of-canada-rate-decisions/",
     "/mortgage-rate-forecast/",
     "/best-mortgage-renewal-rates/",
-    "/mortgage-renewal-newsletter/",
+    "/book-a-call/",
     "/rate-alert/",
-    "/case-studies/",
-  ],
-  "/mortgage-renewal-newsletter/": [
-    "/rate-alert/",
-    "/renewal-reminder/",
-    "/mortgage-renewal-news/",
-    "/best-mortgage-renewal-rates/",
-    "/mortgage-rate-forecast/",
-    "/mortgage-renewal-guide/",
-  ],
-  "/mortgage-renewal-videos/": [
-    "/mortgage-renewal-guide/",
-    "/mortgage-renewal-checklist/",
-    "/what-is-a-mortgage-renewal/",
-    "/switching-lenders-at-renewal/",
-    "/mortgage-renewal-glossary/",
     "/case-studies/",
   ],
   "/renewal-document-checklist-generator/": [
@@ -1341,7 +1317,7 @@ export const RELATED: Record<string, string[]> = {
   "/renewal-reminder/": [
     "/mortgage-renewal-checklist/",
     "/rate-alert/",
-    "/mortgage-renewal-newsletter/",
+    "/book-a-call/",
     "/mortgage-renewal-guide/",
     "/best-mortgage-renewal-rates/",
     "/mortgage-renewal-mistakes/",

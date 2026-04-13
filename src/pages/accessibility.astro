@@ -1,0 +1,165 @@
+---
+import { BUSINESS } from "@/consts";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { breadcrumbSchema, combineSchemas, webPageNode } from "@/lib/schema";
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "accessibility",
+    name: "Accessibility Statement — MortgageRenewalHub.ca",
+    description:
+      "MortgageRenewalHub.ca's commitment to WCAG 2.1 AA accessibility, how we test, known limitations, and how to report a barrier.",
+  }),
+  breadcrumbSchema([{ name: "Accessibility", url: "/accessibility" }]),
+);
+
+const lastReviewed = "April 13, 2026";
+---
+
+<DefaultLayout
+  title="Accessibility Statement — MortgageRenewalHub.ca"
+  description="Our commitment to WCAG 2.1 AA accessibility, conformance status, known limitations, and how to report an accessibility barrier on MortgageRenewalHub.ca."
+  schema={schema}
+>
+  <section class="bg-primary-300 px-6 py-16 text-white lg:py-24">
+    <div class="container">
+      <div class="mx-auto max-w-3xl text-center">
+        <h1 class="text-5xl leading-[1.08] font-bold tracking-tight sm:text-6xl">
+          Accessibility
+        </h1>
+        <p class="text-body-lg mx-auto mt-4 max-w-2xl text-white/80">
+          We're committed to making Canadian mortgage renewal information usable
+          by everyone — regardless of ability or assistive technology.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white px-6 pb-16 lg:pb-24">
+    <div class="container -mt-6 rounded-t-[24px] bg-white px-4 py-10 md:-mt-8 md:px-10 md:py-14">
+      <article class="mx-auto max-w-3xl prose prose-lg">
+        <p class="text-body-sm text-muted-foreground">Last reviewed: {lastReviewed}</p>
+
+        <h2>Our commitment</h2>
+        <p>
+          MortgageRenewalHub.ca aims to meet the{" "}
+          <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">
+            Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA
+          </a>
+          . We treat accessibility as a product requirement, not an afterthought,
+          because the Canadians who most need straightforward mortgage-renewal
+          information often rely on assistive technology to read financial
+          material.
+        </p>
+
+        <h2>Conformance status</h2>
+        <p>
+          The site is <strong>partially conformant</strong> with WCAG 2.1 AA.
+          Partially conformant means that some parts of the site do not fully
+          conform to the standard yet. We audit quarterly and fix issues on a
+          rolling basis.
+        </p>
+
+        <h2>How we test</h2>
+        <ul>
+          <li>Automated checks on every deploy using axe-core rules.</li>
+          <li>
+            Manual keyboard-only and screen-reader spot-checks on new templates
+            (NVDA on Windows, VoiceOver on macOS and iOS).
+          </li>
+          <li>Colour-contrast verification on branded components.</li>
+          <li>Resizing, zoom, and reduced-motion checks.</li>
+        </ul>
+
+        <h2>Known limitations</h2>
+        <p>
+          We're aware of the following areas and are actively working on them:
+        </p>
+        <ul>
+          <li>
+            Some calculator result tables do not yet expose every row with a
+            descriptive <code>aria-label</code> — screen-reader users may hear
+            raw numbers without unit context. Workaround: the prose summary
+            below each calculator repeats the result in sentence form.
+          </li>
+          <li>
+            A small number of decorative illustrations on marketing sections are
+            served without <code>alt=""</code>. Assistive tech may announce
+            them; this is cosmetic, not informational.
+          </li>
+        </ul>
+
+        <h2>Compatibility</h2>
+        <p>
+          The site is designed to be compatible with the following assistive
+          technologies on the latest two versions of major browsers (Chrome,
+          Firefox, Safari, Edge):
+        </p>
+        <ul>
+          <li>NVDA and JAWS on Windows</li>
+          <li>VoiceOver on macOS and iOS</li>
+          <li>TalkBack on Android</li>
+          <li>Keyboard-only navigation</li>
+          <li>200% browser zoom and system-level text resizing</li>
+        </ul>
+
+        <h2>Report a barrier</h2>
+        <p>
+          If you hit an accessibility barrier on this site — a control that
+          can't be reached with a keyboard, a form you can't complete with a
+          screen reader, a colour combination that's hard to read — please tell
+          us. We treat accessibility reports as priority bugs and will
+          acknowledge your message within one business day.
+        </p>
+        <ul>
+          <li>
+            Email:{" "}
+            <a href="mailto:info@lendcity.ca?subject=Accessibility%20issue%20-%20mortgagerenewalhub.ca">
+              info@lendcity.ca
+            </a>
+            {" "}(subject line: "Accessibility issue")
+          </li>
+          <li>
+            Phone:{" "}
+            <a href={BUSINESS.phone.tel}>{BUSINESS.phone.display}</a>
+          </li>
+          <li>
+            Post:{" "}
+            <span>
+              {BUSINESS.parent.name}, {BUSINESS.address.oneLine}
+            </span>
+          </li>
+        </ul>
+        <p>
+          Please include the page URL, a short description of what you were
+          trying to do, and what assistive technology or browser you were
+          using. We'll respond with a remediation plan or, if we can't fix it
+          quickly, an alternative way to get the information you need.
+        </p>
+
+        <h2>Formal complaints</h2>
+        <p>
+          If you're not satisfied with our response, you can also contact the{" "}
+          <a
+            href="https://www.accessibility.canada.ca/"
+            target="_blank"
+            rel="noopener"
+          >
+            Accessibility Commissioner of Canada
+          </a>
+          , or, for Ontario residents, file a complaint under the{" "}
+          <a
+            href="https://www.ontario.ca/laws/statute/05a11"
+            target="_blank"
+            rel="noopener"
+          >
+            Accessibility for Ontarians with Disabilities Act (AODA)
+          </a>
+          .
+        </p>
+      </article>
+    </div>
+  </section>
+</DefaultLayout>

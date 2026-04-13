@@ -37,6 +37,7 @@
     "@turf/boolean-point-in-polygon": "^7.3.4",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
+    "@upstash/redis": "^1.37.0",
     "astro": "^6.1.5",
     "astro-themes": "^0.2.5",
     "class-variance-authority": "^0.7.1",

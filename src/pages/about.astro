@@ -117,6 +117,53 @@ const schema = combineSchemas(
     </div>
   </section>
 
+  <!-- EXPERT AUTHOR -->
+  <section class="py-16 bg-white" id="scott-dillingham">
+    <div class="container max-w-4xl px-6">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Expert Author & Principal Broker</div>
+      <h2 class="text-heading-2 mb-8">Meet Scott Dillingham</h2>
+
+      <div class="grid gap-8 sm:grid-cols-[180px_1fr] items-start">
+        <div class="rounded-xl border border-gray-100 bg-gray-25 overflow-hidden aspect-square w-full max-w-[180px]">
+          {/* TODO: drop a 400x400+ webp/jpg at public/images/about/scott-dillingham.webp to activate the headshot */}
+          <img
+            src="/images/about/scott-dillingham.webp"
+            alt="Scott Dillingham — Principal Broker, LendCity Mortgages"
+            width="180"
+            height="180"
+            loading="lazy"
+            decoding="async"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'flex h-full w-full items-center justify-center text-gray-400 text-5xl font-bold\'>SD</div>';"
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <div>
+          <p class="text-body-md text-muted-foreground mb-4">
+            Scott Dillingham is the principal broker at <a href="https://lendcity.ca" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a> and the named expert author for MortgageRenewalHub.ca. Every guide, calculator walkthrough, and renewal scenario on this site is reviewed against the Canadian mortgage rules in force at the time of publication — OSFI B-20, the FCAC Mortgage Consumer Code of Conduct, and lender-specific overlays.
+          </p>
+          <p class="text-body-md text-muted-foreground mb-4">
+            Scott has been active in Canadian mortgage brokering for over a decade, specialising in renewals, switches, and complex-income files across all ten provinces and the territories. He personally reviews the technical accuracy of the content on this site and keeps it current as rules change.
+          </p>
+          <ul class="text-body-sm text-muted-foreground space-y-1.5 mb-4">
+            <li><strong class="text-foreground">Role:</strong> Principal broker, LendCity Mortgages</li>
+            <li><strong class="text-foreground">Licence:</strong> {BUSINESS.licensing.regulator} agent #{BUSINESS.licensing.principalBrokerLicence}</li>
+            <li><strong class="text-foreground">Focus areas:</strong> Mortgage renewal, refinance, switch strategy, investment properties</li>
+            <li><strong class="text-foreground">Based in:</strong> {BUSINESS.address.addressLocality}, Ontario · serving Canada-wide</li>
+          </ul>
+          <div class="flex flex-wrap gap-3">
+            <a href="/book-a-call/" class="inline-flex rounded-lg bg-primary-100 text-white font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity">
+              Book a call with Scott's team
+            </a>
+            <a href="https://lendcity.ca" target="_blank" rel="noopener" class="inline-flex rounded-lg border-2 border-gray-100 text-gray-900 font-semibold px-5 py-2.5 hover:bg-gray-25 transition-colors">
+              LendCity.ca →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- POWERED BY LENDCITY -->
   <section class="bg-gray-25 py-16">
     <div class="container max-w-3xl px-6 text-center">
@@ -125,11 +172,15 @@ const schema = combineSchemas(
       <p class="text-body-lg text-muted-foreground mb-6">
         MortgageRenewalHub.ca is owned and operated by <a href="https://lendcity.ca" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a> — a full-service Canadian mortgage brokerage helping homeowners, investors, and first-time buyers across the country secure better rates and smarter mortgage strategies.
       </p>
-      <address class="not-italic text-body-md text-muted-foreground mb-6 leading-relaxed">
+      <address class="not-italic text-body-md text-muted-foreground mb-4 leading-relaxed">
         {BUSINESS.address.streetAddress}<br />
         {BUSINESS.address.addressLocality}, Ontario {BUSINESS.address.postalCode}<br />
         <a href={BUSINESS.phone.tel} style="color: var(--secondary)">{BUSINESS.phone.display}</a>
       </address>
+      <p class="text-body-sm text-muted-foreground mb-6">
+        {BUSINESS.licensing.brokerageName} · {BUSINESS.licensing.regulator} brokerage #{BUSINESS.licensing.brokerageLicence}<br />
+        Principal broker {BUSINESS.licensing.principalBrokerName}, {BUSINESS.licensing.regulator} agent #{BUSINESS.licensing.principalBrokerLicence}
+      </p>
       <div class="flex flex-wrap justify-center gap-4">
         <a href="https://lendcity.ca" target="_blank" rel="noopener">
           <button class="rounded-lg bg-primary-100 hover:opacity-90 text-white font-semibold px-8 py-4 text-lg transition-colors">

@@ -36,6 +36,7 @@ export default function Footer() {
         { name: "Privacy Policy", href: "/privacy/" },
         { name: "Terms of Service", href: "/terms/" },
         { name: "Cookie Policy", href: "/cookie-policy/" },
+        { name: "Accessibility", href: "/accessibility/" },
       ],
     },
   ];
@@ -136,6 +137,16 @@ export default function Footer() {
           </p>
           <p className="text-xs text-white/40 max-w-xl">
             For educational purposes only. Not financial advice. Always consult a licensed mortgage professional for advice specific to your situation.
+          </p>
+        </div>
+
+        <div className="mt-6 border-t border-white/10 pt-6 text-center">
+          <p className="text-[11px] text-white/50 leading-relaxed">
+            {BUSINESS.licensing.brokerageName}{" "}
+            <span aria-hidden="true" className="text-white/30">·</span>{" "}
+            {BUSINESS.licensing.regulator} brokerage #{BUSINESS.licensing.brokerageLicence}{" "}
+            <span aria-hidden="true" className="text-white/30">·</span>{" "}
+            Principal broker {BUSINESS.licensing.principalBrokerName}, {BUSINESS.licensing.regulator} agent #{BUSINESS.licensing.principalBrokerLicence}
           </p>
         </div>
       </div>

@@ -1,0 +1,183 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+
+export const prerender = false;
+---
+
+<DefaultLayout
+  title="Confirm Your Booking — MortgageRenewalHub.ca"
+  description="Confirm your free Canadian mortgage renewal strategy call."
+  noindex={true}
+>
+  <section class="container max-w-3xl py-16 px-6">
+    <div id="confirm-root" class="min-h-[320px]">
+      <div class="rounded-2xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm text-center" data-state="loading">
+        <div class="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-4 border-gray-100 border-t-secondary-100" aria-hidden="true"></div>
+        <h1 class="text-heading-3 font-bold mb-2">Loading your booking…</h1>
+        <p class="text-body-sm text-muted-foreground">One moment while we pull up the details.</p>
+      </div>
+    </div>
+  </section>
+</DefaultLayout>
+
+<script is:inline>
+  (async () => {
+    const root = document.getElementById('confirm-root');
+    if (!root) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    const render = (html) => { root.innerHTML = html; };
+
+    const panel = (content, variant) => {
+      const border = variant === 'error' ? 'border-destructive/30' : variant === 'success' ? 'border-success-50' : 'border-gray-100';
+      const bg = variant === 'error' ? 'bg-destructive/5' : variant === 'success' ? 'bg-success-25' : 'bg-white';
+      return `<div class="rounded-2xl border ${border} ${bg} p-6 sm:p-8 shadow-sm">${content}</div>`;
+    };
+
+    const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    if (!token) {
+      render(panel(`
+        <h1 class="text-heading-3 font-bold mb-3">Missing confirmation token</h1>
+        <p class="text-body-md text-muted-foreground mb-5">This confirmation link is incomplete. Please open the link directly from your confirmation email.</p>
+        <a href="/book-a-call/" class="inline-flex rounded-lg bg-primary-100 text-white font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity">Start a new booking</a>
+      `, 'error'));
+      return;
+    }
+
+    const showError = (message) => {
+      render(panel(`
+        <h1 class="text-heading-3 font-bold mb-3">We couldn't confirm your booking</h1>
+        <p class="text-body-md text-muted-foreground mb-5">${escapeHtml(message)}</p>
+        <a href="/book-a-call/" class="inline-flex rounded-lg bg-primary-100 text-white font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity">Book again</a>
+      `, 'error'));
+    };
+
+    const formatDateTime = (iso, tz) => {
+      try {
+        const d = new Date(iso);
+        return d.toLocaleString('en-CA', {
+          weekday: 'long', month: 'long', day: 'numeric',
+          hour: 'numeric', minute: '2-digit', hour12: true,
+          timeZone: tz || 'America/Toronto',
+        });
+      } catch { return iso; }
+    };
+
+    // Step 1: Fetch pending details
+    let pending;
+    try {
+      const res = await fetch(`/api/nylas/confirm?token=${encodeURIComponent(token)}`, {
+        headers: { 'Accept': 'application/json' },
+      });
+      const body = await res.json();
+      if (!res.ok || !body.success) {
+        showError(body.error || 'This confirmation link is no longer valid. Please book again.');
+        return;
+      }
+      pending = body.data;
+    } catch {
+      showError('Could not reach our servers. Please try again in a moment.');
+      return;
+    }
+
+    // Already confirmed — show a success-style panel
+    if (pending.status === 'confirmed') {
+      render(panel(`
+        <h1 class="text-heading-3 font-bold mb-3">This booking is already confirmed</h1>
+        <p class="text-body-md text-muted-foreground mb-5">Your calendar invite and confirmation email were sent when you first clicked the link. Check your inbox (or spam folder) for the details.</p>
+        <a href="/" class="inline-flex rounded-lg bg-primary-100 text-white font-semibold px-5 py-2.5 hover:opacity-90 transition-opacity">Return home</a>
+      `, 'success'));
+      return;
+    }
+
+    if (pending.status === 'expired' || pending.status === 'cancelled') {
+      showError(pending.status === 'expired'
+        ? 'This confirmation link has expired. Please book again.'
+        : 'This booking was cancelled. Please book a new time.');
+      return;
+    }
+
+    const when = formatDateTime(pending.startTime, pending.timezone);
+    const serviceName = pending.service?.name || 'Free Renewal Strategy Call';
+    const teamName = pending.teamMember?.name || 'a LendCity mortgage broker';
+    const duration = pending.service?.duration || 30;
+
+    // Step 2: Render confirmation card
+    render(panel(`
+      <h1 class="text-heading-3 font-bold mb-3">Confirm your booking</h1>
+      <dl class="grid gap-3 rounded-xl border border-gray-100 bg-gray-25 p-5 mb-6 text-body-sm">
+        <div class="flex justify-between gap-4">
+          <dt class="text-muted-foreground">Service</dt>
+          <dd class="font-medium text-right">${escapeHtml(serviceName)} · ${duration} min</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="text-muted-foreground">With</dt>
+          <dd class="font-medium text-right">${escapeHtml(teamName)}</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="text-muted-foreground">When</dt>
+          <dd class="font-medium text-right">${escapeHtml(when)}</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="text-muted-foreground">For</dt>
+          <dd class="font-medium text-right">${escapeHtml(pending.guestName)} · ${escapeHtml(pending.guestEmail)}</dd>
+        </div>
+      </dl>
+
+      <button id="confirm-btn" class="w-full rounded-lg bg-primary-100 text-white font-semibold py-3 hover:opacity-90 transition-opacity disabled:opacity-60">Confirm my booking</button>
+      <p class="text-body-xs text-muted-foreground text-center mt-3">You'll receive a calendar invite and confirmation email right after you click.</p>
+    `, 'info'));
+
+    const btn = document.getElementById('confirm-btn');
+    if (!btn) return;
+
+    btn.addEventListener('click', async () => {
+      btn.setAttribute('disabled', 'true');
+      btn.textContent = 'Confirming…';
+      try {
+        const res = await fetch('/api/nylas/confirm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ token }),
+        });
+        const body = await res.json();
+        if (!res.ok || !body.success) {
+          showError(body.error || 'We could not finalize your booking. Please try again.');
+          return;
+        }
+
+        const c = body.data;
+        const confirmedWhen = formatDateTime(c.startTime, pending.timezone);
+        const calGoogle = c.calendarLinks?.google || '';
+        const calOutlook = c.calendarLinks?.outlook || '';
+        const calIcal = c.calendarLinks?.ical || '';
+        const meeting = c.meetingLink || '';
+
+        render(panel(`
+          <div class="text-center mb-6">
+            <div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-secondary-25 text-secondary-200 text-2xl">✓</div>
+            <h1 class="text-heading-3 font-bold mb-2">You're booked!</h1>
+            <p class="text-body-md text-muted-foreground">A calendar invite and confirmation email are on their way to ${escapeHtml(pending.guestEmail)}.</p>
+          </div>
+          <dl class="grid gap-3 rounded-xl border border-gray-100 bg-gray-25 p-5 mb-6 text-body-sm">
+            <div class="flex justify-between gap-4"><dt class="text-muted-foreground">With</dt><dd class="font-medium text-right">${escapeHtml(c.teamMember?.name || teamName)}</dd></div>
+            <div class="flex justify-between gap-4"><dt class="text-muted-foreground">When</dt><dd class="font-medium text-right">${escapeHtml(confirmedWhen)}</dd></div>
+            <div class="flex justify-between gap-4"><dt class="text-muted-foreground">Duration</dt><dd class="font-medium text-right">${c.service?.duration || duration} minutes</dd></div>
+          </dl>
+          ${meeting ? `<a href="${escapeHtml(meeting)}" target="_blank" rel="noopener noreferrer" class="block w-full rounded-lg bg-primary-100 text-white font-semibold py-3 text-center hover:opacity-90 transition-opacity mb-4">Join the meeting</a>` : ''}
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-4">
+            ${calGoogle ? `<a href="${escapeHtml(calGoogle)}" target="_blank" rel="noopener noreferrer" class="text-center rounded-lg border border-gray-100 px-3 py-2 text-body-sm hover:bg-gray-25">Add to Google</a>` : ''}
+            ${calOutlook ? `<a href="${escapeHtml(calOutlook)}" target="_blank" rel="noopener noreferrer" class="text-center rounded-lg border border-gray-100 px-3 py-2 text-body-sm hover:bg-gray-25">Add to Outlook</a>` : ''}
+            ${calIcal ? `<a href="${escapeHtml(calIcal)}" download="mortgage-renewal-call.ics" class="text-center rounded-lg border border-gray-100 px-3 py-2 text-body-sm hover:bg-gray-25">.ics file</a>` : ''}
+          </div>
+          <p class="text-body-xs text-muted-foreground text-center">Need to reschedule? Email <a href="mailto:info@lendcity.ca" class="underline">info@lendcity.ca</a>.</p>
+        `, 'success'));
+      } catch {
+        showError('Could not reach our servers. Please try again in a moment.');
+      }
+    });
+  })();
+</script>

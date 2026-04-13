@@ -5,6 +5,13 @@ import { articleSchema, breadcrumbSchema, combineSchemas,serviceSchema, webPageN
 
 export const prerender = true;
 
+const buildDate = new Date().toLocaleDateString("en-CA", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "America/Toronto",
+});
+
 const schema = combineSchemas(
   webPageNode({
     slug: "rate-alert",
@@ -60,13 +67,14 @@ const schema = combineSchemas(
         </div>
 
         <div class="rounded-xl bg-primary-0 border border-primary-25 p-5">
-          <p class="text-body-sm-medium text-primary-200 mb-2">Today's best broker rates (April 11, 2026)</p>
-          <ul class="text-body-sm space-y-1 text-muted-foreground">
-            <li><strong class="text-foreground">5-yr fixed insured:</strong> 3.94% – 4.04%</li>
-            <li><strong class="text-foreground">5-yr fixed uninsured:</strong> 4.19% – 4.29%</li>
-            <li><strong class="text-foreground">5-yr variable:</strong> 3.30% – 3.35% (prime − 1.10 to 1.15%)</li>
-            <li><strong class="text-foreground">3-yr fixed:</strong> 3.80% – 3.90%</li>
-          </ul>
+          <p class="text-body-sm-medium text-primary-200 mb-2">Broker rates move daily</p>
+          <p class="text-body-sm text-muted-foreground mb-3">
+            Public rate sites can be days stale, and broker-channel rates are rarely published at all. For today's live broker-negotiated rate on your term and renewal date, talk to a licensed agent — it's free and takes about 30 minutes.
+          </p>
+          <a href="/book-a-call/" class="text-body-sm-medium text-primary-200 hover:underline">
+            Get today's live rate quote →
+          </a>
+          <p class="text-body-xs text-muted-foreground mt-3">Page last updated {buildDate}.</p>
         </div>
       </div>
 

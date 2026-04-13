@@ -14,7 +14,11 @@ const ORG_ID = `${SITE_URL}/#organization`;
 const SITE_ID = `${SITE_URL}/#website`;
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 const DEFAULT_DATE_PUBLISHED = "2025-01-15";
-const DEFAULT_DATE_MODIFIED = "2026-04-11";
+// Build-time default. Individual pages should pass their own `dateModified`
+// when they have meaningful edits; leaving this blank forces a freshness
+// signal refresh on each deploy, which is the closest a static site can
+// get to "last modified" without per-page Git history.
+const DEFAULT_DATE_MODIFIED = new Date().toISOString().slice(0, 10);
 
 // Canonicalised path -> trailing slash + leading slash, used for @id stability.
 function pageUrl(slug: string) {

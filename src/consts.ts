@@ -21,6 +21,17 @@ export const BUSINESS = {
     name: "LendCity Mortgages",
     url: "https://lendcity.ca",
   },
+  // TODO: Replace placeholders with the actual FSRA licence numbers before
+  // making the site public. Ontario mortgage advertising rules require these
+  // to be shown on any public-facing website. If LendCity operates under a
+  // different brokerage name or in another province, update `regulator` too.
+  licensing: {
+    regulator: "FSRA",
+    brokerageName: "LendCity Mortgages",
+    brokerageLicence: "TODO-FSRA-BROKERAGE-NUMBER",
+    principalBrokerName: "Scott Dillingham",
+    principalBrokerLicence: "TODO-FSRA-AGENT-NUMBER",
+  },
 } as const;
 
 export const POSTAL_ADDRESS_NODE = {
