@@ -28,8 +28,8 @@ const detectedOgType =
     </script>
   </head>
   <body class={`h-screen antialiased`}>
-    <Banner client:load />
-    <Navbar client:only="react" />
+    <Banner client:idle />
+    <Navbar client:idle />
     <main><slot /></main>
     <Footer />
   </body>

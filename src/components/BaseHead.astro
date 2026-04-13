@@ -3,8 +3,6 @@
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 
-import { Font } from "astro:assets";
-
 import { BUSINESS, POSTAL_ADDRESS_NODE, SITE_METADATA } from "../consts";
 
 interface Props {
@@ -135,9 +133,6 @@ const graphSchema = JSON.stringify({
 {preloadImage && (
   <link rel="preload" as="image" href={preloadImage} fetchpriority="high" />
 )}
-
-<!-- Fonts (Astro 6 Fonts API) -->
-<Font cssVariable="--font-satoshi" preload />
 
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <meta name="robots" content={robotsContent} />

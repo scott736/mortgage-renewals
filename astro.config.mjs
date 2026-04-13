@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig, fontProviders } from "astro/config";
+import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import react from "@astrojs/react";
@@ -69,15 +69,6 @@ export default defineConfig({
   ],
   output: "server",
   adapter: vercel(),
-
-  fonts: [
-    {
-      provider: fontProviders.fontshare(),
-      name: "Satoshi",
-      cssVariable: "--font-satoshi",
-      weights: ["400", "500", "700"],
-    },
-  ],
 
   vite: {
     // @ts-expect-error - @tailwindcss/vite Plugin type differs from Astro's bundled Vite types

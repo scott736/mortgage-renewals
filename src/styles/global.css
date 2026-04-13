@@ -227,8 +227,6 @@
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
 
-  --font-satoshi: var(--font-satoshi);
-
   /* full scales → Tailwind utilities (text-*, bg-*, border-*) */
   --color-primary-0: var(--primary-0);
   --color-primary-25: var(--primary-25);
@@ -363,14 +361,15 @@
   h5,
   h6 {
     font-family:
-      var(--font-satoshi),
       ui-sans-serif,
       system-ui,
       -apple-system,
-      Segoe UI,
+      BlinkMacSystemFont,
+      "Segoe UI",
       Roboto,
       Helvetica,
       Arial,
+      sans-serif,
       "Apple Color Emoji",
       "Segoe UI Emoji";
   }
