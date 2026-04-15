@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "What's the math on typical debt consolidation savings?",
-    answer: "Credit card debt in Canada sits in the 19.99–21.99% range. Unsecured line of credit is typically prime + 3–6% (roughly 8.5–11.5% in 2026). Mortgage refinance rates in 2026 are in the 4.19–5.49% range. Consolidating $40,000 of credit card debt from 20% to 4.5% saves roughly $6,200 in interest per year. The caveat: you're amortizing that $40,000 over 25 years instead of paying it down in 3–5 years, so total lifetime interest can actually be higher unless you aggressively accelerate principal payments on the mortgage afterward."
+    answer: "Credit card debt in Canada sits in the 19.99–21.99% range. Unsecured line of credit is typically prime + 3–6% (roughly 7.5–10.5% in 2026 with prime at 4.45%). Mortgage refinance rates in 2026 are in the 4.29–5.49% range (uninsured). Consolidating $40,000 of credit card debt from 20% to 4.5% saves roughly $6,200 in interest per year. The caveat: you're amortizing that $40,000 over 25 years instead of paying it down in 3–5 years, so total lifetime interest can actually be higher unless you aggressively accelerate principal payments on the mortgage afterward."
   },
   {
     question: "Will consolidating hurt my credit score?",
@@ -126,18 +126,18 @@ const schema = combineSchemas(
     <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
       <p class="font-semibold mb-2">Example: Consolidating $40K of Credit Card Debt at Renewal</p>
       <p class="text-body-sm leading-relaxed">
-        Home value $700,000. Existing mortgage $350,000 renewing at 4.19% 5-year fixed. Credit card debt $40,000 at 20.99%. Existing 25-year amortization remains.<br /><br />
+        Home value $700,000. Existing mortgage $350,000 renewing at 4.29% 5-year fixed (uninsured). Credit card debt $40,000 at 20.99%. Existing 25-year amortization remains.<br /><br />
         <strong>Before consolidation:</strong><br />
-        • Mortgage payment: $1,878/month (25-year amort)<br />
+        • Mortgage payment: $1,900/month (25-year amort)<br />
         • Credit card minimum payment: ~$1,200/month (to actually pay down in 5 years)<br />
-        • Total monthly: $3,078<br />
+        • Total monthly: $3,100<br />
         • Credit card interest year 1: ~$7,500<br /><br />
-        <strong>After consolidation (refinance to $390,000 at 4.19%):</strong><br />
-        • New mortgage payment: $2,093/month (25-year amort)<br />
+        <strong>After consolidation (refinance to $390,000 at 4.29%):</strong><br />
+        • New mortgage payment: $2,117/month (25-year amort)<br />
         • Credit card payment: $0<br />
-        • Total monthly: $2,093 — a $985/month reduction<br />
-        • Year 1 interest (on the extra $40K portion): ~$1,650<br /><br />
-        <strong>Year 1 interest savings: $7,500 − $1,650 = $5,850</strong><br /><br />
+        • Total monthly: $2,117 — a $983/month reduction<br />
+        • Year 1 interest (on the extra $40K portion): ~$1,700<br /><br />
+        <strong>Year 1 interest savings: $7,500 − $1,700 = $5,800</strong><br /><br />
         <strong>BUT:</strong> the $40K is now amortizing over 25 years. If you only make the minimum payment, total interest on that $40K over 25 years is ~$23,000 — versus $11,000 on the credit card if paid off in 5 years. To truly save, you should direct the $985/month savings toward accelerated principal paydown on the mortgage.
       </p>
     </div>
@@ -189,7 +189,7 @@ const schema = combineSchemas(
     <div class="space-y-4 mb-6">
       <div class="rounded-lg p-4 border border-gray-100 bg-white">
         <p class="font-semibold mb-2">Option 1: Renewal + HELOC Add-On</p>
-        <p class="text-body-sm text-muted-foreground">Renew the first mortgage at the new best rate you can find, and separately open a HELOC for the consolidation amount. Keeps flexibility — you can pay down the HELOC as fast as you like. HELOC rates are variable (prime + 0.5–1.5% in 2026, roughly 5.9–7%) — higher than fixed mortgage but lower than credit cards. Works well when you want to pay off the consolidation in 2–4 years rather than amortize over 25.</p>
+        <p class="text-body-sm text-muted-foreground">Renew the first mortgage at the new best rate you can find, and separately open a HELOC for the consolidation amount. Keeps flexibility — you can pay down the HELOC as fast as you like. HELOC rates are variable (prime + 0.5–1.5% in 2026, roughly 4.95–5.95%) — higher than fixed mortgage but lower than credit cards. Works well when you want to pay off the consolidation in 2–4 years rather than amortize over 25.</p>
       </div>
       <div class="rounded-lg p-4 border border-gray-100 bg-white">
         <p class="font-semibold mb-2">Option 2: Second Mortgage</p>

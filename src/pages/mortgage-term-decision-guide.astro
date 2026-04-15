@@ -74,7 +74,7 @@ const schema = combineSchemas(
         <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
           <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
           <ul class="space-y-2 text-sm leading-relaxed">
-            <li>• April 2026 rate snapshot: 5-year fixed 4.19–4.29%, 5-year variable 3.30–3.35%, 3-year fixed 3.80–3.90%, 2-year fixed 3.85–3.95%.</li>
+            <li>• April 2026 rate snapshot: 5-year fixed ~4.04% (insured broker) / 4.29% (Big 5), 5-year variable 3.35% (P−1.10%), 3-year fixed ~4.14%, 2-year fixed ~4.24%.</li>
             <li>• BoC policy rate is 2.25% — the lowest since 2022 — with analysts forecasting potential further cuts in the next 12–24 months.</li>
             <li>• Variable-rate mortgages have historically beaten 5-year fixed about 70% of the time over 30+ years of Canadian data.</li>
             <li>• 2-year and 3-year fixed terms are popular in 2026 because they balance rate lock with the ability to re-shop in the near future.</li>
@@ -99,38 +99,38 @@ const schema = combineSchemas(
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3 font-medium">1 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">4.50–4.80%</td>
-                <td class="p-3">Higher than longer terms — unusual shape reflects rate volatility</td>
+                <td class="p-3">4.74–4.89%</td>
+                <td class="p-3">Highest rate term — reflects short-term bond yield elevation</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3 font-medium">2 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">3.85–3.95%</td>
-                <td class="p-3">Popular — locks in today's low rate without 5-year commitment</td>
+                <td class="p-3">4.24–4.39%</td>
+                <td class="p-3">Flexibility with only a 2-year commitment</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3 font-medium">3 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">3.80–3.90%</td>
-                <td class="p-3">Currently the cheapest fixed term; best of both worlds</td>
+                <td class="p-3">4.14–4.24%</td>
+                <td class="p-3">Slightly higher than 5-year; re-shop opportunity in 3 years</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3 font-medium">4 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">4.00–4.10%</td>
-                <td class="p-3">Less common — rarely the best value</td>
+                <td class="p-3">4.29–4.44%</td>
+                <td class="p-3">Less common — less competitive than 3 or 5 year</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3 font-medium">5 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">4.19–4.29%</td>
-                <td class="p-3">The traditional default; now slightly above 3-year</td>
+                <td class="p-3">4.04–4.29%</td>
+                <td class="p-3">Best insured broker rate 4.04%; Big 5 from 4.29%</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3 font-medium">5 year</td>
                 <td class="p-3">Variable</td>
-                <td class="p-3">3.30–3.35%</td>
-                <td class="p-3">Nearly 1% cheaper than 5-year fixed today</td>
+                <td class="p-3">3.35–3.45%</td>
+                <td class="p-3">~0.69% cheaper than best 5-year fixed today</td>
               </tr>
               <tr style="border-color: var(--border)">
                 <td class="p-3 font-medium">10 year</td>
@@ -157,14 +157,14 @@ const schema = combineSchemas(
 
           <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
             <p class="font-bold mb-2" style="color: var(--primary)">Q2. Can your household absorb a 1.5–2% rate increase without stress?</p>
-            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Yes →</strong> Consider a 5-year variable at 3.30–3.35%. Your rate will move with BoC, but the lower starting point gives you a significant buffer.</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Yes →</strong> Consider a 5-year variable at ~3.35% (P−1.10%). Your rate will move with BoC, but the lower starting point gives you a meaningful buffer.</p>
             <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>No →</strong> Proceed to Q3 — a fixed rate is better for you.</p>
           </div>
 
           <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
             <p class="font-bold mb-2" style="color: var(--primary)">Q3. How strongly do you value rate certainty over the full term?</p>
-            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Strongly — I want zero surprises →</strong> Choose 5-year fixed at 4.19–4.29%, or 10-year fixed at 4.69% for the most extended certainty.</p>
-            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>Moderately — I'd prefer certainty but want to re-shop in a few years →</strong> Choose 3-year fixed at 3.80–3.90%. This is the sweet-spot term for 2026.</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Strongly — I want zero surprises →</strong> Choose 5-year fixed at ~4.04% (insured broker) or 4.29% (Big 5), or 10-year fixed at 4.69%+ for extended certainty.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>Moderately — I'd prefer certainty but want to re-shop in a few years →</strong> Choose 3-year fixed at ~4.14%. This offers solid certainty with a 2026 re-shop window.</p>
           </div>
 
           <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
@@ -188,12 +188,12 @@ const schema = combineSchemas(
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
           <div class="rounded-lg p-6" style="border: 2px solid var(--secondary); background: var(--card)">
             <h3 class="font-bold mb-3" style="color: var(--secondary)">Scenario A: Rates stay flat or decline</h3>
-            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">If BoC cuts to 2.0% and holds, variable rates could fall to 3.05–3.10% within the next 12 months. In this world, the variable borrower saves meaningfully while the 5-year fixed borrower is locked at 4.19%.</p>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">If BoC cuts to 2.0% and holds, variable rates could fall to 3.05–3.10% within the next 12 months. In this world, the variable borrower saves meaningfully while the 5-year fixed borrower is locked at 4.04–4.29%.</p>
             <p class="text-xs font-bold" style="color: var(--secondary)">Winner: Variable rate or short-term fixed that can re-lock at lower rates.</p>
           </div>
           <div class="rounded-lg p-6" style="border: 2px solid var(--secondary); background: var(--card)">
             <h3 class="font-bold mb-3" style="color: var(--secondary)">Scenario B: Rates rise due to inflation shock</h3>
-            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">If a new inflation shock forces BoC back to 4.0–5.0%, variable rates could jump to 5.0–6.0%. The 5-year fixed borrower at 4.19% looks brilliant; the variable borrower absorbs the increase in real time.</p>
+            <p class="text-sm leading-relaxed mb-3" style="color: var(--muted-foreground)">If a new inflation shock forces BoC back to 4.0–5.0%, variable rates could jump to 5.0–6.0%. The 5-year fixed borrower at 4.04–4.29% looks brilliant; the variable borrower absorbs the increase in real time.</p>
             <p class="text-xs font-bold" style="color: var(--secondary)">Winner: 5-year fixed (or longer).</p>
           </div>
         </div>
@@ -267,19 +267,19 @@ const schema = combineSchemas(
 
         <div class="rounded-lg p-5 mb-6" style="background: var(--accent); border-left: 4px solid var(--secondary)">
           <p class="font-bold mb-2">Scenario</p>
-          <p class="text-sm leading-relaxed">Sarah, 42, has $500,000 remaining on her mortgage with 23 years of amortization left. Stable tech job, no planned move, can tolerate modest payment fluctuation. She's choosing between 5-year fixed (4.25%) and 5-year variable (3.32%).</p>
+          <p class="text-sm leading-relaxed">Sarah, 42, has $500,000 remaining on her mortgage with 23 years of amortization left. Stable tech job, no planned move, can tolerate modest payment fluctuation. She's choosing between 5-year fixed (4.29% uninsured) and 5-year variable (3.35%, P−1.10%).</p>
         </div>
 
         <p class="mb-4 leading-relaxed">Month-1 payment comparison (25-year amortization assumption):</p>
 
         <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
-          <li>5-year fixed @ 4.25%: approximately $2,704/month</li>
-          <li>5-year variable @ 3.32%: approximately $2,447/month</li>
-          <li>Monthly savings with variable: $257</li>
-          <li>5-year savings (assuming rate holds): $15,420</li>
+          <li>5-year fixed @ 4.29%: approximately $2,709/month</li>
+          <li>5-year variable @ 3.35%: approximately $2,457/month</li>
+          <li>Monthly savings with variable: $252</li>
+          <li>5-year savings (assuming rate holds): $15,120</li>
         </ul>
 
-        <p class="mb-6 leading-relaxed">If BoC holds or cuts, Sarah saves. If BoC hikes 1% over the term (variable rises to 4.32% average), her realized savings shrink but she's still roughly even with the fixed borrower. If BoC hikes 2%+, fixed wins. Based on her risk tolerance and current rate environment, a variable rate (or a 50/50 hybrid) is a reasonable choice.</p>
+        <p class="mb-6 leading-relaxed">If BoC holds or cuts, Sarah saves. If BoC hikes 1% over the term (variable rises to 4.35% average), her realized savings shrink but she's still roughly even with the fixed borrower. If BoC hikes 2%+, fixed wins. Based on her risk tolerance and current rate environment, a variable rate (or a 50/50 hybrid) is a reasonable choice.</p>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">When to Book a Broker Consultation</h2>
 

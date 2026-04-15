@@ -45,7 +45,7 @@ const schema = combineSchemas(
     <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
       <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
       <ul class="space-y-2 text-sm leading-relaxed">
-        <li>• Best 5-year fixed rates in Canada are approximately 3.91–4.04% and 5-year variable rates around prime minus 1.10% (prime at 4.45%) as of April 2026.</li>
+        <li>• Best 5-year fixed rates in Canada are approximately 4.04% (insured broker) and 5-year variable rates at prime minus 1.10% = 3.35% (prime at 4.45%) as of April 2026.</li>
         <li>• Banks quote rates 0.25-0.75% higher than what brokers can access — on a $600,000 mortgage, 0.5% extra costs approximately $15,000 over 5 years.</li>
         <li>• Insured mortgages (originally less than 20% down) get the best rates; uninsurable mortgages (refinances, over $1.5M) pay a 0.10-0.30% premium.</li>
         <li>• The Bank of Canada overnight rate is at 2.25% as of early 2026, with most economists expecting rates to hold steady through the year.</li>
@@ -71,12 +71,12 @@ const schema = combineSchemas(
           </thead>
           <tbody>
             {[
-              { term: "1-Year Fixed", type: "Fixed", rate: "~4.69%", note: "Short commitment, maximum flexibility" },
-              { term: "2-Year Fixed", type: "Fixed", rate: "~4.04%", note: "Balance of flexibility and rate" },
-              { term: "3-Year Fixed", type: "Fixed", rate: "~3.87%", note: "Most popular balance point" },
-              { term: "4-Year Fixed", type: "Fixed", rate: "~3.99%", note: "Less common, sometimes poor value" },
-              { term: "5-Year Fixed", type: "Fixed", rate: "~3.91%", note: "Lowest insured rate; uninsured adds ~0.10–0.20%" },
-              { term: "3-Year Variable", type: "Variable", rate: "~Prime − 0.85%", note: "Prime rate currently 4.45%; effective ~3.60%" },
+              { term: "1-Year Fixed", type: "Fixed", rate: "~4.74%", note: "Short commitment, maximum flexibility" },
+              { term: "2-Year Fixed", type: "Fixed", rate: "~4.24%", note: "Balance of flexibility and rate" },
+              { term: "3-Year Fixed", type: "Fixed", rate: "~4.14%", note: "Competitive; popular for mid-term certainty" },
+              { term: "4-Year Fixed", type: "Fixed", rate: "~4.29%", note: "Less common, sometimes poor value" },
+              { term: "5-Year Fixed", type: "Fixed", rate: "~4.04%", note: "Best insured rate; uninsured adds ~0.10–0.25%" },
+              { term: "3-Year Variable", type: "Variable", rate: "~Prime − 0.61%", note: "Prime rate currently 4.45%; effective ~3.84%" },
               { term: "5-Year Variable", type: "Variable", rate: "~Prime − 1.10%", note: "Effective ~3.35%; lowest available rate right now" },
               { term: "Open Mortgage", type: "Open", rate: "~7.0%+", note: "Pay off anytime, much higher rate" },
             ].map((row, i) => (
