@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: "What interest rate will I pay on a HELOC in 2026?",
-    answer: "Canadian HELOCs are prime-linked. As of April 2026, most Big 6 HELOCs are priced at prime + 0.50%, which works out to roughly 5.45%–5.95% depending on the lender's prime rate and your relationship pricing. Higher-risk profiles (new immigrants, bruised credit, self-employed) may pay prime + 1.00% to prime + 2.00% at alternative lenders."
+    answer: "Canadian HELOCs are prime-linked. As of April 2026, most Big 6 HELOCs are priced at prime + 0.50%, which works out to roughly 4.95%–5.45% depending on the lender and your relationship pricing. With Bank of Canada prime at 4.45%, prime + 0.50% = 4.95%. Higher-risk profiles (new immigrants, bruised credit, self-employed) may pay prime + 1.00% to prime + 2.00% at alternative lenders."
   },
   {
     question: "Do I have to pay down the principal on a HELOC?",
@@ -75,7 +75,7 @@ const schema = combineSchemas(
       <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
       <ul class="space-y-2 text-body-sm leading-relaxed">
         <li>• A standalone HELOC is capped at <strong>65% of home value</strong> under OSFI B-20; combined with a mortgage, total secured debt is capped at <strong>80% LTV</strong>.</li>
-        <li>• HELOC rates in April 2026 typically sit at <strong>prime + 0.50%</strong> (roughly 5.45%–5.95% with Big 6 prime at 4.95%).</li>
+        <li>• HELOC rates in April 2026 typically sit at <strong>prime + 0.50%</strong> (roughly 4.95%–5.45% with prime at 4.45%).</li>
         <li>• Minimum payments are <strong>interest-only</strong> — the borrower decides whether and when to pay principal.</li>
         <li>• HELOCs are <strong>fully subject to the stress test</strong> (contract rate + 2% or 5.25%, whichever is higher). No OSFI exemption applies.</li>
         <li>• Nearly all HELOCs are registered as <strong>collateral charges</strong>, making lender switching more expensive.</li>
@@ -118,7 +118,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mt-10 mb-4">HELOC Pricing in 2026</h2>
     <p class="text-body-md mb-4 leading-relaxed">
-      Canadian HELOCs are variable by design — the rate is <strong>prime + a spread</strong>, and it moves every time prime moves. As of April 2026, Big 6 prime is 4.95%, so a prime + 0.50% HELOC sits at 5.45%. Here's the typical pricing grid:
+      Canadian HELOCs are variable by design — the rate is <strong>prime + a spread</strong>, and it moves every time prime moves. As of April 2026, prime is 4.45%, so a prime + 0.50% HELOC sits at 4.95%. Here's the typical pricing grid:
     </p>
 
     <div class="overflow-x-auto mb-6">
@@ -133,17 +133,17 @@ const schema = combineSchemas(
         <tbody>
           <tr class="border-b border-gray-100">
             <td class="p-3 font-medium">A-lender, strong credit (680+), 50% LTV</td>
-            <td class="p-3">Prime + 0.50% (5.45%)</td>
+            <td class="p-3">Prime + 0.50% (4.95%)</td>
             <td class="p-3">Big 6, credit unions</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
             <td class="p-3 font-medium">A-lender, 75%+ combined LTV</td>
-            <td class="p-3">Prime + 0.75% (5.70%)</td>
+            <td class="p-3">Prime + 0.75% (5.20%)</td>
             <td class="p-3">Big 6 rate uplift</td>
           </tr>
           <tr class="border-b border-gray-100">
             <td class="p-3 font-medium">Alt lender (Equitable, Home Trust)</td>
-            <td class="p-3">Prime + 1.50% to prime + 2.00% (6.45%–6.95%)</td>
+            <td class="p-3">Prime + 1.50% to prime + 2.00% (5.95%–6.45%)</td>
             <td class="p-3">B-lender</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
@@ -155,7 +155,7 @@ const schema = combineSchemas(
       </table>
     </div>
 
-    <p class="text-body-sm text-muted-foreground mb-8">HELOC rates shown as of April 2026 with Big 6 prime at 4.95%.</p>
+    <p class="text-body-sm text-muted-foreground mb-8">HELOC rates shown as of April 2026 with prime at 4.45% (Bank of Canada overnight 2.25% + 2.20%).</p>
 
     <h2 class="text-heading-3 mt-10 mb-4">The Big 6 HELOC Products</h2>
 
@@ -188,7 +188,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mt-10 mb-4">Interest-Only Payments: Feature and Trap</h2>
     <p class="text-body-md mb-4 leading-relaxed">
-      The defining feature of a HELOC is the interest-only minimum payment. On a $100,000 HELOC drawn balance at 5.45%, the minimum monthly payment is approximately $454 — just the interest. There is no scheduled principal paydown. You can pay any amount of principal whenever you want, with zero penalty, but nothing in the product structure forces you to.
+      The defining feature of a HELOC is the interest-only minimum payment. On a $100,000 HELOC drawn balance at 4.95%, the minimum monthly payment is approximately $413 — just the interest. There is no scheduled principal paydown. You can pay any amount of principal whenever you want, with zero penalty, but nothing in the product structure forces you to.
     </p>
 
     <p class="text-body-md mb-4 leading-relaxed">
