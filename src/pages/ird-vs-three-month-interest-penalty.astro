@@ -36,6 +36,7 @@ const schema = combineSchemas(
     articleSection: "Guides",
     about: "Canadian mortgage prepayment penalties",
     keywords: ["IRD penalty Canada", "3 month interest penalty", "mortgage break fee", "discounted rate IRD", "posted rate penalty"],
+    dateModified: "2026-04-22",
   }),
   breadcrumbSchema([
     { name: "IRD vs. 3-Month Interest Penalty", url: "/ird-vs-three-month-interest-penalty" }
@@ -59,7 +60,7 @@ const schema = combineSchemas(
   </nav>
 
   <article class="container max-w-4xl py-10">
-    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 2026 · 9-minute read</div>
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 22, 2026 · 9-minute read</div>
     <h1 class="text-heading-1 mb-4">IRD vs. 3-Month Interest Penalty in Canada: The 2026 Guide</h1>
     <p class="text-body-lg text-muted-foreground mb-8">
       If you break a closed Canadian fixed-rate mortgage before the end of your term, your lender charges a prepayment penalty — and the difference between what Big 6 banks charge versus what monoline lenders charge is staggering. On a typical $300,000 mortgage with three years remaining, the same scenario can produce a $3,000 penalty at a monoline or a $12,000 penalty at a Big 6. This guide explains exactly why, how each calculation works, and how to avoid the worst outcomes.
@@ -71,7 +72,7 @@ const schema = combineSchemas(
         <li>• All Big 6 Canadian banks charge the <strong>greater of 3 months' interest or IRD</strong> on closed fixed-rate mortgages.</li>
         <li>• Big 6 IRD uses the <strong>"discounted rate method"</strong> — posted rate minus the original discount from posted — which inflates the penalty substantially.</li>
         <li>• Monoline lenders (First National, MCAP) use a fair <strong>contract-rate-based method</strong> producing much smaller penalties.</li>
-        <li>• Current posted-to-contract gap is ~<strong>190–215 basis points</strong> (5-yr posted ~6.09% vs. broker contract ~3.94%).</li>
+        <li>• Current posted-to-contract gap is ~<strong>190–215 basis points</strong> (5-yr posted ~6.09% vs. broker contract ~3.99%).</li>
         <li>• On a $300,000 mortgage with 3 years remaining: Big 6 IRD commonly $10,000–$13,000; monoline ~$3,000–$3,500.</li>
         <li>• Variable-rate mortgages charge only 3 months' interest — IRD doesn't apply.</li>
         <li>• At renewal maturity, any prepayment or full payout is penalty-free.</li>
@@ -114,7 +115,7 @@ const schema = combineSchemas(
     <div class="rounded-xl border border-secondary-50 bg-secondary-25 p-5 mb-6">
       <p class="text-body-md-semibold mb-2">Monoline IRD Formula (Fair Method)</p>
       <p class="text-body-sm mb-3">IRD = (Your contract rate − Today's contract rate for remaining term) × Outstanding balance × Months remaining / 12</p>
-      <p class="text-body-xs text-muted-foreground"><em>Example:</em> Contract 4.29%; today's 3-year monoline rate 3.94%. Gap = 0.35%. On $300,000 with 3 years remaining: penalty ≈ $300,000 × 0.35% × 36/12 = <strong>$3,150</strong>.</p>
+      <p class="text-body-xs text-muted-foreground"><em>Example:</em> Contract 4.29%; today's 3-year monoline rate 3.99%. Gap = 0.35%. On $300,000 with 3 years remaining: penalty ≈ $300,000 × 0.35% × 36/12 = <strong>$3,150</strong>.</p>
     </div>
 
     <p class="text-body-md mb-4 leading-relaxed">
@@ -123,7 +124,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mt-10 mb-4">Side-by-Side: Same Scenario, Two Lenders</h2>
     <p class="text-body-md mb-4 leading-relaxed">
-      Consider a borrower with a $300,000 mortgage, 3 years remaining on a 5-year fixed at 4.29%, with a 2% original discount from posted. Today's 3-year posted rate is 6.09%; today's 3-year contract rate is 3.94%. The borrower wants to break and switch.
+      Consider a borrower with a $300,000 mortgage, 3 years remaining on a 5-year fixed at 4.29%, with a 2% original discount from posted. Today's 3-year posted rate is 6.09%; today's 3-year contract rate is 3.99%. The borrower wants to break and switch.
     </p>
 
     <div class="overflow-x-auto mb-6">
@@ -157,7 +158,7 @@ const schema = combineSchemas(
           </tr>
           <tr class="border-b border-gray-100">
             <td class="p-3 font-semibold">Monoline</td>
-            <td class="p-3">3.94% (contract)</td>
+            <td class="p-3">3.99% (contract)</td>
             <td class="p-3">0.35%</td>
             <td class="p-3">~$3,150</td>
             <td class="p-3">~$3,215</td>
