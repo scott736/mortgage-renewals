@@ -3,8 +3,8 @@
 import React from "react";
 
 // Rates updated manually — user will refresh this weekly.
-// Source: Broker-negotiated rates aggregated April 11, 2026.
-const RATES_UPDATED = "April 11, 2026";
+// Source: Broker-negotiated rates aggregated April 22, 2026 (WOWA, Ratehub, lender sheets).
+const RATES_UPDATED = "April 22, 2026";
 
 type Row = {
   term: string;
@@ -18,38 +18,38 @@ type Row = {
 const rows: Row[] = [
   {
     term: "1-Year Fixed",
-    insured: "4.25%",
-    uninsured: "4.50%",
+    insured: "4.29%",
+    uninsured: "4.54%",
     variable: "—",
     big5: "5.04%",
     note: "Short commitment",
   },
   {
     term: "2-Year Fixed",
-    insured: "3.95%",
-    uninsured: "4.10%",
+    insured: "3.99%",
+    uninsured: "4.14%",
     variable: "—",
     big5: "4.79%",
   },
   {
     term: "3-Year Fixed",
-    insured: "3.80%",
-    uninsured: "3.90%",
+    insured: "3.84%",
+    uninsured: "3.94%",
     variable: "—",
     big5: "4.64%",
     note: "Popular balance",
   },
   {
     term: "4-Year Fixed",
-    insured: "3.99%",
-    uninsured: "4.14%",
+    insured: "4.04%",
+    uninsured: "4.19%",
     variable: "—",
     big5: "4.69%",
   },
   {
     term: "5-Year Fixed",
-    insured: "3.94%",
-    uninsured: "4.19%",
+    insured: "3.99%",
+    uninsured: "4.24%",
     variable: "—",
     big5: "4.52%",
     note: "Most common term",
@@ -58,7 +58,7 @@ const rows: Row[] = [
     term: "5-Year Variable",
     insured: "—",
     uninsured: "—",
-    variable: "3.30% (P − 1.15%)",
+    variable: "3.35% (P − 1.10%)",
     big5: "4.04%",
     note: "Prime = 4.45%",
   },
@@ -130,7 +130,7 @@ export default function LiveRatesTable() {
       </div>
 
       <details className="mt-4 rounded-lg border border-gray-100 p-4 text-body-sm">
-        <summary className="cursor-pointer font-semibold">Big 5 Bank 5-Year Rates (April 2026)</summary>
+        <summary className="cursor-pointer font-semibold">Big 5 Bank 5-Year Rates (April 22, 2026)</summary>
         <div className="mt-3 overflow-x-auto">
           <table className="w-full text-body-sm">
             <thead>
@@ -151,7 +151,7 @@ export default function LiveRatesTable() {
             </tbody>
           </table>
           <p className="mt-3 text-body-xs text-muted-foreground">
-            Big 5 special/discounted 5-year rates as of April 1, 2026. Posted rates are higher.
+            Big 5 special/discounted 5-year rates as of April 22, 2026. Posted rates are higher.
           </p>
         </div>
       </details>

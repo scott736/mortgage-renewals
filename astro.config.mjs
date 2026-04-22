@@ -62,6 +62,11 @@ export default defineConfig({
         else if (weekly.includes(path)) item.changefreq = ChangeFreqEnum.WEEKLY;
         else item.changefreq = ChangeFreqEnum.MONTHLY;
 
+        // Populate lastmod at build time. Article-level dateModified
+        // still governs the Article JSON-LD signal; this provides the
+        // equivalent signal at the sitemap layer for crawlers that read it.
+        item.lastmod = new Date().toISOString();
+
         return item;
       },
     }),

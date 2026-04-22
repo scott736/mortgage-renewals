@@ -7,6 +7,14 @@ export const prerender = true;
 
 const posts = [
   {
+    date: "Apr 22, 2026",
+    category: "Rates",
+    title: "5-Year Fixed Rates Tick Up as Bond Yields Rise Ahead of April 29 BoC Decision",
+    excerpt: "Canadian 5-year fixed mortgage rates have edged up from 3.94% to 3.99% (insured) as Government of Canada 5-year bond yields climbed on inflation and US tariff headlines. Variable rates held steady at 3.35% (prime − 1.10%). OIS markets price the April 29 BoC decision at roughly 96% odds of a hold at 2.25%.",
+    href: "/current-mortgage-rates-canada/",
+    readTime: "4 min read",
+  },
+  {
     date: "Mar 18, 2026",
     category: "Bank of Canada",
     title: "Bank of Canada Holds Rate at 2.25% in March Decision",
@@ -64,10 +72,11 @@ const schema = combineSchemas(
   }),
   articleSchema({
     headline: "Canadian Mortgage Renewal News and Updates",
-    description: "Six recent posts covering the Bank of Canada's March 2026 hold, November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
+    description: "Recent posts covering the April 22, 2026 rate move, Bank of Canada's March 2026 hold, November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
     slug: "mortgage-renewal-news",
     articleSection: "News",
     about: "Canadian mortgage renewal news",
+    dateModified: "2026-04-22",
   }),
   breadcrumbSchema([
     { name: "News", url: "/mortgage-renewal-news" }

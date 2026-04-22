@@ -8,7 +8,7 @@ export const prerender = true;
 const faqs = [
   {
     question: "In April 2026, what term length is most popular at renewal?",
-    answer: "2-year and 3-year fixed terms are currently among the most popular choices at renewal. Borrowers are hesitant to lock into a full 5-year term because the Bank of Canada has cut its policy rate to 2.25% as of April 2026 — the lowest since 2022 — and rate forecasts suggest further cuts may come over the next 12–24 months. Locking in 5 years at 4.19–4.29% feels premature if variable rates continue falling. The 2-3 year fixed window lets borrowers capture today's relatively low rates without committing to the full cycle."
+    answer: "2-year and 3-year fixed terms are currently among the most popular choices at renewal. Borrowers are hesitant to lock into a full 5-year term because the Bank of Canada has cut its policy rate to 2.25% as of April 22, 2026 — the lowest since 2022 — and rate forecasts suggest further cuts may come over the next 12–24 months. Locking in 5 years at 3.99–4.09% feels premature if variable rates continue falling. The 2-3 year fixed window lets borrowers capture today's relatively low rates without committing to the full cycle."
   },
   {
     question: "Has variable-rate really beaten fixed-rate 70% of the time?",
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "Should I choose a 5-year fixed or a 5-year variable in April 2026?",
-    answer: "With 5-year fixed at 4.19–4.29% and 5-year variable at 3.30–3.35%, variable is nearly a full percentage point cheaper today. If the Bank of Canada holds or cuts further, variable wins clearly. If BoC reverses and hikes, fixed protects you. Three factors to weigh: (1) your tolerance for monthly payment fluctuation, (2) your time horizon — if you'll move or sell in under 5 years, a shorter fixed term or a variable with portability is better, and (3) whether you can withstand a rate increase of 1–2% without stress. Most Canadian brokers in 2026 are advising borrowers with high tolerance to take variable, and risk-averse borrowers to take 2–3 year fixed."
+    answer: "With 5-year fixed at 3.99–4.09% and 5-year variable at 3.35–3.45%, variable is roughly 0.60% cheaper today. If the Bank of Canada holds or cuts further, variable wins clearly. If BoC reverses and hikes, fixed protects you. Three factors to weigh: (1) your tolerance for monthly payment fluctuation, (2) your time horizon — if you'll move or sell in under 5 years, a shorter fixed term or a variable with portability is better, and (3) whether you can withstand a rate increase of 1–2% without stress. Most Canadian brokers in 2026 are advising borrowers with high tolerance to take variable, and risk-averse borrowers to take 2–3 year fixed."
   },
   {
     question: "Do life changes affect which term I should choose?",
@@ -45,6 +45,7 @@ const schema = combineSchemas(
     articleSection: "Decision Guides",
     about: "Canadian Mortgage Term Selection",
     keywords: ["mortgage term decision", "which mortgage term", "5 year vs 3 year", "fixed vs variable", "Canadian mortgage term guide"],
+    dateModified: "2026-04-22",
   }),
   breadcrumbSchema([
     { name: "Mortgage Term Decision Guide", url: "/mortgage-term-decision-guide" }
@@ -64,7 +65,7 @@ const schema = combineSchemas(
 
   <article class="container max-w-4xl py-10">
     <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Mortgage Term Decision Guide: Which Term Should You Pick in 2026?</h1>
-    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 2026 · 13-minute read</p>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated April 22, 2026 · 13-minute read</p>
 
     <div class="flex flex-col lg:flex-row gap-10">
       <div class="flex-1">
@@ -74,7 +75,7 @@ const schema = combineSchemas(
         <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
           <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
           <ul class="space-y-2 text-sm leading-relaxed">
-            <li>• April 2026 rate snapshot: 5-year fixed 4.19–4.29%, 5-year variable 3.30–3.35%, 3-year fixed 3.80–3.90%, 2-year fixed 3.85–3.95%.</li>
+            <li>• April 22, 2026 rate snapshot: 5-year fixed 3.99–4.09%, 5-year variable 3.35–3.45%, 3-year fixed 3.84–3.94%, 2-year fixed 3.99–4.09%.</li>
             <li>• BoC policy rate is 2.25% — the lowest since 2022 — with analysts forecasting potential further cuts in the next 12–24 months.</li>
             <li>• Variable-rate mortgages have historically beaten 5-year fixed about 70% of the time over 30+ years of Canadian data.</li>
             <li>• 2-year and 3-year fixed terms are popular in 2026 because they balance rate lock with the ability to re-shop in the near future.</li>
@@ -105,13 +106,13 @@ const schema = combineSchemas(
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3 font-medium">2 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">3.85–3.95%</td>
+                <td class="p-3">3.99–4.09%</td>
                 <td class="p-3">Popular — locks in today's low rate without 5-year commitment</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3 font-medium">3 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">3.80–3.90%</td>
+                <td class="p-3">3.84–3.94%</td>
                 <td class="p-3">Currently the cheapest fixed term; best of both worlds</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
@@ -123,13 +124,13 @@ const schema = combineSchemas(
               <tr class="border-b" style="border-color: var(--border)">
                 <td class="p-3 font-medium">5 year</td>
                 <td class="p-3">Fixed</td>
-                <td class="p-3">4.19–4.29%</td>
+                <td class="p-3">3.99–4.09%</td>
                 <td class="p-3">The traditional default; now slightly above 3-year</td>
               </tr>
               <tr class="border-b" style="border-color: var(--border); background: var(--muted)">
                 <td class="p-3 font-medium">5 year</td>
                 <td class="p-3">Variable</td>
-                <td class="p-3">3.30–3.35%</td>
+                <td class="p-3">3.35–3.45%</td>
                 <td class="p-3">Nearly 1% cheaper than 5-year fixed today</td>
               </tr>
               <tr style="border-color: var(--border)">
@@ -157,14 +158,14 @@ const schema = combineSchemas(
 
           <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
             <p class="font-bold mb-2" style="color: var(--primary)">Q2. Can your household absorb a 1.5–2% rate increase without stress?</p>
-            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Yes →</strong> Consider a 5-year variable at 3.30–3.35%. Your rate will move with BoC, but the lower starting point gives you a significant buffer.</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Yes →</strong> Consider a 5-year variable at 3.35–3.45%. Your rate will move with BoC, but the lower starting point gives you a significant buffer.</p>
             <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>No →</strong> Proceed to Q3 — a fixed rate is better for you.</p>
           </div>
 
           <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
             <p class="font-bold mb-2" style="color: var(--primary)">Q3. How strongly do you value rate certainty over the full term?</p>
-            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Strongly — I want zero surprises →</strong> Choose 5-year fixed at 4.19–4.29%, or 10-year fixed at 4.69% for the most extended certainty.</p>
-            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>Moderately — I'd prefer certainty but want to re-shop in a few years →</strong> Choose 3-year fixed at 3.80–3.90%. This is the sweet-spot term for 2026.</p>
+            <p class="text-sm leading-relaxed mb-2" style="color: var(--muted-foreground)"><strong>Strongly — I want zero surprises →</strong> Choose 5-year fixed at 3.99–4.09%, or 10-year fixed at 4.69% for the most extended certainty.</p>
+            <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)"><strong>Moderately — I'd prefer certainty but want to re-shop in a few years →</strong> Choose 3-year fixed at 3.84–3.94%. This is the sweet-spot term for 2026.</p>
           </div>
 
           <div class="rounded-lg p-5" style="border: 2px solid var(--primary); background: var(--card)">
