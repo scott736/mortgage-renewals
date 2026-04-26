@@ -72,12 +72,12 @@ const schema = combineSchemas(
           <tbody>
             {[
               { term: "1-Year Fixed", type: "Fixed", rate: "~4.69%", note: "Short commitment, maximum flexibility" },
-              { term: "2-Year Fixed", type: "Fixed", rate: "~4.04%", note: "Balance of flexibility and rate" },
-              { term: "3-Year Fixed", type: "Fixed", rate: "~3.87%", note: "Most popular balance point" },
+              { term: "2-Year Fixed", type: "Fixed", rate: "~4.24%", note: "Balance of flexibility and rate" },
+              { term: "3-Year Fixed", type: "Fixed", rate: "~3.89%", note: "Most popular balance point" },
               { term: "4-Year Fixed", type: "Fixed", rate: "~3.99%", note: "Less common, sometimes poor value" },
-              { term: "5-Year Fixed", type: "Fixed", rate: "~3.91%", note: "Lowest insured rate; uninsured adds ~0.10–0.20%" },
+              { term: "5-Year Fixed", type: "Fixed", rate: "~4.04%", note: "Lowest insured rate; uninsured adds ~0.10–0.20%" },
               { term: "3-Year Variable", type: "Variable", rate: "~Prime − 0.85%", note: "Prime rate currently 4.45%; effective ~3.60%" },
-              { term: "5-Year Variable", type: "Variable", rate: "~Prime − 1.10%", note: "Effective ~3.35%; lowest available rate right now" },
+              { term: "5-Year Variable", type: "Variable", rate: "~Prime − 1.10%", note: "Effective ~3.35–3.40%; lowest available rate right now" },
               { term: "Open Mortgage", type: "Open", rate: "~7.0%+", note: "Pay off anytime, much higher rate" },
             ].map((row, i) => (
               <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-25"}>
