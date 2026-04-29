@@ -7,6 +7,14 @@ export const prerender = true;
 
 const posts = [
   {
+    date: "Apr 29, 2026",
+    category: "Bank of Canada",
+    title: "Bank of Canada Holds at 2.25% Alongside Spring Monetary Policy Report",
+    excerpt: "The BoC held its overnight rate at 2.25% for the fourth consecutive meeting on April 29, 2026 alongside the quarterly Monetary Policy Report. Prime stays at 4.45%. The Bank flagged two-sided uncertainty: weakening growth from US tariff pressure on one side, oil-price inflation risk from the Iran conflict on the other. The next decision is June 10.",
+    href: "/bank-of-canada-rate-decisions/",
+    readTime: "5 min read",
+  },
+  {
     date: "Mar 18, 2026",
     category: "Bank of Canada",
     title: "Bank of Canada Holds Rate at 2.25% in March Decision",
@@ -15,10 +23,10 @@ const posts = [
     readTime: "5 min read",
   },
   {
-    date: "Feb 14, 2026",
+    date: "Apr 15, 2026",
     category: "Regulation",
-    title: "November 2024 Stress Test Change: What It Means 18 Months Later",
-    excerpt: "OSFI's November 21, 2024 rule change eliminated the stress test for uninsured straight-switch renewals. 18 months in, we look at the actual switching behaviour, lender competition, and real borrower savings.",
+    title: "November 2024 Stress Test Change: 17 Months In, Here's What Changed",
+    excerpt: "OSFI's November 21, 2024 rule change eliminated the stress test for uninsured straight-switch renewals. Roughly a year and a half in, we look at the actual switching behaviour, lender competition, and real borrower savings.",
     href: "/stress-test-mortgage-renewal/",
     readTime: "8 min read",
   },
@@ -64,10 +72,11 @@ const schema = combineSchemas(
   }),
   articleSchema({
     headline: "Canadian Mortgage Renewal News and Updates",
-    description: "Six recent posts covering the Bank of Canada's March 2026 hold, November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
+    description: "Recent posts covering the Bank of Canada's April 2026 hold, November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
     slug: "mortgage-renewal-news",
     articleSection: "News",
     about: "Canadian mortgage renewal news",
+    dateModified: "2026-04-29",
   }),
   breadcrumbSchema([
     { name: "News", url: "/mortgage-renewal-news" }
