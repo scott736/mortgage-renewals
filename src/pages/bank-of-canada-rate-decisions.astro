@@ -8,11 +8,11 @@ export const prerender = true;
 const faqs = [
   {
     question: "What is the Bank of Canada's current overnight rate (April 2026)?",
-    answer: "As of April 22, 2026, the Bank of Canada's overnight target rate is 2.25%. The Bank Rate (the rate charged to commercial banks for overnight borrowing) is 2.50%, and the deposit rate paid on settlement balances is 2.20%. The most recent decision was March 18, 2026, when the Bank held at 2.25% — its third consecutive hold."
+    answer: "As of April 29, 2026, the Bank of Canada's overnight target rate is 2.25%. The Bank Rate (the rate charged to commercial banks for overnight borrowing) is 2.50%, and the deposit rate paid on settlement balances is 2.20%. The most recent decision was April 29, 2026, when the Bank held at 2.25% alongside its quarterly Monetary Policy Report — its fourth consecutive hold at this level."
   },
   {
     question: "When is the next Bank of Canada rate announcement?",
-    answer: "The next scheduled fixed announcement date is April 29, 2026, at 9:45 AM ET. This meeting will be accompanied by the quarterly Monetary Policy Report (MPR). There are eight fixed announcement dates per year; the remaining 2026 dates are June 10, July 15 (MPR), September 2, October 28 (MPR), and December 9."
+    answer: "The next scheduled fixed announcement date is June 10, 2026, at 9:45 AM ET. There are eight fixed announcement dates per year; the remaining 2026 dates are June 10, July 15 (MPR), September 2, October 28 (MPR), and December 9."
   },
   {
     question: "How do Bank of Canada rate decisions affect my variable-rate mortgage?",
@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: "Why has the Bank of Canada been holding at 2.25%?",
-    answer: "After cutting 9 times between June 2024 and October 2025 to bring rates down from a 5.00% peak, the Bank reached what it considers the neutral range — a rate that neither stimulates nor restrains the economy. With inflation near the 2% target and economic growth stable, the Bank has held at 2.25% for three consecutive meetings (January 28, 2026, and March 18, 2026 at the same level after a January move) while it evaluates the cumulative impact of prior easing."
+    answer: "After cutting 9 times between June 2024 and October 2025 to bring rates down from a 5.00% peak, the Bank reached what it considers the neutral range — a rate that neither stimulates nor restrains the economy. With inflation near the 2% target and economic growth stable, the Bank has held at 2.25% for four consecutive meetings (December 2025, January 28, March 18 and April 29, 2026) while it evaluates the cumulative impact of prior easing and the inflationary risks from the Iran conflict's effect on oil prices and ongoing Canada–US trade tensions."
   },
   {
     question: "Do Bank of Canada rate decisions affect fixed mortgage rates?",
@@ -40,6 +40,7 @@ const schema = combineSchemas(
     articleSection: "Monetary Policy",
     about: "Bank of Canada rate decisions 2026",
     keywords: ["Bank of Canada rate", "BoC decision", "overnight rate", "prime rate Canada", "BoC calendar 2026"],
+    dateModified: "2026-04-29",
   }),
   breadcrumbSchema([
     { name: "Bank of Canada Rate Decisions", url: "/bank-of-canada-rate-decisions" }
@@ -67,7 +68,7 @@ const schema = combineSchemas(
       <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Monetary Policy Tracker</div>
       <h1 class="text-heading-1 mb-4">Bank of Canada Rate Decisions 2026</h1>
       <p class="text-body-lg text-muted-foreground max-w-2xl">
-        Current overnight rate, 2026 announcement calendar, decision outcomes, and the impact of each BoC move on Canadian mortgage holders. Updated April 26, 2026.
+        Current overnight rate, 2026 announcement calendar, decision outcomes, and the impact of each BoC move on Canadian mortgage holders. Updated April 29, 2026.
       </p>
     </div>
 
@@ -75,7 +76,7 @@ const schema = combineSchemas(
       <div class="rounded-xl bg-primary-100 text-white p-5">
         <div class="text-body-sm opacity-80 mb-1">Overnight Target Rate</div>
         <div class="text-heading-2 font-bold">2.25%</div>
-        <div class="text-body-sm mt-1 opacity-80">Held March 18, 2026</div>
+        <div class="text-body-sm mt-1 opacity-80">Held April 29, 2026</div>
       </div>
       <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
         <div class="text-body-sm text-muted-foreground mb-1">Big 6 Prime Rate</div>
@@ -84,15 +85,15 @@ const schema = combineSchemas(
       </div>
       <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
         <div class="text-body-sm text-muted-foreground mb-1">Next Announcement</div>
-        <div class="text-heading-2 font-bold">Apr 29</div>
-        <div class="text-body-sm mt-1 text-muted-foreground">9:45 AM ET · with MPR</div>
+        <div class="text-heading-2 font-bold">Jun 10</div>
+        <div class="text-body-sm mt-1 text-muted-foreground">9:45 AM ET</div>
       </div>
     </div>
 
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
       <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
       <ul class="space-y-2 text-body-sm leading-relaxed">
-        <li>• The Bank of Canada's overnight target is <strong>2.25%</strong>, held for the third consecutive meeting on March 18, 2026.</li>
+        <li>• The Bank of Canada's overnight target is <strong>2.25%</strong>, held for the fourth consecutive meeting on April 29, 2026 alongside the spring Monetary Policy Report.</li>
         <li>• The cycle peaked at <strong>5.00%</strong> in July 2023; the Bank cut <strong>9 times</strong> between June 2024 and October 2025 to reach today's level.</li>
         <li>• There are <strong>8 fixed announcement dates</strong> in 2026, all at 9:45 AM ET. Four are accompanied by the Monetary Policy Report (MPR).</li>
         <li>• Big 6 prime rate is <strong>4.45%</strong>, down from a peak of 7.20% in late 2023.</li>
@@ -131,13 +132,13 @@ const schema = combineSchemas(
           <tr class="border-b border-gray-100">
             <td class="p-3 font-medium">April 29, 2026</td>
             <td class="p-3">Rate decision + MPR</td>
-            <td class="p-3 text-secondary-100">Upcoming</td>
-            <td class="p-3">—</td>
+            <td class="p-3">Held</td>
+            <td class="p-3 font-semibold">2.25%</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
             <td class="p-3 font-medium">June 10, 2026</td>
             <td class="p-3">Rate decision</td>
-            <td class="p-3 text-muted-foreground">Scheduled</td>
+            <td class="p-3 text-secondary-100">Upcoming</td>
             <td class="p-3">—</td>
           </tr>
           <tr class="border-b border-gray-100">
@@ -252,6 +253,12 @@ const schema = combineSchemas(
             <td class="p-3">2.25%</td>
             <td class="p-3">4.45%</td>
           </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">April 29, 2026</td>
+            <td class="p-3">Held (4th consecutive, with MPR)</td>
+            <td class="p-3">2.25%</td>
+            <td class="p-3">4.45%</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -283,7 +290,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mt-10 mb-4">What a Hold Means in Practice</h2>
     <p class="text-body-md mb-4 leading-relaxed">
-      The Bank of Canada's third consecutive hold at 2.25% signals that the easing cycle is likely complete and the Bank is in a neutral stance. For borrowers, this means:
+      The Bank of Canada's fourth consecutive hold at 2.25% — the latest reaffirmed in the April 29, 2026 Monetary Policy Report — signals that the easing cycle is likely complete and the Bank is in a neutral stance. For borrowers, this means:
     </p>
 
     <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
