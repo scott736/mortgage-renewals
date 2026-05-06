@@ -33,13 +33,13 @@
       ]
     },
     {
-      "source": "/(best-mortgage-renewal-rates|current-mortgage-rates-canada|mortgage-rate-forecast)/?",
+      "source": "/:slug(best-mortgage-renewal-rates|current-mortgage-rates-canada|mortgage-rate-forecast)/",
       "headers": [
         { "key": "Cache-Control", "value": "public, s-maxage=300, stale-while-revalidate=60" }
       ]
     },
     {
-      "source": "/(mortgage-renewal-calculator|mortgage-stress-test-calculator|amortization-schedule-calculator|blend-and-extend-calculator|rate-comparison-calculator|accelerated-payment-calculator|heloc-vs-refinance-calculator|mortgage-payment-frequency-canada|break-even-switch-calculator|switch-vs-stay-calculator|mortgage-penalty-calculator|refinance-debt-consolidation-calculator|rental-income-qualifying-calculator|prepayment-lump-sum-calculator|affordability-requalification-calculator|renewal-document-checklist-generator|should-i-switch-quiz)/?",
+      "source": "/:slug(mortgage-renewal-calculator|mortgage-stress-test-calculator|amortization-schedule-calculator|blend-and-extend-calculator|rate-comparison-calculator|accelerated-payment-calculator|heloc-vs-refinance-calculator|mortgage-payment-frequency-canada|break-even-switch-calculator|switch-vs-stay-calculator|mortgage-penalty-calculator|refinance-debt-consolidation-calculator|rental-income-qualifying-calculator|prepayment-lump-sum-calculator|affordability-requalification-calculator|renewal-document-checklist-generator|should-i-switch-quiz)/",
       "headers": [
         { "key": "Cache-Control", "value": "public, s-maxage=3600, stale-while-revalidate=600" }
       ]
