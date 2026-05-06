@@ -7,10 +7,18 @@ export const prerender = true;
 
 const posts = [
   {
+    date: "Apr 29, 2026",
+    category: "Bank of Canada",
+    title: "Bank of Canada Holds at 2.25% — Shifts to Two-Sided Risk Stance",
+    excerpt: "The BoC held its overnight rate at 2.25% for the fourth consecutive meeting and, alongside the April Monetary Policy Report, signalled for the first time this cycle that both cuts and hikes are now on the table. Prime stays at 4.45%. The next decision is June 10, 2026.",
+    href: "/bank-of-canada-rate-decisions/",
+    readTime: "5 min read",
+  },
+  {
     date: "Mar 18, 2026",
     category: "Bank of Canada",
     title: "Bank of Canada Holds Rate at 2.25% in March Decision",
-    excerpt: "The BoC held its overnight rate at 2.25% for the third consecutive meeting, citing stable inflation at 1.9% and resilient Canadian labour market data. Prime rate remains at 4.45%. Here's what the hold means for anyone renewing in 2026.",
+    excerpt: "The BoC held its overnight rate at 2.25% for the third consecutive meeting, citing stable inflation near target and resilient Canadian labour market data. Prime rate remains at 4.45%. Here's what the hold means for anyone renewing in 2026.",
     href: "/bank-of-canada-rate-decisions/",
     readTime: "5 min read",
   },
@@ -64,10 +72,11 @@ const schema = combineSchemas(
   }),
   articleSchema({
     headline: "Canadian Mortgage Renewal News and Updates",
-    description: "Six recent posts covering the Bank of Canada's March 2026 hold, November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
+    description: "Recent posts covering the Bank of Canada's May 2026 hold and shift to two-sided risk language, the November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
     slug: "mortgage-renewal-news",
     articleSection: "News",
     about: "Canadian mortgage renewal news",
+    dateModified: "2026-05-06",
   }),
   breadcrumbSchema([
     { name: "News", url: "/mortgage-renewal-news" }

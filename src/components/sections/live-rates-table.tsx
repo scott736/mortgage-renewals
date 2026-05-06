@@ -3,8 +3,8 @@
 import React from "react";
 
 // Rates updated manually — user will refresh this weekly.
-// Source: Broker-negotiated rates aggregated April 11, 2026.
-const RATES_UPDATED = "April 11, 2026";
+// Source: Broker-negotiated rates aggregated May 6, 2026.
+const RATES_UPDATED = "May 6, 2026";
 
 type Row = {
   term: string;
@@ -48,10 +48,10 @@ const rows: Row[] = [
   },
   {
     term: "5-Year Fixed",
-    insured: "3.94%",
-    uninsured: "4.19%",
+    insured: "3.84%",
+    uninsured: "4.14%",
     variable: "—",
-    big5: "4.52%",
+    big5: "4.49%",
     note: "Most common term",
   },
   {
@@ -130,7 +130,7 @@ export default function LiveRatesTable() {
       </div>
 
       <details className="mt-4 rounded-lg border border-gray-100 p-4 text-body-sm">
-        <summary className="cursor-pointer font-semibold">Big 5 Bank 5-Year Rates (April 2026)</summary>
+        <summary className="cursor-pointer font-semibold">Big 5 Bank 5-Year Rates (May 2026)</summary>
         <div className="mt-3 overflow-x-auto">
           <table className="w-full text-body-sm">
             <thead>
@@ -151,7 +151,7 @@ export default function LiveRatesTable() {
             </tbody>
           </table>
           <p className="mt-3 text-body-xs text-muted-foreground">
-            Big 5 special/discounted 5-year rates as of April 1, 2026. Posted rates are higher.
+            Big 5 special/discounted 5-year rates as of May 6, 2026. Posted rates are higher.
           </p>
         </div>
       </details>
@@ -162,7 +162,7 @@ export default function LiveRatesTable() {
             Get your personalized rate from 30+ Canadian lenders.
           </p>
           <p className="text-body-xs text-muted-foreground mt-1">
-            Bank of Canada overnight rate: 2.25% · Prime: 4.45% · Next BoC decision: April 29, 2026
+            Bank of Canada overnight rate: 2.25% · Prime: 4.45% · Next BoC decision: June 10, 2026
           </p>
         </div>
         <a
