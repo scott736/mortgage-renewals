@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: "What is the Minimum Qualifying Rate (MQR)?",
-    answer: "The Minimum Qualifying Rate is the interest rate lenders must use when testing whether you can afford the mortgage — not the rate you actually pay. Since June 2021, the MQR is the greater of your contract rate plus 2% or 5.25%. If you're shopping a 4.19% 5-year fixed, you qualify at 6.19% (contract + 2% > 5.25%). The MQR applies to both insured and uninsured mortgages at origination and refinance. At renewal, whether it applies depends on whether you're switching lenders and whether it's a true straight switch."
+    answer: "The Minimum Qualifying Rate is the interest rate lenders must use when testing whether you can afford the mortgage — not the rate you actually pay. Since June 2021, the MQR is the greater of your contract rate plus 2% or 5.25%. If you're shopping a 4.04% 5-year insured fixed, you qualify at 6.04% (contract + 2% > 5.25%). The MQR applies to both insured and uninsured mortgages at origination and refinance. At renewal, whether it applies depends on whether you're switching lenders and whether it's a true straight switch."
   },
   {
     question: "Do I still need to pass the stress test when I renew?",
@@ -67,7 +67,7 @@ const schema = combineSchemas(
       <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Federal Mortgage Regulation</div>
       <h1 class="text-heading-1 mb-4">OSFI B-20 Stress Test at Mortgage Renewal in Canada</h1>
       <p class="text-body-lg text-muted-foreground max-w-2xl">
-        Updated April 2026. The OSFI B-20 guideline is the federal rulebook for how banks underwrite mortgages. For years, the B-20 stress test trapped borrowers with their existing lender at renewal — until the November 2024 straight-switch exemption changed everything. Here's exactly how the rules work today.
+        Updated May 2026. The OSFI B-20 guideline is the federal rulebook for how banks underwrite mortgages. For years, the B-20 stress test trapped borrowers with their existing lender at renewal — until the November 2024 straight-switch exemption changed everything. Here's exactly how the rules work today.
       </p>
     </div>
 
@@ -116,16 +116,16 @@ const schema = combineSchemas(
     </div>
 
     <p class="text-body-md mb-4 leading-relaxed">
-      As of April 2026 with typical 5-year fixed rates around 4.14%, the MQR sits at roughly 6.14% for most new mortgages (contract + 2% &gt; 5.25% floor). The 5.25% floor hasn't been binding since 2022.
+      As of May 2026 with typical 5-year fixed rates around 4.04–4.24%, the MQR sits at roughly 6.04–6.24% for most new mortgages (contract + 2% &gt; 5.25% floor). The 5.25% floor hasn't been binding since 2022.
     </p>
 
     <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
       <p class="font-semibold mb-2">Example: How the MQR Applies</p>
       <p class="text-body-sm leading-relaxed">
         Household income: $140,000/year ($11,667/month gross).<br />
-        Mortgage applied for: $600,000 at 4.14% over 25 years.<br />
-        Actual monthly payment: $3,205.<br /><br />
-        <strong>Stress-tested payment</strong> (at 6.14%): $3,901<br />
+        Mortgage applied for: $600,000 at 4.04% over 25 years.<br />
+        Actual monthly payment: $3,170.<br /><br />
+        <strong>Stress-tested payment</strong> (at 6.04%): $3,866<br />
         <strong>GDS at stress rate</strong> (assuming $500 property tax + $150 heat): $4,551 ÷ $11,667 = <strong>39.0%</strong> — at the ceiling.<br /><br />
         The borrower passes (just barely). Had the actual rate been 4.40%, the stress rate of 6.40% would have pushed GDS over 39% and the mortgage would be declined — even though the real-world payment they'd make is perfectly affordable.
       </p>
