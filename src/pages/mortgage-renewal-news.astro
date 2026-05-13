@@ -7,6 +7,14 @@ export const prerender = true;
 
 const posts = [
   {
+    date: "Apr 29, 2026",
+    category: "Bank of Canada",
+    title: "Bank of Canada Holds Rate at 2.25% — Fourth Consecutive Hold",
+    excerpt: "The BoC held its overnight rate at 2.25% for the fourth consecutive meeting, warning that decisions are clouded by uncertainty as oil-driven inflation rebounds. Prime rate remains 4.45%. Next decision is June 10, 2026.",
+    href: "/bank-of-canada-rate-decisions/",
+    readTime: "5 min read",
+  },
+  {
     date: "Mar 18, 2026",
     category: "Bank of Canada",
     title: "Bank of Canada Holds Rate at 2.25% in March Decision",
@@ -64,10 +72,11 @@ const schema = combineSchemas(
   }),
   articleSchema({
     headline: "Canadian Mortgage Renewal News and Updates",
-    description: "Six recent posts covering the Bank of Canada's March 2026 hold, November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
+    description: "Recent posts covering the Bank of Canada's April 29, 2026 hold (fourth consecutive), November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
     slug: "mortgage-renewal-news",
     articleSection: "News",
     about: "Canadian mortgage renewal news",
+    dateModified: "2026-05-13",
   }),
   breadcrumbSchema([
     { name: "News", url: "/mortgage-renewal-news" }

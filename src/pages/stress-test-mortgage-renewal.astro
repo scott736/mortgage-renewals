@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: "What is the Minimum Qualifying Rate (MQR) in 2026?",
-    answer: "The MQR is the greater of your contract rate plus 2% or a 5.25% floor. With 5-year fixed rates currently around 4.19% (April 2026), most borrowers are qualified at 6.19% — contract plus 2% — rather than the 5.25% floor. The floor only binds when contract rates fall below 3.25%."
+    answer: "The MQR is the greater of your contract rate plus 2% or a 5.25% floor. With 5-year fixed rates currently around 4.04% insured and 4.24% uninsured (May 2026), most borrowers are qualified at 6.04–6.24% — contract plus 2% — rather than the 5.25% floor. The floor only binds when contract rates fall below 3.25%."
   },
   {
     question: "Does the November 2024 exemption apply if I change amortization or add money?",
@@ -24,7 +24,7 @@ const faqs = [
   },
   {
     question: "Will OSFI replace the stress test with loan-to-income limits?",
-    answer: "OSFI has publicly indicated it is evaluating portfolio-level loan-to-income (LTI) limits as a complement to or eventual replacement for the MQR. Discussions continued into 2026. Any change would be phased in with lender consultation; the MQR and the straight-switch exemption remain in force as of April 2026."
+    answer: "OSFI has publicly indicated it is evaluating portfolio-level loan-to-income (LTI) limits as a complement to or eventual replacement for the MQR. Discussions continued into 2026. Any change would be phased in with lender consultation; the MQR and the straight-switch exemption remain in force as of May 2026."
   },
   {
     question: "What happens if I can't pass the stress test at refinance?",
@@ -35,7 +35,7 @@ const faqs = [
 const schema = combineSchemas(
   articleSchema({
     headline: "Mortgage Stress Test at Renewal Canada (2026 Guide)",
-    description: "OSFI B-20 stress test rules for Canadian mortgage renewals — including the November 2024 uninsured straight-switch exemption. Updated April 2026.",
+    description: "OSFI B-20 stress test rules for Canadian mortgage renewals — including the November 2024 uninsured straight-switch exemption. Updated May 2026.",
     slug: "stress-test-mortgage-renewal",
     articleSection: "Guides",
     about: "Canadian mortgage stress test",
@@ -63,7 +63,7 @@ const schema = combineSchemas(
   </nav>
 
   <article class="container max-w-4xl py-10">
-    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated April 2026 · 10-minute read</div>
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated May 2026 · 10-minute read</div>
     <h1 class="text-heading-1 mb-4">Mortgage Stress Test at Renewal in Canada: 2026 Guide</h1>
     <p class="text-body-lg text-muted-foreground mb-8">
       The stress test is the single biggest source of confusion at Canadian mortgage renewal. The rules changed materially in November 2024, and most borrowers — and many bank branches — still misstate them. This guide is the definitive, current explanation of when the Minimum Qualifying Rate applies at renewal, when it does not, and what to do if you're worried you can't pass.
@@ -72,10 +72,10 @@ const schema = combineSchemas(
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
       <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
       <ul class="space-y-2 text-body-md">
-        <li>• OSFI's Minimum Qualifying Rate (MQR) under Guideline B-20 is the greater of contract rate + 2% or 5.25%. At today's ~4.19% 5-year rates, most borrowers are tested at 6.19%.</li>
+        <li>• OSFI's Minimum Qualifying Rate (MQR) under Guideline B-20 is the greater of contract rate + 2% or 5.25%. At today's ~4.04–4.24% 5-year rates, most borrowers are tested at 6.04–6.24%.</li>
         <li>• As of <strong>November 21, 2024</strong>, OSFI exempts uninsured straight-switch renewals from the MQR — same balance, same amortization, no new money.</li>
         <li>• Insured renewals (original down payment under 20%) have always been exempt at renewal.</li>
-        <li>• The exemption is still in force as of April 2026. OSFI is evaluating loan-to-income (LTI) limits as a potential future replacement.</li>
+        <li>• The exemption is still in force as of May 2026. OSFI is evaluating loan-to-income (LTI) limits as a potential future replacement.</li>
         <li>• Provincial credit unions are not bound by B-20; many apply a similar test voluntarily, but some will qualify at the contract rate.</li>
         <li>• Any refinance, new money, amortization change, or addition of a co-borrower still triggers the full stress test.</li>
       </ul>
@@ -113,10 +113,16 @@ const schema = combineSchemas(
             <td class="p-3 font-semibold">5.99%</td>
           </tr>
           <tr class="border-b border-gray-100">
-            <td class="p-3 font-semibold">4.19% (current April 2026)</td>
-            <td class="p-3">6.19%</td>
+            <td class="p-3 font-semibold">4.04% (insured, May 2026)</td>
+            <td class="p-3">6.04%</td>
             <td class="p-3">5.25%</td>
-            <td class="p-3 font-semibold text-secondary-100">6.19%</td>
+            <td class="p-3 font-semibold text-secondary-100">6.04%</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-semibold">4.24% (uninsured, May 2026)</td>
+            <td class="p-3">6.24%</td>
+            <td class="p-3">5.25%</td>
+            <td class="p-3 font-semibold text-secondary-100">6.24%</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
             <td class="p-3">4.99%</td>
@@ -215,7 +221,7 @@ const schema = combineSchemas(
       Since 2023, OSFI has publicly discussed moving away from the point-in-time MQR toward portfolio-level <strong>loan-to-income (LTI) limits</strong>. An LTI framework would cap the proportion of a lender's new originations that can go to highly leveraged borrowers (typically loans above 4.5x gross annual income), similar to the UK's approach.
     </p>
     <p class="text-body-md mb-6 leading-relaxed">
-      As of April 2026, LTI limits are still under consultation. Any change would be phased in with lender input, and the MQR plus the straight-switch exemption remain the operative rules. Our <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">rate forecast page</a> tracks related policy developments.
+      As of May 2026, LTI limits are still under consultation. Any change would be phased in with lender input, and the MQR plus the straight-switch exemption remain the operative rules. Our <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">rate forecast page</a> tracks related policy developments.
     </p>
 
     <h2 class="text-heading-3 mt-10 mb-4">Practical Strategies If You're Worried About Passing</h2>
