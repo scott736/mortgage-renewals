@@ -56,6 +56,9 @@
     "tailwind-merge": "^3.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
+  "overrides": {
+    "vite": "^7.3.2"
+  },
   "devDependencies": {
     "@types/pdfkit": "^0.17.5",
     "@typescript-eslint/eslint-plugin": "^8.59.3",
