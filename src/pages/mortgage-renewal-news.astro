@@ -7,6 +7,14 @@ export const prerender = true;
 
 const posts = [
   {
+    date: "May 14, 2026",
+    category: "Market Data",
+    title: "CMHC Spring 2026: Renewal Wave Has Peaked, 1.15M Renewals Remain in 2026",
+    excerpt: "CMHC's Spring 2026 Residential Mortgage Industry Report confirms the renewal wave peaked in 2025 (~1.2M). About 1.15 million mortgages will renew in 2026 — 13% fewer, but still historically elevated. Variable rate mortgages hit 42% of new originations as borrowers bet on continued stability. Delinquency sits at 0.24%, below pre-pandemic levels.",
+    href: "/mortgage-renewal-guide/",
+    readTime: "6 min read",
+  },
+  {
     date: "Apr 29, 2026",
     category: "Bank of Canada",
     title: "Bank of Canada Holds Rate at 2.25% — Fourth Consecutive Hold",
@@ -72,11 +80,11 @@ const schema = combineSchemas(
   }),
   articleSchema({
     headline: "Canadian Mortgage Renewal News and Updates",
-    description: "Recent posts covering the Bank of Canada's April 29, 2026 hold (fourth consecutive), November 2024 stress test exemption, December 2024 reforms, trigger rates, and the $900B renewal wave.",
+    description: "Recent posts covering the CMHC Spring 2026 renewal wave update (1.15M in 2026), Bank of Canada's April 29, 2026 hold (fourth consecutive), November 2024 stress test exemption, and December 2024 reforms.",
     slug: "mortgage-renewal-news",
     articleSection: "News",
     about: "Canadian mortgage renewal news",
-    dateModified: "2026-05-13",
+    dateModified: "2026-05-20",
   }),
   breadcrumbSchema([
     { name: "News", url: "/mortgage-renewal-news" }
