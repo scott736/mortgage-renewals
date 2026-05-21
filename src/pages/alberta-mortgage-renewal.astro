@@ -19,6 +19,7 @@ const schema = combineSchemas(
     articleSection: "Provincial Guides",
     about: "Alberta Mortgage Renewal",
     keywords: ["Alberta mortgage renewal", "Calgary renewal rates", "Edmonton mortgage", "RECA", "ATB"],
+    dateModified: "2026-05-21",
   }),
   breadcrumbSchema([
     { name: "Alberta Mortgage Renewal", url: "/alberta-mortgage-renewal" }
@@ -68,7 +69,7 @@ const schema = combineSchemas(
           { stat: "$652K", label: "Average Calgary home price (April 2026)", sub: "CREB / WOWA data" },
           { stat: "$479K", label: "Average Edmonton home price (April 2026)", sub: "REALTORS® Association of Edmonton" },
           { stat: "$0", label: "Alberta land transfer tax", sub: "No provincial LTT in Alberta" },
-          { stat: "+4%", label: "Population growth 2024–2025", sub: "Among the fastest-growing provinces in Canada" },
+          { stat: "~1.5%", label: "Projected annual population growth", sub: "StatsCan medium scenario; growth eased from 2023–24 peaks" },
         ].map(item => (
           <div class="rounded-xl bg-white border border-gray-100 p-5 text-center">
             <div class="text-2xl font-bold text-primary-100">{item.stat}</div>
@@ -89,7 +90,7 @@ const schema = combineSchemas(
           <div>
             <h2 class="text-heading-2 mb-4">Alberta Mortgage Market Overview</h2>
             <p class="text-body-lg text-muted-foreground mb-4">
-              Alberta has been Canada's fastest-growing province in recent years, driven by interprovincial migration from BC and Ontario attracted by lower housing costs and no provincial income tax on investment. This migration has significantly increased housing demand in Calgary and Edmonton.
+              Alberta remains among Canada's fastest-growing provinces, though growth has eased from the 2023–2024 peaks (+3.9% and +4.7%) toward roughly 1.5% annually under Statistics Canada's medium projection. Interprovincial migration from BC and Ontario — attracted by lower housing costs and no provincial income tax on investment — continues to support demand in Calgary and Edmonton.
             </p>
             <p class="text-body-md text-muted-foreground mb-4">
               Alberta's unique advantage: unlike Ontario, BC, and Quebec, Alberta charges <strong>no provincial land transfer tax</strong>. This makes switching lenders and porting mortgages less expensive, giving Alberta homeowners more flexibility at renewal.

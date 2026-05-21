@@ -18,16 +18,17 @@ const schema = combineSchemas(
   webPageNode({
     slug: "",
     name: "MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource",
-    description: "Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
+    description: "Roughly 1 million Canadian households renewing in 2026 (CMHC). Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
     speakableSelectors: ["h1", ".container > p", ".key-takeaways"],
   }),
   articleSchema({
     headline: "Canada's Mortgage Renewal Resource",
-    description: "Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
+    description: "Roughly 1 million Canadian households renewing in 2026 (CMHC). Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
     slug: "",
     articleSection: "Mortgage Renewal",
     about: "Canadian Mortgage Renewal",
     keywords: ["mortgage renewal Canada", "renewal rates", "mortgage broker"],
+    dateModified: "2026-05-21",
   }),
   faqSchema(homeFaqs, ""),
 );
@@ -35,7 +36,7 @@ const schema = combineSchemas(
 
 <DefaultLayout
   title="MortgageRenewalHub.ca — Canada's Mortgage Renewal Hub"
-  description="Over 1.8 million Canadians renewing in 2026. Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal."
+  description="Roughly 1 million Canadian households renewing in 2026 (CMHC). Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal."
   preloadImage="/images/hero/hero-home.webp"
   schema={schema}
 >
@@ -51,7 +52,7 @@ const schema = combineSchemas(
             Save Thousands at Your Mortgage Renewal
           </h1>
           <p class="text-xl text-white/80 mb-8 max-w-lg">
-            Over 1.8 million Canadians are renewing their mortgage in the next 12 months. Most will sign the first offer they receive — and overpay by thousands. Don't be one of them. Read our <a href="/mortgage-renewal-guide/" class="text-white underline">complete renewal guide</a> to get started.
+            Roughly 1 million Canadian households are expected to renew in 2026 — down about 13% from the 2025 peak, per CMHC's Spring 2026 report. Most will sign the first offer they receive and overpay by thousands. Don't be one of them. Read our <a href="/mortgage-renewal-guide/" class="text-white underline">complete renewal guide</a> to get started.
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="/mortgage-renewal-calculator/">

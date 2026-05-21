@@ -3,8 +3,8 @@
 import React from "react";
 
 // Rates updated manually — user will refresh this weekly.
-// Source: Broker-negotiated rates aggregated May 13, 2026.
-const RATES_UPDATED = "May 13, 2026";
+// Source: Broker-negotiated rates aggregated May 21, 2026.
+const RATES_UPDATED = "May 21, 2026";
 
 type Row = {
   term: string;

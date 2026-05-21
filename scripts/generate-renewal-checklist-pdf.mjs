@@ -238,7 +238,7 @@ doc.moveDown(3);
 doc.font("Helvetica").fontSize(10).fillColor("#c9d3e0").text(
   "Prepared by Scott Dillingham, Licensed Mortgage Broker\n" +
   "MortgageRenewalHub.ca · Canada's most comprehensive mortgage renewal resource\n" +
-  "Content updated April 11, 2026. Rate data changes weekly — check the site for current rates.\n\n" +
+  "Content updated May 21, 2026. Rate data changes weekly — check the site for current rates.\n\n" +
   "Sources cited in the online guide: OSFI Guideline B-20, Canada Mortgage and Housing Corporation (CMHC), Financial Consumer Agency of Canada (FCAC), Bank of Canada, Department of Finance Canada.\n\n" +
   "Educational content only. Confirm all figures with a licensed broker or lender before acting.",
   54,

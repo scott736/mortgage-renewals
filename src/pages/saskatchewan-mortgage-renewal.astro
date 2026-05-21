@@ -42,6 +42,7 @@ const schema = combineSchemas(
     articleSection: "Provincial Guides",
     about: "Saskatchewan Mortgage Renewal",
     keywords: ["Saskatchewan mortgage renewal", "Saskatoon renewal rates", "Regina mortgage", "FCAA Saskatchewan", "Conexus Credit Union", "Affinity Credit Union"],
+    dateModified: "2026-05-21",
   }),
   breadcrumbSchema([
     { name: "Saskatchewan Mortgage Renewal", url: "/saskatchewan-mortgage-renewal" }
@@ -89,8 +90,8 @@ const schema = combineSchemas(
     <div class="container max-w-screen-xl px-6">
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          { stat: "~$400K", label: "Saskatoon avg home price (2026)", sub: "SRAR data" },
-          { stat: "~$325K", label: "Regina avg home price (2026)", sub: "ARAR data" },
+          { stat: "~$465K", label: "Saskatoon avg home price (Apr 2026)", sub: "SRAR data" },
+          { stat: "~$346K", label: "Regina benchmark price (Apr 2026)", sub: "SRA data" },
           { stat: "0%", label: "Provincial land transfer tax", sub: "Only a ~0.3% title transfer fee" },
           { stat: "~40%", label: "Share of Canada's agricultural output", sub: "Stats Canada" },
         ].map(item => (
@@ -113,7 +114,7 @@ const schema = combineSchemas(
           <div>
             <h2 class="text-heading-2 mb-4">Saskatchewan Mortgage Market Overview</h2>
             <p class="text-body-lg text-muted-foreground mb-4">
-              Saskatchewan's mortgage market is anchored by Saskatoon (~$400K average home price in 2026) and Regina (~$325K), with substantial rural activity across farming communities, acreages, and resource-sector towns. Home values are among the most affordable in Canada, and Saskatchewan benefits from having <strong>no provincial land transfer tax</strong> — only a small land titles transfer fee of approximately 0.3% on registration.
+              Saskatchewan's mortgage market is anchored by Saskatoon (~$465K average home price in April 2026) and Regina (~$346K benchmark in April 2026), with substantial rural activity across farming communities, acreages, and resource-sector towns. Home values are among the most affordable in Canada, and Saskatchewan benefits from having <strong>no provincial land transfer tax</strong> — only a small land titles transfer fee of approximately 0.3% on registration.
             </p>
             <p class="text-body-md text-muted-foreground mb-4">
               Saskatchewan's economy is diversified across agriculture (Saskatchewan produces roughly 40% of Canada's agricultural output), potash (Saskatchewan supplies over 30% of global potash), uranium (the world's largest producer), and oil and gas (the Bakken formation in the southeast). These resource cycles can influence local housing demand and, for resource-sector workers, can affect income documentation at renewal.
@@ -123,7 +124,7 @@ const schema = combineSchemas(
           <div>
             <h2 class="text-heading-3 mb-4">No Provincial Land Transfer Tax</h2>
             <p class="text-body-md text-muted-foreground mb-4">
-              Saskatchewan is one of only four provinces in Canada without a provincial Land Transfer Tax (joining Alberta and the three territories). Instead, the province charges a small Land Titles transfer fee of approximately 0.3% of the property's value on registration. For a $400,000 Saskatoon purchase, that's roughly $1,200 — compared with roughly $5,475 in Manitoba, $4,500 in Ontario, or $6,000 in BC.
+              Saskatchewan is one of only four provinces in Canada without a provincial Land Transfer Tax (joining Alberta and the three territories). Instead, the province charges a small Land Titles transfer fee of approximately 0.3% of the property's value on registration. For a $465,000 Saskatoon purchase, that's roughly $1,400 — compared with roughly $5,475 in Manitoba, $4,500 in Ontario, or $6,000 in BC.
             </p>
             <p class="text-body-md text-muted-foreground">
               For renewal purposes, the absence of a provincial LTT doesn't directly affect a straight renewal (which has no transfer tax implications anyway). But it does matter if you're considering porting your mortgage to a new home or if a refinance triggers any title-registration event. It also makes Saskatchewan one of the cheapest provinces in Canada for <a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">switching lenders</a> at renewal, since overall transaction costs are lower than in higher-tax provinces.
@@ -161,8 +162,8 @@ const schema = combineSchemas(
             <h2 class="text-heading-3 mb-4">Major Markets in Saskatchewan</h2>
             <div class="grid sm:grid-cols-2 gap-4">
               {[
-                { city: "Saskatoon", notes: "Largest city in SK, ~$400K average; growing tech sector, healthcare employment, and University of Saskatchewan. Balanced-to-seller's market in 2026." },
-                { city: "Regina", notes: "Provincial capital, ~$325K average; government, healthcare, and SaskPower employment anchor the market. Moderate market conditions in 2026." },
+                { city: "Saskatoon", notes: "Largest city in SK, ~$465K average (Apr 2026); growing tech sector, healthcare employment, and University of Saskatchewan. Seller's-leaning market with low inventory in 2026." },
+                { city: "Regina", notes: "Provincial capital, ~$346K benchmark (Apr 2026); government, healthcare, and SaskPower employment anchor the market. Active sales, tight inventory in 2026." },
                 { city: "Prince Albert", notes: "Northern hub serving northern SK and into the North; unique property mix including smaller towns and Indigenous reserve proximities." },
                 { city: "Moose Jaw & southern SK", notes: "Moose Jaw, Weyburn, Estevan — diversified economies with agriculture, oil and gas. Properties more affordable than Saskatoon/Regina." },
                 { city: "Acreages & rural residential", notes: "Substantial number of rural residential properties with private wells and septics; requires lender with rural product comfort." },

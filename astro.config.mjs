@@ -62,6 +62,11 @@ export default defineConfig({
         else if (weekly.includes(path)) item.changefreq = ChangeFreqEnum.WEEKLY;
         else item.changefreq = ChangeFreqEnum.MONTHLY;
 
+        // Freshness pass: stamp lastmod for content pages on each deploy
+        if (!legal.includes(path)) {
+          item.lastmod = new Date();
+        }
+
         return item;
       },
     }),
