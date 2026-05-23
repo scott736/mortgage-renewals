@@ -210,7 +210,7 @@ export const POST: APIRoute = async ({ request }) => {
   } catch (error) {
     console.error('[contact] email send failed:', error);
     return new Response(
-      JSON.stringify({ success: false, error: 'Could not send your message. Please call us at (519) 960-0370.' }),
+      JSON.stringify({ success: false, error: 'Could not send your message. Please call us at (226) 212-7200.' }),
       { status: 502, headers: { 'Content-Type': 'application/json' } },
     );
   }

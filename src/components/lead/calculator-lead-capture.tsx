@@ -58,7 +58,7 @@ export default function CalculatorLeadCapture({
       trackLeadEvent("calculator_lead_submit", { tool });
     } catch {
       setStatus("error");
-      setErrorMsg("Network error. Please try again or call (519) 960-0370.");
+      setErrorMsg("Network error. Please try again or call (226) 212-7200.");
     }
   }
 

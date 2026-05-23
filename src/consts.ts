@@ -4,10 +4,10 @@ export const SITE_DESCRIPTION =
 
 export const BUSINESS = {
   phone: {
-    e164: "+1-519-960-0370",
-    tel: "tel:+15199600370",
-    display: "(519) 960-0370",
-    displayDashed: "1-519-960-0370",
+    e164: "+1-226-212-7200",
+    tel: "tel:+12262127200",
+    display: "(226) 212-7200",
+    displayDashed: "1-226-212-7200",
   },
   address: {
     streetAddress: "4769 Wyandotte Street East",

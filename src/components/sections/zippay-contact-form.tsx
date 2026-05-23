@@ -62,14 +62,14 @@ export default function ZippayContactForm({
       };
       if (!res.ok || !body.success) {
         setStatus("error");
-        setErrorMsg(body.error || "Something went wrong. Please try again or call us at (519) 960-0370.");
+        setErrorMsg(body.error || "Something went wrong. Please try again or call us at (226) 212-7200.");
         return;
       }
       setStatus("success");
       trackLeadEvent("contact_form_submit", { source: "contact_form" });
     } catch {
       setStatus("error");
-      setErrorMsg("Could not reach our servers. Please try again or call us at (519) 960-0370.");
+      setErrorMsg("Could not reach our servers. Please try again or call us at (226) 212-7200.");
     }
   }
 
@@ -106,8 +106,8 @@ export default function ZippayContactForm({
               <h3 className="text-heading-4 font-bold mb-2">Message sent</h3>
               <p className="text-body-md text-gray-600 max-w-md mx-auto">
                 Thanks — a licensed broker will reply by email within one business day. For urgent questions call{" "}
-                <a href="tel:+15199600370" className="font-semibold underline">
-                  (519) 960-0370
+                <a href="tel:+12262127200" className="font-semibold underline">
+                  (226) 212-7200
                 </a>
                 {" "}or{" "}
                 <a href="/book-a-call/" className="font-semibold underline">
