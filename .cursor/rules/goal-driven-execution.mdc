@@ -1,0 +1,39 @@
+---
+description: Define verifiable success criteria for bugs, refactors, and multi-step features. Use when a task needs a plan and proof it works.
+alwaysApply: false
+---
+
+# Goal-driven execution
+
+For multi-step tasks, bug fixes, and refactors — define success criteria and loop until verified.
+
+Transform tasks into verifiable goals:
+
+- "Add validation" → validate with build + manual check on affected UI; add tests only if asked or logic clearly needs regression protection
+- "Fix the bug" → reproduce manually or with a test if one exists, then verify the fix
+- "Refactor X" → `npm run build` passes before and after; spot-check affected pages
+- "Update content/rates" → build passes; spot-check changed pages for accuracy and links
+
+## Verification in this repo
+
+This project has lint, format, and build — not a large automated test suite. Default checks:
+
+1. `npm run lint` (or `lint:fix` if appropriate)
+2. `npm run build`
+3. Manual sanity check: calculator inputs with known outputs, or content pages you touched
+
+Only add new tests when the user requests them or you are protecting non-trivial calculator/business logic.
+
+## Multi-step plan format
+
+For tasks with 3+ steps, state a brief plan:
+
+```
+1. [Step] → verify: [check]
+2. [Step] → verify: [check]
+3. [Step] → verify: [check]
+```
+
+Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+
+**Working if:** fewer unnecessary diffs, fewer rewrites from overcomplication, and clarifying questions come before implementation rather than after mistakes.
