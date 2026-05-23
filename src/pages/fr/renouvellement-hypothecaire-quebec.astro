@@ -1,0 +1,66 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "fr/renouvellement-hypothecaire-quebec",
+    name: "Renouvellement hypothécaire au Québec — Guide 2026",
+    inLanguage: "fr-CA",
+  }),
+  articleSchema({
+    headline: "Renouvellement hypothécaire au Québec — Guide 2026",
+    description: "Guide québécois : courtiers AMF, acte de prêt notarié, droits linguistiques et stratégies de renouvellement.",
+    slug: "fr/renouvellement-hypothecaire-quebec",
+    inLanguage: "fr-CA",
+    areaServed: "Quebec, Canada",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([
+    { name: "Accueil", url: "/" },
+    { name: "Renouvellement Québec (FR)", url: "/fr/renouvellement-hypothecaire-quebec" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Renouvellement hypothécaire Québec 2026 (FR)"
+  description="Guide en français : renouvellement au Québec, notaire, AMF, Desjardins et coûts de changement de prêteur."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Accueil</a> › Renouvellement Québec (FR)
+  </nav>
+
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-2"><a href="/quebec-mortgage-renewal/" class="text-secondary-100 hover:underline">English version</a></p>
+    <h1 class="text-heading-1 mb-4">Renouvellement hypothécaire au Québec</h1>
+    <p class="text-body-lg text-muted-foreground mb-6">
+      Le Québec utilise le droit civil : chaque changement de prêteur exige un nouvel acte de prêt signé chez un notaire. Prévoyez 800 $ à 1 500 $ de frais notariaux — souvent compensés par l'économie de taux si vous magasinez votre renouvellement.
+    </p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3">Points clés</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Courtiers hypothécaires : licence AMF obligatoire — vérifiez sur lautorite.qc.ca.</li>
+        <li>• Hypothèque conventionnelle vs. omnibus : l'omnibus complique le transfert (comme la charge accessoire ailleurs au Canada).</li>
+        <li>• Droit aux documents en français (Charte de la langue française).</li>
+        <li>• Desjardins, Banque Nationale et prêteurs monolignes via courtier — comparez avant de signer.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-2 mb-4">Ressources connexes (français)</h2>
+    <ul class="space-y-2 text-body-md mb-8">
+      <li><a href="/fr/changer-preteur-renouvellement/" class="text-secondary-100 hover:underline">Changer de prêteur au renouvellement</a></li>
+      <li><a href="/fr/frais-notaire-hypotheque-quebec/" class="text-secondary-100 hover:underline">Frais de notaire au Québec</a></li>
+      <li><a href="/fr/guide-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">Résumé du guide de renouvellement</a></li>
+      <li><a href="/fr/faq-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">FAQ renouvellement</a></li>
+      <li><a href="/desjardins-mortgage-renewal/" class="text-secondary-100 hover:underline">Desjardins (English)</a></li>
+    </ul>
+
+    <RelatedLinks slug="/quebec-mortgage-renewal/" />
+  </article>
+</DefaultLayout>

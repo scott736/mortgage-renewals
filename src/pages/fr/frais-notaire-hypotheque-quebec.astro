@@ -1,0 +1,41 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "fr/frais-notaire-hypotheque-quebec", name: "Frais de notaire — hypothèque Québec", inLanguage: "fr-CA" }),
+  articleSchema({
+    headline: "Frais de notaire pour une hypothèque au Québec",
+    description: "Fourchettes de frais notariaux, acte de prêt, et impact sur le seuil de rentabilité d'un changement de prêteur.",
+    slug: "fr/frais-notaire-hypotheque-quebec",
+    inLanguage: "fr-CA",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "Frais notaire (FR)", url: "/fr/frais-notaire-hypotheque-quebec" }]),
+);
+---
+
+<DefaultLayout
+  title="Frais de notaire — hypothèque Québec (FR)"
+  description="Frais notariaux au Québec pour renouvellement et changement de prêteur : 800 $ à 1 500 $ typiquement."
+  schema={schema}
+>
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-2"><a href="/quebec-mortgage-renewal/" class="text-secondary-100 hover:underline">English: Quebec renewal</a> · <a href="/title-insurance-legal-fees-switching/" class="text-secondary-100 hover:underline">Legal fees (EN)</a></p>
+    <h1 class="text-heading-1 mb-4">Frais de notaire au Québec</h1>
+    <p class="text-body-lg text-muted-foreground mb-6">
+      Contrairement à l'Ontario ou à la C.-B., tout nouveau prêteur au Québec exige un acte de prêt notarié. Même un simple transfert au renouvellement entraîne ces frais — intégrez-les dans votre analyse « rester vs. changer ».
+    </p>
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-8">
+      <p class="font-semibold mb-2">Fourchette typique (2026)</p>
+      <ul class="text-body-sm space-y-1 text-muted-foreground">
+        <li>• Montréal / grande ville : 1 000 $ – 1 500 $+</li>
+        <li>• Régions : souvent 800 $ – 1 200 $</li>
+        <li>• Certains prêteurs remboursent partiellement les frais — confirmez par écrit</li>
+      </ul>
+    </div>
+    <p class="text-body-md"><a href="/switch-vs-stay-calculator/?lender=quebec" class="text-secondary-100 hover:underline">Calculateur avec frais Québec préremplis →</a></p>
+  </article>
+</DefaultLayout>

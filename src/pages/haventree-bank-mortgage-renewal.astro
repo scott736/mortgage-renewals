@@ -1,0 +1,45 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "haventree-bank-mortgage-renewal", name: "Haventree Bank Mortgage Renewal 2026" }),
+  articleSchema({
+    headline: "Haventree Bank Mortgage Renewal 2026",
+    description: "Haventree Bank renewal guide: alternative lender for stated income, rentals, and credit recovery at renewal.",
+    slug: "haventree-bank-mortgage-renewal",
+    articleSection: "Lender Renewal Guides",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "Haventree Bank Renewal", url: "/haventree-bank-mortgage-renewal" }]),
+);
+---
+
+<DefaultLayout
+  title="Haventree Bank Mortgage Renewal 2026"
+  description="Haventree Bank mortgage renewal: alternative lending, stated income, and path back to A-lenders."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Haventree Bank Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-12">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Haventree Bank Mortgage Renewal</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Haventree Bank provides alternative mortgages for borrowers transitioning back to prime lending. Renewal is the right moment to re-test A-lender eligibility.</p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Often used after <a href="/consumer-proposal-bankruptcy-mortgage-renewal/" style="color: var(--secondary)">consumer proposal or bankruptcy</a>.</li>
+        <li>• Stated-income programs for self-employed — document income early.</li>
+        <li>• Compare renewal offer vs. monoline switch if credit and income have improved.</li>
+      </ul>
+    </div>
+
+    <RelatedLinks slug="/haventree-bank-mortgage-renewal/" />
+  </article>
+</DefaultLayout>

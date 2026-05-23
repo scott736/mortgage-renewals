@@ -13,6 +13,8 @@ const caseStudies = [
     situation: "$720K mortgage coming off a 5-yr fixed at 2.59% facing a TD renewal offer of 5.19%.",
     outcome: "Straight-switched from TD to First National at 4.34% — saved approximately $47,000 over the new 5-year term. No stress test required thanks to the November 2024 OSFI exemption. Legal fees covered by the new lender.",
     lender: "TD → First National",
+    matchHref: "/switching-lenders-at-renewal/",
+    matchLabel: "Sounds like switching lenders",
   },
   {
     stat: "Self-employed approval after 3 bank rejections",
@@ -21,6 +23,8 @@ const caseStudies = [
     situation: "Incorporated contractor with strong revenue but limited T4 income. Three Big 5 banks declined the renewal on income-qualification rules.",
     outcome: "Broker placed the file with a B-lender through the broker channel. Approved at 5.24% for 2 years with a clear path back to an A-lender at next renewal once 2 additional years of NOAs were available.",
     lender: "Big 5 → B-lender (broker channel)",
+    matchHref: "/self-employed-mortgage-renewal/",
+    matchLabel: "Sounds like self-employed renewal",
   },
   {
     stat: "Co-signer removed at renewal",
@@ -29,6 +33,8 @@ const caseStudies = [
     situation: "Homeowner originally qualified with parents as co-signers in 2020. Five years later, income had tripled and they wanted to remove the co-signers but stay with the same lender.",
     outcome: "Broker arranged a full refinance (not a straight switch) with the same lender, qualifying the borrower alone on their own income. Parents removed from title and the mortgage. Rate held at 4.24% on a 5-year fixed.",
     lender: "Scotiabank (internal refi)",
+    matchHref: "/remove-co-signer-mortgage-renewal/",
+    matchLabel: "Sounds like removing a co-signer",
   },
   {
     stat: "Blend-and-extend saved $18K",
@@ -37,6 +43,8 @@ const caseStudies = [
     situation: "$410K mortgage with 18 months remaining at 5.84%. Break penalty would have been ~$21,000 (IRD). Market rates around 4.19%.",
     outcome: "Stayed with RBC via blend-and-extend — weighted-average new rate of 4.62% over a fresh 5-year term. Avoided the IRD penalty entirely. Locked in current market pricing for four extra years. ~$18,000 net savings.",
     lender: "RBC (blend-and-extend)",
+    matchHref: "/blend-and-extend-guide/",
+    matchLabel: "Sounds like blend-and-extend",
   },
   {
     stat: "Divorce buyout mortgage secured",
@@ -45,6 +53,8 @@ const caseStudies = [
     situation: "Separating couple needed a spousal buyout — one spouse buying out the other's share of the marital home. Required a refinance up to 95% LTV, which is only available under CMHC's spousal buyout program.",
     outcome: "Broker structured the file under the CMHC spousal buyout insurance program, qualifying the remaining spouse alone. New mortgage at 4.09% (insured), consent order documentation finalized through collaborating lawyers.",
     lender: "Monoline (CMHC insured)",
+    matchHref: "/mortgage-renewal-divorce-separation/",
+    matchLabel: "Sounds like separation / buyout",
   },
   {
     stat: "Seniors used CHIP reverse mortgage",
@@ -53,6 +63,8 @@ const caseStudies = [
     situation: "Retired couple in their early 70s with a $180K conventional mortgage coming up for renewal. Fixed pension income was getting tight once the mortgage payment was factored in.",
     outcome: "Rather than renew, they converted to a HomeEquity Bank CHIP reverse mortgage. Mortgage paid off entirely, monthly payment eliminated, and an additional $90K tax-free cash drawn to supplement retirement. No payments owed until the home is sold.",
     lender: "HomeEquity Bank (CHIP)",
+    matchHref: "/reverse-mortgage-at-renewal/",
+    matchLabel: "Sounds like seniors / cash flow",
   },
 ];
 
@@ -113,6 +125,11 @@ const schema = combineSchemas(
       </p>
     </div>
 
+    <h2 class="text-heading-3 mb-4">Which case sounds like you?</h2>
+    <p class="text-body-md text-muted-foreground mb-6 max-w-2xl">
+      Each scenario links to a detailed guide. These are composite illustrations — not named clients. {/* TODO(testimonials): Replace with named client stories when approved quotes are available */}
+    </p>
+
     <div class="grid md:grid-cols-2 gap-5">
       {caseStudies.map(cs => (
         <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm flex flex-col">
@@ -131,8 +148,8 @@ const schema = combineSchemas(
             <div class="text-body-xs font-semibold uppercase tracking-wide text-muted-foreground mb-1">Outcome</div>
             <p class="text-body-sm leading-relaxed">{cs.outcome}</p>
           </div>
-          <a href="/book-a-call/" class="mt-auto inline-flex items-center justify-center rounded-lg bg-gray-25 hover:bg-secondary-25 border border-gray-100 text-body-sm-medium py-2.5 transition-colors">
-            Explore your options →
+          <a href={cs.matchHref} class="mt-auto inline-flex items-center justify-center rounded-lg bg-gray-25 hover:bg-secondary-25 border border-gray-100 text-body-sm-medium py-2.5 transition-colors">
+            {cs.matchLabel} →
           </a>
         </div>
       ))}

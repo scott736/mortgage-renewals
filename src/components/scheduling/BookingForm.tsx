@@ -10,8 +10,25 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { buildBookingNotes } from '@/lib/booking-notes';
 import type { GuestInfo, MeetingType,Service, TeamMember, TimeSlot } from '@/lib/nylas/types';
 import { cn } from '@/lib/utils';
+
+const PROVINCES = [
+  'Ontario',
+  'Quebec',
+  'British Columbia',
+  'Alberta',
+  'Manitoba',
+  'Saskatchewan',
+  'Nova Scotia',
+  'New Brunswick',
+  'Newfoundland and Labrador',
+  'Prince Edward Island',
+  'Yukon',
+  'Northwest Territories',
+  'Nunavut',
+];
 
 const MEETING_TYPE_OPTIONS: { type: MeetingType; label: string; description: string }[] = [
   { type: 'phone', label: 'Phone Call', description: "We'll call you at the scheduled time." },
@@ -22,9 +39,16 @@ const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   email: z.string().email('Please enter a valid email'),
   phone: z.string().min(7, 'Please enter a valid phone number'),
-  notes: z.string().min(10, 'Please provide some details about your goals').max(1000, 'Notes must be less than 1000 characters'),
-  website: z.string().optional(), // Honeypot
-});
+  notes: z.string().max(1000, 'Notes must be less than 1000 characters').optional(),
+  maturityDate: z.string().optional(),
+  currentLender: z.string().max(100).optional(),
+  balance: z.string().max(50).optional(),
+  province: z.string().max(50).optional(),
+  website: z.string().optional(),
+}).refine(
+  (data) => (data.notes?.trim().length ?? 0) >= 10 || data.maturityDate || data.currentLender || data.balance,
+  { message: 'Add a short note (10+ characters) or fill in renewal details below.', path: ['notes'] },
+);
 
 type FormData = z.infer<typeof formSchema>;
 
@@ -99,11 +123,18 @@ export function BookingForm({
     setSubmitError(null);
 
     try {
+      const combinedNotes = buildBookingNotes(data.notes ?? '', {
+        maturityDate: data.maturityDate,
+        currentLender: data.currentLender,
+        balance: data.balance,
+        province: data.province,
+      });
+
       await onSubmit({
         name: data.name,
         email: data.email,
         phone: data.phone,
-        notes: data.notes,
+        notes: combinedNotes,
       });
     } catch (err) {
       setSubmitError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
@@ -275,13 +306,49 @@ export function BookingForm({
               )}
             </div>
 
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="maturityDate" className="text-sm font-medium">
+                  Renewal / maturity date <span className="text-muted-foreground font-normal">(optional)</span>
+                </Label>
+                <Input id="maturityDate" type="date" {...register('maturityDate')} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="currentLender" className="text-sm font-medium">
+                  Current lender <span className="text-muted-foreground font-normal">(optional)</span>
+                </Label>
+                <Input id="currentLender" placeholder="e.g. TD, RBC, First National" {...register('currentLender')} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="balance" className="text-sm font-medium">
+                  Mortgage balance <span className="text-muted-foreground font-normal">(optional)</span>
+                </Label>
+                <Input id="balance" placeholder="e.g. $450,000" {...register('balance')} />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="province" className="text-sm font-medium">
+                  Province <span className="text-muted-foreground font-normal">(optional)</span>
+                </Label>
+                <select
+                  id="province"
+                  {...register('province')}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                >
+                  <option value="">Select province</option>
+                  {PROVINCES.map((p) => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
             <div className="space-y-2">
               <Label htmlFor="notes" className="text-sm font-medium">
-                Notes <span className="text-destructive">*</span>
+                What would you like to discuss? <span className="text-destructive">*</span>
               </Label>
               <Textarea
                 id="notes"
-                placeholder="Tell us about your real estate goals, current situation, and what you'd like to discuss..."
+                placeholder="e.g. My renewal is in August — I'd like to compare my bank's offer with broker rates..."
                 rows={3}
                 className="resize-none"
                 {...register('notes')}

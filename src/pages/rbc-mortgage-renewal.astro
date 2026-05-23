@@ -1,7 +1,8 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
-import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -143,11 +144,12 @@ const schema = combineSchemas(
     <RelatedLinks slug="/rbc-mortgage-renewal/" />
   </article>
 
-  <section class="py-12" style="background: var(--accent)">
-    <div class="container text-center">
-      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Negotiate from a position of information.</h2>
-      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call gives you the benchmark rate to leverage with RBC — or a better offer to switch to. No obligation.</p>
-      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
-    </div>
-  </section>
+  <ZippayCtaCard
+    client:visible
+    title="Negotiate from a position of information."
+    description="A free broker call gives you the benchmark rate to leverage with RBC — or a better offer to switch to. No obligation."
+    primaryLabel="Book Your Free Renewal Strategy Call"
+    secondaryLabel="RBC Renewal Guide"
+    secondaryHref="/rbc-mortgage-renewal/"
+  />
 </DefaultLayout>

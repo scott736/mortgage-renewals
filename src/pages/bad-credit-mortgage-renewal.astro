@@ -1,7 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
-import RelatedLinks from "@/components/RelatedLinks.astro";
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -53,6 +53,7 @@ const schema = combineSchemas(
             <li>• Paying credit card balances below 30% utilization can add 20-40 points to your score within 30-60 days — the fastest single improvement action.</li>
             <li>• Mortgage payment history carries enormous weight — never miss a mortgage payment in the months before renewal, even if other credit is struggling.</li>
             <li>• Private mortgages are a bridge, not a destination — use the term to rebuild credit and plan to move to a B-lender or A-lender at the next renewal.</li>
+            <li>• After a <a href="/consumer-proposal-bankruptcy-mortgage-renewal/" style="color: var(--secondary)">consumer proposal or bankruptcy</a>, plan 6+ months ahead with a broker — see our dedicated guide.</li>
           </ul>
         </div>
 
@@ -342,14 +343,7 @@ const schema = combineSchemas(
       </aside>
     </div>
   </article>
-
-  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
-      Get a Free Broker Consultation
-    </a>
-  </div>
-
-  <section class="py-12" style="background: var(--accent)">
+<section class="py-12" style="background: var(--accent)">
     <div class="container text-center">
       <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Your credit situation has more options than you think.</h2>
       <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker who specializes in credit-challenged renewals can find options your bank will never show you — always free to use.</p>

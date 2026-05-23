@@ -3,6 +3,7 @@
 import * as React from "react";
 
 import { Button } from "@/components/ui/button";
+import { trackLeadEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -15,10 +16,9 @@ export type ZippayContactFormProps = {
 };
 
 export default function ZippayContactForm({
-  tagline = "Contact Us",
-  title = "We\u2019d Love to Hear From You",
-  description = `Share your thoughts, suggestions, or any questions you may have with us.
-Your input helps us improve and enhance our services to better meet your needs.`,
+  tagline = "Contact a Renewal Specialist",
+  title = "Questions About Your Mortgage Renewal?",
+  description = "Tell us about your renewal — maturity date, current lender, and what you need. A licensed broker will reply within one business day.",
   className,
 }: ZippayContactFormProps) {
   const [status, setStatus] = React.useState<Status>("idle");
@@ -34,8 +34,14 @@ Your input helps us improve and enhance our services to better meet your needs.`
       lastName: String(fd.get("lastName") || ""),
       email: String(fd.get("email") || ""),
       message: String(fd.get("message") || ""),
+      renewalDate: String(fd.get("renewalDate") || ""),
+      currentLender: String(fd.get("currentLender") || ""),
+      balance: String(fd.get("balance") || ""),
+      province: String(fd.get("province") || ""),
       confirm: fd.get("confirm") === "on",
       website: String(fd.get("website") || ""),
+      source: "contact_form",
+      pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
     };
 
     if (!payload.confirm) {
@@ -60,6 +66,7 @@ Your input helps us improve and enhance our services to better meet your needs.`
         return;
       }
       setStatus("success");
+      trackLeadEvent("contact_form_submit", { source: "contact_form" });
     } catch {
       setStatus("error");
       setErrorMsg("Could not reach our servers. Please try again or call us at (519) 960-0370.");
@@ -98,9 +105,13 @@ Your input helps us improve and enhance our services to better meet your needs.`
               </div>
               <h3 className="text-heading-4 font-bold mb-2">Message sent</h3>
               <p className="text-body-md text-gray-600 max-w-md mx-auto">
-                Thanks — we've received your note and will reply by email within one business day. For urgent questions call{" "}
+                Thanks — a licensed broker will reply by email within one business day. For urgent questions call{" "}
                 <a href="tel:+15199600370" className="font-semibold underline">
                   (519) 960-0370
+                </a>
+                {" "}or{" "}
+                <a href="/book-a-call/" className="font-semibold underline">
+                  book a free call
                 </a>
                 .
               </p>
@@ -143,9 +154,56 @@ Your input helps us improve and enhance our services to better meet your needs.`
                   name="email"
                   type="email"
                   required
-                  placeholder="johndoe@mail.com"
+                  placeholder="you@email.com"
                   className={inputCls}
                 />
+              </div>
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="renewalDate" className={labelCls}>
+                    Renewal date <span className="text-gray-400 font-normal">(optional)</span>
+                  </label>
+                  <input id="renewalDate" name="renewalDate" type="date" className={inputCls} />
+                </div>
+                <div>
+                  <label htmlFor="currentLender" className={labelCls}>
+                    Current lender <span className="text-gray-400 font-normal">(optional)</span>
+                  </label>
+                  <input
+                    id="currentLender"
+                    name="currentLender"
+                    placeholder="e.g. TD, RBC"
+                    className={inputCls}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="balance" className={labelCls}>
+                    Mortgage balance <span className="text-gray-400 font-normal">(optional)</span>
+                  </label>
+                  <input id="balance" name="balance" placeholder="e.g. $450,000" className={inputCls} />
+                </div>
+                <div>
+                  <label htmlFor="province" className={labelCls}>
+                    Province <span className="text-gray-400 font-normal">(optional)</span>
+                  </label>
+                  <select id="province" name="province" className={inputCls} defaultValue="">
+                    <option value="">Select province</option>
+                    <option>Ontario</option>
+                    <option>Quebec</option>
+                    <option>British Columbia</option>
+                    <option>Alberta</option>
+                    <option>Manitoba</option>
+                    <option>Saskatchewan</option>
+                    <option>Nova Scotia</option>
+                    <option>New Brunswick</option>
+                    <option>Newfoundland and Labrador</option>
+                    <option>Prince Edward Island</option>
+                    <option>Yukon</option>
+                    <option>Northwest Territories</option>
+                    <option>Nunavut</option>
+                  </select>
+                </div>
               </div>
 
               <div>
@@ -155,10 +213,10 @@ Your input helps us improve and enhance our services to better meet your needs.`
                 <textarea
                   id="message"
                   name="message"
-                  placeholder="Message"
+                  placeholder="e.g. I received my renewal letter and want to know if I should switch lenders..."
                   className={cn(
                     inputCls,
-                    "min-h-[180px] resize-y py-3 leading-6",
+                    "min-h-[140px] resize-y py-3 leading-6",
                   )}
                 />
               </div>
@@ -171,11 +229,10 @@ Your input helps us improve and enhance our services to better meet your needs.`
                   className="text-primary focus:ring-primary/30 h-4 w-4 rounded border-gray-300 outline-none focus:ring-2"
                 />
                 <span className="text-body-sm text-gray-600">
-                  I agree to be contacted about my inquiry
+                  I agree to be contacted about my mortgage renewal inquiry
                 </span>
               </label>
 
-              {/* Honeypot */}
               <input
                 type="text"
                 name="website"

@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { useCallback,useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { trackLeadEvent } from '@/lib/analytics';
 import type {
   BookingConfirmation as BookingConfirmationType,
   GuestInfo,
@@ -196,6 +197,11 @@ export function SchedulingWidget({
       }
       throw new Error(data.error || 'Failed to create booking');
     }
+
+    trackLeadEvent('booking_confirmed', {
+      service: selectedService.id,
+      pending: data.requiresConfirmation ? 'true' : 'false',
+    });
 
     // Check if booking requires email confirmation
     if (data.requiresConfirmation) {

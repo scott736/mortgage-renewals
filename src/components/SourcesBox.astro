@@ -1,0 +1,57 @@
+---
+interface Source {
+  label: string;
+  href: string;
+  note?: string;
+}
+
+interface Props {
+  sources?: Source[];
+  class?: string;
+}
+
+const defaultSources: Source[] = [
+  {
+    label: "Financial Consumer Agency of Canada (FCAC) — Mortgages",
+    href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages.html",
+  },
+  {
+    label: "OSFI Guideline B-20 — Residential Mortgage Underwriting",
+    href: "https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures",
+  },
+  {
+    label: "CMHC — Housing research & mortgage market reports",
+    href: "https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research",
+  },
+];
+
+const { sources = defaultSources, class: className } = Astro.props;
+---
+
+<aside
+  class:list={[
+    "rounded-xl border border-gray-100 bg-gray-25 p-6 mt-10",
+    className,
+  ]}
+  aria-label="Sources and references"
+>
+  <h2 class="text-heading-5 mb-3">Sources</h2>
+  <p class="text-body-sm text-muted-foreground mb-4">
+    Rates and program details on this site are for education only. Confirm current rules and your eligibility with a licensed professional.
+  </p>
+  <ul class="space-y-2 text-body-sm">
+    {sources.map((s) => (
+      <li>
+        <a
+          href={s.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-secondary-100 hover:underline"
+        >
+          {s.label}
+        </a>
+        {s.note && <span class="text-muted-foreground"> — {s.note}</span>}
+      </li>
+    ))}
+  </ul>
+</aside>

@@ -1,7 +1,9 @@
 ---
-import LiveRatesTable from '@/components/sections/live-rates-table';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import ExitIntentModal from '@/components/sections/exit-intent-modal';
+import LiveRatesTable from '@/components/sections/live-rates-table';
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 const schema = combineSchemas(
@@ -32,7 +34,16 @@ const schema = combineSchemas(
     <a href="/" class="hover:underline">Home</a> › Best Mortgage Renewal Rates
   </nav>
 
-  <section class="container max-w-4xl pt-4 pb-6">
+  <section class="container max-w-4xl pt-4 pb-2">
+    <div class="rounded-xl bg-secondary-25 border border-secondary-50 p-5 mb-4">
+      <p class="text-body-sm-medium mb-1">Rates depend on your profile</p>
+      <p class="text-body-sm text-muted-foreground mb-3">
+        Insured vs. uninsured, rental, and credit band all change your quote. Use our planner for a personalized checklist.
+      </p>
+      <a href="/my-renewal-plan/" class="inline-flex rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90">
+        Build my renewal plan →
+      </a>
+    </div>
     <LiveRatesTable client:visible />
   </section>
 
@@ -43,7 +54,7 @@ const schema = combineSchemas(
       Your mortgage renewal is one of the most significant financial decisions you'll make. The rate you accept today will determine how much interest you pay over the next <a href="/mortgage-renewal-term-lengths/" class="text-secondary-100 hover:underline">term</a> — often $5,000 to $30,000 worth of difference depending on your balance and how hard you shop. Use our <a href="/mortgage-renewal-calculator/" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to see the impact on your specific numbers.
     </p>
 
-    <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
       <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
       <ul class="space-y-2 text-sm leading-relaxed">
         <li>• Best 5-year fixed rates in Canada are approximately 4.04% and 5-year variable rates around prime minus 1.10% (prime at 4.45%) as of May 2026.</li>
@@ -191,21 +202,13 @@ const schema = combineSchemas(
     <RelatedLinks slug="/best-mortgage-renewal-rates/" />
   </article>
 
-  <section class="bg-primary-100 py-12">
-    <div class="container max-w-3xl text-center">
-      <h2 class="text-heading-3 text-white mb-3">Get Your Personalized Rate Quote</h2>
-      <p class="text-white/80 mb-6">Stop guessing. A broker will pull real quotes from 30+ lenders in minutes — free.</p>
-      <a href="/book-a-call/">
-        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
-          Book Your Free Rate Comparison Call
-        </button>
-      </a>
-    </div>
-  </section>
-
-  <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
-    <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
-      Book Free Broker Consultation
-    </a>
-  </div>
+  <ZippayCtaCard
+    client:visible
+    title="Get Your Personalized Rate Quote"
+    description="Stop guessing. A broker will pull real quotes from 30+ lenders in minutes — free."
+    primaryLabel="Book Your Free Rate Comparison Call"
+    secondaryLabel="Use Renewal Calculator"
+    secondaryHref="/mortgage-renewal-calculator/"
+  />
+  <ExitIntentModal client:load storageKey="exit-intent-best-rates" />
 </DefaultLayout>

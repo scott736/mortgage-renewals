@@ -4,43 +4,56 @@ import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import { BUSINESS } from "@/consts";
+import { trackCtaClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
-const Banner = ({ url = "/book-a-call" }: { url?: string }) => {
+const SESSION_KEY = "banner-dismissed-session";
+
+const Banner = ({ url = "/book-a-call/" }: { url?: string }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [isClient, setIsClient] = useState(false);
 
-  // Check localStorage to see if banner was previously dismissed
   useEffect(() => {
     setIsClient(true);
-    const bannerDismissed = localStorage.getItem("banner-dismissed");
-    if (bannerDismissed === "true") {
+    if (sessionStorage.getItem(SESSION_KEY) === "true") {
       setIsVisible(false);
     }
   }, []);
 
   const handleDismiss = () => {
     setIsVisible(false);
-    localStorage.setItem("banner-dismissed", "true");
+    sessionStorage.setItem(SESSION_KEY, "true");
   };
 
-  // Don't render anything until client-side hydration is complete
   if (!isClient || !isVisible) {
     return null;
   }
 
   return (
     <div className="bg-primary-300 relative">
-      <div className="container flex items-center justify-between gap-4 py-3 pr-12">
-        <div className="flex flex-1 items-center justify-center gap-3 sm:gap-4">
-          <span className="text-center text-sm font-medium text-white">
-            🇨🇦 Over 1.8M Canadians renewing in 2026 — are you getting the best rate?
+      <div className="container flex flex-col items-center justify-between gap-3 py-3 pr-12 sm:flex-row">
+        <div className="flex flex-1 flex-col items-center gap-2 text-center sm:flex-row sm:justify-center sm:gap-4">
+          <span className="text-sm font-medium text-white">
+            🇨🇦 Roughly 1M Canadian households renewing in 2026 — are you getting the best rate?
           </span>
-          <Button size="sm" variant="translucent" asChild>
-            <a href={url}>
-              Book Free Strategy Call
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <Button size="sm" variant="translucent" asChild>
+              <a
+                href={url}
+                onClick={() => trackCtaClick("banner_book", url)}
+              >
+                Book Free Strategy Call
+              </a>
+            </Button>
+            <a
+              href={BUSINESS.phone.tel}
+              onClick={() => trackCtaClick("banner_phone", BUSINESS.phone.tel)}
+              className="text-xs font-semibold text-white/90 underline hover:text-white"
+            >
+              Or call {BUSINESS.phone.display}
             </a>
-          </Button>
+          </div>
         </div>
         <button
           onClick={handleDismiss}
@@ -50,7 +63,7 @@ const Banner = ({ url = "/book-a-call" }: { url?: string }) => {
             "hover:bg-gray-0/10 transition-all duration-200 hover:scale-110",
             "focus:outline-none focus:ring-2 focus:ring-white/30",
           )}
-          aria-label="Close banner"
+          aria-label="Close banner for this visit"
         >
           <X className="size-3.5" />
         </button>

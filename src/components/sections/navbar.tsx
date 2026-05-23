@@ -10,6 +10,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { trackCtaClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 type MegaLink = { label: string; href: string };
@@ -94,6 +95,9 @@ const MEGA_NAV: MegaItem[] = [
           { label: "Renewal vs. Refinancing", href: "/renewal-vs-refinancing/" },
           { label: "Early Mortgage Renewal", href: "/early-mortgage-renewal/" },
           { label: "Renewal Mistakes to Avoid", href: "/mortgage-renewal-mistakes/" },
+          { label: "Renewal Letter Decoder", href: "/renewal-letter-decoder/" },
+          { label: "Blend-and-Extend Guide", href: "/blend-and-extend-guide/" },
+          { label: "My Renewal Plan", href: "/my-renewal-plan/" },
           { label: "Mortgage Glossary", href: "/mortgage-renewal-glossary/" },
         ],
       },
@@ -187,6 +191,10 @@ const MEGA_NAV: MegaItem[] = [
           { label: "All Canadian Lender Types", href: "/mortgage-lender-types-canada/" },
           { label: "First National (Monoline)", href: "/first-national-mortgage-renewal/" },
           { label: "MCAP (Monoline)", href: "/mcap-mortgage-renewal/" },
+          { label: "Equitable Bank", href: "/equitable-bank-mortgage-renewal/" },
+          { label: "Home Trust", href: "/home-trust-mortgage-renewal/" },
+          { label: "Haventree Bank", href: "/haventree-bank-mortgage-renewal/" },
+          { label: "Desjardins (Quebec)", href: "/desjardins-mortgage-renewal/" },
           { label: "Credit Unions", href: "/credit-union-mortgage-renewal-canada/" },
           { label: "B-Lender Renewal", href: "/b-lender-mortgage-renewal/" },
           { label: "Private Mortgage Renewal", href: "/private-mortgage-renewal/" },
@@ -295,6 +303,7 @@ const MEGA_NAV: MegaItem[] = [
         title: "More Resources",
         links: [
           { label: "FAQ", href: "/mortgage-renewal-faq/" },
+          { label: "Broker Pricing", href: "/pricing/" },
           { label: "News & Updates", href: "/mortgage-renewal-news/" },
           { label: "Case Studies", href: "/case-studies/" },
           { label: "Smith Manoeuvre at Renewal", href: "/smith-manoeuvre-at-renewal/" },
@@ -456,14 +465,22 @@ const Navbar = () => {
             </NavigationMenuList>
 
             <div className="flex items-center gap-2.5">
-              <a href="/book-a-call/" className="hidden xl:block">
-                <Button size="sm" variant="secondary">
+              <Button size="sm" variant="secondary" className="hidden xl:inline-flex" asChild>
+                <a
+                  href="/book-a-call/"
+                  onClick={() => trackCtaClick("navbar_book", "/book-a-call/")}
+                >
                   Book Free Call
-                </Button>
-              </a>
-              <a href="/mortgage-renewal-calculator/" className="hidden xl:block">
-                <Button size="sm">Compare Rates</Button>
-              </a>
+                </a>
+              </Button>
+              <Button size="sm" className="hidden xl:inline-flex" asChild>
+                <a
+                  href="/best-mortgage-renewal-rates/"
+                  onClick={() => trackCtaClick("navbar_rates", "/best-mortgage-renewal-rates/")}
+                >
+                  Compare Rates
+                </a>
+              </Button>
               <button
                 className="text-muted-foreground relative flex size-8 items-center justify-center xl:hidden"
                 onClick={() => {
@@ -525,19 +542,28 @@ const Navbar = () => {
                   ))}
                 </ul>
                 <div className="mt-8 flex flex-col gap-3 pb-12">
-                  <a href="/book-a-call/" onClick={closeMobile}>
-                    <Button variant="secondary" className="w-full" size="lg">
+                  <Button variant="secondary" className="w-full" size="lg" asChild>
+                    <a
+                      href="/book-a-call/"
+                      onClick={() => {
+                        trackCtaClick("navbar_mobile_book", "/book-a-call/");
+                        closeMobile();
+                      }}
+                    >
                       Book Free Call
-                    </Button>
-                  </a>
-                  <a
-                    href="/mortgage-renewal-calculator/"
-                    onClick={closeMobile}
-                  >
-                    <Button className="w-full" size="lg">
+                    </a>
+                  </Button>
+                  <Button className="w-full" size="lg" asChild>
+                    <a
+                      href="/best-mortgage-renewal-rates/"
+                      onClick={() => {
+                        trackCtaClick("navbar_mobile_rates", "/best-mortgage-renewal-rates/");
+                        closeMobile();
+                      }}
+                    >
                       Compare Rates
-                    </Button>
-                  </a>
+                    </a>
+                  </Button>
                 </div>
               </>
             )}

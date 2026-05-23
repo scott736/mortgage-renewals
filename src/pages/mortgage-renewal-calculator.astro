@@ -1,6 +1,8 @@
 ---
 import MortgageCalculators from '@/components/calculators/mortgage-calculators';
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import ExitIntentModal from '@/components/sections/exit-intent-modal';
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webApplicationSchema, webPageNode } from '@/lib/schema';
 
@@ -42,18 +44,17 @@ const schema = combineSchemas(
   title="Mortgage Renewal Calculator — Payment, Rate & Penalty"
   description="Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation. Updated May 2026."
   schema={schema}
-  preloadImage="/images/hero/hero-calculator.webp"
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Mortgage Renewal Calculator
   </nav>
 
-  <section class="container max-w-4xl py-10">
+  <section class="container max-w-4xl py-10 pb-24 lg:pb-10">
     <div class="mb-10">
       <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tools</div>
       <h1 class="text-heading-1 mb-4">Mortgage Renewal Calculators</h1>
       <p class="text-body-lg text-muted-foreground max-w-2xl">
-        Five free, real-time calculators built for Canadian mortgage renewals. All calculations use semi-annual compounding — the standard for Canadian mortgages. No email required. New to renewals? Start with our <a href="/what-is-a-mortgage-renewal/" class="text-secondary-100 hover:underline">guide to what a mortgage renewal is</a>.
+        15+ free renewal tools — payment, switch-vs-stay, penalties, stress test, blend-and-extend, and more. All use semi-annual compounding (Canadian standard). No email required. Start with our <a href="/what-is-a-mortgage-renewal/" class="text-secondary-100 hover:underline">renewal explainer</a> or <a href="/my-renewal-plan/" class="text-secondary-100 hover:underline">personalized plan wizard</a>.
       </p>
     </div>
 
@@ -94,22 +95,13 @@ const schema = combineSchemas(
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="bg-primary-100 py-12 mt-10">
-    <div class="container max-w-3xl text-center">
-      <h2 class="text-heading-3 text-white mb-3">Want a Broker to Confirm These Numbers?</h2>
-      <p class="text-white/80 mb-6">Get real lender quotes from 30+ lenders — free. A licensed <a href="/mortgage-broker-renewal/" class="text-white underline">mortgage broker</a> will validate your calculations and find you the <a href="/best-mortgage-renewal-rates/" class="text-white underline">best rate</a>.</p>
-      <a href="/book-a-call/">
-        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
-          Book Your Free Renewal Strategy Call
-        </button>
-      </a>
-    </div>
-  </section>
-
-  <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
-    <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
-      Book Free Broker Consultation
-    </a>
-  </div>
+  <ZippayCtaCard
+    client:visible
+    title="Want a Broker to Confirm These Numbers?"
+    description="Get real lender quotes from 30+ lenders — free. A licensed mortgage broker will validate your calculations and find you the best rate."
+    primaryLabel="Book Your Free Renewal Strategy Call"
+    secondaryLabel="Compare Best Rates"
+    secondaryHref="/best-mortgage-renewal-rates/"
+  />
+  <ExitIntentModal client:load storageKey="exit-intent-calculator-hub" />
 </DefaultLayout>

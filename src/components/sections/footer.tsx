@@ -1,4 +1,5 @@
 import { BUSINESS, PROVINCE_PAGES } from "@/consts";
+import { trackCtaClick } from "@/lib/analytics";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -32,6 +33,8 @@ export default function Footer() {
       title: "Company",
       links: [
         { name: "About Us", href: "/about/" },
+        { name: "Contact", href: "/contact/" },
+        { name: "Broker Pricing", href: "/pricing/" },
         { name: "Book a Free Call", href: "/book-a-call/" },
         { name: "Privacy Policy", href: "/privacy/" },
         { name: "Terms of Service", href: "/terms/" },
@@ -45,7 +48,6 @@ export default function Footer() {
     <footer className="bg-[oklch(28%_0.075_235)] border-t border-white/10 text-white">
       <div className="container px-6 py-12 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_2fr]">
-          {/* Brand */}
           <div className="flex flex-col justify-between gap-8">
             <div>
               <a href="/" className="inline-flex items-center">
@@ -54,7 +56,7 @@ export default function Footer() {
                 </span>
               </a>
               <p className="mt-3 max-w-xs text-sm text-white/70 leading-relaxed">
-                Canada's most comprehensive mortgage renewal resource. Compare rates, use free calculators, and get expert guidance.
+                Canada&apos;s most comprehensive mortgage renewal resource. Compare rates, use free calculators, and get expert guidance.
               </p>
               <p className="mt-3 max-w-xs text-sm text-white/70 leading-relaxed">
                 Powered by{" "}
@@ -64,10 +66,26 @@ export default function Footer() {
                   rel="noopener"
                   className="font-semibold text-white underline-offset-2 hover:underline"
                 >
-                  LendCity Mortgages
+                  {BUSINESS.licensing.operatingBrand}
                 </a>
                 {" "}— a licensed Canadian mortgage brokerage.
               </p>
+              <div className="mt-4 space-y-2 text-sm">
+                <a
+                  href={BUSINESS.phone.tel}
+                  onClick={() => trackCtaClick("footer_phone", BUSINESS.phone.tel)}
+                  className="block font-semibold text-white hover:underline"
+                >
+                  {BUSINESS.phone.display}
+                </a>
+                <a
+                  href="/contact/"
+                  onClick={() => trackCtaClick("footer_contact", "/contact/")}
+                  className="block text-white/80 hover:text-white hover:underline"
+                >
+                  Contact us →
+                </a>
+              </div>
               <div className="mt-4 inline-flex items-center rounded-full border border-white/20 px-3 py-1.5 text-xs text-white/60">
                 🇨🇦 Proudly serving Canadians coast to coast
               </div>
@@ -76,6 +94,7 @@ export default function Footer() {
             <div>
               <a
                 href="/book-a-call/"
+                onClick={() => trackCtaClick("footer_book", "/book-a-call/")}
                 className="inline-flex rounded-lg bg-[oklch(63%_0.130_185)] px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
               >
                 Book Free Strategy Call →
@@ -84,7 +103,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Nav grid */}
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {nav.map((section) => (
               <div key={section.title}>
@@ -108,10 +126,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="mt-12 border-t border-white/10 pt-8 flex flex-col items-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left">
           <p className="text-xs text-white/60">
-            © {year} LendCity Mortgages. All rights reserved. Powered by Mortgage Architects FSRA # 12728
+            © {year} {BUSINESS.licensing.operatingBrand}. All rights reserved. Powered by {BUSINESS.licensing.brokerageName} {BUSINESS.licensing.regulator} #{BUSINESS.licensing.brokerageLicence}
           </p>
           <p className="text-xs text-white/40 max-w-xl">
             For educational purposes only. Not financial advice. Always consult a licensed mortgage professional for advice specific to your situation.
@@ -124,7 +141,7 @@ export default function Footer() {
             <span aria-hidden="true" className="text-white/30">·</span>{" "}
             {BUSINESS.licensing.regulator} brokerage #{BUSINESS.licensing.brokerageLicence}{" "}
             <span aria-hidden="true" className="text-white/30">·</span>{" "}
-            Principal broker {BUSINESS.licensing.principalBrokerName}, {BUSINESS.licensing.regulator} agent #{BUSINESS.licensing.principalBrokerLicence}
+            {BUSINESS.licensing.principalBrokerName}, {BUSINESS.licensing.principalBrokerTitle}
           </p>
         </div>
       </div>

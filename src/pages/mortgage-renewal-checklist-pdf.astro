@@ -1,4 +1,5 @@
 ---
+import ChecklistDownloadGate from '@/components/lead/checklist-download-gate';
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
@@ -54,17 +55,7 @@ const schema = combineSchemas(
           </ul>
         </div>
 
-        <a
-          href="/downloads/renewal-checklist-2026.pdf"
-          download
-          class="inline-flex items-center justify-center w-full sm:w-auto rounded-lg bg-primary-100 text-white px-8 py-4 text-lg font-semibold hover:opacity-90 transition-opacity"
-        >
-          Download the Free PDF
-          <span class="ml-2">↓</span>
-        </a>
-        <p class="text-body-xs text-muted-foreground mt-3">
-          Format: PDF · 2 pages · 340 KB · No signup required for the download.
-        </p>
+        <ChecklistDownloadGate client:visible />
       </div>
 
       <div class="rounded-2xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">

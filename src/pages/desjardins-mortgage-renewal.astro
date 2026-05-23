@@ -1,0 +1,45 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "desjardins-mortgage-renewal", name: "Desjardins Mortgage Renewal 2026" }),
+  articleSchema({
+    headline: "Desjardins Mortgage Renewal 2026 — Quebec Cooperative Lender",
+    description: "Desjardins mortgage renewal: caisse populaire channel, Quebec notary costs, and competitive renewal strategy.",
+    slug: "desjardins-mortgage-renewal",
+    articleSection: "Lender Renewal Guides",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "Desjardins Renewal", url: "/desjardins-mortgage-renewal" }]),
+);
+---
+
+<DefaultLayout
+  title="Desjardins Mortgage Renewal 2026"
+  description="Desjardins mortgage renewal in Quebec: cooperative lender, notary switching costs, and broker benchmarks."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Desjardins Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-12">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Desjardins Mortgage Renewal</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Desjardins is Quebec's dominant financial cooperative. Renewals through your caisse may be convenient — but broker-channel monolines often beat caisse renewal offers.</p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• All Quebec lender switches require a notary ($800–$1,500) — see <a href="/quebec-mortgage-renewal/" style="color: var(--secondary)">Quebec renewal guide</a>.</li>
+        <li>• French-language documentation rights apply — <a href="/fr/renouvellement-hypothecaire-quebec/" style="color: var(--secondary)">guide en français</a>.</li>
+        <li>• Member loyalty does not guarantee the lowest rate — shop 120 days out.</li>
+      </ul>
+    </div>
+
+    <RelatedLinks slug="/desjardins-mortgage-renewal/" />
+  </article>
+</DefaultLayout>

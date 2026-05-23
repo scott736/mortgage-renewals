@@ -1,7 +1,8 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import StickyTOC from "@/components/StickyTOC.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
-import RelatedLinks from "@/components/RelatedLinks.astro";
 export const prerender = true;
 
 const schema = combineSchemas(
@@ -50,7 +51,13 @@ const schema = combineSchemas(
 
   <article class="container max-w-4xl py-12">
     <div class="flex flex-col lg:flex-row gap-10">
-      <div class="flex-1">
+      <StickyTOC items={[
+        { id: "income-approaches", label: "Income qualification" },
+        { id: "b-lenders", label: "B-lenders & stated income" },
+        { id: "documents", label: "Documents checklist" },
+        { id: "tips", label: "Improve qualifying" },
+      ]} />
+      <div class="flex-1 min-w-0">
 
         <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
           <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
@@ -204,7 +211,7 @@ const schema = combineSchemas(
           </div>
         </div>
 
-        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Stated Income Lenders (B-Lenders) for Self-Employed Renewers</h2>
+        <h2 id="b-lenders" class="text-2xl font-bold mt-10 mb-4 scroll-mt-20" style="color: var(--primary)">Stated Income Lenders (B-Lenders) for Self-Employed Renewers</h2>
 
         <p class="mb-4 leading-relaxed">When traditional income qualification won't work — because declared income is too low due to write-offs or the business is newer — <a href="/mortgage-lender-types-canada/" style="color: var(--secondary)">B-lenders</a> with stated income programs become your primary option. These lenders acknowledge that self-employed borrowers often have more real-world cash flow than their tax returns reflect, and they build products around that reality.</p>
 
@@ -229,7 +236,7 @@ const schema = combineSchemas(
           </div>
         </div>
 
-        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Key Documents for Self-Employed Renewal</h2>
+        <h2 id="documents" class="text-2xl font-bold mt-10 mb-4 scroll-mt-20" style="color: var(--primary)">Key Documents for Self-Employed Renewal</h2>
 
         <p class="mb-4 leading-relaxed">Preparation is your best asset. A well-organized, complete document package — outlined in our <a href="/mortgage-renewal-checklist/" style="color: var(--secondary)">renewal checklist</a> — submitted at the start of your renewal application signals professionalism to the underwriter and speeds up the approval process significantly.</p>
 
@@ -275,7 +282,7 @@ const schema = combineSchemas(
           </div>
         </div>
 
-        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Tips to Improve Your Qualifying Position</h2>
+        <h2 id="tips" class="text-2xl font-bold mt-10 mb-4 scroll-mt-20" style="color: var(--primary)">Tips to Improve Your Qualifying Position</h2>
 
         <p class="mb-4 leading-relaxed">The decisions you make in the 12–24 months before your renewal have a direct impact on how lenders assess your income and what rates you qualify for. Here are the most impactful actions self-employed borrowers can take:</p>
 
@@ -364,13 +371,7 @@ const schema = combineSchemas(
   </article>
 
   <!-- Mobile CTA -->
-  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
-      Get a Free Broker Consultation
-    </a>
-  </div>
-
-  <!-- CTA Section -->
+<!-- CTA Section -->
   <section class="py-16 text-white" style="background: var(--primary)">
     <div class="container max-w-3xl text-center">
       <h2 class="text-3xl font-bold mb-4">Get Expert Help With Your Self-Employed Renewal</h2>

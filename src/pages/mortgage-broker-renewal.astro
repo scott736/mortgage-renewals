@@ -1,7 +1,9 @@
 ---
+import AuthorByline from "@/components/AuthorByline.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
-import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -26,6 +28,7 @@ const schema = combineSchemas(
   title="Using a Mortgage Broker at Renewal — 30+ Lenders, Free"
   description="Mortgage brokers compare 30+ Canadian lenders, are free for borrowers, and consistently find better rates than going directly to your bank at renewal."
   schema={schema}
+  hideAuthorByline={true}
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -76,7 +79,37 @@ const schema = combineSchemas(
     </div>
   </div>
 
+  <div class="container max-w-4xl py-8">
+    <AuthorByline showPhoto={true} />
+  </div>
+
   <article class="container max-w-4xl py-10">
+    <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Broker vs. DIY — quick decision</h2>
+      <div class="grid sm:grid-cols-2 gap-4 text-sm">
+        <div>
+          <p class="font-semibold mb-2">Call a broker if:</p>
+          <ul class="space-y-1 text-muted-foreground list-disc list-inside">
+            <li>Rate gap vs. bank offer may exceed ~0.15%</li>
+            <li>Collateral charge (TD, National Bank)</li>
+            <li>Self-employed, rental, or bruised credit</li>
+            <li>Less than 120 days to maturity</li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold mb-2">DIY may be enough if:</p>
+          <ul class="space-y-1 text-muted-foreground list-disc list-inside">
+            <li>Bank already matched best broker quote in writing</li>
+            <li>Standard charge, simple salaried file</li>
+            <li>You've run switch-vs-stay math and staying wins</li>
+          </ul>
+        </div>
+      </div>
+      <p class="text-body-xs text-muted-foreground mt-3">
+        Broker services are <a href="/pricing/" style="color: var(--secondary)">free to borrowers</a> — lenders pay compensation.
+      </p>
+    </div>
+
     <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated May 2026 · 11-minute read</p>
 
     <div class="flex flex-col lg:flex-row gap-10">
@@ -324,20 +357,12 @@ const schema = combineSchemas(
     <!-- Internal links -->
     <RelatedLinks slug="/mortgage-broker-renewal/" />
   </article>
-
-  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
-      Get a Free Broker Consultation
-    </a>
-  </div>
-
-  <section class="py-12" style="background: var(--accent)">
-    <div class="container text-center">
-      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
-      <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
-        Book Your Free Renewal Strategy Call
-      </a>
-    </div>
-  </section>
+  <ZippayCtaCard
+    client:visible
+    title="Want personalized help?"
+    description="A mortgage broker is free to use. Compare 30+ lenders and get a strategy call today."
+    primaryLabel="Book Your Free Renewal Strategy Call"
+    secondaryLabel="Read the Renewal Guide"
+    secondaryHref="/mortgage-renewal-guide/"
+  />
 </DefaultLayout>

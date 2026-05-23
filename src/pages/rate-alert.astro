@@ -1,6 +1,7 @@
 ---
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import RateAlertForm from '@/components/lead/rate-alert-form';
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,serviceSchema, webPageNode } from '@/lib/schema';
 
 export const prerender = true;
@@ -78,37 +79,7 @@ const schema = combineSchemas(
         </div>
       </div>
 
-      <div class="rounded-2xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
-        <div class="text-body-xs-medium text-secondary-200 uppercase tracking-wide mb-2">Better Than an Alert</div>
-        <h2 class="text-heading-4 font-bold mb-4">Have a broker watch rates for you</h2>
-        <p class="text-body-md text-muted-foreground mb-5">
-          A licensed mortgage broker can monitor rates in real time across 30+ Canadian lenders — not just the ones public rate sites show. Tell them your target rate once, and they reach out when the market hits it.
-        </p>
-
-        <div class="rounded-xl bg-secondary-25 border border-secondary-50 p-5 mb-5">
-          <p class="text-body-sm-medium mb-3">Why this beats a rate alert email</p>
-          <ul class="space-y-2 text-body-sm text-muted-foreground">
-            <li class="flex gap-2"><span class="text-secondary-200 flex-shrink-0">→</span><span><strong class="text-foreground">Broker-only rates</strong> are typically 10–25 bps lower than public rate sites show</span></li>
-            <li class="flex gap-2"><span class="text-secondary-200 flex-shrink-0">→</span><span><strong class="text-foreground">Rate holds up to 120 days</strong> — once you hit your target, lock it immediately</span></li>
-            <li class="flex gap-2"><span class="text-secondary-200 flex-shrink-0">→</span><span><strong class="text-foreground">Real offers, not ranges</strong> — quoted for your specific mortgage and credit</span></li>
-            <li class="flex gap-2"><span class="text-secondary-200 flex-shrink-0">→</span><span><strong class="text-foreground">Free service</strong> — brokers are paid by the lender, not you</span></li>
-          </ul>
-        </div>
-
-        <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white font-semibold py-3.5 text-center hover:opacity-90 transition-opacity">
-          Book a Free Rate Strategy Call
-        </a>
-
-        <p class="text-body-xs text-muted-foreground text-center mt-3">
-          30 minutes. No commitment. Unbiased by-lender rate review.
-        </p>
-
-        <div class="mt-6 pt-6 border-t border-gray-100">
-          <p class="text-body-xs text-muted-foreground">
-            Prefer to watch rates yourself? Bookmark our <a href="/current-mortgage-rates-canada/" class="text-secondary-100 hover:underline">current rates page</a> — updated weekly with broker-negotiated rates — and check back before your renewal.
-          </p>
-        </div>
-      </div>
+      <RateAlertForm client:visible />
     </div>
 
     <div class="mt-12 space-y-6">

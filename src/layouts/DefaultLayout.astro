@@ -1,17 +1,22 @@
 ---
+import VercelAnalytics from "@/components/analytics/VercelAnalytics";
+import AuthorByline from "@/components/AuthorByline.astro";
 import BaseHead from "@/components/BaseHead.astro";
 import Banner from "@/components/sections/banner";
+import ClickToCallBar from "@/components/sections/click-to-call-bar";
 import Footer from "@/components/sections/footer";
+import MobileStickyCta from "@/components/sections/mobile-sticky-cta";
 import Navbar from "@/components/sections/navbar";
 
-const { title, description, schema, preloadImage, noindex, ogType } = Astro.props;
+const { title, description, schema, preloadImage, noindex, ogType, hideAuthorByline, hideMobileSticky } = Astro.props;
 
-// Auto-detect article type from schema if not explicitly set: any page that
-// includes an Article node in its schema array should advertise itself as
-// og:type="article" for richer Facebook/LinkedIn/social-card enrichment.
 const detectedOgType =
   ogType ||
   (schema && /"@type"\s*:\s*"Article"/.test(schema) ? "article" : "website");
+
+const isArticlePage = Boolean(schema && /"@type"\s*:\s*"Article"/.test(schema));
+const schemaDateModified = schema?.match(/"dateModified"\s*:\s*"([^"]+)"/)?.[1];
+const showAuthorByline = isArticlePage && !hideAuthorByline;
 ---
 
 <html lang="en-CA" class="dark">
@@ -27,10 +32,20 @@ const detectedOgType =
       })();
     </script>
   </head>
-  <body class={`h-screen antialiased`}>
+  <body class="min-h-screen antialiased pb-24 lg:pb-0">
+    <VercelAnalytics client:load />
     <Banner client:idle />
     <Navbar client:idle />
-    <main><slot /></main>
+    <main>
+      {showAuthorByline && (
+        <div class="container max-w-4xl pt-4 pb-0">
+          <AuthorByline dateModified={schemaDateModified} />
+        </div>
+      )}
+      <slot />
+    </main>
     <Footer />
+    {!hideMobileSticky && <MobileStickyCta client:idle />}
+    <ClickToCallBar client:idle />
   </body>
 </html>

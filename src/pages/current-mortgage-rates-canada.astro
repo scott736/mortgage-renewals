@@ -1,7 +1,8 @@
 ---
-import LiveRatesTable from '@/components/sections/live-rates-table';
-import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import LiveRatesTable from '@/components/sections/live-rates-table';
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
@@ -129,15 +130,12 @@ const schema = combineSchemas(
     </div>
   </section>
 
-  <section class="bg-primary-100 py-12 mt-10">
-    <div class="container max-w-3xl text-center">
-      <h2 class="text-heading-3 text-white mb-3">Want Today's Rate for Your File?</h2>
-      <p class="text-white/80 mb-6">These are market ranges. Your actual rate depends on credit score, property, and loan-to-value. A broker confirms your real rate in one call — free.</p>
-      <a href="/book-a-call/">
-        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
-          Get Your Personalized Rate
-        </button>
-      </a>
-    </div>
-  </section>
+  <ZippayCtaCard
+    client:visible
+    title="Want Today's Rate for Your File?"
+    description="These are market ranges. Your actual rate depends on credit score, property, and loan-to-value. A broker confirms your real rate in one call — free."
+    primaryLabel="Get Your Personalized Rate"
+    secondaryLabel="See Best Renewal Rates"
+    secondaryHref="/best-mortgage-renewal-rates/"
+  />
 </DefaultLayout>

@@ -1,6 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+
+type ProfileFilter = "insured" | "uninsured" | "rental" | "credit";
 
 // Rates updated manually — user will refresh this weekly.
 // Source: Broker-negotiated rates aggregated May 21, 2026.
@@ -72,7 +74,20 @@ const big5Detail = [
   { bank: "CIBC", fixed5: "4.29%", var5: "3.95%" },
 ];
 
+const PROFILE_EXPLAINERS: Record<ProfileFilter, string> = {
+  insured:
+    "Insured (high-ratio) mortgages — typically best rates when CMHC/Sagen/CG insurance applies and amortization is ≤25 years.",
+  uninsured:
+    "Uninsured conventional — 20%+ equity at origination. Slightly higher rates than insured; switching at renewal has no stress test on straight transfers since Nov 2024.",
+  rental:
+    "Rental / investment properties — often +10–30 bps vs owner-occupied. Lenders may require rental income worksheets; see our rental qualifying calculator.",
+  credit:
+    "Credit band — best rates need 680+; 600–679 may see +10–25 bps; below 600 often requires B-lender channel. Rates shown assume strong credit unless noted.",
+};
+
 export default function LiveRatesTable() {
+  const [profile, setProfile] = useState<ProfileFilter>("uninsured");
+
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-5">
@@ -90,6 +105,33 @@ export default function LiveRatesTable() {
           <div>Refreshed weekly</div>
         </div>
       </div>
+
+      <div className="mb-4 flex flex-wrap gap-2">
+        {(
+          [
+            ["insured", "Insured"],
+            ["uninsured", "Uninsured"],
+            ["rental", "Rental"],
+            ["credit", "Credit band"],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            onClick={() => setProfile(id)}
+            className={`rounded-full px-3 py-1.5 text-body-xs font-medium transition-colors ${
+              profile === id
+                ? "bg-secondary-100 text-white"
+                : "bg-gray-25 border border-gray-100 text-muted-foreground hover:border-secondary-50"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      <p className="text-body-sm text-muted-foreground mb-4 rounded-lg bg-gray-25 border border-gray-100 p-3">
+        {PROFILE_EXPLAINERS[profile]}
+      </p>
 
       <div className="overflow-x-auto -mx-6 sm:mx-0 px-6 sm:px-0">
         <table className="w-full border-collapse text-body-sm min-w-[640px]">
@@ -124,9 +166,17 @@ export default function LiveRatesTable() {
       </div>
 
       <div className="mt-5 rounded-lg bg-gray-25 border border-gray-100 p-4 text-body-sm text-muted-foreground">
-        <strong className="text-foreground">Note:</strong> These are broker-negotiated rates. Posted bank
-        renewal offers are typically <strong>0.5%–1.0% higher</strong>. Your actual rate depends on credit
-        score, LTV, income, and property type.
+        <strong className="text-foreground">Methodology:</strong> Broker-negotiated rates for qualified
+        borrowers, refreshed manually weekly. Posted bank renewal letters are typically{" "}
+        <strong>0.5%–1.0% higher</strong>. Your rate depends on profile ({profile}), LTV, and income.{" "}
+        <a href="/my-renewal-plan/" className="text-secondary-100 hover:underline">
+          Build your renewal plan
+        </a>{" "}
+        or see{" "}
+        <a href="/pricing/" className="text-secondary-100 hover:underline">
+          how broker pricing works
+        </a>
+        .
       </div>
 
       <details className="mt-4 rounded-lg border border-gray-100 p-4 text-body-sm">

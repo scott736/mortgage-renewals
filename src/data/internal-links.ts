@@ -216,6 +216,42 @@ export const LINK_META: Record<string, LinkMeta> = {
     title: "MCAP Renewal (Monoline)",
     blurb: "MCAP renewal process, rate sheets, and switching options.",
   },
+  "/equitable-bank-mortgage-renewal/": {
+    title: "Equitable Bank Renewal",
+    blurb: "Alt-A and PATH products — renewal through the broker channel.",
+  },
+  "/home-trust-mortgage-renewal/": {
+    title: "Home Trust Renewal",
+    blurb: "B-lender and alt-A renewals for self-employed and credit challenges.",
+  },
+  "/haventree-bank-mortgage-renewal/": {
+    title: "Haventree Bank Renewal",
+    blurb: "Alternative lender renewals — stated income and bruised credit.",
+  },
+  "/desjardins-mortgage-renewal/": {
+    title: "Desjardins Renewal",
+    blurb: "Quebec cooperative lender — renewal and notarial switching costs.",
+  },
+  "/renewal-letter-decoder/": {
+    title: "Renewal Letter Decoder",
+    blurb: "Annotated guide to posted rates, product codes, and auto-renewal traps.",
+  },
+  "/blend-and-extend-guide/": {
+    title: "Blend-and-Extend Guide",
+    blurb: "When to blend-and-extend vs. switch — penalty-free rate blending.",
+  },
+  "/consumer-proposal-bankruptcy-mortgage-renewal/": {
+    title: "Consumer Proposal & Bankruptcy",
+    blurb: "Renewing after insolvency — B-lenders and timing.",
+  },
+  "/my-renewal-plan/": {
+    title: "My Renewal Plan",
+    blurb: "Personalized renewal checklist wizard by date, lender, and province.",
+  },
+  "/heloc-readvanceable-at-renewal/": {
+    title: "HELOC at Renewal Hub",
+    blurb: "HELOC and readvanceable structures at your renewal moment.",
+  },
   "/credit-union-mortgage-renewal-canada/": {
     title: "Credit Union Renewals",
     blurb: "Provincially-regulated credit unions and renewal flexibility.",

@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
+import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
+import TrackedBrokerLink from '@/components/lead/tracked-broker-link';
+import { saveCalculatorContext } from '@/lib/calculator-context';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding
@@ -58,16 +62,26 @@ function ResultCard({ label, value, highlight, sublabel }: { label: string; valu
   );
 }
 
-function BrokerCTA({ message }: { message: string }) {
+function BrokerCTA({
+  message,
+  calculatorContext,
+}: {
+  message: string;
+  calculatorContext?: { tool: string; summary: string; data?: Record<string, string | number | boolean> };
+}) {
   return (
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
         <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
       </div>
-      <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
+      <TrackedBrokerLink
+        location="calculator_broker_cta"
+        calculatorContext={calculatorContext}
+        className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity"
+      >
         Book Free Call
-      </a>
+      </TrackedBrokerLink>
     </div>
   );
 }
@@ -128,6 +142,25 @@ export function RateComparison() {
   // Rank by total cost net of equity build
   const ranked = [...results].sort((a, b) => a.totalCostNetOfBalance - b.totalCostNetOfBalance);
   const winner = ranked[0];
+
+  const calcSummary = useMemo(
+    () =>
+      `Balance $${balance.toLocaleString('en-CA')}, ${amortYears}-yr amort. Cheapest: ${winner.name} at ${fmtPct(winner.rate)} — ${fmt(winner.interestPaid + winner.upfrontCosts)} interest+upfront over ${winner.termYears}yr term.`,
+    [balance, amortYears, winner],
+  );
+
+  useEffect(() => {
+    saveCalculatorContext({
+      tool: 'Rate Comparison Calculator',
+      summary: calcSummary,
+      data: {
+        balance,
+        amortYears,
+        winnerRate: winner.rate,
+        winnerName: winner.name,
+      },
+    });
+  }, [calcSummary, balance, amortYears, winner.rate, winner.name]);
 
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
@@ -215,7 +248,21 @@ export function RateComparison() {
         <strong className="text-foreground">Why terms matter:</strong> A 3-year fixed at 3.99% looks cheaper than a 5-year at 4.19%, but you face renewal risk in 3 years. If rates jump to 6% by then, your 5-year scenario wins overall. This calculator only compares the term you enter — it doesn't forecast renewal rates. Talk to a broker for a full rate-cycle strategy.
       </div>
 
-      <BrokerCTA message={`${winner.name} is your cheapest option at ${fmt(winner.interestPaid + winner.upfrontCosts)} over the term. A broker can verify the offer and negotiate lower upfront costs.`} />
+      <BrokerCTA
+        message={`${winner.name} is your cheapest option at ${fmt(winner.interestPaid + winner.upfrontCosts)} over the term. A broker can verify the offer and negotiate lower upfront costs.`}
+        calculatorContext={{
+          tool: 'Rate Comparison Calculator',
+          summary: calcSummary,
+          data: { balance, winnerRate: winner.rate },
+        }}
+      />
+
+      <CalculatorLeadCapture
+        className="mt-4"
+        tool="Rate Comparison Calculator"
+        summary={calcSummary}
+        data={{ balance, winnerRate: winner.rate, winnerName: winner.name }}
+      />
     </div>
   );
 }

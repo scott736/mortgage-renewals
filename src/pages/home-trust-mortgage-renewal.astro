@@ -1,0 +1,45 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "home-trust-mortgage-renewal", name: "Home Trust Mortgage Renewal 2026" }),
+  articleSchema({
+    headline: "Home Trust Mortgage Renewal 2026",
+    description: "Home Trust renewal: B-lender and alt-A options for self-employed and credit-challenged borrowers at renewal.",
+    slug: "home-trust-mortgage-renewal",
+    articleSection: "Lender Renewal Guides",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "Home Trust Renewal", url: "/home-trust-mortgage-renewal" }]),
+);
+---
+
+<DefaultLayout
+  title="Home Trust Mortgage Renewal 2026"
+  description="Home Trust mortgage renewal guide for self-employed and alternative files — broker channel, rates, and switching at renewal."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Home Trust Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-12">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Home Trust Mortgage Renewal</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Home Trust is a go-to B-lender for self-employed Canadians and files that don't fit Big 6 boxes. At renewal, verify whether you've graduated back to A-lender pricing.</p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Common for <a href="/self-employed-mortgage-renewal/" style="color: var(--secondary)">self-employed renewal</a> and <a href="/bad-credit-mortgage-renewal/" style="color: var(--secondary)">bruised credit</a>.</li>
+        <li>• Broker-only — your broker benchmarks Home Trust vs. Equitable, Haventree, and monolines.</li>
+        <li>• Improved income docs may qualify you for A-lender rates at renewal — don't auto-renew without shopping.</li>
+      </ul>
+    </div>
+
+    <RelatedLinks slug="/home-trust-mortgage-renewal/" />
+  </article>
+</DefaultLayout>

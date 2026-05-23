@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { trackCtaClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
 export type ZippayCtaCardProps = {
@@ -44,14 +45,24 @@ export default function ZippayCtaCard({
                 className="w-full text-gray-900 sm:w-auto"
                 variant="default"
               >
-                <a href={primaryHref}>{primaryLabel}</a>
+                <a
+                  href={primaryHref}
+                  onClick={() => trackCtaClick("zippay_cta_primary", primaryHref)}
+                >
+                  {primaryLabel}
+                </a>
               </Button>
               <Button
                 asChild
                 variant="translucent"
                 className="w-full sm:w-auto"
               >
-                <a href={secondaryHref}>{secondaryLabel}</a>
+                <a
+                  href={secondaryHref}
+                  onClick={() => trackCtaClick("zippay_cta_secondary", secondaryHref)}
+                >
+                  {secondaryLabel}
+                </a>
               </Button>
             </div>
           </div>

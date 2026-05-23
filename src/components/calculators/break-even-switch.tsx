@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
+
+import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
+import TrackedBrokerLink from '@/components/lead/tracked-broker-link';
+import { saveCalculatorContext } from '@/lib/calculator-context';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding
@@ -58,16 +62,26 @@ function ResultCard({ label, value, highlight, sublabel }: { label: string; valu
   );
 }
 
-function BrokerCTA({ message }: { message: string }) {
+function BrokerCTA({
+  message,
+  calculatorContext,
+}: {
+  message: string;
+  calculatorContext?: { tool: string; summary: string; data?: Record<string, string | number | boolean> };
+}) {
   return (
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
         <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
       </div>
-      <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
+      <TrackedBrokerLink
+        location="calculator_broker_cta"
+        calculatorContext={calculatorContext}
+        className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity"
+      >
         Book Free Call
-      </a>
+      </TrackedBrokerLink>
     </div>
   );
 }
@@ -105,6 +119,26 @@ export function BreakEvenSwitch() {
     : breakEvenMonths > monthsRemaining
       ? `Wait for renewal — break-even of ${breakEvenMonths} months is longer than your ${monthsRemaining} months remaining.`
       : `Close call — switching costs roughly match the savings. Wait unless rates look set to rise further.`;
+
+  const calcSummary = useMemo(
+    () =>
+      `${verdict} Balance ${fmt(balance)}, ${currentRate}% → ${newRate}%, switching costs ${fmt(totalCosts)}, net ${fmt(netRemainingTerm)} over ${monthsRemaining} mo.`,
+    [verdict, balance, currentRate, newRate, totalCosts, netRemainingTerm, monthsRemaining],
+  );
+
+  useEffect(() => {
+    saveCalculatorContext({
+      tool: 'Break-Even Switch Calculator',
+      summary: calcSummary,
+      data: {
+        balance,
+        currentRate,
+        newRate,
+        netRemainingTerm,
+        switchNow,
+      },
+    });
+  }, [calcSummary, balance, currentRate, newRate, netRemainingTerm, switchNow]);
 
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
@@ -175,9 +209,23 @@ export function BreakEvenSwitch() {
         <strong className="text-foreground">Under the Canadian Mortgage Charter (2023),</strong> lenders must offer renewal-terms flexibility to borrowers in distress. If your penalty looks ruinous, check whether you qualify for a penalty waiver, amortization extension, or lump-sum relief directly from your lender before paying to break.
       </div>
 
-      <BrokerCTA message={switchNow
-        ? `Switching now nets ${fmt(netRemainingTerm)} over the remaining term. A broker will pull your exact payout and pair you with a lender that may cover legal fees.`
-        : `Waiting is cheaper at these numbers. A broker can lock in a renewal rate hold up to 120 days ahead of your maturity date.`} />
+      <BrokerCTA
+        message={switchNow
+          ? `Switching now nets ${fmt(netRemainingTerm)} over the remaining term. A broker will pull your exact payout and pair you with a lender that may cover legal fees.`
+          : `Waiting is cheaper at these numbers. A broker can lock in a renewal rate hold up to 120 days ahead of your maturity date.`}
+        calculatorContext={{
+          tool: 'Break-Even Switch Calculator',
+          summary: calcSummary,
+          data: { balance, switchNow, netRemainingTerm },
+        }}
+      />
+
+      <CalculatorLeadCapture
+        className="mt-4"
+        tool="Break-Even Switch Calculator"
+        summary={calcSummary}
+        data={{ balance, switchNow, netRemainingTerm }}
+      />
     </div>
   );
 }

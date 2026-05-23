@@ -1,5 +1,8 @@
 ---
+import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
 
@@ -30,6 +33,7 @@ const schema = combineSchemas(
     slug: "switching-lenders-at-renewal",
     name: "Switching Mortgage Lenders at Renewal in Canada",
     description: "8-step guide to switching lenders at Canadian mortgage renewal — costs, the 2024 stress test exemption, and broker process.",
+    speakableSelectors: ["h1", ".key-takeaways", "[data-speakable]"],
   }),
 );
 ---
@@ -52,7 +56,7 @@ const schema = combineSchemas(
 
         <p class="mb-6 text-base leading-relaxed">Switching lenders at mortgage renewal is the single most impactful financial decision most Canadian homeowners can make. Yet only a fraction of Canadians actually do it — one of the most <a href="/mortgage-renewal-mistakes/" style="color: var(--secondary)">common renewal mistakes</a>. In 2024, a significant regulatory change eliminated the stress test for borrowers transferring their mortgage straight across to a new lender — making switching easier, less risky, and more accessible than ever before. This guide explains every step of the process, what it costs, what to watch for, and how to maximize your savings.</p>
 
-        <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+        <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
           <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
           <ul class="space-y-2 text-sm leading-relaxed">
             <li>• On a $600,000 mortgage, switching from a 5.25% posted rate to a 4.60% discounted rate saves approximately $3,900/year — or $19,500 over a 5-year term.</li>
@@ -68,6 +72,13 @@ const schema = combineSchemas(
           <p class="font-bold mb-2">The Numbers Don't Lie</p>
           <p class="text-sm leading-relaxed">On a $600,000 mortgage, the difference between a 5.25% rate (typical posted renewal offer) and a 4.60% rate (competitive discounted rate) is approximately $3,900/year in interest — or <strong>$19,500 over a 5-year term</strong>. That's money that stays in your pocket just by making one phone call to a mortgage broker.</p>
         </div>
+
+        <CalculatorCTA
+          title="Switch vs. stay break-even"
+          description="Pre-fill TD or National Bank collateral costs via lender dropdown, or use ?lender=td in the URL."
+          href="/switch-vs-stay-calculator/"
+          buttonLabel="Open calculator"
+        />
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Why Over 70% of Canadians Never Switch — And Why That's a Costly Mistake</h2>
 
@@ -359,22 +370,15 @@ const schema = combineSchemas(
       </aside>
     </div>
 
+    <SourcesBox />
     <RelatedLinks slug="/switching-lenders-at-renewal/" />
   </article>
-
-  <div class="fixed bottom-0 left-0 right-0 z-40 border-t p-4 lg:hidden" style="background: var(--background); border-color: var(--border)">
-    <a href="/book-a-call/" class="block w-full rounded-lg text-center py-3 font-semibold text-white" style="background: var(--primary)">
-      Get a Free Broker Consultation
-    </a>
-  </div>
-
-  <section class="py-12" style="background: var(--accent)">
-    <div class="container text-center">
-      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Want personalized help?</h2>
-      <p class="mb-6" style="color: var(--muted-foreground)">A mortgage broker is free to use. Get a strategy call today.</p>
-      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">
-        Book Your Free Renewal Strategy Call
-      </a>
-    </div>
-  </section>
+  <ZippayCtaCard
+    client:visible
+    title="Want personalized help?"
+    description="A mortgage broker is free to use. Get a strategy call and compare real lender quotes for your renewal."
+    primaryLabel="Book Your Free Renewal Strategy Call"
+    secondaryLabel="Switching Lenders Guide"
+    secondaryHref="/switching-lenders-at-renewal/"
+  />
 </DefaultLayout>

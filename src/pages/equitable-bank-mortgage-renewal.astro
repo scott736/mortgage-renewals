@@ -1,0 +1,59 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is Equitable Bank?",
+    answer: "Equitable Bank is a federally regulated Schedule I bank focused on alternative residential lending — including PATH home plans for seniors, alt-A mortgages, and broker-channel products. Most renewals are arranged through licensed mortgage brokers."
+  },
+  {
+    question: "Who should consider Equitable at renewal?",
+    answer: "Borrowers who may not qualify at Big 6 rates — including some self-employed files, recent credit events, or non-standard properties — often access Equitable through the broker channel with transparent contract-rate penalties."
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({ slug: "equitable-bank-mortgage-renewal", name: "Equitable Bank Mortgage Renewal 2026" }),
+  articleSchema({
+    headline: "Equitable Bank Mortgage Renewal 2026",
+    description: "Equitable Bank renewal guide: alt-A channel, PATH home plans, broker access, and renewal strategy.",
+    slug: "equitable-bank-mortgage-renewal",
+    articleSection: "Lender Renewal Guides",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "Equitable Bank Renewal", url: "/equitable-bank-mortgage-renewal" }]),
+  faqSchema(faqs, "equitable-bank-mortgage-renewal"),
+);
+---
+
+<DefaultLayout
+  title="Equitable Bank Mortgage Renewal 2026"
+  description="Equitable Bank mortgage renewal: alt-A and PATH products, broker channel access, and 2026 renewal strategy."
+  schema={schema}
+>
+  <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
+    <a href="/" style="color: var(--muted-foreground)">Home</a> › Equitable Bank Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-12">
+    <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Equitable Bank Mortgage Renewal</h1>
+    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Equitable Bank serves alternative and senior housing niches that Big 6 banks often decline. Renewals are typically broker-arranged — benchmark their offer against the full market.</p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Broker channel only for most residential products — compare through a licensed broker.</li>
+        <li>• PATH Home Plan is a reverse-mortgage alternative for 55+ — see <a href="/reverse-mortgage-at-renewal/" style="color: var(--secondary)">reverse mortgage at renewal</a>.</li>
+        <li>• Alt-A renewals may carry a premium vs. A-lenders — still shop monolines if your file has improved.</li>
+      </ul>
+    </div>
+
+    <p class="mb-6 leading-relaxed">Compare with <a href="/first-national-mortgage-renewal/" style="color: var(--secondary)">First National</a>, <a href="/home-trust-mortgage-renewal/" style="color: var(--secondary)">Home Trust</a>, and <a href="/b-lender-mortgage-renewal/" style="color: var(--secondary)">B-lender renewals</a>. Use the <a href="/switch-vs-stay-calculator/?lender=other" style="color: var(--secondary)">switch-vs-stay calculator</a>.</p>
+
+    <RelatedLinks slug="/equitable-bank-mortgage-renewal/" />
+  </article>
+</DefaultLayout>

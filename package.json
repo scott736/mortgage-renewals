@@ -3,8 +3,12 @@
   "type": "module",
   "version": "1.0.0",
   "author": "MortgageRenewalHub.ca",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "node scripts/generate-renewal-checklist-pdf.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -38,6 +42,7 @@
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@upstash/redis": "^1.38.0",
+    "@vercel/analytics": "^2.0.1",
     "astro": "^6.3.3",
     "astro-themes": "^0.2.7",
     "class-variance-authority": "^0.7.1",
@@ -54,7 +59,8 @@
     "react-hook-form": "^7.75.0",
     "react-icons": "^5.4.0",
     "tailwind-merge": "^3.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.3.6"
   },
   "overrides": {
     "vite": "^7.3.2"

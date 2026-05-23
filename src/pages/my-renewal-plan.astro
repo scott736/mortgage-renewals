@@ -1,0 +1,46 @@
+---
+import MyRenewalPlan from '@/components/interactive/my-renewal-plan';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "my-renewal-plan", name: "My Renewal Plan — Personalized Checklist" }),
+  webApplicationSchema({
+    name: "My Renewal Plan Wizard",
+    description: "Personalized Canadian mortgage renewal checklist by maturity date, lender, balance, and province.",
+    slug: "my-renewal-plan",
+    features: ["Maturity date planner", "Lender-specific switching costs", "Province-aware checklist", "Links to calculators and docs"],
+  }),
+  articleSchema({
+    headline: "My Renewal Plan — Personalized Mortgage Renewal Checklist",
+    description: "Enter maturity date, lender, balance, and province for a personalized renewal checklist with calculator and document links.",
+    slug: "my-renewal-plan",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "My Renewal Plan", url: "/my-renewal-plan" }]),
+);
+---
+
+<DefaultLayout
+  title="My Renewal Plan — Personalized Checklist"
+  description="Free wizard: maturity date, lender, balance, and province → personalized renewal checklist, calculators, and document links."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › My Renewal Plan
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <h1 class="text-heading-1 mb-4">My Renewal Plan</h1>
+    <p class="text-body-lg text-muted-foreground mb-8 max-w-2xl">
+      Answer four quick questions for a checklist tailored to your timeline — including collateral-charge costs, Quebec notary notes, and links to the right calculators.
+    </p>
+    <MyRenewalPlan client:visible />
+    <div class="mt-10">
+      <RelatedLinks slug="/my-renewal-plan/" />
+    </div>
+  </section>
+</DefaultLayout>

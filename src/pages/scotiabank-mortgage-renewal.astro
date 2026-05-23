@@ -1,7 +1,8 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
-import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -150,11 +151,12 @@ const schema = combineSchemas(
     <RelatedLinks slug="/scotiabank-mortgage-renewal/" />
   </article>
 
-  <section class="py-12" style="background: var(--accent)">
-    <div class="container text-center">
-      <h2 class="text-2xl font-bold mb-3" style="color: var(--primary)">Scotiabank customers often save the most by switching.</h2>
-      <p class="mb-6" style="color: var(--muted-foreground)">A free broker call shows the full rate spread — and whether switching pays even accounting for STEP's switching costs. No obligation.</p>
-      <a href="/book-a-call/" class="inline-flex items-center rounded-lg px-8 py-3 font-semibold text-white hover:opacity-90 transition-opacity" style="background: var(--primary)">Book Your Free Renewal Strategy Call</a>
-    </div>
-  </section>
+  <ZippayCtaCard
+    client:visible
+    title="Scotiabank customers often save the most by switching."
+    description="A free broker call shows the full rate spread — and whether switching pays even accounting for STEP's switching costs. No obligation."
+    primaryLabel="Book Your Free Renewal Strategy Call"
+    secondaryLabel="Scotiabank Renewal Guide"
+    secondaryHref="/scotiabank-mortgage-renewal/"
+  />
 </DefaultLayout>

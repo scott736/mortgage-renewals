@@ -1,5 +1,8 @@
 ---
+import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import MidContentCta from "@/components/sections/mid-content-cta";
+import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
 
@@ -28,6 +31,7 @@ const schema = combineSchemas(
     slug: "mortgage-renewal-guide",
     name: "Complete Canadian Mortgage Renewal Guide (2026)",
     description: "Canada's complete mortgage renewal guide — from 12 months before maturity to renewal day, with rates, lenders, and savings strategies.",
+    speakableSelectors: ["h1", ".key-takeaways", "[data-speakable]", "#stay-vs-switch"],
   }),
 );
 ---
@@ -49,7 +53,7 @@ const schema = combineSchemas(
       CMHC's Spring 2026 Residential Mortgage Industry Report projects roughly 1 million Canadian households renewing in 2026 — about 13% fewer than the 2025 peak, when renewal volumes topped 1.2 million. Most will simply sign whatever their bank sends them — one of the most common <a href="/mortgage-renewal-mistakes/" class="text-secondary-100 hover:underline">renewal mistakes</a> Canadians make. This guide walks you through everything — from 12 months before renewal to the day your new term begins — so you can make an informed decision and keep more money in your pocket.
     </p>
 
-    <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
       <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
       <ul class="space-y-2 text-sm leading-relaxed">
         <li>• Roughly 1 million Canadian households are expected to renew in 2026 (CMHC Spring 2026) — down ~13% from the 2025 peak — yet most will still sign without shopping and overpay by thousands.</li>
@@ -194,6 +198,13 @@ const schema = combineSchemas(
       ))}
     </div>
 
+    <MidContentCta
+      client:visible
+      title="Not sure what you have today?"
+      description="A broker can read your mortgage statement with you and flag charge type, prepayment limits, and whether switching is worth it."
+      primaryLabel="Get a Free Renewal Review"
+    />
+
     <h2 id="charge-types" class="text-heading-2 mb-4 scroll-mt-20">4. Standard vs. Collateral Charge — The Critical Difference</h2>
     <p class="text-body-md text-muted-foreground mb-4">
       This is one of the most important — and least understood — aspects of mortgage renewal. The type of charge registered against your property determines whether you can <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switch lenders</a> for free.
@@ -246,6 +257,13 @@ const schema = combineSchemas(
       Banks typically have 0.25–0.50% of rate flexibility they can offer loyal customers. Getting this in writing before your maturity date requires a competing offer — which is another reason why using a broker first is valuable even if you end up staying.
     </p>
 
+    <MidContentCta
+      client:visible
+      title="Want help negotiating with your bank?"
+      description="Bring a competing broker quote to retention — we'll help you compare stay vs. switch before you sign."
+      primaryLabel="Book Negotiation Strategy Call"
+    />
+
     <h2 id="stay-vs-switch" class="text-heading-2 mb-4 scroll-mt-20">7. When to Stay vs. When to Switch</h2>
     <div class="overflow-x-auto mb-8">
       <table class="w-full border-collapse text-body-sm">
@@ -272,6 +290,13 @@ const schema = combineSchemas(
         </tbody>
       </table>
     </div>
+
+    <CalculatorCTA
+      title="Switch vs. stay calculator"
+      description="Model your bank's renewal rate against a broker quote — includes discharge, legal, and title costs."
+      href="/switch-vs-stay-calculator/"
+      buttonLabel="Run switch-vs-stay math"
+    />
 
     <h2 id="switching-process" class="text-heading-2 mb-4 scroll-mt-20">8. Switching Lenders: Process and Costs</h2>
     <p class="text-body-md text-muted-foreground mb-4">
@@ -307,6 +332,14 @@ const schema = combineSchemas(
       ))}
     </div>
 
+    <MidContentCta
+      client:visible
+      title="Need a document checklist for your file?"
+      description="Download our free PDF checklist or book a call — we'll tell you exactly what your lender will ask for."
+      primaryLabel="Book Free Strategy Call"
+      primaryHref="/book-a-call/"
+    />
+
     <h2 id="watch-out" class="text-heading-2 mb-4 scroll-mt-20">10. What to Watch Out For in the Renewal Contract</h2>
     <div class="space-y-4 mb-10">
       {[
@@ -323,6 +356,10 @@ const schema = combineSchemas(
       ))}
     </div>
 
+    <p class="text-body-sm text-muted-foreground mb-6">
+      Terms you don't recognize? See our <a href="/mortgage-renewal-glossary/" class="text-secondary-100 hover:underline">mortgage renewal glossary</a> or <a href="/my-renewal-plan/" class="text-secondary-100 hover:underline">build your renewal plan</a>.
+    </p>
+    <SourcesBox />
     <RelatedLinks slug="/mortgage-renewal-guide/" />
   </article>
 
@@ -337,10 +374,4 @@ const schema = combineSchemas(
       </a>
     </div>
   </section>
-
-  <div class="fixed bottom-0 left-0 right-0 z-40 border-t bg-background p-4 shadow-lg lg:hidden">
-    <a href="/book-a-call/" class="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold">
-      Book Free Broker Consultation
-    </a>
-  </div>
 </DefaultLayout>

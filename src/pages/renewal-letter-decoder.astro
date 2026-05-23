@@ -1,0 +1,94 @@
+---
+import CalculatorCTA from "@/components/CalculatorCTA.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import SourcesBox from "@/components/SourcesBox.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "renewal-letter-decoder",
+    name: "Mortgage Renewal Letter Decoder — Canada 2026",
+    description: "Annotated guide to reading your bank renewal letter: posted rate, product code, auto-renewal trap, and collateral charge notes.",
+    speakableSelectors: ["h1", ".key-takeaways", "[data-speakable]"],
+  }),
+  articleSchema({
+    headline: "Mortgage Renewal Letter Decoder — What Your Bank Letter Really Means",
+    description: "Decode your Canadian mortgage renewal letter: posted vs. contract rate, product codes, auto-renewal clauses, and collateral charge warnings.",
+    slug: "renewal-letter-decoder",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([
+    { name: "Renewal Letter Decoder", url: "/renewal-letter-decoder" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Mortgage Renewal Letter Decoder — Canada 2026"
+  description="Decode your bank renewal letter: posted rate, product code, auto-renewal trap, and collateral charge notes. Know what to negotiate before you sign."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Renewal Letter Decoder
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-heading-1 mb-4">Mortgage Renewal Letter Decoder</h1>
+    <p class="text-body-lg text-muted-foreground mb-6" data-speakable>
+      Your lender's renewal package looks official and final — but the numbers and codes inside are negotiable. This annotated guide explains what each section means so you can shop with confidence.
+    </p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• The rate on page one is often a <strong>posted</strong> or non-discounted rate — not the best rate available.</li>
+        <li>• Product codes (e.g. closed fixed 5-year) determine prepayment privileges and penalty formula.</li>
+        <li>• Auto-renewal clauses let the bank renew you at their rate if you do nothing — always respond before the deadline.</li>
+        <li>• Collateral / omnibus charge notes mean switching costs are higher — still often worth it if savings exceed legal fees.</li>
+        <li>• Get a competing written offer before negotiating; use our <a href="/switch-vs-stay-calculator/" class="text-secondary-100 hover:underline">switch-vs-stay calculator</a>.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-2 mb-4 scroll-mt-20">Sample renewal letter (annotated)</h2>
+    <div class="rounded-xl border border-gray-200 bg-white p-6 font-mono text-sm leading-relaxed space-y-4 mb-8">
+      <div class="border-l-4 border-secondary-100 pl-4">
+        <p class="text-muted-foreground text-xs mb-1">① Posted / offered rate</p>
+        <p><strong>5-Year Fixed Renewal Rate: 5.24%</strong></p>
+        <p class="text-body-sm text-muted-foreground mt-2 font-sans">Often 25–75 bps above broker-channel rates. Ask retention to match a competing offer — banks frequently have 25–50 bps discretion.</p>
+      </div>
+      <div class="border-l-4 border-warning-100 pl-4">
+        <p class="text-muted-foreground text-xs mb-1">② Product code</p>
+        <p><strong>Product: 5YR CLOSED FIXED — Code: MC-5FX-2024</strong></p>
+        <p class="text-body-sm text-muted-foreground mt-2 font-sans">Look up prepayment % (lump sum, payment increase) and whether IRD uses posted rate. See <a href="/mortgage-prepayment-privileges-canada/" class="text-secondary-100 hover:underline">prepayment privileges</a>.</p>
+      </div>
+      <div class="border-l-4 border-red-400 pl-4">
+        <p class="text-muted-foreground text-xs mb-1">③ Auto-renewal trap</p>
+        <p><strong>If we do not hear from you by [date], your mortgage will renew automatically at the rate above.</strong></p>
+        <p class="text-body-sm text-muted-foreground mt-2 font-sans">Never ignore the deadline. Auto-renewal locks you in without shopping. Mark 120 days before maturity on your calendar — <a href="/renewal-reminder/" class="text-secondary-100 hover:underline">renewal timing planner</a>.</p>
+      </div>
+      <div class="border-l-4 border-primary-100 pl-4">
+        <p class="text-muted-foreground text-xs mb-1">④ Collateral / omnibus note</p>
+        <p><strong>Your mortgage is registered as a collateral charge / omnibus hypothec.</strong></p>
+        <p class="text-body-sm text-muted-foreground mt-2 font-sans">Switching requires discharge + new registration (higher legal/notary fees). Common at <a href="/td-mortgage-renewal/" class="text-secondary-100 hover:underline">TD</a> and <a href="/national-bank-mortgage-renewal/" class="text-secondary-100 hover:underline">National Bank</a>. Read <a href="/collateral-vs-standard-charge-mortgage/" class="text-secondary-100 hover:underline">collateral vs. standard charge</a>.</p>
+      </div>
+      <div class="border-l-4 border-gray-300 pl-4">
+        <p class="text-muted-foreground text-xs mb-1">⑤ Balance & maturity</p>
+        <p><strong>Renewal balance: $487,250 · Maturity: October 15, 2026</strong></p>
+        <p class="text-body-sm text-muted-foreground mt-2 font-sans">Verify against your statement. Renewal balance should match outstanding principal — not a new loan amount unless you're refinancing.</p>
+      </div>
+    </div>
+
+    <CalculatorCTA
+      title="Run the switch-vs-stay math"
+      description="Plug in your renewal offer rate vs. a broker quote and include real switching costs."
+      href="/switch-vs-stay-calculator/"
+      buttonLabel="Open switch-vs-stay calculator"
+    />
+
+    <SourcesBox />
+    <RelatedLinks slug="/renewal-letter-decoder/" />
+  </article>
+</DefaultLayout>

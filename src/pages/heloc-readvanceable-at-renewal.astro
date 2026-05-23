@@ -1,0 +1,67 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import SourcesBox from "@/components/SourcesBox.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "heloc-readvanceable-at-renewal", name: "HELOC & Readvanceable Mortgages at Renewal" }),
+  articleSchema({
+    headline: "HELOC & Readvanceable Mortgages at Your Renewal Moment",
+    description: "How HELOCs and readvanceable mortgages fit at renewal: collateral charges, re-advancing equity, and Smith Manoeuvre timing.",
+    slug: "heloc-readvanceable-at-renewal",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "HELOC at Renewal", url: "/heloc-readvanceable-at-renewal" }]),
+);
+---
+
+<DefaultLayout
+  title="HELOC & Readvanceable Mortgages at Renewal"
+  description="Renewal is the moment to review HELOC limits, readvanceable structures, and collateral charges. Hub linking HELOC, readvanceable, and Smith Manoeuvre guides."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › HELOC & Readvanceable at Renewal
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-heading-1 mb-4">HELOC & Readvanceable Mortgages at Renewal</h1>
+    <p class="text-body-lg text-muted-foreground mb-6">
+      Renewal is the best time to audit your home equity structure — not just your rate. If you have (or want) a HELOC or readvanceable mortgage, charge type and lender choice at renewal affect flexibility for years.
+    </p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Collateral charges often bundle mortgage + HELOC — switching costs are higher but one registration may cover both.</li>
+        <li>• Readvanceable mortgages let you re-borrow principal paid down — useful for investing (Smith Manoeuvre) if you understand tax risk.</li>
+        <li>• A straight renewal may cap your HELOC limit unless you re-appraise or refinance.</li>
+      </ul>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-4 mb-10">
+      <a href="/canadian-heloc-guide/" class="rounded-xl border border-gray-100 p-5 hover:border-secondary-50 transition-colors">
+        <h2 class="text-heading-5 mb-2">Canadian HELOC Guide</h2>
+        <p class="text-body-sm text-muted-foreground">Rates, limits, and when to add a HELOC at renewal vs. keep a standalone mortgage.</p>
+      </a>
+      <a href="/readvanceable-mortgage-canada/" class="rounded-xl border border-gray-100 p-5 hover:border-secondary-50 transition-colors">
+        <h2 class="text-heading-5 mb-2">Readvanceable Mortgages</h2>
+        <p class="text-body-sm text-muted-foreground">How re-advancing works and which lenders offer it.</p>
+      </a>
+      <a href="/smith-manoeuvre-at-renewal/" class="rounded-xl border border-gray-100 p-5 hover:border-secondary-50 transition-colors">
+        <h2 class="text-heading-5 mb-2">Smith Manoeuvre at Renewal</h2>
+        <p class="text-body-sm text-muted-foreground">Tax-deductible investing strategy tied to readvanceable structures.</p>
+      </a>
+      <a href="/heloc-vs-refinance-calculator/" class="rounded-xl border border-gray-100 p-5 hover:border-secondary-50 transition-colors">
+        <h2 class="text-heading-5 mb-2">HELOC vs. Refinance Calculator</h2>
+        <p class="text-body-sm text-muted-foreground">Compare cost of accessing equity via HELOC vs. cash-out refinance.</p>
+      </a>
+    </div>
+
+    <SourcesBox />
+    <RelatedLinks slug="/heloc-readvanceable-at-renewal/" />
+  </article>
+</DefaultLayout>

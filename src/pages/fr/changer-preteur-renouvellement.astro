@@ -1,0 +1,40 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "fr/changer-preteur-renouvellement", name: "Changer de prêteur au renouvellement", inLanguage: "fr-CA" }),
+  articleSchema({
+    headline: "Changer de prêteur au renouvellement — Canada",
+    description: "Guide FR : transfert au renouvellement, exemption du test de stress (2024), coûts au Québec.",
+    slug: "fr/changer-preteur-renouvellement",
+    inLanguage: "fr-CA",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([
+    { name: "Changer de prêteur (FR)", url: "/fr/changer-preteur-renouvellement" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Changer de prêteur au renouvellement (FR)"
+  description="Changer de prêteur au renouvellement : économies, test de stress, frais notariaux au Québec."
+  schema={schema}
+>
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-2"><a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">English: Switching lenders</a></p>
+    <h1 class="text-heading-1 mb-4">Changer de prêteur au renouvellement</h1>
+    <p class="text-body-lg text-muted-foreground mb-6">
+      Depuis novembre 2024, un transfert simple au renouvellement (même solde, même amortissement) n'exige plus le test de stress pour les emprunteurs non assurés. Plus de 70 % des Canadiens renouvellent quand même avec leur banque — souvent en payant trop.
+    </p>
+    <ul class="list-disc list-inside space-y-2 text-body-md text-muted-foreground mb-8">
+      <li>Commencez 120 jours avant l'échéance — blocage de taux possible.</li>
+      <li>Au Québec : budget notaire obligatoire pour tout changement.</li>
+      <li>Utilisez le calculateur : <a href="/switch-vs-stay-calculator/" class="text-secondary-100 hover:underline">rester vs. changer</a>.</li>
+    </ul>
+    <a href="/book-a-call/" class="inline-block rounded-lg bg-primary-100 text-white px-6 py-3 font-semibold">Appel gratuit avec un courtier</a>
+  </article>
+</DefaultLayout>

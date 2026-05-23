@@ -1,0 +1,37 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({ slug: "fr/guide-renouvellement-hypothecaire", name: "Guide renouvellement hypothécaire (résumé FR)", inLanguage: "fr-CA" }),
+  articleSchema({
+    headline: "Guide de renouvellement hypothécaire — Résumé en français",
+    description: "Calendrier 12 mois → jour J : magasiner, négocier, changer de prêteur au Canada.",
+    slug: "fr/guide-renouvellement-hypothecaire",
+    inLanguage: "fr-CA",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([{ name: "Guide FR", url: "/fr/guide-renouvellement-hypothecaire" }]),
+);
+---
+
+<DefaultLayout
+  title="Guide renouvellement hypothécaire — Résumé FR"
+  description="Résumé en français du guide complet de renouvellement hypothécaire au Canada."
+  schema={schema}
+>
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-2"><a href="/mortgage-renewal-guide/" class="text-secondary-100 hover:underline">Complete guide (English)</a></p>
+    <h1 class="text-heading-1 mb-4">Guide de renouvellement — Résumé</h1>
+    <ol class="space-y-4 text-body-md text-muted-foreground list-decimal list-inside mb-8">
+      <li><strong>12 mois avant :</strong> relevé hypothécaire, cote de crédit, type de charge.</li>
+      <li><strong>6 mois :</strong> courtier, taux fixe vs. variable, comparer les offres.</li>
+      <li><strong>120 jours :</strong> blocage de taux, demande au nouveau prêteur si transfert.</li>
+      <li><strong>30 jours :</strong> signer l'engagement, notaire/avocat, paiements préautorisés.</li>
+      <li><strong>Échéance :</strong> nouveau terme commence — archivez les documents.</li>
+    </ol>
+    <p class="text-body-sm">Environ 1 million de ménages canadiens devraient renouveler en 2026 (CMHC, printemps 2026).</p>
+  </article>
+</DefaultLayout>

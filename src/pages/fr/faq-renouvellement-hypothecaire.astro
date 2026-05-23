@@ -1,0 +1,56 @@
+---
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Dois-je renouveler avec ma banque?",
+    answer: "Non. Vous pouvez transférer à un autre prêteur au renouvellement. Comparez toujours — la plupart des économies viennent du magasinage, pas de la fidélité.",
+  },
+  {
+    question: "Le test de stress s'applique-t-il au renouvellement?",
+    answer: "Pas pour un transfert simple depuis novembre 2024 (même solde, même amortissement, pas de nouvel argent). Il s'applique si vous refinancez ou augmentez le montant.",
+  },
+  {
+    question: "Combien coûte un changement de prêteur au Québec?",
+    answer: "Comptez environ 800 $ à 1 500 $ de frais de notaire, plus frais de radiation. Une économie de 0,25 % sur 500 000 $ peut dépasser 7 500 $ sur 5 ans.",
+  },
+  {
+    question: "Qu'est-ce que le renouvellement automatique?",
+    answer: "Si vous ne répondez pas avant la date limite, la banque peut renouveler au taux indiqué dans la lettre — souvent non négocié. Ne laissez pas passer le délai.",
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({ slug: "fr/faq-renouvellement-hypothecaire", name: "FAQ renouvellement (FR)", inLanguage: "fr-CA" }),
+  articleSchema({
+    headline: "FAQ — Renouvellement hypothécaire (français)",
+    slug: "fr/faq-renouvellement-hypothecaire",
+    inLanguage: "fr-CA",
+    dateModified: "2026-05-22",
+  }),
+  faqSchema(faqs, "fr/faq-renouvellement-hypothecaire"),
+  breadcrumbSchema([{ name: "FAQ FR", url: "/fr/faq-renouvellement-hypothecaire" }]),
+);
+---
+
+<DefaultLayout
+  title="FAQ renouvellement hypothécaire (FR)"
+  description="Questions fréquentes sur le renouvellement hypothécaire au Canada — version française."
+  schema={schema}
+>
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-2"><a href="/mortgage-renewal-faq/" class="text-secondary-100 hover:underline">Full FAQ (English)</a></p>
+    <h1 class="text-heading-1 mb-4">FAQ — Renouvellement</h1>
+    <div class="space-y-4">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer">{f.question}</summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
+  </article>
+</DefaultLayout>

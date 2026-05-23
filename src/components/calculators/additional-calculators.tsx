@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding (same as main calculators)
@@ -65,7 +65,7 @@ function BrokerCTA({ message }: { message: string }) {
         <p className="text-body-sm-medium text-primary-200">{message}</p>
         <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
       </div>
-      <a href="/book-a-call" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
+      <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
       </a>
     </div>
@@ -253,6 +253,20 @@ export function StressTestCalculator() {
   );
 }
 
+const LENDER_SWITCH_PRESETS: Record<
+  string,
+  { label: string; dischargeFee: number; legalFee: number; appraisalFee: number }
+> = {
+  '': { label: 'Standard charge (typical monoline)', dischargeFee: 325, legalFee: 0, appraisalFee: 0 },
+  td: { label: 'TD — collateral charge', dischargeFee: 325, legalFee: 900, appraisalFee: 0 },
+  'national-bank': { label: 'National Bank — collateral charge', dischargeFee: 325, legalFee: 900, appraisalFee: 0 },
+  rbc: { label: 'RBC', dischargeFee: 300, legalFee: 0, appraisalFee: 0 },
+  scotiabank: { label: 'Scotiabank', dischargeFee: 350, legalFee: 0, appraisalFee: 0 },
+  bmo: { label: 'BMO', dischargeFee: 300, legalFee: 0, appraisalFee: 0 },
+  cibc: { label: 'CIBC', dischargeFee: 300, legalFee: 0, appraisalFee: 0 },
+  quebec: { label: 'Quebec (notary switch)', dischargeFee: 325, legalFee: 1200, appraisalFee: 0 },
+};
+
 // ============================================================================
 // 3) Switch-vs-Stay Break-Even Calculator
 //    Factors in real switching costs (discharge, legal, appraisal, title)
@@ -263,10 +277,32 @@ export function SwitchVsStay() {
   const [stayRate, setStayRate] = useState(4.89);
   const [switchRate, setSwitchRate] = useState(4.19);
   const [amortYears, setAmortYears] = useState(22);
+  const [lenderPreset, setLenderPreset] = useState('');
   const [dischargeFee, setDischargeFee] = useState(325);
   const [legalFee, setLegalFee] = useState(0);
   const [appraisalFee, setAppraisalFee] = useState(0);
   const [titleInsurance, setTitleInsurance] = useState(225);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const lender = params.get('lender') || params.get('from');
+    if (lender && LENDER_SWITCH_PRESETS[lender]) {
+      setLenderPreset(lender);
+      const p = LENDER_SWITCH_PRESETS[lender];
+      setDischargeFee(p.dischargeFee);
+      setLegalFee(p.legalFee);
+      setAppraisalFee(p.appraisalFee);
+    }
+  }, []);
+
+  function applyLenderPreset(id: string) {
+    setLenderPreset(id);
+    const p = LENDER_SWITCH_PRESETS[id] ?? LENDER_SWITCH_PRESETS[''];
+    setDischargeFee(p.dischargeFee);
+    setLegalFee(p.legalFee);
+    setAppraisalFee(p.appraisalFee);
+  }
 
   const months = amortYears * 12;
   const stayPmt = monthlyPayment(balance, stayRate, months);
@@ -305,6 +341,18 @@ export function SwitchVsStay() {
       </div>
 
       <div className="mb-4">
+        <Label>Current lender (pre-fills switching costs)</Label>
+        <select
+          value={lenderPreset}
+          onChange={(e) => applyLenderPreset(e.target.value)}
+          className="w-full rounded-lg border border-gray-200 bg-background px-3 py-2.5 text-body-md mb-3 focus:outline-none focus:ring-2 focus:ring-secondary-100"
+        >
+          {Object.entries(LENDER_SWITCH_PRESETS).map(([id, p]) => (
+            <option key={id || 'default'} value={id}>
+              {p.label}
+            </option>
+          ))}
+        </select>
         <Label>Switching Costs</Label>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-1">
           <div>

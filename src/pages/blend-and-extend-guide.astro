@@ -1,0 +1,79 @@
+---
+import CalculatorCTA from "@/components/CalculatorCTA.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import SourcesBox from "@/components/SourcesBox.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "blend-and-extend-guide",
+    name: "Blend-and-Extend Mortgage Guide — Canada 2026",
+    description: "When blend-and-extend makes sense at renewal, how banks calculate the blended rate, and alternatives to breaking your mortgage.",
+  }),
+  articleSchema({
+    headline: "Blend-and-Extend at Mortgage Renewal — Complete Canadian Guide",
+    description: "Blend-and-extend explained: weighted average rates, when to use it vs. switch lenders, and how it compares to paying an IRD penalty.",
+    slug: "blend-and-extend-guide",
+    dateModified: "2026-05-22",
+  }),
+  breadcrumbSchema([
+    { name: "Blend-and-Extend Guide", url: "/blend-and-extend-guide" }
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Blend-and-Extend Mortgage Guide — Canada 2026"
+  description="Blend-and-extend at renewal: how it works, when it beats breaking your mortgage, and how to model savings with our calculator."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Blend-and-Extend Guide
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    <h1 class="text-heading-1 mb-4">Blend-and-Extend at Mortgage Renewal</h1>
+    <p class="text-body-lg text-muted-foreground mb-6">
+      Blend-and-extend lets you blend your existing contract rate with today's market rate for the remaining months, then extend into a new term — without paying a full break penalty. It's offered by most Big 6 banks when you're mid-term or approaching renewal with a large rate gap.
+    </p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Best when you're mid-term with a high contract rate and a large IRD penalty to break.</li>
+        <li>• The new rate is a weighted average — not automatically the lowest market rate.</li>
+        <li>• You stay with the same lender; switching may still win if the rate gap is large enough.</li>
+        <li>• Always compare blend-and-extend vs. waiting for renewal vs. broker switch.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-2 mb-4">How the blended rate is calculated</h2>
+    <p class="text-body-md text-muted-foreground mb-4">
+      Banks typically blend: (remaining months × current rate + new term months × market rate) ÷ total months. The exact formula varies by lender. Use our calculator to model scenarios before you call retention.
+    </p>
+
+    <CalculatorCTA
+      title="Blend-and-extend calculator"
+      description="Model your current rate, market rate, and months remaining to estimate a blended payment."
+      href="/blend-and-extend-calculator/"
+      buttonLabel="Run blend-and-extend calculator"
+    />
+
+    <h2 class="text-heading-2 mt-10 mb-4">When it makes sense</h2>
+    <ul class="list-disc list-inside space-y-2 text-body-md text-muted-foreground mb-8">
+      <li>IRD penalty would exceed $10,000+ if you broke today</li>
+      <li>You want to lock today's lower rates without switching lenders</li>
+      <li>You're happy with prepayment terms and don't need to shop the full market</li>
+    </ul>
+
+    <p class="text-body-md text-muted-foreground mb-8">
+      See also: <a href="/early-mortgage-renewal/" class="text-secondary-100 hover:underline">early renewal</a>, <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD penalties</a>, and lender pages (<a href="/rbc-mortgage-renewal/" class="text-secondary-100 hover:underline">RBC</a>, <a href="/td-mortgage-renewal/" class="text-secondary-100 hover:underline">TD</a>).
+    </p>
+
+    <SourcesBox />
+    <RelatedLinks slug="/blend-and-extend-guide/" />
+  </article>
+</DefaultLayout>

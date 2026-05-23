@@ -1,7 +1,7 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
-import RelatedLinks from "@/components/RelatedLinks.astro";
 
 export const prerender = true;
 
@@ -77,7 +77,7 @@ const schema = combineSchemas(
         <li>• Big 6 <strong>early renewal windows</strong>: 120 days standard, 150–180 at RBC and Scotia on select products.</li>
         <li>• A <strong>rate hold</strong> is one-way (float-down if rates drop) but non-binding until you sign the renewal.</li>
         <li>• A <strong>commit to renew</strong> is binding — new rate locked, maturity-date start, no changing your mind.</li>
-        <li>• Traditional early renewal <strong>starts at your maturity date</strong>; blend-and-extend starts today at a blended rate.</li>
+        <li>• Traditional early renewal <strong>starts at your maturity date</strong>; <a href="/blend-and-extend-guide/" class="text-secondary-100 hover:underline">blend-and-extend</a> starts today at a blended rate.</li>
         <li>• No prepayment penalty applies when you renew <strong>inside the early-renewal window</strong> with your existing lender.</li>
         <li>• Use a long rate hold as <strong>downside insurance</strong> — if rates fall, most lenders honor the lower rate anyway.</li>
         <li>• Broker channel lenders offer <strong>120–130 day holds</strong>; credit unions vary from 90 to 150 days.</li>

@@ -1,0 +1,42 @@
+---
+/**
+ * Video embed placeholder. Replace `videoId` when a published walkthrough URL exists.
+ * TODO(video): Add Scott's YouTube video ID when available — search codebase before updating.
+ */
+interface Props {
+  title: string;
+  description: string;
+  /** YouTube video ID, e.g. "dQw4w9WgXcQ" — leave empty for coming-soon state */
+  videoId?: string;
+}
+
+const { title, description, videoId } = Astro.props;
+const hasVideo = Boolean(videoId?.trim());
+---
+
+<section class="rounded-xl border border-gray-100 bg-gray-25 p-6 my-8" aria-label={title}>
+  <h2 class="text-heading-4 mb-2">{title}</h2>
+  <p class="text-body-sm text-muted-foreground mb-4">{description}</p>
+  {hasVideo ? (
+    <div class="aspect-video w-full overflow-hidden rounded-lg bg-black">
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+        title={title}
+        class="h-full w-full"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      />
+    </div>
+  ) : (
+    <div class="aspect-video w-full rounded-lg border border-dashed border-gray-200 bg-white flex flex-col items-center justify-center gap-2 p-6 text-center">
+      <p class="text-body-sm-medium text-foreground">Video walkthrough coming soon</p>
+      <p class="text-body-xs text-muted-foreground max-w-md">
+        {/* TODO(video): Replace with embed when Scott publishes renewal walkthrough on YouTube */}
+        We're recording a step-by-step walkthrough for this topic. Bookmark this page or{" "}
+        <a href="/book-a-call/" class="text-secondary-100 hover:underline">book a free call</a>{" "}
+        for personalized guidance.
+      </p>
+    </div>
+  )}
+</section>
