@@ -8,8 +8,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "node scripts/generate-renewal-checklist-pdf.mjs",
     "build": "astro build",
+    "generate:pdf": "node scripts/generate-renewal-checklist-pdf.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
@@ -52,7 +52,6 @@
     "lucide-react": "^1.16.0",
     "motion": "^12.38.0",
     "nylas": "^8.1.1",
-    "pdfkit": "^0.18.0",
     "proj4": "^2.20.8",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
@@ -67,6 +66,7 @@
   },
   "devDependencies": {
     "@types/pdfkit": "^0.17.5",
+    "pdfkit": "^0.18.0",
     "@typescript-eslint/eslint-plugin": "^8.59.3",
     "@typescript-eslint/parser": "^8.59.3",
     "astro-eslint-parser": "^1.4.0",

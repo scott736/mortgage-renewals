@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, passthroughImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import react from "@astrojs/react";
@@ -10,6 +10,9 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   site: "https://mortgagerenewalhub.ca",
   trailingSlash: "always",
+  image: {
+    service: passthroughImageService(),
+  },
   integrations: [
     mdx(),
     sitemap({
@@ -72,11 +75,19 @@ export default defineConfig({
     }),
     react(),
   ],
-  output: "server",
-  adapter: vercel(),
+  // Static by default; only API routes and booking pages opt into SSR.
+  output: "static",
+  adapter: vercel({
+    // Images are optimized at build time for static pages; skip Vercel Image
+    // Optimization in the SSR bundle to avoid bundling sharp (~16MB).
+    imageService: false,
+  }),
 
   vite: {
     // @ts-expect-error - @tailwindcss/vite Plugin type differs from Astro's bundled Vite types
     plugins: [tailwindcss()],
+    build: {
+      target: "es2022",
+    },
   },
 });
