@@ -3,6 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 
 import { escapeHtml, sendEmail } from '@/lib/email';
+import { leadNotificationRecipients } from '@/lib/lead-inbox';
 import {
   type LeadEnvelope,
   leadEnvelopeHtmlBlock,
@@ -30,7 +31,6 @@ const MAX_NAME_LEN = 100;
 const MAX_MESSAGE_LEN = 5000;
 const MAX_EMAIL_LEN = 254;
 const MAX_FIELD_LEN = 200;
-const RECIPIENT = 'info@lendcity.ca';
 
 function isEmail(value: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value) && value.length <= MAX_EMAIL_LEN;
@@ -205,7 +205,7 @@ export const POST: APIRoute = async ({ request }) => {
 
   try {
     await sendEmail({
-      to: RECIPIENT,
+      to: leadNotificationRecipients(),
       subject: `${sourceLabel(source)} — ${firstName} ${lastName}`,
       html,
       text,

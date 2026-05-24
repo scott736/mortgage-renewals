@@ -3,7 +3,8 @@
  * Sends confirmation and notification emails via Elastic Email
  */
 
-import { escapeHtml,sendEmail } from '@/lib/email';
+import { escapeHtml, sendEmail } from '@/lib/email';
+import { leadNotificationRecipients } from '@/lib/lead-inbox';
 
 // Absolute URL for emails. SVG renders in most modern clients (Apple Mail,
 // Gmail web, iOS Mail); Outlook desktop will fall back to the alt text.
@@ -285,7 +286,7 @@ export async function sendBookingNotificationEmail(
   `.trim();
 
   await sendEmail({
-    to: teamMemberEmail,
+    to: leadNotificationRecipients(teamMemberEmail),
     subject: `New booking: ${serviceName} — ${guestName}`,
     html,
     text: `New booking for ${serviceName}\nGuest: ${guestName} (${guestEmail})\nTime: ${formattedTime}`,

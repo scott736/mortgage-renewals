@@ -185,8 +185,8 @@ export function BookingConfirmation({
             {/* Help Note */}
             <p className="text-muted-foreground text-center text-sm">
               Need to reschedule or cancel? Reply to your confirmation email or contact us at{' '}
-              <a href="mailto:info@lendcity.ca" className="text-primary hover:underline">
-                info@lendcity.ca
+              <a href="mailto:scott@lendcity.ca" className="text-primary hover:underline">
+                scott@lendcity.ca
               </a>
               . You'll receive a calendar invite and confirmation email shortly
             </p>
