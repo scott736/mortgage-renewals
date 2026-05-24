@@ -1,6 +1,6 @@
 /** Webhook-ready lead envelope for CRM/Zapier ingestion via email parsing or future API. */
 export interface LeadEnvelope {
-  source: "contact_form" | "calculator_lead" | "rate_alert" | "checklist_download";
+  source: "contact_form" | "calculator_lead" | "rate_alert" | "checklist_download" | "renewal_reminder";
   submittedAt: string;
   pageUrl?: string;
   contact: {

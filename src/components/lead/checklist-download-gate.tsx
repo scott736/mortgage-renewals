@@ -28,7 +28,7 @@ export default function ChecklistDownloadGate({ className }: ChecklistDownloadGa
 
     setStatus("submitting");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -66,7 +66,7 @@ export default function ChecklistDownloadGate({ className }: ChecklistDownloadGa
           Download the Free PDF ↓
         </a>
         <p className="text-body-xs text-muted-foreground">
-          Check your inbox — we&apos;ve sent a confirmation.{" "}
+          Your download is ready below. Our team will also follow up about your renewal timing.{" "}
           <a href="/book-a-call/" className="text-secondary-100 underline">
             Book a free walk-through
           </a>{" "}

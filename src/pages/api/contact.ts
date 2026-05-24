@@ -49,6 +49,8 @@ function sourceLabel(source: string): string {
       return 'Rate alert signup';
     case 'checklist_download':
       return 'Checklist PDF download';
+    case 'renewal_reminder':
+      return 'Renewal reminder signup';
     default:
       return 'Contact form';
   }
@@ -124,7 +126,9 @@ export const POST: APIRoute = async ({ request }) => {
           ? 'rate_alert'
           : source === 'checklist_download'
             ? 'checklist_download'
-            : 'contact_form',
+            : source === 'renewal_reminder'
+              ? 'renewal_reminder'
+              : 'contact_form',
     submittedAt: new Date().toISOString(),
     pageUrl: pageUrl || undefined,
     contact: {

@@ -152,7 +152,7 @@ export default function RenewalReminderForm() {
     if (!email || !renewalDate) return;
     setEmailStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -161,6 +161,10 @@ export default function RenewalReminderForm() {
           email,
           message: `Renewal reminder request. Maturity: ${renewalDate}. Province: ${province || "n/a"}. Days left: ${daysLeft ?? "n/a"}. Urgency: ${urgencyKey ?? "n/a"}.`,
           confirm: true,
+          source: "renewal_reminder",
+          renewalDate,
+          province: province || undefined,
+          pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
         }),
       });
       if (!res.ok) throw new Error("failed");

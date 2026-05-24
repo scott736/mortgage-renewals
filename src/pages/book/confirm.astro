@@ -69,7 +69,7 @@ export const prerender = false;
     // Step 1: Fetch pending details
     let pending;
     try {
-      const res = await fetch(`/api/nylas/confirm?token=${encodeURIComponent(token)}`, {
+      const res = await fetch(`/api/nylas/confirm/?token=${encodeURIComponent(token)}`, {
         headers: { 'Accept': 'application/json' },
       });
       const body = await res.json();
@@ -138,7 +138,7 @@ export const prerender = false;
       btn.setAttribute('disabled', 'true');
       btn.textContent = 'Confirming…';
       try {
-        const res = await fetch('/api/nylas/confirm', {
+        const res = await fetch('/api/nylas/confirm/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ token }),

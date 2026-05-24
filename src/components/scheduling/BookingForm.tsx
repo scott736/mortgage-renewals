@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Calendar, Clock, Loader2, Phone, User, Video } from 'lucide-react';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -52,6 +52,24 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
+function getBookingPrefill(): Partial<FormData> {
+  if (typeof window === 'undefined') return {};
+  const params = new URLSearchParams(window.location.search);
+  const prefill: Partial<FormData> = {};
+
+  const renewalDate = params.get('renewal_date');
+  if (renewalDate && /^\d{4}-\d{2}-\d{2}$/.test(renewalDate)) {
+    prefill.maturityDate = renewalDate;
+  }
+
+  const province = params.get('province');
+  if (province && PROVINCES.includes(province)) {
+    prefill.province = province;
+  }
+
+  return prefill;
+}
+
 interface BookingFormProps {
   service: Service;
   teamMember: TeamMember;
@@ -82,6 +100,7 @@ export function BookingForm({
   const showMeetingTypeSelector = availableMeetingTypes.length > 1 && onMeetingTypeChange;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const prefill = useMemo(() => getBookingPrefill(), []);
 
   const {
     register,
@@ -89,6 +108,7 @@ export function BookingForm({
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: prefill,
   });
 
   const locale = 'en-CA';

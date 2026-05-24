@@ -34,7 +34,7 @@ export default function CalculatorLeadCapture({
 
     setStatus("submitting");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("/api/contact/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -65,9 +65,9 @@ export default function CalculatorLeadCapture({
   if (status === "success") {
     return (
       <div className={cn("rounded-xl border border-secondary-50 bg-secondary-25 p-5", className)}>
-        <p className="text-body-sm-medium text-secondary-200 mb-1">Results on the way</p>
+        <p className="text-body-sm-medium text-secondary-200 mb-1">Request received</p>
         <p className="text-body-sm text-muted-foreground">
-          We&apos;ll email your {tool} summary shortly. Want to talk sooner?{" "}
+          A licensed broker will follow up with your {tool} summary. Want to talk sooner?{" "}
           <a href="/book-a-call/" className="font-semibold text-secondary-100 underline">
             Book a free broker call
           </a>
