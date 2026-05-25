@@ -17,9 +17,10 @@ const detectedOgType =
 const isArticlePage = Boolean(schema && /"@type"\s*:\s*"Article"/.test(schema));
 const schemaDateModified = schema?.match(/"dateModified"\s*:\s*"([^"]+)"/)?.[1];
 const showAuthorByline = isArticlePage && !hideAuthorByline;
+const pageLang = Astro.url.pathname.startsWith("/fr/") ? "fr-CA" : "en-CA";
 ---
 
-<html lang="en-CA" class="dark">
+<html lang={pageLang} class="dark">
   <head>
     <BaseHead title={title} description={description} schema={schema} preloadImage={preloadImage} noindex={noindex} ogType={detectedOgType} />
     <script is:inline>

@@ -152,8 +152,7 @@
 
 - [News & Market Updates](https://mortgagerenewalhub.ca/mortgage-renewal-news/): Bank of Canada decisions and renewal news
 - [Case Studies](https://mortgagerenewalhub.ca/case-studies/): Canadian renewal success stories
-- [Video Library](https://mortgagerenewalhub.ca/mortgage-renewal-videos/): Mortgage renewal video walkthroughs organized by fundamentals, calculations, scenarios, case studies, and rate watch
-- [Newsletter](https://mortgagerenewalhub.ca/mortgage-renewal-newsletter/): CASL-compliant email signup for rate moves, BoC decisions, and renewal tips
+- [Rate Alert Signup](https://mortgagerenewalhub.ca/rate-alert/): Email alerts for rate moves, BoC decisions, and renewal timing
 - [Downloadable PDF Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist-pdf/): Free PDF renewal checklist
 
 ## About

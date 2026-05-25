@@ -109,6 +109,47 @@ const schema = combineSchemas(
     </div>
   </section>
 
+  <!-- 2026 PAYMENT SHOCK -->
+  <section class="border-b bg-warning-0 py-12 lg:py-14">
+    <div class="container max-w-screen-xl px-6">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div>
+          <div class="text-body-sm-medium text-warning-200 uppercase tracking-wide mb-3">2026 Renewal Wave</div>
+          <h2 class="text-heading-2 mb-4">Facing a Payment Increase at Renewal?</h2>
+          <p class="text-body-lg text-muted-foreground mb-4">
+            CMHC projects roughly one million Canadian households renewing in 2026 — many from 2020–2021 rates near 2%. The Bank of Canada has flagged payment shock as a central theme: for most renewers, payments go <strong>up</strong>, not down, unless you shop for a better rate.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/mortgage-renewal-calculator/" class="inline-flex items-center rounded-lg bg-primary-100 text-white px-6 py-3 font-semibold hover:opacity-90 transition-opacity">
+              Calculate Your New Payment
+            </a>
+            <a href="/mortgage-renewal-payment-shock/" class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-6 py-3 font-semibold hover:bg-gray-25 transition-colors">
+              Payment Shock Guide
+            </a>
+            <a href="/mortgage-rate-forecast/" class="inline-flex items-center rounded-lg border border-gray-200 bg-white px-6 py-3 font-semibold hover:bg-gray-25 transition-colors">
+              2026 Rate Forecast
+            </a>
+          </div>
+        </div>
+        <div class="grid sm:grid-cols-3 lg:grid-cols-1 gap-4">
+          {[
+            { stat: "~1M", label: "Households renewing in 2026", sub: "CMHC Spring 2026" },
+            { stat: "10–30%", label: "Typical payment jump for 2020–2021 cohort", sub: "vs. pandemic-era rates" },
+            { stat: "$0", label: "Cost to compare with a broker", sub: "Paid by lender on funding" },
+          ].map(item => (
+            <div class="rounded-xl bg-white border border-warning-50 p-5 text-center lg:text-left lg:flex lg:items-center lg:gap-4">
+              <div class="text-3xl font-bold text-primary-100 lg:min-w-[72px]">{item.stat}</div>
+              <div>
+                <div class="text-sm font-medium text-gray-800">{item.label}</div>
+                <div class="text-xs text-gray-500">{item.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- WHAT IS A MORTGAGE RENEWAL -->
   <section class="py-16 lg:py-20">
     <div class="container max-w-screen-xl px-6">
