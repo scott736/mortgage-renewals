@@ -47,10 +47,9 @@ export default function ExitIntentModal({
   if (!visible) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 p-4"
-      role="dialog"
-      aria-modal="true"
+    <dialog
+      open
+      className="fixed inset-0 z-[100] m-0 flex h-full max-h-none w-full max-w-none items-center justify-center border-0 bg-black/50 p-4 backdrop:bg-black/50"
       aria-labelledby="exit-intent-title"
     >
       <div className="max-w-md w-full rounded-2xl bg-background p-6 shadow-xl border">
@@ -75,6 +74,6 @@ export default function ExitIntentModal({
           </Button>
         </div>
       </div>
-    </div>
+    </dialog>
   );
 }

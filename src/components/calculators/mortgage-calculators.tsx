@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { useFormState } from '@/hooks/use-form-state';
+
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding
 // ============================================================================
@@ -24,18 +26,20 @@ function fmt(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -62,7 +66,7 @@ function BrokerCTA({ message }: { message: string }) {
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
@@ -74,11 +78,14 @@ function BrokerCTA({ message }: { message: string }) {
 // ============================================================================
 // Calculator 1: Renewal Payment Estimator
 // ============================================================================
-export function PaymentEstimator() {
-  const [balance, setBalance] = useState(500000);
-  const [rate, setRate] = useState(4.5);
-  const [amortYears, setAmortYears] = useState(20);
-  const [freq, setFreq] = useState<'monthly' | 'biweekly' | 'accelerated' | 'weekly'>('monthly');
+function PaymentEstimator() {
+  const [state, setState] = useFormState({
+    balance: 500000,
+    rate: 4.5,
+    amortYears: 20,
+    freq: 'monthly' as 'monthly' | 'biweekly' | 'accelerated' | 'weekly',
+  });
+  const { balance, rate, amortYears, freq } = state;
 
   const months = amortYears * 12;
   const monthlyPmt = monthlyPayment(balance, rate, months);
@@ -99,25 +106,25 @@ export function PaymentEstimator() {
       <p className="text-body-sm text-muted-foreground mb-6">Calculate your new mortgage payment after renewal.</p>
       <div className="grid sm:grid-cols-3 gap-4 mb-4">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>New Interest Rate</Label>
-          <Input value={rate} onChange={setRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="new-interest-rate">New Interest Rate</Label>
+          <Input id="new-interest-rate" aria-label="New Interest Rate" value={rate} onChange={(v) => setState({ rate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Remaining Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="remaining-amortization">Remaining Amortization</Label>
+          <Input id="remaining-amortization" aria-label="Remaining Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
       </div>
       <div className="mb-6">
         <Label>Payment Frequency</Label>
         <div className="flex flex-wrap gap-2 mt-1">
           {(Object.keys(labels) as Array<keyof typeof labels>).map(f => (
-            <button
+            <button type="button"
               key={f}
-              onClick={() => setFreq(f)}
+              onClick={() => setState({ freq: f })}
               className={`rounded-lg px-4 py-2 text-body-sm transition-colors ${freq === f ? 'bg-primary-100 text-white' : 'bg-gray-50 text-foreground hover:bg-gray-100'}`}
             >
               {labels[f]}
@@ -138,11 +145,14 @@ export function PaymentEstimator() {
 // ============================================================================
 // Calculator 2: Rate Comparison
 // ============================================================================
-export function RateComparison() {
-  const [balance, setBalance] = useState(500000);
-  const [bankRate, setBankRate] = useState(5.0);
-  const [brokerRate, setBrokerRate] = useState(4.5);
-  const [amortYears, setAmortYears] = useState(20);
+function RateComparison() {
+  const [state, setState] = useFormState({
+    balance: 500000,
+    bankRate: 5.0,
+    brokerRate: 4.5,
+    amortYears: 20,
+  });
+  const { balance, bankRate, brokerRate, amortYears } = state;
 
   const months = amortYears * 12;
   const bankPmt = monthlyPayment(balance, bankRate, months);
@@ -159,20 +169,20 @@ export function RateComparison() {
       <p className="text-body-sm text-muted-foreground mb-6">See exactly how much switching rates saves you.</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Your Bank's Rate</Label>
-          <Input value={bankRate} onChange={setBankRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="your-bank-s-rate">Your Bank's Rate</Label>
+          <Input id="your-bank-s-rate" aria-label="Your Bank's Rate" value={bankRate} onChange={(v) => setState({ bankRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Better Rate</Label>
-          <Input value={brokerRate} onChange={setBrokerRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="better-rate">Better Rate</Label>
+          <Input id="better-rate" aria-label="Better Rate" value={brokerRate} onChange={(v) => setState({ brokerRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -192,7 +202,7 @@ export function RateComparison() {
         </div>
       </div>
       {fiveYearSaving > 0 && (
-        <BrokerCTA message={`You could save ${fmt(fiveYearSaving)} over 5 years by switching rates. A broker can find this for you — free.`} />
+        <BrokerCTA message={`You could save ${fmt(fiveYearSaving)} over 5 years by switching rates. A broker can find this for you, free.`} />
       )}
     </div>
   );
@@ -201,11 +211,14 @@ export function RateComparison() {
 // ============================================================================
 // Calculator 3: Amortization Extension
 // ============================================================================
-export function AmortizationExtension() {
-  const [balance, setBalance] = useState(500000);
-  const [rate, setRate] = useState(4.5);
-  const [currentAmort, setCurrentAmort] = useState(20);
-  const [newAmort, setNewAmort] = useState(25);
+function AmortizationExtension() {
+  const [state, setState] = useFormState({
+    balance: 500000,
+    rate: 4.5,
+    currentAmort: 20,
+    newAmort: 25,
+  });
+  const { balance, rate, currentAmort, newAmort } = state;
 
   const currentPmt = monthlyPayment(balance, rate, currentAmort * 12);
   const newPmt = monthlyPayment(balance, rate, newAmort * 12);
@@ -218,20 +231,20 @@ export function AmortizationExtension() {
       <p className="text-body-sm text-muted-foreground mb-6">See the trade-off between lower payments and total interest when extending your amortization.</p>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Interest Rate</Label>
-          <Input value={rate} onChange={setRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="interest-rate">Interest Rate</Label>
+          <Input id="interest-rate" aria-label="Interest Rate" value={rate} onChange={(v) => setState({ rate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Current Amortization</Label>
-          <Input value={currentAmort} onChange={setCurrentAmort} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="current-amortization">Current Amortization</Label>
+          <Input id="current-amortization" aria-label="Current Amortization" value={currentAmort} onChange={(v) => setState({ currentAmort: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
         <div>
-          <Label>New Amortization</Label>
-          <Input value={newAmort} onChange={setNewAmort} min={currentAmort + 1} max={35} step={1} suffix="yrs" />
+          <Label htmlFor="new-amortization">New Amortization</Label>
+          <Input id="new-amortization" aria-label="New Amortization" value={newAmort} onChange={(v) => setState({ newAmort: v })} min={currentAmort + 1} max={35} step={1} suffix="yrs" />
         </div>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -250,12 +263,15 @@ export function AmortizationExtension() {
 // ============================================================================
 // Calculator 4: Early Renewal Penalty Estimator
 // ============================================================================
-export function PenaltyEstimator() {
-  const [balance, setBalance] = useState(500000);
-  const [currentRate, setCurrentRate] = useState(5.5);
-  const [newRate, setNewRate] = useState(4.5);
-  const [monthsRemaining, setMonthsRemaining] = useState(24);
-  const [lenderType, setLenderType] = useState<'bank' | 'monoline'>('bank');
+function PenaltyEstimator() {
+  const [state, setState] = useFormState({
+    balance: 500000,
+    currentRate: 5.5,
+    newRate: 4.5,
+    monthsRemaining: 24,
+    lenderType: 'bank' as 'bank' | 'monoline',
+  });
+  const { balance, currentRate, newRate, monthsRemaining, lenderType } = state;
 
   // 3-month interest penalty
   const threeMonthInterest = balance * effectiveMonthlyRate(currentRate) * 3;
@@ -279,27 +295,27 @@ export function PenaltyEstimator() {
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <div>
-          <Label>Current Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="current-balance">Current Balance</Label>
+          <Input id="current-balance" aria-label="Current Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Your Current Rate</Label>
-          <Input value={currentRate} onChange={setCurrentRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="your-current-rate">Your Current Rate</Label>
+          <Input id="your-current-rate" aria-label="Your Current Rate" value={currentRate} onChange={(v) => setState({ currentRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>New Rate Available</Label>
-          <Input value={newRate} onChange={setNewRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="new-rate-available">New Rate Available</Label>
+          <Input id="new-rate-available" aria-label="New Rate Available" value={newRate} onChange={(v) => setState({ newRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Months Remaining</Label>
-          <Input value={monthsRemaining} onChange={setMonthsRemaining} min={1} max={60} step={1} suffix="mo" />
+          <Label htmlFor="months-remaining">Months Remaining</Label>
+          <Input id="months-remaining" aria-label="Months Remaining" value={monthsRemaining} onChange={(v) => setState({ monthsRemaining: v })} min={1} max={60} step={1} suffix="mo" />
         </div>
       </div>
       <div className="mb-6">
         <Label>Lender Type</Label>
         <div className="flex gap-2 mt-1">
-          <button onClick={() => setLenderType('bank')} className={`rounded-lg px-4 py-2 text-body-sm ${lenderType === 'bank' ? 'bg-primary-100 text-white' : 'bg-gray-50 hover:bg-gray-100'}`}>Big Bank</button>
-          <button onClick={() => setLenderType('monoline')} className={`rounded-lg px-4 py-2 text-body-sm ${lenderType === 'monoline' ? 'bg-primary-100 text-white' : 'bg-gray-50 hover:bg-gray-100'}`}>Monoline Lender</button>
+          <button type="button" onClick={() => setState({ lenderType: 'bank' })} className={`rounded-lg px-4 py-2 text-body-sm ${lenderType === 'bank' ? 'bg-primary-100 text-white' : 'bg-gray-50 hover:bg-gray-100'}`}>Big Bank</button>
+          <button type="button" onClick={() => setState({ lenderType: 'monoline' })} className={`rounded-lg px-4 py-2 text-body-sm ${lenderType === 'monoline' ? 'bg-primary-100 text-white' : 'bg-gray-50 hover:bg-gray-100'}`}>Monoline Lender</button>
         </div>
       </div>
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
@@ -316,15 +332,18 @@ export function PenaltyEstimator() {
 // ============================================================================
 // Calculator 5: Debt Consolidation
 // ============================================================================
-export function DebtConsolidation() {
-  const [mortgageBalance, setMortgageBalance] = useState(500000);
-  const [mortgageRate, setMortgageRate] = useState(4.5);
-  const [amortYears, setAmortYears] = useState(20);
-  const [debts, setDebts] = useState([
-    { name: 'Credit Card', balance: 15000, rate: 19.99, payment: 450 },
-    { name: 'Car Loan', balance: 20000, rate: 7.5, payment: 400 },
-    { name: 'Line of Credit', balance: 10000, rate: 8.0, payment: 200 },
-  ]);
+function DebtConsolidation() {
+  const [state, setState] = useFormState({
+    mortgageBalance: 500000,
+    mortgageRate: 4.5,
+    amortYears: 20,
+    debts: [
+      { id: 'credit-card', name: 'Credit Card', balance: 15000, rate: 19.99, payment: 450 },
+      { id: 'car-loan', name: 'Car Loan', balance: 20000, rate: 7.5, payment: 400 },
+      { id: 'loc', name: 'Line of Credit', balance: 10000, rate: 8.0, payment: 200 },
+    ],
+  });
+  const { mortgageBalance, mortgageRate, amortYears, debts } = state;
 
   const totalDebtBalance = debts.reduce((s, d) => s + d.balance, 0);
   const totalDebtPayment = debts.reduce((s, d) => s + d.payment, 0);
@@ -339,41 +358,41 @@ export function DebtConsolidation() {
       <h3 className="text-heading-4 mb-1">Debt Consolidation at Renewal</h3>
       <p className="text-body-sm text-muted-foreground mb-2">See how rolling high-interest debt into your mortgage at renewal affects your monthly cash flow.</p>
       <div className="rounded-lg bg-warning-0 border border-warning-50 px-4 py-3 text-body-xs text-warning-200 mb-6">
-        ⚠️ Debt consolidation into your mortgage lowers monthly payments but extends repayment — increasing total interest. This requires refinancing (not a straight renewal) and a stress test.
+        ⚠️ Debt consolidation into your mortgage lowers monthly payments but extends repayment, increasing total interest. This requires refinancing (not a straight renewal) and a stress test.
       </div>
       <div className="grid sm:grid-cols-3 gap-4 mb-6">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={mortgageBalance} onChange={setMortgageBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={mortgageBalance} onChange={(v) => setState({ mortgageBalance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Mortgage Rate</Label>
-          <Input value={mortgageRate} onChange={setMortgageRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="mortgage-rate">Mortgage Rate</Label>
+          <Input id="mortgage-rate" aria-label="Mortgage Rate" value={mortgageRate} onChange={(v) => setState({ mortgageRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
       </div>
       <div className="mb-6 space-y-3">
         <Label>Debts to Consolidate</Label>
         {debts.map((debt, i) => (
-          <div key={i} className="grid grid-cols-2 sm:grid-cols-4 gap-2 rounded-lg bg-gray-25 p-3">
+          <div key={debt.id} className="grid grid-cols-2 sm:grid-cols-4 gap-2 rounded-lg bg-gray-25 p-3">
             <div>
               <div className="text-body-xs text-muted-foreground mb-1">Debt Name</div>
-              <input value={debt.name} onChange={e => { const d=[...debts]; d[i]={...d[i],name:e.target.value}; setDebts(d); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
+              <input id="debt-name" aria-label="Debt Name" value={debt.name} onChange={e => { const d=[...debts]; d[i]={...d[i],name:e.target.value}; setState({ debts: d }); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
             </div>
             <div>
               <div className="text-body-xs text-muted-foreground mb-1">Balance</div>
-              <input type="number" value={debt.balance} onChange={e => { const d=[...debts]; d[i]={...d[i],balance:Number(e.target.value)}; setDebts(d); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
+              <input id="balance" aria-label="Balance" type="number" value={debt.balance} onChange={e => { const d=[...debts]; d[i]={...d[i],balance:Number(e.target.value)}; setState({ debts: d }); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
             </div>
             <div>
               <div className="text-body-xs text-muted-foreground mb-1">Rate %</div>
-              <input type="number" value={debt.rate} onChange={e => { const d=[...debts]; d[i]={...d[i],rate:Number(e.target.value)}; setDebts(d); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
+              <input id="rate" aria-label="Rate %" type="number" value={debt.rate} onChange={e => { const d=[...debts]; d[i]={...d[i],rate:Number(e.target.value)}; setState({ debts: d }); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
             </div>
             <div>
               <div className="text-body-xs text-muted-foreground mb-1">Monthly Pmt</div>
-              <input type="number" value={debt.payment} onChange={e => { const d=[...debts]; d[i]={...d[i],payment:Number(e.target.value)}; setDebts(d); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
+              <input id="monthly-pmt" aria-label="Monthly Pmt" type="number" value={debt.payment} onChange={e => { const d=[...debts]; d[i]={...d[i],payment:Number(e.target.value)}; setState({ debts: d }); }} className="w-full rounded border border-gray-200 px-2 py-1 text-body-sm" />
             </div>
           </div>
         ))}
@@ -384,7 +403,7 @@ export function DebtConsolidation() {
         <ResultCard label="Monthly Cash Flow Relief" value={fmt(monthlySaving)} highlight />
         <ResultCard label="Total Debt Consolidated" value={fmt(totalDebtBalance)} />
       </div>
-      <BrokerCTA message={`Consolidating saves ${fmt(monthlySaving)}/month. A broker can run the full numbers and check if you qualify — free consultation.`} />
+      <BrokerCTA message={`Consolidating saves ${fmt(monthlySaving)}/month. A broker can run the full numbers and check if you qualify, free consultation.`} />
     </div>
   );
 }
@@ -416,8 +435,8 @@ export default function MortgageCalculators() {
       {/* Tab nav */}
       <div className="flex flex-wrap gap-2 mb-6">
         {tabs.map((tab, i) => (
-          <button
-            key={i}
+          <button type="button"
+            key={tab.id}
             id={tab.id}
             onClick={() => setActiveTab(i)}
             className={`rounded-lg px-4 py-2.5 text-body-sm-medium transition-colors ${activeTab === i ? 'bg-primary-100 text-white' : 'bg-gray-50 text-foreground hover:bg-gray-100 border border-gray-100'}`}

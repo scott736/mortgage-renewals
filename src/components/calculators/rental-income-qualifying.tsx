@@ -24,18 +24,20 @@ function _fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -63,7 +65,7 @@ function BrokerCTA({ message }: { message: string }) {
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
@@ -116,16 +118,16 @@ export function RentalIncomeQualifying() {
 
       <div className="grid sm:grid-cols-3 gap-4 mb-6">
         <div>
-          <Label>Gross Monthly Rent</Label>
-          <Input value={grossRent} onChange={setGrossRent} min={500} max={20000} step={50} prefix="$" />
+          <Label htmlFor="gross-monthly-rent">Gross Monthly Rent</Label>
+          <Input id="gross-monthly-rent" aria-label="Gross Monthly Rent" value={grossRent} onChange={setGrossRent} min={500} max={20000} step={50} prefix="$" />
         </div>
         <div>
-          <Label>PITH (P+I+Tax+Heat)</Label>
-          <Input value={pith} onChange={setPith} min={0} max={20000} step={50} prefix="$" />
+          <Label htmlFor="pith-p-i-tax-heat">PITH (P+I+Tax+Heat)</Label>
+          <Input id="pith-p-i-tax-heat" aria-label="PITH (P+I+Tax+Heat)" value={pith} onChange={setPith} min={0} max={20000} step={50} prefix="$" />
         </div>
         <div>
-          <Label>Mortgage Type</Label>
-          <select
+          <Label htmlFor="mortgage-type">Mortgage Type</Label>
+          <select id="mortgage-type" aria-label="Mortgage Type"
             value={insured ? 'insured' : 'uninsured'}
             onChange={e => setInsured(e.target.value === 'insured')}
             className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
@@ -176,13 +178,13 @@ export function RentalIncomeQualifying() {
       </div>
 
       <div className="grid sm:grid-cols-3 gap-4 mb-6">
-        <ResultCard label="Debt Coverage Ratio" value={dcr.toFixed(2)} highlight={dcr >= 1.10} sublabel={dcr >= 1.10 ? '✓ Passes 1.10 DCR' : dcr >= 1.00 ? '✓ Passes 1.00 DCR' : '✗ Shortfall — adds to TDS'} />
-        <ResultCard label="Best Method Credit" value={fmt(bestMethod)} highlight sublabel="Per month — max across methods" />
+        <ResultCard label="Debt Coverage Ratio" value={dcr.toFixed(2)} highlight={dcr >= 1.10} sublabel={dcr >= 1.10 ? '✓ Passes 1.10 DCR' : dcr >= 1.00 ? '✓ Passes 1.00 DCR' : '✗ Shortfall, adds to TDS'} />
+        <ResultCard label="Best Method Credit" value={fmt(bestMethod)} highlight sublabel="Per month, max across methods" />
         <ResultCard label="Annual Income Boost" value={fmt(bestMethod * 12)} highlight sublabel="= best-case qualifying addition" />
       </div>
 
       <div className="rounded-xl bg-gray-25 border border-gray-100 p-4 text-body-sm text-muted-foreground mb-6">
-        <strong className="text-foreground">Why this matters at renewal:</strong> If your rental property's PITH has climbed (taxes, insurance, interest rates) while rents stayed flat, your DCR may have dropped below 1.10 — meaning you can't use DCR methods anymore. Switching to a lender that uses 50% add-back (always available, less efficient) may be the only way to qualify at renewal.
+        <strong className="text-foreground">Why this matters at renewal:</strong> If your rental property's PITH has climbed (taxes, insurance, interest rates) while rents stayed flat, your DCR may have dropped below 1.10, meaning you can't use DCR methods anymore. Switching to a lender that uses 50% add-back (always available, less efficient) may be the only way to qualify at renewal.
       </div>
 
       <BrokerCTA message={bestMethod > 0

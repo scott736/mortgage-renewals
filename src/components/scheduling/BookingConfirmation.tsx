@@ -52,7 +52,7 @@ export function BookingConfirmation({
                 alt={booking.teamMember.name}
                 width={64}
                 height={64}
-                className="w-16 h-16 rounded-full object-cover ring-2 ring-background shadow-md"
+                className="size-16 rounded-full object-cover ring-2 ring-background shadow-md"
                 loading="lazy"
                 decoding="async"
               />
@@ -67,8 +67,8 @@ export function BookingConfirmation({
           <div className="flex-1 flex flex-col justify-center py-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                  <Calendar className="h-5 w-5 text-primary" />
+                <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
+                  <Calendar className="size-5 text-primary" />
                 </div>
                 <div>
                   <p className="font-medium">{formatDate(booking.startTime)}</p>
@@ -76,8 +76,8 @@ export function BookingConfirmation({
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                  <Clock className="h-5 w-5 text-primary" />
+                <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
+                  <Clock className="size-5 text-primary" />
                 </div>
                 <div>
                   <p className="font-medium">{formatTime(booking.startTime)} · {booking.service.duration} min</p>
@@ -86,8 +86,8 @@ export function BookingConfirmation({
               </div>
               {booking.meetingLink && (
                 <div className="flex items-center gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                    <Video className="h-5 w-5 text-primary" />
+                  <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
+                    <Video className="size-5 text-primary" />
                   </div>
                   <div>
                     <a
@@ -97,7 +97,7 @@ export function BookingConfirmation({
                       className="font-medium text-primary hover:underline flex items-center gap-1"
                     >
                       Join Meeting
-                      <ExternalLink className="h-3 w-3" />
+                      <ExternalLink className="size-3" />
                     </a>
                     <p className="text-xs text-muted-foreground">Video Call</p>
                   </div>
@@ -117,8 +117,8 @@ export function BookingConfirmation({
         <div className="p-5 lg:p-8 lg:flex-1 flex flex-col">
           {/* Success Header */}
           <div className="text-center mb-8">
-            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-              <CheckCircle2 className="h-10 w-10 text-primary" />
+            <div className="mx-auto mb-4 flex size-20 items-center justify-center rounded-full bg-primary/10">
+              <CheckCircle2 className="size-10 text-primary" />
             </div>
             <h2 className="text-2xl font-bold tracking-tight">Booking Confirmed!</h2>
             <p className="mt-2 text-muted-foreground">
@@ -137,7 +137,7 @@ export function BookingConfirmation({
                   rel="noopener noreferrer"
                   className="gap-2"
                 >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19.5 22h-15A2.503 2.503 0 012 19.5v-15A2.503 2.503 0 014.5 2h15A2.503 2.503 0 0122 4.5v15a2.503 2.503 0 01-2.5 2.5zM9.5 6.5A1.502 1.502 0 008 8v8c0 .827.673 1.5 1.5 1.5h5c.827 0 1.5-.673 1.5-1.5v-3h-1v3a.5.5 0 01-.5.5h-5a.5.5 0 01-.5-.5V8a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v3h1V8c0-.827-.673-1.5-1.5-1.5h-5z"/>
                   </svg>
                   Google
@@ -150,7 +150,7 @@ export function BookingConfirmation({
                   rel="noopener noreferrer"
                   className="gap-2"
                 >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="size-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7.88 12.04q0 .45-.11.87-.1.41-.33.74-.22.33-.58.52-.37.2-.87.2t-.85-.2q-.35-.21-.57-.55-.22-.33-.33-.75-.1-.42-.1-.86t.1-.87q.1-.43.34-.76.22-.34.59-.54.36-.2.87-.2t.86.2q.35.21.57.55.22.34.31.77.1.43.1.88zM24 12v9.38q0 .46-.33.8-.33.32-.8.32H7.13q-.46 0-.8-.33-.32-.33-.32-.8V18H1q-.41 0-.7-.3-.3-.29-.3-.7V7q0-.41.3-.7Q.58 6 1 6h6.5V2.55q0-.44.3-.75.3-.3.75-.3h12.9q.44 0 .75.3.3.3.3.75V5.8l-.02.04v6.16z"/>
                   </svg>
                   Outlook
@@ -162,7 +162,7 @@ export function BookingConfirmation({
                   download={`${booking.service.name.replace(/\s+/g, '-')}.ics`}
                   className="gap-2"
                 >
-                  <Download className="h-5 w-5" />
+                  <Download className="size-5" />
                   .ics File
                 </a>
               </Button>

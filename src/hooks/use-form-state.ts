@@ -1,0 +1,9 @@
+import { useReducer } from 'react';
+
+export function useFormState<T extends Record<string, unknown>>(initial: T | (() => T)) {
+  return useReducer(
+    (state: T, patch: Partial<T>) => ({ ...state, ...patch }),
+    initial,
+    (init) => (typeof init === 'function' ? (init as () => T)() : init),
+  );
+}

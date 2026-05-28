@@ -18,7 +18,7 @@ export type ZippayContactFormProps = {
 export default function ZippayContactForm({
   tagline = "Contact a Renewal Specialist",
   title = "Questions About Your Mortgage Renewal?",
-  description = "Tell us about your renewal — maturity date, current lender, and what you need. A licensed broker will reply within one business day.",
+  description = "Tell us about your renewal, maturity date, current lender, and what you need. A licensed broker will reply within one business day.",
   className,
 }: ZippayContactFormProps) {
   const [status, setStatus] = React.useState<Status>("idle");
@@ -99,13 +99,13 @@ export default function ZippayContactForm({
 
         <div className="bg-gray-0 mx-auto mt-8 max-w-4xl rounded-2xl border border-gray-50 p-5 shadow-[0_4px_11px_-1px_rgba(10,10,10,0.04)] sm:p-6 lg:mt-10 lg:p-8">
           {status === "success" ? (
-            <div className="text-center py-4" role="status" aria-live="polite">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary text-2xl">
+            <div className="text-center py-4" aria-live="polite">
+              <div className="mx-auto mb-3 flex size-12 items-center justify-center rounded-full bg-primary/10 text-primary text-2xl">
                 ✓
               </div>
               <h3 className="text-heading-4 font-bold mb-2">Message sent</h3>
               <p className="text-body-md text-gray-600 max-w-md mx-auto">
-                Thanks — a licensed broker will reply by email within one business day. For urgent questions call{" "}
+                Thanks, a licensed broker will reply by email within one business day. For urgent questions call{" "}
                 <a href="tel:+12262127200" className="font-semibold underline">
                   (226) 212-7200
                 </a>
@@ -125,6 +125,7 @@ export default function ZippayContactForm({
                   </label>
                   <input
                     id="firstName"
+                    aria-label="First name"
                     name="firstName"
                     required
                     placeholder="John"
@@ -137,6 +138,7 @@ export default function ZippayContactForm({
                   </label>
                   <input
                     id="lastName"
+                    aria-label="Last name"
                     name="lastName"
                     required
                     placeholder="Doe"
@@ -151,6 +153,7 @@ export default function ZippayContactForm({
                 </label>
                 <input
                   id="email"
+                    aria-label="Email"
                   name="email"
                   type="email"
                   required
@@ -164,7 +167,8 @@ export default function ZippayContactForm({
                   <label htmlFor="renewalDate" className={labelCls}>
                     Renewal date <span className="text-gray-400 font-normal">(optional)</span>
                   </label>
-                  <input id="renewalDate" name="renewalDate" type="date" className={inputCls} />
+                  <input id="renewalDate"
+                    aria-label="Renewal date" name="renewalDate" type="date" className={inputCls} />
                 </div>
                 <div>
                   <label htmlFor="currentLender" className={labelCls}>
@@ -172,6 +176,7 @@ export default function ZippayContactForm({
                   </label>
                   <input
                     id="currentLender"
+                    aria-label="Current lender"
                     name="currentLender"
                     placeholder="e.g. TD, RBC"
                     className={inputCls}
@@ -181,13 +186,15 @@ export default function ZippayContactForm({
                   <label htmlFor="balance" className={labelCls}>
                     Mortgage balance <span className="text-gray-400 font-normal">(optional)</span>
                   </label>
-                  <input id="balance" name="balance" placeholder="e.g. $450,000" className={inputCls} />
+                  <input id="balance"
+                    aria-label="Mortgage balance" name="balance" placeholder="e.g. $450,000" className={inputCls} />
                 </div>
                 <div>
                   <label htmlFor="province" className={labelCls}>
                     Province <span className="text-gray-400 font-normal">(optional)</span>
                   </label>
-                  <select id="province" name="province" className={inputCls} defaultValue="">
+                  <select id="province"
+                    aria-label="Province" name="province" className={inputCls} defaultValue="">
                     <option value="">Select province</option>
                     <option>Ontario</option>
                     <option>Quebec</option>
@@ -212,6 +219,7 @@ export default function ZippayContactForm({
                 </label>
                 <textarea
                   id="message"
+                    aria-label="How can we help?"
                   name="message"
                   placeholder="e.g. I received my renewal letter and want to know if I should switch lenders..."
                   className={cn(
@@ -221,12 +229,14 @@ export default function ZippayContactForm({
                 />
               </div>
 
-              <label className="flex items-center gap-2">
+              <label htmlFor="contact-confirm" className="flex items-center gap-2">
                 <input
+                  id="contact-confirm"
                   type="checkbox"
                   name="confirm"
                   required
-                  className="text-primary focus:ring-primary/30 h-4 w-4 rounded border-gray-300 outline-none focus:ring-2"
+                  aria-label="I agree to be contacted about my mortgage renewal inquiry"
+                  className="text-primary focus:ring-primary/30 size-4 rounded border-gray-300 outline-none focus:ring-2"
                 />
                 <span className="text-body-sm text-gray-600">
                   I agree to be contacted about my mortgage renewal inquiry

@@ -67,7 +67,7 @@ function scoreAnswers(a: Answers): Outcome {
       label: "Negotiate With Current Lender",
       color: "bg-warning-25 border-warning-50 text-warning-200",
       summary:
-        "With a credit score under 600, switching to an A-lender is difficult right now. Your current lender is required to renew you without re-qualifying — use that leverage to negotiate, and work on credit rebuilding for the next term.",
+        "With a credit score under 600, switching to an A-lender is difficult right now. Your current lender is required to renew you without re-qualifying, use that leverage to negotiate, and work on credit rebuilding for the next term.",
       actions: [
         "Ask your current lender for their best renewal rate in writing",
         "Pay all bills on time for 6 months before renewal",
@@ -97,7 +97,7 @@ function scoreAnswers(a: Answers): Outcome {
       label: "Consider Switching",
       color: "bg-secondary-25 border-secondary-50 text-secondary-200",
       summary:
-        "The savings look meaningful but aren't overwhelming. Run the numbers carefully — switching costs ($700–$1,800) need to be comfortably beaten by 5-year interest savings.",
+        "The savings look meaningful but aren't overwhelming. Run the numbers carefully, switching costs ($700–$1,800) need to be comfortably beaten by 5-year interest savings.",
       actions: [
         "Calculate 5-year interest savings on the actual rate gap",
         "Ask the new lender whether they cover legal + discharge fees",
@@ -112,10 +112,10 @@ function scoreAnswers(a: Answers): Outcome {
       label: "Negotiate With Current Lender",
       color: "bg-warning-25 border-warning-50 text-warning-200",
       summary:
-        "Switching likely won't pay off after costs, but your current lender is definitely overcharging. Treat this as a negotiation — don't simply accept the posted rate in your renewal letter.",
+        "Switching likely won't pay off after costs, but your current lender is definitely overcharging. Treat this as a negotiation, don't simply accept the posted rate in your renewal letter.",
       actions: [
         "Get a broker quote in writing (free) to use as leverage",
-        "Call your current lender's retention team — not the branch",
+        "Call your current lender's retention team, not the branch",
         "Ask for them to match the broker rate or offer a loyalty discount",
         "If they refuse, walk through switch math with a broker one more time",
       ],
@@ -126,11 +126,11 @@ function scoreAnswers(a: Answers): Outcome {
     label: "Stay + Re-evaluate Later",
     color: "bg-gray-25 border-gray-100 text-foreground",
     summary:
-      "At your current rate gap and timeline, switching doesn't pencil out right now. Stay put, but shop again in 6 months — rates and your situation both move.",
+      "At your current rate gap and timeline, switching doesn't pencil out right now. Stay put, but shop again in 6 months, rates and your situation both move.",
     actions: [
       "Accept renewal for a shorter term (1–3 years) to re-shop sooner",
       "Set a reminder to shop 120 days before your next maturity",
-      "Monitor Bank of Canada decisions — next one is June 10, 2026",
+      "Monitor Bank of Canada decisions, next one is June 10, 2026",
       "Pay down principal aggressively during the current term",
     ],
   };
@@ -189,7 +189,7 @@ export default function SwitchQuiz() {
         <Question title="How much lower is the best available rate vs. your current rate?">
           <Option onClick={() => next("rateDiff", "low")} label="0 – 0.25%" detail="Marginal savings" />
           <Option onClick={() => next("rateDiff", "mid")} label="0.26% – 0.50%" detail="Meaningful savings over 5 years" />
-          <Option onClick={() => next("rateDiff", "high")} label="0.50% or more" detail="Major savings — likely worth switching" />
+          <Option onClick={() => next("rateDiff", "high")} label="0.50% or more" detail="Major savings, likely worth switching" />
         </Question>
       )}
 
@@ -251,7 +251,7 @@ export default function SwitchQuiz() {
             >
               Book a Free Broker Call
             </a>
-            <button
+            <button type="button"
               onClick={reset}
               className="flex-1 rounded-lg border border-gray-200 bg-white font-medium px-5 py-3 hover:bg-gray-25 transition-colors"
             >
@@ -287,7 +287,7 @@ function Option({
   detail: string;
 }) {
   return (
-    <button
+    <button type="button"
       onClick={onClick}
       className="w-full text-left rounded-lg border border-gray-200 bg-white p-4 hover:border-secondary-100 hover:bg-secondary-25 transition-colors"
     >

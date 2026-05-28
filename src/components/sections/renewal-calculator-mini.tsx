@@ -30,12 +30,14 @@ export default function RenewalCalculatorMini() {
     <div className="mx-auto max-w-2xl rounded-2xl border border-gray-100 bg-white p-8 shadow-sm">
       <div className="grid gap-6 sm:grid-cols-3">
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="renewal-mini-balance" className="mb-1.5 block text-sm font-medium text-gray-700">
             Remaining Balance
           </label>
           <div className="relative">
             <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">$</span>
             <input
+              id="renewal-mini-balance"
+              aria-label="Remaining Balance"
               type="number"
               value={balance}
               min={50000}
@@ -48,11 +50,13 @@ export default function RenewalCalculatorMini() {
         </div>
 
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="renewal-mini-rate" className="mb-1.5 block text-sm font-medium text-gray-700">
             New Rate (%)
           </label>
           <div className="relative">
             <input
+              id="renewal-mini-rate"
+              aria-label="New Rate (%)"
               type="number"
               value={rate}
               min={0.5}
@@ -66,10 +70,12 @@ export default function RenewalCalculatorMini() {
         </div>
 
         <div>
-          <label className="mb-1.5 block text-sm font-medium text-gray-700">
+          <label htmlFor="renewal-mini-amort" className="mb-1.5 block text-sm font-medium text-gray-700">
             Amortization (years)
           </label>
           <select
+            id="renewal-mini-amort"
+            aria-label="Amortization (years)"
             value={amort}
             onChange={(e) => setAmort(Number(e.target.value))}
             className="w-full rounded-lg border border-gray-200 py-2.5 px-3 text-sm focus:border-[oklch(63%_0.130_185)] focus:outline-none focus:ring-1 focus:ring-[oklch(63%_0.130_185)]"
@@ -105,7 +111,7 @@ export default function RenewalCalculatorMini() {
       )}
 
       <p className="mt-4 text-center text-xs text-gray-400">
-        Canadian semi-annual compounding. For educational use only — speak with a licensed broker for your exact numbers.
+        Canadian semi-annual compounding. For educational use only; speak with a licensed broker for your exact numbers.
       </p>
     </div>
   );

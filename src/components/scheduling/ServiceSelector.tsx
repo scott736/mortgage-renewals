@@ -78,18 +78,18 @@ export function ServiceSelector({
 
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm">
-                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <Clock className="size-4 text-muted-foreground" />
                   <span>{selectedService ? `${selectedService.duration}m` : '15-60m'}</span>
                 </div>
                 <div className="flex items-center gap-2 text-sm">
-                  <Globe className="h-4 w-4 text-muted-foreground" />
+                  <Globe className="size-4 text-muted-foreground" />
                   <span>{timezone.replace('_', '/')}</span>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center gap-2 text-xs text-muted-foreground mt-auto pt-4">
-              <Lock className="h-3 w-3" />
+              <Lock className="size-3" />
               <span>Secure & private</span>
             </div>
           </div>
@@ -139,7 +139,7 @@ export function ServiceSelector({
                 const isSelected = selectedService?.id === service.id;
 
                 return (
-                  <button
+                  <button type="button"
                     key={service.id}
                     className={cn(
                       'p-4 rounded-md border-2 text-left h-full',
@@ -148,7 +148,6 @@ export function ServiceSelector({
                         : 'border-border hover:border-primary/50 hover:bg-muted/30'
                     )}
                     onClick={() => onSelect(service)}
-                    type="button"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1 min-w-0">
@@ -163,8 +162,8 @@ export function ServiceSelector({
                         </div>
                       </div>
                       {isSelected && (
-                        <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-primary-foreground shrink-0">
-                          <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <div className="flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground shrink-0">
+                          <svg className="size-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                             <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
@@ -183,7 +182,7 @@ export function ServiceSelector({
         <div className="flex items-center justify-center gap-x-3 whitespace-nowrap overflow-x-auto">
           {BENEFITS.map((benefit) => (
             <div key={benefit.title} className="flex items-center gap-1">
-              <CheckCircle2 className="h-3 w-3 text-primary shrink-0" />
+              <CheckCircle2 className="size-3 text-primary shrink-0" />
               <span className="text-[11px]">
                 <span className="font-medium">{benefit.title}</span>
                 <span className="text-muted-foreground hidden sm:inline"> – {benefit.desc}</span>

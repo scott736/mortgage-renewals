@@ -73,7 +73,7 @@ export function PendingConfirmation({
                 alt={teamMember.name}
                 width={64}
                 height={64}
-                className="w-16 h-16 rounded-full object-cover ring-2 ring-background shadow-md"
+                className="size-16 rounded-full object-cover ring-2 ring-background shadow-md"
                 loading="lazy"
                 decoding="async"
               />
@@ -88,8 +88,8 @@ export function PendingConfirmation({
           <div className="flex-1 flex flex-col justify-center py-8">
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                  <Calendar className="h-5 w-5 text-primary" />
+                <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
+                  <Calendar className="size-5 text-primary" />
                 </div>
                 <div>
                   <p className="font-medium">{formatDate(startTime)}</p>
@@ -97,8 +97,8 @@ export function PendingConfirmation({
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10">
-                  <Clock className="h-5 w-5 text-primary" />
+                <div className="flex size-10 items-center justify-center rounded-full bg-primary/10">
+                  <Clock className="size-5 text-primary" />
                 </div>
                 <div>
                   <p className="font-medium">{formatTime(startTime)} · {duration} min</p>
@@ -119,8 +119,8 @@ export function PendingConfirmation({
         <div className="p-5 lg:p-8 lg:flex-1 flex flex-col">
           {/* Success Header */}
           <div className="text-center mb-8">
-            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
-              <Mail className="h-10 w-10 text-primary" />
+            <div className="mx-auto mb-4 flex size-20 items-center justify-center rounded-full bg-primary/10">
+              <Mail className="size-10 text-primary" />
             </div>
             <h2 className="text-2xl font-bold tracking-tight">Check Your Email</h2>
             <p className="mt-2 text-muted-foreground">
@@ -131,7 +131,7 @@ export function PendingConfirmation({
           {/* Instructions */}
           <div className="space-y-4 mb-8">
             <div className="flex gap-4 p-4 rounded-xl bg-muted/50">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm">
                 1
               </div>
               <div>
@@ -142,7 +142,7 @@ export function PendingConfirmation({
               </div>
             </div>
             <div className="flex gap-4 p-4 rounded-xl bg-muted/50">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold text-sm">
                 2
               </div>
               <div>
@@ -170,7 +170,7 @@ export function PendingConfirmation({
                 {onBookAnother && (
                   <>
                     {' '}or{' '}
-                    <button
+                    <button type="button"
                       onClick={onBookAnother}
                       className="text-primary hover:underline font-medium"
                     >

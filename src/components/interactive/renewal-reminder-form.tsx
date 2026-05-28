@@ -24,17 +24,17 @@ function daysUntil(dateStr: string): number | null {
 
 const URGENCY_ACTIONS: Record<string, { title: string; items: string[] }> = {
   "30": {
-    title: "30 days or less — act now",
+    title: "30 days or less, act now",
     items: [
       "Request your written renewal offer today and decode the letter",
-      "Book a broker call this week — rate holds may still be possible",
+      "Book a broker call this week, rate holds may still be possible",
       "Run switch-vs-stay math including real switching costs",
       "Gather NOA/T4, mortgage statement, and void cheque",
       "Confirm charge type (standard vs. collateral) on your statement",
     ],
   },
   "60": {
-    title: "31–60 days — finalize your decision",
+    title: "31–60 days, finalize your decision",
     items: [
       "Lock a rate hold if switching (up to 120 days before maturity)",
       "Submit application to new lender if switching",
@@ -44,7 +44,7 @@ const URGENCY_ACTIONS: Record<string, { title: string; items: string[] }> = {
     ],
   },
   "120": {
-    title: "61–120 days — shopping window",
+    title: "61–120 days, shopping window",
     items: [
       "Contact a broker for quotes from 30+ lenders",
       "Compare fixed vs. variable and term length",
@@ -54,12 +54,12 @@ const URGENCY_ACTIONS: Record<string, { title: string; items: string[] }> = {
     ],
   },
   later: {
-    title: "More than 120 days — build your plan",
+    title: "More than 120 days, build your plan",
     items: [
       "Bookmark this page and return at 6 months out",
       "Read the complete renewal guide and checklist",
       "Use My Renewal Plan wizard for a personalized checklist",
-      "Monitor rates weekly — no need to lock yet",
+      "Monitor rates weekly, no need to lock yet",
       "File taxes on time if self-employed",
     ],
   },
@@ -188,6 +188,7 @@ export default function RenewalReminderForm() {
           </label>
           <input
             id="rr-date"
+            aria-label="Your mortgage renewal (maturity) date"
             name="renewal_date"
             type="date"
             required
@@ -203,12 +204,13 @@ export default function RenewalReminderForm() {
           </label>
           <select
             id="rr-province"
+            aria-label="Province (optional)"
             name="province"
             value={province}
             onChange={(e) => setProvince(e.target.value)}
             className="w-full rounded-lg border border-gray-200 bg-background px-3 py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
           >
-            <option value="">— Select —</option>
+            <option value="">(Select)</option>
             <option>Ontario</option>
             <option>Quebec</option>
             <option>British Columbia</option>
@@ -231,10 +233,10 @@ export default function RenewalReminderForm() {
               <div className="font-semibold mb-1.5">Key dates:</div>
               <ul className="space-y-1 text-muted-foreground">
                 <li>
-                  • <strong className="text-foreground">6 months out:</strong> {sixMonthDate} — start shopping
+                  • <strong className="text-foreground">6 months out:</strong> {sixMonthDate}, start shopping
                 </li>
                 <li>
-                  • <strong className="text-foreground">4 months out:</strong> {fourMonthDate} — lock rate hold
+                  • <strong className="text-foreground">4 months out:</strong> {fourMonthDate}, lock rate hold
                 </li>
                 <li>
                   • <strong className="text-foreground">Maturity:</strong>{" "}
@@ -294,6 +296,7 @@ export default function RenewalReminderForm() {
             </label>
             <input
               id="rr-email"
+              aria-label="Email (optional)"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -309,11 +312,11 @@ export default function RenewalReminderForm() {
             {emailStatus === "sending"
               ? "Sending…"
               : emailStatus === "done"
-                ? "Request received — thank you"
+                ? "Request received, thank you"
                 : "Email my renewal date to the team"}
           </button>
           {emailStatus === "error" && (
-            <p className="text-body-xs text-red-600">Could not send — try again or book a call directly.</p>
+            <p className="text-body-xs text-red-600">Could not send, try again or book a call directly.</p>
           )}
         </form>
       </div>

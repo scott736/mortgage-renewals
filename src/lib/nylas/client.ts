@@ -47,7 +47,7 @@ let nylasClient: Nylas | null = null;
  * Get the initialized Nylas client
  * Lazy initialization to avoid errors when env vars are not set
  */
-export function getNylasClient(): Nylas {
+function getNylasClient(): Nylas {
   if (!nylasClient) {
     if (!NYLAS_API_KEY) {
       throw new Error('NYLAS_API_KEY environment variable is not set');
@@ -77,7 +77,7 @@ export function isNylasConfigured(): boolean {
  * Generate an HMAC-signed OAuth state parameter to prevent CSRF attacks.
  * State format: `payload:timestamp:hmac`
  */
-export async function generateOAuthState(payload: string): Promise<string> {
+async function generateOAuthState(payload: string): Promise<string> {
   const secret = NYLAS_API_KEY;
   if (!secret) throw new Error('NYLAS_API_KEY required for OAuth state signing');
 
@@ -105,7 +105,7 @@ export async function generateOAuthState(payload: string): Promise<string> {
  * Returns the original payload (e.g. teamMemberId or 'connect'), or null if invalid.
  * States older than 1 hour are rejected.
  */
-export async function verifyOAuthState(state: string): Promise<string | null> {
+async function verifyOAuthState(state: string): Promise<string | null> {
   const secret = NYLAS_API_KEY;
   if (!secret) return null;
 
@@ -143,7 +143,7 @@ export async function verifyOAuthState(state: string): Promise<string | null> {
  * Generate OAuth URL for a team member to connect their calendar.
  * Uses the Nylas SDK's built-in URL builder for correct parameter formatting.
  */
-export async function getAuthUrl(teamMemberId: string, redirectUri: string): Promise<string> {
+async function getAuthUrl(teamMemberId: string, redirectUri: string): Promise<string> {
   if (!NYLAS_CLIENT_ID) {
     throw new Error('NYLAS_CLIENT_ID environment variable is not set');
   }
@@ -166,7 +166,7 @@ export async function getAuthUrl(teamMemberId: string, redirectUri: string): Pro
  * Generate OAuth URL without pre-selecting a team member.
  * The callback will match the signed-in email to a team member.
  */
-export async function getConnectAuthUrl(redirectUri: string): Promise<string> {
+async function getConnectAuthUrl(redirectUri: string): Promise<string> {
   if (!NYLAS_CLIENT_ID) {
     throw new Error('NYLAS_CLIENT_ID environment variable is not set');
   }
@@ -183,7 +183,7 @@ export async function getConnectAuthUrl(redirectUri: string): Promise<string> {
 /**
  * Exchange OAuth code for a grant
  */
-export async function exchangeCodeForGrant(
+async function exchangeCodeForGrant(
   code: string,
   redirectUri: string
 ): Promise<{ grantId: string; email: string; provider: 'google' | 'microsoft' }> {
@@ -225,9 +225,11 @@ function getTeamMemberGrantIds(member: TeamMember): string[] {
 
   // Add all grants from nylasGrants array
   if (member.nylasGrants && member.nylasGrants.length > 0) {
+    const seen = new Set(grantIds);
     for (const grant of member.nylasGrants) {
-      if (!grantIds.includes(grant.grantId)) {
+      if (!seen.has(grant.grantId)) {
         grantIds.push(grant.grantId);
+        seen.add(grant.grantId);
       }
     }
   }
@@ -703,7 +705,7 @@ function generateCalendarLinks(event: {
 /**
  * Cancel a booking
  */
-export async function cancelBooking(
+async function cancelBooking(
   teamMemberId: string,
   eventId: string,
   notifyParticipants = true
@@ -734,7 +736,7 @@ export async function cancelBooking(
 /**
  * Get event details
  */
-export async function getEvent(teamMemberId: string, eventId: string): Promise<NylasEvent | null> {
+async function getEvent(teamMemberId: string, eventId: string): Promise<NylasEvent | null> {
   const nylas = getNylasClient();
   const rawMember = getTeamMemberById(teamMemberId);
 
@@ -770,7 +772,7 @@ export async function getEvent(teamMemberId: string, eventId: string): Promise<N
 /**
  * Verify webhook signature
  */
-export async function verifyWebhookSignature(payload: string, signature: string): Promise<boolean> {
+async function verifyWebhookSignature(payload: string, signature: string): Promise<boolean> {
   const webhookSecret = import.meta.env.NYLAS_WEBHOOK_SECRET
     || (typeof process !== 'undefined' ? process.env.NYLAS_WEBHOOK_SECRET : undefined);
 

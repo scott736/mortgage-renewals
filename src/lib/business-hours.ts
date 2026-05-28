@@ -1,14 +1,16 @@
 const TZ = "America/Toronto";
 
+const businessHoursFormatter = new Intl.DateTimeFormat("en-CA", {
+  timeZone: TZ,
+  weekday: "short",
+  hour: "numeric",
+  hour12: false,
+});
+
 /** Mon–Fri 9:00–17:00 Eastern */
 export function isBusinessHours(date = new Date()): boolean {
   try {
-    const parts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: TZ,
-      weekday: "short",
-      hour: "numeric",
-      hour12: false,
-    }).formatToParts(date);
+    const parts = businessHoursFormatter.formatToParts(date);
 
     const weekday = parts.find((p) => p.type === "weekday")?.value ?? "";
     const hour = Number(parts.find((p) => p.type === "hour")?.value ?? -1);

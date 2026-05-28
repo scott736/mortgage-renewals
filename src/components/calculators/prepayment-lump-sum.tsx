@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useFormState } from '@/hooks/use-form-state';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding
@@ -24,18 +26,20 @@ function _fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -63,7 +67,7 @@ function BrokerCTA({ message }: { message: string }) {
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
@@ -79,13 +83,16 @@ function BrokerCTA({ message }: { message: string }) {
 //    months shaved off. Respects Canadian 10/15/20% privilege limits.
 // ============================================================================
 export function PrepaymentLumpSum() {
-  const [balance, setBalance] = useState(400000);
-  const [rate, setRate] = useState(4.29);
-  const [amortMonths, setAmortMonths] = useState(240);
-  const [currentPmt, setCurrentPmt] = useState(0); // 0 = auto-calculate
-  const [lumpSum, setLumpSum] = useState(25000);
-  const [timing, setTiming] = useState<'now' | 'renewal'>('now');
-  const [privilegePct, setPrivilegePct] = useState(15);
+  const [state, setState] = useFormState({
+    balance: 400000,
+    rate: 4.29,
+    amortMonths: 240,
+    currentPmt: 0,
+    lumpSum: 25000,
+    timing: 'now' as 'now' | 'renewal',
+    privilegePct: 15,
+  });
+  const { balance, rate, amortMonths, currentPmt, lumpSum, timing, privilegePct } = state;
 
   const effectivePmt = currentPmt > 0 ? currentPmt : monthlyPayment(balance, rate, amortMonths);
   const privilegeLimit = balance * (privilegePct / 100);
@@ -132,30 +139,30 @@ export function PrepaymentLumpSum() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Interest Rate</Label>
-          <Input value={rate} onChange={setRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="interest-rate">Interest Rate</Label>
+          <Input id="interest-rate" aria-label="Interest Rate" value={rate} onChange={(v) => setState({ rate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization Remaining</Label>
-          <Input value={amortMonths} onChange={setAmortMonths} min={12} max={360} step={12} suffix="mo" />
+          <Label htmlFor="amortization-remaining">Amortization Remaining</Label>
+          <Input id="amortization-remaining" aria-label="Amortization Remaining" value={amortMonths} onChange={(v) => setState({ amortMonths: v })} min={12} max={360} step={12} suffix="mo" />
         </div>
         <div>
-          <Label>Monthly Payment (0 = auto)</Label>
-          <Input value={currentPmt} onChange={setCurrentPmt} min={0} max={20000} step={50} prefix="$" />
+          <Label htmlFor="monthly-payment-0-auto">Monthly Payment (0 = auto)</Label>
+          <Input id="monthly-payment-0-auto" aria-label="Monthly Payment (0 = auto)" value={currentPmt} onChange={(v) => setState({ currentPmt: v })} min={0} max={20000} step={50} prefix="$" />
         </div>
         <div>
-          <Label>Lump Sum Amount</Label>
-          <Input value={lumpSum} onChange={setLumpSum} min={1000} max={500000} step={1000} prefix="$" />
+          <Label htmlFor="lump-sum-amount">Lump Sum Amount</Label>
+          <Input id="lump-sum-amount" aria-label="Lump Sum Amount" value={lumpSum} onChange={(v) => setState({ lumpSum: v })} min={1000} max={500000} step={1000} prefix="$" />
         </div>
         <div>
-          <Label>Annual Privilege Limit</Label>
-          <select
+          <Label htmlFor="annual-privilege-limit">Annual Privilege Limit</Label>
+          <select id="annual-privilege-limit" aria-label="Annual Privilege Limit"
             value={privilegePct}
-            onChange={e => setPrivilegePct(Number(e.target.value))}
+            onChange={e => setState({ privilegePct: Number(e.target.value) })}
             className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
           >
             <option value={10}>10% (most Big 6 closed)</option>
@@ -164,10 +171,10 @@ export function PrepaymentLumpSum() {
           </select>
         </div>
         <div>
-          <Label>Timing</Label>
-          <select
+          <Label htmlFor="timing">Timing</Label>
+          <select id="timing" aria-label="Timing"
             value={timing}
-            onChange={e => setTiming(e.target.value as 'now' | 'renewal')}
+            onChange={e => setState({ timing: e.target.value as 'now' | 'renewal' })}
             className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
           >
             <option value="now">Apply now (mid-term)</option>
@@ -178,7 +185,7 @@ export function PrepaymentLumpSum() {
 
       {over > 0 && (
         <div className="rounded-lg bg-warning-0 border border-warning-50 px-4 py-3 text-body-sm text-warning-200 mb-4">
-          ⚠️ Your {fmt(lumpSum)} exceeds your annual {privilegePct}% privilege of {fmt(privilegeLimit)}. Only {fmt(allowedLump)} can be applied without penalty. The remaining {fmt(over)} would trigger a prepayment charge — save it for next anniversary year.
+          ⚠️ Your {fmt(lumpSum)} exceeds your annual {privilegePct}% privilege of {fmt(privilegeLimit)}. Only {fmt(allowedLump)} can be applied without penalty. The remaining {fmt(over)} would trigger a prepayment charge, save it for next anniversary year.
         </div>
       )}
 
@@ -191,7 +198,7 @@ export function PrepaymentLumpSum() {
 
       <BrokerCTA message={interestSaved > 0
         ? `A ${fmt(allowedLump)} lump sum saves ${fmt(interestSaved)} in interest and pays off your mortgage ${(monthsSaved / 12).toFixed(1)} years earlier.`
-        : `Confirm your lender's exact privilege rules — a broker can check your commitment letter for free.`} />
+        : `Confirm your lender's exact privilege rules, a broker can check your commitment letter for free.`} />
     </div>
   );
 }

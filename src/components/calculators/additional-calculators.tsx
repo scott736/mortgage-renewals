@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+import { useFormState } from '@/hooks/use-form-state';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding (same as main calculators)
@@ -24,18 +26,20 @@ function fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -63,7 +67,7 @@ function BrokerCTA({ message }: { message: string }) {
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
@@ -79,12 +83,15 @@ function BrokerCTA({ message }: { message: string }) {
 //    as an alternative to breaking the mortgage and paying a penalty.
 // ============================================================================
 export function BlendAndExtend() {
-  const [balance, setBalance] = useState(500000);
-  const [currentRate, setCurrentRate] = useState(5.25);
-  const [marketRate, setMarketRate] = useState(4.19);
-  const [monthsRemaining, setMonthsRemaining] = useState(24);
-  const [newTermYears, setNewTermYears] = useState(5);
-  const [amortYears, setAmortYears] = useState(22);
+  const [state, setState] = useFormState({
+    balance: 500000,
+    currentRate: 5.25,
+    marketRate: 4.19,
+    monthsRemaining: 24,
+    newTermYears: 5,
+    amortYears: 22,
+  });
+  const { balance, currentRate, marketRate, monthsRemaining, newTermYears, amortYears } = state;
 
   const newTermMonths = newTermYears * 12;
   const totalMonths = monthsRemaining + newTermMonths;
@@ -109,28 +116,28 @@ export function BlendAndExtend() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Current Rate</Label>
-          <Input value={currentRate} onChange={setCurrentRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="current-rate">Current Rate</Label>
+          <Input id="current-rate" aria-label="Current Rate" value={currentRate} onChange={(v) => setState({ currentRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Today's Market Rate</Label>
-          <Input value={marketRate} onChange={setMarketRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="today-s-market-rate">Today's Market Rate</Label>
+          <Input id="today-s-market-rate" aria-label="Today's Market Rate" value={marketRate} onChange={(v) => setState({ marketRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Months Remaining</Label>
-          <Input value={monthsRemaining} onChange={setMonthsRemaining} min={1} max={60} step={1} suffix="mo" />
+          <Label htmlFor="months-remaining">Months Remaining</Label>
+          <Input id="months-remaining" aria-label="Months Remaining" value={monthsRemaining} onChange={(v) => setState({ monthsRemaining: v })} min={1} max={60} step={1} suffix="mo" />
         </div>
         <div>
-          <Label>New Term Length</Label>
-          <Input value={newTermYears} onChange={setNewTermYears} min={1} max={10} step={1} suffix="yrs" />
+          <Label htmlFor="new-term-length">New Term Length</Label>
+          <Input id="new-term-length" aria-label="New Term Length" value={newTermYears} onChange={(v) => setState({ newTermYears: v })} min={1} max={10} step={1} suffix="yrs" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
       </div>
 
@@ -157,11 +164,11 @@ export function BlendAndExtend() {
             <div className={`font-bold ${blendSavesVsBreak > 0 ? 'text-secondary-200' : 'text-warning-200'}`}>{fmt(Math.abs(blendSavesVsBreak))}</div>
           </div>
         </div>
-        <p className="text-body-xs text-muted-foreground mt-3">Simplified comparison using 3-month interest penalty. Actual bank IRD penalties can be much higher — use the penalty estimator for a more accurate break scenario.</p>
+        <p className="text-body-xs text-muted-foreground mt-3">Simplified comparison using 3-month interest penalty. Actual bank IRD penalties can be much higher, use the penalty estimator for a more accurate break scenario.</p>
       </div>
 
       <BrokerCTA message={monthlySaving > 0
-        ? `Your blended rate is ${fmtPct(blendedRate)} — saving ${fmt(monthlySaving)}/month vs. your current rate.`
+        ? `Your blended rate is ${fmtPct(blendedRate)}, saving ${fmt(monthlySaving)}/month vs. your current rate.`
         : `Your current rate is already competitive. A broker can confirm whether blend-and-extend makes sense.`} />
     </div>
   );
@@ -174,13 +181,16 @@ export function BlendAndExtend() {
 //    this is waived for straight-switch renewals (no new money, same amort).
 // ============================================================================
 export function StressTestCalculator() {
-  const [income, setIncome] = useState(120000);
-  const [otherDebts, setOtherDebts] = useState(500);
-  const [propertyTax, setPropertyTax] = useState(5000);
-  const [heating, setHeating] = useState(1800);
-  const [condoFees, setCondoFees] = useState(0);
-  const [contractRate, setContractRate] = useState(4.29);
-  const [amortYears, setAmortYears] = useState(25);
+  const [state, setState] = useFormState({
+    income: 120000,
+    otherDebts: 500,
+    propertyTax: 5000,
+    heating: 1800,
+    condoFees: 0,
+    contractRate: 4.29,
+    amortYears: 25,
+  });
+  const { income, otherDebts, propertyTax, heating, condoFees, contractRate, amortYears } = state;
 
   const qualifyingRate = Math.max(contractRate + 2, 5.25);
   const monthlyIncome = income / 12;
@@ -210,32 +220,32 @@ export function StressTestCalculator() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <div>
-          <Label>Household Gross Income</Label>
-          <Input value={income} onChange={setIncome} min={20000} max={2000000} step={5000} prefix="$" />
+          <Label htmlFor="household-gross-income">Household Gross Income</Label>
+          <Input id="household-gross-income" aria-label="Household Gross Income" value={income} onChange={(v) => setState({ income: v })} min={20000} max={2000000} step={5000} prefix="$" />
         </div>
         <div>
-          <Label>Other Monthly Debts</Label>
-          <Input value={otherDebts} onChange={setOtherDebts} min={0} max={10000} step={50} prefix="$" />
+          <Label htmlFor="other-monthly-debts">Other Monthly Debts</Label>
+          <Input id="other-monthly-debts" aria-label="Other Monthly Debts" value={otherDebts} onChange={(v) => setState({ otherDebts: v })} min={0} max={10000} step={50} prefix="$" />
         </div>
         <div>
-          <Label>Annual Property Tax</Label>
-          <Input value={propertyTax} onChange={setPropertyTax} min={0} max={30000} step={100} prefix="$" />
+          <Label htmlFor="annual-property-tax">Annual Property Tax</Label>
+          <Input id="annual-property-tax" aria-label="Annual Property Tax" value={propertyTax} onChange={(v) => setState({ propertyTax: v })} min={0} max={30000} step={100} prefix="$" />
         </div>
         <div>
-          <Label>Annual Heating</Label>
-          <Input value={heating} onChange={setHeating} min={0} max={10000} step={100} prefix="$" />
+          <Label htmlFor="annual-heating">Annual Heating</Label>
+          <Input id="annual-heating" aria-label="Annual Heating" value={heating} onChange={(v) => setState({ heating: v })} min={0} max={10000} step={100} prefix="$" />
         </div>
         <div>
-          <Label>Monthly Condo Fees</Label>
-          <Input value={condoFees} onChange={setCondoFees} min={0} max={3000} step={25} prefix="$" />
+          <Label htmlFor="monthly-condo-fees">Monthly Condo Fees</Label>
+          <Input id="monthly-condo-fees" aria-label="Monthly Condo Fees" value={condoFees} onChange={(v) => setState({ condoFees: v })} min={0} max={3000} step={25} prefix="$" />
         </div>
         <div>
-          <Label>Contract Rate</Label>
-          <Input value={contractRate} onChange={setContractRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="contract-rate">Contract Rate</Label>
+          <Input id="contract-rate" aria-label="Contract Rate" value={contractRate} onChange={(v) => setState({ contractRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={5} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={5} max={30} step={1} suffix="yrs" />
         </div>
       </div>
 
@@ -258,8 +268,8 @@ const LENDER_SWITCH_PRESETS: Record<
   { label: string; dischargeFee: number; legalFee: number; appraisalFee: number }
 > = {
   '': { label: 'Standard charge (typical monoline)', dischargeFee: 325, legalFee: 0, appraisalFee: 0 },
-  td: { label: 'TD — collateral charge', dischargeFee: 325, legalFee: 900, appraisalFee: 0 },
-  'national-bank': { label: 'National Bank — collateral charge', dischargeFee: 325, legalFee: 900, appraisalFee: 0 },
+  td: { label: 'TD, collateral charge', dischargeFee: 325, legalFee: 900, appraisalFee: 0 },
+  'national-bank': { label: 'National Bank, collateral charge', dischargeFee: 325, legalFee: 900, appraisalFee: 0 },
   rbc: { label: 'RBC', dischargeFee: 300, legalFee: 0, appraisalFee: 0 },
   scotiabank: { label: 'Scotiabank', dischargeFee: 350, legalFee: 0, appraisalFee: 0 },
   bmo: { label: 'BMO', dischargeFee: 300, legalFee: 0, appraisalFee: 0 },
@@ -267,41 +277,55 @@ const LENDER_SWITCH_PRESETS: Record<
   quebec: { label: 'Quebec (notary switch)', dischargeFee: 325, legalFee: 1200, appraisalFee: 0 },
 };
 
+function readLenderPresetFromUrl(): Partial<{
+  lenderPreset: string;
+  dischargeFee: number;
+  legalFee: number;
+  appraisalFee: number;
+}> {
+  if (typeof window === 'undefined') return {};
+  const params = new URLSearchParams(window.location.search);
+  const lender = params.get('lender') || params.get('from');
+  if (lender && LENDER_SWITCH_PRESETS[lender]) {
+    const p = LENDER_SWITCH_PRESETS[lender];
+    return {
+      lenderPreset: lender,
+      dischargeFee: p.dischargeFee,
+      legalFee: p.legalFee,
+      appraisalFee: p.appraisalFee,
+    };
+  }
+  return {};
+}
+
 // ============================================================================
 // 3) Switch-vs-Stay Break-Even Calculator
 //    Factors in real switching costs (discharge, legal, appraisal, title)
 //    and outputs break-even months plus 5-year net savings.
 // ============================================================================
 export function SwitchVsStay() {
-  const [balance, setBalance] = useState(500000);
-  const [stayRate, setStayRate] = useState(4.89);
-  const [switchRate, setSwitchRate] = useState(4.19);
-  const [amortYears, setAmortYears] = useState(22);
-  const [lenderPreset, setLenderPreset] = useState('');
-  const [dischargeFee, setDischargeFee] = useState(325);
-  const [legalFee, setLegalFee] = useState(0);
-  const [appraisalFee, setAppraisalFee] = useState(0);
-  const [titleInsurance, setTitleInsurance] = useState(225);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const params = new URLSearchParams(window.location.search);
-    const lender = params.get('lender') || params.get('from');
-    if (lender && LENDER_SWITCH_PRESETS[lender]) {
-      setLenderPreset(lender);
-      const p = LENDER_SWITCH_PRESETS[lender];
-      setDischargeFee(p.dischargeFee);
-      setLegalFee(p.legalFee);
-      setAppraisalFee(p.appraisalFee);
-    }
-  }, []);
+  const [state, setState] = useFormState(() => ({
+    balance: 500000,
+    stayRate: 4.89,
+    switchRate: 4.19,
+    amortYears: 22,
+    lenderPreset: '',
+    dischargeFee: 325,
+    legalFee: 0,
+    appraisalFee: 0,
+    titleInsurance: 225,
+    ...readLenderPresetFromUrl(),
+  }));
+  const { balance, stayRate, switchRate, amortYears, lenderPreset, dischargeFee, legalFee, appraisalFee, titleInsurance } = state;
 
   function applyLenderPreset(id: string) {
-    setLenderPreset(id);
     const p = LENDER_SWITCH_PRESETS[id] ?? LENDER_SWITCH_PRESETS[''];
-    setDischargeFee(p.dischargeFee);
-    setLegalFee(p.legalFee);
-    setAppraisalFee(p.appraisalFee);
+    setState({
+      lenderPreset: id,
+      dischargeFee: p.dischargeFee,
+      legalFee: p.legalFee,
+      appraisalFee: p.appraisalFee,
+    });
   }
 
   const months = amortYears * 12;
@@ -323,26 +347,26 @@ export function SwitchVsStay() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Stay Rate (Your Lender)</Label>
-          <Input value={stayRate} onChange={setStayRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="stay-rate-your-lender">Stay Rate (Your Lender)</Label>
+          <Input id="stay-rate-your-lender" aria-label="Stay Rate (Your Lender)" value={stayRate} onChange={(v) => setState({ stayRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Switch Rate (New Lender)</Label>
-          <Input value={switchRate} onChange={setSwitchRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="switch-rate-new-lender">Switch Rate (New Lender)</Label>
+          <Input id="switch-rate-new-lender" aria-label="Switch Rate (New Lender)" value={switchRate} onChange={(v) => setState({ switchRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
       </div>
 
       <div className="mb-4">
-        <Label>Current lender (pre-fills switching costs)</Label>
-        <select
+        <Label htmlFor="current-lender-pre-fills-switching-costs">Current lender (pre-fills switching costs)</Label>
+        <select id="current-lender-pre-fills-switching-costs" aria-label="Current lender (pre-fills switching costs)"
           value={lenderPreset}
           onChange={(e) => applyLenderPreset(e.target.value)}
           className="w-full rounded-lg border border-gray-200 bg-background px-3 py-2.5 text-body-md mb-3 focus:outline-none focus:ring-2 focus:ring-secondary-100"
@@ -357,19 +381,19 @@ export function SwitchVsStay() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-1">
           <div>
             <div className="text-body-xs text-muted-foreground mb-1">Discharge Fee</div>
-            <Input value={dischargeFee} onChange={setDischargeFee} min={0} max={2000} step={25} prefix="$" />
+            <Input id="discharge-fee" aria-label="Discharge Fee" value={dischargeFee} onChange={(v) => setState({ dischargeFee: v })} min={0} max={2000} step={25} prefix="$" />
           </div>
           <div>
             <div className="text-body-xs text-muted-foreground mb-1">Legal Fee</div>
-            <Input value={legalFee} onChange={setLegalFee} min={0} max={3000} step={25} prefix="$" />
+            <Input id="legal-fee" aria-label="Legal Fee" value={legalFee} onChange={(v) => setState({ legalFee: v })} min={0} max={3000} step={25} prefix="$" />
           </div>
           <div>
             <div className="text-body-xs text-muted-foreground mb-1">Appraisal</div>
-            <Input value={appraisalFee} onChange={setAppraisalFee} min={0} max={1500} step={25} prefix="$" />
+            <Input id="appraisal" aria-label="Appraisal" value={appraisalFee} onChange={(v) => setState({ appraisalFee: v })} min={0} max={1500} step={25} prefix="$" />
           </div>
           <div>
             <div className="text-body-xs text-muted-foreground mb-1">Title Insurance</div>
-            <Input value={titleInsurance} onChange={setTitleInsurance} min={0} max={1000} step={25} prefix="$" />
+            <Input id="title-insurance" aria-label="Title Insurance" value={titleInsurance} onChange={(v) => setState({ titleInsurance: v })} min={0} max={1000} step={25} prefix="$" />
           </div>
         </div>
       </div>
@@ -377,7 +401,7 @@ export function SwitchVsStay() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <ResultCard label="Monthly Saving" value={fmt(monthlySaving)} highlight />
         <ResultCard label="Total Switching Cost" value={fmt(totalCosts)} />
-        <ResultCard label="Break-Even" value={breakEvenMonths === Infinity ? '—' : `${breakEvenMonths} mo`} highlight sublabel={breakEvenMonths === Infinity ? 'Switching costs more' : `~${(breakEvenMonths / 12).toFixed(1)} years`} />
+        <ResultCard label="Break-Even" value={breakEvenMonths === Infinity ? 'N/A' : `${breakEvenMonths} mo`} highlight sublabel={breakEvenMonths === Infinity ? 'Switching costs more' : `~${(breakEvenMonths / 12).toFixed(1)} years`} />
         <ResultCard label="5-Year Net Saving" value={fmt(fiveYearNet)} highlight />
       </div>
 
@@ -394,12 +418,15 @@ export function SwitchVsStay() {
 //    cash-out refinance (blended into mortgage, amortized, fixed rate).
 // ============================================================================
 export function HelocVsRefinance() {
-  const [mortgageBalance, setMortgageBalance] = useState(400000);
-  const [mortgageRate, setMortgageRate] = useState(4.29);
-  const [amortYears, setAmortYears] = useState(25);
-  const [equityNeeded, setEquityNeeded] = useState(75000);
-  const [helocRate, setHelocRate] = useState(5.95); // prime + 0.5-1.5 typical
-  const [newMortgageRate, setNewMortgageRate] = useState(4.29);
+  const [state, setState] = useFormState({
+    mortgageBalance: 400000,
+    mortgageRate: 4.29,
+    amortYears: 25,
+    equityNeeded: 75000,
+    helocRate: 5.95,
+    newMortgageRate: 4.29,
+  });
+  const { mortgageBalance, mortgageRate, amortYears, equityNeeded, helocRate, newMortgageRate } = state;
 
   const months = amortYears * 12;
   const currentMortgagePmt = monthlyPayment(mortgageBalance, mortgageRate, months);
@@ -428,28 +455,28 @@ export function HelocVsRefinance() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         <div>
-          <Label>Current Mortgage Balance</Label>
-          <Input value={mortgageBalance} onChange={setMortgageBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="current-mortgage-balance">Current Mortgage Balance</Label>
+          <Input id="current-mortgage-balance" aria-label="Current Mortgage Balance" value={mortgageBalance} onChange={(v) => setState({ mortgageBalance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Current Mortgage Rate</Label>
-          <Input value={mortgageRate} onChange={setMortgageRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="current-mortgage-rate">Current Mortgage Rate</Label>
+          <Input id="current-mortgage-rate" aria-label="Current Mortgage Rate" value={mortgageRate} onChange={(v) => setState({ mortgageRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
         <div>
-          <Label>Equity Needed</Label>
-          <Input value={equityNeeded} onChange={setEquityNeeded} min={5000} max={500000} step={5000} prefix="$" />
+          <Label htmlFor="equity-needed">Equity Needed</Label>
+          <Input id="equity-needed" aria-label="Equity Needed" value={equityNeeded} onChange={(v) => setState({ equityNeeded: v })} min={5000} max={500000} step={5000} prefix="$" />
         </div>
         <div>
-          <Label>HELOC Rate (typically prime+1%)</Label>
-          <Input value={helocRate} onChange={setHelocRate} min={1} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="heloc-rate-typically-prime-1">HELOC Rate (typically prime+1%)</Label>
+          <Input id="heloc-rate-typically-prime-1" aria-label="HELOC Rate (typically prime+1%)" value={helocRate} onChange={(v) => setState({ helocRate: v })} min={1} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>New Mortgage Rate (refi)</Label>
-          <Input value={newMortgageRate} onChange={setNewMortgageRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="new-mortgage-rate-refi">New Mortgage Rate (refi)</Label>
+          <Input id="new-mortgage-rate-refi" aria-label="New Mortgage Rate (refi)" value={newMortgageRate} onChange={(v) => setState({ newMortgageRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
       </div>
 
@@ -475,7 +502,7 @@ export function HelocVsRefinance() {
       </div>
 
       <div className="rounded-xl bg-gray-25 border border-gray-100 p-4 text-body-sm text-muted-foreground mb-6">
-        <strong>Rule of thumb:</strong> HELOCs suit short-term/flexible needs (renos you'll finish in 1–2 years). Refinances suit larger, one-time draws where you want fixed payments and a lower rate. Over long time horizons, refinance usually costs less total interest — but locks you in.
+        <strong>Rule of thumb:</strong> HELOCs suit short-term/flexible needs (renos you'll finish in 1–2 years). Refinances suit larger, one-time draws where you want fixed payments and a lower rate. Over long time horizons, refinance usually costs less total interest, but locks you in.
       </div>
 
       <BrokerCTA message={`Your ${fmt(equityNeeded)} draw costs ${fmt(helocTotalMonthly - currentMortgagePmt)}/mo via HELOC vs. ${fmt(refiPmt - currentMortgagePmt)}/mo extra via refi. A broker models both with your lender.`} />
@@ -488,9 +515,12 @@ export function HelocVsRefinance() {
 //    Shows how accelerated bi-weekly/weekly payments shave years off a mortgage.
 // ============================================================================
 export function PaymentFrequencyCalculator() {
-  const [balance, setBalance] = useState(500000);
-  const [rate, setRate] = useState(4.29);
-  const [amortYears, setAmortYears] = useState(25);
+  const [state, setState] = useFormState({
+    balance: 500000,
+    rate: 4.29,
+    amortYears: 25,
+  });
+  const { balance, rate, amortYears } = state;
 
   const months = amortYears * 12;
   const monthlyPmt = monthlyPayment(balance, rate, months);
@@ -527,16 +557,16 @@ export function PaymentFrequencyCalculator() {
 
       <div className="grid sm:grid-cols-3 gap-4 mb-6">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Interest Rate</Label>
-          <Input value={rate} onChange={setRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="interest-rate">Interest Rate</Label>
+          <Input id="interest-rate" aria-label="Interest Rate" value={rate} onChange={(v) => setState({ rate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
       </div>
 

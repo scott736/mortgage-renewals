@@ -1,7 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState,useSyncExternalStore } from "react";
 
 import { Button } from "@/components/ui/button";
 import { BUSINESS } from "@/consts";
@@ -11,15 +11,17 @@ import { cn } from "@/lib/utils";
 const SESSION_KEY = "banner-dismissed-session";
 
 const Banner = ({ url = "/book-a-call/" }: { url?: string }) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    if (sessionStorage.getItem(SESSION_KEY) === "true") {
-      setIsVisible(false);
-    }
-  }, []);
+  const isClient = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+  const dismissed = useSyncExternalStore(
+    () => () => {},
+    () => sessionStorage.getItem(SESSION_KEY) === "true",
+    () => false,
+  );
+  const [isVisible, setIsVisible] = useState(() => !dismissed);
 
   const handleDismiss = () => {
     setIsVisible(false);
@@ -35,7 +37,7 @@ const Banner = ({ url = "/book-a-call/" }: { url?: string }) => {
       <div className="container flex flex-col items-center justify-between gap-3 py-3 pr-12 sm:flex-row">
         <div className="flex flex-1 flex-col items-center gap-2 text-center sm:flex-row sm:justify-center sm:gap-4">
           <span className="text-sm font-medium text-white">
-            🇨🇦 Roughly 1M Canadian households renewing in 2026 — are you getting the best rate?
+            🇨🇦 Roughly 1M Canadian households renewing in 2026: are you getting the best rate?
           </span>
           <div className="flex flex-wrap items-center justify-center gap-2">
             <Button size="sm" variant="translucent" asChild>
@@ -55,7 +57,7 @@ const Banner = ({ url = "/book-a-call/" }: { url?: string }) => {
             </a>
           </div>
         </div>
-        <button
+        <button type="button"
           onClick={handleDismiss}
           className={cn(
             "absolute right-4 top-1/2 -translate-y-1/2 rounded-sm p-1.5",

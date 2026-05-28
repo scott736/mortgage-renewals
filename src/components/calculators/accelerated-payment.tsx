@@ -24,18 +24,20 @@ function _fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -63,7 +65,7 @@ function BrokerCTA({ message }: { message: string }) {
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
@@ -138,20 +140,20 @@ export function AcceleratedPayment() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Interest Rate</Label>
-          <Input value={rate} onChange={setRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="interest-rate">Interest Rate</Label>
+          <Input id="interest-rate" aria-label="Interest Rate" value={rate} onChange={setRate} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={5} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={setAmortYears} min={5} max={30} step={1} suffix="yrs" />
         </div>
         <div>
-          <Label>Your Current Schedule</Label>
-          <select
+          <Label htmlFor="your-current-schedule">Your Current Schedule</Label>
+          <select id="your-current-schedule" aria-label="Your Current Schedule"
             value={currentFreq}
             onChange={e => setCurrentFreq(e.target.value as CurrentFreq)}
             className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
@@ -189,7 +191,7 @@ export function AcceleratedPayment() {
                   <td className="p-3">{fmt(s.payment * s.periodsPerYear)}</td>
                   <td className="p-3">{s.years.toFixed(1)} yrs</td>
                   <td className="p-3">{fmt(s.totalInterest)}</td>
-                  <td className="p-3">{savedVsMonthly > 0 ? <span className="text-secondary-200 font-medium">saves {fmt(savedVsMonthly)}</span> : '—'}</td>
+                  <td className="p-3">{savedVsMonthly > 0 ? <span className="text-secondary-200 font-medium">saves {fmt(savedVsMonthly)}</span> : 'N/A'}</td>
                 </tr>
               );
             })}
@@ -204,7 +206,7 @@ export function AcceleratedPayment() {
       </div>
 
       <div className="rounded-xl bg-gray-25 border border-gray-100 p-4 text-body-sm text-muted-foreground mb-6">
-        <strong className="text-foreground">How acceleration works:</strong> "Accelerated" bi-weekly simply means your monthly payment ÷ 2, paid every two weeks. You make 26 payments a year instead of 24 — one extra monthly payment annually, all applied to principal. No fancy math, no extra rate discount — just slightly more money hitting principal each year.
+        <strong className="text-foreground">How acceleration works:</strong> "Accelerated" bi-weekly simply means your monthly payment ÷ 2, paid every two weeks. You make 26 payments a year instead of 24, one extra monthly payment annually, all applied to principal. No fancy math, no extra rate discount, just slightly more money hitting principal each year.
       </div>
 
       <BrokerCTA message={interestSaved > 0

@@ -31,23 +31,23 @@ function pageId(slug: string, suffix: string) {
   return `${pageUrl(slug)}#${suffix}`;
 }
 
-export interface BreadcrumbItem {
+interface BreadcrumbItem {
   name: string;
   url: string;
 }
 
-export interface FAQItem {
+interface FAQItem {
   question: string;
   answer: string;
 }
 
-export interface HowToStep {
+interface HowToStep {
   name: string;
   text: string;
   url?: string;
 }
 
-export interface AuthorPerson {
+interface AuthorPerson {
   name: string;
   jobTitle?: string;
   url?: string;
@@ -55,7 +55,7 @@ export interface AuthorPerson {
   knowsAbout?: string[];
 }
 
-export interface ArticleOptions {
+interface ArticleOptions {
   headline: string;
   description: string;
   slug: string;
@@ -72,7 +72,7 @@ export interface ArticleOptions {
   inLanguage?: string;
 }
 
-export interface HowToOptions {
+interface HowToOptions {
   name: string;
   description: string;
   steps: HowToStep[];
@@ -81,7 +81,7 @@ export interface HowToOptions {
   estimatedCost?: { currency: string; value: string };
 }
 
-export interface WebApplicationOptions {
+interface WebApplicationOptions {
   name: string;
   description: string;
   slug: string;
@@ -90,7 +90,7 @@ export interface WebApplicationOptions {
   features?: string[];
 }
 
-export interface ServiceOptions {
+interface ServiceOptions {
   name: string;
   description: string;
   slug: string;
@@ -353,45 +353,4 @@ export function definedTermSetSchema(opts: {
  */
 export function combineSchemas(...schemas: Record<string, unknown>[]) {
   return JSON.stringify(schemas.filter(Boolean));
-}
-
-// Backwards-compat shim for legacy `speakableSchema(slug)` calls. Emits a
-// WebPage node with the same canonical @id used by webPageNode() so that
-// articleSchema's `mainEntityOfPage` reference still resolves. Intentionally
-// omits `name` — passing the slug as a placeholder is worse than leaving the
-// field unset (parsers can fall back to the linked Article headline).
-// New code should call webPageNode() directly with a real name + description.
-export function speakableSchema(slug: string, cssSelectors?: string[]) {
-  return {
-    "@type": "WebPage",
-    "@id": pageId(slug, "webpage"),
-    url: pageUrl(slug),
-    isPartOf: { "@id": SITE_ID },
-    inLanguage: "en-CA",
-    speakable: {
-      "@type": "SpeakableSpecification",
-      cssSelector: cssSelectors || [
-        "h1",
-        "[data-speakable]",
-        "article > p:first-of-type",
-        ".key-takeaways",
-      ],
-    },
-  };
-}
-
-// Legacy alias retained so historical FinancialProduct usage on index.astro
-// continues to work, but maps to the more accurate Service schema.
-export function financialGuideSchema(opts: {
-  name: string;
-  description: string;
-  slug: string;
-  about?: string;
-}) {
-  return serviceSchema({
-    name: opts.name,
-    description: opts.description,
-    slug: opts.slug,
-    serviceType: opts.about || "Mortgage Renewal Education",
-  });
 }

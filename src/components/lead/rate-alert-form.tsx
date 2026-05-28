@@ -12,6 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useFormState } from "@/hooks/use-form-state";
 import { trackLeadEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -36,21 +37,24 @@ type RateAlertFormProps = {
 };
 
 export default function RateAlertForm({ className }: RateAlertFormProps) {
-  const [email, setEmail] = React.useState("");
-  const [targetRate, setTargetRate] = React.useState("");
-  const [term, setTerm] = React.useState("5-year fixed");
-  const [province, setProvince] = React.useState("");
-  const [status, setStatus] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = React.useState("");
+  const [state, setState] = useFormState({
+    email: "",
+    targetRate: "",
+    term: "5-year fixed",
+    province: "",
+    status: "idle" as "idle" | "submitting" | "success" | "error",
+    errorMsg: "",
+  });
+  const { email, targetRate, term, province, status, errorMsg } = state;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setErrorMsg("");
+    setState({ errorMsg: "" });
 
-    setStatus("submitting");
+    setState({ status: "submitting" });
     try {
       const message = [
-        "Rate alert signup — please notify when a broker-negotiated rate hits my target.",
+        "Rate alert signup, please notify when a broker-negotiated rate hits my target.",
         targetRate ? `Target rate: ${targetRate}%` : null,
         `Preferred term: ${term}`,
         province ? `Province: ${province}` : null,
@@ -75,15 +79,13 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
       });
       const body = (await res.json().catch(() => ({}))) as { success?: boolean; error?: string };
       if (!res.ok || !body.success) {
-        setStatus("error");
-        setErrorMsg(body.error || "Could not sign up. Try booking a free call.");
+        setState({ status: "error", errorMsg: body.error || "Could not sign up. Try booking a free call." });
         return;
       }
-      setStatus("success");
+      setState({ status: "success" });
       trackLeadEvent("rate_alert_submit", { term });
     } catch {
-      setStatus("error");
-      setErrorMsg("Network error. Please try again.");
+      setState({ status: "error", errorMsg: "Network error. Please try again." });
     }
   }
 
@@ -92,7 +94,7 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
       <div className={cn("rounded-2xl border border-secondary-50 bg-secondary-25 p-6", className)}>
         <p className="text-body-md-medium text-secondary-200 mb-2">You&apos;re on the list</p>
         <p className="text-body-sm text-muted-foreground mb-4">
-          A licensed broker will reach out when broker-channel rates match your target — or book a call now to lock a rate hold.
+          A licensed broker will reach out when broker-channel rates match your target, or book a call now to lock a rate hold.
         </p>
         <Button asChild className="w-full">
           <a href="/book-a-call/">Book Free Rate Strategy Call</a>
@@ -109,7 +111,7 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
       <div>
         <h2 className="text-heading-4 font-bold mb-1">Get a broker rate alert</h2>
         <p className="text-body-sm text-muted-foreground">
-          Tell us your target once — we&apos;ll email when a broker-negotiated rate hits it (not posted bank rates).
+          Tell us your target once, we&apos;ll email when a broker-negotiated rate hits it (not posted bank rates).
         </p>
       </div>
 
@@ -120,7 +122,7 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
           type="email"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setState({ email: e.target.value })}
           placeholder="you@email.com"
         />
       </div>
@@ -133,13 +135,13 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
             type="text"
             inputMode="decimal"
             value={targetRate}
-            onChange={(e) => setTargetRate(e.target.value)}
+            onChange={(e) => setState({ targetRate: e.target.value })}
             placeholder="e.g. 4.25"
           />
         </div>
         <div className="space-y-2">
           <Label htmlFor="ra-term">Term</Label>
-          <Select value={term} onValueChange={setTerm}>
+          <Select value={term} onValueChange={(v) => setState({ term: v })}>
             <SelectTrigger id="ra-term">
               <SelectValue />
             </SelectTrigger>
@@ -156,7 +158,7 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
 
       <div className="space-y-2">
         <Label htmlFor="ra-province">Province (optional)</Label>
-        <Select value={province || undefined} onValueChange={setProvince}>
+        <Select value={province || undefined} onValueChange={(v) => setState({ province: v })}>
           <SelectTrigger id="ra-province">
             <SelectValue placeholder="Select province" />
           </SelectTrigger>

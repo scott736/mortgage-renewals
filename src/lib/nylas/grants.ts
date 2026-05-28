@@ -12,7 +12,3 @@ export async function enrichTeamMember(member: TeamMember): Promise<TeamMember> 
 export async function enrichTeamMembers(members: TeamMember[]): Promise<TeamMember[]> {
   return members;
 }
-
-export function invalidateGrantCache(_teamMemberId?: string): void {
-  // no-op — config-based, no cache needed
-}

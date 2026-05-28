@@ -151,32 +151,14 @@ export function getTeamMemberById(id: string): TeamMember | undefined {
   return teamMembers.find((member) => member.id === id);
 }
 
-export function getTeamMemberBySlug(slug: string): TeamMember | undefined {
-  return teamMembers.find((member) => member.slug === slug);
-}
-
-export function getTeamMemberByEmail(email: string): TeamMember | undefined {
-  return teamMembers.find((member) => member.email.toLowerCase() === email.toLowerCase());
-}
-
 export function getServiceById(id: string): Service | undefined {
   return services.find((service) => service.id === id);
-}
-
-export function getServicesByTeamMember(teamMemberId: string): Service[] {
-  return services.filter((service) => service.teamMembers.includes(teamMemberId));
 }
 
 export function getTeamMembersByService(serviceId: string): TeamMember[] {
   const service = getServiceById(serviceId);
   if (!service) return [];
   return teamMembers.filter((member) => service.teamMembers.includes(member.id));
-}
-
-export function getActiveTeamMembers(): TeamMember[] {
-  return teamMembers.filter(
-    (member) => member.nylasGrantId || (member.nylasGrants && member.nylasGrants.length > 0)
-  );
 }
 
 // ============================================================================

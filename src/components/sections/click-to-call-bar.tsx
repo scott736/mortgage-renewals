@@ -1,22 +1,25 @@
 "use client";
 
 import { Phone } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 
 import { BUSINESS } from "@/consts";
 import { trackCtaClick } from "@/lib/analytics";
 import { businessHoursLabel, isBusinessHours } from "@/lib/business-hours";
 import { cn } from "@/lib/utils";
 
+function subscribeBusinessHours(onStoreChange: () => void) {
+  const id = window.setInterval(onStoreChange, 60_000);
+  return () => window.clearInterval(id);
+}
+
 export default function ClickToCallBar() {
   const [open, setOpen] = useState(false);
-  const [duringHours, setDuringHours] = useState(false);
-
-  useEffect(() => {
-    setDuringHours(isBusinessHours());
-    const id = window.setInterval(() => setDuringHours(isBusinessHours()), 60_000);
-    return () => window.clearInterval(id);
-  }, []);
+  const duringHours = useSyncExternalStore(
+    subscribeBusinessHours,
+    isBusinessHours,
+    () => false,
+  );
 
   if (!duringHours) return null;
 
@@ -36,12 +39,12 @@ export default function ClickToCallBar() {
       </button>
 
       {open && (
-        <div
+        <dialog
+          open
           className={cn(
-            "fixed bottom-36 right-4 z-50 w-[min(calc(100vw-2rem),280px)] rounded-xl border bg-background p-4 shadow-xl",
+            "fixed bottom-36 right-4 z-50 m-0 w-[min(calc(100vw-2rem),280px)] max-w-none rounded-xl border bg-background p-4 shadow-xl",
             "lg:bottom-24",
           )}
-          role="dialog"
           aria-label="Call options"
         >
           <p className="text-body-sm font-semibold mb-1">Prefer to talk now?</p>
@@ -63,7 +66,7 @@ export default function ClickToCallBar() {
           >
             Or book a callback →
           </a>
-        </div>
+        </dialog>
       )}
     </>
   );

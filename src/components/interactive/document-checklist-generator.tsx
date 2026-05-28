@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useSyncExternalStore } from "react";
 
 type IncomeType = "salaried" | "self_employed" | "rental";
 type LenderPath = "same" | "switch";
@@ -38,11 +38,11 @@ function buildChecklist(a: Answers): ChecklistItem[] {
   });
   items.push({
     category: "Identification",
-    text: "Secondary ID (credit card, health card with photo, or utility bill) — FINTRAC dual-ID rule",
+    text: "Secondary ID (credit card, health card with photo, or utility bill), FINTRAC dual-ID rule",
   });
   items.push({
     category: "Identification",
-    text: "Social Insurance Number (SIN) — required for credit bureau pull",
+    text: "Social Insurance Number (SIN), required for credit bureau pull",
   });
 
   // Income — depends on income type
@@ -54,12 +54,12 @@ function buildChecklist(a: Answers): ChecklistItem[] {
     });
     items.push({
       category: "Income Verification",
-      text: "Employment letter on company letterhead — stating position, start date, salary/hourly rate, and employment status (permanent full-time)",
+      text: "Employment letter on company letterhead, stating position, start date, salary/hourly rate, and employment status (permanent full-time)",
       note: "Dated within last 30 days. Must include HR or direct supervisor signature and phone number for verification.",
     });
     items.push({
       category: "Income Verification",
-      text: "Most recent Notice of Assessment (NOA) from CRA — current tax year",
+      text: "Most recent Notice of Assessment (NOA) from CRA, current tax year",
     });
     items.push({
       category: "Income Verification",
@@ -73,20 +73,20 @@ function buildChecklist(a: Answers): ChecklistItem[] {
     });
     items.push({
       category: "Income Verification",
-      text: "Two most recent years of CRA Notices of Assessment (NOAs) — showing no balance owing",
+      text: "Two most recent years of CRA Notices of Assessment (NOAs), showing no balance owing",
       note: "If you owe CRA, have proof of payment plan or full payment before submitting.",
     });
     items.push({
       category: "Income Verification",
-      text: "T2125 (Statement of Business or Professional Activities) — two years, if sole proprietor",
+      text: "T2125 (Statement of Business or Professional Activities), two years, if sole proprietor",
     });
     items.push({
       category: "Income Verification",
-      text: "Business financial statements — two years (prepared by accountant if incorporated)",
+      text: "Business financial statements, two years (prepared by accountant if incorporated)",
     });
     items.push({
       category: "Income Verification",
-      text: "Articles of incorporation / GST registration / business licence — proof business has been active 2+ years",
+      text: "Articles of incorporation / GST registration / business licence, proof business has been active 2+ years",
     });
     items.push({
       category: "Income Verification",
@@ -119,7 +119,7 @@ function buildChecklist(a: Answers): ChecklistItem[] {
   // Property & title — always
   items.push({
     category: "Property & Title",
-    text: "Most recent property tax bill — showing current-year assessment and payment status",
+    text: "Most recent property tax bill, showing current-year assessment and payment status",
   });
   items.push({
     category: "Property & Title",
@@ -127,17 +127,17 @@ function buildChecklist(a: Answers): ChecklistItem[] {
   });
   items.push({
     category: "Property & Title",
-    text: "Property insurance policy — declarations page showing coverage, lender as loss payee",
+    text: "Property insurance policy, declarations page showing coverage, lender as loss payee",
   });
   if (a.lenderPath === "switch") {
     items.push({
       category: "Property & Title",
       text: "Current lender's payout / discharge statement (broker or lawyer will request)",
-      note: "Required to register the new mortgage — triggered 30–45 days before close.",
+      note: "Required to register the new mortgage, triggered 30–45 days before close.",
     });
     items.push({
       category: "Property & Title",
-      text: "Appraisal — new lender may waive for insured switches but typically orders one for conventional",
+      text: "Appraisal, new lender may waive for insured switches but typically orders one for conventional",
     });
   }
   if (a.investmentProperty === "yes") {
@@ -163,7 +163,7 @@ function buildChecklist(a: Answers): ChecklistItem[] {
   if (a.helocOrSecond === "yes") {
     items.push({
       category: "Liabilities & Credit",
-      text: "HELOC or second mortgage statement — current balance, limit, interest rate, and payment",
+      text: "HELOC or second mortgage statement, current balance, limit, interest rate, and payment",
       note: "Critical for TDS ratio calculation. HELOC is stress-tested at contract rate + 2% even if balance is zero.",
     });
     items.push({
@@ -186,7 +186,7 @@ function buildChecklist(a: Answers): ChecklistItem[] {
   // Insurance
   items.push({
     category: "Insurance",
-    text: "Home insurance binder or renewal — valid through the closing date with new lender listed as loss payee",
+    text: "Home insurance binder or renewal, valid through the closing date with new lender listed as loss payee",
   });
   if (a.investmentProperty === "yes") {
     items.push({
@@ -208,7 +208,7 @@ function buildChecklist(a: Answers): ChecklistItem[] {
   } else {
     items.push({
       category: "Lender-Specific",
-      text: "Void cheque or pre-authorized debit (PAD) form — for payment setup at new lender",
+      text: "Void cheque or pre-authorized debit (PAD) form, for payment setup at new lender",
     });
     items.push({
       category: "Lender-Specific",
@@ -228,7 +228,16 @@ const CATEGORY_ORDER: Category[] = [
   "Lender-Specific",
 ];
 
+function useGeneratedDateLabel() {
+  return useSyncExternalStore(
+    () => () => {},
+    () => new Date().toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" }),
+    () => "",
+  );
+}
+
 export default function DocumentChecklistGenerator() {
+  const generatedDate = useGeneratedDateLabel();
   const [answers, setAnswers] = useState<Answers>({});
   const [submitted, setSubmitted] = useState(false);
   const [copyMsg, setCopyMsg] = useState("");
@@ -283,13 +292,13 @@ export default function DocumentChecklistGenerator() {
         ...items.map((i) => `[ ] ${i.text}${i.note ? `\n    Note: ${i.note}` : ""}`),
       ];
     }).join("\n");
-    const header = `MortgageRenewalHub.ca — Personalised Renewal Document Checklist\nGenerated: ${new Date().toLocaleDateString("en-CA")}\n`;
+    const header = `MortgageRenewalHub.ca, Personalised Renewal Document Checklist\nGenerated: ${new Date().toLocaleDateString("en-CA")}\n`;
     try {
       await navigator.clipboard.writeText(header + text);
       setCopyMsg("Copied to clipboard.");
       setTimeout(() => setCopyMsg(""), 2500);
     } catch {
-      setCopyMsg("Copy failed — please select and copy manually.");
+      setCopyMsg("Copy failed, please select and copy manually.");
     }
   }
 
@@ -339,7 +348,7 @@ export default function DocumentChecklistGenerator() {
               </div>
             </Field>
 
-            <button
+            <button type="button"
               onClick={handleGenerate}
               disabled={!canGenerate()}
               className="w-full rounded-lg bg-primary-100 text-white font-semibold py-3 hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
@@ -360,19 +369,19 @@ export default function DocumentChecklistGenerator() {
           <div className="flex flex-wrap items-center justify-between gap-3 mb-6 print:hidden">
             <h2 className="text-heading-4 font-bold">Your Personalised Checklist</h2>
             <div className="flex gap-2 text-body-sm">
-              <button
+              <button type="button"
                 onClick={handlePrint}
                 className="rounded-lg border border-gray-200 bg-white px-3 py-2 font-medium hover:bg-gray-25 transition-colors"
               >
                 Print
               </button>
-              <button
+              <button type="button"
                 onClick={handleCopy}
                 className="rounded-lg border border-gray-200 bg-white px-3 py-2 font-medium hover:bg-gray-25 transition-colors"
               >
                 Copy
               </button>
-              <button
+              <button type="button"
                 onClick={handleReset}
                 className="rounded-lg border border-gray-200 bg-white px-3 py-2 font-medium hover:bg-gray-25 transition-colors"
               >
@@ -385,8 +394,7 @@ export default function DocumentChecklistGenerator() {
           )}
 
           <p className="text-body-xs text-muted-foreground mb-4 print:text-body-sm">
-            Generated {new Date().toLocaleDateString("en-CA", { year: "numeric", month: "long", day: "numeric" })} ·
-            MortgageRenewalHub.ca
+            Generated {generatedDate} · MortgageRenewalHub.ca
           </p>
 
           <div className="space-y-6">
@@ -397,11 +405,11 @@ export default function DocumentChecklistGenerator() {
                 <div key={cat} className="rounded-xl border border-gray-100 p-5 print:border-gray-300 print:break-inside-avoid">
                   <h3 className="font-semibold mb-3 text-secondary-200">{cat}</h3>
                   <ul className="space-y-2">
-                    {items.map((item, i) => (
-                      <li key={i} className="flex gap-3 text-body-sm">
+                    {items.map((item) => (
+                      <li key={item.text} className="flex gap-3 text-body-sm">
                         <input
                           type="checkbox"
-                          className="mt-1 h-4 w-4 flex-shrink-0 rounded border-gray-300"
+                          className="mt-1 size-4 flex-shrink-0 rounded border-gray-300"
                           aria-label={item.text}
                         />
                         <div>
@@ -455,7 +463,7 @@ function Choice({
   children: React.ReactNode;
 }) {
   return (
-    <button
+    <button type="button"
       onClick={onClick}
       className={`w-full rounded-lg border px-4 py-3 text-body-sm-medium transition-colors text-left ${
         active

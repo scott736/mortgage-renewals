@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import TrackedBrokerLink from '@/components/lead/tracked-broker-link';
@@ -28,18 +28,20 @@ function fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -73,7 +75,7 @@ function BrokerCTA({
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <TrackedBrokerLink
         location="calculator_broker_cta"
@@ -103,10 +105,10 @@ export function RateComparison() {
   const [balance, setBalance] = useState(500000);
   const [amortYears, setAmortYears] = useState(25);
   const [scenarios, setScenarios] = useState<Scenario[]>([
-    { id: 1, name: 'Scenario A — Bank renewal offer', rate: 4.89, termYears: 5, upfrontCosts: 0 },
-    { id: 2, name: 'Scenario B — Broker switch', rate: 4.19, termYears: 5, upfrontCosts: 550 },
-    { id: 3, name: 'Scenario C — 3-yr fixed', rate: 3.99, termYears: 3, upfrontCosts: 550 },
-    { id: 4, name: 'Scenario D — Variable', rate: 4.59, termYears: 5, upfrontCosts: 550 },
+    { id: 1, name: 'Scenario A, Bank renewal offer', rate: 4.89, termYears: 5, upfrontCosts: 0 },
+    { id: 2, name: 'Scenario B, Broker switch', rate: 4.19, termYears: 5, upfrontCosts: 550 },
+    { id: 3, name: 'Scenario C, 3-yr fixed', rate: 3.99, termYears: 3, upfrontCosts: 550 },
+    { id: 4, name: 'Scenario D, Variable', rate: 4.59, termYears: 5, upfrontCosts: 550 },
   ]);
 
   function updateScenario(id: number, field: keyof Scenario, value: number | string) {
@@ -140,14 +142,11 @@ export function RateComparison() {
   });
 
   // Rank by total cost net of equity build
-  const ranked = [...results].sort((a, b) => a.totalCostNetOfBalance - b.totalCostNetOfBalance);
+  const ranked = [...results].toSorted((a, b) => a.totalCostNetOfBalance - b.totalCostNetOfBalance);
   const winner = ranked[0];
 
-  const calcSummary = useMemo(
-    () =>
-      `Balance $${balance.toLocaleString('en-CA')}, ${amortYears}-yr amort. Cheapest: ${winner.name} at ${fmtPct(winner.rate)} — ${fmt(winner.interestPaid + winner.upfrontCosts)} interest+upfront over ${winner.termYears}yr term.`,
-    [balance, amortYears, winner],
-  );
+  const calcSummary =
+    `Balance $${balance.toLocaleString('en-CA')}, ${amortYears}-yr amort. Cheapest: ${winner.name} at ${fmtPct(winner.rate)}, ${fmt(winner.interestPaid + winner.upfrontCosts)} interest+upfront over ${winner.termYears}yr term.`;
 
   useEffect(() => {
     saveCalculatorContext({
@@ -169,12 +168,12 @@ export function RateComparison() {
 
       <div className="grid sm:grid-cols-2 gap-4 mb-6">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={5} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={setAmortYears} min={5} max={30} step={1} suffix="yrs" />
         </div>
       </div>
 
@@ -185,6 +184,8 @@ export function RateComparison() {
               <div className="sm:col-span-2">
                 <div className="text-body-xs text-muted-foreground mb-1">Name / Lender</div>
                 <input
+                  id={`scenario-name-${s.id}`}
+                  aria-label="Name / Lender"
                   type="text"
                   value={s.name}
                   onChange={e => updateScenario(s.id, 'name', e.target.value)}
@@ -193,15 +194,15 @@ export function RateComparison() {
               </div>
               <div>
                 <div className="text-body-xs text-muted-foreground mb-1">Rate</div>
-                <Input value={s.rate} onChange={v => updateScenario(s.id, 'rate', v)} min={0.5} max={15} step={0.05} suffix="%" />
+                <Input id="rate" aria-label="Rate" value={s.rate} onChange={v => updateScenario(s.id, 'rate', v)} min={0.5} max={15} step={0.05} suffix="%" />
               </div>
               <div>
                 <div className="text-body-xs text-muted-foreground mb-1">Term</div>
-                <Input value={s.termYears} onChange={v => updateScenario(s.id, 'termYears', v)} min={1} max={10} step={1} suffix="yrs" />
+                <Input id="term" aria-label="Term" value={s.termYears} onChange={v => updateScenario(s.id, 'termYears', v)} min={1} max={10} step={1} suffix="yrs" />
               </div>
               <div>
                 <div className="text-body-xs text-muted-foreground mb-1">Upfront Costs</div>
-                <Input value={s.upfrontCosts} onChange={v => updateScenario(s.id, 'upfrontCosts', v)} min={0} max={50000} step={50} prefix="$" />
+                <Input id="upfront-costs" aria-label="Upfront Costs" value={s.upfrontCosts} onChange={v => updateScenario(s.id, 'upfrontCosts', v)} min={0} max={50000} step={50} prefix="$" />
               </div>
             </div>
           </div>
@@ -245,7 +246,7 @@ export function RateComparison() {
       </div>
 
       <div className="rounded-xl bg-gray-25 border border-gray-100 p-4 text-body-sm text-muted-foreground mb-6">
-        <strong className="text-foreground">Why terms matter:</strong> A 3-year fixed at 3.99% looks cheaper than a 5-year at 4.19%, but you face renewal risk in 3 years. If rates jump to 6% by then, your 5-year scenario wins overall. This calculator only compares the term you enter — it doesn't forecast renewal rates. Talk to a broker for a full rate-cycle strategy.
+        <strong className="text-foreground">Why terms matter:</strong> A 3-year fixed at 3.99% looks cheaper than a 5-year at 4.19%, but you face renewal risk in 3 years. If rates jump to 6% by then, your 5-year scenario wins overall. This calculator only compares the term you enter, it doesn't forecast renewal rates. Talk to a broker for a full rate-cycle strategy.
       </div>
 
       <BrokerCTA

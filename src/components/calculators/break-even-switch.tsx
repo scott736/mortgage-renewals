@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import TrackedBrokerLink from '@/components/lead/tracked-broker-link';
+import { useFormState } from '@/hooks/use-form-state';
 import { saveCalculatorContext } from '@/lib/calculator-context';
 
 // ============================================================================
@@ -28,18 +29,20 @@ function _fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -73,7 +76,7 @@ function BrokerCTA({
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <TrackedBrokerLink
         location="calculator_broker_cta"
@@ -93,15 +96,18 @@ function BrokerCTA({
 //    compares against remaining months at current rate.
 // ============================================================================
 export function BreakEvenSwitch() {
-  const [balance, setBalance] = useState(450000);
-  const [monthsRemaining, setMonthsRemaining] = useState(24);
-  const [currentRate, setCurrentRate] = useState(5.49);
-  const [newRate, setNewRate] = useState(4.19);
-  const [amortYears, setAmortYears] = useState(22);
-  const [penalty, setPenalty] = useState(6000);
-  const [legalFee, setLegalFee] = useState(0);
-  const [dischargeFee, setDischargeFee] = useState(325);
-  const [appraisalFee, setAppraisalFee] = useState(0);
+  const [state, setState] = useFormState({
+    balance: 450000,
+    monthsRemaining: 24,
+    currentRate: 5.49,
+    newRate: 4.19,
+    amortYears: 22,
+    penalty: 6000,
+    legalFee: 0,
+    dischargeFee: 325,
+    appraisalFee: 0,
+  });
+  const { balance, monthsRemaining, currentRate, newRate, amortYears, penalty, legalFee, dischargeFee, appraisalFee } = state;
 
   const amortMonths = amortYears * 12;
   const currentPmt = monthlyPayment(balance, currentRate, amortMonths);
@@ -115,16 +121,13 @@ export function BreakEvenSwitch() {
 
   const switchNow = netRemainingTerm > 0;
   const verdict = switchNow
-    ? `Switch now — you'll recover costs in ${breakEvenMonths} months and save ${fmt(netRemainingTerm)} over the remaining ${monthsRemaining} months.`
+    ? `Switch now, you'll recover costs in ${breakEvenMonths} months and save ${fmt(netRemainingTerm)} over the remaining ${monthsRemaining} months.`
     : breakEvenMonths > monthsRemaining
-      ? `Wait for renewal — break-even of ${breakEvenMonths} months is longer than your ${monthsRemaining} months remaining.`
-      : `Close call — switching costs roughly match the savings. Wait unless rates look set to rise further.`;
+      ? `Wait for renewal, break-even of ${breakEvenMonths} months is longer than your ${monthsRemaining} months remaining.`
+      : `Close call, switching costs roughly match the savings. Wait unless rates look set to rise further.`;
 
-  const calcSummary = useMemo(
-    () =>
-      `${verdict} Balance ${fmt(balance)}, ${currentRate}% → ${newRate}%, switching costs ${fmt(totalCosts)}, net ${fmt(netRemainingTerm)} over ${monthsRemaining} mo.`,
-    [verdict, balance, currentRate, newRate, totalCosts, netRemainingTerm, monthsRemaining],
-  );
+  const calcSummary =
+    `${verdict} Balance ${fmt(balance)}, ${currentRate}% → ${newRate}%, switching costs ${fmt(totalCosts)}, net ${fmt(netRemainingTerm)} over ${monthsRemaining} mo.`;
 
   useEffect(() => {
     saveCalculatorContext({
@@ -150,28 +153,28 @@ export function BreakEvenSwitch() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Months Remaining</Label>
-          <Input value={monthsRemaining} onChange={setMonthsRemaining} min={1} max={60} step={1} suffix="mo" />
+          <Label htmlFor="months-remaining">Months Remaining</Label>
+          <Input id="months-remaining" aria-label="Months Remaining" value={monthsRemaining} onChange={(v) => setState({ monthsRemaining: v })} min={1} max={60} step={1} suffix="mo" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={1} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={1} max={30} step={1} suffix="yrs" />
         </div>
         <div>
-          <Label>Current Rate</Label>
-          <Input value={currentRate} onChange={setCurrentRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="current-rate">Current Rate</Label>
+          <Input id="current-rate" aria-label="Current Rate" value={currentRate} onChange={(v) => setState({ currentRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>New Lender Rate</Label>
-          <Input value={newRate} onChange={setNewRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="new-lender-rate">New Lender Rate</Label>
+          <Input id="new-lender-rate" aria-label="New Lender Rate" value={newRate} onChange={(v) => setState({ newRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Penalty to Break</Label>
-          <Input value={penalty} onChange={setPenalty} min={0} max={200000} step={500} prefix="$" />
+          <Label htmlFor="penalty-to-break">Penalty to Break</Label>
+          <Input id="penalty-to-break" aria-label="Penalty to Break" value={penalty} onChange={(v) => setState({ penalty: v })} min={0} max={200000} step={500} prefix="$" />
         </div>
       </div>
 
@@ -180,15 +183,15 @@ export function BreakEvenSwitch() {
         <div className="grid sm:grid-cols-3 gap-3 mt-1">
           <div>
             <div className="text-body-xs text-muted-foreground mb-1">Legal Fee</div>
-            <Input value={legalFee} onChange={setLegalFee} min={0} max={3000} step={25} prefix="$" />
+            <Input id="legal-fee" aria-label="Legal Fee" value={legalFee} onChange={(v) => setState({ legalFee: v })} min={0} max={3000} step={25} prefix="$" />
           </div>
           <div>
             <div className="text-body-xs text-muted-foreground mb-1">Discharge Fee</div>
-            <Input value={dischargeFee} onChange={setDischargeFee} min={0} max={2000} step={25} prefix="$" />
+            <Input id="discharge-fee" aria-label="Discharge Fee" value={dischargeFee} onChange={(v) => setState({ dischargeFee: v })} min={0} max={2000} step={25} prefix="$" />
           </div>
           <div>
             <div className="text-body-xs text-muted-foreground mb-1">Appraisal</div>
-            <Input value={appraisalFee} onChange={setAppraisalFee} min={0} max={1500} step={25} prefix="$" />
+            <Input id="appraisal" aria-label="Appraisal" value={appraisalFee} onChange={(v) => setState({ appraisalFee: v })} min={0} max={1500} step={25} prefix="$" />
           </div>
         </div>
       </div>
@@ -196,7 +199,7 @@ export function BreakEvenSwitch() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <ResultCard label="Monthly Saving" value={fmt(monthlySaving)} highlight />
         <ResultCard label="Total Switching Cost" value={fmt(totalCosts)} sublabel="Penalty + legal + discharge + appraisal" />
-        <ResultCard label="Break-Even" value={breakEvenMonths === Infinity ? '—' : `${breakEvenMonths} mo`} highlight sublabel={breakEvenMonths === Infinity ? 'No savings' : `~${(breakEvenMonths / 12).toFixed(1)} years`} />
+        <ResultCard label="Break-Even" value={breakEvenMonths === Infinity ? 'N/A' : `${breakEvenMonths} mo`} highlight sublabel={breakEvenMonths === Infinity ? 'No savings' : `~${(breakEvenMonths / 12).toFixed(1)} years`} />
         <ResultCard label="Net Saving (Remaining Term)" value={fmt(netRemainingTerm)} highlight sublabel={`Over ${monthsRemaining} months`} />
       </div>
 

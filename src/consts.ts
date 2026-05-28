@@ -1,8 +1,8 @@
 /** Inbound lead notifications — matches LendCity satellite-site routing. */
 export const LEAD_INBOX = ['scott@lendcity.ca', 'aya@lendcity.ca'] as const;
 
-export const SITE_TITLE = "MortgageRenewalHub.ca — Canada's Mortgage Renewal Resource";
-export const SITE_DESCRIPTION =
+const SITE_TITLE = "MortgageRenewalHub.ca — Canada's Mortgage Renewal Resource";
+const SITE_DESCRIPTION =
   "Canada's most comprehensive mortgage renewal resource. Compare rates, use our free calculators, and get expert guidance to save thousands at renewal.";
 
 export const BUSINESS = {

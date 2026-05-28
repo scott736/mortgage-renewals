@@ -1,6 +1,6 @@
-export const CALCULATOR_CONTEXT_KEY = "mrh_calculator_context";
+const CALCULATOR_CONTEXT_KEY = "mrh_calculator_context";
 
-export interface CalculatorContext {
+interface CalculatorContext {
   tool: string;
   page?: string;
   summary: string;

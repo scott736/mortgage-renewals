@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useFormState } from '@/hooks/use-form-state';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding
@@ -24,18 +26,20 @@ function fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -63,7 +67,7 @@ function BrokerCTA({ message }: { message: string }) {
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
@@ -79,14 +83,17 @@ function BrokerCTA({ message }: { message: string }) {
 //    exceed insured (39/44) or uninsured (typically 35/42) thresholds.
 // ============================================================================
 export function AffordabilityRequalification() {
-  const [income, setIncome] = useState(140000);
-  const [monthlyDebts, setMonthlyDebts] = useState(650);
-  const [propertyTax, setPropertyTax] = useState(5200);
-  const [heat, setHeat] = useState(1800);
-  const [condoFees, setCondoFees] = useState(0);
-  const [contractRate, setContractRate] = useState(4.29);
-  const [amortYears, setAmortYears] = useState(25);
-  const [proposedMortgage, setProposedMortgage] = useState(550000);
+  const [state, setState] = useFormState({
+    income: 140000,
+    monthlyDebts: 650,
+    propertyTax: 5200,
+    heat: 1800,
+    condoFees: 0,
+    contractRate: 4.29,
+    amortYears: 25,
+    proposedMortgage: 550000,
+  });
+  const { income, monthlyDebts, propertyTax, heat, condoFees, contractRate, amortYears, proposedMortgage } = state;
 
   const qualifyingRate = Math.max(contractRate + 2, 5.25);
   const monthlyIncome = income / 12;
@@ -131,36 +138,36 @@ export function AffordabilityRequalification() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <div>
-          <Label>Gross Annual Income</Label>
-          <Input value={income} onChange={setIncome} min={20000} max={2000000} step={5000} prefix="$" />
+          <Label htmlFor="gross-annual-income">Gross Annual Income</Label>
+          <Input id="gross-annual-income" aria-label="Gross Annual Income" value={income} onChange={(v) => setState({ income: v })} min={20000} max={2000000} step={5000} prefix="$" />
         </div>
         <div>
-          <Label>Monthly Debts</Label>
-          <Input value={monthlyDebts} onChange={setMonthlyDebts} min={0} max={10000} step={50} prefix="$" />
+          <Label htmlFor="monthly-debts">Monthly Debts</Label>
+          <Input id="monthly-debts" aria-label="Monthly Debts" value={monthlyDebts} onChange={(v) => setState({ monthlyDebts: v })} min={0} max={10000} step={50} prefix="$" />
         </div>
         <div>
-          <Label>Annual Property Tax</Label>
-          <Input value={propertyTax} onChange={setPropertyTax} min={0} max={30000} step={100} prefix="$" />
+          <Label htmlFor="annual-property-tax">Annual Property Tax</Label>
+          <Input id="annual-property-tax" aria-label="Annual Property Tax" value={propertyTax} onChange={(v) => setState({ propertyTax: v })} min={0} max={30000} step={100} prefix="$" />
         </div>
         <div>
-          <Label>Annual Heating</Label>
-          <Input value={heat} onChange={setHeat} min={0} max={10000} step={100} prefix="$" />
+          <Label htmlFor="annual-heating">Annual Heating</Label>
+          <Input id="annual-heating" aria-label="Annual Heating" value={heat} onChange={(v) => setState({ heat: v })} min={0} max={10000} step={100} prefix="$" />
         </div>
         <div>
-          <Label>Monthly Condo Fees</Label>
-          <Input value={condoFees} onChange={setCondoFees} min={0} max={3000} step={25} prefix="$" />
+          <Label htmlFor="monthly-condo-fees">Monthly Condo Fees</Label>
+          <Input id="monthly-condo-fees" aria-label="Monthly Condo Fees" value={condoFees} onChange={(v) => setState({ condoFees: v })} min={0} max={3000} step={25} prefix="$" />
         </div>
         <div>
-          <Label>Contract Rate</Label>
-          <Input value={contractRate} onChange={setContractRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="contract-rate">Contract Rate</Label>
+          <Input id="contract-rate" aria-label="Contract Rate" value={contractRate} onChange={(v) => setState({ contractRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Amortization</Label>
-          <Input value={amortYears} onChange={setAmortYears} min={5} max={30} step={1} suffix="yrs" />
+          <Label htmlFor="amortization">Amortization</Label>
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={5} max={30} step={1} suffix="yrs" />
         </div>
         <div>
-          <Label>Proposed Mortgage</Label>
-          <Input value={proposedMortgage} onChange={setProposedMortgage} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="proposed-mortgage">Proposed Mortgage</Label>
+          <Input id="proposed-mortgage" aria-label="Proposed Mortgage" value={proposedMortgage} onChange={(v) => setState({ proposedMortgage: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
       </div>
 

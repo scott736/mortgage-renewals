@@ -1,6 +1,8 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
+
+import { useFormState } from "@/hooks/use-form-state";
 
 const LENDERS = [
   { id: "", label: "— Select lender —" },
@@ -31,11 +33,14 @@ const PROVINCES = [
 type ChecklistItem = { text: string; href?: string };
 
 export default function MyRenewalPlan() {
-  const [step, setStep] = useState(0);
-  const [maturityDate, setMaturityDate] = useState("");
-  const [lender, setLender] = useState("");
-  const [balance, setBalance] = useState(450000);
-  const [province, setProvince] = useState("");
+  const [state, setState] = useFormState({
+    step: 0,
+    maturityDate: "",
+    lender: "",
+    balance: 450000,
+    province: "",
+  });
+  const { step, maturityDate, lender, balance, province } = state;
 
   const daysLeft = useMemo(() => {
     if (!maturityDate) return null;
@@ -103,9 +108,9 @@ export default function MyRenewalPlan() {
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-6 sm:p-8 shadow-sm">
       <div className="flex items-center gap-2 mb-6">
-        {[0, 1, 2].map((i) => (
+        {(['progress-0', 'progress-1', 'progress-2'] as const).map((id, i) => (
           <div
-            key={i}
+            key={id}
             className={`h-2 flex-1 rounded-full ${i <= step ? "bg-secondary-100" : "bg-gray-100"}`}
           />
         ))}
@@ -115,9 +120,11 @@ export default function MyRenewalPlan() {
         <div className="space-y-5">
           <h2 className="text-heading-4">When does your mortgage mature?</h2>
           <input
+            id="renewal-plan-maturity-date"
+            aria-label="Mortgage maturity date"
             type="date"
             value={maturityDate}
-            onChange={(e) => setMaturityDate(e.target.value)}
+            onChange={(e) => setState({ maturityDate: e.target.value })}
             className="w-full rounded-lg border border-gray-200 px-3 py-2.5"
           />
           {daysLeft != null && (
@@ -129,7 +136,7 @@ export default function MyRenewalPlan() {
           )}
           <button
             type="button"
-            onClick={() => setStep(1)}
+            onClick={() => setState({ step: 1 })}
             disabled={!maturityDate}
             className="w-full rounded-lg bg-primary-100 text-white py-3 font-semibold disabled:opacity-50"
           >
@@ -142,10 +149,12 @@ export default function MyRenewalPlan() {
         <div className="space-y-5">
           <h2 className="text-heading-4">Current lender & balance</h2>
           <div>
-            <label className="block text-body-sm-medium mb-1.5">Lender</label>
+            <label htmlFor="renewal-plan-lender" className="block text-body-sm-medium mb-1.5">Lender</label>
             <select
+              id="renewal-plan-lender"
+              aria-label="Lender"
               value={lender}
-              onChange={(e) => setLender(e.target.value)}
+              onChange={(e) => setState({ lender: e.target.value })}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5"
             >
               {LENDERS.map((l) => (
@@ -156,21 +165,25 @@ export default function MyRenewalPlan() {
             </select>
           </div>
           <div>
-            <label className="block text-body-sm-medium mb-1.5">Approximate balance ($)</label>
+            <label htmlFor="renewal-plan-balance" className="block text-body-sm-medium mb-1.5">Approximate balance ($)</label>
             <input
+              id="renewal-plan-balance"
+              aria-label="Approximate balance ($)"
               type="number"
               value={balance}
               min={50000}
               step={5000}
-              onChange={(e) => setBalance(Number(e.target.value))}
+              onChange={(e) => setState({ balance: Number(e.target.value) })}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5"
             />
           </div>
           <div>
-            <label className="block text-body-sm-medium mb-1.5">Province</label>
+            <label htmlFor="renewal-plan-province" className="block text-body-sm-medium mb-1.5">Province</label>
             <select
+              id="renewal-plan-province"
+              aria-label="Province"
               value={province}
-              onChange={(e) => setProvince(e.target.value)}
+              onChange={(e) => setState({ province: e.target.value })}
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5"
             >
               {PROVINCES.map((p) => (
@@ -181,12 +194,12 @@ export default function MyRenewalPlan() {
             </select>
           </div>
           <div className="flex gap-3">
-            <button type="button" onClick={() => setStep(0)} className="flex-1 rounded-lg border py-3 font-semibold">
+            <button type="button" onClick={() => setState({ step: 0 })} className="flex-1 rounded-lg border py-3 font-semibold">
               Back
             </button>
             <button
               type="button"
-              onClick={() => setStep(2)}
+              onClick={() => setState({ step: 2 })}
               disabled={!lender}
               className="flex-1 rounded-lg bg-primary-100 text-white py-3 font-semibold disabled:opacity-50"
             >
@@ -204,8 +217,8 @@ export default function MyRenewalPlan() {
             {lender ? ` with ${LENDERS.find((l) => l.id === lender)?.label}` : ""}.
           </p>
           <ul className="space-y-2 text-body-sm">
-            {checklist.map((item, i) => (
-              <li key={i} className="flex gap-2">
+            {checklist.map((item) => (
+              <li key={item.text} className="flex gap-2">
                 <span className="text-secondary-100">•</span>
                 {item.href ? (
                   <a href={item.href} className="text-secondary-100 hover:underline">
@@ -223,7 +236,7 @@ export default function MyRenewalPlan() {
           >
             Book free strategy call
           </a>
-          <button type="button" onClick={() => setStep(0)} className="w-full text-body-sm text-muted-foreground">
+          <button type="button" onClick={() => setState({ step: 0 })} className="w-full text-body-sm text-muted-foreground">
             Start over
           </button>
         </div>

@@ -63,12 +63,12 @@ export default function Footer() {
                 <a
                   href="https://lendcity.ca"
                   target="_blank"
-                  rel="noopener"
+                  rel="noopener noreferrer"
                   className="font-semibold text-white underline-offset-2 hover:underline"
                 >
                   {BUSINESS.licensing.operatingBrand}
                 </a>
-                {" "}— a licensed Canadian mortgage brokerage.
+                {", "}a licensed Canadian mortgage brokerage.
               </p>
               <div className="mt-4 space-y-2 text-sm">
                 <a

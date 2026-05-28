@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useFormState } from '@/hooks/use-form-state';
 
 // ============================================================================
 // Canadian mortgage math — semi-annual compounding
@@ -24,18 +26,20 @@ function _fmtPct(n: number): string {
 // ============================================================================
 // Shared UI
 // ============================================================================
-function Label({ children }: { children: React.ReactNode }) {
-  return <label className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
+function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
+  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
 }
 
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string;
+function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
+  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
 }) {
   return (
     <div className="relative flex items-center">
       {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
       <input
         type="number"
+        id={id}
+        aria-label={ariaLabel}
         value={value}
         min={min}
         max={max}
@@ -63,7 +67,7 @@ function BrokerCTA({ message }: { message: string }) {
     <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
       <div className="flex-1">
         <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes — for free.</p>
+        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
       </div>
       <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
         Book Free Call
@@ -79,12 +83,15 @@ function BrokerCTA({ message }: { message: string }) {
 //    market comparison rate) × months remaining / 12.
 // ============================================================================
 export function MortgagePenalty() {
-  const [balance, setBalance] = useState(450000);
-  const [contractRate, setContractRate] = useState(5.29);
-  const [monthsRemaining, setMonthsRemaining] = useState(30);
-  const [postedRate, setPostedRate] = useState(6.79);
-  const [marketRate, setMarketRate] = useState(4.29);
-  const [lenderType, setLenderType] = useState<'big6' | 'monoline'>('big6');
+  const [state, setState] = useFormState({
+    balance: 450000,
+    contractRate: 5.29,
+    monthsRemaining: 30,
+    postedRate: 6.79,
+    marketRate: 4.29,
+    lenderType: 'big6' as 'big6' | 'monoline',
+  });
+  const { balance, contractRate, monthsRemaining, postedRate, marketRate, lenderType } = state;
 
   // 3-month interest penalty
   const threeMonthPenalty = balance * effectiveMonthlyRate(contractRate) * 3;
@@ -111,30 +118,30 @@ export function MortgagePenalty() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
         <div>
-          <Label>Mortgage Balance</Label>
-          <Input value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
-          <Label>Contract Rate</Label>
-          <Input value={contractRate} onChange={setContractRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="contract-rate">Contract Rate</Label>
+          <Input id="contract-rate" aria-label="Contract Rate" value={contractRate} onChange={(v) => setState({ contractRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Months Remaining</Label>
-          <Input value={monthsRemaining} onChange={setMonthsRemaining} min={1} max={60} step={1} suffix="mo" />
+          <Label htmlFor="months-remaining">Months Remaining</Label>
+          <Input id="months-remaining" aria-label="Months Remaining" value={monthsRemaining} onChange={(v) => setState({ monthsRemaining: v })} min={1} max={60} step={1} suffix="mo" />
         </div>
         <div>
-          <Label>Original Posted Rate (for IRD)</Label>
-          <Input value={postedRate} onChange={setPostedRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="original-posted-rate-for-ird">Original Posted Rate (for IRD)</Label>
+          <Input id="original-posted-rate-for-ird" aria-label="Original Posted Rate (for IRD)" value={postedRate} onChange={(v) => setState({ postedRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Current Market Rate</Label>
-          <Input value={marketRate} onChange={setMarketRate} min={0.5} max={15} step={0.05} suffix="%" />
+          <Label htmlFor="current-market-rate">Current Market Rate</Label>
+          <Input id="current-market-rate" aria-label="Current Market Rate" value={marketRate} onChange={(v) => setState({ marketRate: v })} min={0.5} max={15} step={0.05} suffix="%" />
         </div>
         <div>
-          <Label>Lender Type</Label>
-          <select
+          <Label htmlFor="lender-type">Lender Type</Label>
+          <select id="lender-type" aria-label="Lender Type"
             value={lenderType}
-            onChange={e => setLenderType(e.target.value as 'big6' | 'monoline')}
+            onChange={e => setState({ lenderType: e.target.value as 'big6' | 'monoline' })}
             className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
           >
             <option value="big6">Big 6 Bank (posted-rate IRD)</option>
@@ -150,7 +157,7 @@ export function MortgagePenalty() {
       </div>
 
       <div className="rounded-xl bg-gray-25 border border-gray-100 p-5 text-body-sm text-muted-foreground mb-6">
-        <strong className="text-foreground">Why monolines charge less:</strong> Monoline lenders (First National, MCAP, RFA, CMLS, Strive, Equitable) use the fair 3-month interest method by default. Big 6 banks use "posted rate" IRD — a rate they rarely offer in practice — which creates an artificial gap that inflates the penalty. This is why switching to a monoline at renewal can save thousands if you break mid-term later.
+        <strong className="text-foreground">Why monolines charge less:</strong> Monoline lenders (First National, MCAP, RFA, CMLS, Strive, Equitable) use the fair 3-month interest method by default. Big 6 banks use "posted rate" IRD, a rate they rarely offer in practice, which creates an artificial gap that inflates the penalty. This is why switching to a monoline at renewal can save thousands if you break mid-term later.
       </div>
 
       <BrokerCTA message={`Your estimated penalty is ${fmt(applies)}. A broker can pull your exact payout from the lender and compare switch savings against the cost.`} />

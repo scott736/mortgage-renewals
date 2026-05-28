@@ -10,9 +10,9 @@
 // while hub pages (calculator hub, lender-types, renewal guide, best rates)
 // receive proportionally more inbound links.
 
-export type LinkMeta = { title: string; blurb: string };
+type LinkMeta = { title: string; blurb: string };
 
-export const LINK_META: Record<string, LinkMeta> = {
+const LINK_META: Record<string, LinkMeta> = {
   // Homepage & core
   "/": {
     title: "Mortgage Renewal Home",
@@ -546,7 +546,7 @@ export const LINK_META: Record<string, LinkMeta> = {
 
 // Per-page related links — 6 curated hrefs per slug.
 // Ordered by relevance (most topically adjacent first).
-export const RELATED: Record<string, string[]> = {
+const RELATED: Record<string, string[]> = {
   // ─── Homepage & core ──────────────────────────────────────────────
   "/": [
     "/mortgage-renewal-guide/",

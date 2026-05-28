@@ -481,7 +481,7 @@ const Navbar = () => {
                   Compare Rates
                 </a>
               </Button>
-              <button
+              <button type="button"
                 className="text-muted-foreground relative flex size-8 items-center justify-center xl:hidden"
                 onClick={() => {
                   if (isOpen) closeMobile();
@@ -502,12 +502,12 @@ const Navbar = () => {
       </div>
 
       {isOpen && (
-        <div
-          className="bg-background fixed inset-x-0 top-20 bottom-0 z-40 overflow-y-auto xl:hidden"
-          aria-modal="true"
-          role="dialog"
+        <dialog
+          open
+          className="bg-background fixed inset-x-0 top-20 bottom-0 z-40 m-0 h-auto max-h-none w-full max-w-none overflow-y-auto border-0 p-0 xl:hidden"
+          aria-label="Main menu"
         >
-          <div className="container px-6 py-6">
+          <div className="container p-6">
             {activeSubmenu ? (
               <>
                 <button
@@ -568,7 +568,7 @@ const Navbar = () => {
               </>
             )}
           </div>
-        </div>
+        </dialog>
       )}
     </header>
   );

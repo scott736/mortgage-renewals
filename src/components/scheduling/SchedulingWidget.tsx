@@ -1,9 +1,10 @@
 'use client';
 
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { useCallback,useEffect, useState } from 'react';
+import { type ReactNode,useCallback, useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { useFormState } from '@/hooks/use-form-state';
 import { trackLeadEvent } from '@/lib/analytics';
 import type {
   BookingConfirmation as BookingConfirmationType,
@@ -43,6 +44,101 @@ interface SchedulingWidgetProps {
 
 const STEPS: SchedulingStep[] = ['service', 'datetime', 'details', 'confirmation'];
 
+function resolveInitialService(
+  services: Service[],
+  initialServiceId?: string,
+): Service | null {
+  if (!initialServiceId) return null;
+  return services.find((s) => s.id === initialServiceId) ?? null;
+}
+
+function resolveInitialTeamMember(
+  service: Service | null,
+  teamMembers: TeamMember[],
+  initialTeamMemberId?: string,
+): TeamMember | null {
+  if (!service) return null;
+
+  const eligibleMembers = teamMembers.filter((m) => service.teamMembers.includes(m.id));
+
+  if (initialTeamMemberId) {
+    return teamMembers.find((m) => m.id === initialTeamMemberId) ?? null;
+  }
+
+  if (!service.roundRobin && eligibleMembers.length === 1) {
+    return eligibleMembers[0];
+  }
+
+  return null;
+}
+
+function SchedulingProgress({ currentStep }: { currentStep: SchedulingStep }) {
+  if (currentStep === 'confirmation') return null;
+
+  const steps = [
+    { id: 'service', label: 'Service' },
+    { id: 'datetime', label: 'Date & Time' },
+    { id: 'details', label: 'Details' },
+  ];
+
+  const getStepIndex = (step: SchedulingStep): number => STEPS.indexOf(step);
+
+  return (
+    <div className="mb-8">
+      <div className="flex items-center justify-center gap-2">
+        {steps.map((step, index) => {
+          const isActive = step.id === currentStep;
+          const isComplete = getStepIndex(currentStep) > index;
+
+          return (
+            <div key={step.id} className="flex items-center">
+              <div
+                className={cn(
+                  'flex size-8 items-center justify-center rounded-full text-sm font-medium',
+                  isActive && 'bg-primary text-primary-foreground',
+                  isComplete && 'bg-primary/20 text-primary',
+                  !isActive && !isComplete && 'bg-muted text-muted-foreground'
+                )}
+              >
+                {isComplete ? (
+                  <svg
+                    className="size-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  index + 1
+                )}
+              </div>
+              <span
+                className={cn(
+                  'ml-2 hidden text-sm sm:inline',
+                  isActive && 'font-medium text-foreground',
+                  !isActive && 'text-muted-foreground'
+                )}
+              >
+                {step.label}
+              </span>
+              {index < steps.length - 1 && (
+                <div
+                  className={cn(
+                    'mx-3 h-0.5 w-8 sm:w-12',
+                    isComplete ? 'bg-primary' : 'bg-muted'
+                  )}
+                />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export function SchedulingWidget({
   services,
   teamMembers,
@@ -52,12 +148,23 @@ export function SchedulingWidget({
   cancelToken,
   className,
 }: SchedulingWidgetProps) {
-  const [currentStep, setCurrentStep] = useState<SchedulingStep>('service');
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
-  const [selectedTeamMember, setSelectedTeamMember] = useState<TeamMember | null>(null);
-  const [selectedSlot, setSelectedSlot] = useState<TimeSlot | null>(null);
-  const [booking, setBooking] = useState<BookingConfirmationType | null>(null);
-  const [pendingBooking, setPendingBooking] = useState<PendingBookingInfo | null>(null);
+  const initialService = resolveInitialService(services, initialServiceId);
+  const initialMember = resolveInitialTeamMember(
+    initialService,
+    teamMembers,
+    initialTeamMemberId,
+  );
+
+  const [bookingState, setBookingState] = useFormState({
+    currentStep: (initialService ? 'datetime' : 'service') as SchedulingStep,
+    selectedService: initialService as Service | null,
+    selectedTeamMember: initialMember as TeamMember | null,
+    selectedSlot: null as TimeSlot | null,
+    booking: null as BookingConfirmationType | null,
+    pendingBooking: null as PendingBookingInfo | null,
+  });
+  const { currentStep, selectedService, selectedTeamMember, selectedSlot, booking, pendingBooking } = bookingState;
+
   const [timezone, _setTimezone] = useState(() => {
     try {
       return Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -66,30 +173,24 @@ export function SchedulingWidget({
     }
   });
 
-  // Handle initial values
-  useEffect(() => {
-    if (initialServiceId) {
-      const service = services.find((s) => s.id === initialServiceId);
-      if (service) {
-        setSelectedService(service);
-        // If there's only one team member for this service, auto-select them
-        const eligibleMembers = teamMembers.filter((m) =>
-          service.teamMembers.includes(m.id)
-        );
-        if (eligibleMembers.length === 1 || initialTeamMemberId) {
-          const member = initialTeamMemberId
-            ? teamMembers.find((m) => m.id === initialTeamMemberId)
-            : eligibleMembers[0];
-          if (member) {
-            setSelectedTeamMember(member);
-            setCurrentStep('datetime');
-          }
-        } else {
-          setCurrentStep('datetime');
-        }
-      }
-    }
-  }, [initialServiceId, initialTeamMemberId, services, teamMembers]);
+  const prevInitialIdsRef = useRef({
+    initialServiceId,
+    initialTeamMemberId,
+  });
+
+  if (
+    initialServiceId !== prevInitialIdsRef.current.initialServiceId ||
+    initialTeamMemberId !== prevInitialIdsRef.current.initialTeamMemberId
+  ) {
+    prevInitialIdsRef.current = { initialServiceId, initialTeamMemberId };
+    const service = resolveInitialService(services, initialServiceId);
+    setBookingState({
+      selectedService: service,
+      selectedTeamMember: resolveInitialTeamMember(service, teamMembers, initialTeamMemberId),
+      currentStep: service ? 'datetime' : 'service',
+      selectedSlot: null,
+    });
+  }
 
   const getStepIndex = (step: SchedulingStep): number => STEPS.indexOf(step);
 
@@ -104,7 +205,7 @@ export function SchedulingWidget({
       case 'datetime':
         return !!selectedSlot;
       case 'details':
-        return false; // Handled by form submission
+        return false;
       case 'confirmation':
         return false;
     }
@@ -114,54 +215,54 @@ export function SchedulingWidget({
     const currentIndex = getStepIndex(currentStep);
     if (currentIndex > 0) {
       const newStep = STEPS[currentIndex - 1];
-      setCurrentStep(newStep);
-      // Clear downstream selections
       if (newStep === 'service') {
-        setSelectedSlot(null);
-        setSelectedTeamMember(null);
+        setBookingState({ currentStep: newStep, selectedSlot: null, selectedTeamMember: null });
       } else if (newStep === 'datetime') {
-        setSelectedSlot(null);
+        setBookingState({ currentStep: newStep, selectedSlot: null });
+      } else {
+        setBookingState({ currentStep: newStep });
       }
     }
-  }, [currentStep]);
+  }, [currentStep, setBookingState]);
 
   const goNext = useCallback(() => {
     const currentIndex = getStepIndex(currentStep);
-    if (currentIndex < STEPS.length - 1 && canGoNext()) {
-      setCurrentStep(STEPS[currentIndex + 1]);
+    const canAdvance =
+      currentStep === 'service'
+        ? !!selectedService
+        : currentStep === 'datetime'
+          ? !!selectedSlot
+          : false;
+    if (currentIndex < STEPS.length - 1 && canAdvance) {
+      setBookingState({ currentStep: STEPS[currentIndex + 1] });
     }
-  }, [currentStep, selectedService, selectedSlot]);
+  }, [currentStep, selectedService, selectedSlot, setBookingState]);
 
   const handleServiceSelect = (service: Service | null) => {
-    setSelectedService(service);
-    // Reset downstream selections
-    setSelectedSlot(null);
-
     if (!service) {
-      setSelectedTeamMember(null);
+      setBookingState({ selectedService: null, selectedSlot: null, selectedTeamMember: null });
       return;
     }
 
-    // Pre-select team member if only one is available (for non-round-robin)
     const eligibleMembers = teamMembers.filter((m) =>
       service.teamMembers.includes(m.id)
     );
+    const nextTeamMember =
+      !service.roundRobin && eligibleMembers.length === 1 ? eligibleMembers[0] : null;
 
-    if (!service.roundRobin && eligibleMembers.length === 1) {
-      setSelectedTeamMember(eligibleMembers[0]);
-    } else {
-      setSelectedTeamMember(null);
-    }
-    // Don't auto-advance - user must click Continue
+    setBookingState({
+      selectedService: service,
+      selectedSlot: null,
+      selectedTeamMember: nextTeamMember,
+    });
   };
 
   const handleSlotSelect = (slot: TimeSlot) => {
-    setSelectedSlot(slot);
-    // Set the team member from the slot (for round-robin)
     const member = teamMembers.find((m) => m.id === slot.teamMemberId);
-    if (member) {
-      setSelectedTeamMember(member);
-    }
+    setBookingState({
+      selectedSlot: slot,
+      ...(member ? { selectedTeamMember: member } : {}),
+    });
   };
 
   const handleBookingSubmit = async (guestInfo: GuestInfo) => {
@@ -181,7 +282,6 @@ export function SchedulingWidget({
         guestPhone: guestInfo.phone,
         notes: guestInfo.notes,
         timezone,
-        // If changing time from a previous booking, include token to cancel it
         ...(cancelToken && { cancelToken }),
       }),
     });
@@ -189,7 +289,6 @@ export function SchedulingWidget({
     const data = await response.json();
 
     if (!data.success) {
-      // Provide a user-friendly message for rate limit errors
       if (response.status === 429) {
         throw new Error(
           data.error || 'Too many booking attempts. Please wait a few minutes and try again.'
@@ -203,19 +302,18 @@ export function SchedulingWidget({
       pending: data.requiresConfirmation ? 'true' : 'false',
     });
 
-    // Check if booking requires email confirmation
     if (data.requiresConfirmation) {
-      // Store pending booking info for display
-      setPendingBooking({
-        email: data.data.email,
-        expiresAt: new Date(data.data.expiresAt),
-        startTime: new Date(data.data.startTime),
+      setBookingState({
+        pendingBooking: {
+          email: data.data.email,
+          expiresAt: new Date(data.data.expiresAt),
+          startTime: new Date(data.data.startTime),
+        },
+        currentStep: 'confirmation',
       });
-      setCurrentStep('confirmation');
       return;
     }
 
-    // Immediate confirmation (fallback if confirmation not required)
     const confirmation: BookingConfirmationType = {
       id: data.data.id,
       service: selectedService,
@@ -226,103 +324,39 @@ export function SchedulingWidget({
       calendarLinks: data.data.calendarLinks,
     };
 
-    setBooking(confirmation);
-    setCurrentStep('confirmation');
+    setBookingState({ booking: confirmation, currentStep: 'confirmation' });
   };
 
   const handleBookAnother = () => {
-    setCurrentStep('service');
-    setSelectedService(null);
-    setSelectedTeamMember(null);
-    setSelectedSlot(null);
-    setBooking(null);
-    setPendingBooking(null);
+    setBookingState({
+      currentStep: 'service',
+      selectedService: null,
+      selectedTeamMember: null,
+      selectedSlot: null,
+      booking: null,
+      pendingBooking: null,
+    });
   };
 
-  // Render progress indicator
-  const renderProgress = () => {
-    if (currentStep === 'confirmation') return null;
+  let stepContent: ReactNode = null;
 
-    const steps = [
-      { id: 'service', label: 'Service' },
-      { id: 'datetime', label: 'Date & Time' },
-      { id: 'details', label: 'Details' },
-    ];
+  switch (currentStep) {
+    case 'service':
+      stepContent = (
+        <ServiceSelector
+          services={services}
+          teamMembers={teamMembers}
+          selectedService={selectedService}
+          onSelect={handleServiceSelect}
+          timezone={timezone}
+          initialRegion={initialRegion}
+        />
+      );
+      break;
 
-    return (
-      <div className="mb-8">
-        <div className="flex items-center justify-center gap-2">
-          {steps.map((step, index) => {
-            const isActive = step.id === currentStep;
-            const isComplete = getStepIndex(currentStep) > index;
-
-            return (
-              <div key={step.id} className="flex items-center">
-                <div
-                  className={cn(
-                    'flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium',
-                    isActive && 'bg-primary text-primary-foreground',
-                    isComplete && 'bg-primary/20 text-primary',
-                    !isActive && !isComplete && 'bg-muted text-muted-foreground'
-                  )}
-                >
-                  {isComplete ? (
-                    <svg
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  ) : (
-                    index + 1
-                  )}
-                </div>
-                <span
-                  className={cn(
-                    'ml-2 hidden text-sm sm:inline',
-                    isActive && 'font-medium text-foreground',
-                    !isActive && 'text-muted-foreground'
-                  )}
-                >
-                  {step.label}
-                </span>
-                {index < steps.length - 1 && (
-                  <div
-                    className={cn(
-                      'mx-3 h-0.5 w-8 sm:w-12',
-                      isComplete ? 'bg-primary' : 'bg-muted'
-                    )}
-                  />
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
-  // Render current step content
-  const renderStep = () => {
-    switch (currentStep) {
-      case 'service':
-        return (
-          <ServiceSelector
-            services={services}
-            teamMembers={teamMembers}
-            selectedService={selectedService}
-            onSelect={handleServiceSelect}
-            timezone={timezone}
-            initialRegion={initialRegion}
-          />
-        );
-
-      case 'datetime':
-        if (!selectedService) return null;
-        return (
+    case 'datetime':
+      if (selectedService) {
+        stepContent = (
           <AvailabilityPicker
             service={selectedService}
             teamMember={selectedService.roundRobin ? undefined : (selectedTeamMember || undefined)}
@@ -331,10 +365,12 @@ export function SchedulingWidget({
             timezone={timezone}
           />
         );
+      }
+      break;
 
-      case 'details':
-        if (!selectedService || !selectedTeamMember || !selectedSlot) return null;
-        return (
+    case 'details':
+      if (selectedService && selectedTeamMember && selectedSlot) {
+        stepContent = (
           <BookingForm
             service={selectedService}
             teamMember={selectedTeamMember}
@@ -344,54 +380,50 @@ export function SchedulingWidget({
             onBack={goBack}
           />
         );
+      }
+      break;
 
-      case 'confirmation':
-        // Show pending confirmation (check your email) or immediate confirmation
-        if (pendingBooking && selectedService && selectedTeamMember) {
-          return (
-            <PendingConfirmation
-              email={pendingBooking.email}
-              serviceName={selectedService.name}
-              teamMember={selectedTeamMember}
-              startTime={pendingBooking.startTime}
-              duration={selectedService.duration}
-              expiresAt={pendingBooking.expiresAt}
-              timezone={timezone}
-              onBookAnother={handleBookAnother}
-            />
-          );
-        }
-
-        if (booking) {
-          return (
-            <BookingConfirmation
-              booking={booking}
-              timezone={timezone}
-              onBookAnother={handleBookAnother}
-            />
-          );
-        }
-
-        return null;
-    }
-  };
+    case 'confirmation':
+      if (pendingBooking && selectedService && selectedTeamMember) {
+        stepContent = (
+          <PendingConfirmation
+            email={pendingBooking.email}
+            serviceName={selectedService.name}
+            teamMember={selectedTeamMember}
+            startTime={pendingBooking.startTime}
+            duration={selectedService.duration}
+            expiresAt={pendingBooking.expiresAt}
+            timezone={timezone}
+            onBookAnother={handleBookAnother}
+          />
+        );
+      } else if (booking) {
+        stepContent = (
+          <BookingConfirmation
+            booking={booking}
+            timezone={timezone}
+            onBookAnother={handleBookAnother}
+          />
+        );
+      }
+      break;
+  }
 
   return (
     <div className={cn('mx-auto max-w-5xl', className)}>
-      {renderProgress()}
+      <SchedulingProgress currentStep={currentStep} />
 
-      {renderStep()}
+      {stepContent}
 
-      {/* Navigation buttons (except for details/confirmation which handle their own) */}
       {currentStep !== 'details' && currentStep !== 'confirmation' && (
         <div className="mt-6 flex justify-between">
           <Button variant="outline" onClick={goBack} disabled={!canGoBack()}>
-            <ArrowLeft className="mr-2 h-4 w-4" />
+            <ArrowLeft className="mr-2 size-4" />
             Back
           </Button>
           <Button onClick={goNext} disabled={!canGoNext()}>
             Continue
-            <ArrowRight className="ml-2 h-4 w-4" />
+            <ArrowRight className="ml-2 size-4" />
           </Button>
         </div>
       )}

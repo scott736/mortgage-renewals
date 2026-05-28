@@ -81,7 +81,7 @@ export default function CalculatorLeadCapture({
     <div className={cn("rounded-xl border border-gray-100 bg-gray-25 p-5", className)}>
       <p className="text-body-sm-medium text-foreground mb-1">Email me these results</p>
       <p className="text-body-xs text-muted-foreground mb-3">
-        Get a copy of your comparison plus optional follow-up from a licensed broker — no spam.
+        Get a copy of your comparison plus optional follow-up from a licensed broker, no spam.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
         <Input
