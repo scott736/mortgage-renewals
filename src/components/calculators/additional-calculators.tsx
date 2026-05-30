@@ -1,89 +1,12 @@
 import React from 'react';
 
-import { useFormState } from '@/hooks/use-form-state';
+import { usePatchState } from '@/hooks/use-patch-state';
 
-// ============================================================================
-// Canadian mortgage math — semi-annual compounding (same as main calculators)
-// ============================================================================
-function effectiveMonthlyRate(annualRate: number): number {
-  return Math.pow(1 + annualRate / 200, 1 / 6) - 1;
-}
+import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
+import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
 
-function monthlyPayment(principal: number, annualRate: number, months: number): number {
-  if (annualRate === 0) return principal / months;
-  const r = effectiveMonthlyRate(annualRate);
-  return (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
-}
-
-function fmt(n: number): string {
-  return n.toLocaleString('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 });
-}
-
-function fmtPct(n: number): string {
-  return `${n.toFixed(2)}%`;
-}
-
-// ============================================================================
-// Shared UI
-// ============================================================================
-function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
-  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
-}
-
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
-}) {
-  return (
-    <div className="relative flex items-center">
-      {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
-      <input
-        type="number"
-        id={id}
-        aria-label={ariaLabel}
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        onChange={e => onChange(Number(e.target.value))}
-        className={`w-full rounded-lg border border-gray-200 bg-background py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100 ${prefix ? 'pl-8' : 'pl-3'} ${suffix ? 'pr-8' : 'pr-3'}`}
-      />
-      {suffix && <span className="absolute right-3 text-muted-foreground text-body-sm">{suffix}</span>}
-    </div>
-  );
-}
-
-function ResultCard({ label, value, highlight, sublabel }: { label: string; value: string; highlight?: boolean; sublabel?: string }) {
-  return (
-    <div className={`rounded-xl p-4 border ${highlight ? 'bg-secondary-25 border-secondary-50' : 'bg-gray-25 border-gray-100'}`}>
-      <div className="text-body-xs text-muted-foreground mb-1">{label}</div>
-      <div className={`text-2xl font-bold ${highlight ? 'text-secondary-200' : 'text-foreground'}`}>{value}</div>
-      {sublabel && <div className="text-body-xs text-muted-foreground mt-1">{sublabel}</div>}
-    </div>
-  );
-}
-
-function BrokerCTA({ message }: { message: string }) {
-  return (
-    <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-      <div className="flex-1">
-        <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
-      </div>
-      <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
-        Book Free Call
-      </a>
-    </div>
-  );
-}
-
-// ============================================================================
-// 1) Blend-and-Extend Calculator
-//    Blended rate is a weighted average: (remaining months × current rate +
-//    new term months × market rate) / total months. Canadian banks use this
-//    as an alternative to breaking the mortgage and paying a penalty.
-// ============================================================================
 export function BlendAndExtend() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     balance: 500000,
     currentRate: 5.25,
     marketRate: 4.19,
@@ -174,14 +97,8 @@ export function BlendAndExtend() {
   );
 }
 
-// ============================================================================
-// 2) Stress Test / Qualifying Rate Calculator
-//    OSFI B-20: uninsured mortgages at federally regulated lenders must
-//    qualify at the greater of contract rate + 2% or 5.25%. Since Nov 2024,
-//    this is waived for straight-switch renewals (no new money, same amort).
-// ============================================================================
 export function StressTestCalculator() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     income: 120000,
     otherDebts: 500,
     propertyTax: 5000,
@@ -298,13 +215,8 @@ function readLenderPresetFromUrl(): Partial<{
   return {};
 }
 
-// ============================================================================
-// 3) Switch-vs-Stay Break-Even Calculator
-//    Factors in real switching costs (discharge, legal, appraisal, title)
-//    and outputs break-even months plus 5-year net savings.
-// ============================================================================
 export function SwitchVsStay() {
-  const [state, setState] = useFormState(() => ({
+  const [state, setState] = usePatchState(() => ({
     balance: 500000,
     stayRate: 4.89,
     switchRate: 4.19,
@@ -412,13 +324,8 @@ export function SwitchVsStay() {
   );
 }
 
-// ============================================================================
-// 4) HELOC vs Refinance Calculator
-//    Compares a HELOC (revolving, prime-based, interest-only option) vs. a
-//    cash-out refinance (blended into mortgage, amortized, fixed rate).
-// ============================================================================
 export function HelocVsRefinance() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     mortgageBalance: 400000,
     mortgageRate: 4.29,
     amortYears: 25,
@@ -510,12 +417,8 @@ export function HelocVsRefinance() {
   );
 }
 
-// ============================================================================
-// 5) Payment Frequency Comparison Calculator
-//    Shows how accelerated bi-weekly/weekly payments shave years off a mortgage.
-// ============================================================================
 export function PaymentFrequencyCalculator() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     balance: 500000,
     rate: 4.29,
     amortYears: 25,

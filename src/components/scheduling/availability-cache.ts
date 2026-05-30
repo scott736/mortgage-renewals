@@ -20,17 +20,39 @@ type AvailabilityApiResponse = {
   data?: { days: DayAvailability[] };
 };
 
+type AvailabilityPrefetch = {
+  params: Omit<AvailabilityFetchParams, 'retryKey'>;
+  promise: Promise<AvailabilityApiResponse>;
+};
+
 declare global {
   interface Window {
-    __availabilityPrefetch?: Promise<AvailabilityApiResponse>;
+    __availabilityPrefetch?: AvailabilityPrefetch;
   }
 }
 
+const MAX_CACHE_ENTRIES = 20;
 const cache = new Map<string, Promise<AvailabilityLoadResult>>();
 
-function getCacheKey(params: AvailabilityFetchParams): string {
-  const { retryKey, ...rest } = params;
-  return `${retryKey}:${JSON.stringify(rest)}`;
+function getStableCacheKey(params: AvailabilityFetchParams): string {
+  const { retryKey: _retryKey, ...rest } = params;
+  return JSON.stringify(rest);
+}
+
+function trimCache(): void {
+  while (cache.size > MAX_CACHE_ENTRIES) {
+    const oldest = cache.keys().next().value;
+    if (oldest === undefined) break;
+    cache.delete(oldest);
+  }
+}
+
+function prefetchMatchesParams(
+  prefetch: AvailabilityPrefetch,
+  params: AvailabilityFetchParams,
+): boolean {
+  const { retryKey: _retryKey, ...rest } = params;
+  return JSON.stringify(prefetch.params) === JSON.stringify(rest);
 }
 
 async function loadAvailability(params: AvailabilityFetchParams): Promise<AvailabilityLoadResult> {
@@ -39,8 +61,10 @@ async function loadAvailability(params: AvailabilityFetchParams): Promise<Availa
 
     if (typeof window !== 'undefined') {
       const prefetch = window.__availabilityPrefetch;
-      if (prefetch) {
-        data = await prefetch;
+      if (prefetch && prefetchMatchesParams(prefetch, params)) {
+        data = await prefetch.promise;
+        delete window.__availabilityPrefetch;
+      } else if (prefetch) {
         delete window.__availabilityPrefetch;
       }
     }
@@ -79,7 +103,12 @@ async function loadAvailability(params: AvailabilityFetchParams): Promise<Availa
 }
 
 export function getAvailabilityPromise(params: AvailabilityFetchParams): Promise<AvailabilityLoadResult> {
-  const key = getCacheKey(params);
+  const key = getStableCacheKey(params);
+
+  if (params.retryKey > 0) {
+    cache.delete(key);
+  }
+
   const existing = cache.get(key);
   if (existing) {
     return existing;
@@ -87,6 +116,7 @@ export function getAvailabilityPromise(params: AvailabilityFetchParams): Promise
 
   const promise = loadAvailability(params);
   cache.set(key, promise);
+  trimCache();
   return promise;
 }
 

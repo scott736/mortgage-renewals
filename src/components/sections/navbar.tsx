@@ -2,6 +2,7 @@ import { ArrowLeft, ArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -465,6 +466,7 @@ const Navbar = () => {
             </NavigationMenuList>
 
             <div className="flex items-center gap-2.5">
+              <ThemeToggle />
               <Button size="sm" variant="secondary" className="hidden xl:inline-flex" asChild>
                 <a
                   href="/book-a-call/"

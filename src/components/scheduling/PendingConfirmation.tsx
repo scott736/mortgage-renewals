@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import type { TeamMember } from '@/lib/nylas/types';
 import { cn } from '@/lib/utils';
 
+import { formatDateInTimezone, formatDateTimeInTimezone, formatTimeFromDate } from './scheduling-format';
+
 interface PendingConfirmationProps {
   email: string;
   serviceName: string;
@@ -29,37 +31,6 @@ export function PendingConfirmation({
   onBookAnother,
   className,
 }: PendingConfirmationProps) {
-  const locale = 'en-CA';
-
-  const formatDate = (date: Date): string => {
-    return date.toLocaleDateString(locale, {
-      weekday: 'long',
-      month: 'long',
-      day: 'numeric',
-      timeZone: timezone,
-    });
-  };
-
-  const formatTime = (date: Date): string => {
-    return date.toLocaleTimeString(locale, {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: timezone,
-    });
-  };
-
-  const formatExpiry = (date: Date): string => {
-    return date.toLocaleString(locale, {
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: timezone,
-    });
-  };
-
   return (
     <div className={cn('rounded-2xl border bg-card overflow-hidden shadow-sm max-w-5xl mx-auto', className)}>
       <div className="flex flex-col lg:flex-row lg:divide-x divide-y lg:divide-y-0">
@@ -92,7 +63,7 @@ export function PendingConfirmation({
                   <Calendar className="size-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">{formatDate(startTime)}</p>
+                  <p className="font-medium">{formatDateInTimezone(startTime, timezone)}</p>
                   <p className="text-xs text-muted-foreground">Date</p>
                 </div>
               </div>
@@ -101,7 +72,7 @@ export function PendingConfirmation({
                   <Clock className="size-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">{formatTime(startTime)} · {duration} min</p>
+                  <p className="font-medium">{formatTimeFromDate(startTime, timezone)} · {duration} min</p>
                   <p className="text-xs text-muted-foreground">Time & Duration</p>
                 </div>
               </div>
@@ -157,7 +128,7 @@ export function PendingConfirmation({
           {/* Expiry Warning */}
           <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 p-4 mb-8">
             <p className="text-sm text-amber-800 dark:text-amber-200">
-              <strong>Important:</strong> Your confirmation link expires on {formatExpiry(expiresAt)}.{' '}
+              <strong>Important:</strong> Your confirmation link expires on {formatDateTimeInTimezone(expiresAt, timezone)}.{' '}
               If you don't confirm by then, you'll need to book again.
             </p>
           </div>

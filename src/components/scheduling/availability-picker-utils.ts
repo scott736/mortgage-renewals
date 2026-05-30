@@ -1,6 +1,8 @@
 import type { DayAvailability } from '@/lib/nylas/types';
 
-const AVAILABILITY_LOCALE = 'en-CA';
+import { formatTimeFromIso } from './scheduling-format';
+
+export { formatSelectedDate, formatShortDate } from './scheduling-format';
 
 export function getInitialMonth(): Date {
   const now = new Date();
@@ -28,31 +30,8 @@ export function getCalendarDays(currentMonth: Date): Date[] {
   return days;
 }
 
-export function formatSelectedDate(dateString: string): string {
-  return new Date(`${dateString}T12:00:00`).toLocaleDateString(AVAILABILITY_LOCALE, {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
-export function formatShortDate(dateString: string): string {
-  return new Date(`${dateString}T12:00:00`).toLocaleDateString(AVAILABILITY_LOCALE, {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-  });
-}
-
 export function formatTime(isoString: string, timezone: string): string {
-  return new Date(isoString)
-    .toLocaleTimeString(AVAILABILITY_LOCALE, {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: timezone,
-    })
-    .toLowerCase();
+  return formatTimeFromIso(isoString, timezone);
 }
 
 export function getAutoSelectedDate(

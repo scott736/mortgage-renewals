@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 
-import { useFormState } from "@/hooks/use-form-state";
+import { usePatchState } from "@/hooks/use-patch-state";
 
 const LENDERS = [
   { id: "", label: "— Select lender —" },
@@ -33,7 +33,7 @@ const PROVINCES = [
 type ChecklistItem = { text: string; href?: string };
 
 export default function MyRenewalPlan() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     step: 0,
     maturityDate: "",
     lender: "",

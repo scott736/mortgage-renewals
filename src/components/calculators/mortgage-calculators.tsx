@@ -1,85 +1,14 @@
 import React, { useState } from 'react';
 
-import { useFormState } from '@/hooks/use-form-state';
-
-// ============================================================================
-// Canadian mortgage math — semi-annual compounding
-// ============================================================================
-function effectiveMonthlyRate(annualRate: number): number {
-  return Math.pow(1 + annualRate / 200, 1 / 6) - 1;
-}
-
-function monthlyPayment(principal: number, annualRate: number, months: number): number {
-  if (annualRate === 0) return principal / months;
-  const r = effectiveMonthlyRate(annualRate);
-  return (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
-}
-
-function totalInterest(payment: number, months: number, principal: number): number {
-  return payment * months - principal;
-}
-
-function fmt(n: number): string {
-  return n.toLocaleString('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 });
-}
-
-// ============================================================================
-// Shared UI
-// ============================================================================
-function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
-  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
-}
-
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
-}) {
-  return (
-    <div className="relative flex items-center">
-      {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
-      <input
-        type="number"
-        id={id}
-        aria-label={ariaLabel}
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        onChange={e => onChange(Number(e.target.value))}
-        className={`w-full rounded-lg border border-gray-200 bg-background py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100 ${prefix ? 'pl-8' : 'pl-3'} ${suffix ? 'pr-8' : 'pr-3'}`}
-      />
-      {suffix && <span className="absolute right-3 text-muted-foreground text-body-sm">{suffix}</span>}
-    </div>
-  );
-}
-
-function ResultCard({ label, value, highlight }: { label: string; value: string; highlight?: boolean }) {
-  return (
-    <div className={`rounded-xl p-4 border ${highlight ? 'bg-secondary-25 border-secondary-50' : 'bg-gray-25 border-gray-100'}`}>
-      <div className="text-body-xs text-muted-foreground mb-1">{label}</div>
-      <div className={`text-2xl font-bold ${highlight ? 'text-secondary-200' : 'text-foreground'}`}>{value}</div>
-    </div>
-  );
-}
-
-function BrokerCTA({ message }: { message: string }) {
-  return (
-    <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-      <div className="flex-1">
-        <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
-      </div>
-      <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
-        Book Free Call
-      </a>
-    </div>
-  );
-}
+import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
+import { usePatchState } from '@/hooks/use-patch-state';
+import { effectiveMonthlyRate, fmt, monthlyPayment, totalInterest } from '@/lib/mortgage-math';
 
 // ============================================================================
 // Calculator 1: Renewal Payment Estimator
 // ============================================================================
 function PaymentEstimator() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     balance: 500000,
     rate: 4.5,
     amortYears: 20,
@@ -146,7 +75,7 @@ function PaymentEstimator() {
 // Calculator 2: Rate Comparison
 // ============================================================================
 function RateComparison() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     balance: 500000,
     bankRate: 5.0,
     brokerRate: 4.5,
@@ -212,7 +141,7 @@ function RateComparison() {
 // Calculator 3: Amortization Extension
 // ============================================================================
 function AmortizationExtension() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     balance: 500000,
     rate: 4.5,
     currentAmort: 20,
@@ -264,7 +193,7 @@ function AmortizationExtension() {
 // Calculator 4: Early Renewal Penalty Estimator
 // ============================================================================
 function PenaltyEstimator() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     balance: 500000,
     currentRate: 5.5,
     newRate: 4.5,
@@ -333,7 +262,7 @@ function PenaltyEstimator() {
 // Calculator 5: Debt Consolidation
 // ============================================================================
 function DebtConsolidation() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     mortgageBalance: 500000,
     mortgageRate: 4.5,
     amortYears: 20,

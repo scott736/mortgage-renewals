@@ -1,98 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
-import TrackedBrokerLink from '@/components/lead/tracked-broker-link';
 import { saveCalculatorContext } from '@/lib/calculator-context';
 
-// ============================================================================
-// Canadian mortgage math — semi-annual compounding
-// ============================================================================
-function effectiveMonthlyRate(annualRate: number): number {
-  return Math.pow(1 + annualRate / 200, 1 / 6) - 1;
-}
+import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
+import { usePatchState } from '@/hooks/use-patch-state';
+import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
 
-function monthlyPayment(principal: number, annualRate: number, months: number): number {
-  if (annualRate === 0) return principal / months;
-  const r = effectiveMonthlyRate(annualRate);
-  return (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
-}
-
-function fmt(n: number): string {
-  return n.toLocaleString('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 });
-}
-
-function fmtPct(n: number): string {
-  return `${n.toFixed(2)}%`;
-}
-
-// ============================================================================
-// Shared UI
-// ============================================================================
-function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
-  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
-}
-
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
-}) {
-  return (
-    <div className="relative flex items-center">
-      {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
-      <input
-        type="number"
-        id={id}
-        aria-label={ariaLabel}
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        onChange={e => onChange(Number(e.target.value))}
-        className={`w-full rounded-lg border border-gray-200 bg-background py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100 ${prefix ? 'pl-8' : 'pl-3'} ${suffix ? 'pr-8' : 'pr-3'}`}
-      />
-      {suffix && <span className="absolute right-3 text-muted-foreground text-body-sm">{suffix}</span>}
-    </div>
-  );
-}
-
-function ResultCard({ label, value, highlight, sublabel }: { label: string; value: string; highlight?: boolean; sublabel?: string }) {
-  return (
-    <div className={`rounded-xl p-4 border ${highlight ? 'bg-secondary-25 border-secondary-50' : 'bg-gray-25 border-gray-100'}`}>
-      <div className="text-body-xs text-muted-foreground mb-1">{label}</div>
-      <div className={`text-2xl font-bold ${highlight ? 'text-secondary-200' : 'text-foreground'}`}>{value}</div>
-      {sublabel && <div className="text-body-xs text-muted-foreground mt-1">{sublabel}</div>}
-    </div>
-  );
-}
-
-function BrokerCTA({
-  message,
-  calculatorContext,
-}: {
-  message: string;
-  calculatorContext?: { tool: string; summary: string; data?: Record<string, string | number | boolean> };
-}) {
-  return (
-    <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-      <div className="flex-1">
-        <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
-      </div>
-      <TrackedBrokerLink
-        location="calculator_broker_cta"
-        calculatorContext={calculatorContext}
-        className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity"
-      >
-        Book Free Call
-      </TrackedBrokerLink>
-    </div>
-  );
-}
-
-// ============================================================================
-// Rate Comparison Calculator (up to 4 scenarios)
-//    Calculates monthly payment, interest paid over term, end-of-term balance,
-//    total cost over term (payments + upfront costs), ranks cheapest.
-// ============================================================================
 interface Scenario {
   id: number;
   name: string;
@@ -101,18 +15,25 @@ interface Scenario {
   upfrontCosts: number;
 }
 
+const DEFAULT_SCENARIOS: Scenario[] = [
+  { id: 1, name: 'Scenario A, Bank renewal offer', rate: 4.89, termYears: 5, upfrontCosts: 0 },
+  { id: 2, name: 'Scenario B, Broker switch', rate: 4.19, termYears: 5, upfrontCosts: 550 },
+  { id: 3, name: 'Scenario C, 3-yr fixed', rate: 3.99, termYears: 3, upfrontCosts: 550 },
+  { id: 4, name: 'Scenario D, Variable', rate: 4.59, termYears: 5, upfrontCosts: 550 },
+];
+
 export function RateComparison() {
-  const [balance, setBalance] = useState(500000);
-  const [amortYears, setAmortYears] = useState(25);
-  const [scenarios, setScenarios] = useState<Scenario[]>([
-    { id: 1, name: 'Scenario A, Bank renewal offer', rate: 4.89, termYears: 5, upfrontCosts: 0 },
-    { id: 2, name: 'Scenario B, Broker switch', rate: 4.19, termYears: 5, upfrontCosts: 550 },
-    { id: 3, name: 'Scenario C, 3-yr fixed', rate: 3.99, termYears: 3, upfrontCosts: 550 },
-    { id: 4, name: 'Scenario D, Variable', rate: 4.59, termYears: 5, upfrontCosts: 550 },
-  ]);
+  const [state, setState] = usePatchState({
+    balance: 500000,
+    amortYears: 25,
+    scenarios: DEFAULT_SCENARIOS,
+  });
+  const { balance, amortYears, scenarios } = state;
 
   function updateScenario(id: number, field: keyof Scenario, value: number | string) {
-    setScenarios(scenarios.map(s => s.id === id ? { ...s, [field]: value } : s));
+    setState({
+      scenarios: scenarios.map((s) => (s.id === id ? { ...s, [field]: value } : s)),
+    });
   }
 
   const amortMonths = amortYears * 12;
@@ -169,11 +90,11 @@ export function RateComparison() {
       <div className="grid sm:grid-cols-2 gap-4 mb-6">
         <div>
           <Label htmlFor="mortgage-balance">Mortgage Balance</Label>
-          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={setBalance} min={50000} max={5000000} step={10000} prefix="$" />
+          <Input id="mortgage-balance" aria-label="Mortgage Balance" value={balance} onChange={(v) => setState({ balance: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
         <div>
           <Label htmlFor="amortization">Amortization</Label>
-          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={setAmortYears} min={5} max={30} step={1} suffix="yrs" />
+          <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={5} max={30} step={1} suffix="yrs" />
         </div>
       </div>
 

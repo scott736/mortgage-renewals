@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 
-export function useFormState<T extends Record<string, unknown>>(initial: T | (() => T)) {
+export function usePatchState<T extends Record<string, unknown>>(initial: T | (() => T)) {
   return useReducer(
     (state: T, patch: Partial<T>) => ({ ...state, ...patch }),
     initial,

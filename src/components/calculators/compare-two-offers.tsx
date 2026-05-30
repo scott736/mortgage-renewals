@@ -1,68 +1,12 @@
 import React from "react";
 
-import { useFormState } from "@/hooks/use-form-state";
-
-function effectiveMonthlyRate(annualRate: number): number {
-  return Math.pow(1 + annualRate / 200, 1 / 6) - 1;
-}
-
-function monthlyPayment(principal: number, annualRate: number, months: number): number {
-  if (annualRate === 0) return principal / months;
-  const r = effectiveMonthlyRate(annualRate);
-  return (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
-}
-
-function fmt(n: number): string {
-  return n.toLocaleString("en-CA", { style: "currency", currency: "CAD", maximumFractionDigits: 0 });
-}
-
-function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
-  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
-}
-
-function Input({
-  value,
-  onChange,
-  min = 0,
-  max,
-  step = 1,
-  prefix,
-  suffix,
-  id,
-  'aria-label': ariaLabel,
-}: {
-  value: number;
-  onChange: (v: number) => void;
-  min?: number;
-  max?: number;
-  step?: number;
-  prefix?: string;
-  suffix?: string;
-  id?: string;
-  'aria-label'?: string;
-}) {
-  return (
-    <div className="relative flex items-center">
-      {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
-      <input
-        type="number"
-        id={id}
-        aria-label={ariaLabel}
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        onChange={(e) => onChange(Number(e.target.value))}
-        className={`w-full rounded-lg border border-gray-200 bg-background py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100 ${prefix ? "pl-8" : "pl-3"} ${suffix ? "pr-8" : "pr-3"}`}
-      />
-      {suffix && <span className="absolute right-3 text-muted-foreground text-body-sm">{suffix}</span>}
-    </div>
-  );
-}
+import { Input, Label } from '@/components/calculators/calculator-ui';
+import { usePatchState } from '@/hooks/use-patch-state';
+import { fmt, monthlyPayment } from '@/lib/mortgage-math';
 
 /** Compare two renewal offers: 5-year interest savings vs one-time switch costs */
 export function CompareTwoOffers() {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     balance: 500000,
     amortYears: 22,
     rateA: 4.89,

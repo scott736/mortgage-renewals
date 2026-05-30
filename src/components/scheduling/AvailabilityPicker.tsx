@@ -3,7 +3,7 @@
 import { Suspense, use, useMemo, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { useFormState } from '@/hooks/use-form-state';
+import { usePatchState } from '@/hooks/use-patch-state';
 import type { Service, TeamMember, TimeSlot } from '@/lib/nylas/types';
 import { cn } from '@/lib/utils';
 
@@ -21,6 +21,7 @@ import {
   getCalendarDays,
   getInitialMonth,
 } from './availability-picker-utils';
+import { formatCalendarDate } from './scheduling-format';
 
 interface AvailabilityPickerProps {
   service: Service;
@@ -71,15 +72,17 @@ function AvailabilityPickerLoaded({
 }
 
 export function AvailabilityPicker(props: AvailabilityPickerProps) {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     selectedDate: null as string | null,
     currentMonth: getInitialMonth(),
   });
   const [retryNonce, setRetryNonce] = useState(0);
 
   const calendarDays = useMemo(() => getCalendarDays(state.currentMonth), [state.currentMonth]);
-  const calendarStart = calendarDays[0]?.toISOString().split('T')[0] ?? '';
-  const calendarEnd = calendarDays[calendarDays.length - 1]?.toISOString().split('T')[0] ?? '';
+  const calendarStart = calendarDays[0] ? formatCalendarDate(calendarDays[0], props.timezone) : '';
+  const calendarEnd = calendarDays[calendarDays.length - 1]
+    ? formatCalendarDate(calendarDays[calendarDays.length - 1], props.timezone)
+    : '';
   const today = new Date().toLocaleDateString('en-CA', { timeZone: props.timezone });
 
   const fetchParams = useMemo<AvailabilityFetchParams>(

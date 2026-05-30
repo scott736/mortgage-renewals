@@ -3,6 +3,8 @@ import { Calendar, Clock, Phone, Video } from 'lucide-react';
 import type { MeetingType, Service, TeamMember, TimeSlot } from '@/lib/nylas/types';
 import { cn } from '@/lib/utils';
 
+import { formatIsoDateInTimezone, formatTimeFromIso } from './scheduling-format';
+
 const MEETING_TYPE_OPTIONS = [
   { type: 'phone' as MeetingType, label: 'Phone Call' },
   { type: 'teams' as MeetingType, label: 'Microsoft Teams' },
@@ -15,26 +17,6 @@ interface BookingFormSummaryProps {
   timezone: string;
   selectedMeetingType?: MeetingType;
   onMeetingTypeChange?: (type: MeetingType) => void;
-}
-
-function formatDate(isoString: string, timezone: string): string {
-  return new Date(isoString).toLocaleDateString('en-CA', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    timeZone: timezone,
-  });
-}
-
-function formatTime(isoString: string, timezone: string): string {
-  return new Date(isoString)
-    .toLocaleTimeString('en-CA', {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: timezone,
-    })
-    .toLowerCase();
 }
 
 export function BookingFormSummary({
@@ -77,7 +59,7 @@ export function BookingFormSummary({
               <Calendar className="size-5 text-primary" />
             </div>
             <div>
-              <p className="font-medium">{formatDate(selectedSlot.startTime, timezone)}</p>
+              <p className="font-medium">{formatIsoDateInTimezone(selectedSlot.startTime, timezone)}</p>
               <p className="text-xs text-muted-foreground">Date</p>
             </div>
           </div>
@@ -87,7 +69,7 @@ export function BookingFormSummary({
             </div>
             <div>
               <p className="font-medium">
-                {formatTime(selectedSlot.startTime, timezone)} · {service.duration} minutes
+                {formatTimeFromIso(selectedSlot.startTime, timezone)} · {service.duration} minutes
               </p>
               <p className="text-xs text-muted-foreground">Duration</p>
             </div>
@@ -105,6 +87,8 @@ export function BookingFormSummary({
                 <button
                   key={option.type}
                   type="button"
+                  aria-pressed={isSelected}
+                  aria-label={`${option.label} meeting format`}
                   onClick={() => onMeetingTypeChange?.(option.type)}
                   className={cn(
                     'flex flex-col items-center gap-2 rounded-md border-2 p-3 text-center',

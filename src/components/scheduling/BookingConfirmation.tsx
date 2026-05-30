@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import type { BookingConfirmation as BookingConfirmationType } from '@/lib/nylas/types';
 import { cn } from '@/lib/utils';
 
+import { formatDateInTimezone, formatTimeFromDate } from './scheduling-format';
+
 interface BookingConfirmationProps {
   booking: BookingConfirmationType;
   timezone: string;
@@ -19,26 +21,6 @@ export function BookingConfirmation({
   onBookAnother,
   className,
 }: BookingConfirmationProps) {
-  const locale = 'en-CA';
-
-  const formatDate = (date: Date): string => {
-    return date.toLocaleDateString(locale, {
-      weekday: 'long',
-      month: 'long',
-      day: 'numeric',
-      timeZone: timezone,
-    });
-  };
-
-  const formatTime = (date: Date): string => {
-    return date.toLocaleTimeString(locale, {
-      hour: 'numeric',
-      minute: '2-digit',
-      hour12: true,
-      timeZone: timezone,
-    });
-  };
-
   return (
     <div className={cn('rounded-2xl border bg-card overflow-hidden shadow-sm max-w-5xl mx-auto', className)}>
       <div className="flex flex-col lg:flex-row lg:divide-x divide-y lg:divide-y-0">
@@ -71,7 +53,7 @@ export function BookingConfirmation({
                   <Calendar className="size-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">{formatDate(booking.startTime)}</p>
+                  <p className="font-medium">{formatDateInTimezone(booking.startTime, timezone)}</p>
                   <p className="text-xs text-muted-foreground">Date</p>
                 </div>
               </div>
@@ -80,7 +62,7 @@ export function BookingConfirmation({
                   <Clock className="size-5 text-primary" />
                 </div>
                 <div>
-                  <p className="font-medium">{formatTime(booking.startTime)} · {booking.service.duration} min</p>
+                  <p className="font-medium">{formatTimeFromDate(booking.startTime, timezone)} · {booking.service.duration} min</p>
                   <p className="text-xs text-muted-foreground">Time & Duration</p>
                 </div>
               </div>

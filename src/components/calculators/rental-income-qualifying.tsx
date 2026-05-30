@@ -1,89 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-// ============================================================================
-// Canadian mortgage math — semi-annual compounding
-// ============================================================================
-function effectiveMonthlyRate(annualRate: number): number {
-  return Math.pow(1 + annualRate / 200, 1 / 6) - 1;
-}
+import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
+import { usePatchState } from '@/hooks/use-patch-state';
+import { fmt } from '@/lib/mortgage-math';
 
-function _monthlyPayment(principal: number, annualRate: number, months: number): number {
-  if (annualRate === 0) return principal / months;
-  const r = effectiveMonthlyRate(annualRate);
-  return (principal * r * Math.pow(1 + r, months)) / (Math.pow(1 + r, months) - 1);
-}
-
-function fmt(n: number): string {
-  return n.toLocaleString('en-CA', { style: 'currency', currency: 'CAD', maximumFractionDigits: 0 });
-}
-
-function _fmtPct(n: number): string {
-  return `${n.toFixed(2)}%`;
-}
-
-// ============================================================================
-// Shared UI
-// ============================================================================
-function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
-  return <label htmlFor={htmlFor} className="block text-body-sm-medium text-foreground mb-1">{children}</label>;
-}
-
-function Input({ value, onChange, min = 0, max, step = 1, prefix, suffix, id, 'aria-label': ariaLabel }: {
-  value: number; onChange: (v: number) => void; min?: number; max?: number; step?: number; prefix?: string; suffix?: string; id?: string; 'aria-label'?: string;
-}) {
-  return (
-    <div className="relative flex items-center">
-      {prefix && <span className="absolute left-3 text-muted-foreground text-body-sm">{prefix}</span>}
-      <input
-        type="number"
-        id={id}
-        aria-label={ariaLabel}
-        value={value}
-        min={min}
-        max={max}
-        step={step}
-        onChange={e => onChange(Number(e.target.value))}
-        className={`w-full rounded-lg border border-gray-200 bg-background py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100 ${prefix ? 'pl-8' : 'pl-3'} ${suffix ? 'pr-8' : 'pr-3'}`}
-      />
-      {suffix && <span className="absolute right-3 text-muted-foreground text-body-sm">{suffix}</span>}
-    </div>
-  );
-}
-
-function ResultCard({ label, value, highlight, sublabel }: { label: string; value: string; highlight?: boolean; sublabel?: string }) {
-  return (
-    <div className={`rounded-xl p-4 border ${highlight ? 'bg-secondary-25 border-secondary-50' : 'bg-gray-25 border-gray-100'}`}>
-      <div className="text-body-xs text-muted-foreground mb-1">{label}</div>
-      <div className={`text-2xl font-bold ${highlight ? 'text-secondary-200' : 'text-foreground'}`}>{value}</div>
-      {sublabel && <div className="text-body-xs text-muted-foreground mt-1">{sublabel}</div>}
-    </div>
-  );
-}
-
-function BrokerCTA({ message }: { message: string }) {
-  return (
-    <div className="mt-6 rounded-xl bg-primary-0 border border-primary-25 p-5 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-      <div className="flex-1">
-        <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">A broker will confirm this with real lender quotes, for free.</p>
-      </div>
-      <a href="/book-a-call/" className="flex-shrink-0 rounded-lg bg-primary-100 text-white px-5 py-2.5 text-body-sm-medium hover:opacity-90 transition-opacity">
-        Book Free Call
-      </a>
-    </div>
-  );
-}
-
-// ============================================================================
-// Rental Income Qualifying Calculator
-//    Shows how much rental income each Canadian lender method will credit
-//    toward mortgage qualification. Major methods: 50% add-back, 80% offset,
-//    DCR 1.10 (rental worksheet), DCR 1.00.
-// ============================================================================
 export function RentalIncomeQualifying() {
-  const [grossRent, setGrossRent] = useState(3200);
-  const [pith, setPith] = useState(2800); // P+I+T+H on the rental property
-  const [insured, setInsured] = useState(false);
+  const [state, setState] = usePatchState({
+    grossRent: 3200,
+    pith: 2800,
+    insured: false,
+  });
+  const { grossRent, pith, insured } = state;
 
   // Method 1: 50% add-back
   // Credits 50% of gross rent as income to add to applicant's income.
@@ -119,17 +46,17 @@ export function RentalIncomeQualifying() {
       <div className="grid sm:grid-cols-3 gap-4 mb-6">
         <div>
           <Label htmlFor="gross-monthly-rent">Gross Monthly Rent</Label>
-          <Input id="gross-monthly-rent" aria-label="Gross Monthly Rent" value={grossRent} onChange={setGrossRent} min={500} max={20000} step={50} prefix="$" />
+          <Input id="gross-monthly-rent" aria-label="Gross Monthly Rent" value={grossRent} onChange={(v) => setState({ grossRent: v })} min={500} max={20000} step={50} prefix="$" />
         </div>
         <div>
           <Label htmlFor="pith-p-i-tax-heat">PITH (P+I+Tax+Heat)</Label>
-          <Input id="pith-p-i-tax-heat" aria-label="PITH (P+I+Tax+Heat)" value={pith} onChange={setPith} min={0} max={20000} step={50} prefix="$" />
+          <Input id="pith-p-i-tax-heat" aria-label="PITH (P+I+Tax+Heat)" value={pith} onChange={(v) => setState({ pith: v })} min={0} max={20000} step={50} prefix="$" />
         </div>
         <div>
           <Label htmlFor="mortgage-type">Mortgage Type</Label>
           <select id="mortgage-type" aria-label="Mortgage Type"
             value={insured ? 'insured' : 'uninsured'}
-            onChange={e => setInsured(e.target.value === 'insured')}
+            onChange={e => setState({ insured: e.target.value === 'insured' })}
             className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
           >
             <option value="uninsured">Uninsured (&gt;20% down)</option>

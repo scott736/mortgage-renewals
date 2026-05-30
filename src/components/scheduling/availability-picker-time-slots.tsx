@@ -76,6 +76,8 @@ export function AvailabilityPickerTimeSlots({
               <button
                 key={`${slot.startTime}-${slot.teamMemberId}-${index}`}
                 type="button"
+                aria-pressed={isSelected}
+                aria-label={`${formatTime(slot.startTime)}${activeDate ? ` on ${formatShortDate(activeDate)}` : ''}`}
                 onClick={() => onSelectSlot(slot)}
                 className={cn(
                   'w-full rounded-md border-2 px-4 py-3.5 text-sm font-semibold',

@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useFormState } from "@/hooks/use-form-state";
+import { usePatchState } from "@/hooks/use-patch-state";
 import { trackLeadEvent } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +37,7 @@ type RateAlertFormProps = {
 };
 
 export default function RateAlertForm({ className }: RateAlertFormProps) {
-  const [state, setState] = useFormState({
+  const [state, setState] = usePatchState({
     email: "",
     targetRate: "",
     term: "5-year fixed",

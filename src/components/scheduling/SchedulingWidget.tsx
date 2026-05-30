@@ -1,10 +1,10 @@
 'use client';
 
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import { type ReactNode,useCallback, useRef, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { useFormState } from '@/hooks/use-form-state';
+import { usePatchState } from '@/hooks/use-patch-state';
 import { trackLeadEvent } from '@/lib/analytics';
 import type {
   BookingConfirmation as BookingConfirmationType,
@@ -70,6 +70,12 @@ function resolveInitialTeamMember(
   }
 
   return null;
+}
+
+function getDefaultMeetingType(service: Service | null): MeetingType | undefined {
+  if (!service?.meetingTypes?.length) return undefined;
+  if (service.meetingTypes.includes('teams')) return 'teams';
+  return service.meetingTypes[0];
 }
 
 function SchedulingProgress({ currentStep }: { currentStep: SchedulingStep }) {
@@ -146,6 +152,7 @@ export function SchedulingWidget({
   initialTeamMemberId,
   initialRegion,
   cancelToken,
+  onMeetingTypeChange,
   className,
 }: SchedulingWidgetProps) {
   const initialService = resolveInitialService(services, initialServiceId);
@@ -155,7 +162,7 @@ export function SchedulingWidget({
     initialTeamMemberId,
   );
 
-  const [bookingState, setBookingState] = useFormState({
+  const [bookingState, setBookingState] = usePatchState({
     currentStep: (initialService ? 'datetime' : 'service') as SchedulingStep,
     selectedService: initialService as Service | null,
     selectedTeamMember: initialMember as TeamMember | null,
@@ -165,6 +172,10 @@ export function SchedulingWidget({
   });
   const { currentStep, selectedService, selectedTeamMember, selectedSlot, booking, pendingBooking } = bookingState;
 
+  const [selectedMeetingType, setSelectedMeetingType] = useState<MeetingType | undefined>(() =>
+    getDefaultMeetingType(initialService),
+  );
+
   const [timezone, _setTimezone] = useState(() => {
     try {
       return Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -173,16 +184,7 @@ export function SchedulingWidget({
     }
   });
 
-  const prevInitialIdsRef = useRef({
-    initialServiceId,
-    initialTeamMemberId,
-  });
-
-  if (
-    initialServiceId !== prevInitialIdsRef.current.initialServiceId ||
-    initialTeamMemberId !== prevInitialIdsRef.current.initialTeamMemberId
-  ) {
-    prevInitialIdsRef.current = { initialServiceId, initialTeamMemberId };
+  useEffect(() => {
     const service = resolveInitialService(services, initialServiceId);
     setBookingState({
       selectedService: service,
@@ -190,7 +192,8 @@ export function SchedulingWidget({
       currentStep: service ? 'datetime' : 'service',
       selectedSlot: null,
     });
-  }
+    setSelectedMeetingType(getDefaultMeetingType(service));
+  }, [initialServiceId, initialTeamMemberId, services, teamMembers, setBookingState]);
 
   const getStepIndex = (step: SchedulingStep): number => STEPS.indexOf(step);
 
@@ -198,18 +201,17 @@ export function SchedulingWidget({
     return getStepIndex(currentStep) > 0 && currentStep !== 'confirmation';
   };
 
-  const canGoNext = (): boolean => {
+  const canGoNext = useCallback((): boolean => {
     switch (currentStep) {
       case 'service':
         return !!selectedService;
       case 'datetime':
         return !!selectedSlot;
       case 'details':
-        return false;
       case 'confirmation':
         return false;
     }
-  };
+  }, [currentStep, selectedService, selectedSlot]);
 
   const goBack = useCallback(() => {
     const currentIndex = getStepIndex(currentStep);
@@ -227,20 +229,15 @@ export function SchedulingWidget({
 
   const goNext = useCallback(() => {
     const currentIndex = getStepIndex(currentStep);
-    const canAdvance =
-      currentStep === 'service'
-        ? !!selectedService
-        : currentStep === 'datetime'
-          ? !!selectedSlot
-          : false;
-    if (currentIndex < STEPS.length - 1 && canAdvance) {
+    if (currentIndex < STEPS.length - 1 && canGoNext()) {
       setBookingState({ currentStep: STEPS[currentIndex + 1] });
     }
-  }, [currentStep, selectedService, selectedSlot, setBookingState]);
+  }, [currentStep, canGoNext, setBookingState]);
 
   const handleServiceSelect = (service: Service | null) => {
     if (!service) {
       setBookingState({ selectedService: null, selectedSlot: null, selectedTeamMember: null });
+      setSelectedMeetingType(undefined);
       return;
     }
 
@@ -255,6 +252,12 @@ export function SchedulingWidget({
       selectedSlot: null,
       selectedTeamMember: nextTeamMember,
     });
+    setSelectedMeetingType(getDefaultMeetingType(service));
+  };
+
+  const handleMeetingTypeChange = (type: MeetingType) => {
+    setSelectedMeetingType(type);
+    onMeetingTypeChange?.(type);
   };
 
   const handleSlotSelect = (slot: TimeSlot) => {
@@ -282,6 +285,7 @@ export function SchedulingWidget({
         guestPhone: guestInfo.phone,
         notes: guestInfo.notes,
         timezone,
+        ...(selectedMeetingType && { meetingType: selectedMeetingType }),
         ...(cancelToken && { cancelToken }),
       }),
     });
@@ -336,6 +340,7 @@ export function SchedulingWidget({
       booking: null,
       pendingBooking: null,
     });
+    setSelectedMeetingType(undefined);
   };
 
   let stepContent: ReactNode = null;
@@ -378,6 +383,8 @@ export function SchedulingWidget({
             timezone={timezone}
             onSubmit={handleBookingSubmit}
             onBack={goBack}
+            selectedMeetingType={selectedMeetingType}
+            onMeetingTypeChange={handleMeetingTypeChange}
           />
         );
       }
