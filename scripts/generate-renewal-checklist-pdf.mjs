@@ -90,7 +90,7 @@ const boxY = doc.y;
 doc.fillColor(BRAND_NAVY).font("Helvetica-Bold").fontSize(11).text("Key facts (April 2026)", 66, boxY + 10);
 doc.font("Helvetica").fontSize(9.8).fillColor("#222").text(
   "Bank of Canada overnight rate: 2.25%   ·   Prime rate: 4.45%   ·   Next BoC decision: April 29, 2026\n" +
-  "Best broker 5-year fixed (insured): ~3.94–4.04%   ·   5-year variable: ~3.30–3.35%\n" +
+  "Best broker 5-year fixed (insured): ~3.99–4.09%   ·   5-year variable: ~3.30–3.35%\n" +
   "Stress test is waived for uninsured straight-switch renewals (OSFI, Nov 21, 2024).\n" +
   "30-year amortization available for all first-time buyers of insured mortgages (Dec 15, 2024).",
   66,

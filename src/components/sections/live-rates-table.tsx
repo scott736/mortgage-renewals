@@ -5,8 +5,8 @@ import React, { useState } from "react";
 type ProfileFilter = "insured" | "uninsured" | "rental" | "credit";
 
 // Rates updated manually — user will refresh this weekly.
-// Source: Broker-negotiated rates aggregated May 21, 2026.
-const RATES_UPDATED = "May 21, 2026";
+// Source: Broker-negotiated rates aggregated June 1, 2026.
+const RATES_UPDATED = "June 1, 2026";
 
 type Row = {
   term: string;
@@ -50,8 +50,8 @@ const rows: Row[] = [
   },
   {
     term: "5-Year Fixed",
-    insured: "4.04%",
-    uninsured: "4.24%",
+    insured: "4.09%",
+    uninsured: "4.29%",
     variable: "—",
     big5: "4.52%",
     note: "Most common term",
@@ -180,7 +180,7 @@ export default function LiveRatesTable() {
       </div>
 
       <details className="mt-4 rounded-lg border border-gray-100 p-4 text-body-sm">
-        <summary className="cursor-pointer font-semibold">Big 5 Bank 5-Year Rates (May 2026)</summary>
+        <summary className="cursor-pointer font-semibold">Big 5 Bank 5-Year Rates (June 2026)</summary>
         <div className="mt-3 overflow-x-auto">
           <table className="w-full text-body-sm">
             <thead>
@@ -201,7 +201,7 @@ export default function LiveRatesTable() {
             </tbody>
           </table>
           <p className="mt-3 text-body-xs text-muted-foreground">
-            Big 5 special/discounted 5-year rates as of May 13, 2026. Posted rates are higher.
+            Big 5 special/discounted 5-year rates as of late May 2026. Posted rates are higher.
           </p>
         </div>
       </details>
