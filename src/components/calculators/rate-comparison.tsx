@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 
-import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
-import { saveCalculatorContext } from '@/lib/calculator-context';
-
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
+import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import { usePatchState } from '@/hooks/use-patch-state';
+import { saveCalculatorContext } from '@/lib/calculator-context';
 import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
 
 interface Scenario {

@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { usePatchState } from '@/hooks/use-patch-state';
-
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
+import { usePatchState } from '@/hooks/use-patch-state';
 import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
 
 export function BlendAndExtend() {

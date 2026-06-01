@@ -2,7 +2,6 @@ import { ArrowLeft, ArrowRight, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import ThemeToggle from "@/components/ui/theme-toggle";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,6 +10,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { trackCtaClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
