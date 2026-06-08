@@ -1,6 +1,6 @@
 /**
  * Nylas Booking Email Templates
- * Sends confirmation and notification emails via Elastic Email
+ * Sends confirmation and notification emails via Keplars
  */
 
 import { escapeHtml, sendEmail } from '@/lib/email';
