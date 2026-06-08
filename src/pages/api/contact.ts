@@ -3,7 +3,6 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 
 import { escapeHtml, sendEmail } from '@/lib/email';
-import { enrollLeadSequence } from '@/lib/keplars-audience';
 import { leadNotificationRecipients } from '@/lib/lead-inbox';
 import {
   type LeadEnvelope,
@@ -204,23 +203,7 @@ export const POST: APIRoute = async ({ request }) => {
     .filter((line) => line !== null)
     .join('\n');
 
-  const nurtureSources = new Set([
-    'calculator_lead',
-    'rate_alert',
-    'renewal_reminder',
-    'checklist_download',
-  ]);
-
   try {
-    if (nurtureSources.has(source)) {
-      void enrollLeadSequence({
-        email,
-        firstName,
-        lastName,
-        source: `${source}:${pageUrl || 'mortgagerenewalhub'}`,
-      });
-    }
-
     await sendEmail({
       to: leadNotificationRecipients(),
       subject: `${sourceLabel(source)} — ${firstName} ${lastName}`,
