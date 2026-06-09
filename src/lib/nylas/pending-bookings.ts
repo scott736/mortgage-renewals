@@ -54,9 +54,13 @@ const TOKEN_KEY = (token: string) => `pb:token:${token}`;
 const EMAIL_KEY = (email: string) => `pb:email:${email.toLowerCase()}`;
 
 const redisUrl = import.meta.env.UPSTASH_REDIS_REST_URL
-  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_URL : undefined);
+  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_URL : undefined)
+  || import.meta.env.KV_REST_API_URL
+  || (typeof process !== 'undefined' ? process.env.KV_REST_API_URL : undefined);
 const redisToken = import.meta.env.UPSTASH_REDIS_REST_TOKEN
-  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_TOKEN : undefined);
+  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_TOKEN : undefined)
+  || import.meta.env.KV_REST_API_TOKEN
+  || (typeof process !== 'undefined' ? process.env.KV_REST_API_TOKEN : undefined);
 
 const redis = redisUrl && redisToken
   ? new Redis({ url: redisUrl, token: redisToken })
