@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
-import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import { usePatchState } from '@/hooks/use-patch-state';
 import { saveCalculatorContext } from '@/lib/calculator-context';
 import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
@@ -174,15 +173,8 @@ export function RateComparison() {
         calculatorContext={{
           tool: 'Rate Comparison Calculator',
           summary: calcSummary,
-          data: { balance, winnerRate: winner.rate },
+          data: { balance, winnerRate: winner.rate, winnerName: winner.name },
         }}
-      />
-
-      <CalculatorLeadCapture
-        className="mt-4"
-        tool="Rate Comparison Calculator"
-        summary={calcSummary}
-        data={{ balance, winnerRate: winner.rate, winnerName: winner.name }}
       />
     </div>
   );

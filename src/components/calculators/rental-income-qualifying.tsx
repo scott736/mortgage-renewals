@@ -114,9 +114,16 @@ export function RentalIncomeQualifying() {
         <strong className="text-foreground">Why this matters at renewal:</strong> If your rental property's PITH has climbed (taxes, insurance, interest rates) while rents stayed flat, your DCR may have dropped below 1.10, meaning you can't use DCR methods anymore. Switching to a lender that uses 50% add-back (always available, less efficient) may be the only way to qualify at renewal.
       </div>
 
-      <BrokerCTA message={bestMethod > 0
-        ? `Best method gives you ${fmt(bestMethod)}/mo qualifying income boost. A broker knows which lenders apply each method.`
-        : `Your rental currently doesn't help qualification. A broker can find lenders with looser DCR or structure the file differently.`} />
+      <BrokerCTA
+        message={bestMethod > 0
+          ? `Best method gives you ${fmt(bestMethod)}/mo qualifying income boost. A broker knows which lenders apply each method.`
+          : `Your rental currently doesn't help qualification. A broker can find lenders with looser DCR or structure the file differently.`}
+        calculatorContext={{
+          tool: 'Rental Income Qualifying Calculator',
+          summary: `Rent $${grossRent.toLocaleString('en-CA')}/mo, PITH $${pith.toLocaleString('en-CA')}/mo. DCR ${dcr.toFixed(2)}, best credit ${fmt(bestMethod)}/mo.`,
+          data: { grossRent, dcr, bestMethod },
+        }}
+      />
     </div>
   );
 }

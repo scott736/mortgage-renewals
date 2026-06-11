@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
-import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import { usePatchState } from '@/hooks/use-patch-state';
 import { saveCalculatorContext } from '@/lib/calculator-context';
 import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment, totalInterest } from '@/lib/mortgage-math';
@@ -68,7 +67,14 @@ function PaymentEstimator() {
         <ResultCard label="Total Interest (Term 5yr)" value={fmt(monthlyPmt * 60 - (balance - balance * Math.pow(1 + effectiveMonthlyRate(rate), 60) + monthlyPmt * ((Math.pow(1 + effectiveMonthlyRate(rate), 60) - 1) / effectiveMonthlyRate(rate))))} />
         <ResultCard label="Total Interest (Full Amort)" value={fmt(totalInt)} />
       </div>
-      <BrokerCTA message={`Your estimated monthly payment is ${fmt(monthlyPmt)}. Want a broker to find a lower rate?`} />
+      <BrokerCTA
+        message={`Your estimated monthly payment is ${fmt(monthlyPmt)}. Want a broker to find a lower rate?`}
+        calculatorContext={{
+          tool: 'Renewal Payment Estimator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(rate)}, ${amortYears}-yr amort. Est. ${labels[freq]} payment ${fmt(paymentByFreq[freq])}.`,
+          data: { balance, rate, monthlyPmt },
+        }}
+      />
     </div>
   );
 }
@@ -143,22 +149,17 @@ function RateComparison() {
           <div className="text-xl font-bold text-secondary-200">{fmt(brokerPmt)}<span className="text-body-sm font-normal text-muted-foreground">/mo</span></div>
         </div>
       </div>
-      {fiveYearSaving > 0 && (
-        <BrokerCTA
-          message={`You could save ${fmt(fiveYearSaving)} over 5 years by switching rates. A broker can find this for you, free.`}
-          calculatorContext={{
-            tool: 'Rate Comparison Calculator',
-            summary: calcSummary,
-            data: { balance, bankRate, brokerRate, fiveYearSaving },
-          }}
-        />
-      )}
-
-      <CalculatorLeadCapture
-        className="mt-4"
-        tool="Rate Comparison Calculator"
-        summary={calcSummary}
-        data={{ balance, bankRate, brokerRate, fiveYearSaving }}
+      <BrokerCTA
+        message={
+          fiveYearSaving > 0
+            ? `You could save ${fmt(fiveYearSaving)} over 5 years by switching rates. A broker can find this for you, free.`
+            : `Compare your bank renewal offer to broker-channel rates — a licensed broker can shop 30+ lenders for free.`
+        }
+        calculatorContext={{
+          tool: 'Rate Comparison Calculator',
+          summary: calcSummary,
+          data: { balance, bankRate, brokerRate, fiveYearSaving },
+        }}
       />
     </div>
   );
@@ -209,9 +210,18 @@ function AmortizationExtension() {
         <ResultCard label="Monthly Savings" value={fmt(monthlySaving)} highlight />
         <ResultCard label="Extra Interest Cost" value={extraInterest > 0 ? fmt(extraInterest) : '$0'} />
       </div>
-      {monthlySaving > 0 && (
-        <BrokerCTA message={`Extending to ${newAmort} years saves ${fmt(monthlySaving)}/month but costs ${fmt(extraInterest)} more in total interest. A broker can help you weigh this trade-off.`} />
-      )}
+      <BrokerCTA
+        message={
+          monthlySaving > 0
+            ? `Extending to ${newAmort} years saves ${fmt(monthlySaving)}/month but costs ${fmt(extraInterest)} more in total interest. A broker can help you weigh this trade-off.`
+            : `Compare extending amortization vs other renewal options with a licensed broker.`
+        }
+        calculatorContext={{
+          tool: 'Amortization Extension Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(rate)}. ${currentAmort}yr → ${newAmort}yr amort. Monthly ${fmt(currentPmt)} → ${fmt(newPmt)} (${fmt(monthlySaving)}/mo change).`,
+          data: { balance, rate, currentAmort, newAmort, monthlySaving },
+        }}
+      />
     </div>
   );
 }
@@ -280,7 +290,14 @@ function PenaltyEstimator() {
         <ResultCard label="Estimated Penalty" value={fmt(penalty)} highlight />
         <ResultCard label={netSaving > 0 ? "Net Saving After Penalty" : "Net Cost"} value={fmt(Math.abs(netSaving))} />
       </div>
-      <BrokerCTA message={netSaving > 0 ? `Even after the penalty, breaking early could save you ${fmt(netSaving)}. A broker can verify with your lender's exact numbers.` : `The penalty of ${fmt(penalty)} exceeds your savings. A broker can advise on timing and blend-and-extend options.`} />
+      <BrokerCTA
+        message={netSaving > 0 ? `Even after the penalty, breaking early could save you ${fmt(netSaving)}. A broker can verify with your lender's exact numbers.` : `The penalty of ${fmt(penalty)} exceeds your savings. A broker can advise on timing and blend-and-extend options.`}
+        calculatorContext={{
+          tool: 'Early Renewal Penalty Estimator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(currentRate)} → ${fmtPct(newRate)}, ${monthsRemaining} mo left. Est. penalty ${fmt(penalty)}, net ${fmt(netSaving)}.`,
+          data: { balance, penalty, netSaving, lenderType },
+        }}
+      />
     </div>
   );
 }
@@ -359,7 +376,14 @@ function DebtConsolidation() {
         <ResultCard label="Monthly Cash Flow Relief" value={fmt(monthlySaving)} highlight />
         <ResultCard label="Total Debt Consolidated" value={fmt(totalDebtBalance)} />
       </div>
-      <BrokerCTA message={`Consolidating saves ${fmt(monthlySaving)}/month. A broker can run the full numbers and check if you qualify, free consultation.`} />
+      <BrokerCTA
+        message={`Consolidating saves ${fmt(monthlySaving)}/month. A broker can run the full numbers and check if you qualify, free consultation.`}
+        calculatorContext={{
+          tool: 'Debt Consolidation Calculator',
+          summary: `Mortgage $${mortgageBalance.toLocaleString('en-CA')} + $${totalDebtBalance.toLocaleString('en-CA')} debts. Monthly relief ${fmt(monthlySaving)}.`,
+          data: { mortgageBalance, totalDebtBalance, monthlySaving },
+        }}
+      />
     </div>
   );
 }

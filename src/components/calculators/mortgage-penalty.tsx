@@ -82,7 +82,14 @@ export function MortgagePenalty() {
         <strong className="text-foreground">Why monolines charge less:</strong> Monoline lenders (First National, MCAP, RFA, CMLS, Strive, Equitable) use the fair 3-month interest method by default. Big 6 banks use "posted rate" IRD, a rate they rarely offer in practice, which creates an artificial gap that inflates the penalty. This is why switching to a monoline at renewal can save thousands if you break mid-term later.
       </div>
 
-      <BrokerCTA message={`Your estimated penalty is ${fmt(applies)}. A broker can pull your exact payout from the lender and compare switch savings against the cost.`} />
+      <BrokerCTA
+        message={`Your estimated penalty is ${fmt(applies)}. A broker can pull your exact payout from the lender and compare switch savings against the cost.`}
+        calculatorContext={{
+          tool: 'Mortgage Penalty Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(contractRate)}, ${monthsRemaining} mo left (${lenderType}). Est. penalty ${fmt(applies)}.`,
+          data: { balance, applies, lenderType },
+        }}
+      />
     </div>
   );
 }

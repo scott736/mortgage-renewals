@@ -89,9 +89,16 @@ export function BlendAndExtend() {
         <p className="text-body-xs text-muted-foreground mt-3">Simplified comparison using 3-month interest penalty. Actual bank IRD penalties can be much higher, use the penalty estimator for a more accurate break scenario.</p>
       </div>
 
-      <BrokerCTA message={monthlySaving > 0
-        ? `Your blended rate is ${fmtPct(blendedRate)}, saving ${fmt(monthlySaving)}/month vs. your current rate.`
-        : `Your current rate is already competitive. A broker can confirm whether blend-and-extend makes sense.`} />
+      <BrokerCTA
+        message={monthlySaving > 0
+          ? `Your blended rate is ${fmtPct(blendedRate)}, saving ${fmt(monthlySaving)}/month vs. your current rate.`
+          : `Your current rate is already competitive. A broker can confirm whether blend-and-extend makes sense.`}
+        calculatorContext={{
+          tool: 'Blend-and-Extend Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, blend ${fmtPct(blendedRate)} vs current ${fmtPct(currentRate)}. Monthly saving ${fmt(monthlySaving)}.`,
+          data: { balance, blendedRate, monthlySaving },
+        }}
+      />
     </div>
   );
 }
@@ -172,9 +179,16 @@ export function StressTestCalculator() {
         <ResultCard label="Max Mortgage (Contract Rate)" value={fmt(Math.max(0, maxMortgageContract))} sublabel="Actual affordability" />
       </div>
 
-      <BrokerCTA message={maxMortgageQualifying > 0
-        ? `You qualify for up to ${fmt(maxMortgageQualifying)} under the stress test. A broker can find the lender whose ratios best fit your situation.`
-        : "Your ratios are tight. A broker can explore credit unions (not bound by OSFI) and alternative lenders."} />
+      <BrokerCTA
+        message={maxMortgageQualifying > 0
+          ? `You qualify for up to ${fmt(maxMortgageQualifying)} under the stress test. A broker can find the lender whose ratios best fit your situation.`
+          : "Your ratios are tight. A broker can explore credit unions (not bound by OSFI) and alternative lenders."}
+        calculatorContext={{
+          tool: 'Mortgage Stress Test Calculator',
+          summary: `Income $${income.toLocaleString('en-CA')}, qualifying ${fmtPct(qualifyingRate)}. Max mortgage ${fmt(Math.max(0, maxMortgageQualifying))}.`,
+          data: { income, maxMortgageQualifying, contractRate },
+        }}
+      />
     </div>
   );
 }
@@ -316,9 +330,16 @@ export function SwitchVsStay() {
         <ResultCard label="5-Year Net Saving" value={fmt(fiveYearNet)} highlight />
       </div>
 
-      <BrokerCTA message={fiveYearNet > 0
-        ? `You'd net ${fmt(fiveYearNet)} over 5 years after switching costs. A broker can find lenders who cover legal fees.`
-        : "At these rates, switching doesn't pay. A broker may find a better rate or a lender that covers costs."} />
+      <BrokerCTA
+        message={fiveYearNet > 0
+          ? `You'd net ${fmt(fiveYearNet)} over 5 years after switching costs. A broker can find lenders who cover legal fees.`
+          : "At these rates, switching doesn't pay. A broker may find a better rate or a lender that covers costs."}
+        calculatorContext={{
+          tool: 'Switch vs. Stay Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, stay ${fmtPct(stayRate)} vs switch ${fmtPct(switchRate)}. 5-yr net ${fmt(fiveYearNet)} after ${fmt(totalCosts)} costs.`,
+          data: { balance, fiveYearNet, totalCosts },
+        }}
+      />
     </div>
   );
 }
@@ -411,7 +432,14 @@ export function HelocVsRefinance() {
         <strong>Rule of thumb:</strong> HELOCs suit short-term/flexible needs (renos you'll finish in 1–2 years). Refinances suit larger, one-time draws where you want fixed payments and a lower rate. Over long time horizons, refinance usually costs less total interest, but locks you in.
       </div>
 
-      <BrokerCTA message={`Your ${fmt(equityNeeded)} draw costs ${fmt(helocTotalMonthly - currentMortgagePmt)}/mo via HELOC vs. ${fmt(refiPmt - currentMortgagePmt)}/mo extra via refi. A broker models both with your lender.`} />
+      <BrokerCTA
+        message={`Your ${fmt(equityNeeded)} draw costs ${fmt(helocTotalMonthly - currentMortgagePmt)}/mo via HELOC vs. ${fmt(refiPmt - currentMortgagePmt)}/mo extra via refi. A broker models both with your lender.`}
+        calculatorContext={{
+          tool: 'HELOC vs Refinance Calculator',
+          summary: `Mortgage $${mortgageBalance.toLocaleString('en-CA')}, draw ${fmt(equityNeeded)}. HELOC extra ${fmt(helocTotalMonthly - currentMortgagePmt)}/mo vs refi ${fmt(refiPmt - currentMortgagePmt)}/mo.`,
+          data: { mortgageBalance, equityNeeded, helocRate, newMortgageRate },
+        }}
+      />
     </div>
   );
 }
@@ -498,7 +526,14 @@ export function PaymentFrequencyCalculator() {
         <ResultCard label="Extra Paid Per Year" value={fmt((accelBiweekly * 26) - (monthlyPmt * 12))} sublabel="= one extra monthly payment" />
       </div>
 
-      <BrokerCTA message={`Switching to accelerated bi-weekly saves ${fmt(savingsVsMonthly)} interest and pays off your mortgage ${(amortYears - yrsAccelBiweekly).toFixed(1)} years earlier.`} />
+      <BrokerCTA
+        message={`Switching to accelerated bi-weekly saves ${fmt(savingsVsMonthly)} interest and pays off your mortgage ${(amortYears - yrsAccelBiweekly).toFixed(1)} years earlier.`}
+        calculatorContext={{
+          tool: 'Payment Frequency Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(rate)}, ${amortYears}-yr amort. Accel bi-weekly saves ${fmt(savingsVsMonthly)} interest, ${(amortYears - yrsAccelBiweekly).toFixed(1)} yrs faster.`,
+          data: { balance, rate, savingsVsMonthly, yrsAccelBiweekly },
+        }}
+      />
     </div>
   );
 }

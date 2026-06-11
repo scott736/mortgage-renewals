@@ -1,3 +1,4 @@
+import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import TrackedBrokerLink from '@/components/lead/tracked-broker-link';
 
 export function Label({ children, htmlFor }: { children: React.ReactNode; htmlFor?: string }) {
@@ -73,25 +74,37 @@ export function ResultCard({
 export function BrokerCTA({
   message,
   calculatorContext,
+  showEmailCapture = true,
 }: {
   message: string;
-  calculatorContext?: { tool: string; summary: string; data?: Record<string, string | number | boolean> };
+  calculatorContext: { tool: string; summary: string; data?: Record<string, string | number | boolean> };
+  showEmailCapture?: boolean;
 }) {
   return (
-    <div className="bg-primary-0 border-primary-25 mt-6 flex flex-col items-start gap-4 rounded-xl border p-5 sm:flex-row sm:items-center">
-      <div className="flex-1">
-        <p className="text-body-sm-medium text-primary-200">{message}</p>
-        <p className="text-body-xs text-muted-foreground mt-1">
-          A broker will confirm this with real lender quotes, for free.
-        </p>
+    <>
+      <div className="bg-primary-0 border-primary-25 mt-6 flex flex-col items-start gap-4 rounded-xl border p-5 sm:flex-row sm:items-center">
+        <div className="flex-1">
+          <p className="text-body-sm-medium text-primary-200">{message}</p>
+          <p className="text-body-xs text-muted-foreground mt-1">
+            A broker will confirm this with real lender quotes, for free.
+          </p>
+        </div>
+        <TrackedBrokerLink
+          location="calculator_broker_cta"
+          calculatorContext={calculatorContext}
+          className="text-body-sm-medium bg-primary-100 flex-shrink-0 rounded-lg px-5 py-2.5 text-white transition-opacity hover:opacity-90"
+        >
+          Book Free Call
+        </TrackedBrokerLink>
       </div>
-      <TrackedBrokerLink
-        location="calculator_broker_cta"
-        calculatorContext={calculatorContext}
-        className="text-body-sm-medium bg-primary-100 flex-shrink-0 rounded-lg px-5 py-2.5 text-white transition-opacity hover:opacity-90"
-      >
-        Book Free Call
-      </TrackedBrokerLink>
-    </div>
+      {showEmailCapture && (
+        <CalculatorLeadCapture
+          className="mt-4"
+          tool={calculatorContext.tool}
+          summary={calculatorContext.summary}
+          data={calculatorContext.data}
+        />
+      )}
+    </>
   );
 }

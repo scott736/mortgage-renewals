@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Input, Label } from '@/components/calculators/calculator-ui';
+import { BrokerCTA, Input, Label } from '@/components/calculators/calculator-ui';
 import { usePatchState } from '@/hooks/use-patch-state';
 import { fmt, monthlyPayment } from '@/lib/mortgage-math';
 
@@ -80,6 +80,19 @@ export function CompareTwoOffers() {
       <p className="mt-4 text-body-xs text-muted-foreground">
         Assumes 5-year term, level payments, Canadian semi-annual compounding. Offer B wins on net savings when the net figure is positive.
       </p>
+
+      <BrokerCTA
+        message={
+          fiveYearNet > 0
+            ? `Offer B nets ${fmt(fiveYearNet)} over 5 years after ${fmt(switchCosts)} switch costs. A broker can verify both offers with real lender quotes.`
+            : `At these rates Offer A may be cheaper after fees. A broker can shop 30+ lenders for a better Offer B.`
+        }
+        calculatorContext={{
+          tool: 'Compare Two Renewal Offers',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, Offer A ${rateA}% vs Offer B ${rateB}%. 5-yr net ${fmt(fiveYearNet)} after ${fmt(switchCosts)} costs.`,
+          data: { balance, rateA, rateB, fiveYearNet, switchCosts },
+        }}
+      />
     </div>
   );
 }

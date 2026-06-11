@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
-import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import { usePatchState } from '@/hooks/use-patch-state';
 import { saveCalculatorContext } from '@/lib/calculator-context';
 import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
@@ -132,13 +131,6 @@ export function BreakEvenSwitch() {
           summary: calcSummary,
           data: { balance, switchNow, netRemainingTerm },
         }}
-      />
-
-      <CalculatorLeadCapture
-        className="mt-4"
-        tool="Break-Even Switch Calculator"
-        summary={calcSummary}
-        data={{ balance, switchNow, netRemainingTerm }}
       />
     </div>
   );

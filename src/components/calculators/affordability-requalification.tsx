@@ -109,9 +109,16 @@ export function AffordabilityRequalification() {
         <strong className="text-foreground">GDS vs TDS explained:</strong> GDS (Gross Debt Service) = housing costs only (principal, interest, property tax, heat, + 50% condo fees) ÷ gross monthly income. TDS (Total Debt Service) = GDS plus all other debts (car loans, credit cards, LOC minimums, student loans). OSFI caps insured mortgages at 39% GDS / 44% TDS. Credit unions and alternative lenders can stretch these ratios.
       </div>
 
-      <BrokerCTA message={qualifies
-        ? `You qualify up to ${fmt(maxMortgage)} under the stress test. A broker can find lenders with best ratio flexibility.`
-        : `Your ratios are tight. A broker can explore credit unions (not OSFI-bound) and B lenders with looser ratios.`} />
+      <BrokerCTA
+        message={qualifies
+          ? `You qualify up to ${fmt(maxMortgage)} under the stress test. A broker can find lenders with best ratio flexibility.`
+          : `Your ratios are tight. A broker can explore credit unions (not OSFI-bound) and B lenders with looser ratios.`}
+        calculatorContext={{
+          tool: 'Affordability Requalification Calculator',
+          summary: `Income $${income.toLocaleString('en-CA')}, qualifying ${fmtPct(qualifyingRate)}. Max mortgage ${fmt(maxMortgage)} (${qualifies ? 'qualifies' : 'tight ratios'}).`,
+          data: { income, maxMortgage, qualifies: qualifies ? 1 : 0 },
+        }}
+      />
     </div>
   );
 }

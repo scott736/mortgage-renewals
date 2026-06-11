@@ -145,7 +145,14 @@ export function AmortizationSchedule() {
         </table>
       </div>
 
-      <BrokerCTA message={`At ${fmtPct(rate)} over ${amortYears} years, you'll pay ${fmt(totalInterestPaid)} in interest. A broker can find a lower rate or better amortization strategy.`} />
+      <BrokerCTA
+        message={`At ${fmtPct(rate)} over ${amortYears} years, you'll pay ${fmt(totalInterestPaid)} in interest. A broker can find a lower rate or better amortization strategy.`}
+        calculatorContext={{
+          tool: 'Amortization Schedule Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(rate)}, ${amortYears}-yr amort. Total interest ${fmt(totalInterestPaid)}.`,
+          data: { balance, rate, amortYears, totalInterestPaid },
+        }}
+      />
     </div>
   );
 }

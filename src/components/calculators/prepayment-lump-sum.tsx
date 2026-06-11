@@ -118,9 +118,16 @@ export function PrepaymentLumpSum() {
         <ResultCard label="New Payoff" value={`${(totalMonthsWithLump / 12).toFixed(1)} yrs`} sublabel={`Was ${(originalMonths / 12).toFixed(1)} yrs`} />
       </div>
 
-      <BrokerCTA message={interestSaved > 0
-        ? `A ${fmt(allowedLump)} lump sum saves ${fmt(interestSaved)} in interest and pays off your mortgage ${(monthsSaved / 12).toFixed(1)} years earlier.`
-        : `Confirm your lender's exact privilege rules, a broker can check your commitment letter for free.`} />
+      <BrokerCTA
+        message={interestSaved > 0
+          ? `A ${fmt(allowedLump)} lump sum saves ${fmt(interestSaved)} in interest and pays off your mortgage ${(monthsSaved / 12).toFixed(1)} years earlier.`
+          : `Confirm your lender's exact privilege rules, a broker can check your commitment letter for free.`}
+        calculatorContext={{
+          tool: 'Prepayment Lump Sum Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(rate)}. Lump sum ${fmt(allowedLump)} saves ${fmt(interestSaved)} interest, ${(monthsSaved / 12).toFixed(1)} yrs faster.`,
+          data: { balance, allowedLump, interestSaved, timing },
+        }}
+      />
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
 import { usePatchState } from '@/hooks/use-patch-state';
-import { fmt, monthlyPayment } from '@/lib/mortgage-math';
+import { fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
 
 type CurrentFreq = 'monthly' | 'biweekly' | 'accelBiweekly' | 'weekly' | 'accelWeekly';
 
@@ -137,9 +137,16 @@ export function AcceleratedPayment() {
         <strong className="text-foreground">How acceleration works:</strong> "Accelerated" bi-weekly simply means your monthly payment ÷ 2, paid every two weeks. You make 26 payments a year instead of 24, one extra monthly payment annually, all applied to principal. No fancy math, no extra rate discount, just slightly more money hitting principal each year.
       </div>
 
-      <BrokerCTA message={interestSaved > 0
-        ? `Switching to ${bestAccelLabel} saves ${fmt(interestSaved)} and pays off your mortgage ${yearsSaved.toFixed(1)} years earlier.`
-        : "You're already on the fastest schedule. A broker can find you a lower rate to save even more."} />
+      <BrokerCTA
+        message={interestSaved > 0
+          ? `Switching to ${bestAccelLabel} saves ${fmt(interestSaved)} and pays off your mortgage ${yearsSaved.toFixed(1)} years earlier.`
+          : "You're already on the fastest schedule. A broker can find you a lower rate to save even more."}
+        calculatorContext={{
+          tool: 'Accelerated Payment Calculator',
+          summary: `Balance $${balance.toLocaleString('en-CA')}, ${fmtPct(rate)}, ${amortYears}-yr amort. Best schedule: ${bestAccelLabel}. Interest saved ${fmt(Math.max(0, interestSaved))}.`,
+          data: { balance, rate, interestSaved, yearsSaved },
+        }}
+      />
     </div>
   );
 }

@@ -176,9 +176,16 @@ export function RefinanceDebtConsolidation() {
         <strong className="text-foreground">The trade-off:</strong> Consolidating 21.99% credit card debt into a 4.39% mortgage slashes your monthly payment and lowers the rate dramatically, but amortizing over 25 years means you pay interest for longer. Use the freed cashflow to make prepayments against your mortgage, or you'll pay more over time than the original debt would have cost.
       </div>
 
-      <BrokerCTA message={freed > 0
-        ? `You'd free ${fmt(freed)} per month by consolidating. A broker will structure this without triggering the stress test where possible.`
-        : `Your current setup may already be optimal. A broker will verify with a full refi analysis.`} />
+      <BrokerCTA
+        message={freed > 0
+          ? `You'd free ${fmt(freed)} per month by consolidating. A broker will structure this without triggering the stress test where possible.`
+          : `Your current setup may already be optimal. A broker will verify with a full refi analysis.`}
+        calculatorContext={{
+          tool: 'Refinance Debt Consolidation Calculator',
+          summary: `Home $${homeValue.toLocaleString('en-CA')}, mortgage $${mortgageBalance.toLocaleString('en-CA')}. Consolidating ${fmt(totalDebts)} frees ${fmt(freed)}/mo.`,
+          data: { homeValue, mortgageBalance, freed, totalDebts },
+        }}
+      />
     </div>
   );
 }
