@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
+import CalculatorLeadCapture from '@/components/lead/calculator-lead-capture';
 import { usePatchState } from '@/hooks/use-patch-state';
-import { effectiveMonthlyRate, fmt, monthlyPayment, totalInterest } from '@/lib/mortgage-math';
+import { saveCalculatorContext } from '@/lib/calculator-context';
+import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment, totalInterest } from '@/lib/mortgage-math';
 
 // ============================================================================
 // Calculator 1: Renewal Payment Estimator
@@ -92,6 +94,17 @@ function RateComparison() {
   const totalIntBank = totalInterest(bankPmt, months, balance);
   const totalIntBroker = totalInterest(brokerPmt, months, balance);
 
+  const calcSummary =
+    `Balance $${balance.toLocaleString('en-CA')}, ${amortYears}-yr amort. Bank ${fmtPct(bankRate)} vs broker ${fmtPct(brokerRate)}. Monthly savings ${fmt(monthlySaving)}, 5-yr savings ${fmt(fiveYearSaving)}.`;
+
+  useEffect(() => {
+    saveCalculatorContext({
+      tool: 'Rate Comparison Calculator',
+      summary: calcSummary,
+      data: { balance, bankRate, brokerRate, fiveYearSaving },
+    });
+  }, [calcSummary, balance, bankRate, brokerRate, fiveYearSaving]);
+
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
       <h3 className="text-heading-4 mb-1">Rate Comparison Calculator</h3>
@@ -131,8 +144,22 @@ function RateComparison() {
         </div>
       </div>
       {fiveYearSaving > 0 && (
-        <BrokerCTA message={`You could save ${fmt(fiveYearSaving)} over 5 years by switching rates. A broker can find this for you, free.`} />
+        <BrokerCTA
+          message={`You could save ${fmt(fiveYearSaving)} over 5 years by switching rates. A broker can find this for you, free.`}
+          calculatorContext={{
+            tool: 'Rate Comparison Calculator',
+            summary: calcSummary,
+            data: { balance, bankRate, brokerRate, fiveYearSaving },
+          }}
+        />
       )}
+
+      <CalculatorLeadCapture
+        className="mt-4"
+        tool="Rate Comparison Calculator"
+        summary={calcSummary}
+        data={{ balance, bankRate, brokerRate, fiveYearSaving }}
+      />
     </div>
   );
 }

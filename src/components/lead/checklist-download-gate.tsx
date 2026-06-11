@@ -80,7 +80,7 @@ export default function ChecklistDownloadGate({ className }: ChecklistDownloadGa
     <div className={cn("rounded-xl border border-gray-100 bg-white p-5 shadow-sm", className)}>
       <p className="text-body-sm-medium mb-1">Enter your email to download</p>
       <p className="text-body-xs text-muted-foreground mb-3">
-        Free PDF · 2 pages · We&apos;ll also send renewal tips before your maturity date (unsubscribe anytime).
+        Free PDF · 2 pages · Our team may follow up about your renewal timing.
       </p>
       <form onSubmit={handleSubmit} className="flex flex-col gap-2 sm:flex-row">
         <Input

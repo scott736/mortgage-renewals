@@ -38,10 +38,7 @@ const formSchema = z.object({
   balance: z.string().max(50).optional(),
   province: z.string().max(50).optional(),
   website: z.string().optional(),
-}).refine(
-  (data) => (data.notes?.trim().length ?? 0) >= 10 || data.maturityDate || data.currentLender || data.balance,
-  { message: 'Add a short note (10+ characters) or fill in renewal details below.', path: ['notes'] },
-);
+});
 
 type FormData = z.infer<typeof formSchema>;
 

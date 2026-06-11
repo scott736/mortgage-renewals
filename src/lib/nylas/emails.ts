@@ -57,6 +57,22 @@ interface BookingNotificationEmailParams {
   meetingLink?: string;
 }
 
+interface PendingBookingNotificationEmailParams {
+  teamMemberEmail: string;
+  teamMemberName: string;
+  guestName: string;
+  guestEmail: string;
+  guestPhone?: string;
+  notes?: string;
+  serviceName: string;
+  serviceDuration: number;
+  startTime: Date;
+  timezone: string;
+  meetingType?: string;
+  confirmUrl: string;
+  expiresAt: Date;
+}
+
 // ============================================================================
 // Helpers
 // ============================================================================
@@ -238,6 +254,76 @@ export async function sendBookingConfirmedEmail(
 }
 
 /**
+ * Send an internal notification when a pending booking is created (before guest confirms)
+ */
+export async function sendPendingBookingNotificationEmail(
+  params: PendingBookingNotificationEmailParams
+): Promise<void> {
+  const {
+    teamMemberEmail,
+    teamMemberName,
+    guestName,
+    guestEmail,
+    guestPhone,
+    notes,
+    serviceName,
+    serviceDuration,
+    startTime,
+    timezone,
+    meetingType,
+    confirmUrl,
+    expiresAt,
+  } = params;
+
+  const formattedTime = formatTime(startTime, timezone);
+  const expiresFormatted = expiresAt.toLocaleString('en-CA', {
+    timeZone: timezone,
+    dateStyle: 'short',
+    timeStyle: 'short',
+  });
+
+  const html = `
+<!DOCTYPE html>
+<html>
+<body style="font-family: -apple-system, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="text-align: center; padding: 12px 0 20px;">
+    <a href="${SITE_URL}" style="display: inline-block; text-decoration: none;">
+      <img src="${LOGO_URL}" alt="MortgageRenewalHub.ca" width="160" style="max-width: 160px; height: auto;" />
+    </a>
+  </div>
+  <div style="background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;">
+    <p style="margin: 0; color: #f57f17; font-weight: 600;">⏳ Awaiting guest confirmation</p>
+    <p style="margin: 8px 0 0; color: #555; font-size: 14px; line-height: 1.5;">
+      The guest must click the confirmation link in their email before this slot is booked on your calendar.
+      Link expires ${escapeHtml(expiresFormatted)}.
+    </p>
+  </div>
+  <h2 style="color: #0D2B45;">Pending Booking — ${escapeHtml(serviceName)}</h2>
+  <table style="width: 100%; border-collapse: collapse;">
+    <tr><td style="padding: 8px 0; color: #555; font-weight: 600; width: 140px;">Guest</td><td style="padding: 8px 0;">${escapeHtml(guestName)}</td></tr>
+    <tr><td style="padding: 8px 0; color: #555; font-weight: 600;">Email</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(guestEmail)}">${escapeHtml(guestEmail)}</a></td></tr>
+    ${guestPhone ? `<tr><td style="padding: 8px 0; color: #555; font-weight: 600;">Phone</td><td style="padding: 8px 0;">${escapeHtml(guestPhone)}</td></tr>` : ''}
+    <tr><td style="padding: 8px 0; color: #555; font-weight: 600;">Time</td><td style="padding: 8px 0;">${escapeHtml(formattedTime)}</td></tr>
+    <tr><td style="padding: 8px 0; color: #555; font-weight: 600;">Duration</td><td style="padding: 8px 0;">${serviceDuration} minutes</td></tr>
+    ${meetingType ? `<tr><td style="padding: 8px 0; color: #555; font-weight: 600;">Meeting Type</td><td style="padding: 8px 0;">${escapeHtml(meetingType)}</td></tr>` : ''}
+    ${notes ? `<tr><td style="padding: 8px 0; color: #555; font-weight: 600; vertical-align: top;">Notes</td><td style="padding: 8px 0;">${escapeHtml(notes)}</td></tr>` : ''}
+    <tr><td style="padding: 8px 0; color: #555; font-weight: 600; vertical-align: top;">Confirm link</td><td style="padding: 8px 0;"><a href="${escapeHtml(confirmUrl)}">${escapeHtml(confirmUrl)}</a></td></tr>
+  </table>
+  <p style="color: #888; font-size: 12px; margin-top: 24px;">Pending booking via MortgageRenewalHub.ca · Assigned to ${escapeHtml(teamMemberName)}</p>
+</body>
+</html>
+  `.trim();
+
+  await sendEmail({
+    to: leadNotificationRecipients(teamMemberEmail),
+    subject: `Pending booking (awaiting confirmation): ${serviceName} — ${guestName}`,
+    html,
+    text: `Pending booking (awaiting guest confirmation) for ${serviceName}\nGuest: ${guestName} (${guestEmail})\nTime: ${formattedTime}\nConfirm link: ${confirmUrl}\nExpires: ${expiresFormatted}`,
+    replyTo: guestEmail,
+  });
+}
+
+/**
  * Send an internal notification email to the team member
  */
 export async function sendBookingNotificationEmail(
@@ -269,7 +355,7 @@ export async function sendBookingNotificationEmail(
       <img src="${LOGO_URL}" alt="MortgageRenewalHub.ca" width="160" style="max-width: 160px; height: auto;" />
     </a>
   </div>
-  <h2 style="color: #0D2B45;">New Booking — ${escapeHtml(serviceName)}</h2>
+  <h2 style="color: #0D2B45;">Booking Confirmed — ${escapeHtml(serviceName)}</h2>
   <table style="width: 100%; border-collapse: collapse;">
     <tr><td style="padding: 8px 0; color: #555; font-weight: 600; width: 140px;">Guest</td><td style="padding: 8px 0;">${escapeHtml(guestName)}</td></tr>
     <tr><td style="padding: 8px 0; color: #555; font-weight: 600;">Email</td><td style="padding: 8px 0;"><a href="mailto:${escapeHtml(guestEmail)}">${escapeHtml(guestEmail)}</a></td></tr>
@@ -287,7 +373,7 @@ export async function sendBookingNotificationEmail(
 
   await sendEmail({
     to: leadNotificationRecipients(teamMemberEmail),
-    subject: `New booking: ${serviceName} — ${guestName}`,
+    subject: `Booking confirmed: ${serviceName} — ${guestName}`,
     html,
     text: `New booking for ${serviceName}\nGuest: ${guestName} (${guestEmail})\nTime: ${formattedTime}`,
     replyTo: guestEmail,

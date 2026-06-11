@@ -111,7 +111,7 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
       <div>
         <h2 className="text-heading-4 font-bold mb-1">Get a broker rate alert</h2>
         <p className="text-body-sm text-muted-foreground">
-          Tell us your target once, we&apos;ll email when a broker-negotiated rate hits it (not posted bank rates).
+          Tell us your target once. Our team will follow up when broker-channel rates match your target (not posted bank rates).
         </p>
       </div>
 
@@ -179,7 +179,7 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
       )}
 
       <Button type="submit" className="w-full" disabled={status === "submitting"}>
-        {status === "submitting" ? "Signing up…" : "Notify me at my target rate"}
+        {status === "submitting" ? "Signing up…" : "Submit rate alert request"}
       </Button>
 
       <p className="text-body-xs text-muted-foreground text-center">

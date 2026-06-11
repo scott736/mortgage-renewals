@@ -301,9 +301,8 @@ export function SchedulingWidget({
       throw new Error(data.error || 'Failed to create booking');
     }
 
-    trackLeadEvent('booking_confirmed', {
+    trackLeadEvent('booking_pending', {
       service: selectedService.id,
-      pending: data.requiresConfirmation ? 'true' : 'false',
     });
 
     if (data.requiresConfirmation) {

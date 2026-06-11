@@ -43,6 +43,10 @@ function parseRetryAfter(header: string | null): number | null {
   return null;
 }
 
+export function isElasticEmailConfigured(): boolean {
+  return Boolean(ELASTIC_EMAIL_API_KEY);
+}
+
 export async function sendEmail(params: SendEmailParams) {
   if (!ELASTIC_EMAIL_API_KEY) {
     throw new Error('ELASTIC_EMAIL_API_KEY environment variable is not set');

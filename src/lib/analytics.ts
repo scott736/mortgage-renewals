@@ -3,6 +3,7 @@ type LeadEventProps = Record<string, string | number | boolean | undefined>;
 export type LeadEventName =
   | "cta_click"
   | "contact_form_submit"
+  | "booking_pending"
   | "booking_confirmed"
   | "calculator_lead_submit"
   | "checklist_download"

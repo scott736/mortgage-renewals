@@ -3,9 +3,10 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
 
+import { isElasticEmailConfigured } from '@/lib/email';
 import { isNylasConfigured } from '@/lib/nylas/client';
 import { getServiceById, getTeamMemberById, schedulingConfig } from '@/lib/nylas/config';
-import { sendBookingConfirmationEmail } from '@/lib/nylas/emails';
+import { sendBookingConfirmationEmail, sendPendingBookingNotificationEmail } from '@/lib/nylas/emails';
 import { cancelPendingBooking,createPendingBooking, hasReachedPendingLimit } from '@/lib/nylas/pending-bookings';
 import type { BookingRequest } from '@/lib/nylas/types';
 
@@ -40,6 +41,13 @@ export const POST: APIRoute = async ({ request, url }) => {
     if (!isNylasConfigured()) {
       return new Response(
         JSON.stringify({ success: false, error: 'Booking is not available' }),
+        { status: 503, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (!isElasticEmailConfigured()) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Booking email is not configured. Please try again later or contact us directly.' }),
         { status: 503, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -170,18 +178,39 @@ export const POST: APIRoute = async ({ request, url }) => {
     const confirmUrl = new URL('/book/confirm/', siteOrigin);
     confirmUrl.searchParams.set('token', pendingBooking.token);
 
-    // Send confirmation email
-    await sendBookingConfirmationEmail({
-      to: data.guestEmail,
-      guestName: data.guestName,
-      serviceName: service.name,
-      serviceDuration: bookingDuration,
-      teamMemberName: teamMember.name,
-      startTime: new Date(data.startTime),
-      timezone: data.timezone,
-      confirmUrl: confirmUrl.toString(),
-      expiresAt: pendingBooking.expiresAt,
-    });
+    try {
+      await sendPendingBookingNotificationEmail({
+        teamMemberEmail: teamMember.email,
+        teamMemberName: teamMember.name,
+        guestName: data.guestName,
+        guestEmail: data.guestEmail,
+        guestPhone: data.guestPhone,
+        notes: data.notes,
+        serviceName: service.name,
+        serviceDuration: bookingDuration,
+        startTime: new Date(data.startTime),
+        timezone: data.timezone,
+        meetingType: data.meetingType,
+        confirmUrl: confirmUrl.toString(),
+        expiresAt: pendingBooking.expiresAt,
+      });
+
+      await sendBookingConfirmationEmail({
+        to: data.guestEmail,
+        guestName: data.guestName,
+        serviceName: service.name,
+        serviceDuration: bookingDuration,
+        teamMemberName: teamMember.name,
+        startTime: new Date(data.startTime),
+        timezone: data.timezone,
+        confirmUrl: confirmUrl.toString(),
+        expiresAt: pendingBooking.expiresAt,
+      });
+    } catch (emailError) {
+      await cancelPendingBooking(pendingBooking.token);
+      console.error('Booking email error:', emailError);
+      throw emailError;
+    }
 
     console.log(
       `Pending booking created: ${pendingBooking.id} - ${data.guestName} with ${teamMember.name} for ${service.name}`

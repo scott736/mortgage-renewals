@@ -1,5 +1,10 @@
 /** Inbound lead notifications — matches LendCity satellite-site routing. */
-export const LEAD_INBOX = ['scott@lendcity.ca', 'aya@lendcity.ca'] as const;
+export const LEAD_INBOX = [
+  'scott@lendcity.ca',
+  'aya@lendcity.ca',
+  // Keep info@ for Zapier/CRM automations that still watch the shared inbox
+  'info@lendcity.ca',
+] as const;
 
 const SITE_TITLE = "MortgageRenewalHub.ca — Canada's Mortgage Renewal Resource";
 const SITE_DESCRIPTION =

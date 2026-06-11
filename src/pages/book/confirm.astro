@@ -20,7 +20,9 @@ export const prerender = false;
   </section>
 </DefaultLayout>
 
-<script is:inline>
+<script>
+  import { trackLeadEvent } from '@/lib/analytics';
+
   (async () => {
     const root = document.getElementById('confirm-root');
     if (!root) return;
@@ -155,6 +157,10 @@ export const prerender = false;
         const calOutlook = c.calendarLinks?.outlook || '';
         const calIcal = c.calendarLinks?.ical || '';
         const meeting = c.meetingLink || '';
+
+        trackLeadEvent('booking_confirmed', {
+          service: c.service?.name || serviceName,
+        });
 
         render(panel(`
           <div class="text-center mb-6">
