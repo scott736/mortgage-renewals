@@ -52,9 +52,13 @@ const finalDescription = description || SITE_METADATA.description;
 const finalImage = image || SITE_METADATA.openGraph.images[0].url;
 const imageURL = new URL(finalImage, Astro.url);
 
+const shouldNoindexQueryParams = Astro.url.search.length > 0;
+
 const robotsContent = noindex
   ? "noindex, nofollow"
-  : `${SITE_METADATA.robots.index ? "index" : "noindex"}, ${SITE_METADATA.robots.follow ? "follow" : "nofollow"}`;
+  : shouldNoindexQueryParams
+    ? "noindex, follow"
+    : `${SITE_METADATA.robots.index ? "index" : "noindex"}, ${SITE_METADATA.robots.follow ? "follow" : "nofollow"}`;
 
 // Build a single connected @graph rather than disconnected nodes. This lets
 // schema parsers (Google, Perplexity, Claude) cross-reference the Organization

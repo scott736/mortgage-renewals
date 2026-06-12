@@ -214,8 +214,10 @@ function readLenderPresetFromUrl(): Partial<{
   appraisalFee: number;
 }> {
   if (typeof window === 'undefined') return {};
-  const params = new URLSearchParams(window.location.search);
-  const lender = params.get('lender') || params.get('from');
+  const hashParams = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+  const queryParams = new URLSearchParams(window.location.search);
+  const lender = hashParams.get('lender') || hashParams.get('from')
+    || queryParams.get('lender') || queryParams.get('from');
   if (lender && LENDER_SWITCH_PRESETS[lender]) {
     const p = LENDER_SWITCH_PRESETS[lender];
     return {
@@ -228,7 +230,23 @@ function readLenderPresetFromUrl(): Partial<{
   return {};
 }
 
+function migrateLenderQueryToHash() {
+  if (typeof window === 'undefined') return;
+  const params = new URLSearchParams(window.location.search);
+  const lender = params.get('lender') || params.get('from');
+  if (!lender) return;
+  params.delete('lender');
+  params.delete('from');
+  const query = params.toString();
+  const nextUrl = `${window.location.pathname}${query ? `?${query}` : ''}#lender=${encodeURIComponent(lender)}`;
+  window.history.replaceState(null, '', nextUrl);
+}
+
 export function SwitchVsStay() {
+  React.useEffect(() => {
+    migrateLenderQueryToHash();
+  }, []);
+
   const [state, setState] = usePatchState(() => ({
     balance: 500000,
     stayRate: 4.89,

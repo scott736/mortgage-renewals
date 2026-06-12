@@ -350,10 +350,6 @@ const LINK_META: Record<string, LinkMeta> = {
     title: "Divorce & Mortgage Renewal",
     blurb: "Renewing during or after a divorce — qualifying alone, buyout timing.",
   },
-  "/mortgage-renewal-divorce-separation/": {
-    title: "Separation & Renewal",
-    blurb: "Practical mortgage steps when separating or divorcing.",
-  },
   "/spousal-buyout-mortgage-renewal/": {
     title: "Spousal Buyout Program",
     blurb: "Insured refinance up to 95% to buy out an ex-spouse.",
@@ -1171,15 +1167,6 @@ const RELATED: Record<string, string[]> = {
   "/divorce-mortgage-renewal/": [
     "/spousal-buyout-mortgage-renewal/",
     "/remove-co-signer-mortgage-renewal/",
-    "/mortgage-renewal-divorce-separation/",
-    "/common-law-mortgage-renewal/",
-    "/mortgage-refinance-canada/",
-    "/affordability-requalification-calculator/",
-  ],
-  "/mortgage-renewal-divorce-separation/": [
-    "/divorce-mortgage-renewal/",
-    "/spousal-buyout-mortgage-renewal/",
-    "/remove-co-signer-mortgage-renewal/",
     "/common-law-mortgage-renewal/",
     "/mortgage-refinance-canada/",
     "/affordability-requalification-calculator/",
@@ -1187,7 +1174,7 @@ const RELATED: Record<string, string[]> = {
   "/spousal-buyout-mortgage-renewal/": [
     "/divorce-mortgage-renewal/",
     "/remove-co-signer-mortgage-renewal/",
-    "/mortgage-renewal-divorce-separation/",
+    "/common-law-mortgage-renewal/",
     "/mortgage-refinance-canada/",
     "/insured-vs-conventional-mortgage-renewal/",
     "/affordability-requalification-calculator/",
@@ -1282,7 +1269,6 @@ const RELATED: Record<string, string[]> = {
   ],
   "/common-law-mortgage-renewal/": [
     "/divorce-mortgage-renewal/",
-    "/mortgage-renewal-divorce-separation/",
     "/co-ownership-mortgage-renewal/",
     "/remove-co-signer-mortgage-renewal/",
     "/spousal-buyout-mortgage-renewal/",
