@@ -5,6 +5,7 @@ import type { APIRoute } from 'astro';
 import { getAvailability, isNylasConfigured } from '@/lib/nylas/client';
 import { getServiceById, getTeamMemberById, schedulingConfig } from '@/lib/nylas/config';
 import type { AvailabilityRequest, DayAvailability, TimeSlot } from '@/lib/nylas/types';
+import { rateLimit, rateLimitResponse } from '@/lib/rate-limit';
 
 /**
  * POST /api/nylas/availability
@@ -14,6 +15,9 @@ import type { AvailabilityRequest, DayAvailability, TimeSlot } from '@/lib/nylas
  * Response: { slots: TimeSlot[], days: DayAvailability[] }
  */
 export const POST: APIRoute = async ({ request }) => {
+  const rl = await rateLimit(request, { id: 'availability', limit: 60, windowSeconds: 60 });
+  if (!rl.allowed) return rateLimitResponse(rl.resetAt);
+
   try {
     if (!isNylasConfigured()) {
       return new Response(

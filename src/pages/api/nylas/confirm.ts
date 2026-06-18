@@ -5,6 +5,7 @@ import type { APIRoute } from 'astro';
 import { getServiceById, getTeamMemberById } from '@/lib/nylas/config';
 import { sendBookingConfirmedEmail, sendBookingNotificationEmail } from '@/lib/nylas/emails';
 import { confirmPendingBooking, getPendingBookingByToken } from '@/lib/nylas/pending-bookings';
+import { rateLimit, rateLimitResponse } from '@/lib/rate-limit';
 
 /**
  * POST /api/nylas/confirm
@@ -14,6 +15,9 @@ import { confirmPendingBooking, getPendingBookingByToken } from '@/lib/nylas/pen
  * Response: { booking: BookingConfirmation }
  */
 export const POST: APIRoute = async ({ request }) => {
+  const rl = await rateLimit(request, { id: 'booking-confirm', limit: 20, windowSeconds: 60 });
+  if (!rl.allowed) return rateLimitResponse(rl.resetAt);
+
   try {
     const body = await request.json();
     const { token } = body;

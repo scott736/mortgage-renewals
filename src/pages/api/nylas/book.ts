@@ -9,6 +9,7 @@ import { getServiceById, getTeamMemberById, schedulingConfig } from '@/lib/nylas
 import { sendBookingConfirmationEmail, sendPendingBookingNotificationEmail } from '@/lib/nylas/emails';
 import { cancelPendingBooking,createPendingBooking, hasReachedPendingLimit } from '@/lib/nylas/pending-bookings';
 import type { BookingRequest } from '@/lib/nylas/types';
+import { rateLimit, rateLimitResponse } from '@/lib/rate-limit';
 
 // Validation schema
 const bookingSchema = z.object({
@@ -37,6 +38,9 @@ const bookingSchema = z.object({
  * Response: { pendingBooking: { id, expiresAt } }
  */
 export const POST: APIRoute = async ({ request, url }) => {
+  const rl = await rateLimit(request, { id: 'booking', limit: 20, windowSeconds: 60 });
+  if (!rl.allowed) return rateLimitResponse(rl.resetAt);
+
   try {
     if (!isNylasConfigured()) {
       return new Response(

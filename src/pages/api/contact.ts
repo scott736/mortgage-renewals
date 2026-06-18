@@ -9,6 +9,7 @@ import {
   leadEnvelopeHtmlBlock,
   leadEnvelopeJson,
 } from '@/lib/lead-payload';
+import { rateLimit, rateLimitResponse } from '@/lib/rate-limit';
 
 interface ContactPayload {
   firstName?: unknown;
@@ -57,6 +58,9 @@ function sourceLabel(source: string): string {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  const rl = await rateLimit(request, { id: 'contact', limit: 5, windowSeconds: 60 * 60 });
+  if (!rl.allowed) return rateLimitResponse(rl.resetAt);
+
   let body: ContactPayload;
   try {
     body = await request.json();
