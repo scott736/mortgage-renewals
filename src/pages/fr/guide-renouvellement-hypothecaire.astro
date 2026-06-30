@@ -1,4 +1,5 @@
 ---
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
 
@@ -33,5 +34,6 @@ const schema = combineSchemas(
       <li><strong>Échéance :</strong> nouveau terme commence — archivez les documents.</li>
     </ol>
     <p class="text-body-sm">Environ 1 million de ménages canadiens devraient renouveler en 2026 (CMHC, printemps 2026).</p>
+    <RelatedLinks slug="/fr/guide-renouvellement-hypothecaire/" heading="Guides connexes" />
   </article>
 </DefaultLayout>
