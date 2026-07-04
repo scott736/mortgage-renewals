@@ -7,18 +7,9 @@ import Navbar from "@/components/sections/navbar";
 const { title, description } = Astro.props;
 ---
 
-<html lang="en-CA" class="dark">
+<html lang="en-CA">
   <head>
     <BaseHead title={title} description={description} />
-    <script is:inline>
-      (() => {
-        try {
-          const stored = localStorage.getItem("theme");
-          const theme = stored ?? "light";
-          document.documentElement.classList.toggle("dark", theme === "dark");
-        } catch {}
-      })();
-    </script>
   </head>
   <body class={`h-screen antialiased`}>
     <Banner client:idle />

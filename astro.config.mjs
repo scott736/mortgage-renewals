@@ -27,6 +27,11 @@ const pageDates = loadPageDates();
 export default defineConfig({
   site: "https://mortgagerenewalhub.ca",
   trailingSlash: "always",
+  compressHTML: true,
+  prefetch: {
+    prefetchAll: false,
+    defaultStrategy: "hover",
+  },
   image: {
     service: passthroughImageService(),
   },
@@ -107,6 +112,21 @@ export default defineConfig({
     plugins: [tailwindcss()],
     build: {
       target: "es2022",
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules/react-dom/") || id.includes("node_modules/react/")) {
+              return "react-vendor";
+            }
+            if (id.includes("node_modules/@radix-ui/")) {
+              return "radix-vendor";
+            }
+            if (id.includes("node_modules/lucide-react/")) {
+              return "icons-vendor";
+            }
+          },
+        },
+      },
     },
   },
 });

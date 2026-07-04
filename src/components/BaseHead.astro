@@ -165,6 +165,7 @@ const graphSchema = JSON.stringify({
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
+<meta name="color-scheme" content="light dark" />
 
 <!-- Hero image preload (LCP optimization) -->
 {preloadImage && (
@@ -179,17 +180,18 @@ const graphSchema = JSON.stringify({
 <meta name="creator" content={SITE_METADATA.creator} />
 <meta name="publisher" content={SITE_METADATA.publisher} />
 
-<!-- Theme Script -->
+<!-- Theme Script (blocking — prevents dark-mode flash) -->
 <script is:inline>
-  // Get theme from localStorage or system preference
-  const savedTheme = localStorage.getItem("theme");
-  const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-  const initialTheme = savedTheme || systemTheme;
-
-  // Apply theme immediately to prevent flashing
-  document.documentElement.classList.toggle("dark", initialTheme === "dark");
+  (() => {
+    try {
+      const savedTheme = localStorage.getItem("theme");
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+      const initialTheme = savedTheme || systemTheme;
+      document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    } catch {}
+  })();
 </script>
 
 <!-- Favicon -->

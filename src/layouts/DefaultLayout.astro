@@ -1,5 +1,6 @@
 ---
-import VercelAnalytics from "@/components/analytics/VercelAnalytics";
+import Analytics from "@vercel/analytics/astro";
+
 import AuthorByline from "@/components/AuthorByline.astro";
 import BaseHead from "@/components/BaseHead.astro";
 import LastUpdated from "@/components/LastUpdated.astro";
@@ -41,21 +42,12 @@ const showAuthorByline = isArticlePage && !hideAuthorByline && !showLastUpdated;
 const pageLang = Astro.url.pathname.startsWith("/fr/") ? "fr-CA" : "en-CA";
 ---
 
-<html lang={pageLang} class="dark">
+<html lang={pageLang}>
   <head>
     <BaseHead title={title} description={description} schema={schema} preloadImage={preloadImage} noindex={noindex} ogType={detectedOgType} />
-    <script is:inline>
-      (() => {
-        try {
-          const stored = localStorage.getItem("theme");
-          const theme = stored ?? "light";
-          document.documentElement.classList.toggle("dark", theme === "dark");
-        } catch {}
-      })();
-    </script>
+    <Analytics />
   </head>
   <body class="min-h-screen antialiased pb-24 lg:pb-0">
-    <VercelAnalytics client:load />
     <Banner client:idle />
     <Navbar client:idle />
     <main>
@@ -75,7 +67,7 @@ const pageLang = Astro.url.pathname.startsWith("/fr/") ? "fr-CA" : "en-CA";
     {!hideMobileSticky && <MobileStickyCta client:idle />}
     <ClickToCallBar client:idle />
     {showExitIntent && (
-      <ExitIntentModal client:load storageKey={exitIntentStorageKey} />
+      <ExitIntentModal client:idle storageKey={exitIntentStorageKey} />
     )}
   </body>
 </html>
