@@ -328,6 +328,26 @@ const LINK_META: Record<string, LinkMeta> = {
     title: "Frais de notaire — hypothèque Québec",
     blurb: "Fourchettes notariales pour changement de prêteur au renouvellement.",
   },
+  "/fr/calculateur-renouvellement-hypothecaire/": {
+    title: "Calculateur renouvellement (FR)",
+    blurb: "Outils gratuits — paiement, comparaison de taux et pénalités.",
+  },
+  "/fr/calculateur-penalite-hypothecaire/": {
+    title: "Calculateur pénalité (FR)",
+    blurb: "Estimez l'intérêt de 3 mois ou l'IRD avant de rompre votre hypothèque.",
+  },
+  "/fr/meilleurs-taux-renouvellement-hypothecaire/": {
+    title: "Meilleurs taux renouvellement (FR)",
+    blurb: "Taux du marché et pourquoi magasiner au renouvellement.",
+  },
+  "/fr/qu-est-ce-que-renouvellement-hypothecaire/": {
+    title: "Qu'est-ce qu'un renouvellement? (FR)",
+    blurb: "Définition, processus et droits du consommateur au Canada.",
+  },
+  "/fr/prevision-taux-hypothecaire/": {
+    title: "Prévision des taux (FR)",
+    blurb: "Perspectives Banque du Canada et impact sur votre renouvellement.",
+  },
 
   // Rates
   "/best-mortgage-renewal-rates/": {
@@ -1603,7 +1623,7 @@ const RELATED: Record<string, string[]> = {
     "/fr/frais-notaire-hypotheque-quebec/",
     "/fr/guide-renouvellement-hypothecaire/",
     "/fr/faq-renouvellement-hypothecaire/",
-    "/quebec-mortgage-renewal/",
+    "/fr/meilleurs-taux-renouvellement-hypothecaire/",
     "/book-a-call/",
   ],
   "/fr/changer-preteur-renouvellement/": [
@@ -1626,8 +1646,8 @@ const RELATED: Record<string, string[]> = {
     "/fr/faq-renouvellement-hypothecaire/",
     "/fr/changer-preteur-renouvellement/",
     "/fr/renouvellement-hypothecaire-quebec/",
-    "/mortgage-renewal-guide/",
-    "/mortgage-renewal-calculator/",
+    "/fr/calculateur-renouvellement-hypothecaire/",
+    "/fr/qu-est-ce-que-renouvellement-hypothecaire/",
     "/book-a-call/",
   ],
   "/fr/frais-notaire-hypotheque-quebec/": [
@@ -1637,6 +1657,46 @@ const RELATED: Record<string, string[]> = {
     "/title-insurance-legal-fees-switching/",
     "/quebec-mortgage-renewal/",
     "/mortgage-discharge-fees-canada/",
+  ],
+  "/fr/calculateur-renouvellement-hypothecaire/": [
+    "/fr/calculateur-penalite-hypothecaire/",
+    "/fr/meilleurs-taux-renouvellement-hypothecaire/",
+    "/fr/qu-est-ce-que-renouvellement-hypothecaire/",
+    "/fr/guide-renouvellement-hypothecaire/",
+    "/mortgage-renewal-calculator/",
+    "/book-a-call/",
+  ],
+  "/fr/calculateur-penalite-hypothecaire/": [
+    "/fr/calculateur-renouvellement-hypothecaire/",
+    "/fr/changer-preteur-renouvellement/",
+    "/mortgage-penalty-calculator/",
+    "/ird-vs-three-month-interest-penalty/",
+    "/break-even-switch-calculator/",
+    "/book-a-call/",
+  ],
+  "/fr/meilleurs-taux-renouvellement-hypothecaire/": [
+    "/fr/prevision-taux-hypothecaire/",
+    "/fr/calculateur-renouvellement-hypothecaire/",
+    "/fr/changer-preteur-renouvellement/",
+    "/best-mortgage-renewal-rates/",
+    "/current-mortgage-rates-canada/",
+    "/book-a-call/",
+  ],
+  "/fr/qu-est-ce-que-renouvellement-hypothecaire/": [
+    "/fr/guide-renouvellement-hypothecaire/",
+    "/fr/faq-renouvellement-hypothecaire/",
+    "/fr/calculateur-renouvellement-hypothecaire/",
+    "/what-is-a-mortgage-renewal/",
+    "/mortgage-renewal-guide/",
+    "/book-a-call/",
+  ],
+  "/fr/prevision-taux-hypothecaire/": [
+    "/fr/meilleurs-taux-renouvellement-hypothecaire/",
+    "/fr/calculateur-renouvellement-hypothecaire/",
+    "/bank-of-canada-rate-decisions/",
+    "/mortgage-rate-forecast/",
+    "/fixed-vs-variable-mortgage-renewal/",
+    "/book-a-call/",
   ],
 };
 

@@ -1,9 +1,14 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
+
+export const pageMeta = getPageMeta("mortgage-rate-forecast", {
+  dateModified: "2026-05-21",
+});
 
 const schema = combineSchemas(
   webPageNode({
@@ -15,7 +20,7 @@ const schema = combineSchemas(
     headline: "Canadian Mortgage Rate Forecast 2026 — What to Expect at Renewal",
     description: "Canadian mortgage rate forecast for 2026. Where the Bank of Canada rate stands, major bank projections, fixed vs variable outlook, bond market drivers, and what it all means at renewal.",
     slug: "mortgage-rate-forecast",
-    dateModified: "2026-05-21",
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([
     { name: "Canadian Mortgage Rate Forecast 2026", url: "/mortgage-rate-forecast" }
@@ -30,6 +35,7 @@ const schema = combineSchemas(
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
     <a href="/" style="color: var(--muted-foreground)">Home</a> › Canadian Mortgage Rate Forecast 2026
+    · <a href="/fr/prevision-taux-hypothecaire/" class="text-secondary-100 hover:underline">Français</a>
   </nav>
 
   <article class="container max-w-4xl py-10">

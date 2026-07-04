@@ -1,0 +1,124 @@
+---
+import { MortgagePenalty } from '@/components/calculators/mortgage-penalty';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+export const pageMeta = getPageMeta("fr/calculateur-penalite-hypothecaire", {
+  dateModified: "2026-07-04",
+});
+
+const faqs = [
+  {
+    question: "Comment calcule-t-on une pénalité hypothécaire au Canada?",
+    answer: "Pour un taux fixe, le prêteur retient le plus élevé de deux montants : l'intérêt de 3 mois (solde × taux mensuel effectif × 3) ou la différence de taux (IRD). Les taux variables utilisent presque toujours la méthode des 3 mois seulement.",
+  },
+  {
+    question: "Pourquoi les pénalités IRD des grandes banques sont-elles si élevées?",
+    answer: "Les grandes banques calculent souvent l'IRD avec leurs taux affichés (posted rates) plutôt que le taux réellement négocié, ce qui gonfle artificiellement la pénalité. Les prêteurs monolignes utilisent généralement la méthode équitable des 3 mois.",
+  },
+  {
+    question: "Y a-t-il une pénalité au renouvellement?",
+    answer: "Non. À l'échéance du terme, vous pouvez renouveler ou changer de prêteur sans pénalité de remboursement anticipé — c'est le moment idéal pour magasiner votre taux.",
+  },
+  {
+    question: "Puis-je éviter une pénalité en portant mon hypothèque?",
+    answer: "Oui, la plupart des prêteurs permettent de porter votre taux et terme restants vers une nouvelle propriété, souvent dans une fenêtre de 30 à 120 jours après la vente.",
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "fr/calculateur-penalite-hypothecaire",
+    name: "Calculateur de pénalité hypothécaire — Canada",
+    description: "Estimez la pénalité pour rompre votre hypothèque à taux fixe : intérêt de 3 mois vs IRD.",
+    inLanguage: "fr-CA",
+  }),
+  webApplicationSchema({
+    name: "Calculateur de pénalité hypothécaire (Canada)",
+    description: "Outil gratuit pour estimer la pénalité de remboursement anticipé au Canada.",
+    slug: "fr/calculateur-penalite-hypothecaire",
+    features: ["Intérêt de 3 mois", "IRD (méthode banques)", "Gratuit"],
+  }),
+  articleSchema({
+    headline: "Calculateur de pénalité hypothécaire — Canada",
+    description: "Estimez la pénalité pour rompre votre hypothèque avant l'échéance au Canada.",
+    slug: "fr/calculateur-penalite-hypothecaire",
+    articleSection: "Calculateurs",
+    inLanguage: "fr-CA",
+    dateModified: pageMeta.dateModified,
+  }),
+  faqSchema(faqs, "fr/calculateur-penalite-hypothecaire"),
+  breadcrumbSchema([
+    { name: "Calculateurs (FR)", url: "/fr/calculateur-renouvellement-hypothecaire" },
+    { name: "Pénalité (FR)", url: "/fr/calculateur-penalite-hypothecaire" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Calculateur pénalité hypothécaire — 3 mois vs IRD (Canada)"
+  description="Calculateur gratuit de pénalité hypothécaire au Canada. Estimez l'intérêt de 3 mois et l'IRD avant de rompre votre hypothèque."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Accueil</a> ›
+    <a href="/fr/calculateur-renouvellement-hypothecaire/" class="hover:underline">Calculateurs</a> › Pénalité
+  </nav>
+
+  <section class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-4">
+      <a href="/mortgage-penalty-calculator/" class="text-secondary-100 hover:underline">English: Mortgage penalty calculator</a>
+    </p>
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Outil gratuit</div>
+      <h1 class="text-heading-1 mb-4">Calculateur de pénalité hypothécaire</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Vous songez à rompre votre hypothèque avant l'échéance? La pénalité dépend de la méthode utilisée — intérêt de 3 mois ou différence de taux (IRD). Au renouvellement, il n'y a <strong>pas</strong> de pénalité pour changer de prêteur.
+      </p>
+    </div>
+
+    <MortgagePenalty client:visible />
+
+    <div class="mt-12 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">Quand une pénalité s'applique</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+          <li>Rupture en cours de terme pour obtenir un taux plus bas</li>
+          <li>Refinancement pour retirer de l'équité ou consolider des dettes</li>
+          <li>Vente sans porter l'hypothèque vers une nouvelle propriété</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-heading-3 mb-4">Questions fréquentes</h2>
+        <div class="space-y-4">
+          {faqs.map((f) => (
+            <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+              <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <span>{f.question}</span>
+                <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+              </summary>
+              <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+      <RelatedLinks slug="/fr/calculateur-penalite-hypothecaire/" heading="Guides connexes" />
+    </div>
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Votre pénalité exacte?</h2>
+      <p class="text-white/80 mb-6">Un courtier agréé peut obtenir votre relevé de solde officiel et comparer avec les économies d'un transfert — gratuitement.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Appel stratégique gratuit
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

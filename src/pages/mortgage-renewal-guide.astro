@@ -1,17 +1,23 @@
 ---
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import RenewalDateCta from "@/components/lead/renewal-date-cta";
 import MidContentCta from "@/components/sections/mid-content-cta";
 import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
+
+export const pageMeta = getPageMeta("mortgage-renewal-guide", {
+  dateModified: "2026-05-21",
+});
 
 const schema = combineSchemas(
   articleSchema({
     headline: "The Complete Canadian Mortgage Renewal Guide (2026)",
     description: "Canada's most comprehensive mortgage renewal guide. Everything from 12 months before renewal to maturity day — rates, switching lenders, negotiating, and saving money.",
     slug: "mortgage-renewal-guide",
-    dateModified: "2026-05-21",
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([
     { name: "Complete Mortgage Renewal Guide", url: "/mortgage-renewal-guide" }
@@ -41,6 +47,8 @@ const schema = combineSchemas(
   description="Complete mortgage renewal guide for Canada 2026. From 12 months before maturity to renewal day — rates, switching lenders, negotiation, and savings."
   schema={schema}
   preloadImage="/images/hero/hero-guide.webp"
+  hideAuthorByline={true}
+  lastUpdated="2026-05-21"
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Complete Mortgage Renewal Guide
@@ -64,6 +72,8 @@ const schema = combineSchemas(
         <li>• Since 2024, no stress test is required to switch lenders on a straight transfer at renewal.</li>
       </ul>
     </div>
+
+    <RenewalDateCta client:visible class="mb-10" />
 
     <!-- Table of Contents -->
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10">

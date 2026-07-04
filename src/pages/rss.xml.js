@@ -1,8 +1,9 @@
 import rss from "@astrojs/rss";
+import { getCollection } from "astro:content";
 
 import { SITE_METADATA } from "../consts";
 
-const posts = [
+const fallbackPosts = [
   {
     date: new Date("2026-04-29"),
     title: "Bank of Canada Holds Rate at 2.25% — Fourth Consecutive Hold",
@@ -54,7 +55,36 @@ const posts = [
   },
 ];
 
+function blogLink(post) {
+  if (post.data.canonicalSlug) {
+    const slug = post.data.canonicalSlug.replace(/^\/+|\/+$/g, "");
+    return `/${slug}/`;
+  }
+  return `/blog/${post.id}/`;
+}
+
+async function getPosts() {
+  try {
+    const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+    if (blogPosts.length > 0) {
+      return blogPosts
+        .map((post) => ({
+          date: post.data.pubDate,
+          title: post.data.title,
+          excerpt: post.data.description,
+          link: blogLink(post),
+        }))
+        .sort((a, b) => b.date.getTime() - a.date.getTime());
+    }
+  } catch {
+    // Collection unavailable — use fallback below.
+  }
+  return fallbackPosts;
+}
+
 export async function GET(context) {
+  const posts = await getPosts();
+
   return rss({
     title: `${SITE_METADATA.openGraph.siteName} — Renewal News`,
     description:

@@ -2,6 +2,11 @@
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,definedTermSetSchema, webPageNode } from '@/lib/schema';
+import { getPageMeta } from '@/lib/page-meta';
+export const pageMeta = getPageMeta("mortgage-renewal-glossary",{
+  dateModified: "2026-05-22",
+});
+
 export const prerender = true;
 
 // Curated subset of high-value terms for the DefinedTermSet schema. The visible

@@ -1,10 +1,14 @@
 ---
 import MortgageCalculators from '@/components/calculators/mortgage-calculators';
 import RelatedLinks from "@/components/RelatedLinks.astro";
-import ExitIntentModal from '@/components/sections/exit-intent-modal';
 import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const pageMeta = getPageMeta("mortgage-renewal-calculator", {
+  dateModified: "2026-05-21",
+});
 
 const schema = combineSchemas(
   webPageNode({
@@ -33,6 +37,7 @@ const schema = combineSchemas(
     articleSection: "Calculators",
     about: "Mortgage Renewal Calculator",
     keywords: ["mortgage renewal calculator", "Canadian mortgage calculator", "renewal payment", "rate comparison", "mortgage penalty calculator"],
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([
     { name: "Mortgage Renewal Calculator", url: "/mortgage-renewal-calculator" }
@@ -47,6 +52,7 @@ const schema = combineSchemas(
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Mortgage Renewal Calculator
+    · <a href="/fr/calculateur-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">Français</a>
   </nav>
 
   <section class="container max-w-4xl py-10 pb-24 lg:pb-10">
@@ -103,5 +109,4 @@ const schema = combineSchemas(
     secondaryLabel="Compare Best Rates"
     secondaryHref="/best-mortgage-renewal-rates/"
   />
-  <ExitIntentModal client:load storageKey="exit-intent-calculator-hub" />
 </DefaultLayout>

@@ -73,18 +73,22 @@ export function ResultCard({
 
 export function BrokerCTA({
   message,
+  savingsMessage,
   calculatorContext,
   showEmailCapture = true,
 }: {
   message: string;
+  savingsMessage?: string;
   calculatorContext: { tool: string; summary: string; data?: Record<string, string | number | boolean> };
   showEmailCapture?: boolean;
 }) {
+  const displayMessage = savingsMessage ?? message;
+
   return (
     <>
       <div className="bg-primary-0 border-primary-25 mt-6 flex flex-col items-start gap-4 rounded-xl border p-5 sm:flex-row sm:items-center">
         <div className="flex-1">
-          <p className="text-body-sm-medium text-primary-200">{message}</p>
+          <p className="text-body-sm-medium text-primary-200">{displayMessage}</p>
           <p className="text-body-xs text-muted-foreground mt-1">
             A broker will confirm this with real lender quotes, for free.
           </p>

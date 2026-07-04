@@ -5,6 +5,11 @@ import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import VideoWalkthrough from "@/components/VideoWalkthrough.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import { getPageMeta } from '@/lib/page-meta';
+
+export const pageMeta = getPageMeta("td-mortgage-renewal",{
+  dateModified: "2026-06-12",
+});
 
 export const prerender = true;
 

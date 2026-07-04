@@ -3,9 +3,14 @@ import RelatedLinks from "@/components/RelatedLinks.astro";
 import LiveRatesTable from '@/components/sections/live-rates-table';
 import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const prerender = true;
+
+export const pageMeta = getPageMeta("current-mortgage-rates-canada", {
+  dateModified: "2026-05-21",
+});
 
 const schema = combineSchemas(
   webPageNode({
@@ -20,7 +25,7 @@ const schema = combineSchemas(
     articleSection: "Rates",
     about: "Canadian Mortgage Rates",
     keywords: ["current mortgage rates Canada", "best 5-year rates", "mortgage rates May 2026", "Canadian mortgage rates today"],
-    dateModified: "2026-05-21",
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([
     { name: "Current Mortgage Rates", url: "/current-mortgage-rates-canada" }
@@ -32,6 +37,8 @@ const schema = combineSchemas(
   title="Current Mortgage Rates Canada — May 2026"
   description="Today's best Canadian mortgage rates: 4.04% insured 5-yr fixed, 3.35% variable. Big 5 bank comparison, broker rates, and BoC prime at 4.45%."
   schema={schema}
+  hideAuthorByline={true}
+  lastUpdated="2026-05-21"
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Current Mortgage Rates Canada

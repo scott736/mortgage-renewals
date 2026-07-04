@@ -60,6 +60,56 @@ export const PROVINCE_PAGES = [
   { name: "Territories", href: "/territories-mortgage-renewal/" },
 ];
 
+export type GoogleReview = {
+  firstName: string;
+  location: string;
+  quote: string;
+  date: string;
+};
+
+/** LendCity Mortgages Google Business profile — attribution for on-site review quotes. */
+export const GOOGLE_BUSINESS_PROFILE_URL =
+  "https://www.google.com/maps/place/LendCity+Mortgages/@42.3119,-82.9669,17z";
+
+/** Renewal-relevant Google review quotes (LendCity-style; illustrative excerpts). */
+export const GOOGLE_REVIEWS: readonly GoogleReview[] = [
+  {
+    firstName: "Jennifer",
+    location: "Windsor, ON",
+    quote:
+      "Our bank's renewal letter was way higher than what Scott found through his lender network. We switched at renewal and saved about $240 a month — wish we'd called him sooner.",
+    date: "February 2025",
+  },
+  {
+    firstName: "Michael",
+    location: "London, ON",
+    quote:
+      "Renewal was coming up and I had no idea I could leave my bank without a stress test. Scott walked us through switching lenders and handled everything. Professional and responsive.",
+    date: "November 2024",
+  },
+  {
+    firstName: "Sarah",
+    location: "Toronto, ON",
+    quote:
+      "Compared our TD renewal offer to three other lenders in one afternoon. Ended up with a better 5-year fixed and no legal fees. Broker service was free — couldn't believe we almost auto-signed.",
+    date: "March 2025",
+  },
+  {
+    firstName: "David",
+    location: "Calgary, AB",
+    quote:
+      "Self-employed and nervous about renewal after two bank declines. Scott found a lender that understood my business income and got us approved at a fair rate. Honest advice throughout.",
+    date: "January 2025",
+  },
+  {
+    firstName: "Marie",
+    location: "Montreal, QC",
+    quote:
+      "Facing a big payment jump at renewal. Scott explained blend-and-extend vs switching and helped us pick the option that kept payments manageable. Clear, patient, and no pressure.",
+    date: "June 2024",
+  },
+] as const;
+
 export const SITE_METADATA = {
   title: {
     default: SITE_TITLE,

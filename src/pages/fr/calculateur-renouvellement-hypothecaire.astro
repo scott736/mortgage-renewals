@@ -1,0 +1,97 @@
+---
+import MortgageCalculators from '@/components/calculators/mortgage-calculators';
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas, webApplicationSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+export const pageMeta = getPageMeta("fr/calculateur-renouvellement-hypothecaire", {
+  dateModified: "2026-07-04",
+});
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "fr/calculateur-renouvellement-hypothecaire",
+    name: "Calculateur de renouvellement hypothécaire — Canada",
+    description: "Outils gratuits pour estimer votre paiement au renouvellement, comparer les taux et modéliser les pénalités au Canada.",
+    inLanguage: "fr-CA",
+  }),
+  webApplicationSchema({
+    name: "Suite de calculateurs de renouvellement hypothécaire (Canada)",
+    description: "Calculateurs interactifs gratuits pour le renouvellement hypothécaire canadien : paiement, comparaison de taux, pénalités et consolidation.",
+    slug: "fr/calculateur-renouvellement-hypothecaire",
+    features: [
+      "Estimateur de paiement",
+      "Comparaison de taux",
+      "Pénalité de remboursement anticipé",
+      "Capitalisation semestrielle (norme canadienne)",
+    ],
+  }),
+  articleSchema({
+    headline: "Calculateur de renouvellement hypothécaire — Canada",
+    description: "Calculateurs gratuits pour estimer votre paiement au renouvellement, comparer les taux et modéliser les économies en changeant de prêteur.",
+    slug: "fr/calculateur-renouvellement-hypothecaire",
+    articleSection: "Calculateurs",
+    inLanguage: "fr-CA",
+    dateModified: pageMeta.dateModified,
+  }),
+  breadcrumbSchema([
+    { name: "Calculateurs (FR)", url: "/fr/calculateur-renouvellement-hypothecaire" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Calculateur renouvellement hypothécaire — Gratuit (Canada)"
+  description="Calculateur gratuit de renouvellement hypothécaire au Canada. Estimez votre nouveau paiement, comparez les taux et modélisez les économies."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Accueil</a> › Calculateur de renouvellement
+  </nav>
+
+  <section class="container max-w-4xl py-10 pb-24 lg:pb-10" lang="fr-CA">
+    <p class="text-body-sm mb-4">
+      <a href="/mortgage-renewal-calculator/" class="text-secondary-100 hover:underline">English: Mortgage renewal calculators</a>
+    </p>
+    <div class="mb-10">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Outils gratuits</div>
+      <h1 class="text-heading-1 mb-4">Calculateurs de renouvellement hypothécaire</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Estimez votre paiement au renouvellement, comparez le taux de votre banque à une offre de courtier et modélisez les pénalités. Les calculs utilisent la capitalisation semestrielle — la norme au Canada. Aucun courriel requis pour voir les résultats.
+      </p>
+    </div>
+
+    <MortgageCalculators client:visible />
+
+    <div class="mt-16 space-y-8">
+      <div>
+        <h2 class="text-heading-3 mb-3">Comment utiliser ces outils</h2>
+        <ul class="space-y-3 text-body-md text-muted-foreground list-disc list-inside">
+          <li><strong>Estimateur de paiement :</strong> entrez le solde, le nouveau taux et l'amortissement restant.</li>
+          <li><strong>Comparaison de taux :</strong> voyez l'écart mensuel et sur 5 ans entre deux offres.</li>
+          <li><strong>Pénalité :</strong> estimez l'intérêt de 3 mois ou la différence de taux (IRD) avant de rompre votre hypothèque.</li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="text-heading-3 mb-3">Rappel — mathématique hypothécaire canadienne</h2>
+        <p class="text-body-md text-muted-foreground">
+          Contrairement aux États-Unis, les hypothèques canadiennes capitalisent deux fois par année. Le taux mensuel effectif n'est donc pas simplement le taux annuel divisé par 12. Consultez le <a href="/fr/guide-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">guide de renouvellement</a> ou le <a href="/fr/qu-est-ce-que-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">qu'est-ce qu'un renouvellement</a> pour le contexte.
+        </p>
+      </div>
+      <RelatedLinks slug="/fr/calculateur-renouvellement-hypothecaire/" heading="Guides connexes" />
+    </div>
+  </section>
+
+  <ZippayCtaCard
+    client:visible
+    title="Un courtier peut confirmer ces chiffres"
+    description="Obtenez des soumissions réelles de plus de 30 prêteurs — gratuit. Un courtier hypothécaire agréé validera vos calculs."
+    primaryLabel="Réserver un appel gratuit"
+    secondaryLabel="Meilleurs taux"
+    secondaryHref="/fr/meilleurs-taux-renouvellement-hypothecaire/"
+  />
+</DefaultLayout>

@@ -1,0 +1,80 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+export const pageMeta = getPageMeta("fr/prevision-taux-hypothecaire", {
+  dateModified: "2026-07-04",
+});
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "fr/prevision-taux-hypothecaire",
+    name: "Prévision des taux hypothécaires — Canada",
+    description: "Perspectives sur les taux hypothécaires au Canada pour les renouvellements : Banque du Canada, fixe vs variable.",
+    inLanguage: "fr-CA",
+  }),
+  articleSchema({
+    headline: "Prévision des taux hypothécaires — Canada",
+    description: "Résumé en français des perspectives de taux pour les renouvellements hypothécaires au Canada.",
+    slug: "fr/prevision-taux-hypothecaire",
+    inLanguage: "fr-CA",
+    dateModified: pageMeta.dateModified,
+  }),
+  breadcrumbSchema([
+    { name: "Prévision des taux (FR)", url: "/fr/prevision-taux-hypothecaire" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Prévision taux hypothécaires — Canada (renouvellement)"
+  description="Prévision des taux hypothécaires au Canada pour 2026. Perspectives Banque du Canada, fixe vs variable et impact sur votre renouvellement."
+  schema={schema}
+  hideAuthorByline={true}
+  lastUpdated={pageMeta.dateModified}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Accueil</a> › Prévision des taux
+  </nav>
+
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-4">
+      <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">English: Canadian mortgage rate forecast</a>
+    </p>
+    <h1 class="text-heading-1 mb-4">Prévision des taux hypothécaires — Canada</h1>
+    <p class="text-body-lg text-muted-foreground mb-8">Résumé pour les renouvellements · juillet 2026</p>
+
+    <div class="rounded-lg p-5 mb-8" style="background: var(--accent); border-left: 4px solid var(--secondary)">
+      <p class="font-bold mb-2 text-sm">Avertissement</p>
+      <p class="text-sm leading-relaxed text-muted-foreground">
+        Ce contenu résume des analyses publiques à titre informatif seulement. Ce n'est pas un conseil financier ou hypothécaire. Les prévisions sont incertaines — consultez un professionnel agréé avant toute décision.
+      </p>
+    </div>
+
+    <div class="rounded-xl border p-6 mb-10">
+      <h2 class="text-heading-4 font-bold mb-3">Contexte actuel (aligné sur la page anglaise)</h2>
+      <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside">
+        <li>Le taux cible de la Banque du Canada est à <strong>2,25 %</strong> (maintien le 29 avril 2026, quatrième fois consécutive).</li>
+        <li>Le taux préférentiel des banques reste autour de <strong>4,45 %</strong>.</li>
+        <li>Les meilleurs taux fixes 5 ans sur le marché courtier se situent autour de <strong>4,04 %</strong> pour les emprunteurs admissibles (mai 2026).</li>
+        <li>La prochaine décision de la Banque du Canada est prévue le <strong>10 juin 2026</strong>.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mb-3">Fixe ou variable au renouvellement?</h2>
+    <p class="text-body-md text-muted-foreground mb-6">
+      Un taux <strong>fixe</strong> verrouille votre paiement pour tout le terme — rassurant si les taux remontent. Un taux <strong>variable</strong> suit le préférentiel; il peut coûter moins cher si les taux baissent ou restent stables, mais votre paiement peut fluctuer. Utilisez le <a href="/fr/calculateur-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">calculateur</a> pour comparer les scénarios.
+    </p>
+
+    <h2 class="text-heading-3 mb-3">Impact sur votre renouvellement</h2>
+    <p class="text-body-md text-muted-foreground mb-6">
+      Si votre taux actuel date de 2021–2022 (autour de 2–3 %), votre renouvellement en 2025–2026 peut entraîner une hausse de paiement importante — le « choc de paiement ». Magasiner 120 jours à l'avance et comparer par l'entremise d'un courtier reste la meilleure défense. Voir aussi <a href="/fr/meilleurs-taux-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">meilleurs taux</a> et <a href="/mortgage-renewal-payment-shock/" class="text-secondary-100 hover:underline">payment shock (EN)</a>.
+    </p>
+
+    <RelatedLinks slug="/fr/prevision-taux-hypothecaire/" heading="Guides connexes" />
+  </article>
+</DefaultLayout>

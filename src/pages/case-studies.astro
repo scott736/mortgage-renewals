@@ -1,7 +1,13 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import ReviewsSection from '@/components/sections/reviews-section';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import { getPageMeta } from '@/lib/page-meta';
+
+export const pageMeta = getPageMeta("case-studies",{
+  dateModified: "2026-06-12",
+});
 
 export const prerender = true;
 
@@ -71,7 +77,7 @@ const caseStudies = [
 const faqs = [
   {
     question: "Are these real case studies?",
-    answer: "These are composite scenarios illustrating common outcomes our broker partners have achieved. They reflect realistic numbers for May 2026 rates and real Canadian lender programs, but they are not specific individuals. Results will vary based on your personal situation, credit, income, and property."
+    answer: "These are composite scenarios illustrating common outcomes our broker partners have achieved. They reflect realistic numbers for May 2026 rates and real Canadian lender programs, but they are not specific individuals. Results will vary based on your personal situation, credit, income, and property. For verified client feedback, see our LendCity Google Reviews — real homeowner quotes that complement these illustrative scenarios."
   },
   {
     question: "Can I actually save $47,000 by switching lenders?",
@@ -127,8 +133,15 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mb-4">Which case sounds like you?</h2>
     <p class="text-body-md text-muted-foreground mb-6 max-w-2xl">
-      Each scenario links to a detailed guide. These are composite illustrations — not named clients. {/* TODO(testimonials): Replace with named client stories when approved quotes are available */}
+      Each scenario links to a detailed guide. These are composite illustrations — not named clients.
     </p>
+
+    <ReviewsSection
+      client:visible
+      variant="strip"
+      title="What homeowners say about renewal help"
+      className="mb-10"
+    />
 
     <div class="grid md:grid-cols-2 gap-5">
       {caseStudies.map(cs => (

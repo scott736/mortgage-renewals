@@ -1,0 +1,96 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import LiveRatesTable from '@/components/sections/live-rates-table';
+import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+export const pageMeta = getPageMeta("fr/meilleurs-taux-renouvellement-hypothecaire", {
+  dateModified: "2026-07-04",
+});
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "fr/meilleurs-taux-renouvellement-hypothecaire",
+    name: "Meilleurs taux de renouvellement hypothécaire — Canada",
+    description: "Taux de renouvellement au Canada : comparaison, pourquoi la première offre de la banque n'est pas la meilleure, et comment magasiner.",
+    inLanguage: "fr-CA",
+  }),
+  articleSchema({
+    headline: "Meilleurs taux de renouvellement hypothécaire — Canada",
+    description: "Comparez les taux de renouvellement hypothécaire au Canada et apprenez pourquoi magasiner par l'entremise d'un courtier peut économiser des milliers de dollars.",
+    slug: "fr/meilleurs-taux-renouvellement-hypothecaire",
+    inLanguage: "fr-CA",
+    dateModified: pageMeta.dateModified,
+  }),
+  breadcrumbSchema([
+    { name: "Meilleurs taux (FR)", url: "/fr/meilleurs-taux-renouvellement-hypothecaire" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Meilleurs taux renouvellement hypothécaire — Canada"
+  description="Meilleurs taux de renouvellement hypothécaire au Canada. Comparez fixe et variable, utilisez le calculateur gratuit et évitez d'accepter la première offre de votre banque."
+  schema={schema}
+  hideAuthorByline={true}
+  lastUpdated={pageMeta.dateModified}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Accueil</a> › Meilleurs taux de renouvellement
+  </nav>
+
+  <section class="container max-w-4xl pt-4 pb-2" lang="fr-CA">
+    <p class="text-body-sm mb-4">
+      <a href="/best-mortgage-renewal-rates/" class="text-secondary-100 hover:underline">English: Best mortgage renewal rates</a>
+    </p>
+    <div class="rounded-xl bg-secondary-25 border border-secondary-50 p-5 mb-4">
+      <p class="text-body-sm-medium mb-1">Les taux dépendent de votre profil</p>
+      <p class="text-body-sm text-muted-foreground mb-3">
+        Assuré vs non assuré, propriété locative et cote de crédit changent la soumission. Utilisez le <a href="/fr/calculateur-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">calculateur</a> pour modéliser votre paiement.
+      </p>
+    </div>
+    <LiveRatesTable client:visible />
+  </section>
+
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <h1 class="text-heading-1 mb-4">Meilleurs taux de renouvellement hypothécaire au Canada</h1>
+    <p class="text-body-lg text-muted-foreground mb-8">
+      Le renouvellement est l'une des décisions financières les plus importantes pour un propriétaire. Le taux que vous acceptez détermine des milliers de dollars d'intérêts sur le prochain terme — souvent 5 000 $ à 30 000 $ selon votre solde et votre effort de comparaison.
+    </p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Points clés</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Les banques proposent souvent des taux 0,25 à 0,75 % plus élevés que ce qu'un courtier peut obtenir sur le marché.</li>
+        <li>• Sur une hypothèque de 600 000 $, 0,5 % de plus coûte environ 15 000 $ d'intérêts sur 5 ans.</li>
+        <li>• Commencez à magasiner 120 jours avant l'échéance pour bloquer un taux.</li>
+        <li>• Depuis novembre 2024, un transfert simple au renouvellement n'exige plus le test de stress pour les prêts non assurés — voir <a href="/fr/changer-preteur-renouvellement/" class="text-secondary-100 hover:underline">changer de prêteur</a>.</li>
+        <li>• Au Québec, prévoyez les frais de notaire pour tout changement de prêteur — <a href="/fr/frais-notaire-hypotheque-quebec/" class="text-secondary-100 hover:underline">guide des frais</a>.</li>
+      </ul>
+    </div>
+
+    <div class="space-y-6 text-body-md text-muted-foreground">
+      <p>
+        Plus de 70 % des Canadiens renouvellent avec leur banque actuelle sans comparer. Pourtant, un courtier hypothécaire agréé accède à plus de 30 prêteurs et ne vous facture généralement rien — c'est le prêteur choisi qui paie une commission de courtage.
+      </p>
+      <p>
+        Pour une vue d'ensemble du marché des taux, consultez la <a href="/fr/prevision-taux-hypothecaire/" class="text-secondary-100 hover:underline">prévision des taux</a> et le <a href="/fr/guide-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">guide de renouvellement</a>.
+      </p>
+    </div>
+
+    <RelatedLinks slug="/fr/meilleurs-taux-renouvellement-hypothecaire/" heading="Guides connexes" />
+  </article>
+
+  <ZippayCtaCard
+    client:visible
+    title="Obtenez une soumission personnalisée"
+    description="Un courtier agréé compare les taux réels pour votre dossier — gratuit, sans obligation."
+    primaryLabel="Réserver un appel gratuit"
+    secondaryLabel="Calculateur"
+    secondaryHref="/fr/calculateur-renouvellement-hypothecaire/"
+  />
+</DefaultLayout>

@@ -1,0 +1,97 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from '@/layouts/DefaultLayout.astro';
+import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas, howToSchema, webPageNode } from '@/lib/schema';
+
+export const prerender = true;
+
+export const pageMeta = getPageMeta("fr/qu-est-ce-que-renouvellement-hypothecaire", {
+  dateModified: "2026-07-04",
+});
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "fr/qu-est-ce-que-renouvellement-hypothecaire",
+    name: "Qu'est-ce qu'un renouvellement hypothécaire?",
+    description: "Explication du renouvellement hypothécaire au Canada : processus, relevé de renouvellement et vos droits.",
+    inLanguage: "fr-CA",
+  }),
+  articleSchema({
+    headline: "Qu'est-ce qu'un renouvellement hypothécaire? — Canada",
+    description: "Guide en français sur le renouvellement hypothécaire au Canada : définition, étapes et droits du consommateur.",
+    slug: "fr/qu-est-ce-que-renouvellement-hypothecaire",
+    inLanguage: "fr-CA",
+    dateModified: pageMeta.dateModified,
+  }),
+  howToSchema({
+    name: "Comment renouveler votre hypothèque au Canada",
+    description: "Les étapes du renouvellement hypothécaire canadien, de la réception du relevé à l'échéance.",
+    steps: [
+      { name: "Réception du relevé de renouvellement", text: "Votre prêteur doit envoyer un relevé au moins 21 jours avant l'échéance (règles de l'ACFC)." },
+      { name: "Comparer les offres", text: "Obtenez des soumissions concurrentes — un courtier ou plusieurs prêteurs. Blocage de taux possible jusqu'à 120 jours à l'avance." },
+      { name: "Négocier ou changer", text: "Avec des offres en main, négociez avec votre banque ou transférez au renouvellement sans pénalité." },
+      { name: "Signer le nouveau terme", text: "Signez l'engagement hypothécaire ou l'accord de renouvellement — souvent en ligne." },
+      { name: "Nouveau terme à l'échéance", text: "Le nouveau taux prend effet à la date d'échéance; l'amortissement restant se poursuit." },
+    ],
+  }),
+  breadcrumbSchema([
+    { name: "Qu'est-ce qu'un renouvellement? (FR)", url: "/fr/qu-est-ce-que-renouvellement-hypothecaire" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Qu'est-ce qu'un renouvellement hypothécaire? — Canada"
+  description="Qu'est-ce qu'un renouvellement hypothécaire au Canada? Processus, relevé de renouvellement, délais et droits du consommateur."
+  schema={schema}
+  hideAuthorByline={true}
+  lastUpdated={pageMeta.dateModified}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Accueil</a> › Qu'est-ce qu'un renouvellement?
+  </nav>
+
+  <article class="container max-w-4xl py-10" lang="fr-CA">
+    <p class="text-body-sm mb-4">
+      <a href="/what-is-a-mortgage-renewal/" class="text-secondary-100 hover:underline">English: What is a mortgage renewal?</a>
+    </p>
+    <h1 class="text-heading-1 mb-4">Qu'est-ce qu'un renouvellement hypothécaire?</h1>
+    <p class="text-body-lg text-muted-foreground mb-8">Guide Canada · lecture ~8 minutes</p>
+
+    <p class="text-body-md text-muted-foreground mb-6 leading-relaxed">
+      Un renouvellement hypothécaire survient à la fin de votre <strong>terme</strong> (souvent 3 ou 5 ans) — pas à la fin de l'amortissement complet (25 ou 30 ans). Vous n'avez pas à rembourser le capital entier; vous renégociez le taux, le type (fixe ou variable) et la durée du prochain terme pour le solde restant.
+    </p>
+
+    <div class="rounded-xl border p-6 mb-10" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Points clés</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Environ 1 million de ménages canadiens devraient renouveler en 2026 (SCHL, printemps 2026).</li>
+        <li>• Si vous ne faites rien, votre prêteur renouvelle automatiquement — souvent à un taux affiché peu compétitif.</li>
+        <li>• Vous pouvez <strong>changer de prêteur</strong> au renouvellement sans pénalité de remboursement anticipé.</li>
+        <li>• Depuis novembre 2024, un transfert simple n'exige plus le test de stress (même solde, même amortissement).</li>
+        <li>• Commencez 6 à 12 mois avant l'échéance; bloquez un taux jusqu'à 120 jours à l'avance.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mb-3">Renouvellement vs refinancement</h2>
+    <p class="text-body-md text-muted-foreground mb-6">
+      Au <strong>renouvellement</strong>, vous gardez le même solde et renégociez le terme. Au <strong>refinancement</strong>, vous modifiez le montant (retirer de l'équité, consolider des dettes) — cela peut entraîner des frais, une nouvelle qualification et parfois une pénalité si ce n'est pas à l'échéance.
+    </p>
+
+    <h2 class="text-heading-3 mb-3">Que contient le relevé de renouvellement?</h2>
+    <ul class="space-y-2 text-body-md text-muted-foreground list-disc list-inside mb-8">
+      <li>Solde restant et date d'échéance</li>
+      <li>Taux et type proposés pour le nouveau terme</li>
+      <li>Amortissement restant et fréquence de paiement</li>
+      <li>Conditions si vous n'acceptez pas (renouvellement automatique)</li>
+    </ul>
+
+    <h2 class="text-heading-3 mb-3">Prochaines étapes</h2>
+    <p class="text-body-md text-muted-foreground mb-4">
+      Utilisez le <a href="/fr/calculateur-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">calculateur</a>, lisez le <a href="/fr/guide-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">guide complet (résumé FR)</a>, ou consultez la <a href="/fr/faq-renouvellement-hypothecaire/" class="text-secondary-100 hover:underline">FAQ</a>.
+    </p>
+
+    <RelatedLinks slug="/fr/qu-est-ce-que-renouvellement-hypothecaire/" heading="Guides connexes" />
+  </article>
+</DefaultLayout>

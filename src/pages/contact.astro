@@ -1,5 +1,6 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import ReviewsSection from "@/components/sections/reviews-section";
 import ZippayContactForm from "@/components/sections/zippay-contact-form";
 import { BUSINESS } from "@/consts";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
@@ -67,6 +68,8 @@ const schema = combineSchemas(
   </section>
 
   <ZippayContactForm client:visible />
+
+  <ReviewsSection client:visible />
 
   <section class="container max-w-screen-xl px-6 py-12">
     <RelatedLinks slug="/contact/" />

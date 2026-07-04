@@ -1,5 +1,6 @@
 "use client";
 
+import ReviewsSection from "@/components/sections/reviews-section";
 import { Button } from "@/components/ui/button";
 import { trackCtaClick } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
@@ -39,6 +40,7 @@ export default function ZippayCtaCard({
             <p className="text-body-md sm:text-body-lg mx-auto mt-4 max-w-3xl text-white/80">
               {description}
             </p>
+            <ReviewsSection variant="compact" className="mt-5" />
             <div className="mt-8 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <Button
                 asChild

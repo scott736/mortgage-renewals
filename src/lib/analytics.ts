@@ -8,7 +8,8 @@ export type LeadEventName =
   | "calculator_lead_submit"
   | "checklist_download"
   | "rate_alert_submit"
-  | "exit_intent_cta";
+  | "exit_intent_cta"
+  | "renewal_date_cta";
 
 export function trackLeadEvent(name: LeadEventName, props?: LeadEventProps) {
   if (typeof window === "undefined") return;

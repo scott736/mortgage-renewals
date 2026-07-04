@@ -3,6 +3,11 @@ import { AmortizationSchedule } from '@/components/calculators/amortization-sche
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
+import { getPageMeta } from '@/lib/page-meta';
+
+export const pageMeta = getPageMeta("amortization-schedule-calculator",{
+  dateModified: "2026-04-13",
+});
 
 export const prerender = true;
 

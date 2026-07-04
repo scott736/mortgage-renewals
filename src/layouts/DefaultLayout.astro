@@ -2,13 +2,33 @@
 import VercelAnalytics from "@/components/analytics/VercelAnalytics";
 import AuthorByline from "@/components/AuthorByline.astro";
 import BaseHead from "@/components/BaseHead.astro";
+import LastUpdated from "@/components/LastUpdated.astro";
 import Banner from "@/components/sections/banner";
 import ClickToCallBar from "@/components/sections/click-to-call-bar";
+import ExitIntentModal from "@/components/sections/exit-intent-modal";
 import Footer from "@/components/sections/footer";
 import MobileStickyCta from "@/components/sections/mobile-sticky-cta";
 import Navbar from "@/components/sections/navbar";
 
-const { title, description, schema, preloadImage, noindex, ogType, hideAuthorByline, hideMobileSticky } = Astro.props;
+const {
+  title,
+  description,
+  schema,
+  preloadImage,
+  noindex,
+  ogType,
+  hideAuthorByline,
+  hideMobileSticky,
+  lastUpdated,
+  showExitIntent: showExitIntentProp,
+} = Astro.props;
+
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCalculatorOrRatesPage =
+  pathname.includes("-calculator") ||
+  /\/(best-mortgage-renewal-rates|current-mortgage-rates-canada|bank-of-canada-rate-decisions|mortgage-rate-forecast|rate-alert)/.test(pathname);
+const showExitIntent = showExitIntentProp ?? isCalculatorOrRatesPage;
+const exitIntentStorageKey = `exit-intent${pathname.replace(/\//g, "-")}`;
 
 const detectedOgType =
   ogType ||
@@ -16,7 +36,8 @@ const detectedOgType =
 
 const isArticlePage = Boolean(schema && /"@type"\s*:\s*"Article"/.test(schema));
 const schemaDateModified = schema?.match(/"dateModified"\s*:\s*"([^"]+)"/)?.[1];
-const showAuthorByline = isArticlePage && !hideAuthorByline;
+const showLastUpdated = Boolean(lastUpdated);
+const showAuthorByline = isArticlePage && !hideAuthorByline && !showLastUpdated;
 const pageLang = Astro.url.pathname.startsWith("/fr/") ? "fr-CA" : "en-CA";
 ---
 
@@ -38,6 +59,11 @@ const pageLang = Astro.url.pathname.startsWith("/fr/") ? "fr-CA" : "en-CA";
     <Banner client:idle />
     <Navbar client:idle />
     <main>
+      {showLastUpdated && (
+        <div class="container max-w-4xl pt-4 pb-0">
+          <LastUpdated dateModified={lastUpdated} />
+        </div>
+      )}
       {showAuthorByline && (
         <div class="container max-w-4xl pt-4 pb-0">
           <AuthorByline dateModified={schemaDateModified} />
@@ -48,5 +74,8 @@ const pageLang = Astro.url.pathname.startsWith("/fr/") ? "fr-CA" : "en-CA";
     <Footer />
     {!hideMobileSticky && <MobileStickyCta client:idle />}
     <ClickToCallBar client:idle />
+    {showExitIntent && (
+      <ExitIntentModal client:load storageKey={exitIntentStorageKey} />
+    )}
   </body>
 </html>

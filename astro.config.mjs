@@ -1,10 +1,27 @@
 // @ts-check
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig, passthroughImageService } from "astro/config";
 import mdx from "@astrojs/mdx";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const pageDatesPath = path.join(__dirname, "src/data/page-dates.json");
+
+/** @type {Record<string, string>} */
+function loadPageDates() {
+  try {
+    return JSON.parse(fs.readFileSync(pageDatesPath, "utf8"));
+  } catch {
+    return {};
+  }
+}
+
+const pageDates = loadPageDates();
 
 // https://astro.build/config
 export default defineConfig({
@@ -65,9 +82,11 @@ export default defineConfig({
         else if (weekly.includes(path)) item.changefreq = ChangeFreqEnum.WEEKLY;
         else item.changefreq = ChangeFreqEnum.MONTHLY;
 
-        // Freshness pass: stamp lastmod for content pages on each deploy
         if (!legal.includes(path)) {
-          item.lastmod = new Date();
+          const lastmod = pageDates[path];
+          if (lastmod) {
+            item.lastmod = new Date(lastmod);
+          }
         }
 
         return item;

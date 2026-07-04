@@ -1,0 +1,73 @@
+---
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from "@/lib/schema";
+import { getCollection, render } from "astro:content";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const slug = `blog/${post.id}`;
+const datePublished = post.data.pubDate.toISOString().slice(0, 10);
+const dateModified = (post.data.updatedDate ?? post.data.pubDate).toISOString().slice(0, 10);
+const primaryTag = post.data.tags[0];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug,
+    name: post.data.title,
+    description: post.data.description,
+  }),
+  articleSchema({
+    headline: post.data.title,
+    description: post.data.description,
+    slug,
+    datePublished,
+    dateModified,
+    articleSection: primaryTag ?? "News",
+    keywords: post.data.tags,
+    author: { name: post.data.author },
+  }),
+  breadcrumbSchema([
+    { name: "News", url: "/mortgage-renewal-news" },
+    { name: post.data.title, url: `/blog/${post.id}` },
+  ]),
+);
+---
+
+<DefaultLayout
+  title={`${post.data.title} — Mortgage Renewal Hub`}
+  description={post.data.description}
+  schema={schema}
+  ogType="article"
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> ›
+    <a href="/mortgage-renewal-news/" class="hover:underline"> News</a> ›
+    {post.data.title}
+  </nav>
+
+  <article class="container max-w-4xl py-10">
+    {primaryTag && (
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">
+        {primaryTag}
+      </div>
+    )}
+    <h1 class="text-heading-1 mb-8">{post.data.title}</h1>
+    <div class="prose prose-lg dark:prose-invert prose-headings:!text-foreground prose-p:!text-foreground max-w-none">
+      <Content />
+    </div>
+  </article>
+
+  <RelatedLinks slug={`/blog/${post.id}/`} />
+</DefaultLayout>
