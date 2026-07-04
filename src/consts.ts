@@ -6,9 +6,9 @@ export const LEAD_INBOX = [
   'info@lendcity.ca',
 ] as const;
 
-const SITE_TITLE = "MortgageRenewalHub.ca — Canada's Mortgage Renewal Resource";
+const SITE_TITLE = "Mortgage Renewal Canada 2026 — Best Rates & Guide";
 const SITE_DESCRIPTION =
-  "Canada's most comprehensive mortgage renewal resource. Compare rates, use our free calculators, and get expert guidance to save thousands at renewal.";
+  "Best mortgage renewal rates Canada 2026. Compare fixed & variable renewal rates, free calculators, and expert broker guidance to save thousands at renewal.";
 
 export const BUSINESS = {
   phone: {
@@ -29,6 +29,12 @@ export const BUSINESS = {
     name: "LendCity Mortgages",
     url: "https://lendcity.ca",
   },
+  /** LendCity satellite sites — used in Organization schema sameAs for entity graph linking. */
+  networkSameAs: [
+    "https://lendcity.ca",
+    "https://firsthomeguide.ca",
+    "https://mortgagerenewalhub.ca",
+  ] as const,
   licensing: {
     regulator: "FSRA",
     brokerageName: "Mortgage Architects",

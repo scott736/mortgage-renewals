@@ -9,10 +9,11 @@ import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("", {
-  dateModified: "2026-05-21",
+  dateModified: "2026-07-04",
 });
 
 const homeFaqs = [
+  { question: "What are the best mortgage renewal rates in Canada for 2026?", answer: "As of July 2026, the best insured 5-year fixed renewal rates through mortgage brokers are approximately 4.04%, with 5-year variable around prime minus 1.10% (effective ~3.35% at prime 4.45%). Big Six banks typically quote 0.25–0.75% higher on renewal letters. Compare broker rates on our best renewal rates page before signing your bank's first offer." },
   { question: "Do I have to pass a stress test to switch lenders at renewal?", answer: "No. Since November 2024, Canadians switching lenders on a straight transfer (same balance, same amortization) do not need to pass the mortgage stress test. This applies to both insured and uninsured mortgages." },
   { question: "How much can I save by shopping around at renewal?", answer: "Significantly. Even a 0.25% rate difference saves approximately $7,500 in interest over 5 years on a $600,000 mortgage. Canadians who shop around through a broker typically save 0.25–0.75% vs. their bank's first offer." },
   { question: "Is a mortgage broker free to use?", answer: "Yes, in virtually all cases. Mortgage brokers are paid a finder's fee by the lender you ultimately choose — you pay nothing. Their service, advice, and access to 30+ lenders is free to you." },
@@ -23,17 +24,17 @@ const homeFaqs = [
 const schema = combineSchemas(
   webPageNode({
     slug: "",
-    name: "MortgageRenewalHub.ca — Canada's #1 Mortgage Renewal Resource",
-    description: "Roughly 1 million Canadian households renewing in 2026 (CMHC). Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
-    speakableSelectors: ["h1", ".container > p", ".key-takeaways"],
+    name: "Mortgage Renewal Canada 2026 — Best Rates & Free Expert Guide",
+    description: "Best mortgage renewal rates Canada 2026. Compare fixed and variable renewal rates, use free calculators, and get expert broker guidance to save thousands.",
+    speakableSelectors: ["h1", "[data-speakable]", ".key-takeaways"],
   }),
   articleSchema({
-    headline: "Canada's Mortgage Renewal Resource",
-    description: "Roughly 1 million Canadian households renewing in 2026 (CMHC). Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal.",
+    headline: "Mortgage Renewal Canada 2026 — Best Rates & Guide",
+    description: "Best mortgage renewal rates Canada 2026. Roughly 1 million households renewing (CMHC). Compare rates, use free calculators, and get expert guidance to save thousands.",
     slug: "",
     articleSection: "Mortgage Renewal",
     about: "Canadian Mortgage Renewal",
-    keywords: ["mortgage renewal Canada", "renewal rates", "mortgage broker"],
+    keywords: ["mortgage renewal Canada 2026", "best mortgage renewal rates Canada", "mortgage renewal rates", "mortgage broker"],
     dateModified: pageMeta.dateModified,
   }),
   faqSchema(homeFaqs, ""),
@@ -42,8 +43,8 @@ const schema = combineSchemas(
 
 <DefaultLayout
   hideAuthorByline
-  title="MortgageRenewalHub.ca — Canada's Mortgage Renewal Hub"
-  description="Roughly 1 million Canadian households renewing in 2026 (CMHC). Compare rates, use free calculators, and get expert guidance to save thousands at your mortgage renewal."
+  title="Mortgage Renewal Canada 2026 — Best Rates & Guide"
+  description="Best mortgage renewal rates Canada 2026. Compare fixed & variable rates, free calculators, and expert broker guidance — save thousands vs. your bank's first offer."
   preloadImage="/images/hero/hero-home.webp"
   schema={schema}
 >
@@ -56,10 +57,13 @@ const schema = combineSchemas(
             🇨🇦 Canada's #1 Mortgage Renewal Resource
           </div>
           <h1 class="text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Save Thousands at Your Mortgage Renewal
+            Mortgage Renewal Canada 2026
           </h1>
-          <p class="text-xl text-white/80 mb-8 max-w-lg">
-            Roughly 1 million Canadian households are expected to renew in 2026 — down about 13% from the 2025 peak, per CMHC's Spring 2026 report. Most will sign the first offer they receive and overpay by thousands. Don't be one of them. Read our <a href="/mortgage-renewal-guide/" class="text-white underline">complete renewal guide</a> to get started.
+          <p class="text-xl text-white/80 mb-4 max-w-lg" data-speakable>
+            <strong>Best mortgage renewal rates Canada</strong> start around 4.04% (5-year fixed insured) and 3.35% (5-year variable) through brokers in July 2026 — but over 70% of Canadians sign their bank's first offer and overpay by thousands. Compare rates, use our free calculators, and talk to a licensed broker at no cost.
+          </p>
+          <p class="text-lg text-white/70 mb-8 max-w-lg">
+            Roughly 1 million Canadian households are expected to renew in 2026 (CMHC). Read our <a href="/mortgage-renewal-guide/" class="text-white underline">complete renewal guide</a> or see <a href="/best-mortgage-renewal-rates/" class="text-white underline">today's best renewal rates</a>.
           </p>
           <div class="flex flex-wrap gap-4">
             <a href="/book-a-call/">
@@ -113,6 +117,21 @@ const schema = combineSchemas(
           <span class="text-secondary-100">✓</span>
           <span>Reviewed by Licensed Mortgage Professionals</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANSWER CAPSULE -->
+  <section class="border-b py-10 bg-white">
+    <div class="container max-w-screen-xl px-6">
+      <div class="max-w-4xl mx-auto rounded-xl border border-secondary-50 bg-secondary-0 p-6 key-takeaways">
+        <h2 class="text-heading-4 mb-3">Mortgage Renewal Canada 2026 — Quick Answer</h2>
+        <ul class="space-y-2 text-body-md text-muted-foreground">
+          <li>• <strong>Best renewal rates (July 2026):</strong> ~4.04% insured 5-year fixed and ~3.35% 5-year variable through brokers; Big Six renewal letters often quote 0.25–0.75% higher.</li>
+          <li>• <strong>When to start:</strong> 120 days before maturity to lock a rate hold; shop with a <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> (free — paid by lender).</li>
+          <li>• <strong>Switch lenders:</strong> No stress test on straight transfers since November 2024 — see our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching guide</a>.</li>
+          <li>• <strong>First-time buyer?</strong> See <a href="https://firsthomeguide.ca/" target="_blank" rel="noopener" class="text-secondary-100 hover:underline">FirstHomeGuide.ca</a> for purchase basics; renewal help from <a href="https://lendcity.ca/" target="_blank" rel="noopener" class="text-secondary-100 hover:underline">LendCity Mortgages</a>.</li>
+        </ul>
       </div>
     </div>
   </section>

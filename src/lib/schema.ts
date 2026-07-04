@@ -8,6 +8,8 @@
  * improves how Google and AI crawlers interpret the page's entity graph.
  */
 
+import { BUSINESS } from "@/consts";
+
 const SITE_URL = "https://mortgagerenewalhub.ca";
 const _ORG_NAME = "MortgageRenewalHub.ca";
 const ORG_ID = `${SITE_URL}/#organization`;
@@ -108,7 +110,7 @@ export const DEFAULT_AUTHOR: AuthorPerson = {
   name: "Scott Dillingham",
   jobTitle: "Licensed Mortgage Broker",
   url: `${SITE_URL}/about/`,
-  sameAs: ["https://lendcity.ca"],
+  sameAs: [...BUSINESS.networkSameAs],
   knowsAbout: [
     "Mortgage Renewal",
     "Canadian Mortgage Rates",

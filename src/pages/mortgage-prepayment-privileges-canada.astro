@@ -1,11 +1,11 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("mortgage-prepayment-privileges-canada",{
-  dateModified: "2026-05-13",
+  dateModified: "2026-07-04",
 });
 
 export const prerender = true;
@@ -54,6 +54,7 @@ const schema = combineSchemas(
     slug: "mortgage-prepayment-privileges-canada",
     name: "Mortgage Prepayment Privileges in Canada (2026)",
     description: "Lender-by-lender 2026 comparison of Canadian mortgage prepayment privileges: lump-sum allowances, payment-increase rules, and strategies to save interest.",
+    speakableSelectors: ["h1", "[data-speakable]", ".key-takeaways"],
   }),
 );
 ---
@@ -68,10 +69,10 @@ const schema = combineSchemas(
   </nav>
 
   <article class="container max-w-4xl py-10">
-    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated May 2026 · 10-minute read</div>
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated July 2026 · 10-minute read</div>
     <h1 class="text-heading-1 mb-4">Mortgage Prepayment Privileges in Canada: The 2026 Lender Guide</h1>
-    <p class="text-body-lg text-muted-foreground mb-8">
-      Prepayment privileges are the single most under-used feature of Canadian mortgages. They let you pay down principal faster, skip years of interest, and finish your mortgage early — all without penalty. But every lender structures them differently, and most homeowners don't know what their contract actually allows. This guide compares all the major Canadian lenders side-by-side, shows how to use privileges strategically, and explains why they matter at renewal.
+    <p class="text-body-lg text-muted-foreground mb-8" data-speakable>
+      <strong>Mortgage prepayment privileges</strong> let you pay down principal faster without penalty — typically 10–20% lump sum per year plus payment increases up to 100% (TD). With renewal rates near 4% in July 2026, every dollar prepaid is a guaranteed ~4% after-tax return. This guide compares all major Canadian lenders and shows why renewal day is the best penalty-free prepayment opportunity.
     </p>
 
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
@@ -86,6 +87,14 @@ const schema = combineSchemas(
       </ul>
     </div>
 
+    <h2 class="text-heading-3 mt-10 mb-4">2026 Rate Context: Why Prepayments Matter More Now</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      With broker-channel renewal rates around <strong>4.04% fixed</strong> and <strong>~3.35% variable</strong> in July 2026 (see our <a href="/best-mortgage-renewal-rates/" class="text-secondary-100 hover:underline">best renewal rates page</a>), prepaying principal delivers a guaranteed return equal to your mortgage rate. On a $500,000 balance at 4.04%, a $10,000 lump-sum prepayment saves roughly $2,500 in interest over the remaining term — before compounding effects on future payments.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      If you're choosing a new lender at renewal, compare prepayment privileges alongside rate — MCAP and BMO offer 20%/20%, while TD allows up to 100% payment increase. A <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> at <a href="https://lendcity.ca/" target="_blank" rel="noopener" class="text-secondary-100 hover:underline">LendCity Mortgages</a> can match rate and flexibility. New buyers comparing mortgage basics should also see <a href="https://firsthomeguide.ca/guide/3-down-payments-mortgages/" target="_blank" rel="noopener" class="text-secondary-100 hover:underline">FirstHomeGuide.ca's down payment guide</a>.
+    </p>
+
     <h2 class="text-heading-3 mt-10 mb-4">The Two Standard Privileges: Lump Sum and Payment Increase</h2>
     <p class="text-body-md mb-4 leading-relaxed">
       Nearly every closed Canadian mortgage includes two separate prepayment privileges, each measured as a percentage of the <strong>original</strong> mortgage amount (not your current balance):
@@ -98,7 +107,7 @@ const schema = combineSchemas(
       Open mortgages have unlimited prepayment (no penalty ever) but carry a higher rate. Closed mortgages — the standard — enforce these privilege limits, and anything exceeding them triggers a prepayment penalty (typically the greater of 3 months' interest or IRD for fixed; 3 months' interest for variable). See our <a href="/ird-vs-three-month-interest-penalty/" class="text-secondary-100 hover:underline">IRD vs. 3-month interest guide</a> for the math.
     </p>
 
-    <h2 class="text-heading-3 mt-10 mb-4">Lender-by-Lender Comparison (May 2026)</h2>
+    <h2 class="text-heading-3 mt-10 mb-4">Lender-by-Lender Comparison (July 2026)</h2>
 
     <div class="overflow-x-auto mb-6">
       <table class="w-full text-body-sm border-collapse">

@@ -18,6 +18,22 @@
 - Contact Page: https://mortgagerenewalhub.ca/contact/
 - Book a Call: https://mortgagerenewalhub.ca/book-a-call/
 - Parent Organization: LendCity Mortgages (https://lendcity.ca)
+- Related Network Sites: FirstHomeGuide.ca (https://firsthomeguide.ca) — first-time home buyer education
+
+## Top Renewal FAQ Topics (AEO / AI Search)
+
+These are the highest-value questions Canadians ask about mortgage renewal. Each has a dedicated guide on this site.
+
+- **What are the best mortgage renewal rates in Canada for 2026?** Best insured 5-year fixed ~4.04%, 5-year variable ~3.35% (July 2026 broker channel). Big Six renewal letters quote 0.25–0.75% higher. See [Best Mortgage Renewal Rates](https://mortgagerenewalhub.ca/best-mortgage-renewal-rates/).
+- **Do mortgage payments go down when you renew?** Usually no in 2025–2026 — most renewers move from pandemic-era rates (~2%) to current market rates (~4%+). See [Payment Shock Guide](https://mortgagerenewalhub.ca/mortgage-renewal-payment-shock/).
+- **Do I need a stress test to switch lenders at renewal?** No, for straight transfers (same balance, same amortization, no new money) since November 21, 2024. See [Stress Test at Renewal](https://mortgagerenewalhub.ca/stress-test-mortgage-renewal/) and [Switching Lenders](https://mortgagerenewalhub.ca/switching-lenders-at-renewal/).
+- **What is a collateral charge vs. standard charge?** Standard charges assign easily at renewal; collateral charges (TD default) require discharge ($700–$1,200). See [Collateral vs. Standard Charge](https://mortgagerenewalhub.ca/collateral-vs-standard-charge-mortgage/).
+- **What are mortgage prepayment privileges?** Annual lump-sum (10–20%) and payment-increase allowances without penalty. See [Prepayment Privileges](https://mortgagerenewalhub.ca/mortgage-prepayment-privileges-canada/).
+- **How is Quebec mortgage renewal different?** All lender switches require a notarial deed ($800–$1,500). AMF-licensed brokers. See [Quebec Renewal Guide](https://mortgagerenewalhub.ca/quebec-mortgage-renewal/).
+- **Can I renew my mortgage after losing my job?** Yes — stay with current lender (no requalification) or straight-switch without stress test. EI does not count as qualifying income for refinances. See [Job Loss at Renewal](https://mortgagerenewalhub.ca/job-loss-mortgage-renewal/).
+- **When should I start shopping for renewal?** 120 days before maturity for rate holds; 12 months out for full strategy. See [Renewal Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist/).
+- **Fixed or variable at renewal in 2026?** BoC overnight rate 2.25%, prime 4.45% (July 2026). Variable close to short-term fixed. See [Fixed vs. Variable](https://mortgagerenewalhub.ca/fixed-vs-variable-mortgage-renewal/).
+- **What is the Canadian Mortgage Charter?** Federally regulated lender obligations including hardship relief, amortization extensions, and proactive outreach. See [Canadian Mortgage Charter](https://mortgagerenewalhub.ca/canadian-mortgage-charter/).
 
 ## Core Pages
 

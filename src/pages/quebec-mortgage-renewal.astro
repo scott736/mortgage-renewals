@@ -1,20 +1,44 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("quebec-mortgage-renewal",{
-  dateModified: "2026-05-22",
+  dateModified: "2026-07-04",
 });
 
 export const prerender = true;
+
+const faqs = [
+  {
+    question: "How is Quebec mortgage renewal different from other provinces?",
+    answer: "Quebec uses civil law (not common law), which means every mortgage switch — even a straight renewal transfer — requires a notarial deed of loan prepared by a commissioned notary. Notary fees typically run $800–$1,500. Quebec brokers are licensed by the AMF (Autorité des marchés financiers), not provincial FSRA-style regulators in Ontario.",
+  },
+  {
+    question: "Do I need a notary to renew my mortgage in Quebec?",
+    answer: "If you stay with your current lender on a simple renewal, notary involvement is minimal or none. If you switch lenders, a new notarial deed of loan is legally required — even for a straight transfer with no new money. Factor $800–$1,500 in notary fees into your switching break-even analysis.",
+  },
+  {
+    question: "What are the best mortgage renewal rates in Quebec for 2026?",
+    answer: "Quebec renewal rates track national benchmarks: approximately 4.04% on a 5-year fixed (insured, broker channel) and ~3.35% on 5-year variable as of July 2026. Desjardins, National Bank, and broker-channel monolines (First National, MCAP) compete aggressively in Quebec. Always compare your renewal letter against broker quotes before signing.",
+  },
+  {
+    question: "Can I get mortgage documents in French at renewal in Quebec?",
+    answer: "Yes. Under Quebec's Charter of the French Language, you have the right to receive all mortgage renewal documents, terms, and correspondence in French. Major banks operating in Quebec provide bilingual documentation; request French if you receive English-only renewal packages.",
+  },
+  {
+    question: "Is it worth switching lenders at renewal in Quebec given notary fees?",
+    answer: "Usually yes. On a $450,000 mortgage, a 0.25% rate difference saves ~$1,125/year. With ~$1,500 in total switching costs (notary + discharge), break-even is roughly 16 months — well within a 5-year term. Ask whether the new lender will contribute to notarial fees.",
+  },
+];
 
 const schema = combineSchemas(
   webPageNode({
     slug: "quebec-mortgage-renewal",
     name: "Quebec Mortgage Renewal Guide 2026",
     description: "Quebec-specific mortgage renewal guide — AMF brokers, notarial deed of loan, French-language rights, and 2026 strategies.",
+    speakableSelectors: ["h1", "[data-speakable]", ".key-takeaways"],
   }),
   articleSchema({
     headline: "Quebec Mortgage Renewal Guide 2026",
@@ -28,6 +52,7 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Quebec Mortgage Renewal", url: "/quebec-mortgage-renewal" }
   ]),
+  faqSchema(faqs, "quebec-mortgage-renewal"),
 );
 ---
 
@@ -42,7 +67,23 @@ const schema = combineSchemas(
 
   <article class="container max-w-4xl py-10">
     <h1 class="text-4xl font-bold mb-4" style="color: var(--primary)">Quebec Mortgage Renewal: What Makes Quebec Different — and How to Navigate It</h1>
-    <p class="text-lg mb-8" style="color: var(--muted-foreground)">Updated May 2026 · 8-minute read</p>
+    <p class="text-lg mb-4" style="color: var(--muted-foreground)">Updated July 2026 · 8-minute read</p>
+
+    <p class="mb-6 text-base leading-relaxed" data-speakable>
+      <strong>Quebec mortgage renewal</strong> follows civil law, not common law — so every lender switch requires a notarial deed of loan ($800–$1,500). Renewal rates in July 2026 track national benchmarks (~4.04% 5-year fixed insured through brokers), but the notary fee changes your switching math. Use an <strong>AMF-licensed broker</strong>, compare against our <a href="/best-mortgage-renewal-rates/" style="color: var(--secondary)">best renewal rates</a>, and read the French version at <a href="/fr/renouvellement-hypothecaire-quebec/" style="color: var(--secondary)">renouvellement hypothécaire Québec</a>.
+    </p>
+
+    <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways — Quebec Renewal 2026</h2>
+      <ul class="space-y-2 text-sm leading-relaxed">
+        <li>• Every lender switch in Quebec requires a notarial deed — budget $800–$1,500 in notary fees.</li>
+        <li>• Best July 2026 renewal rates: ~4.04% 5-year fixed (insured broker), ~3.35% variable — same as national benchmarks.</li>
+        <li>• AMF-licensed brokers required; verify licence at lautorite.qc.ca.</li>
+        <li>• Desjardins and National Bank dominate Quebec; monolines via brokers often beat bank renewal letters.</li>
+        <li>• Switching still pays: 0.25% on $450K saves ~$1,125/yr — break-even ~16 months after notary costs.</li>
+        <li>• French-language rights: request all renewal documents in French under Bill 101.</li>
+      </ul>
+    </div>
 
     <p class="mb-6 text-base leading-relaxed">Quebec operates under a distinct legal system — the Civil Law tradition derived from the French Napoleonic Code — which makes mortgage law in Quebec fundamentally different from common-law provinces. For homeowners renewing a mortgage in Quebec, this means different terminology, different legal requirements, and different costs compared to Ontario, BC, or Alberta. Understanding these differences is essential to making informed renewal decisions and avoiding costly surprises.</p>
 
@@ -110,7 +151,29 @@ const schema = combineSchemas(
       <p class="text-sm leading-relaxed">Break-even: $1,500 in switching costs ÷ $1,125/year savings = 16 months break-even. Over a 5-year term: $5,625 in savings even after paying switching costs. The math still favors switching for most Quebec borrowers with meaningful rate differences.</p>
     </div>
 
-    <p class="mb-6 leading-relaxed">Always ask your broker whether the new lender will contribute to notarial fees. Some lenders in the Quebec market do offer contributions toward legal/notary costs — ask explicitly before assuming you pay the full amount.</p>
+    <p class="mb-6 leading-relaxed">Always ask your broker whether the new lender will contribute to notarial fees. Some lenders in the Quebec market do offer contributions toward legal/notary costs — ask explicitly before assuming you pay the full amount. For broker help, see <a href="https://lendcity.ca/" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a>; first-time buyers can explore purchase basics at <a href="https://firsthomeguide.ca/" target="_blank" rel="noopener" style="color: var(--secondary)">FirstHomeGuide.ca</a>.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">2026 Quebec Renewal Rates</h2>
+    <p class="mb-4 leading-relaxed">Quebec renewal rates in July 2026 align with national broker benchmarks. The Bank of Canada held overnight rate at 2.25% on June 10, 2026; prime remains 4.45%. Typical broker-channel rates for qualified Quebec borrowers:</p>
+    <ul class="list-disc list-inside mb-6 space-y-2 leading-relaxed">
+      <li><strong>5-year fixed (insured):</strong> ~4.04%</li>
+      <li><strong>3-year fixed (insured):</strong> ~4.09%</li>
+      <li><strong>5-year variable:</strong> ~prime − 1.10% (effective ~3.35%)</li>
+    </ul>
+    <p class="mb-6 leading-relaxed">Desjardins renewal letters and National Bank offers may look competitive, but broker quotes from First National, MCAP, and other monolines frequently beat Big Six renewal packages by 25–75 basis points. See our <a href="/mortgage-rate-forecast/" style="color: var(--secondary)">2026 rate forecast</a> and <a href="/fixed-vs-variable-mortgage-renewal/" style="color: var(--secondary)">fixed vs. variable guide</a> before choosing your term.</p>
+
+    <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-8">
+      {faqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
+    </div>
 
     <!-- Internal links -->
     <RelatedLinks slug="/quebec-mortgage-renewal/" />

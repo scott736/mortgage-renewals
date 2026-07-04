@@ -4,24 +4,50 @@ import LiveRatesTable from '@/components/sections/live-rates-table';
 import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
-import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("best-mortgage-renewal-rates", {
-  dateModified: "2026-05-21",
+  dateModified: "2026-07-04",
 });
+
+const rateFaqs = [
+  {
+    question: "What are the best mortgage renewal rates in Canada right now?",
+    answer: "As of July 2026, the best insured 5-year fixed renewal rates through mortgage brokers are approximately 4.04%, with 5-year variable around prime minus 1.10% (effective ~3.35% at prime 4.45%). Uninsured and rental mortgages add roughly 0.10–0.30%. Big Six bank renewal letters typically quote 0.25–0.75% above broker-channel rates.",
+  },
+  {
+    question: "Are renewal rates the same as purchase rates in Canada?",
+    answer: "Not always. At renewal, your loan-to-value may have improved (home appreciation), you may qualify for different insurance tiers, and straight-switch rules (no stress test since November 2024) make switching easier. Broker renewal rates are often competitive with purchase rates for insured mortgages, but bank renewal letters rarely reflect market-best pricing.",
+  },
+  {
+    question: "How much can I save by not accepting my bank's renewal rate?",
+    answer: "On a $600,000 mortgage, a 0.50% rate difference costs approximately $15,000 in extra interest over a 5-year term. Canadians who compare through a mortgage broker typically save 0.25–0.75% versus their bank's first renewal offer.",
+  },
+  {
+    question: "Should I choose fixed or variable at renewal in 2026?",
+    answer: "With the Bank of Canada overnight rate at 2.25% (held through June 2026) and prime at 4.45%, variable rates are close to or slightly below short-term fixed rates. Fixed offers payment certainty; variable offers flexibility if rates fall further. A broker can model both with your balance and cash-flow needs.",
+  },
+  {
+    question: "When should I lock in a renewal rate hold?",
+    answer: "Start shopping 120 days before your maturity date. Most lenders offer rate holds of 90–120 days (some up to 180). If rates drop after you lock in, many lenders honour the lower market rate automatically.",
+  },
+];
 
 const schema = combineSchemas(
   webPageNode({
     slug: "best-mortgage-renewal-rates",
-    name: "Best Mortgage Renewal Rates in Canada (2026)",
-    description: "Current Canadian mortgage renewal rates with side-by-side comparisons and how to get a better rate than your bank's first offer.",
+    name: "Best Mortgage Renewal Rates Canada — July 2026",
+    description: "Best mortgage renewal rates Canada for July 2026. Monthly Big Six vs. broker comparison, fixed and variable rates, and how to beat your bank's renewal offer.",
+    speakableSelectors: ["h1", "[data-speakable]", ".key-takeaways"],
   }),
   articleSchema({
-    headline: "Best Mortgage Renewal Rates in Canada (2026)",
-    description: "Compare the best Canadian mortgage renewal rates for 2026. Learn how renewal rates work, why your bank's offer is never the best, and how to get a better rate.",
+    headline: "Best Mortgage Renewal Rates Canada — July 2026",
+    description: "Compare the best Canadian mortgage renewal rates for July 2026. Monthly Big Six vs. broker table, fixed and variable benchmarks, and how to beat your bank's first offer.",
     slug: "best-mortgage-renewal-rates",
     dateModified: pageMeta.dateModified,
+    keywords: ["best mortgage renewal rates Canada", "mortgage renewal rates 2026", "Canadian renewal rates July 2026"],
   }),
+  faqSchema(rateFaqs, "best-mortgage-renewal-rates"),
   breadcrumbSchema([
     { name: "Best Mortgage Renewal Rates", url: "/best-mortgage-renewal-rates" }
   ]),
@@ -29,12 +55,12 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Best Renewal Rates 2026 — Compare + Calculator"
-  description="Best mortgage renewal rates in Canada for 2026. Broker-education angle — compare fixed & variable, free calculator, and why your bank's first offer isn't market-best."
+  title="Best Mortgage Renewal Rates Canada — July 2026"
+  description="Best mortgage renewal rates Canada for July 2026. Big Six vs. broker monthly comparison, 5-year fixed ~4.04%, variable ~3.35%, and free calculator."
   schema={schema}
   preloadImage="/images/hero/hero-rates.webp"
   hideAuthorByline={true}
-  lastUpdated="2026-05-21"
+  lastUpdated="2026-07-04"
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Best Mortgage Renewal Rates
@@ -55,26 +81,66 @@ const schema = combineSchemas(
   </section>
 
   <article class="container max-w-4xl py-10">
-    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Last Updated: May 2026</div>
-    <h1 class="text-heading-1 mb-4">Best Mortgage Renewal Rates in Canada (2026)</h1>
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Last Updated: July 2026</div>
+    <h1 class="text-heading-1 mb-4">Best Mortgage Renewal Rates Canada (July 2026)</h1>
+    <p class="text-body-lg text-muted-foreground mb-4" data-speakable>
+      The <strong>best mortgage renewal rates in Canada</strong> for July 2026 are approximately <strong>4.04%</strong> on a 5-year fixed (insured, broker channel) and <strong>~3.35%</strong> on a 5-year variable (prime minus 1.10% at prime 4.45%). Your bank's renewal letter will almost always quote higher — shopping through a <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> is free and typically saves 0.25–0.75%.
+    </p>
     <p class="text-body-lg text-muted-foreground mb-8">
-      Your mortgage renewal is one of the most significant financial decisions you'll make. The rate you accept today will determine how much interest you pay over the next <a href="/mortgage-renewal-term-lengths/" class="text-secondary-100 hover:underline">term</a> — often $5,000 to $30,000 worth of difference depending on your balance and how hard you shop. Use our <a href="/mortgage-renewal-calculator/" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to see the impact on your specific numbers.
+      Your mortgage renewal is one of the most significant financial decisions you'll make. The rate you accept today will determine how much interest you pay over the next <a href="/mortgage-renewal-term-lengths/" class="text-secondary-100 hover:underline">term</a> — often $5,000 to $30,000 worth of difference depending on your balance and how hard you shop. Use our <a href="/mortgage-renewal-calculator/" class="text-secondary-100 hover:underline">mortgage renewal calculator</a> to see the impact on your specific numbers. Licensed brokers at <a href="https://lendcity.ca/" target="_blank" rel="noopener" class="text-secondary-100 hover:underline">LendCity Mortgages</a> compare 30+ lenders at no cost.
     </p>
 
     <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
-      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
+      <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways — July 2026</h2>
       <ul class="space-y-2 text-sm leading-relaxed">
-        <li>• Best 5-year fixed rates in Canada are approximately 4.04% and 5-year variable rates around prime minus 1.10% (prime at 4.45%) as of May 2026.</li>
-        <li>• Banks quote rates 0.25-0.75% higher than what brokers can access — on a $600,000 mortgage, 0.5% extra costs approximately $15,000 over 5 years.</li>
-        <li>• Insured mortgages (originally less than 20% down) get the best rates; uninsurable mortgages (refinances, over $1.5M) pay a 0.10-0.30% premium.</li>
-        <li>• The Bank of Canada overnight rate is at 2.25% (held a fourth consecutive time on April 29, 2026), with most economists expecting rates to hold steady through 2026.</li>
-        <li>• Start shopping 120 days before maturity to lock in a rate hold — if rates drop, most lenders honour the lower rate automatically.</li>
+        <li>• Best 5-year fixed renewal rates: ~4.04% insured, ~4.19% uninsured through brokers (July 2026).</li>
+        <li>• Best 5-year variable: ~prime − 1.10% (effective ~3.35% at prime 4.45%).</li>
+        <li>• Big Six renewal letters typically quote 0.25–0.75% above broker rates — on $600K, 0.5% costs ~$15,000 over 5 years.</li>
+        <li>• Bank of Canada held overnight rate at 2.25% on June 10, 2026; next decision July 30, 2026.</li>
+        <li>• Lock a rate hold 120 days before maturity; if rates drop, most lenders honour the lower rate.</li>
       </ul>
+    </div>
+
+    <!-- Monthly Big Six vs Broker Comparison -->
+    <div class="mb-12">
+      <h2 class="text-heading-3 mb-4">Monthly Rate Comparison — July 2026 (Big Six vs. Broker Best)</h2>
+      <p class="text-body-sm text-muted-foreground mb-4">
+        This table compares typical <strong>Big Six renewal letter rates</strong> (what banks mail you) against <strong>broker-channel best rates</strong> for qualified borrowers. Posted/special-offer bank rates vary by client; broker rates reflect insured owner-occupied benchmarks.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse text-body-sm">
+          <thead>
+            <tr class="bg-primary-100 text-white">
+              <th class="text-left p-4 rounded-tl-xl">Term</th>
+              <th class="text-left p-4">Big Six Renewal Letter</th>
+              <th class="text-left p-4">Broker Best (Insured)</th>
+              <th class="text-left p-4 rounded-tr-xl">Spread</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              { term: "1-Year Fixed", bank: "~5.14%", broker: "~4.74%", spread: "~0.40%" },
+              { term: "2-Year Fixed", bank: "~4.89%", broker: "~4.14%", spread: "~0.75%" },
+              { term: "3-Year Fixed", bank: "~4.79%", broker: "~4.09%", spread: "~0.70%" },
+              { term: "5-Year Fixed", bank: "~4.79%", broker: "~4.04%", spread: "~0.75%" },
+              { term: "5-Year Variable", bank: "~Prime − 0.45%", broker: "~Prime − 1.10%", spread: "~0.65%" },
+            ].map((row, i) => (
+              <tr class={i % 2 === 0 ? "bg-white" : "bg-gray-25"}>
+                <td class="p-4 font-semibold">{row.term}</td>
+                <td class="p-4 text-muted-foreground">{row.bank}</td>
+                <td class="p-4 text-secondary-200 font-semibold">{row.broker}</td>
+                <td class="p-4 font-semibold">{row.spread}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-3 text-body-xs text-muted-foreground">July 2026 illustrative comparison. Bank rates = typical renewal-letter offers; broker rates = best insured channel. Your quote depends on credit, LTV, and property type. <a href="/book-a-call/" class="underline text-secondary-100">Get a personalized quote.</a></p>
     </div>
 
     <!-- Rate Table -->
     <div class="mb-12">
-      <h2 class="text-heading-3 mb-4">Current Market Renewal Rates (May 2026)</h2>
+      <h2 class="text-heading-3 mb-4">Current Market Renewal Rates (July 2026)</h2>
       <p class="text-body-sm text-muted-foreground mb-4">
         These are approximate market rates available through mortgage brokers for qualified borrowers. Your actual rate depends on your credit score, LTV ratio, income, and property type. <strong>Always get a personalized quote.</strong>
       </p>
@@ -109,7 +175,20 @@ const schema = combineSchemas(
           </tbody>
         </table>
       </div>
-      <p class="mt-3 text-body-xs text-muted-foreground">Rates shown are approximate best available through broker channel for insured mortgages in May 2026. Rates change daily. <a href="/book-a-call/" class="underline text-secondary-100">Get your personalized rate quote.</a></p>
+      <p class="mt-3 text-body-xs text-muted-foreground">Rates shown are approximate best available through broker channel for insured mortgages in July 2026. Rates change daily. <a href="/book-a-call/" class="underline text-secondary-100">Get your personalized rate quote.</a></p>
+    </div>
+
+    <h2 class="text-heading-3 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {rateFaqs.map(f => (
+        <details class="rounded-xl border border-gray-100 bg-white p-5 group">
+          <summary class="font-semibold cursor-pointer list-none flex justify-between items-center">
+            <span>{f.question}</span>
+            <span class="text-secondary-100 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-3 text-body-md text-muted-foreground">{f.answer}</p>
+        </details>
+      ))}
     </div>
 
     <h2 class="text-heading-3 mb-4">How Renewal Rates Differ From Purchase Rates</h2>
@@ -191,7 +270,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mb-4">Rate Forecast: 2026–2027</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      The Bank of Canada has held its overnight rate at 2.25% for four consecutive announcements (January, March, and April 29, 2026 — the next decision is June 10, 2026). Most major bank economists (BMO, CIBC, RBC, TD, National Bank) expect the BoC rate to remain at 2.25% through end of 2026, with some upside rate risk if inflation re-accelerates due to Middle East energy prices. For a deeper analysis, see our full <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
+      The Bank of Canada has held its overnight rate at 2.25% through five consecutive announcements (most recently June 10, 2026 — next decision July 30, 2026). Most major bank economists expect the BoC rate to remain at 2.25% through end of 2026. For a deeper analysis, see our full <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
     </p>
     <p class="text-body-md text-muted-foreground mb-8">
       For fixed rates, the key driver is Canadian government bond yields. 5-year bond yields have been elevated due to inflation uncertainty and US tariff concerns. Fixed rates are unlikely to return to the sub-2% levels seen in 2020–2021.

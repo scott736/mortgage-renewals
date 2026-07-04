@@ -5,7 +5,7 @@ import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode 
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("collateral-vs-standard-charge-mortgage",{
-  dateModified: "2026-05-13",
+  dateModified: "2026-07-04",
 });
 
 export const prerender = true;
@@ -54,6 +54,7 @@ const schema = combineSchemas(
     slug: "collateral-vs-standard-charge-mortgage",
     name: "Collateral vs. Standard Charge Mortgages in Canada (2026)",
     description: "How collateral and standard charge mortgages differ, which Canadian lenders use each, and what it means for your renewal and switching options.",
+    speakableSelectors: ["h1", "[data-speakable]", ".key-takeaways"],
   }),
 );
 ---
@@ -68,10 +69,10 @@ const schema = combineSchemas(
   </nav>
 
   <article class="container max-w-4xl py-10">
-    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated May 2026 · 9-minute read</div>
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated July 2026 · 9-minute read</div>
     <h1 class="text-heading-1 mb-4">Collateral vs. Standard Charge Mortgages in Canada</h1>
-    <p class="text-body-lg text-muted-foreground mb-8">
-      How your mortgage is registered on title — as a collateral charge or a standard charge — quietly controls how much it costs to switch lenders, how flexible your borrowing is, and whether you can easily transfer at renewal. Most Canadians have no idea what type they have until they try to switch. This guide explains every lender's default, the real-dollar cost differences, and how to think about the choice at your next renewal.
+    <p class="text-body-lg text-muted-foreground mb-8" data-speakable>
+      A <strong>standard charge</strong> mortgage can be assigned to a new lender at renewal with minimal legal cost. A <strong>collateral charge</strong> (default at TD since 2010) must be fully discharged and re-registered — adding ~$700–$1,200 in switching fees. With July 2026 broker rates ~0.30% below typical bank renewal letters, the interest savings usually far exceed discharge costs.
     </p>
 
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
@@ -86,6 +87,14 @@ const schema = combineSchemas(
         <li>• Extra cost to switch away from a collateral charge: roughly $700–$1,200 in legal/registration fees, often covered by the new lender.</li>
       </ul>
     </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">2026 Renewal Context: When Collateral Switching Still Pays</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      In July 2026, broker-channel renewal rates (~4.04% 5-year fixed insured) are typically 0.25–0.75% below Big Six renewal letters. On a $500,000 TD collateral-charge mortgage, switching away saves ~$8,700 in interest over 5 years on a 0.30% rate improvement — versus ~$700–$1,200 in discharge and legal fees. Many monoline lenders cover legal costs on switches. Use our <a href="/switch-vs-stay-calculator/" class="text-secondary-100 hover:underline">switch vs. stay calculator</a> and compare live rates on <a href="/best-mortgage-renewal-rates/" class="text-secondary-100 hover:underline">best renewal rates</a>.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      At renewal, switching from collateral to standard charge is ideal — you're already paying discharge costs, so choose a monoline (First National, MCAP) that registers standard by default. Brokers at <a href="https://lendcity.ca/" target="_blank" rel="noopener" class="text-secondary-100 hover:underline">LendCity Mortgages</a> identify legal-paid switch programs. New homeowners learning about charge types for the first time can also read <a href="https://firsthomeguide.ca/" target="_blank" rel="noopener" class="text-secondary-100 hover:underline">FirstHomeGuide.ca</a>.
+    </p>
 
     <h2 class="text-heading-3 mt-10 mb-4">How Mortgages Are Registered on Title</h2>
     <p class="text-body-md mb-4 leading-relaxed">
@@ -111,7 +120,7 @@ const schema = combineSchemas(
       The flip side is structural: <strong>a collateral charge cannot be assigned to a new lender</strong>. If you want to switch at renewal, the old charge must be fully discharged and a new one registered — triggering full legal and land-registration fees. Expect $700–$1,200 in switching costs when leaving a collateral-charge mortgage, though many new lenders (especially monolines competing for switches) offer to cover these fees.
     </p>
 
-    <h2 class="text-heading-3 mt-10 mb-4">Canadian Lenders: Who Uses What (May 2026)</h2>
+    <h2 class="text-heading-3 mt-10 mb-4">Canadian Lenders: Who Uses What (July 2026)</h2>
 
     <div class="overflow-x-auto mb-6">
       <table class="w-full text-body-sm border-collapse">
