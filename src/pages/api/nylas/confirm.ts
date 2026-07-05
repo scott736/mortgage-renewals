@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 
+import { fireCrmWebhook } from '@/lib/crm-webhook';
 import { getServiceById, getTeamMemberById } from '@/lib/nylas/config';
 import { sendBookingConfirmedEmail, sendBookingNotificationEmail } from '@/lib/nylas/emails';
 import { confirmPendingBooking, getPendingBookingByToken } from '@/lib/nylas/pending-bookings';
@@ -87,6 +88,19 @@ export const POST: APIRoute = async ({ request }) => {
           // Don't block the booking response if notification fails
           console.error('Failed to send booking notification email:', notifyError);
         }
+
+        void fireCrmWebhook({
+          event: 'booking_confirmed',
+          source: 'book-a-call',
+          name: pending.guest_name,
+          email: pending.guest_email,
+          phone: pending.guest_phone || undefined,
+          serviceName: service.name,
+          teamMemberName: teamMember.name,
+          startTime: booking.startTime.toLocaleString('en-US', {
+            timeZone: pending.timezone,
+          }),
+        });
       }
     }
 

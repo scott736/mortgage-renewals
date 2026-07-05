@@ -3,6 +3,7 @@ export const prerender = false;
 import type { APIRoute } from 'astro';
 import { z } from 'zod';
 
+import { fireCrmWebhook } from '@/lib/crm-webhook';
 import { isElasticEmailConfigured } from '@/lib/email';
 import { isNylasConfigured } from '@/lib/nylas/client';
 import { getServiceById, getTeamMemberById, schedulingConfig } from '@/lib/nylas/config';
@@ -219,6 +220,17 @@ export const POST: APIRoute = async ({ request, url }) => {
     console.log(
       `Pending booking created: ${pendingBooking.id} - ${data.guestName} with ${teamMember.name} for ${service.name}`
     );
+
+    void fireCrmWebhook({
+      event: 'booking_pending',
+      source: 'book-a-call',
+      name: data.guestName,
+      email: data.guestEmail,
+      phone: data.guestPhone,
+      serviceName: service.name,
+      teamMemberName: teamMember.name,
+      startTime: data.startTime,
+    });
 
     return new Response(
       JSON.stringify({

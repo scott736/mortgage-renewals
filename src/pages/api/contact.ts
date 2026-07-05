@@ -2,6 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from 'astro';
 
+import { fireCrmWebhook, leadEnvelopeToCrmPayload } from '@/lib/crm-webhook';
 import { escapeHtml, sendEmail } from '@/lib/email';
 import { leadNotificationRecipients } from '@/lib/lead-inbox';
 import {
@@ -222,6 +223,8 @@ export const POST: APIRoute = async ({ request }) => {
       { status: 502, headers: { 'Content-Type': 'application/json' } },
     );
   }
+
+  void fireCrmWebhook(leadEnvelopeToCrmPayload(envelope));
 
   return new Response(JSON.stringify({ success: true }), {
     status: 200,
