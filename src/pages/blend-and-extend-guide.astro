@@ -3,7 +3,7 @@ import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas, howToSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("blend-and-extend-guide",{
@@ -27,6 +27,17 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Blend-and-Extend Guide", url: "/blend-and-extend-guide" }
   ]),
+  howToSchema({
+    name: "How to Request a Blend-and-Extend at Mortgage Renewal",
+    description: "Steps to evaluate and request a blend-and-extend from your lender when breaking mid-term would trigger a large IRD penalty.",
+    slug: "blend-and-extend-guide",
+    steps: [
+      { name: "Confirm your remaining term and penalty", text: "Get your current contract rate, months remaining, and a written IRD break penalty quote from your lender before comparing options." },
+      { name: "Compare market rates and blend math", text: "Use a blend-and-extend calculator to model the weighted-average rate vs. waiting for renewal or switching lenders with penalty costs included." },
+      { name: "Contact retention or your broker", text: "Ask your lender's retention desk about blend-and-extend eligibility, or have your broker benchmark whether switching beats staying with a blend." },
+      { name: "Sign the blend-and-extend agreement", text: "If the blended rate and new term beat breaking or auto-renewing, sign the lender's blend-and-extend paperwork before your renewal deadline." },
+    ],
+  }),
 );
 ---
 

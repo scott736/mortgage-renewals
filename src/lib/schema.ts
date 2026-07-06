@@ -43,6 +43,15 @@ interface FAQItem {
   answer: string;
 }
 
+/** Strip HTML from FAQ answers before JSON-LD — Answer.text must be plain text. */
+export function stripHtmlForSchema(html: string): string {
+  return html
+    .replace(/<a [^>]*>([^<]*)<\/a>/g, "$1")
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 interface HowToStep {
   name: string;
   text: string;
@@ -78,6 +87,8 @@ interface HowToOptions {
   name: string;
   description: string;
   steps: HowToStep[];
+  slug: string;
+  inLanguage?: string;
   totalTime?: string; // ISO 8601 duration, e.g. "PT15M"
   image?: string;
   estimatedCost?: { currency: string; value: string };
@@ -154,6 +165,7 @@ export function webPageNode(opts: {
       cssSelector: opts.speakableSelectors || [
         "h1",
         "[data-speakable]",
+        "[data-faq-answer]",
         "article > p:first-of-type",
         ".key-takeaways",
       ],
@@ -220,10 +232,16 @@ export function articleSchema(opts: ArticleOptions) {
 }
 
 export function howToSchema(opts: HowToOptions) {
+  const url = pageUrl(opts.slug);
   const node: Record<string, unknown> = {
     "@type": "HowTo",
+    "@id": pageId(opts.slug, "howto"),
     name: opts.name,
     description: opts.description,
+    url,
+    inLanguage: opts.inLanguage || "en-CA",
+    isPartOf: { "@id": SITE_ID },
+    mainEntityOfPage: { "@id": pageId(opts.slug, "webpage") },
     step: opts.steps.map((step, i) => ({
       "@type": "HowToStep",
       position: i + 1,
@@ -244,25 +262,38 @@ export function howToSchema(opts: HowToOptions) {
   return node;
 }
 
-export function faqSchema(items: FAQItem[], slug?: string) {
+export function faqSchema(
+  items: FAQItem[],
+  slug?: string,
+  opts?: { inLanguage?: string },
+) {
+  const lang =
+    opts?.inLanguage || (slug?.startsWith("fr/") ? "fr-CA" : "en-CA");
+
   const node: Record<string, unknown> = {
     "@type": "FAQPage",
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
-      inLanguage: "en-CA",
+      inLanguage: lang,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
-        inLanguage: "en-CA",
+        text: stripHtmlForSchema(item.answer),
+        inLanguage: lang,
       },
     })),
   };
+
   if (slug !== undefined) {
     node["@id"] = pageId(slug, "faqpage");
-    node.inLanguage = "en-CA";
+    node.inLanguage = lang;
     node.isPartOf = { "@id": SITE_ID };
+    node.mainEntityOfPage = { "@id": pageId(slug, "webpage") };
+    if (slug) {
+      node.url = pageUrl(slug);
+    }
   }
+
   return node;
 }
 

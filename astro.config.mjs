@@ -8,6 +8,7 @@ import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
 import vercel from "@astrojs/vercel";
+import { buildSitemapHreflangLinks } from "./src/lib/hreflang.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pageDatesPath = path.join(__dirname, "src/data/page-dates.json");
@@ -44,6 +45,8 @@ export default defineConfig({
           '/mortgage-renewal-divorce-separation/',
           '/faq/',
           '/404/',
+          '/book/confirm/',
+          '/mortgage-renewal-sitemap/',
         ];
         if (excluded.some((path) => page.endsWith(path))) return false;
         if (page.includes('/api/')) return false;
@@ -65,7 +68,8 @@ export default defineConfig({
           '/bc-mortgage-renewal/',
           '/ontario-mortgage-renewal/',
           '/quebec-mortgage-renewal/',
-          '/saskatchewan-manitoba-mortgage-renewal/',
+          '/manitoba-mortgage-renewal/',
+          '/saskatchewan-mortgage-renewal/',
           '/mortgage-rate-forecast/',
           '/what-is-a-mortgage-renewal/',
         ];
@@ -74,7 +78,10 @@ export default defineConfig({
           '/',
           '/mortgage-rate-forecast/',
           '/best-mortgage-renewal-rates/',
+          '/current-mortgage-rates-canada/',
           '/mortgage-renewal-calculator/',
+          '/fr/meilleurs-taux-renouvellement-hypothecaire/',
+          '/fr/prevision-taux-hypothecaire/',
         ];
 
         if (tier1.includes(path)) item.priority = 1.0;
@@ -92,6 +99,11 @@ export default defineConfig({
           if (lastmod) {
             item.lastmod = new Date(lastmod);
           }
+        }
+
+        const hreflangLinks = buildSitemapHreflangLinks(path, "https://mortgagerenewalhub.ca");
+        if (hreflangLinks) {
+          item.links = hreflangLinks;
         }
 
         return item;

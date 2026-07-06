@@ -1,0 +1,28 @@
+---
+interface Props {
+  question: string;
+  answer: string;
+  /** When true, render answer as HTML (internal links only). */
+  allowHtml?: boolean;
+}
+
+const { question, answer, allowHtml = false } = Astro.props;
+---
+
+<details class="faq-item rounded-lg overflow-hidden" style="border: 1px solid var(--border)">
+  <summary
+    class="flex items-start justify-between p-4 cursor-pointer font-semibold gap-4"
+    style="background: var(--card); list-style: none"
+    data-faq-question
+  >
+    <span>{question}</span>
+    <span class="flex-shrink-0 text-lg font-bold" style="color: var(--secondary)">+</span>
+  </summary>
+  <div
+    class="faq-answer p-4 text-sm leading-relaxed"
+    style="background: var(--background); border-top: 1px solid var(--border)"
+    data-faq-answer
+  >
+    {allowHtml ? <Fragment set:html={answer} /> : <p class="m-0">{answer}</p>}
+  </div>
+</details>

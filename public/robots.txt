@@ -24,6 +24,9 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: anthropic-ai
 Allow: /
 
@@ -34,6 +37,9 @@ User-agent: CCBot
 Allow: /
 
 User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
 Allow: /
 
 User-agent: Amazonbot
@@ -73,3 +79,6 @@ User-agent: Mistral-User
 Allow: /
 
 Sitemap: https://mortgagerenewalhub.ca/sitemap-index.xml
+
+# RSS feed (renewal news & rate updates)
+# https://mortgagerenewalhub.ca/rss.xml

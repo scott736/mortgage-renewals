@@ -1,7 +1,7 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas, webPageNode } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas, howToSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("fr/changer-preteur-renouvellement",{
@@ -22,6 +22,22 @@ const schema = combineSchemas(
   breadcrumbSchema([
     { name: "Changer de prêteur (FR)", url: "/fr/changer-preteur-renouvellement" },
   ]),
+  howToSchema({
+    name: "Comment changer de prêteur au renouvellement au Canada",
+    description: "Étapes pour transférer votre hypothèque à un nouveau prêteur au renouvellement, incluant l'exemption du test de stress depuis 2024.",
+    slug: "fr/changer-preteur-renouvellement",
+    inLanguage: "fr-CA",
+    steps: [
+      { name: "Repérez votre date d'échéance", text: "Confirmez la date exacte de fin de terme sur votre relevé hypothécaire et planifiez 120 jours à l'avance." },
+      { name: "Consultez un courtier hypothécaire", text: "Un courtier compare les taux de 30+ prêteurs sans frais pour vous." },
+      { name: "Rassemblez vos documents", text: "Relevé hypothécaire récent, preuve de revenu, pièce d'identité et taxe foncière." },
+      { name: "Soumettez la demande au nouveau prêteur", text: "Votre courtier soumet la demande; le prêteur émet une lettre d'engagement sous 24 à 72 heures." },
+      { name: "Négociez avec votre banque actuelle (optionnel)", text: "Présentez l'offre concurrente à votre prêteur actuel pour voir s'il égale le taux." },
+      { name: "Signez l'engagement hypothécaire", text: "Acceptez l'offre du nouveau prêteur; la paperasse se fait souvent en ligne." },
+      { name: "Complétez les démarches légales", text: "Un avocat ou notaire inscrit l'hypothèque du nouveau prêteur; au Québec, prévoyez les frais notariaux." },
+      { name: "Nouveau terme à l'échéance", text: "À la date d'échéance, l'ancien prêteur est remboursé et le nouveau taux prend effet." },
+    ],
+  }),
 );
 ---
 

@@ -6,7 +6,7 @@ import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/l
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("about",{
-  dateModified: "2026-05-22",
+  dateModified: "2026-07-05",
 });
 
 export const prerender = true;
@@ -21,6 +21,7 @@ const schema = combineSchemas(
     headline: "About MortgageRenewalHub.ca",
     description: "MortgageRenewalHub.ca is an independent Canadian mortgage renewal education resource. Learn how we help Canadians save thousands at renewal.",
     slug: "about",
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([{ name: "About", url: "/about" }]),
 );
@@ -30,6 +31,7 @@ const schema = combineSchemas(
   title="About MortgageRenewalHub.ca — Canada's Renewal Resource"
   description="MortgageRenewalHub.ca is an independent Canadian mortgage renewal education resource. Learn how we help Canadians save thousands at renewal."
   schema={schema}
+  lastUpdated="2026-07-05"
 >
   <!-- HERO -->
   <section class="bg-primary-100 py-16 lg:py-24">
@@ -64,14 +66,14 @@ const schema = combineSchemas(
         </div>
         <div class="space-y-4">
           {[
-            { number: "~1M", label: "Canadian households renewing in 2026 (CMHC Spring 2026)" },
+            { number: "~1M", label: 'Canadian households renewing in 2026 (<a href="https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/housing-research/research-reports/housing-finance/residential-mortgage-industry-report" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">CMHC Spring 2026 RMIR</a>)' },
             { number: "70%+", label: "Who accept the first offer without shopping" },
             { number: "$15,000+", label: "Average amount a 0.5% rate improvement saves over 5 years on a $600K mortgage" },
             { number: "$0", label: "Cost to use a licensed mortgage broker" },
           ].map(item => (
             <div class="flex items-center gap-4 rounded-xl bg-gray-25 border border-gray-100 p-5">
               <div class="text-2xl font-bold text-primary-100 min-w-[80px]">{item.number}</div>
-              <div class="text-body-sm text-muted-foreground">{item.label}</div>
+              <div class="text-body-sm text-muted-foreground"><Fragment set:html={item.label} /></div>
             </div>
           ))}
         </div>
@@ -118,6 +120,9 @@ const schema = combineSchemas(
         <p class="text-body-md text-muted-foreground">
           This means our interests are aligned: the better our information, the more likely you'll find value in speaking with our team. We have no incentive to promote specific lenders or products — only to give you the best possible information.
         </p>
+        <p class="text-body-md text-muted-foreground mt-4">
+          Primary sources cited across this site include the <a href="https://www.canada.ca/en/financial-consumer-agency/services/mortgages.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Financial Consumer Agency of Canada (FCAC)</a>, <a href="https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/housing-research/research-reports/housing-finance/residential-mortgage-industry-report" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">CMHC housing research</a>, the <a href="https://www.bankofcanada.ca/" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Bank of Canada</a>, and <a href="https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">OSFI Guideline B-20</a>. Rates and program details are for education only — confirm current rules with a licensed professional.
+        </p>
       </div>
     </div>
   </section>
@@ -145,7 +150,7 @@ const schema = combineSchemas(
 
         <div>
           <p class="text-body-md text-muted-foreground mb-4">
-            Scott Dillingham is the principal broker at <a href="https://lendcity.ca" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a> and the named expert author for MortgageRenewalHub.ca. Every guide, calculator walkthrough, and renewal scenario on this site is reviewed against the Canadian mortgage rules in force at the time of publication — OSFI B-20, the FCAC Mortgage Consumer Code of Conduct, and lender-specific overlays.
+            Scott Dillingham is the principal broker at <a href="https://lendcity.ca" target="_blank" rel="noopener" style="color: var(--secondary)">LendCity Mortgages</a> and the named expert author for MortgageRenewalHub.ca. Every guide, calculator walkthrough, and renewal scenario on this site is reviewed against the Canadian mortgage rules in force at the time of publication — <a href="https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">OSFI B-20</a>, <a href="https://www.canada.ca/en/financial-consumer-agency/services/mortgages.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">FCAC mortgage guidance</a>, and lender-specific overlays.
           </p>
           <p class="text-body-md text-muted-foreground mb-4">
             Scott has been active in Canadian mortgage brokering for over a decade, specialising in renewals, switches, and complex-income files across all ten provinces and the territories. He personally reviews the technical accuracy of the content on this site and keeps it current as rules change.

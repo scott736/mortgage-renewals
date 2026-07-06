@@ -10,6 +10,7 @@
     "dev": "astro dev",
     "prebuild": "node scripts/generate-page-dates.mjs",
     "build": "astro build",
+    "postbuild": "node vercel/ping-indexnow.mjs",
     "generate:pdf": "node scripts/generate-renewal-checklist-pdf.mjs",
     "preview": "astro preview",
     "astro": "astro",

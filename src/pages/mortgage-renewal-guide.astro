@@ -9,7 +9,7 @@ import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("mortgage-renewal-guide", {
-  dateModified: "2026-05-21",
+  dateModified: "2026-07-05",
 });
 
 const schema = combineSchemas(
@@ -25,6 +25,7 @@ const schema = combineSchemas(
   howToSchema({
     name: "How to Prepare for Your Mortgage Renewal",
     description: "A complete renewal timeline from 12 months before maturity to renewal day, covering credit checks, rate shopping, negotiation, and closing.",
+    slug: "mortgage-renewal-guide",
     steps: [
       { name: "12 months before renewal — Build your foundation", text: "Locate your original mortgage documents, confirm your maturity date, check your credit score, identify debts to pay down, and ensure tax filings are current if self-employed." },
       { name: "6 months before renewal — Research your options", text: "Contact a mortgage broker for a free strategy meeting, research current rates, decide between fixed or variable, and determine whether your mortgage is a standard or collateral charge." },
@@ -48,7 +49,7 @@ const schema = combineSchemas(
   schema={schema}
   preloadImage="/images/hero/hero-guide.webp"
   hideAuthorByline={true}
-  lastUpdated="2026-05-21"
+  lastUpdated="2026-07-05"
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Complete Mortgage Renewal Guide
@@ -58,18 +59,18 @@ const schema = combineSchemas(
     <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">The Definitive Resource</div>
     <h1 class="text-heading-1 mb-4">The Complete Canadian Mortgage Renewal Guide (2026)</h1>
     <p class="text-body-lg text-muted-foreground mb-6">
-      CMHC's Spring 2026 Residential Mortgage Industry Report projects roughly 1 million Canadian households renewing in 2026 — about 13% fewer than the 2025 peak, when renewal volumes topped 1.2 million. Most will simply sign whatever their bank sends them — one of the most common <a href="/mortgage-renewal-mistakes/" class="text-secondary-100 hover:underline">renewal mistakes</a> Canadians make. This guide walks you through everything — from 12 months before renewal to the day your new term begins — so you can make an informed decision and keep more money in your pocket.
+      <a href="https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/housing-research/research-reports/housing-finance/residential-mortgage-industry-report" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">CMHC's Spring 2026 Residential Mortgage Industry Report</a> projects roughly 1 million Canadian households renewing in 2026 — about 13% fewer than the 2025 peak, when renewal volumes topped 1.2 million. Most will simply sign whatever their bank sends them — one of the most common <a href="/mortgage-renewal-mistakes/" class="text-secondary-100 hover:underline">renewal mistakes</a> Canadians make. This guide walks you through everything — from 12 months before renewal to the day your new term begins — so you can make an informed decision and keep more money in your pocket.
     </p>
 
     <div class="rounded-xl border p-6 mb-10 key-takeaways" style="background: var(--accent); border-color: var(--border)">
       <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Key Takeaways</h2>
       <ul class="space-y-2 text-sm leading-relaxed">
-        <li>• Roughly 1 million Canadian households are expected to renew in 2026 (CMHC Spring 2026) — down ~13% from the 2025 peak — yet most will still sign without shopping and overpay by thousands.</li>
+        <li>• Roughly 1 million Canadian households are expected to renew in 2026 (<a href="https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/housing-research/research-reports/housing-finance/residential-mortgage-industry-report" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">CMHC Spring 2026 RMIR</a>) — down ~13% from the 2025 peak — yet most will still sign without shopping and overpay by thousands.</li>
         <li>• Start preparing 12 months before your maturity date; lock in a rate hold 120 days out to protect against rate increases.</li>
         <li>• Standard charge mortgages can switch lenders at $0 cost; collateral charges (TD, National Bank) require $500-$1,000 in legal fees but savings often far exceed the cost.</li>
         <li>• Banks have 0.25-0.50% of rate flexibility for loyal customers — but only if you ask and have a competing offer in hand.</li>
         <li>• A mortgage broker compares 30+ lenders for free (paid by the lender) and accesses monolines not available to the public directly.</li>
-        <li>• Since 2024, no stress test is required to switch lenders on a straight transfer at renewal.</li>
+        <li>• Since November 2024, no <a href="https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">OSFI B-20</a> stress test is required to switch lenders on a straight transfer at renewal.</li>
       </ul>
     </div>
 

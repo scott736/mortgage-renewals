@@ -4,6 +4,7 @@
 import "../styles/global.css";
 
 import { BUSINESS, POSTAL_ADDRESS_NODE, SITE_METADATA } from "../consts";
+import { resolveHreflangUrls } from "../lib/hreflang";
 
 interface Props {
   title: string;
@@ -23,44 +24,15 @@ const normalizedPath = Astro.url.pathname.endsWith("/")
   : `${Astro.url.pathname}/`;
 const canonicalURL = new URL(normalizedPath, Astro.site);
 
-// Reciprocal en/fr hreflang for Quebec EN/FR page pairs.
-const HREFLANG_PAIRS: Record<string, string> = {
-  "/quebec-mortgage-renewal/": "/fr/renouvellement-hypothecaire-quebec/",
-  "/fr/renouvellement-hypothecaire-quebec/": "/quebec-mortgage-renewal/",
-  "/switching-lenders-at-renewal/": "/fr/changer-preteur-renouvellement/",
-  "/fr/changer-preteur-renouvellement/": "/switching-lenders-at-renewal/",
-  "/mortgage-renewal-guide/": "/fr/guide-renouvellement-hypothecaire/",
-  "/fr/guide-renouvellement-hypothecaire/": "/mortgage-renewal-guide/",
-  "/mortgage-renewal-faq/": "/fr/faq-renouvellement-hypothecaire/",
-  "/fr/faq-renouvellement-hypothecaire/": "/mortgage-renewal-faq/",
-  "/mortgage-renewal-calculator/": "/fr/calculateur-renouvellement-hypothecaire/",
-  "/fr/calculateur-renouvellement-hypothecaire/": "/mortgage-renewal-calculator/",
-  "/mortgage-penalty-calculator/": "/fr/calculateur-penalite-hypothecaire/",
-  "/fr/calculateur-penalite-hypothecaire/": "/mortgage-penalty-calculator/",
-  "/best-mortgage-renewal-rates/": "/fr/meilleurs-taux-renouvellement-hypothecaire/",
-  "/fr/meilleurs-taux-renouvellement-hypothecaire/": "/best-mortgage-renewal-rates/",
-  "/what-is-a-mortgage-renewal/": "/fr/qu-est-ce-que-renouvellement-hypothecaire/",
-  "/fr/qu-est-ce-que-renouvellement-hypothecaire/": "/what-is-a-mortgage-renewal/",
-  "/mortgage-rate-forecast/": "/fr/prevision-taux-hypothecaire/",
-  "/fr/prevision-taux-hypothecaire/": "/mortgage-rate-forecast/",
-};
-const hreflangAlternate = HREFLANG_PAIRS[normalizedPath];
-const isFrenchPage = normalizedPath.startsWith("/fr/");
-const enHreflangURL = isFrenchPage && hreflangAlternate
-  ? new URL(hreflangAlternate, Astro.site)
-  : canonicalURL;
-const frHreflangURL = isFrenchPage
-  ? canonicalURL
-  : hreflangAlternate
-    ? new URL(hreflangAlternate, Astro.site)
-    : null;
-const xDefaultURL = isFrenchPage && hreflangAlternate ? enHreflangURL : canonicalURL;
+const { enHreflangURL, frHreflangURL, xDefaultURL, isFrenchPage } =
+  resolveHreflangUrls(normalizedPath, Astro.site);
 
 const { title, description, image, schema, preloadImage, noindex = false, ogType = "website" } = Astro.props;
 const finalTitle = title || SITE_METADATA.title.default;
 const finalDescription = description || SITE_METADATA.description;
 const finalImage = image || SITE_METADATA.openGraph.images[0].url;
-const imageURL = new URL(finalImage, Astro.url);
+// Always absolute against site origin so OG/Twitter crawlers get a stable URL on every page.
+const imageURL = new URL(finalImage, Astro.site);
 
 const shouldNoindexQueryParams = Astro.url.search.length > 0;
 
@@ -212,7 +184,10 @@ const graphSchema = JSON.stringify({
 }
 
 <link rel="sitemap" href="/sitemap-index.xml" />
+<link rel="alternate" type="text/plain" href="https://mortgagerenewalhub.ca/llms.txt" title="LLM site index" />
+<link rel="alternate" type="text/plain" href="https://mortgagerenewalhub.ca/llms-full.txt" title="LLM full content" />
 <link rel="alternate" type="application/rss+xml" title="MortgageRenewalHub.ca News" href="/rss.xml" />
+<meta name="dcterms.rights" content="Educational content may be cited with attribution and link to the source URL on MortgageRenewalHub.ca." />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL (matches sitemap trailing-slash convention) -->
@@ -243,6 +218,9 @@ const graphSchema = JSON.stringify({
   content={SITE_METADATA.openGraph.images[0].height.toString()}
 />
 <meta property="og:image:alt" content={SITE_METADATA.openGraph.images[0].alt} />
+{imageURL.protocol === "https:" && (
+  <meta property="og:image:secure_url" content={imageURL.href} />
+)}
 
 <!-- Twitter -->
 <meta name="twitter:card" content={SITE_METADATA.twitter.card} />

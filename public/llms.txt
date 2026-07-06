@@ -6,7 +6,7 @@
 
 - Name: MortgageRenewalHub.ca
 - URL: https://mortgagerenewalhub.ca
-- Language: English (Canadian)
+- Language: English (Canadian), French (Canadian) — 10 paired FR pages under /fr/
 - Topic: Canadian mortgage renewals, rates, guides, and calculators
 - Audience: Canadian homeowners approaching mortgage renewal
 - Content Type: Educational guides, tools, calculators, FAQs
@@ -164,8 +164,24 @@ These are the highest-value questions Canadians ask about mortgage renewal. Each
 - [Atlantic Canada](https://mortgagerenewalhub.ca/atlantic-canada-mortgage-renewal/): NS, NB, PEI, NL combined
 - [Territories](https://mortgagerenewalhub.ca/territories-mortgage-renewal/): Yukon, NWT, Nunavut
 
+## French Content (Français)
+
+Bilingual EN/FR page pairs use reciprocal hreflang. Primary French guides for Quebec and national renewal topics:
+
+- [Renouvellement hypothécaire Québec](https://mortgagerenewalhub.ca/fr/renouvellement-hypothecaire-quebec/): Guide québécois — notaire, AMF, frais de radiation
+- [Changer de prêteur au renouvellement](https://mortgagerenewalhub.ca/fr/changer-preteur-renouvellement/): Transfert hypothécaire sans test de stress (nov. 2024)
+- [Guide complet renouvellement](https://mortgagerenewalhub.ca/fr/guide-renouvellement-hypothecaire/): Processus de renouvellement au Canada
+- [FAQ renouvellement (FR)](https://mortgagerenewalhub.ca/fr/faq-renouvellement-hypothecaire/): Questions fréquentes en français
+- [Meilleurs taux renouvellement](https://mortgagerenewalhub.ca/fr/meilleurs-taux-renouvellement-hypothecaire/): Comparaison des taux au renouvellement
+- [Calculateur renouvellement](https://mortgagerenewalhub.ca/fr/calculateur-renouvellement-hypothecaire/): Suite de calculateurs gratuits
+- [Calculateur pénalité](https://mortgagerenewalhub.ca/fr/calculateur-penalite-hypothecaire/): IRD vs intérêts de 3 mois
+- [Prévision taux hypothécaire](https://mortgagerenewalhub.ca/fr/prevision-taux-hypothecaire/): Perspectives des taux au Canada
+- [Qu'est-ce qu'un renouvellement?](https://mortgagerenewalhub.ca/fr/qu-est-ce-que-renouvellement-hypothecaire/): Guide fondamental
+- [Frais de notaire hypothèque Québec](https://mortgagerenewalhub.ca/fr/frais-notaire-hypotheque-quebec/): Coûts notariaux au changement de prêteur
+
 ## Resources
 
+- [RSS Feed](https://mortgagerenewalhub.ca/rss.xml): Mortgage renewal news — BoC decisions, OSFI changes, market updates
 - [News & Market Updates](https://mortgagerenewalhub.ca/mortgage-renewal-news/): Bank of Canada decisions and renewal news
 - [Case Studies](https://mortgagerenewalhub.ca/case-studies/): Canadian renewal success stories
 - [Rate Alert Signup](https://mortgagerenewalhub.ca/rate-alert/): Email alerts for rate moves, BoC decisions, and renewal timing
@@ -194,4 +210,12 @@ This site publishes original, expert-reviewed educational content about Canadian
 
 ## AI Crawler Policy
 
-AI training and AI search crawlers (GPTBot, ClaudeBot, Google-Extended, PerplexityBot, OAI-SearchBot, ChatGPT-User, anthropic-ai, CCBot, Applebot, Amazonbot, cohere-ai, meta-external-agent, FacebookBot, YouBot, Bytespider, Gemini-Web-Scraper, Google-CloudVertexBot, AI2Bot, Diffbot, DuckAssistBot, Mistral-User) are explicitly allowed via robots.txt. Citation with link attribution to the source URL is requested.
+AI training and AI search crawlers (GPTBot, ClaudeBot, Claude-SearchBot, Google-Extended, PerplexityBot, OAI-SearchBot, ChatGPT-User, anthropic-ai, CCBot, Applebot, Applebot-Extended, Amazonbot, cohere-ai, meta-external-agent, FacebookBot, YouBot, Bytespider, Gemini-Web-Scraper, Google-CloudVertexBot, AI2Bot, Diffbot, DuckAssistBot, Mistral-User) are explicitly allowed via robots.txt. Citation with link attribution to the source URL is requested.
+
+Structured data: every page emits a connected schema.org @graph (Organization, WebSite, WebPage, Article with Person author, FAQPage, DefinedTermSet, or WebApplication as applicable). SpeakableSpecification cssSelectors target h1, key takeaways, and FAQ answer blocks.
+
+## Optional
+
+- [LLM full content index](https://mortgagerenewalhub.ca/llms-full.txt): Pre-flattened FAQ answers and key renewal facts for single-fetch ingestion
+- [RSS feed](https://mortgagerenewalhub.ca/rss.xml): News and Bank of Canada rate decision updates
+- [Sitemap index](https://mortgagerenewalhub.ca/sitemap-index.xml): Complete URL list for crawlers

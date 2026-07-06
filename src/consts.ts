@@ -6,6 +6,11 @@ export const LEAD_INBOX = [
   'info@lendcity.ca',
 ] as const;
 
+export const SITE_URL = "https://mortgagerenewalhub.ca";
+
+/** IndexNow verification key — served at /{INDEXNOW_KEY}.txt for Bing/Copilot discovery. */
+export const INDEXNOW_KEY = "mrh-indexnow-verification-key";
+
 const SITE_TITLE = "Mortgage Renewal Canada 2026 — Best Rates & Guide";
 const SITE_DESCRIPTION =
   "Best mortgage renewal rates Canada 2026. Compare fixed & variable renewal rates, free calculators, and expert broker guidance to save thousands at renewal.";

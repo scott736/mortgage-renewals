@@ -1,5 +1,6 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import SourcesBox from "@/components/SourcesBox.astro";
 import LiveRatesTable from '@/components/sections/live-rates-table';
 import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
@@ -96,7 +97,7 @@ const schema = combineSchemas(
         <li>• Best 5-year fixed renewal rates: ~4.04% insured, ~4.19% uninsured through brokers (July 2026).</li>
         <li>• Best 5-year variable: ~prime − 1.10% (effective ~3.35% at prime 4.45%).</li>
         <li>• Big Six renewal letters typically quote 0.25–0.75% above broker rates — on $600K, 0.5% costs ~$15,000 over 5 years.</li>
-        <li>• Bank of Canada held overnight rate at 2.25% on June 10, 2026; next decision July 15, 2026.</li>
+        <li>• Bank of Canada held overnight rate at 2.25% on June 10, 2026 (<a href="https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">source</a>); next decision July 15, 2026.</li>
         <li>• Lock a rate hold 120 days before maturity; if rates drop, most lenders honour the lower rate.</li>
       </ul>
     </div>
@@ -193,7 +194,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mb-4">How Renewal Rates Differ From Purchase Rates</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      At renewal, you may qualify for different rates than when you first bought. Key factors that have likely changed: your loan-to-value ratio (your home has likely appreciated), your overall debt load, and the regulatory environment. Importantly, the <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">2024 regulatory change</a> means you no longer need a stress test to switch lenders on a straight renewal transfer.
+      At renewal, you may qualify for different rates than when you first bought. Key factors that have likely changed: your loan-to-value ratio (your home has likely appreciated), your overall debt load, and the regulatory environment. Importantly, the <a href="https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">November 2024 OSFI B-20 change</a> means you no longer need a stress test to switch lenders on a straight renewal transfer — see our <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders guide</a>.
     </p>
 
     <h2 class="text-heading-3 mb-4">Why Your Bank's First Offer Is Rarely the Best Rate</h2>
@@ -209,7 +210,7 @@ const schema = combineSchemas(
       {[
         {
           type: "Insured Mortgage",
-          desc: "Originally purchased with less than 20% down. CMHC-insured. Best rates available at renewal. No stress test required to switch lenders.",
+          desc: "Originally purchased with less than 20% down. <a href=\"https://www.cmhc-schl.gc.ca/\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-secondary-100 hover:underline\">CMHC</a>-insured. Best rates available at renewal. No stress test required to switch lenders.",
           rate: "Best available",
           color: "bg-success-0 border-success-50",
         },
@@ -230,7 +231,7 @@ const schema = combineSchemas(
           <div class="flex items-start justify-between gap-4">
             <div>
               <h3 class="text-heading-5 mb-1">{item.type}</h3>
-              <p class="text-body-sm text-muted-foreground">{item.desc}</p>
+              <p class="text-body-sm text-muted-foreground"><Fragment set:html={item.desc} /></p>
             </div>
             <div class="flex-shrink-0 text-right">
               <div class="text-body-xs text-muted-foreground">Rate Tier</div>
@@ -243,7 +244,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mb-4">Fixed vs. Variable at Renewal (2026)</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      With the Bank of Canada rate at 2.25% (prime at 4.45%), the gap between fixed and variable rates has narrowed significantly. Variable rates are currently close to or slightly below short-term fixed rates. The decision now depends heavily on your outlook for rates and your risk tolerance.
+      With the <a href="https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Bank of Canada</a> overnight rate at 2.25% (prime at 4.45%), the gap between fixed and variable rates has narrowed significantly. Variable rates are currently close to or slightly below short-term fixed rates. The decision now depends heavily on your outlook for rates and your risk tolerance.
     </p>
     <p class="text-body-md text-muted-foreground mb-8">
       See our full <a href="/fixed-vs-variable-mortgage-renewal/" class="text-secondary-100 hover:underline">Fixed vs. Variable at Renewal guide</a> for a complete analysis.
@@ -270,7 +271,7 @@ const schema = combineSchemas(
 
     <h2 class="text-heading-3 mb-4">Rate Forecast: 2026–2027</h2>
     <p class="text-body-md text-muted-foreground mb-4">
-      The Bank of Canada has held its overnight rate at 2.25% through five consecutive announcements (most recently June 10, 2026 — next decision July 15, 2026). Most major bank economists expect the BoC rate to remain at 2.25% through end of 2026. For a deeper analysis, see our full <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
+      The <a href="https://www.bankofcanada.ca/" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">Bank of Canada</a> has held its overnight rate at 2.25% through five consecutive announcements (most recently June 10, 2026 — next decision July 15, 2026). Most major bank economists expect the BoC rate to remain at 2.25% through end of 2026. For a deeper analysis, see our full <a href="/mortgage-rate-forecast/" class="text-secondary-100 hover:underline">Canadian mortgage rate forecast</a>.
     </p>
     <p class="text-body-md text-muted-foreground mb-8">
       For fixed rates, the key driver is Canadian government bond yields. 5-year bond yields have been elevated due to inflation uncertainty and US tariff concerns. Fixed rates are unlikely to return to the sub-2% levels seen in 2020–2021.
@@ -284,6 +285,8 @@ const schema = combineSchemas(
         </div>
       </div>
     </div>
+
+    <SourcesBox />
 
     <RelatedLinks slug="/best-mortgage-renewal-rates/" />
   </article>

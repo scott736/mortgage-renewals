@@ -1,0 +1,114 @@
+# MortgageRenewalHub.ca — Full Content Index
+
+> Canada's most comprehensive mortgage renewal resource. This file pre-flattens high-value FAQ answers and key facts for AI agents that prefer single-fetch ingestion. Index: https://mortgagerenewalhub.ca/llms.txt
+
+Authored by Scott Dillingham, Licensed Mortgage Broker (LendCity Mortgages). Primary sources: FCAC, CMHC, Bank of Canada, OSFI, Department of Finance Canada.
+
+## Top Renewal Questions (English)
+
+### What are the best mortgage renewal rates in Canada for 2026?
+
+Best insured 5-year fixed ~4.04%, 5-year variable ~3.35% (July 2026 broker channel). Big Six renewal letters quote 0.25–0.75% higher. Source: https://mortgagerenewalhub.ca/best-mortgage-renewal-rates/
+
+### Do mortgage payments go down when you renew?
+
+Usually no in 2025–2026 — most renewers move from pandemic-era rates (~2%) to current market rates (~4%+). Source: https://mortgagerenewalhub.ca/mortgage-renewal-payment-shock/
+
+### Do I need a stress test to switch lenders at renewal?
+
+No, for straight transfers (same balance, same amortization, no new money) since November 21, 2024. Insured renewals have always been exempt at simple renewal. Refinances, new money, or amortization changes still trigger OSFI B-20 MQR. Sources: https://mortgagerenewalhub.ca/stress-test-mortgage-renewal/ and https://mortgagerenewalhub.ca/switching-lenders-at-renewal/
+
+### What is a collateral charge vs. standard charge?
+
+Standard charges assign easily at renewal; collateral charges (TD default) require discharge ($700–$1,200). Source: https://mortgagerenewalhub.ca/collateral-vs-standard-charge-mortgage/
+
+### What are mortgage prepayment privileges?
+
+Annual lump-sum (10–20%) and payment-increase allowances without penalty. Source: https://mortgagerenewalhub.ca/mortgage-prepayment-privileges-canada/
+
+### How is Quebec mortgage renewal different?
+
+All lender switches require a notarial deed ($800–$1,500). AMF-licensed brokers. Source: https://mortgagerenewalhub.ca/quebec-mortgage-renewal/
+
+### Can I renew my mortgage after losing my job?
+
+Yes — stay with current lender (no requalification) or straight-switch without stress test. EI does not count as qualifying income for refinances. Source: https://mortgagerenewalhub.ca/job-loss-mortgage-renewal/
+
+### When should I start shopping for renewal?
+
+120 days before maturity for rate holds; 12 months out for full strategy. Source: https://mortgagerenewalhub.ca/mortgage-renewal-checklist/
+
+### Fixed or variable at renewal in 2026?
+
+BoC overnight rate 2.25%, prime 4.45% (July 2026). Variable close to short-term fixed. Source: https://mortgagerenewalhub.ca/fixed-vs-variable-mortgage-renewal/
+
+### What is the Canadian Mortgage Charter?
+
+Federally regulated lender obligations including hardship relief, amortization extensions, and proactive outreach. Source: https://mortgagerenewalhub.ca/canadian-mortgage-charter/
+
+## Homepage FAQ (English)
+
+### What are the best mortgage renewal rates in Canada for 2026?
+
+As of July 2026, the best insured 5-year fixed renewal rates through mortgage brokers are approximately 4.04%, with 5-year variable around prime minus 1.10% (effective ~3.35% at prime 4.45%). Big Six banks typically quote 0.25–0.75% higher on renewal letters.
+
+### Do I have to pass a stress test to switch lenders at renewal?
+
+No. Since November 2024, Canadians switching lenders on a straight transfer (same balance, same amortization) do not need to pass the mortgage stress test. This applies to both insured and uninsured mortgages.
+
+### How much can I save by shopping around at renewal?
+
+Even a 0.25% rate difference saves approximately $7,500 in interest over 5 years on a $600,000 mortgage. Canadians who shop through a broker typically save 0.25–0.75% vs. their bank's first offer.
+
+### Is a mortgage broker free to use?
+
+Yes, in virtually all cases. Mortgage brokers are paid a finder's fee by the lender you choose — you pay nothing.
+
+### What happens if I do nothing at renewal?
+
+Your mortgage automatically renews at whatever rate your lender chooses — almost always the posted rate, which is nearly always the worst rate available.
+
+### When should I start thinking about my renewal?
+
+12 months before maturity gives the most options. At 120 days out, lock a rate hold. At 30 days out, finalize your lender choice.
+
+## Stress Test at Renewal — Key Facts
+
+- OSFI Minimum Qualifying Rate (MQR) under Guideline B-20: greater of contract rate + 2% or 5.25% floor.
+- November 21, 2024: OSFI exempts uninsured straight-switch renewals from MQR (same balance, same amortization, no new money).
+- Insured renewals (original down payment under 20%) have always been exempt at simple renewal.
+- Staying with current lender at renewal: no stress test applied.
+- Provincial credit unions are not bound by B-20; many apply a comparable test voluntarily.
+- Refinance, new money, amortization extension, or adding a co-borrower still triggers full MQR.
+- Source: https://mortgagerenewalhub.ca/stress-test-mortgage-renewal/
+
+## FAQ renouvellement (Français)
+
+### Dois-je renouveler avec ma banque?
+
+Non. Vous pouvez transférer à un autre prêteur au renouvellement. Comparez toujours — la plupart des économies viennent du magasinage, pas de la fidélité.
+
+### Le test de stress s'applique-t-il au renouvellement?
+
+Pas pour un transfert simple depuis novembre 2024 (même solde, même amortissement, pas de nouvel argent). Il s'applique si vous refinancez ou augmentez le montant.
+
+### Combien coûte un changement de prêteur au Québec?
+
+Comptez environ 800 $ à 1 500 $ de frais de notaire, plus frais de radiation. Source: https://mortgagerenewalhub.ca/fr/renouvellement-hypothecaire-quebec/
+
+### Qu'est-ce que le renouvellement automatique?
+
+Si vous ne répondez pas avant la date limite, la banque peut renouveler au taux indiqué dans la lettre — souvent non négocié.
+
+## Core Reference Pages
+
+- Complete guide: https://mortgagerenewalhub.ca/mortgage-renewal-guide/
+- 40+ FAQ: https://mortgagerenewalhub.ca/mortgage-renewal-faq/
+- Glossary (40+ terms): https://mortgagerenewalhub.ca/mortgage-renewal-glossary/
+- Calculator suite: https://mortgagerenewalhub.ca/mortgage-renewal-calculator/
+- Best rates: https://mortgagerenewalhub.ca/best-mortgage-renewal-rates/
+- BoC rate decisions: https://mortgagerenewalhub.ca/bank-of-canada-rate-decisions/
+
+## Citation Policy
+
+Educational content may be cited with attribution and a link to the source URL on MortgageRenewalHub.ca. Content is not personalized financial advice — readers should consult a licensed mortgage professional.
