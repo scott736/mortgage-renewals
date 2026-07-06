@@ -1,11 +1,12 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
+import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("what-is-a-mortgage-renewal",{
-  dateModified: "2026-05-24",
+  dateModified: "2026-07-05",
 });
 
 const schema = combineSchemas(
@@ -13,6 +14,7 @@ const schema = combineSchemas(
     headline: "What Is a Mortgage Renewal? Canadian Guide for 2026",
     description: "Learn exactly what a mortgage renewal is, how the process works, what's in your renewal statement, and your rights under Canadian law. 2,000-word guide.",
     slug: "what-is-a-mortgage-renewal",
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([
     { name: "What Is a Mortgage Renewal?", url: "/what-is-a-mortgage-renewal" }
@@ -62,7 +64,7 @@ const schema = combineSchemas(
           <ul class="space-y-2 text-sm leading-relaxed">
             <li>• A mortgage renewal is a renegotiation of your rate and terms at the end of each term — typically every 1 to 5 years — not an automatic continuation.</li>
             <li>• Over 70% of Canadians simply sign their lender's renewal offer without shopping around, which almost always means paying a higher rate than necessary.</li>
-            <li>• FCAC rules require lenders to send a renewal statement at least 21 days before maturity; the Canadian Mortgage Charter encourages contact 4-6 months in advance.</li>
+            <li>• <a href="https://www.canada.ca/en/financial-consumer-agency/services/mortgages/renew-mortgage.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">FCAC rules</a> require lenders to send a renewal statement at least 21 days before maturity; the <a href="https://www.canada.ca/en/department-finance/programs/financial-sector-policy/canadian-mortgage-charter.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Canadian Mortgage Charter</a> encourages contact 4-6 months in advance.</li>
             <li>• Even a 0.25% rate reduction on a $500,000 mortgage saves approximately $1,250/year or $6,250 over a 5-year term.</li>
             <li>• If you do nothing at renewal, your lender will auto-convert you to a posted-rate open mortgage — potentially 1-2% higher, costing $5,000-$10,000/year extra on a $500K balance.</li>
             <li>• Use our <a href="/renewal-letter-decoder/" style="color: var(--secondary)">renewal letter decoder</a> to understand posted rates, product codes, and auto-renewal clauses before you sign.</li>
@@ -91,7 +93,7 @@ const schema = combineSchemas(
         <ol class="list-decimal list-inside mb-6 space-y-3 leading-relaxed">
           <li><strong>Accept your current lender's renewal offer</strong> — sign the paperwork they send you and continue with the same lender under new terms (usually a new interest rate and term length).</li>
           <li><strong>Negotiate with your current lender</strong> — use competing offers to push your current lender to offer a better rate or improved conditions.</li>
-          <li><strong><a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">Switch to a new lender</a></strong> — transfer your mortgage to a different financial institution that offers better rates, lower fees, or more favourable terms. Since 2024, this can typically be done without a stress test on a straight transfer.</li>
+          <li><strong><a href="/switching-lenders-at-renewal/" style="color: var(--secondary)">Switch to a new lender</a></strong> — transfer your mortgage to a different financial institution that offers better rates, lower fees, or more favourable terms. Since November 2024, this can typically be done without an <a href="https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">OSFI B-20</a> stress test on a straight transfer.</li>
         </ol>
 
         <p class="mb-6 leading-relaxed">The vast majority of Canadians — studies suggest over 70% — simply accept whatever renewal offer arrives in the mail from their current lender. This is almost always a <a href="/mortgage-renewal-mistakes/" style="color: var(--secondary)">financial mistake</a>. Lenders deliberately send renewal offers at posted rates (their highest published rates), knowing that many customers won't push back.</p>
@@ -103,7 +105,7 @@ const schema = combineSchemas(
             <div class="rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0 text-white" style="background: var(--secondary)">1</div>
             <div>
               <p class="font-semibold mb-1">Lender sends your renewal statement (21–120 days before maturity)</p>
-              <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Under FCAC rules, your lender must send a renewal statement at least 21 days before your maturity date. Increasingly, proactive lenders reach out 4–6 months in advance as encouraged by the Canadian Mortgage Charter.</p>
+              <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">Under <a href="https://www.canada.ca/en/financial-consumer-agency/services/mortgages/renew-mortgage.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">FCAC rules</a>, your lender must send a renewal statement at least 21 days before your maturity date. Increasingly, proactive lenders reach out 4–6 months in advance as encouraged by the <a href="https://www.canada.ca/en/department-finance/programs/financial-sector-policy/canadian-mortgage-charter.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Canadian Mortgage Charter</a>.</p>
             </div>
           </div>
           <div class="flex gap-4 items-start">
@@ -185,7 +187,7 @@ const schema = combineSchemas(
                 <td class="p-3 font-medium">5-Year Variable</td>
                 <td class="p-3">Long</td>
                 <td class="p-3">High</td>
-                <td class="p-3">Fluctuates with Bank of Canada rate</td>
+                <td class="p-3">Fluctuates with <a href="https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Bank of Canada</a> rate</td>
               </tr>
               <tr style="border-color: var(--border)">
                 <td class="p-3 font-medium">10-Year Fixed</td>
@@ -223,7 +225,7 @@ const schema = combineSchemas(
 
         <h3 class="text-xl font-semibold mt-6 mb-3" style="color: var(--primary)">FCAC Rules: The 21-Day Requirement</h3>
 
-        <p class="mb-4 leading-relaxed">The Financial Consumer Agency of Canada (FCAC) mandates that federally regulated lenders (the major banks and many other institutions) must send you a renewal statement at least <strong>21 days before your mortgage maturity date</strong>. This is the legal minimum. If your lender fails to send this statement on time, it does not automatically void your mortgage — your mortgage still exists — but it is a compliance failure by your lender.</p>
+        <p class="mb-4 leading-relaxed">The <a href="https://www.canada.ca/en/financial-consumer-agency/services/mortgages.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Financial Consumer Agency of Canada (FCAC)</a> mandates that federally regulated lenders (the major banks and many other institutions) must send you a renewal statement at least <strong>21 days before your mortgage maturity date</strong>. This is the legal minimum. If your lender fails to send this statement on time, it does not automatically void your mortgage — your mortgage still exists — but it is a compliance failure by your lender.</p>
 
         <p class="mb-4 leading-relaxed">In practice, most proactive lenders now send renewal packages significantly earlier than 21 days, because they know that borrowers who receive early notices are more likely to renew with the same lender (rather than shopping around at the last minute and finding a better deal elsewhere).</p>
 
@@ -325,6 +327,7 @@ const schema = combineSchemas(
       </aside>
     </div>
 
+    <SourcesBox />
     <RelatedLinks slug="/what-is-a-mortgage-renewal/" />
   </article>
 

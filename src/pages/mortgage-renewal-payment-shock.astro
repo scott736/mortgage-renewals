@@ -1,5 +1,6 @@
 ---
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
+import FaqDetails from "@/components/FaqDetails.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
@@ -7,7 +8,7 @@ import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode
 import { getPageMeta } from '@/lib/page-meta';
 
 export const pageMeta = getPageMeta("mortgage-renewal-payment-shock",{
-  dateModified: "2026-05-24",
+  dateModified: "2026-07-05",
 });
 
 export const prerender = true;
@@ -43,7 +44,7 @@ const schema = combineSchemas(
     articleSection: "Affordability",
     about: "Mortgage Renewal Payment Shock",
     keywords: ["mortgage payment increase renewal", "do mortgage payments go down when you renew", "payment shock 2026", "mortgage renewal payment calculator"],
-    dateModified: "2026-05-24",
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([
     { name: "Mortgage Renewal Payment Shock", url: "/mortgage-renewal-payment-shock" }
@@ -116,15 +117,15 @@ const schema = combineSchemas(
 
         <p class="mb-4 leading-relaxed">At a simple renewal — same lender, same balance, same amortization — your new payment is driven entirely by your <strong>new contract rate</strong>. If that rate is higher than your expiring rate, your payment rises. If it's lower, your payment falls.</p>
 
-        <p class="mb-4 leading-relaxed">For the 2025–2026 renewal wave, the rate direction is almost always up. Borrowers who fixed at 1.79% or 2.14% in 2020–2021 are renewing into a market where competitive 5-year fixed rates sit materially higher — even after the Bank of Canada's easing cycle from 2023 to 2025. The BoC held at 2.25% in early 2026; prime sits at 4.45%. That is a very different environment from the near-zero era when many of these mortgages originated.</p>
+        <p class="mb-4 leading-relaxed">For the 2025–2026 renewal wave, the rate direction is almost always up. Borrowers who fixed at 1.79% or 2.14% in 2020–2021 are renewing into a market where competitive 5-year fixed rates sit materially higher — even after the <a href="https://www.bankofcanada.ca/core-functions/monetary-policy/key-interest-rate/" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Bank of Canada</a> easing cycle from 2023 to 2025. The BoC held at 2.25% in early 2026; prime sits at 4.45%. That is a very different environment from the near-zero era when many of these mortgages originated.</p>
 
         <p class="mb-6 leading-relaxed">The only reliable ways to <em>reduce</em> payment shock without refinancing for new money: negotiate or switch to a lower rate, extend amortization (with lender approval), or use legitimate hardship measures under the <a href="/canadian-mortgage-charter/" style="color: var(--secondary)">Canadian Mortgage Charter</a>. See our full guide on <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">lowering payments at renewal</a> for eleven strategies.</p>
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Why 2026 Is Different: The Renewal Wave</h2>
 
-        <p class="mb-4 leading-relaxed">CMHC's housing market reports have tracked an unprecedented volume of mortgages reaching maturity. Peak renewal volume hit roughly 1.2 million households in 2025; 2026 remains elevated at about one million — down roughly 13% from the peak but still historically high. A large share originated when fixed rates were at generational lows.</p>
+        <p class="mb-4 leading-relaxed"><a href="https://www.cmhc-schl.gc.ca/professionals/housing-markets-data-and-research/housing-research/research-reports/housing-finance/residential-mortgage-industry-report" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">CMHC's Spring 2026 RMIR</a> tracked an unprecedented volume of mortgages reaching maturity. Peak renewal volume hit roughly 1.2 million households in 2025; 2026 remains elevated at about one million — down roughly 13% from the peak but still historically high. A large share originated when fixed rates were at generational lows.</p>
 
-        <p class="mb-4 leading-relaxed">The Bank of Canada has publicly discussed household debt serviceability as rates normalized. FCAC survey data shows a meaningful share of renewing Canadians report affordability concerns. This isn't alarmism — it's arithmetic. A $500,000 balance at 2.14% over 20 years remaining produces a very different payment than the same balance at 4.29%.</p>
+        <p class="mb-4 leading-relaxed">The <a href="https://www.bankofcanada.ca/" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Bank of Canada</a> has publicly discussed household debt serviceability as rates normalized. <a href="https://www.canada.ca/en/financial-consumer-agency/services/mortgages.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">FCAC</a> survey data shows a meaningful share of renewing Canadians report affordability concerns. This isn't alarmism — it's arithmetic. A $500,000 balance at 2.14% over 20 years remaining produces a very different payment than the same balance at 4.29%.</p>
 
         <p class="mb-6 leading-relaxed">Our <a href="/mortgage-rate-forecast/" style="color: var(--secondary)">Canadian mortgage rate forecast</a> covers where major banks expect rates through 2026. Directional stability at the BoC doesn't erase the gap between pandemic-era contract rates and today's renewal market.</p>
 
@@ -156,9 +157,16 @@ const schema = combineSchemas(
 
         <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">If You Genuinely Cannot Afford the New Payment</h2>
 
-        <p class="mb-4 leading-relaxed">Contact your lender early — before missing a payment. The Canadian Mortgage Charter encourages federally regulated lenders to offer relief: temporary amortization extension (up to 35 years in hardship cases), skip-a-payment programs, and proactive outreach. If you've lost income, read our guides on <a href="/job-loss-mortgage-renewal/" style="color: var(--secondary)">job loss at renewal</a> and <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">payment reduction strategies</a>.</p>
+        <p class="mb-4 leading-relaxed">Contact your lender early — before missing a payment. The <a href="https://www.canada.ca/en/department-finance/programs/financial-sector-policy/canadian-mortgage-charter.html" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">Canadian Mortgage Charter</a> encourages federally regulated lenders to offer relief: temporary amortization extension (up to 35 years in hardship cases), skip-a-payment programs, and proactive outreach. If you've lost income, read our guides on <a href="/job-loss-mortgage-renewal/" style="color: var(--secondary)">job loss at renewal</a> and <a href="/lower-mortgage-payments-at-renewal/" style="color: var(--secondary)">payment reduction strategies</a>.</p>
 
         <p class="mb-6 leading-relaxed">First-time renewers from the 2020–2021 cohort should also read the <a href="/first-time-mortgage-renewal/" style="color: var(--secondary)">first-time renewal guide</a> — it walks through the full process when payment shock is new to you.</p>
+
+        <h2 class="text-2xl font-bold mt-10 mb-4" style="color: var(--primary)">Payment Shock FAQ</h2>
+        <div class="space-y-4 mb-8">
+          {faqs.map(f => (
+            <FaqDetails question={f.question} answer={f.answer} />
+          ))}
+        </div>
 
         <SourcesBox />
         <RelatedLinks slug="/mortgage-renewal-payment-shock/" />

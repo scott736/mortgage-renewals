@@ -3,7 +3,7 @@
 // all pages through the use of the <BaseHead /> component.
 import "../styles/global.css";
 
-import { BUSINESS, POSTAL_ADDRESS_NODE, SITE_METADATA } from "../consts";
+import { BUSINESS, INDEXNOW_KEY, POSTAL_ADDRESS_NODE, SITE_METADATA } from "../consts";
 import { resolveHreflangUrls } from "../lib/hreflang";
 
 interface Props {
@@ -188,6 +188,7 @@ const graphSchema = JSON.stringify({
 <link rel="alternate" type="text/plain" href="https://mortgagerenewalhub.ca/llms-full.txt" title="LLM full content" />
 <link rel="alternate" type="application/rss+xml" title="MortgageRenewalHub.ca News" href="/rss.xml" />
 <meta name="dcterms.rights" content="Educational content may be cited with attribution and link to the source URL on MortgageRenewalHub.ca." />
+<meta name="indexnow" content={INDEXNOW_KEY} />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL (matches sitemap trailing-slash convention) -->

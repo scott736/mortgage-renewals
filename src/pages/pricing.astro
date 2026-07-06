@@ -1,4 +1,5 @@
 ---
+import FaqDetails from "@/components/FaqDetails.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import ZippayCtaCard from "@/components/sections/zippay-cta-card";
 import DefaultLayout from "@/layouts/DefaultLayout.astro";
@@ -174,15 +175,7 @@ const schema = combineSchemas(
           { q: "Do I have to use the broker you recommend?", a: "Absolutely not. Our consultations are no-obligation. You can use our guides and tools without ever speaking to a broker, or you can get a consultation and still choose to go with your bank." },
           { q: "Will using a broker affect my mortgage rate?", a: "No — in fact, brokers often secure lower rates than what banks offer directly, because they can compare offers from 30+ lenders simultaneously and leverage competition." },
         ].map(faq => (
-          <details class="group rounded-xl border border-gray-100 bg-white">
-            <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-body-md-medium">
-              {faq.q}
-              <span class="ml-4 flex-shrink-0 text-muted-foreground group-open:rotate-180 transition-transform">&#9660;</span>
-            </summary>
-            <div class="px-5 pb-5 text-body-md text-muted-foreground">
-              {faq.a}
-            </div>
-          </details>
+          <FaqDetails question={faq.q} answer={faq.a} />
         ))}
       </div>
     </div>

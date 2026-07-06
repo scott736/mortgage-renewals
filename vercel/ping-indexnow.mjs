@@ -1,35 +1,64 @@
 /**
  * Ping IndexNow after production builds so Bing/Copilot pick up new URLs faster.
+ * Batches requests and tries Bing endpoint if api.indexnow.org rejects the payload.
  * Non-fatal — build succeeds even if the ping fails.
  */
 import { existsSync, readFileSync } from "node:fs";
 
 const SITE_URL = "https://mortgagerenewalhub.ca";
 const INDEXNOW_KEY = "mrh-indexnow-verification-key";
-const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
+const ENDPOINTS = [
+  "https://api.indexnow.org/indexnow",
+  "https://www.bing.com/indexnow",
+];
+const BATCH_SIZE = 100;
 const MAX_URLS = 10_000;
 
-async function pingIndexNow(urls) {
-  if (!INDEXNOW_KEY || urls.length === 0) return;
-
-  const unique = [...new Set(urls.map((u) => (u.endsWith("/") ? u : `${u}/`)))];
+async function pingBatch(urls, endpoint) {
   const host = new URL(SITE_URL).hostname;
-
   const body = {
     host,
     key: INDEXNOW_KEY,
     keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`,
-    urlList: unique.slice(0, MAX_URLS),
+    urlList: urls,
   };
 
-  const res = await fetch(INDEXNOW_ENDPOINT, {
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify(body),
   });
 
-  if (!res.ok) {
-    console.warn(`IndexNow ping failed: ${res.status} ${res.statusText}`);
+  return { ok: res.ok, status: res.status, statusText: res.statusText, endpoint };
+}
+
+async function pingIndexNow(urls) {
+  if (!INDEXNOW_KEY || urls.length === 0) return;
+
+  const unique = [...new Set(urls.map((u) => (u.endsWith("/") ? u : `${u}/`)))].slice(
+    0,
+    MAX_URLS,
+  );
+
+  let lastError = null;
+
+  for (let i = 0; i < unique.length; i += BATCH_SIZE) {
+    const batch = unique.slice(i, i + BATCH_SIZE);
+    let batchOk = false;
+
+    for (const endpoint of ENDPOINTS) {
+      const result = await pingBatch(batch, endpoint);
+      if (result.ok) {
+        batchOk = true;
+        break;
+      }
+      lastError = `${result.endpoint}: ${result.status} ${result.statusText}`;
+    }
+
+    if (!batchOk) {
+      console.warn(`IndexNow batch ${i / BATCH_SIZE + 1} failed: ${lastError}`);
+      return;
+    }
   }
 }
 
@@ -59,7 +88,7 @@ async function main() {
     return;
   }
 
-  console.log(`IndexNow: pinging ${urlList.length} URLs...`);
+  console.log(`IndexNow: pinging ${urlList.length} URLs in batches of ${BATCH_SIZE}...`);
   await pingIndexNow(urlList);
   console.log("IndexNow: done");
 }

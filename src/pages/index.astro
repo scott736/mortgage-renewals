@@ -1,4 +1,5 @@
 ---
+import FaqDetails from "@/components/FaqDetails.astro";
 import HeroImage from "@/components/HeroImage.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import RenewalDateCta from '@/components/lead/renewal-date-cta';
@@ -383,15 +384,7 @@ const schema = combineSchemas(
       </div>
       <div class="space-y-3">
         {homeFaqs.map(faq => (
-          <details class="group rounded-xl border border-gray-100 bg-white">
-            <summary class="flex cursor-pointer items-center justify-between p-5 font-semibold text-body-md-medium">
-              {faq.question}
-              <span class="ml-4 flex-shrink-0 text-muted-foreground group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <div class="px-5 pb-5 text-body-md text-muted-foreground">
-              <Fragment set:html={faq.answer} />
-            </div>
-          </details>
+          <FaqDetails question={faq.question} answer={faq.answer} allowHtml />
         ))}
       </div>
       <div class="text-center mt-8">
