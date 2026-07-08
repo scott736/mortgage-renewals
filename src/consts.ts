@@ -8,8 +8,8 @@ export const LEAD_INBOX = [
 
 export const SITE_URL = "https://mortgagerenewalhub.ca";
 
-/** IndexNow verification key — served at /{INDEXNOW_KEY}.txt for Bing/Copilot discovery. */
-export const INDEXNOW_KEY = "mrh-indexnow-verification-key";
+/** IndexNow verification key — served at /{INDEXNOW_KEY}.txt for Bing/Copilot discovery. Must be 8–128 hex chars. */
+export const INDEXNOW_KEY = "84decfd7b2af3b9a131c364a80c17e2e";
 
 const SITE_TITLE = "Mortgage Renewal Canada 2026 — Best Rates & Guide";
 const SITE_DESCRIPTION =

@@ -6,7 +6,7 @@
 import { existsSync, readFileSync } from "node:fs";
 
 const SITE_URL = "https://mortgagerenewalhub.ca";
-const INDEXNOW_KEY = "mrh-indexnow-verification-key";
+const INDEXNOW_KEY = "84decfd7b2af3b9a131c364a80c17e2e";
 const ENDPOINTS = [
   "https://api.indexnow.org/indexnow",
   "https://www.bing.com/indexnow",
@@ -56,10 +56,13 @@ async function pingIndexNow(urls) {
     }
 
     if (!batchOk) {
+      // Non-fatal: never fail the Vercel/Astro build on IndexNow auth/network issues.
       console.warn(`IndexNow batch ${i / BATCH_SIZE + 1} failed: ${lastError}`);
       return;
     }
   }
+
+  console.log(`IndexNow: submitted ${unique.length} URLs`);
 }
 
 function fetchSitemapUrls() {
