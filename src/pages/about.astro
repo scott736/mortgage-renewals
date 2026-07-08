@@ -1,12 +1,12 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
-import { BUSINESS } from "@/consts";
+import { BUSINESS, GOOGLE_BUSINESS_PROFILE_URL } from "@/consts";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("about",{
-  dateModified: "2026-07-05",
+  dateModified: "2026-07-08",
 });
 
 export const prerender = true;
@@ -168,6 +168,12 @@ const schema = combineSchemas(
             </a>
             <a href="https://lendcity.ca" target="_blank" rel="noopener" class="inline-flex rounded-lg border-2 border-gray-100 text-gray-900 font-semibold px-5 py-2.5 hover:bg-gray-25 transition-colors">
               LendCity.ca →
+            </a>
+            <a href="https://firsthomeguide.ca" target="_blank" rel="noopener" class="inline-flex rounded-lg border-2 border-gray-100 text-gray-900 font-semibold px-5 py-2.5 hover:bg-gray-25 transition-colors">
+              FirstHomeGuide.ca →
+            </a>
+            <a href={GOOGLE_BUSINESS_PROFILE_URL} target="_blank" rel="noopener" class="inline-flex rounded-lg border-2 border-gray-100 text-gray-900 font-semibold px-5 py-2.5 hover:bg-gray-25 transition-colors">
+              Google reviews →
             </a>
           </div>
         </div>

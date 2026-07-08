@@ -1,12 +1,12 @@
 ---
-import RelatedLinks from "@/components/RelatedLinks.astro";
 import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("collateral-vs-standard-charge-mortgage",{
-  dateModified: "2026-07-04",
+  dateModified: "2026-07-08",
 });
 
 export const prerender = true;
@@ -61,8 +61,8 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Collateral vs. Standard Charge Mortgages Canada (2026)"
-  description="Collateral vs. standard charge mortgages in Canada. Lender-by-lender breakdown, switching costs, and how charges affect renewal and refinance flexibility."
+  title="Collateral vs Standard Charge Canada — TD Switch Cost"
+  description="TD collateral charge vs standard charge: switching costs ~$700–$1,200, lender table, and when discharge still pays at 2026 renewal rates."
   schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">

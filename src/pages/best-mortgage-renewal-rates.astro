@@ -1,15 +1,15 @@
 ---
 import FaqDetails from "@/components/FaqDetails.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
-import SourcesBox from "@/components/SourcesBox.astro";
 import LiveRatesTable from '@/components/sections/live-rates-table';
 import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("best-mortgage-renewal-rates", {
-  dateModified: "2026-07-04",
+  dateModified: "2026-07-08",
 });
 
 const rateFaqs = [
@@ -32,6 +32,14 @@ const rateFaqs = [
   {
     question: "When should I lock in a renewal rate hold?",
     answer: "Start shopping 120 days before your maturity date. Most lenders offer rate holds of 90–120 days (some up to 180). If rates drop after you lock in, many lenders honour the lower market rate automatically.",
+  },
+  {
+    question: "What documents do I need to get a renewal rate quote?",
+    answer: "For a straight switch quote: government ID, recent mortgage statement (balance and maturity), property address, and employment/income details if the lender requests them. Straight transfers since November 2024 often need less income documentation than a refinance. Use our renewal document checklist generator for a tailored list.",
+  },
+  {
+    question: "Are best renewal rates the same in every province?",
+    answer: "Broker-channel insured rates are largely national, but Quebec notary costs, credit-union pricing, and local lender overlays change your net savings. Compare the rate gap against switch costs for your province before you accept a bank letter.",
   },
 ];
 
@@ -57,12 +65,12 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Best Mortgage Renewal Rates Canada — July 2026"
-  description="Best mortgage renewal rates Canada for July 2026. Big Six vs. broker monthly comparison, 5-year fixed ~4.04%, variable ~3.35%, and free calculator."
+  title="Best Renewal Rates Canada July 2026 — 4.04% Fixed"
+  description="Best mortgage renewal rates Canada July 2026: ~4.04% insured 5-year fixed, ~3.35% variable. Big Six vs broker table — shop before you sign."
   schema={schema}
   preloadImage="/images/hero/hero-rates.webp"
   hideAuthorByline={true}
-  lastUpdated="2026-07-04"
+  lastUpdated="2026-07-08"
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
     <a href="/" class="hover:underline">Home</a> › Best Mortgage Renewal Rates
@@ -83,9 +91,15 @@ const schema = combineSchemas(
   </section>
 
   <article class="container max-w-4xl py-10">
-    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Last Updated: July 2026</div>
+    <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Last Updated: July 8, 2026</div>
     <h1 class="text-heading-1 mb-4">Best Mortgage Renewal Rates Canada (July 2026)</h1>
-    <p class="text-body-lg text-muted-foreground mb-4" data-speakable>
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 mb-6 key-takeaways">
+      <h2 class="text-heading-5 mb-2">Quick Answer</h2>
+      <p class="text-body-md text-muted-foreground" data-speakable>
+        As of July 2026, the best insured broker-channel renewal rates are about <strong>4.04% (5-year fixed)</strong> and <strong>~3.35% (5-year variable)</strong> at prime 4.45%. Big Six renewal letters typically sit <strong>0.25–0.75%</strong> higher — on $600K, a 0.50% gap costs ~$15,000 over five years. Compare before you auto-renew.
+      </p>
+    </div>
+    <p class="text-body-lg text-muted-foreground mb-4">
       The <strong>best mortgage renewal rates in Canada</strong> for July 2026 are approximately <strong>4.04%</strong> on a 5-year fixed (insured, broker channel) and <strong>~3.35%</strong> on a 5-year variable (prime minus 1.10% at prime 4.45%). Your bank's renewal letter will almost always quote higher — shopping through a <a href="/mortgage-broker-renewal/" class="text-secondary-100 hover:underline">mortgage broker</a> is free and typically saves 0.25–0.75%.
     </p>
     <p class="text-body-lg text-muted-foreground mb-8">

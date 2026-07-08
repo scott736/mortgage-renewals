@@ -40,6 +40,12 @@ These are the highest-value questions Canadians ask about mortgage renewal. Each
 - [Home](https://mortgagerenewalhub.ca/): Overview of mortgage renewal resources and tools
 - [What Is a Mortgage Renewal?](https://mortgagerenewalhub.ca/what-is-a-mortgage-renewal/): Foundational guide explaining mortgage renewals in Canada
 - [Complete Mortgage Renewal Guide](https://mortgagerenewalhub.ca/mortgage-renewal-guide/): Comprehensive 10-section guide covering the full renewal process
+- [Best Mortgage Renewal Rates](https://mortgagerenewalhub.ca/best-mortgage-renewal-rates/): July 2026 broker vs Big Six renewal rate comparison (~4.04% fixed / ~3.35% variable)
+- [Switching Lenders at Renewal](https://mortgagerenewalhub.ca/switching-lenders-at-renewal/): No stress test for straight switches since Nov 2024 — step-by-step process
+- [Discharge Fees by Lender](https://mortgagerenewalhub.ca/mortgage-discharge-fees-canada/): TD $340, Scotia $340, RBC ~$300, BMO $260, CIBC $295 + legal/registration
+- [Prepayment Privileges](https://mortgagerenewalhub.ca/mortgage-prepayment-privileges-canada/): Lender-by-lender lump-sum and payment-increase rules
+- [Collateral vs. Standard Charge](https://mortgagerenewalhub.ca/collateral-vs-standard-charge-mortgage/): Why TD switches cost more and when savings still win
+- [Job Loss at Renewal](https://mortgagerenewalhub.ca/job-loss-mortgage-renewal/): Hardship options, straight switch, Mortgage Charter relief
 - [Mortgage Renewal Checklist](https://mortgagerenewalhub.ca/mortgage-renewal-checklist/): Month-by-month checklist from 12 months before renewal to renewal day
 - [Mortgage Renewal FAQ](https://mortgagerenewalhub.ca/mortgage-renewal-faq/): 40+ frequently asked questions about mortgage renewals in Canada
 - [Mortgage Renewal Glossary](https://mortgagerenewalhub.ca/mortgage-renewal-glossary/): 40+ mortgage renewal terms defined in plain English
@@ -81,6 +87,7 @@ These are the highest-value questions Canadians ask about mortgage renewal. Each
 - [Stress Test at Renewal](https://mortgagerenewalhub.ca/stress-test-mortgage-renewal/): OSFI B-20 and the November 2024 straight-switch exemption
 - [Collateral vs. Standard Charge](https://mortgagerenewalhub.ca/collateral-vs-standard-charge-mortgage/): How charge type affects switching
 - [Prepayment Privileges in Canada](https://mortgagerenewalhub.ca/mortgage-prepayment-privileges-canada/): Big 6 and monoline prepayment limits compared
+- [Job Loss at Renewal](https://mortgagerenewalhub.ca/job-loss-mortgage-renewal/): Renewing after unemployment — stay, switch, or Charter hardship
 - [Canadian Mortgage Charter](https://mortgagerenewalhub.ca/canadian-mortgage-charter/): Federal renewal consumer protections
 - [IRD vs. 3-Month Interest Penalty](https://mortgagerenewalhub.ca/ird-vs-three-month-interest-penalty/): Big 6 vs. monoline penalty methodology
 - [Fixed vs. Variable at Renewal](https://mortgagerenewalhub.ca/fixed-vs-variable-mortgage-renewal/): Comparison of fixed and variable rate options
@@ -217,5 +224,6 @@ Structured data: every page emits a connected schema.org @graph (Organization, W
 ## Optional
 
 - [LLM full content index](https://mortgagerenewalhub.ca/llms-full.txt): Pre-flattened FAQ answers and key renewal facts for single-fetch ingestion
+- [AI crawler policy (ai.txt)](https://mortgagerenewalhub.ca/ai.txt): Explicit AI training and citation policy
 - [RSS feed](https://mortgagerenewalhub.ca/rss.xml): News and Bank of Canada rate decision updates
 - [Sitemap index](https://mortgagerenewalhub.ca/sitemap-index.xml): Complete URL list for crawlers

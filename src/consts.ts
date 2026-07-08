@@ -39,6 +39,7 @@ export const BUSINESS = {
     "https://lendcity.ca",
     "https://firsthomeguide.ca",
     "https://mortgagerenewalhub.ca",
+    "https://www.google.com/maps/place/LendCity+Mortgages/@42.3119,-82.9669,17z",
   ] as const,
   licensing: {
     regulator: "FSRA",

@@ -119,15 +119,20 @@ interface ServiceOptions {
  */
 export const DEFAULT_AUTHOR: AuthorPerson = {
   name: "Scott Dillingham",
-  jobTitle: "Licensed Mortgage Broker",
+  jobTitle: BUSINESS.licensing.principalBrokerTitle,
   url: `${SITE_URL}/about/`,
-  sameAs: [...BUSINESS.networkSameAs],
+  sameAs: [
+    ...BUSINESS.networkSameAs,
+    BUSINESS.parent.url,
+  ],
   knowsAbout: [
     "Mortgage Renewal",
     "Canadian Mortgage Rates",
     "Mortgage Refinancing",
     "Bank of Canada Policy Rate",
     "Canadian Mortgage Charter",
+    "Mortgage Discharge Fees",
+    "Collateral Charge Mortgages",
   ],
 };
 

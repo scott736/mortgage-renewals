@@ -1,6 +1,6 @@
 ---
-import RelatedLinks from "@/components/RelatedLinks.astro";
 import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
 import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
@@ -14,7 +14,7 @@ import {
 export const prerender = true;
 
 export const pageMeta = getPageMeta("mortgage-renewal-faq", {
-  dateModified: "2026-07-05",
+  dateModified: "2026-07-08",
 });
 
 const faqs = [
@@ -137,10 +137,10 @@ const pageSchema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Mortgage Renewal FAQ — 40+ Canadian Questions Answered"
-  description="Canada's most comprehensive mortgage renewal FAQ. 40+ answers across basics, rates, switching lenders, saving money, affordability, and timing."
+  title="Mortgage Renewal FAQ Canada — Switch, Rates, Stress Test"
+  description="40+ Canadian mortgage renewal FAQs: can you switch with no stress test, best rates 2026, documents, hardship, timing — plain-language answers."
   schema={pageSchema}
-  lastUpdated="2026-07-05"
+  lastUpdated="2026-07-08"
 >
   <!-- Breadcrumb -->
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">

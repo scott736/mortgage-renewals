@@ -80,5 +80,10 @@ Allow: /
 
 Sitemap: https://mortgagerenewalhub.ca/sitemap-index.xml
 
+# AI discovery
+# https://mortgagerenewalhub.ca/llms.txt
+# https://mortgagerenewalhub.ca/llms-full.txt
+# https://mortgagerenewalhub.ca/ai.txt
+
 # RSS feed (renewal news & rate updates)
 # https://mortgagerenewalhub.ca/rss.xml

@@ -1,20 +1,37 @@
 ---
 import MortgageCalculators from '@/components/calculators/mortgage-calculators';
+import FaqDetails from "@/components/FaqDetails.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import ZippayCtaCard from '@/components/sections/zippay-cta-card';
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
-import { articleSchema, breadcrumbSchema, combineSchemas,webApplicationSchema, webPageNode } from '@/lib/schema';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("mortgage-renewal-calculator", {
-  dateModified: "2026-05-21",
+  dateModified: "2026-07-08",
 });
+
+const calcFaqs = [
+  {
+    question: "Do mortgage payments go up at renewal in Canada?",
+    answer: "Often yes in 2025–2026 if you are leaving a pandemic-era rate near 2% for a market rate near 4%. Use the payment estimator with your balance, new rate, and remaining amortization to see the exact increase before you sign.",
+  },
+  {
+    question: "How do I calculate savings from switching lenders?",
+    answer: "Enter your bank's renewal rate and a broker quote in the rate comparison tool. On $600,000, a 0.50% lower rate saves roughly $15,000 over five years before switch costs. Pair it with the switch vs. stay calculator for net savings after discharge and legal fees.",
+  },
+  {
+    question: "Do these calculators use Canadian compounding?",
+    answer: "Yes. All tools use semi-annual compounding (the Canadian standard), not US-style monthly compounding. That changes the effective monthly rate slightly versus dividing the annual rate by 12.",
+  },
+];
 
 const schema = combineSchemas(
   webPageNode({
     slug: "mortgage-renewal-calculator",
     name: "Mortgage Renewal Calculator — Payment, Rate Comparison & Penalty",
     description: "Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation.",
+    speakableSelectors: ["h1", "[data-speakable]", ".key-takeaways"],
   }),
   webApplicationSchema({
     name: "Canadian Mortgage Renewal Calculator Suite",
@@ -32,13 +49,14 @@ const schema = combineSchemas(
   }),
   articleSchema({
     headline: "Mortgage Renewal Calculator — Payment, Rate Comparison & Penalty",
-    description: "Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation. Updated May 2026.",
+    description: "Free Canadian mortgage renewal calculators. Estimate your new payment, compare rates, calculate penalties, and model debt consolidation. Updated July 2026.",
     slug: "mortgage-renewal-calculator",
     articleSection: "Calculators",
     about: "Mortgage Renewal Calculator",
     keywords: ["mortgage renewal calculator", "Canadian mortgage calculator", "renewal payment", "rate comparison", "mortgage penalty calculator"],
     dateModified: pageMeta.dateModified,
   }),
+  faqSchema(calcFaqs, "mortgage-renewal-calculator"),
   breadcrumbSchema([
     { name: "Mortgage Renewal Calculator", url: "/mortgage-renewal-calculator" }
   ]),
@@ -46,8 +64,8 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Mortgage Renewal Payment Calculator 2026 — Free"
-  description="Free mortgage renewal payment calculator for Canada. Estimate new monthly payment, compare rates, model penalties — do payments go up? Updated May 2026."
+  title="Mortgage Renewal Calculator Canada 2026 — Free"
+  description="Free Canadian mortgage renewal calculators: new payment, rate comparison, penalties, amortization. Semi-annual compounding. No email required."
   schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
@@ -59,8 +77,14 @@ const schema = combineSchemas(
     <div class="mb-10">
       <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Free Tools</div>
       <h1 class="text-heading-1 mb-4">Mortgage Renewal Calculators</h1>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 mb-4 key-takeaways">
+        <h2 class="text-heading-5 mb-2">Quick Answer</h2>
+        <p class="text-body-md text-muted-foreground" data-speakable>
+          Use these free tools to estimate your <strong>new renewal payment</strong>, compare your bank's rate to a broker quote, and model penalties before you break a term. All calculators use <strong>Canadian semi-annual compounding</strong>. No email required.
+        </p>
+      </div>
       <p class="text-body-lg text-muted-foreground max-w-2xl">
-        15+ free renewal tools — payment, switch-vs-stay, penalties, stress test, blend-and-extend, and more. All use semi-annual compounding (Canadian standard). No email required. Start with our <a href="/what-is-a-mortgage-renewal/" class="text-secondary-100 hover:underline">renewal explainer</a> or <a href="/my-renewal-plan/" class="text-secondary-100 hover:underline">personalized plan wizard</a>.
+        15+ free renewal tools — payment, switch-vs-stay, penalties, stress test, blend-and-extend, and more. Start with our <a href="/what-is-a-mortgage-renewal/" class="text-secondary-100 hover:underline">renewal explainer</a> or <a href="/my-renewal-plan/" class="text-secondary-100 hover:underline">personalized plan wizard</a>.
       </p>
     </div>
 
@@ -94,6 +118,15 @@ const schema = combineSchemas(
           <p>Effective monthly rate = (1 + annual_rate / 2)^(1/6) − 1</p>
           <p class="mt-2">Monthly payment = P × [r(1+r)^n] / [(1+r)^n − 1]</p>
           <p class="mt-1 text-body-xs">Where: P = principal, r = effective monthly rate, n = number of payments</p>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-heading-3 mb-3">Calculator FAQ</h2>
+        <div class="space-y-4 mb-8">
+          {calcFaqs.map(f => (
+            <FaqDetails question={f.question} answer={f.answer} />
+          ))}
         </div>
       </div>
 

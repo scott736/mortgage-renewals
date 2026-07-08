@@ -8,7 +8,7 @@ import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,howToSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("switching-lenders-at-renewal", {
-  dateModified: "2026-07-05",
+  dateModified: "2026-07-08",
 });
 
 const schema = combineSchemas(
@@ -47,7 +47,7 @@ const schema = combineSchemas(
 
 <DefaultLayout
   title="Switch Lenders at Renewal 2026 — No Stress Test"
-  description="Switching lenders at renewal can save $10,000+ over 5 years. 8-step process, costs, 2024 stress test exemption, and how a broker simplifies it — free."
+  description="Switch mortgage lenders at renewal with no stress test (since Nov 2024). Costs $700–$1,800, often covered — save $10K+ vs bank letter. 8-step guide."
   schema={schema}
 >
   <nav class="container py-4 text-sm" style="color: var(--muted-foreground)">
@@ -60,6 +60,13 @@ const schema = combineSchemas(
 
     <div class="flex flex-col lg:flex-row gap-10">
       <div class="flex-1">
+
+        <div class="rounded-xl border p-6 mb-6 key-takeaways" style="background: var(--accent); border-color: var(--border)">
+          <h2 class="text-lg font-bold mb-3" style="color: var(--primary)">Quick Answer</h2>
+          <p class="text-sm leading-relaxed" style="color: var(--muted-foreground)">
+            Yes — you can <strong>switch lenders at renewal without a stress test</strong> for a straight transfer (same balance, same amortization, no new money) since November 21, 2024. Gross switch costs are typically <strong>$700–$1,800</strong>; many lenders cover legal and discharge fees. On $600K, beating a posted renewal offer by 0.65% can save ~$19,500 over five years. Start 120 days before maturity. See <a href="/mortgage-discharge-fees-canada/" style="color: var(--secondary)">discharge fees by lender</a>.
+          </p>
+        </div>
 
         <p class="mb-6 text-base leading-relaxed">Switching lenders at mortgage renewal is the single most impactful financial decision most Canadian homeowners can make. Yet only a fraction of Canadians actually do it — one of the most <a href="/mortgage-renewal-mistakes/" style="color: var(--secondary)">common renewal mistakes</a>. In November 2024, <a href="https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" target="_blank" rel="noopener noreferrer" style="color: var(--secondary)">OSFI B-20</a> eliminated the stress test for straight lender switches — making switching easier, less risky, and more accessible than ever before. This guide explains every step of the process, what it costs, what to watch for, and how to maximize your savings.</p>
 

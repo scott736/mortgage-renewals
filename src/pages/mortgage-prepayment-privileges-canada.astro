@@ -1,12 +1,13 @@
 ---
-import RelatedLinks from "@/components/RelatedLinks.astro";
 import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("mortgage-prepayment-privileges-canada",{
-  dateModified: "2026-07-04",
+  dateModified: "2026-07-08",
 });
 
 export const prerender = true;
@@ -61,8 +62,8 @@ const schema = combineSchemas(
 ---
 
 <DefaultLayout
-  title="Mortgage Prepayment Privileges in Canada — 2026 Lender Guide"
-  description="2026 comparison of Canadian mortgage prepayment privileges. Lump-sum allowances, payment-increase rules, and strategies to save tens of thousands in interest."
+  title="Prepayment Privileges Canada 2026 — Lender Table"
+  description="Canadian mortgage prepayment privileges 2026: 10–20% lump sum, TD 100% payment increase, MCAP/BMO 20%/20%. Compare lenders before renewal."
   schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
@@ -72,8 +73,14 @@ const schema = combineSchemas(
   <article class="container max-w-4xl py-10">
     <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Updated July 2026 · 10-minute read</div>
     <h1 class="text-heading-1 mb-4">Mortgage Prepayment Privileges in Canada: The 2026 Lender Guide</h1>
-    <p class="text-body-lg text-muted-foreground mb-8" data-speakable>
-      <strong>Mortgage prepayment privileges</strong> let you pay down principal faster without penalty — typically 10–20% lump sum per year plus payment increases up to 100% (TD). With renewal rates near 4% in July 2026, every dollar prepaid is a guaranteed ~4% after-tax return. This guide compares all major Canadian lenders and shows why renewal day is the best penalty-free prepayment opportunity.
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-5 mb-6 key-takeaways">
+      <h2 class="text-heading-5 mb-2">Quick Answer</h2>
+      <p class="text-body-md text-muted-foreground" data-speakable>
+        <strong>Prepayment privileges</strong> let you pay extra principal without penalty — usually <strong>10–20% lump sum per year</strong> plus a payment increase (up to <strong>100% at TD</strong>; <strong>20%/20% at MCAP and BMO</strong>). Unused annual room rarely carries over. At renewal you can often prepay unlimited amounts with no penalty — the best single prepayment window in the mortgage lifecycle.
+      </p>
+    </div>
+    <p class="text-body-lg text-muted-foreground mb-8">
+      With renewal rates near 4% in July 2026, every dollar prepaid is a guaranteed ~4% after-tax return. This guide compares all major Canadian lenders and shows why renewal day is the best penalty-free prepayment opportunity. Run the numbers with our <a href="/prepayment-lump-sum-calculator/" class="text-secondary-100 hover:underline">lump-sum calculator</a>.
     </p>
 
     <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
@@ -275,10 +282,16 @@ const schema = combineSchemas(
       ))}
     </div>
 
+    <SourcesBox sources={[
+      { label: "FCAC — Paying off your mortgage early (prepayment)", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/pay-off-mortgage-early.html" },
+      { label: "FCAC — Renewing your mortgage", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/renew-mortgage.html" },
+      { label: "OSFI Guideline B-20 — Residential Mortgage Underwriting", href: "https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" },
+    ]} />
+
     <RelatedLinks slug="/mortgage-prepayment-privileges-canada/" />
 
     <p class="text-body-xs text-muted-foreground mb-6">
-      Sources: Lender prepayment disclosures (TD, RBC, BMO, Scotiabank, CIBC, National Bank, First National, MCAP); FCAC mortgage prepayment guidance; ratehub.ca lender comparisons. Privileges current as of May 2026 and may change with new product launches. Always verify on your specific mortgage commitment letter.
+      Lender privilege figures reflect published product disclosures as of July 2026 and may change with new product launches. Always verify on your specific mortgage commitment letter.
     </p>
   </article>
 

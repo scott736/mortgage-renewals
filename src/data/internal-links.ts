@@ -588,11 +588,11 @@ const RELATED: Record<string, string[]> = {
   // ─── Homepage & core ──────────────────────────────────────────────
   "/": [
     "/mortgage-renewal-guide/",
-    "/mortgage-renewal-calculator/",
     "/best-mortgage-renewal-rates/",
     "/switching-lenders-at-renewal/",
-    "/mortgage-renewal-payment-shock/",
-    "/book-a-call/",
+    "/mortgage-discharge-fees-canada/",
+    "/mortgage-prepayment-privileges-canada/",
+    "/mortgage-renewal-calculator/",
   ],
   "/about/": [
     "/mortgage-broker-renewal/",
@@ -646,9 +646,9 @@ const RELATED: Record<string, string[]> = {
   ],
   "/switching-lenders-at-renewal/": [
     "/best-mortgage-renewal-rates/",
-    "/mortgage-renewal-calculator/",
+    "/mortgage-discharge-fees-canada/",
+    "/collateral-vs-standard-charge-mortgage/",
     "/break-even-switch-calculator/",
-    "/mortgage-renewal-payment-shock/",
     "/mortgage-broker-renewal/",
     "/book-a-call/",
   ],
@@ -1142,8 +1142,8 @@ const RELATED: Record<string, string[]> = {
   // ─── Rates ────────────────────────────────────────────────────────
   "/best-mortgage-renewal-rates/": [
     "/mortgage-renewal-calculator/",
-    "/mortgage-renewal-payment-shock/",
     "/switching-lenders-at-renewal/",
+    "/mortgage-discharge-fees-canada/",
     "/current-mortgage-rates-canada/",
     "/mortgage-rate-forecast/",
     "/book-a-call/",
@@ -1563,10 +1563,10 @@ const RELATED: Record<string, string[]> = {
   "/mortgage-discharge-fees-canada/": [
     "/title-insurance-legal-fees-switching/",
     "/switching-lenders-at-renewal/",
-    "/break-even-switch-calculator/",
-    "/switch-vs-stay-calculator/",
     "/collateral-vs-standard-charge-mortgage/",
-    "/mortgage-renewal-glossary/",
+    "/td-mortgage-renewal/",
+    "/switch-vs-stay-calculator/",
+    "/break-even-switch-calculator/",
   ],
   "/mortgage-insurance-at-switch/": [
     "/cmhc-sagen-canada-guaranty-at-renewal/",

@@ -1,12 +1,13 @@
 ---
-import RelatedLinks from "@/components/RelatedLinks.astro";
 import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import SourcesBox from "@/components/SourcesBox.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
-import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
+import { articleSchema, breadcrumbSchema, combineSchemas,faqSchema, webPageNode } from '@/lib/schema';
 
 export const pageMeta = getPageMeta("mortgage-discharge-fees-canada",{
-  dateModified: "2026-06-12",
+  dateModified: "2026-07-08",
 });
 
 export const prerender = true;
@@ -35,6 +36,18 @@ const faqs = [
   {
     question: "What is a Quebec notary doing differently on a mortgage discharge?",
     answer: "Quebec uses a civil-law notary (notaire) rather than a common-law lawyer for real estate transactions. On a discharge, the notary prepares the radiation (formal removal of the hypothec from the Quebec Land Register), coordinates with the new lender's notary, and files the discharge through the provincial registry. Fees run $700–$1,400 for a switch file in Quebec, higher than common-law provinces because of additional notarial-act requirements. Quebec switches are more expensive overall, and fewer lenders offer legal-paid switch programs in Quebec — confirm coverage before signing."
+  },
+  {
+    question: "How much is a TD mortgage discharge fee?",
+    answer: "TD's posted discharge/assignment fee is typically $340 in 2026. Because TD registers collateral charges by default, expect higher legal review costs ($200–$500 more) than a standard-charge discharge. Many monoline switch promos still cover most of the fee — confirm the promo cap before you sign."
+  },
+  {
+    question: "How much is an RBC, Scotia, BMO, or CIBC discharge fee?",
+    answer: "Approximate 2026 lender discharge fees: Scotiabank $340, RBC ~$300, CIBC $295, BMO $260. These are separate from provincial registration (~$50–$80) and legal/notary fees ($500–$1,200). Always verify on your payout statement — lenders update fees annually."
+  },
+  {
+    question: "How do I avoid or reduce mortgage discharge fees when switching?",
+    answer: "Ask the new lender for a legal-paid switch promo that covers appraisal, title insurance, legal, and up to ~$500 of the outgoing discharge. Stay with your current lender if you renew straight (no discharge). Time the switch for maturity so you avoid mid-term prepayment penalties on top of discharge costs."
   }
 ];
 
@@ -45,7 +58,8 @@ const schema = combineSchemas(
     slug: "mortgage-discharge-fees-canada",
     articleSection: "Renewal Mechanics",
     about: "Mortgage discharge fees in Canada",
-    keywords: ["mortgage discharge fee Canada", "assignment fee lender", "switch lender cost", "payout statement", "collateral charge discharge"],
+    keywords: ["mortgage discharge fee Canada", "TD discharge fee", "RBC discharge fee", "assignment fee lender", "switch lender cost", "payout statement", "collateral charge discharge"],
+    dateModified: pageMeta.dateModified,
   }),
   breadcrumbSchema([
     { name: "Mortgage Discharge Fees in Canada", url: "/mortgage-discharge-fees-canada" }
@@ -55,13 +69,14 @@ const schema = combineSchemas(
     slug: "mortgage-discharge-fees-canada",
     name: "Mortgage Discharge Fees in Canada (2026)",
     description: "Complete 2026 guide to mortgage discharge and assignment fees in Canada — lender-by-lender costs, provincial registration fees, and legal costs when switching.",
+    speakableSelectors: ["h1", "[data-speakable]", ".key-takeaways"],
   }),
 );
 ---
 
 <DefaultLayout
-  title="Mortgage Discharge Fees Canada (2026) — By Lender"
-  description="Mortgage discharge fees by Canadian lender in 2026 — TD, RBC, BMO, Scotia, CIBC, monolines — plus registration fees, legal costs, and Quebec notary fees."
+  title="Discharge Fees by Lender 2026 — TD $340, Scotia, RBC"
+  description="Canadian mortgage discharge fees 2026: TD $340, Scotia $340, RBC ~$300, BMO $260, CIBC $295 — plus legal, registration, and Quebec notary costs."
   schema={schema}
 >
   <nav class="container py-4 text-body-sm text-muted-foreground">
@@ -72,8 +87,11 @@ const schema = combineSchemas(
     <div class="mb-8">
       <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Switching Costs</div>
       <h1 class="text-heading-1 mb-4">Mortgage Discharge Fees in Canada (2026)</h1>
-      <p class="text-body-lg text-muted-foreground max-w-2xl">
-        Updated May 2026. When you switch lenders at renewal, three fees show up on the payout statement: the outgoing lender's discharge fee, the provincial registration fee, and legal or notary costs. Here's exactly what each Canadian lender charges in 2026 and which ones the new lender usually covers.
+      <p class="text-body-lg text-muted-foreground max-w-2xl" data-speakable>
+        <strong>Quick answer:</strong> Big Six discharge fees in 2026 run roughly <strong>$260–$340</strong> (TD and Scotia $340; BMO $260). Add provincial registration (~$50–$80) and legal/notary ($500–$1,200). Straight renewals with your current lender have <strong>no discharge fee</strong> — you only pay when you leave. Many new lenders cover most switch costs on promo.
+      </p>
+      <p class="text-body-md text-muted-foreground max-w-2xl mt-4">
+        Updated July 2026. When you <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switch lenders at renewal</a>, three fees show up on the payout statement: the outgoing lender's discharge fee, the provincial registration fee, and legal or notary costs. Here's what each Canadian lender charges and which fees the new lender usually covers.
       </p>
     </div>
 
@@ -99,7 +117,7 @@ const schema = combineSchemas(
       These fees are disclosed in your original mortgage commitment letter, and they can change between origination and discharge — lenders update them annually. The fee on your payout statement is the current posted fee on the discharge date, not the one in effect when you signed the mortgage.
     </p>
 
-    <h2 class="text-heading-3 mt-10 mb-4">Discharge Fees by Canadian Lender (May 2026)</h2>
+    <h2 class="text-heading-3 mt-10 mb-4">Discharge Fees by Canadian Lender (July 2026)</h2>
 
     <div class="overflow-x-auto mb-6">
       <table class="w-full text-body-sm border-collapse">
@@ -108,74 +126,130 @@ const schema = combineSchemas(
             <th class="p-3 text-left">Lender</th>
             <th class="p-3 text-left">Discharge Fee (2026)</th>
             <th class="p-3 text-left">Charge Type</th>
+            <th class="p-3 text-left">Typical Legal Add-On</th>
           </tr>
         </thead>
         <tbody>
           <tr class="border-b border-gray-100">
-            <td class="p-3 font-medium">TD Canada Trust</td>
+            <td class="p-3 font-medium"><a href="/td-mortgage-renewal/" class="text-secondary-100 hover:underline">TD Canada Trust</a></td>
             <td class="p-3">$340</td>
             <td class="p-3">Collateral (default)</td>
+            <td class="p-3">+$200–$500 (solicitor review)</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
-            <td class="p-3 font-medium">RBC Royal Bank</td>
+            <td class="p-3 font-medium"><a href="/rbc-mortgage-renewal/" class="text-secondary-100 hover:underline">RBC Royal Bank</a></td>
             <td class="p-3">~$300</td>
             <td class="p-3">Standard</td>
+            <td class="p-3">Standard switch legal</td>
           </tr>
           <tr class="border-b border-gray-100">
-            <td class="p-3 font-medium">BMO</td>
+            <td class="p-3 font-medium"><a href="/bmo-mortgage-renewal/" class="text-secondary-100 hover:underline">BMO</a></td>
             <td class="p-3">$260</td>
             <td class="p-3">Standard (collateral optional)</td>
+            <td class="p-3">Standard switch legal</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
-            <td class="p-3 font-medium">Scotiabank</td>
+            <td class="p-3 font-medium"><a href="/scotiabank-mortgage-renewal/" class="text-secondary-100 hover:underline">Scotiabank</a></td>
             <td class="p-3">$340</td>
             <td class="p-3">STEP = collateral</td>
+            <td class="p-3">Higher if STEP/collateral</td>
           </tr>
           <tr class="border-b border-gray-100">
-            <td class="p-3 font-medium">CIBC</td>
+            <td class="p-3 font-medium"><a href="/cibc-mortgage-renewal/" class="text-secondary-100 hover:underline">CIBC</a></td>
             <td class="p-3">$295</td>
             <td class="p-3">Standard</td>
+            <td class="p-3">Standard switch legal</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
-            <td class="p-3 font-medium">National Bank</td>
+            <td class="p-3 font-medium"><a href="/national-bank-mortgage-renewal/" class="text-secondary-100 hover:underline">National Bank</a></td>
             <td class="p-3">$300</td>
             <td class="p-3">Collateral (All-In-One) or standard</td>
+            <td class="p-3">Higher if All-In-One</td>
           </tr>
           <tr class="border-b border-gray-100">
-            <td class="p-3 font-medium">First National</td>
+            <td class="p-3 font-medium"><a href="/first-national-mortgage-renewal/" class="text-secondary-100 hover:underline">First National</a></td>
             <td class="p-3">$340</td>
             <td class="p-3">Standard</td>
+            <td class="p-3">Often legal-paid inbound</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
-            <td class="p-3 font-medium">MCAP</td>
+            <td class="p-3 font-medium"><a href="/mcap-mortgage-renewal/" class="text-secondary-100 hover:underline">MCAP</a></td>
             <td class="p-3">$350</td>
             <td class="p-3">Standard</td>
+            <td class="p-3">Often legal-paid inbound</td>
           </tr>
           <tr class="border-b border-gray-100">
             <td class="p-3 font-medium">CMLS Financial</td>
             <td class="p-3">$340</td>
             <td class="p-3">Standard</td>
+            <td class="p-3">Broker-channel promos vary</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
             <td class="p-3 font-medium">RFA / Strive / Community Trust</td>
             <td class="p-3">$375–$400</td>
             <td class="p-3">Standard</td>
+            <td class="p-3">Confirm promo coverage</td>
           </tr>
           <tr class="border-b border-gray-100">
-            <td class="p-3 font-medium">Large credit unions (Meridian, Vancity, Servus)</td>
+            <td class="p-3 font-medium"><a href="/credit-union-mortgage-renewal-canada/" class="text-secondary-100 hover:underline">Large credit unions</a> (Meridian, Vancity, Servus)</td>
             <td class="p-3">$0–$300</td>
             <td class="p-3">Standard or collateral</td>
+            <td class="p-3">Member waivers common</td>
           </tr>
           <tr class="border-b border-gray-100 bg-gray-25">
-            <td class="p-3 font-medium">B-lenders (Home Trust, Equitable)</td>
+            <td class="p-3 font-medium"><a href="/b-lender-mortgage-renewal/" class="text-secondary-100 hover:underline">B-lenders</a> (Home Trust, Equitable)</td>
             <td class="p-3">$350–$500</td>
             <td class="p-3">Standard or collateral</td>
+            <td class="p-3">Higher admin on exit</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <p class="text-body-sm text-muted-foreground mb-8">Fees as of May 2026. Always confirm with your payout statement — these update annually.</p>
+    <p class="text-body-sm text-muted-foreground mb-8">Fees as of July 2026. Always confirm with your payout statement — these update annually. See also <a href="https://www.canada.ca/en/financial-consumer-agency/services/mortgages/mortgage-discharge.html" target="_blank" rel="noopener noreferrer" class="text-secondary-100 hover:underline">FCAC: Discharging a mortgage</a>.</p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Total Switch Cost Snapshot (Ontario, Illustrative)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Discharge fee alone is rarely the full bill. Use this snapshot with our <a href="/switch-vs-stay-calculator/" class="text-secondary-100 hover:underline">switch vs. stay calculator</a> and <a href="/title-insurance-legal-fees-switching/" class="text-secondary-100 hover:underline">title insurance &amp; legal fees guide</a>.
+    </p>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Scenario</th>
+            <th class="p-3 text-left">Gross Cost</th>
+            <th class="p-3 text-left">After Typical Promo</th>
+            <th class="p-3 text-left">Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Standard charge → monoline</td>
+            <td class="p-3">~$1,400–$1,900</td>
+            <td class="p-3">~$100–$300</td>
+            <td class="p-3">Legal-paid switch common</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">TD collateral → monoline</td>
+            <td class="p-3">~$1,800–$2,400</td>
+            <td class="p-3">~$150–$500</td>
+            <td class="p-3">Extra solicitor review</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Quebec notarial switch</td>
+            <td class="p-3">~$1,500–$2,800</td>
+            <td class="p-3">~$800–$1,500</td>
+            <td class="p-3">Fewer full legal-paid promos</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Straight renewal (same lender)</td>
+            <td class="p-3">$0 discharge</td>
+            <td class="p-3">$0</td>
+            <td class="p-3">No payout / no discharge</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2 class="text-heading-3 mt-10 mb-4">Provincial Registration Fees</h2>
     <p class="text-body-md mb-4 leading-relaxed">
@@ -300,6 +374,12 @@ const schema = combineSchemas(
         <FaqDetails question={f.question} answer={f.answer} />
       ))}
     </div>
+
+    <SourcesBox sources={[
+      { label: "FCAC — Discharging a mortgage", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/mortgage-discharge.html" },
+      { label: "FCAC — Renewing your mortgage", href: "https://www.canada.ca/en/financial-consumer-agency/services/mortgages/renew-mortgage.html" },
+      { label: "OSFI Guideline B-20 — Residential Mortgage Underwriting", href: "https://www.osfi-bsif.gc.ca/en/guidance/guidance-library/residential-mortgage-underwriting-practices-procedures-guideline-b-20" },
+    ]} />
 
     <RelatedLinks slug="/mortgage-discharge-fees-canada/" />
   </section>
