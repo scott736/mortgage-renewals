@@ -1,11 +1,10 @@
 import { INDEXNOW_KEY, SITE_URL } from "../consts";
 
-/** Prefer partners that accept key-file verification without Bing Webmaster ownership. */
 const INDEXNOW_ENDPOINTS = [
+  "https://www.bing.com/indexnow",
+  "https://api.indexnow.org/indexnow",
   "https://yandex.com/indexnow",
   "https://search.seznam.cz/indexnow",
-  "https://api.indexnow.org/indexnow",
-  "https://www.bing.com/indexnow",
 ] as const;
 const MAX_URLS_PER_REQUEST = 10_000;
 

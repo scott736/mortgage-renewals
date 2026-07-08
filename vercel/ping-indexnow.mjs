@@ -7,12 +7,11 @@ import { existsSync, readFileSync } from "node:fs";
 
 const SITE_URL = "https://mortgagerenewalhub.ca";
 const INDEXNOW_KEY = "99b2c673-7efd-4784-86f5-ba6cbb781989";
-/** Prefer partners that accept key-file verification without Bing Webmaster ownership. */
 const ENDPOINTS = [
+  "https://www.bing.com/indexnow",
+  "https://api.indexnow.org/indexnow",
   "https://yandex.com/indexnow",
   "https://search.seznam.cz/indexnow",
-  "https://api.indexnow.org/indexnow",
-  "https://www.bing.com/indexnow",
 ];
 const BATCH_SIZE = 100;
 const MAX_URLS = 10_000;
