@@ -3,76 +3,13 @@ import RelatedLinks from "@/components/RelatedLinks.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
 import { getPageMeta } from '@/lib/page-meta';
-import { getCollection } from "astro:content";
+import { blogPostHref, curatedNewsIndexItems, formatNewsDate, getPublishedBlogPosts } from "@/lib/blog";
 
 export const pageMeta = getPageMeta("mortgage-renewal-news",{
   dateModified: "2026-05-21",
 });
 
 export const prerender = true;
-
-function formatNewsDate(date: Date): string {
-  return date.toLocaleDateString("en-CA", { year: "numeric", month: "short", day: "numeric" });
-}
-
-const staticPosts = [
-  {
-    date: "Apr 29, 2026",
-    category: "Bank of Canada",
-    title: "Bank of Canada Holds Rate at 2.25% — Fourth Consecutive Hold",
-    excerpt: "The BoC held its overnight rate at 2.25% for the fourth consecutive meeting, warning that decisions are clouded by uncertainty as oil-driven inflation rebounds. Prime rate remains 4.45%. Next decision is June 10, 2026.",
-    href: "/bank-of-canada-rate-decisions/",
-    readTime: "5 min read",
-  },
-  {
-    date: "Mar 18, 2026",
-    category: "Bank of Canada",
-    title: "Bank of Canada Holds Rate at 2.25% in March Decision",
-    excerpt: "The BoC held its overnight rate at 2.25% for the third consecutive meeting, citing stable inflation at 1.9% and resilient Canadian labour market data. Prime rate remains at 4.45%. Here's what the hold means for anyone renewing in 2026.",
-    href: "/bank-of-canada-rate-decisions/",
-    readTime: "5 min read",
-  },
-  {
-    date: "Feb 14, 2026",
-    category: "Regulation",
-    title: "November 2024 Stress Test Change: What It Means 18 Months Later",
-    excerpt: "OSFI's November 21, 2024 rule change eliminated the stress test for uninsured straight-switch renewals. 18 months in, we look at the actual switching behaviour, lender competition, and real borrower savings.",
-    href: "/stress-test-mortgage-renewal/",
-    readTime: "8 min read",
-  },
-  {
-    date: "Jan 20, 2026",
-    category: "Regulation",
-    title: "The December 2024 Mortgage Reforms: 30-Year Amortization Now Live",
-    excerpt: "First-time buyers and new-build purchasers with insured mortgages can now amortize over 30 years — up from 25. One year later, the program has meaningfully expanded affordability. Here's how it applies at renewal.",
-    href: "/30-year-amortization-mortgage-renewal/",
-    readTime: "6 min read",
-  },
-  {
-    date: "Dec 12, 2025",
-    category: "Variable Rates",
-    title: "Trigger Rate Anxiety Fades as Prime Drops to 4.45%",
-    excerpt: "Two years ago, variable-rate borrowers were hitting trigger rates in droves. With prime now at 4.45% — down from its 7.20% peak — the trigger-rate crisis has largely resolved. But if you had one, it's time to check whether your amortization restored to schedule.",
-    href: "/trigger-rate-variable-mortgage-canada/",
-    readTime: "7 min read",
-  },
-  {
-    date: "Nov 5, 2025",
-    category: "Canadian Mortgage Charter",
-    title: "Canadian Mortgage Charter: What Changed Between 2023 and 2026",
-    excerpt: "Introduced in Budget 2023, the Canadian Mortgage Charter codified lender obligations around at-risk borrowers. Three years on, we look at what it delivered, what banks did voluntarily, and what's still missing at renewal.",
-    href: "/canadian-mortgage-charter/",
-    readTime: "9 min read",
-  },
-  {
-    date: "May 14, 2026",
-    category: "Market Data",
-    title: "CMHC Spring 2026: Renewal Wave Peaked — 1M Households Still Ahead",
-    excerpt: "CMHC's Spring 2026 RMIR finds renewal volumes peaked in 2025 (~1.2M) and are projected 13% lower in 2026 (~1M households). Delinquencies ticked up to 0.24% nationally; variable-rate share hit 42% of new extensions by February 2026.",
-    href: "/mortgage-renewal-guide/",
-    readTime: "11 min read",
-  },
-];
 
 type NewsPost = {
   sortDate: Date;
@@ -84,24 +21,18 @@ type NewsPost = {
   readTime?: string;
 };
 
-const blogPosts: NewsPost[] = (await getCollection("blog", ({ data }) => !data.draft)).map((post) => ({
+const blogPosts: NewsPost[] = (await getPublishedBlogPosts()).map((post) => ({
   sortDate: post.data.pubDate,
   date: formatNewsDate(post.data.pubDate),
   category: post.data.tags[0] ?? "News",
   title: post.data.title,
   excerpt: post.data.description,
-  href: post.data.canonicalSlug
-    ? `/${post.data.canonicalSlug.replace(/^\/+|\/+$/g, "")}/`
-    : `/blog/${post.id}/`,
+  href: blogPostHref(post),
 }));
 
-const posts: NewsPost[] = [
-  ...blogPosts,
-  ...staticPosts.map((post) => ({
-    ...post,
-    sortDate: new Date(post.date),
-  })),
-].sort((a, b) => b.sortDate.getTime() - a.sortDate.getTime());
+const posts: NewsPost[] = [...blogPosts, ...curatedNewsIndexItems()].sort(
+  (a, b) => b.sortDate.getTime() - a.sortDate.getTime(),
+);
 
 const schema = combineSchemas(
   webPageNode({
