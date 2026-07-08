@@ -1,6 +1,12 @@
 import { INDEXNOW_KEY, SITE_URL } from "../consts";
 
-const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
+/** Prefer partners that accept key-file verification without Bing Webmaster ownership. */
+const INDEXNOW_ENDPOINTS = [
+  "https://yandex.com/indexnow",
+  "https://search.seznam.cz/indexnow",
+  "https://api.indexnow.org/indexnow",
+  "https://www.bing.com/indexnow",
+] as const;
 const MAX_URLS_PER_REQUEST = 10_000;
 
 export async function pingIndexNow(urls: string[]): Promise<void> {
@@ -22,14 +28,25 @@ export async function pingIndexNow(urls: string[]): Promise<void> {
       urlList: chunk,
     };
 
-    const res = await fetch(INDEXNOW_ENDPOINT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(body),
-    });
+    let ok = false;
+    for (const endpoint of INDEXNOW_ENDPOINTS) {
+      try {
+        const res = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json; charset=utf-8" },
+          body: JSON.stringify(body),
+        });
+        if (res.ok || res.status === 202) {
+          ok = true;
+          break;
+        }
+      } catch {
+        // try next partner
+      }
+    }
 
-    if (!res.ok) {
-      console.warn(`IndexNow ping chunk failed: ${res.status} ${res.statusText}`);
+    if (!ok) {
+      console.warn(`IndexNow ping chunk failed (non-fatal): no partner accepted`);
     }
   }
 }

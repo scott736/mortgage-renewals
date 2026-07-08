@@ -1,13 +1,17 @@
 /**
- * Ping IndexNow after production builds so Bing/Copilot pick up new URLs faster.
- * Batches requests and tries Bing endpoint if api.indexnow.org rejects the payload.
- * Non-fatal — build succeeds even if the ping fails.
+ * Ping IndexNow after production builds so search engines pick up new URLs faster.
+ * Tries multiple partner endpoints. Bing may return 403 until the site is verified
+ * in Bing Webmaster Tools with an XML/HTML key (GSC import alone is not enough).
+ * Non-fatal — build always succeeds.
  */
 import { existsSync, readFileSync } from "node:fs";
 
 const SITE_URL = "https://mortgagerenewalhub.ca";
 const INDEXNOW_KEY = "84decfd7b2af3b9a131c364a80c17e2e";
+/** Prefer partners that accept key-file verification without Bing Webmaster ownership. */
 const ENDPOINTS = [
+  "https://yandex.com/indexnow",
+  "https://search.seznam.cz/indexnow",
   "https://api.indexnow.org/indexnow",
   "https://www.bing.com/indexnow",
 ];
@@ -29,7 +33,24 @@ async function pingBatch(urls, endpoint) {
     body: JSON.stringify(body),
   });
 
-  return { ok: res.ok, status: res.status, statusText: res.statusText, endpoint };
+  // 200 = accepted; 202 = accepted, key validation pending
+  const ok = res.ok || res.status === 202;
+  let detail = "";
+  if (!ok) {
+    try {
+      detail = (await res.text()).slice(0, 200);
+    } catch {
+      detail = "";
+    }
+  }
+
+  return {
+    ok,
+    status: res.status,
+    statusText: res.statusText,
+    endpoint,
+    detail,
+  };
 }
 
 async function pingIndexNow(urls) {
@@ -40,29 +61,44 @@ async function pingIndexNow(urls) {
     MAX_URLS,
   );
 
+  let submitted = 0;
   let lastError = null;
 
   for (let i = 0; i < unique.length; i += BATCH_SIZE) {
     const batch = unique.slice(i, i + BATCH_SIZE);
     let batchOk = false;
+    let acceptedVia = null;
 
     for (const endpoint of ENDPOINTS) {
-      const result = await pingBatch(batch, endpoint);
-      if (result.ok) {
-        batchOk = true;
-        break;
+      try {
+        const result = await pingBatch(batch, endpoint);
+        if (result.ok) {
+          batchOk = true;
+          acceptedVia = result.endpoint;
+          break;
+        }
+        lastError = `${result.endpoint}: ${result.status} ${result.statusText}${
+          result.detail ? ` (${result.detail})` : ""
+        }`;
+      } catch (err) {
+        lastError = `${endpoint}: ${err instanceof Error ? err.message : String(err)}`;
       }
-      lastError = `${result.endpoint}: ${result.status} ${result.statusText}`;
     }
 
     if (!batchOk) {
-      // Non-fatal: never fail the Vercel/Astro build on IndexNow auth/network issues.
-      console.warn(`IndexNow batch ${i / BATCH_SIZE + 1} failed: ${lastError}`);
+      console.warn(
+        `IndexNow: no partner accepted batch ${i / BATCH_SIZE + 1} (non-fatal). Last: ${lastError}`,
+      );
       return;
     }
+
+    submitted += batch.length;
+    console.log(
+      `IndexNow: batch ${i / BATCH_SIZE + 1} accepted via ${acceptedVia} (${batch.length} URLs)`,
+    );
   }
 
-  console.log(`IndexNow: submitted ${unique.length} URLs`);
+  console.log(`IndexNow: submitted ${submitted} URLs`);
 }
 
 function fetchSitemapUrls() {
