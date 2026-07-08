@@ -1,13 +1,12 @@
 /**
  * Ping IndexNow after production builds so search engines pick up new URLs faster.
- * Tries multiple partner endpoints. Bing may return 403 until the site is verified
- * in Bing Webmaster Tools with an XML/HTML key (GSC import alone is not enough).
+ * Tries multiple partner endpoints (Yandex/Seznam first, then api.indexnow.org/Bing).
  * Non-fatal — build always succeeds.
  */
 import { existsSync, readFileSync } from "node:fs";
 
 const SITE_URL = "https://mortgagerenewalhub.ca";
-const INDEXNOW_KEY = "84decfd7b2af3b9a131c364a80c17e2e";
+const INDEXNOW_KEY = "99b2c673-7efd-4784-86f5-ba6cbb781989";
 /** Prefer partners that accept key-file verification without Bing Webmaster ownership. */
 const ENDPOINTS = [
   "https://yandex.com/indexnow",

@@ -90,10 +90,10 @@
       ]
     },
     {
-      "source": "/84decfd7b2af3b9a131c364a80c17e2e.txt",
+      "source": "/99b2c673-7efd-4784-86f5-ba6cbb781989.txt",
       "headers": [
         { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
-        { "key": "Cache-Control", "value": "public, max-age=86400, immutable" }
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
