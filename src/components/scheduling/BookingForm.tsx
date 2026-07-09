@@ -32,7 +32,11 @@ const formSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   email: z.string().email('Please enter a valid email'),
   phone: z.string().min(7, 'Please enter a valid phone number'),
-  notes: z.string().max(1000, 'Notes must be less than 1000 characters').optional(),
+  notes: z
+    .string()
+    .trim()
+    .min(1, 'Please tell us what you would like to discuss')
+    .max(1000, 'Notes must be less than 1000 characters'),
   maturityDate: z.string().optional(),
   currentLender: z.string().max(100).optional(),
   balance: z.string().max(50).optional(),
@@ -103,7 +107,7 @@ export function BookingForm({
     setSubmitError(null);
 
     try {
-      const combinedNotes = buildBookingNotes(data.notes ?? '', {
+      const combinedNotes = buildBookingNotes(data.notes, {
         maturityDate: data.maturityDate,
         currentLender: data.currentLender,
         balance: data.balance,

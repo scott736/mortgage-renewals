@@ -1,5 +1,6 @@
+import { type CollectionEntry,getCollection } from "astro:content";
+
 import { CURATED_NEWS } from "@/data/curated-news";
-import { getCollection, type CollectionEntry } from "astro:content";
 
 export async function getPublishedBlogPosts() {
   return getCollection("blog", ({ data }) => !data.draft);

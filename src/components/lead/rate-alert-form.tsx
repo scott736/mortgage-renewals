@@ -42,10 +42,11 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
     targetRate: "",
     term: "5-year fixed",
     province: "",
+    website: "",
     status: "idle" as "idle" | "submitting" | "success" | "error",
     errorMsg: "",
   });
-  const { email, targetRate, term, province, status, errorMsg } = state;
+  const { email, targetRate, term, province, website, status, errorMsg } = state;
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -71,6 +72,7 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
           email: email.trim(),
           message,
           confirm: true,
+          website,
           source: "rate_alert",
           province: province || undefined,
           pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
@@ -126,6 +128,17 @@ export default function RateAlertForm({ className }: RateAlertFormProps) {
           placeholder="you@email.com"
         />
       </div>
+
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="hidden"
+        value={website}
+        onChange={(e) => setState({ website: e.target.value })}
+      />
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">

@@ -2,6 +2,7 @@ import rss from "@astrojs/rss";
 import type { APIContext } from "astro";
 
 import { blogPostHref, curatedNewsRssItems, getPublishedBlogPosts } from "@/lib/blog";
+
 import { SITE_METADATA } from "../consts";
 
 async function getPosts() {

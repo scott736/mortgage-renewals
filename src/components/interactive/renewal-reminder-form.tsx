@@ -109,6 +109,7 @@ export default function RenewalReminderForm() {
   const [renewalDate, setRenewalDate] = useState("");
   const [province, setProvince] = useState("");
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [emailStatus, setEmailStatus] = useState<"idle" | "sending" | "done" | "error">("idle");
 
   const sixMonthDate = useMemo(() => addMonths(renewalDate, 6), [renewalDate]);
@@ -125,10 +126,6 @@ export default function RenewalReminderForm() {
 
   const urgencyPlan = urgencyKey ? URGENCY_ACTIONS[urgencyKey] : null;
 
-  const minDate = useMemo(() => {
-    const d = new Date();
-    return d.toISOString().slice(0, 10);
-  }, []);
 
   const bookingHref = renewalDate
     ? `/book-a-call/?renewal_date=${encodeURIComponent(renewalDate)}${province ? `&province=${encodeURIComponent(province)}` : ""}`
@@ -161,6 +158,7 @@ export default function RenewalReminderForm() {
           email,
           message: `Renewal reminder request. Maturity: ${renewalDate}. Province: ${province || "n/a"}. Days left: ${daysLeft ?? "n/a"}. Urgency: ${urgencyKey ?? "n/a"}.`,
           confirm: true,
+          website,
           source: "renewal_reminder",
           renewalDate,
           province: province || undefined,
@@ -168,6 +166,8 @@ export default function RenewalReminderForm() {
         }),
       });
       if (!res.ok) throw new Error("failed");
+      const body = (await res.json().catch(() => null)) as { success?: boolean } | null;
+      if (body && body.success === false) throw new Error("failed");
       setEmailStatus("done");
     } catch {
       setEmailStatus("error");
@@ -304,6 +304,16 @@ export default function RenewalReminderForm() {
               className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-body-md"
             />
           </div>
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="hidden"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
           <button
             type="submit"
             disabled={!email || !renewalDate || emailStatus === "sending"}
@@ -316,7 +326,7 @@ export default function RenewalReminderForm() {
                 : "Email my renewal date to the team"}
           </button>
           {emailStatus === "error" && (
-            <p className="text-body-xs text-red-600">Could not send, try again or book a call directly.</p>
+            <p className="text-body-xs text-red-600" role="alert">Could not send, try again or book a call directly.</p>
           )}
         </form>
       </div>

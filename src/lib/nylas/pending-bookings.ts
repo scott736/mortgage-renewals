@@ -239,15 +239,35 @@ export async function confirmPendingBooking(
     return { success: false, error: 'This confirmation link has expired. Please book again.' };
   }
 
+  // Claim before creating the calendar event so parallel confirms cannot double-book.
+  const claimKey = `pb:confirming:${token}`;
+  if (redis) {
+    const claimed = await redis.set(claimKey, '1', { nx: true, ex: 120 });
+    if (!claimed) {
+      const latest = await storeGet(token);
+      if (latest?.status === 'confirmed') {
+        return { success: false, error: 'This booking has already been confirmed.' };
+      }
+      return { success: false, error: 'Confirmation already in progress. Please wait a moment.' };
+    }
+  }
+
+  // Mark confirmed before createBooking so a second request sees non-pending status.
+  store.status = 'confirmed';
+  store.confirmed_at = new Date().toISOString();
+  await storeUpdate(token, store);
+
   try {
     const booking = await createBooking(store.bookingRequest);
-    store.status = 'confirmed';
-    store.confirmed_at = new Date().toISOString();
-    await storeUpdate(token, store);
     await emailDecr(store.guest_email);
+    if (redis) await redis.del(claimKey);
     return { success: true, booking };
   } catch (error) {
     console.error('[pending-bookings] Error confirming booking:', error);
+    store.status = 'pending';
+    delete store.confirmed_at;
+    await storeUpdate(token, store);
+    if (redis) await redis.del(claimKey);
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Failed to create calendar event',

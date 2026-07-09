@@ -21,6 +21,7 @@ export default function CalculatorLeadCapture({
   className,
 }: CalculatorLeadCaptureProps) {
   const [email, setEmail] = React.useState("");
+  const [website, setWebsite] = React.useState("");
   const [status, setStatus] = React.useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = React.useState("");
 
@@ -43,6 +44,7 @@ export default function CalculatorLeadCapture({
           email: email.trim(),
           message: `Please email my ${tool} results and follow up if a broker rate review makes sense.\n\n${summary}`,
           confirm: true,
+          website,
           source: "calculator_lead",
           calculator: { tool, summary, data },
           pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
@@ -87,10 +89,21 @@ export default function CalculatorLeadCapture({
         <Input
           type="email"
           required
+          aria-label="Email"
           placeholder="you@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="flex-1"
+        />
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
         />
         <Button type="submit" disabled={status === "submitting"} className="shrink-0">
           {status === "submitting" ? "Sending…" : "Send results"}

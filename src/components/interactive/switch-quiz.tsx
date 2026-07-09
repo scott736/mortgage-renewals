@@ -130,7 +130,7 @@ function scoreAnswers(a: Answers): Outcome {
     actions: [
       "Accept renewal for a shorter term (1–3 years) to re-shop sooner",
       "Set a reminder to shop 120 days before your next maturity",
-      "Monitor Bank of Canada decisions, next one is June 10, 2026",
+      "Monitor Bank of Canada decisions, next one is July 15, 2026",
       "Pay down principal aggressively during the current term",
     ],
   };

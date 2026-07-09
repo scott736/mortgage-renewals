@@ -57,16 +57,20 @@ function prefetchMatchesParams(
 
 async function loadAvailability(params: AvailabilityFetchParams): Promise<AvailabilityLoadResult> {
   try {
+    // Relative /api fetch has no origin during SSR — keep Suspense on the loading
+    // fallback until the client re-runs this promise in the browser.
+    if (typeof window === 'undefined') {
+      await new Promise<void>(() => {});
+    }
+
     let data: AvailabilityApiResponse | undefined;
 
-    if (typeof window !== 'undefined') {
-      const prefetch = window.__availabilityPrefetch;
-      if (prefetch && prefetchMatchesParams(prefetch, params)) {
-        data = await prefetch.promise;
-        delete window.__availabilityPrefetch;
-      } else if (prefetch) {
-        delete window.__availabilityPrefetch;
-      }
+    const prefetch = window.__availabilityPrefetch;
+    if (prefetch && prefetchMatchesParams(prefetch, params)) {
+      data = await prefetch.promise;
+      delete window.__availabilityPrefetch;
+    } else if (prefetch) {
+      delete window.__availabilityPrefetch;
     }
 
     if (!data) {

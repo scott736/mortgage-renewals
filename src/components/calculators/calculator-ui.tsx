@@ -41,7 +41,19 @@ export function Input({
         min={min}
         max={max}
         step={step}
-        onChange={(e) => onChange(Number(e.target.value))}
+        onChange={(e) => {
+          const raw = e.target.value;
+          if (raw === '') {
+            onChange(min);
+            return;
+          }
+          const n = Number(raw);
+          if (Number.isNaN(n)) return;
+          let next = n;
+          if (typeof max === 'number') next = Math.min(next, max);
+          next = Math.max(next, min);
+          onChange(next);
+        }}
         className={`text-body-md w-full rounded-lg border border-gray-200 bg-background py-2.5 focus:outline-none focus:ring-2 focus:ring-secondary-100 ${prefix ? 'pl-8' : 'pl-3'} ${suffix ? 'pr-8' : 'pr-3'}`}
       />
       {suffix && <span className="absolute right-3 text-body-sm text-muted-foreground">{suffix}</span>}

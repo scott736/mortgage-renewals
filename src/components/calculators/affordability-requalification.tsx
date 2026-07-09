@@ -14,14 +14,18 @@ export function AffordabilityRequalification() {
     contractRate: 4.29,
     amortYears: 25,
     proposedMortgage: 550000,
+    insured: true,
   });
-  const { income, monthlyDebts, propertyTax, heat, condoFees, contractRate, amortYears, proposedMortgage } = state;
+  const { income, monthlyDebts, propertyTax, heat, condoFees, contractRate, amortYears, proposedMortgage, insured } = state;
 
   const qualifyingRate = Math.max(contractRate + 2, 5.25);
   const monthlyIncome = income / 12;
   const monthlyTax = propertyTax / 12;
   const monthlyHeat = heat / 12;
   const halfCondo = condoFees / 2; // CMHC counts 50% of condo fees
+
+  const gdsCapPct = insured ? 39 : 35;
+  const tdsCapPct = insured ? 44 : 42;
 
   const n = amortYears * 12;
   const r = effectiveMonthlyRate(qualifyingRate);
@@ -32,9 +36,9 @@ export function AffordabilityRequalification() {
   const proposedGDS = (proposedPITH / monthlyIncome) * 100;
   const proposedTDS = ((proposedPITH + monthlyDebts) / monthlyIncome) * 100;
 
-  // Max mortgage backsolve under GDS 39% and TDS 44%
-  const maxPITHfromGDS = monthlyIncome * 0.39;
-  const maxPITHfromTDS = monthlyIncome * 0.44 - monthlyDebts;
+  // Max mortgage backsolve under selected GDS/TDS caps
+  const maxPITHfromGDS = monthlyIncome * (gdsCapPct / 100);
+  const maxPITHfromTDS = monthlyIncome * (tdsCapPct / 100) - monthlyDebts;
   const maxMonthlyPayment = Math.max(0, Math.min(maxPITHfromGDS, maxPITHfromTDS) - monthlyTax - monthlyHeat - halfCondo);
   const maxMortgage = maxMonthlyPayment > 0
     ? (maxMonthlyPayment * (Math.pow(1 + r, n) - 1)) / (r * Math.pow(1 + r, n))
@@ -46,8 +50,8 @@ export function AffordabilityRequalification() {
     ? (maxMonthlyPayment * (Math.pow(1 + rContract, n) - 1)) / (rContract * Math.pow(1 + rContract, n))
     : 0;
 
-  const gdsOver = proposedGDS > 39;
-  const tdsOver = proposedTDS > 44;
+  const gdsOver = proposedGDS > gdsCapPct;
+  const tdsOver = proposedTDS > tdsCapPct;
   const qualifies = !gdsOver && !tdsOver;
 
   return (
@@ -91,12 +95,25 @@ export function AffordabilityRequalification() {
           <Label htmlFor="proposed-mortgage">Proposed Mortgage</Label>
           <Input id="proposed-mortgage" aria-label="Proposed Mortgage" value={proposedMortgage} onChange={(v) => setState({ proposedMortgage: v })} min={50000} max={5000000} step={10000} prefix="$" />
         </div>
+        <div>
+          <Label htmlFor="mortgage-type-afford">Mortgage Type</Label>
+          <select
+            id="mortgage-type-afford"
+            aria-label="Mortgage Type"
+            value={insured ? 'insured' : 'uninsured'}
+            onChange={(e) => setState({ insured: e.target.value === 'insured' })}
+            className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
+          >
+            <option value="insured">Insured (GDS 39% / TDS 44%)</option>
+            <option value="uninsured">Uninsured (GDS 35% / TDS 42%)</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
         <ResultCard label="Qualifying Rate" value={fmtPct(qualifyingRate)} sublabel={contractRate + 2 > 5.25 ? 'Contract + 2%' : '5.25% floor'} />
-        <ResultCard label={`GDS (max 39%)`} value={fmtPct(proposedGDS)} highlight={gdsOver} sublabel={gdsOver ? '⚠️ Over limit' : '✓ Within limit'} />
-        <ResultCard label={`TDS (max 44%)`} value={fmtPct(proposedTDS)} highlight={tdsOver} sublabel={tdsOver ? '⚠️ Over limit' : '✓ Within limit'} />
+        <ResultCard label={`GDS (max ${gdsCapPct}%)`} value={fmtPct(proposedGDS)} highlight={gdsOver} sublabel={gdsOver ? '⚠️ Over limit' : '✓ Within limit'} />
+        <ResultCard label={`TDS (max ${tdsCapPct}%)`} value={fmtPct(proposedTDS)} highlight={tdsOver} sublabel={tdsOver ? '⚠️ Over limit' : '✓ Within limit'} />
         <ResultCard label="Qualifies?" value={qualifies ? 'YES' : 'NO'} highlight sublabel={qualifies ? 'Under B-20 limits' : 'Ratios too high'} />
       </div>
 
@@ -106,7 +123,7 @@ export function AffordabilityRequalification() {
       </div>
 
       <div className="rounded-xl bg-gray-25 border border-gray-100 p-4 text-body-sm text-muted-foreground mb-6">
-        <strong className="text-foreground">GDS vs TDS explained:</strong> GDS (Gross Debt Service) = housing costs only (principal, interest, property tax, heat, + 50% condo fees) ÷ gross monthly income. TDS (Total Debt Service) = GDS plus all other debts (car loans, credit cards, LOC minimums, student loans). OSFI caps insured mortgages at 39% GDS / 44% TDS. Credit unions and alternative lenders can stretch these ratios.
+        <strong className="text-foreground">GDS vs TDS explained:</strong> GDS (Gross Debt Service) = housing costs only (principal, interest, property tax, heat, + 50% condo fees) ÷ gross monthly income. TDS (Total Debt Service) = GDS plus all other debts (car loans, credit cards, LOC minimums, student loans). OSFI caps insured mortgages at 39% GDS / 44% TDS; uninsured conventional is typically 35% / 42%. Credit unions and alternative lenders can stretch these ratios.
       </div>
 
       <BrokerCTA
@@ -115,8 +132,8 @@ export function AffordabilityRequalification() {
           : `Your ratios are tight. A broker can explore credit unions (not OSFI-bound) and B lenders with looser ratios.`}
         calculatorContext={{
           tool: 'Affordability Requalification Calculator',
-          summary: `Income $${income.toLocaleString('en-CA')}, qualifying ${fmtPct(qualifyingRate)}. Max mortgage ${fmt(maxMortgage)} (${qualifies ? 'qualifies' : 'tight ratios'}).`,
-          data: { income, maxMortgage, qualifies: qualifies ? 1 : 0 },
+          summary: `Income $${income.toLocaleString('en-CA')}, qualifying ${fmtPct(qualifyingRate)}, ${insured ? 'insured' : 'uninsured'}. Max mortgage ${fmt(maxMortgage)} (${qualifies ? 'qualifies' : 'tight ratios'}).`,
+          data: { income, maxMortgage, qualifies: qualifies ? 1 : 0, insured },
         }}
       />
     </div>

@@ -109,6 +109,7 @@ export default function ZippayContactForm({
     const balance = String(fd.get("balance") || "").trim();
     const province = String(fd.get("province") || "").trim();
     const message = String(fd.get("message") || "").trim();
+    const website = String(fd.get("website") || "");
 
     const hasSupplemental = Boolean(currentLender || balance || province || message);
     if (!hasSupplemental) {
@@ -125,6 +126,7 @@ export default function ZippayContactForm({
         province,
         message: message || "Additional mortgage renewal details provided after initial inquiry.",
         confirm: true,
+        website,
         source: "contact_form",
         pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
         meta: { supplemental: true },
@@ -360,6 +362,15 @@ export default function ZippayContactForm({
                   )}
                 />
               </div>
+
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
 
               {errorMsg && (
                 <p className="text-body-sm text-destructive" role="alert">

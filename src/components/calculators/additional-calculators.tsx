@@ -112,16 +112,18 @@ export function StressTestCalculator() {
     condoFees: 0,
     contractRate: 4.29,
     amortYears: 25,
+    insured: true,
   });
-  const { income, otherDebts, propertyTax, heating, condoFees, contractRate, amortYears } = state;
+  const { income, otherDebts, propertyTax, heating, condoFees, contractRate, amortYears, insured } = state;
 
   const qualifyingRate = Math.max(contractRate + 2, 5.25);
   const monthlyIncome = income / 12;
 
-  // GDS: (PITH) / gross monthly income. Max 39% insured, typically 32-35% uninsured.
-  // TDS: (PITH + debts) / gross monthly income. Max 44% insured, typically 40-42% uninsured.
-  const maxGDSPayment = monthlyIncome * 0.39 - (propertyTax / 12) - (heating / 12) - (condoFees / 2);
-  const maxTDSPayment = (monthlyIncome * 0.44) - (propertyTax / 12) - (heating / 12) - (condoFees / 2) - otherDebts;
+  // GDS/TDS: insured OSFI caps 39%/44%; uninsured conventional typically 35%/42%.
+  const gdsCap = insured ? 0.39 : 0.35;
+  const tdsCap = insured ? 0.44 : 0.42;
+  const maxGDSPayment = monthlyIncome * gdsCap - (propertyTax / 12) - (heating / 12) - (condoFees / 2);
+  const maxTDSPayment = (monthlyIncome * tdsCap) - (propertyTax / 12) - (heating / 12) - (condoFees / 2) - otherDebts;
   const maxPITH = Math.max(0, Math.min(maxGDSPayment, maxTDSPayment));
 
   // Back-solve max mortgage at qualifying rate
@@ -170,11 +172,24 @@ export function StressTestCalculator() {
           <Label htmlFor="amortization">Amortization</Label>
           <Input id="amortization" aria-label="Amortization" value={amortYears} onChange={(v) => setState({ amortYears: v })} min={5} max={30} step={1} suffix="yrs" />
         </div>
+        <div>
+          <Label htmlFor="mortgage-type-stress">Mortgage Type</Label>
+          <select
+            id="mortgage-type-stress"
+            aria-label="Mortgage Type"
+            value={insured ? 'insured' : 'uninsured'}
+            onChange={(e) => setState({ insured: e.target.value === 'insured' })}
+            className="w-full rounded-lg border border-gray-200 bg-background py-2.5 px-3 text-body-md focus:outline-none focus:ring-2 focus:ring-secondary-100"
+          >
+            <option value="insured">Insured (GDS 39% / TDS 44%)</option>
+            <option value="uninsured">Uninsured (GDS 35% / TDS 42%)</option>
+          </select>
+        </div>
       </div>
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <ResultCard label="Qualifying Rate" value={fmtPct(qualifyingRate)} highlight sublabel={contractRate + 2 > 5.25 ? "Contract rate + 2%" : "5.25% floor applies"} />
-        <ResultCard label="Max Monthly PITH" value={fmt(maxPITH)} sublabel="Principal + interest + tax + heat" />
+        <ResultCard label="Max Monthly PITH" value={fmt(maxPITH)} sublabel={`Caps ${Math.round(gdsCap * 100)}% / ${Math.round(tdsCap * 100)}%`} />
         <ResultCard label="Max Mortgage (Stress Test)" value={fmt(Math.max(0, maxMortgageQualifying))} highlight />
         <ResultCard label="Max Mortgage (Contract Rate)" value={fmt(Math.max(0, maxMortgageContract))} sublabel="Actual affordability" />
       </div>
@@ -185,8 +200,8 @@ export function StressTestCalculator() {
           : "Your ratios are tight. A broker can explore credit unions (not bound by OSFI) and alternative lenders."}
         calculatorContext={{
           tool: 'Mortgage Stress Test Calculator',
-          summary: `Income $${income.toLocaleString('en-CA')}, qualifying ${fmtPct(qualifyingRate)}. Max mortgage ${fmt(Math.max(0, maxMortgageQualifying))}.`,
-          data: { income, maxMortgageQualifying, contractRate },
+          summary: `Income $${income.toLocaleString('en-CA')}, qualifying ${fmtPct(qualifyingRate)}, ${insured ? 'insured' : 'uninsured'}. Max mortgage ${fmt(Math.max(0, maxMortgageQualifying))}.`,
+          data: { income, maxMortgageQualifying, contractRate, insured },
         }}
       />
     </div>

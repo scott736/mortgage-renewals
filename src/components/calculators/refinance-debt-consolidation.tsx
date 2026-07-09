@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
 import { usePatchState } from '@/hooks/use-patch-state';
-import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
+import { fmt, monthlyPayment } from '@/lib/mortgage-math';
 
 type DebtType = 'credit-card' | 'loc' | 'car-loan' | 'other';
 interface Debt {

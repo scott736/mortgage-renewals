@@ -20,7 +20,7 @@ export function RentalIncomeQualifying() {
   // 80% of rent offsets PITH; any shortfall counts as debt. Surplus is ignored.
   const offset80Credit = grossRent * 0.80;
   const offset80Net = offset80Credit - pith; // positive = surplus, negative = shortfall added to TDS
-  const _method80Offset = offset80Net >= 0 ? 0 : offset80Net; // Doesn't add income, only adjusts debt
+  // Offset does not add income; shortfall increases TDS. For "best credit" compare add-back only among income methods.
 
   // Method 3: DCR 1.10 (rental worksheet)
   // Debt coverage ratio. Gross rent must be at least 1.10x PITH for 100% rent to count as income.
@@ -32,8 +32,10 @@ export function RentalIncomeQualifying() {
   const dcr100Passes = dcr >= 1.00;
   const dcr100Credit = dcr100Passes ? (grossRent - pith) : 0;
 
-  // Best-case for applicant
-  const bestMethod = Math.max(method50Addback, dcr110Passes ? dcr110Credit : 0, dcr100Passes ? dcr100Credit : 0);
+  // Insured files: 50% add-back / 80% offset only. Uninsured: include DCR methods.
+  const bestMethod = insured
+    ? method50Addback
+    : Math.max(method50Addback, dcr110Passes ? dcr110Credit : 0, dcr100Passes ? dcr100Credit : 0);
 
   return (
     <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-sm">
@@ -88,16 +90,16 @@ export function RentalIncomeQualifying() {
               <td className="p-3 font-bold">{offset80Net >= 0 ? 'neutralizes PITH' : `${fmt(offset80Net)}/mo (adds to TDS)`}</td>
               <td className="p-3 text-body-xs">Insured (CMHC default)</td>
             </tr>
-            <tr className={`border-b border-gray-100 ${dcr110Passes ? '' : 'opacity-60'}`}>
+            <tr className={`border-b border-gray-100 ${insured || !dcr110Passes ? 'opacity-60' : ''}`}>
               <td className="p-3 font-medium">DCR 1.10 (Rental Worksheet)</td>
               <td className="p-3 text-body-xs text-muted-foreground">Rent must be ≥1.10× PITH. Net cashflow added as income.</td>
-              <td className="p-3 font-bold">{dcr110Passes ? `${fmt(dcr110Credit)}/mo` : `fails (DCR ${dcr.toFixed(2)})`}</td>
+              <td className="p-3 font-bold">{insured ? 'N/A (insured)' : dcr110Passes ? `${fmt(dcr110Credit)}/mo` : `fails (DCR ${dcr.toFixed(2)})`}</td>
               <td className="p-3 text-body-xs">Uninsured only</td>
             </tr>
-            <tr className={`${dcr100Passes ? '' : 'opacity-60'}`}>
+            <tr className={`${insured || !dcr100Passes ? 'opacity-60' : ''}`}>
               <td className="p-3 font-medium">DCR 1.00 (Monoline)</td>
               <td className="p-3 text-body-xs text-muted-foreground">Rent must ≥ PITH. Surplus added as income.</td>
-              <td className="p-3 font-bold">{dcr100Passes ? `${fmt(dcr100Credit)}/mo` : `fails (DCR ${dcr.toFixed(2)})`}</td>
+              <td className="p-3 font-bold">{insured ? 'N/A (insured)' : dcr100Passes ? `${fmt(dcr100Credit)}/mo` : `fails (DCR ${dcr.toFixed(2)})`}</td>
               <td className="p-3 text-body-xs">Uninsured monolines</td>
             </tr>
           </tbody>

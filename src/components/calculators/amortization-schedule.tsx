@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BrokerCTA, Input, Label, ResultCard } from '@/components/calculators/calculator-ui';
 import { usePatchState } from '@/hooks/use-patch-state';
-import { effectiveMonthlyRate, fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
+import { fmt, fmtPct, monthlyPayment } from '@/lib/mortgage-math';
 
 type Frequency = 'monthly' | 'biweekly' | 'accelBiweekly' | 'weekly' | 'accelWeekly';
 

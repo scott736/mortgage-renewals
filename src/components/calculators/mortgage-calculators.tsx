@@ -242,13 +242,14 @@ function PenaltyEstimator() {
   // 3-month interest penalty
   const threeMonthInterest = balance * effectiveMonthlyRate(currentRate) * 3;
 
-  // IRD penalty — bank uses posted rate (approximate posted as contract + 1.5% for banks)
-  const _postedRate = lenderType === 'bank' ? currentRate + 1.5 : currentRate;
-  const rateSpread = Math.max(0, currentRate - newRate);
+  // IRD penalty — banks use posted rate (approx. contract + 1.5%); monolines use contract rate
+  const postedRate = lenderType === 'bank' ? currentRate + 1.5 : currentRate;
+  const rateSpread = Math.max(0, postedRate - newRate);
   const irdMonthly = balance * effectiveMonthlyRate(rateSpread);
   const ird = irdMonthly * monthsRemaining;
 
-  const penalty = Math.max(threeMonthInterest, ird);
+  // Monolines almost always charge 3-month interest; banks take the greater of IRD vs 3-month
+  const penalty = lenderType === 'monoline' ? threeMonthInterest : Math.max(threeMonthInterest, ird);
   const savings = (balance * (effectiveMonthlyRate(currentRate) - effectiveMonthlyRate(newRate))) * monthsRemaining;
   const netSaving = savings - penalty;
 

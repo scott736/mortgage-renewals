@@ -15,6 +15,7 @@ type ChecklistDownloadGateProps = {
 
 export default function ChecklistDownloadGate({ className }: ChecklistDownloadGateProps) {
   const [email, setEmail] = React.useState("");
+  const [website, setWebsite] = React.useState("");
   const [status, setStatus] = React.useState<"idle" | "submitting" | "unlocked" | "error">("idle");
   const [errorMsg, setErrorMsg] = React.useState("");
 
@@ -37,6 +38,7 @@ export default function ChecklistDownloadGate({ className }: ChecklistDownloadGa
           email: email.trim(),
           message: "Requested the 2026 Canadian Mortgage Renewal Checklist PDF download.",
           confirm: true,
+          website,
           source: "checklist_download",
           pageUrl: typeof window !== "undefined" ? window.location.href : undefined,
         }),
@@ -86,10 +88,21 @@ export default function ChecklistDownloadGate({ className }: ChecklistDownloadGa
         <Input
           type="email"
           required
+          aria-label="Email"
           placeholder="you@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="flex-1"
+        />
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
         />
         <Button type="submit" disabled={status === "submitting"}>
           {status === "submitting" ? "Unlocking…" : "Get the PDF"}
