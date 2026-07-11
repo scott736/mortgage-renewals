@@ -32,7 +32,7 @@ function cleanAnchor(title: string): string {
   return title.replace(/[\[\]]/g, "").slice(0, 80);
 }
 
-const FORCE_BRIDGE_MARKER = "<!-- linker-force-bridge -->";
+const FORCE_BRIDGE_MARKER = "{/* linker-force-bridge */}";
 
 export const LINKER_SITE: LinkerSiteConfig = {
   brand: "MortgageRenewalHub",
@@ -63,6 +63,7 @@ export const LINKER_SITE: LinkerSiteConfig = {
 
 /** Detect legacy filler bridges that predate the marker. */
 export const LEGACY_FORCE_BRIDGE_PATTERNS: RegExp[] = [
+  /<!--\s*linker-force-bridge\s*-->/gi,
   /If you're exploring this further,\s*our guide to\s*\[[^\]]+\]\([^)]+\)\s*covers the details\./gi,
   /If you're exploring this further,\s*\[[^\]]+\]\([^)]+\)\s*covers the details[^.]*\./gi,
   /For homeowners navigating renewal options,\s*\[[^\]]+\]\([^)]+\)\s*covers the details\./gi,
