@@ -1,0 +1,132 @@
+---
+import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { getPageMeta } from "@/lib/page-meta";
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from "@/lib/schema";
+
+export const pageMeta = getPageMeta("investment-property-mortgage-rates", {
+  dateModified: "2026-07-11",
+});
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "Are investment property mortgage rates higher in Canada?",
+    answer:
+      "Usually yes — many lenders add roughly 0.10%–0.30% (or more) above equivalent owner-occupied pricing for 1–4 unit rentals. Exact premiums vary by lender, LTV, credit, and whether the file is insured. Always compare a rental quote against the same term's owner-occupied best rate.",
+  },
+  {
+    question: "What are typical rental mortgage rates in July 2026?",
+    answer:
+      "Use owner-occupied broker benchmarks as a floor: insured 5-year fixed near ~4.04% and 5-year variable near ~3.35% (July 2026 broker channel), then add the investor premium your lender applies. Portfolio, B-lender, and commercial/multi-family quotes are priced separately.",
+  },
+  {
+    question: "Can I get the same rate as my primary residence on a rental?",
+    answer:
+      "Sometimes with relationship pricing or specific monoline products, but most A-lenders maintain an investor surcharge. Shopping multiple lenders through a broker is how you find the tightest rental premium.",
+  },
+  {
+    question: "Do multi-family rates follow residential rental rates?",
+    answer:
+      "Not reliably. Five-plus unit and commercial files underwrite on NOI/DSCR and often clear through commercial or CMHC MLI Select channels — different from a condo rental renewing at a bank.",
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "investment-property-mortgage-rates",
+    name: "Investment Property Mortgage Rates Canada (2026)",
+    description:
+      "How Canadian rental and investment property mortgage rates compare to owner-occupied — premiums, renewal shopping, and multi-family pricing.",
+  }),
+  articleSchema({
+    headline: "Investment Property Mortgage Rates Canada (2026)",
+    description:
+      "Rental mortgage rate premiums in Canada, July 2026 residential benchmarks, and when DSCR/commercial pricing applies instead.",
+    slug: "investment-property-mortgage-rates",
+    articleSection: "Investment Property",
+    about: "Investment property mortgage rates Canada",
+    keywords: [
+      "investment property mortgage rates",
+      "rental property mortgage rates Canada",
+      "mortgage for investment property Canada",
+      "investor mortgage rates Canada",
+    ],
+    dateModified: pageMeta.dateModified,
+  }),
+  faqSchema(faqs, "investment-property-mortgage-rates"),
+  breadcrumbSchema([
+    { name: "Investment Property Mortgage Rates", url: "/investment-property-mortgage-rates" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Investment Property Mortgage Rates Canada (2026)"
+  description="Canadian rental mortgage rates vs owner-occupied — typical investor premiums, July 2026 benchmarks, and multi-family pricing paths."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Investment Property Mortgage Rates
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Investment Property</div>
+      <h1 class="text-heading-1 mb-4">Investment Property Mortgage Rates in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated July 2026. Rental mortgages usually cost a premium over owner-occupied rates. Here is how to read that premium at renewal — and when you should stop comparing to residential rate sheets.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Investor premiums commonly run <strong>~0.10%–0.30%+</strong> over equivalent owner-occupied pricing on 1–4 unit rentals.</li>
+        <li>• July 2026 residential broker benchmarks: <strong>~4.04% insured 5-yr fixed</strong>, <strong>~3.35% variable</strong> — treat as a floor before rental surcharge.</li>
+        <li>• Renewal letters on rentals are still often <strong>posted / retention-priced</strong> — shop them.</li>
+        <li>• <strong>5+ unit / commercial</strong> leave the residential sheet — use <a href="/commercial-mortgage-canada/" class="text-secondary-100 hover:underline">commercial</a> and <a href="/dscr-mortgage-canada/" class="text-secondary-100 hover:underline">DSCR</a> paths.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Why Rentals Price Higher</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Lenders treat investment properties as higher loss severity if a borrower defaults (no homestead motivation, vacancy risk, landlord expense volatility). That shows up as a rate surcharge, tighter LTV on some products, and stricter rental-income haircuts. OSFI IPRRE guidance has also made federally regulated lenders more selective on investor concentration — which can widen the gap between the best owner-occupied quote and what you receive on a fifth rental.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How to Shop a Rental Renewal Rate</h2>
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Get your incumbent renewal offer in writing.</li>
+      <li>Ask a broker for <strong>owner-occupied vs rental</strong> quotes on the same term so the premium is explicit.</li>
+      <li>Model qualification with the <a href="/rental-income-qualifying-calculator/" class="text-secondary-100 hover:underline">rental income calculator</a> — the cheapest rate is useless if you cannot clear underwriting.</li>
+      <li>Factor switch costs (<a href="/mortgage-discharge-fees-canada/" class="text-secondary-100 hover:underline">discharge fees</a>, legal) into break-even.</li>
+      <li>If A-lenders decline, price <a href="/b-lender-mortgage-renewal/" class="text-secondary-100 hover:underline">B-lender</a> and portfolio options — higher rate, but sometimes the only path that funds.</li>
+    </ol>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Related Guides</h2>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Strategy and qualification live on <a href="/investment-property-renewal/" class="text-secondary-100 hover:underline">investment property renewal</a>. For current owner-occupied benchmarks see <a href="/best-mortgage-renewal-rates/" class="text-secondary-100 hover:underline">best mortgage renewal rates</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map((f) => <FaqDetails question={f.question} answer={f.answer} />)}
+    </div>
+
+    <RelatedLinks slug="/investment-property-mortgage-rates/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Compare Your Rental Renewal Rate</h2>
+      <p class="text-white/80 mb-6">See the investor premium on your file — free broker quote, no obligation.</p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book a Free Rate Review
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

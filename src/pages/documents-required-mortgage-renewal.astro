@@ -1,0 +1,206 @@
+---
+import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { getPageMeta } from "@/lib/page-meta";
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from "@/lib/schema";
+
+export const pageMeta = getPageMeta("documents-required-mortgage-renewal", {
+  dateModified: "2026-07-11",
+});
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What documents do I need to renew a mortgage in Canada?",
+    answer:
+      "If you stay with your current lender on a straight renewal, you often need little more than the signed renewal agreement. If you switch lenders or refinance, expect ID, income proof (T4/NOA or business docs), property tax bill, mortgage statement/payout, and sometimes an appraisal — plus rental docs for investment properties.",
+  },
+  {
+    question: "Do I need to re-qualify with documents if I stay put?",
+    answer:
+      "Usually no full re-underwrite for a same-lender straight renewal when you are current and not requesting new money. Shopping or switching triggers a new application package. Job loss, arrears, or product changes can change what the incumbent asks for.",
+  },
+  {
+    question: "What do self-employed borrowers need?",
+    answer:
+      "Typically two years of T1 Generals and Notices of Assessment, business financials or accountant letter, and sometimes business bank statements. B-lenders may accept alternate income documentation. See self-employed mortgage renewal.",
+  },
+  {
+    question: "What extra documents do rental investors need?",
+    answer:
+      "Leases or rent rolls, proof of rent received, property expenses, and sometimes condo status certificates. Multi-property portfolios need a full address/mortgage list. DSCR or commercial files need operating statements.",
+  },
+  {
+    question: "How early should I gather documents?",
+    answer:
+      "Start 120 days before maturity if you might switch — that is when rate holds open and underwriting has time to clear conditions before payout.",
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "documents-required-mortgage-renewal",
+    name: "Documents Required for Mortgage Renewal in Canada (2026)",
+    description:
+      "Checklist of documents for Canadian mortgage renewal — stay vs switch, salaried, self-employed, and rental property packages.",
+  }),
+  articleSchema({
+    headline: "Documents Required for Mortgage Renewal in Canada (2026)",
+    description:
+      "What paperwork you need to renew or switch a Canadian mortgage — stay-put vs switch, income docs, and investor extras.",
+    slug: "documents-required-mortgage-renewal",
+    articleSection: "Guides",
+    about: "Mortgage renewal documents Canada",
+    keywords: [
+      "documents required for mortgage renewal",
+      "mortgage renewal checklist documents",
+      "papers needed to switch mortgage",
+      "mortgage renewal paperwork Canada",
+    ],
+    dateModified: pageMeta.dateModified,
+  }),
+  faqSchema(faqs, "documents-required-mortgage-renewal"),
+  breadcrumbSchema([
+    { name: "Documents Required for Mortgage Renewal", url: "/documents-required-mortgage-renewal" },
+  ]),
+);
+---
+
+<DefaultLayout
+  title="Documents Required for Mortgage Renewal (Canada 2026)"
+  description="What documents you need to renew or switch a Canadian mortgage — stay vs switch, salaried, self-employed, and rental packages."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Documents Required for Mortgage Renewal
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Renewal Checklist</div>
+      <h1 class="text-heading-1 mb-4">Documents Required for Mortgage Renewal in Canada</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated July 2026. Stay-put renewals are light on paperwork. Switching lenders or refinancing is not. Use this guide to know what to gather before your 120-day window.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>Same-lender straight renewal:</strong> often just the renewal offer + ID.</li>
+        <li>• <strong>Switch / refinance:</strong> full application package (income, property, credit authorization).</li>
+        <li>• <strong>Start 120 days out</strong> if you might switch — underwriting needs runway before maturity.</li>
+        <li>• Investors add <strong>leases / rent proof</strong>; self-employed add <strong>T1s + NOAs</strong>.</li>
+        <li>• Generate a tailored list with the <a href="/renewal-document-checklist-generator/" class="text-secondary-100 hover:underline">document checklist generator</a>.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Stay With Your Lender (Straight Renewal)</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      If you accept a renewal with your current lender for the same approximate balance and no new money, document demand is usually minimal:
+    </p>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Signed renewal agreement / commitment</li>
+      <li>Government photo ID (if the lender re-verifies)</li>
+      <li>Void cheque or PAD update if banking details changed</li>
+      <li>Property insurance confirmation if requested</li>
+    </ul>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Being in arrears, requesting amortization changes that add risk, or asking for new funds can reopen underwriting — see <a href="/renewing-mortgage-with-arrears/" class="text-secondary-100 hover:underline">renewing with arrears</a> and <a href="/renewal-vs-refinancing/" class="text-secondary-100 hover:underline">renewal vs refinancing</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Switching Lenders — Core Package</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      A straight switch (same balance, similar amortization, no cash-out) still needs a new lender application. Typical asks:
+    </p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Identity & authorization</h3>
+        <ul class="text-body-sm text-muted-foreground space-y-1">
+          <li>• Two pieces of ID</li>
+          <li>• Credit bureau consent</li>
+          <li>• SIN (as required by lender)</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Income (salaried)</h3>
+        <ul class="text-body-sm text-muted-foreground space-y-1">
+          <li>• Recent pay stubs</li>
+          <li>• T4 and/or NOA</li>
+          <li>• Letter of employment if asked</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Property & mortgage</h3>
+        <ul class="text-body-sm text-muted-foreground space-y-1">
+          <li>• Current mortgage statement / payout</li>
+          <li>• Property tax bill or status</li>
+          <li>• Home insurance binder</li>
+          <li>• Appraisal (if lender requires)</li>
+        </ul>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Legal / switch costs</h3>
+        <ul class="text-body-sm text-muted-foreground space-y-1">
+          <li>• Lawyer or notary engagement</li>
+          <li>• Discharge / assignment fee awareness</li>
+          <li>• Title insurance where used</li>
+        </ul>
+      </div>
+    </div>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Since November 2024, many uninsured straight switches skip the OSFI stress test — but lenders still verify credit and documentation. See <a href="/switching-lenders-at-renewal/" class="text-secondary-100 hover:underline">switching lenders at renewal</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Self-Employed Extra Documents</h2>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Two years T1 General + Notices of Assessment</li>
+      <li>Business financial statements or accountant letter</li>
+      <li>Business bank statements (especially for B-lender / stated programs)</li>
+      <li>Articles of incorporation / ownership proof if applicable</li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Investment & Rental Extra Documents</h2>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Current lease(s) or rent roll</li>
+      <li>Proof of rent deposits (bank statements)</li>
+      <li>Condo status certificate if applicable</li>
+      <li>List of all properties and mortgages for portfolio files</li>
+      <li>For multi-family / commercial: T12 operating statement — see <a href="/commercial-mortgage-canada/" class="text-secondary-100 hover:underline">commercial mortgage Canada</a></li>
+    </ul>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Timeline</h2>
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>12–6 months:</strong> gather insurance, tax, and income basics; decide stay vs switch.</li>
+      <li><strong>120 days:</strong> lock rate holds; submit switch package if shopping.</li>
+      <li><strong>60–30 days:</strong> clear lender conditions; instruct lawyer/notary.</li>
+      <li><strong>Maturity week:</strong> confirm payout figures and first payment to the new lender.</li>
+    </ol>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Prefer a month-by-month plan? Use the <a href="/mortgage-renewal-checklist/" class="text-secondary-100 hover:underline">mortgage renewal checklist</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map((f) => <FaqDetails question={f.question} answer={f.answer} />)}
+    </div>
+
+    <RelatedLinks slug="/documents-required-mortgage-renewal/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Not Sure Which Documents You Need?</h2>
+      <p class="text-white/80 mb-6">
+        A broker will build the exact package for stay vs switch — and shop rates while conditions clear.
+      </p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book a Free Renewal Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

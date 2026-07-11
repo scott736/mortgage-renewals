@@ -1,0 +1,199 @@
+---
+import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { getPageMeta } from "@/lib/page-meta";
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from "@/lib/schema";
+
+export const pageMeta = getPageMeta("commercial-mortgage-canada", {
+  dateModified: "2026-07-11",
+});
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What counts as a commercial mortgage in Canada?",
+    answer:
+      "Financing secured by income-producing or business-use real estate — multi-family (typically 5+ units), mixed-use, retail, office, industrial, and owner-occupied commercial. Underwriting focuses on the asset's NOI/DSCR, LTV, leases, and sponsor experience — not the same GDS/TDS framework used for an owner-occupied home.",
+  },
+  {
+    question: "How do commercial mortgage rates compare to residential?",
+    answer:
+      "Commercial rates are usually higher and more bespoke than broker-channel residential renewals. Pricing reflects LTV, property type, term, amortization, recourse, and credit. Residential insured 5-year fixed renewals near ~4.04% (July 2026 broker channel) are not a commercial rate sheet — ask for a property-specific quote.",
+  },
+  {
+    question: "Do commercial mortgages renew like residential mortgages?",
+    answer:
+      "Terms still mature and must be renewed, extended, or paid out. There is less “auto-renew at posted” consumer behaviour and more negotiation around covenants, amortization remaining, and whether the loan stays with the same lender or refinances. Start 6–12 months early on larger files.",
+  },
+  {
+    question: "What LTV and amortization are typical?",
+    answer:
+      "Conventional commercial LTVs are often lower than residential (commonly in a ~60–75% band depending on asset class and lender). Amortizations are frequently shorter than 25–30 year residential products unless CMHC multi-unit insurance (e.g. MLI Select) supports longer amortizations on qualifying rental buildings.",
+  },
+  {
+    question: "When is CMHC MLI Select relevant?",
+    answer:
+      "For purpose-built and multi-unit rental housing (5+ units) that scores on CMHC affordability, energy, and accessibility criteria. MLI Select can unlock higher LTV and longer amortizations than conventional commercial financing. Premium grids updated mid-2025 — verify current pricing with a multi-family specialist.",
+  },
+  {
+    question: "Can a residential mortgage broker place commercial files?",
+    answer:
+      "Only if they (or their brokerage) actually have commercial lender access and experience. Many residential brokerages refer commercial to a commercial desk. LendCity handles both residential renewals and commercial/multi-family — match the deal to the right channel.",
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "commercial-mortgage-canada",
+    name: "Commercial Mortgage Canada — Rates, Renewal & Multi-Family (2026)",
+    description:
+      "Canadian commercial mortgages explained: how rates are priced, multi-family vs residential renewals, DSCR underwriting, and CMHC MLI Select.",
+  }),
+  articleSchema({
+    headline: "Commercial Mortgage Canada — Rates, Renewal & Multi-Family (2026)",
+    description:
+      "How commercial mortgages work in Canada vs residential renewals — NOI/DSCR underwriting, LTV, multi-family, and when MLI Select beats conventional commercial.",
+    slug: "commercial-mortgage-canada",
+    articleSection: "Commercial",
+    about: "Commercial mortgage Canada",
+    keywords: [
+      "commercial mortgage Canada",
+      "commercial mortgage rates Canada",
+      "multi-family mortgage Canada",
+      "CMHC MLI Select",
+      "commercial mortgage renewal",
+    ],
+    dateModified: pageMeta.dateModified,
+  }),
+  faqSchema(faqs, "commercial-mortgage-canada"),
+  breadcrumbSchema([{ name: "Commercial Mortgage Canada", url: "/commercial-mortgage-canada" }]),
+);
+---
+
+<DefaultLayout
+  title="Commercial Mortgage Canada (2026) — Rates & Renewal"
+  description="Commercial mortgages in Canada: how rates are set, multi-family vs residential, DSCR underwriting, renewals, and CMHC MLI Select."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › Commercial Mortgage Canada
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Commercial & Multi-Family</div>
+      <h1 class="text-heading-1 mb-4">Commercial Mortgage Canada — Rates, Structure & Renewal</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated July 2026. Commercial and multi-family financing is underwritten on the asset — not the same way as an owner-occupied residential renewal. This guide maps the differences, renewal timeline, and when CMHC multi-unit insurance changes the math.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• Commercial loans price off <strong>property risk + DSCR/NOI + LTV</strong>, not Big Six consumer renewal letters.</li>
+        <li>• Residential broker rates (~4.04% insured 5-year fixed, July 2026) are a <strong>benchmark, not a commercial quote</strong>.</li>
+        <li>• <strong>5+ unit residential</strong> often sits between residential investor and full commercial — CMHC MLI Select can dominate pricing.</li>
+        <li>• Renewals need a longer runway: <strong>6–12 months</strong> for appraisals, rent rolls, and lender shopping.</li>
+        <li>• Use <a href="/dscr-mortgage-canada/" class="text-secondary-100 hover:underline">DSCR</a> math and a commercial-capable broker desk.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Commercial vs Residential Mortgage (Canada)</h2>
+    <div class="overflow-x-auto mb-8">
+      <table class="w-full text-body-sm border-collapse">
+        <thead>
+          <tr class="bg-primary-100 text-white">
+            <th class="p-3 text-left">Feature</th>
+            <th class="p-3 text-left">Residential renewal</th>
+            <th class="p-3 text-left">Commercial / multi-family</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Primary underwriting</td>
+            <td class="p-3">Borrower income, credit, GDS/TDS</td>
+            <td class="p-3">NOI, DSCR, leases, sponsor strength</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Typical property</td>
+            <td class="p-3">Owner-occupied or 1–4 unit rental</td>
+            <td class="p-3">5+ unit, mixed-use, ICI, business premises</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Rate discovery</td>
+            <td class="p-3">Broker rate sheets + lender retention offers</td>
+            <td class="p-3">Deal-specific quotes; term sheets</td>
+          </tr>
+          <tr class="border-b border-gray-100 bg-gray-25">
+            <td class="p-3 font-medium">Insurance</td>
+            <td class="p-3">CMHC/Sagen/CG on eligible residential</td>
+            <td class="p-3">Often conventional; MLI Select for qualifying multi-unit rental</td>
+          </tr>
+          <tr class="border-b border-gray-100">
+            <td class="p-3 font-medium">Renewal lead time</td>
+            <td class="p-3">120-day rate holds common</td>
+            <td class="p-3">6–12 months for larger files</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">How Commercial Rates Are Set</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Commercial mortgage rates in Canada are rarely a single public number. Lenders quote a spread over a cost of funds (often Government of Canada yields or a prime-linked base for floating products), then adjust for LTV, asset class, remaining lease term, recourse, and borrower experience. Owner-occupied commercial can price tighter than purely investment assets; specialty or vacant assets price wider.
+    </p>
+    <p class="text-body-md mb-6 leading-relaxed">
+      For context only: competitive <a href="/best-mortgage-renewal-rates/" class="text-secondary-100 hover:underline">residential renewal rates</a> in July 2026 sit near <strong>~4.04% insured 5-year fixed</strong> and <strong>~3.35% variable</strong> in the broker channel. Commercial quotes for the same calendar month will usually clear higher and must be obtained against a specific property package.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Multi-Family: The Bridge Product</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      Small residential rentals (1–4 units) often renew in the residential investor channel with rental add-back/offset rules — see <a href="/investment-property-renewal/" class="text-secondary-100 hover:underline">investment property renewal</a>. At <strong>5+ units</strong>, underwriting shifts toward rent rolls, NOI, and DSCR. That is also where <strong>CMHC MLI Select</strong> can outperform conventional commercial on LTV and amortization for buildings that score on affordability, energy efficiency, and accessibility.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Commercial Renewal Timeline</h2>
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li><strong>12 months out</strong> — confirm maturity, covenants, and whether you need cash-out, CAPEX, or a simple term renewal.</li>
+      <li><strong>9–6 months</strong> — update rent roll, trailing-12 expenses, leases, and order appraisal if the lender requires a current value.</li>
+      <li><strong>6–4 months</strong> — shop incumbent vs alternate commercial lenders; model DSCR at the new rate and payment.</li>
+      <li><strong>90–60 days</strong> — lock term sheet, complete conditions, coordinate lawyer/notary and payout statement.</li>
+      <li><strong>Funding</strong> — register new charge or extension; align first payment date with cash-flow cycle.</li>
+    </ol>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Documents Commercial Lenders Expect</h2>
+    <ul class="list-disc list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Rent roll and sample leases (or commercial lease abstracts)</li>
+      <li>Trailing operating statements / T12 and current year budget</li>
+      <li>Property tax, insurance, and major repair history</li>
+      <li>Appraisal (as required) and environmental where applicable</li>
+      <li>Corporate documents, personal net worth, and credit for guarantors</li>
+    </ul>
+    <p class="text-body-md mb-6 leading-relaxed">
+      Residential renewals use a lighter package — see <a href="/documents-required-mortgage-renewal/" class="text-secondary-100 hover:underline">documents required for mortgage renewal</a>.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map((f) => <FaqDetails question={f.question} answer={f.answer} />)}
+    </div>
+
+    <RelatedLinks slug="/commercial-mortgage-canada/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Commercial or Multi-Family Renewal Coming Up?</h2>
+      <p class="text-white/80 mb-6">
+        Talk to a desk that actually places commercial and CMHC multi-unit files — not only residential renewals.
+      </p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book a Free Commercial Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>

@@ -1,0 +1,184 @@
+---
+import FaqDetails from "@/components/FaqDetails.astro";
+import RelatedLinks from "@/components/RelatedLinks.astro";
+import DefaultLayout from "@/layouts/DefaultLayout.astro";
+import { getPageMeta } from "@/lib/page-meta";
+import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webPageNode } from "@/lib/schema";
+
+export const pageMeta = getPageMeta("dscr-mortgage-canada", {
+  dateModified: "2026-07-11",
+});
+
+export const prerender = true;
+
+const faqs = [
+  {
+    question: "What is a DSCR mortgage in Canada?",
+    answer:
+      "A DSCR (Debt Service Coverage Ratio) mortgage qualifies the loan primarily on the property's rental income versus its debt payments — not on your personal T4/T1 income. DSCR = Net Operating Income ÷ Annual Debt Service. Most Canadian DSCR and portfolio lenders want a minimum ratio around 1.10–1.25.",
+  },
+  {
+    question: "Is DSCR lending the same in Canada as in the US?",
+    answer:
+      "No. In the US, DSCR is a mainstream non-QM product for individual investors. In Canada it is less commoditized: available mainly through commercial and alternative/portfolio lenders arranged by specialist brokers. Product structures, documentation, and pricing differ meaningfully between the two markets.",
+  },
+  {
+    question: "What DSCR do Canadian lenders require?",
+    answer:
+      "Common floors are 1.10 (property just covers debt after vacancy and expenses) to 1.25 (25% cushion). Some monolines accept a DCR of 1.00 on a rental worksheet for residential 1–4 unit files. Below 1.0, the property is cash-flow negative and usually needs personal income to support the file — or a different lender.",
+  },
+  {
+    question: "Can I use DSCR at mortgage renewal?",
+    answer:
+      "Yes when you are switching or refinancing into a lender that underwrites on DSCR/portfolio rules. A straight stay-and-renew with your current A-lender usually stays on that lender's rental add-back or offset method. If A-lenders are declining because of stacked GDS/TDS across multiple rentals, DSCR or portfolio lending is often the renewal path.",
+  },
+  {
+    question: "How is DSCR different from the 50% add-back method?",
+    answer:
+      "50% add-back (and 80% offset) folds a slice of rent into your personal debt ratios. DSCR asks whether the property itself services its mortgage. Run both approaches in our rental income qualifying calculator — highly cash-flow-positive properties often look better on a DSCR/DCR worksheet.",
+  },
+  {
+    question: "Do multi-family buildings use DSCR?",
+    answer:
+      "Yes. Five-plus unit residential and commercial income properties are typically underwritten on NOI and DSCR (or CMHC MLI Select criteria for insured multi-unit). That is a different channel from a single-family rental renewing at a Big Six bank.",
+  },
+];
+
+const schema = combineSchemas(
+  webPageNode({
+    slug: "dscr-mortgage-canada",
+    name: "DSCR Mortgage Canada — Debt Service Coverage Ratio Lending (2026)",
+    description:
+      "How DSCR mortgages work in Canada for investment and multi-family properties — formula, 1.10–1.25 floors, renewal use cases, and Canada vs US differences.",
+  }),
+  articleSchema({
+    headline: "DSCR Mortgage Canada — Qualify on Property Income (2026)",
+    description:
+      "Canadian DSCR lending explained: NOI ÷ debt service, minimum ratios, when to use DSCR at renewal, and how it differs from US non-QM DSCR products.",
+    slug: "dscr-mortgage-canada",
+    articleSection: "Investment Property",
+    about: "DSCR mortgage Canada",
+    keywords: [
+      "DSCR mortgage Canada",
+      "debt service coverage ratio",
+      "DSCR loan Canada",
+      "investment property DSCR",
+      "portfolio lending Canada",
+    ],
+    dateModified: pageMeta.dateModified,
+  }),
+  faqSchema(faqs, "dscr-mortgage-canada"),
+  breadcrumbSchema([{ name: "DSCR Mortgage Canada", url: "/dscr-mortgage-canada" }]),
+);
+---
+
+<DefaultLayout
+  title="DSCR Mortgage Canada (2026) — Property-Income Lending"
+  description="DSCR mortgages in Canada: how NOI ÷ debt service works, 1.10–1.25 floors, renewal paths for investors, and Canada vs US DSCR differences."
+  schema={schema}
+>
+  <nav class="container py-4 text-body-sm text-muted-foreground">
+    <a href="/" class="hover:underline">Home</a> › DSCR Mortgage Canada
+  </nav>
+
+  <section class="container max-w-4xl py-10">
+    <div class="mb-8">
+      <div class="text-body-sm-medium text-secondary-100 uppercase tracking-wide mb-3">Investment Property</div>
+      <h1 class="text-heading-1 mb-4">DSCR Mortgage Canada — Qualify on the Property, Not Just Your Paystub</h1>
+      <p class="text-body-lg text-muted-foreground max-w-2xl">
+        Updated July 2026. Debt Service Coverage Ratio (DSCR) lending lets investment-property borrowers qualify mainly on rental cash flow. Here is how Canadian DSCR works at purchase and renewal — and how it differs from US-style DSCR products.
+      </p>
+    </div>
+
+    <div class="rounded-xl bg-gray-25 border border-gray-100 p-6 mb-10 key-takeaways">
+      <h2 class="text-heading-4 mb-3">Key Takeaways</h2>
+      <ul class="space-y-2 text-body-sm leading-relaxed">
+        <li>• <strong>DSCR = NOI ÷ annual debt service</strong> — the property's income must cover the mortgage with a cushion.</li>
+        <li>• Typical Canadian floors: <strong>1.10–1.25</strong> (some residential rental worksheets accept ~1.00 DCR).</li>
+        <li>• Best for <strong>self-employed investors, multi-property portfolios, and cash-flow-positive rentals</strong> that fail stacked GDS/TDS.</li>
+        <li>• Canada is <strong>not</strong> a copy of US non-QM DSCR — expect commercial/alt/portfolio channels via specialist brokers.</li>
+        <li>• At renewal, DSCR matters most when <strong>switching or refinancing</strong> into a DSCR/portfolio lender — not every stay-put A-lender renews this way.</li>
+        <li>• Compare methods with the <a href="/rental-income-qualifying-calculator/" class="text-secondary-100 hover:underline">rental income qualifying calculator</a>.</li>
+      </ul>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">The DSCR Formula</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      <strong>DSCR = Net Operating Income (NOI) ÷ Annual Debt Service</strong>
+    </p>
+    <div class="rounded-lg bg-gray-25 border border-gray-100 p-5 mb-6">
+      <p class="text-body-sm leading-relaxed mb-2">
+        <strong>NOI</strong> ≈ Gross annual rent − operating expenses (taxes, insurance, maintenance reserves, management) − vacancy allowance (often 5–10%).
+      </p>
+      <p class="text-body-sm leading-relaxed mb-2">
+        <strong>Annual debt service</strong> = principal + interest on the mortgage being underwritten (some commercial sheets also include other property debt).
+      </p>
+      <p class="text-body-sm leading-relaxed">
+        A DSCR of <strong>1.0</strong> means break-even after those assumptions. <strong>1.25</strong> means 25% more income than required debt service — the cushion lenders want when rents soften or vacancies rise.
+      </p>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">When DSCR Beats Personal Income Methods</h2>
+    <div class="grid sm:grid-cols-2 gap-4 mb-6">
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Self-employed / low declared income</h3>
+        <p class="text-body-sm text-muted-foreground">
+          Strong properties but thin T1 net income. DSCR or stated/bank-statement programs keep qualification on the asset. See also <a href="/self-employed-mortgage-renewal/" class="text-secondary-100 hover:underline">self-employed renewal</a>.
+        </p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Portfolio stacking problem</h3>
+        <p class="text-body-sm text-muted-foreground">
+          Each rental looks fine alone, but A-lender GDS/TDS across 4–10 properties blows up. Portfolio/DSCR lenders underwrite the pool. See <a href="/investment-property-renewal/" class="text-secondary-100 hover:underline">investment property renewal</a>.
+        </p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Cash-flow-positive singles</h3>
+        <p class="text-body-sm text-muted-foreground">
+          High rent vs PITH often scores better on a DCR/DSCR worksheet than on conservative 50% add-back.
+        </p>
+      </div>
+      <div class="rounded-xl bg-gray-25 border border-gray-100 p-5">
+        <h3 class="font-semibold mb-2">Multi-family / commercial</h3>
+        <p class="text-body-sm text-muted-foreground">
+          5+ unit and income commercial files are NOI/DSCR by default — including many <a href="/commercial-mortgage-canada/" class="text-secondary-100 hover:underline">commercial mortgage</a> and CMHC MLI Select structures.
+        </p>
+      </div>
+    </div>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Canada vs United States</h2>
+    <p class="text-body-md mb-4 leading-relaxed">
+      US DSCR loans are widely marketed to individual investors as a non-QM category with relatively standardized guidelines. Canadian DSCR-style lending sits closer to <strong>commercial and alternative residential investor</strong> channels. Expect more broker-mediated placements, property-specific covenants, and less “rate sheet shopping” than US consumer DSCR ads imply. If you invest in both countries, treat the products as separate markets.
+    </p>
+
+    <h2 class="text-heading-3 mt-10 mb-4">DSCR at Renewal — Practical Path</h2>
+    <ol class="list-decimal list-inside mb-6 space-y-2 text-body-md leading-relaxed">
+      <li>Pull leases, rent rolls, expense history, and your renewal letter 120 days out.</li>
+      <li>Model 50% add-back, 80% offset, and DCR/DSCR with the <a href="/rental-income-qualifying-calculator/" class="text-secondary-100 hover:underline">rental income calculator</a>.</li>
+      <li>If A-lenders decline or price poorly, ask a broker for portfolio/DSCR and <a href="/b-lender-mortgage-renewal/" class="text-secondary-100 hover:underline">B-lender</a> options.</li>
+      <li>Straight switches with the same balance may avoid the OSFI stress test (Nov 2024) at federally regulated lenders — refinances and new money still fully qualify.</li>
+      <li>For 5+ unit rentals, check CMHC MLI Select before assuming conventional commercial pricing.</li>
+    </ol>
+
+    <h2 class="text-heading-3 mt-10 mb-4">Frequently Asked Questions</h2>
+    <div class="space-y-4 mb-10">
+      {faqs.map((f) => <FaqDetails question={f.question} answer={f.answer} />)}
+    </div>
+
+    <RelatedLinks slug="/dscr-mortgage-canada/" />
+  </section>
+
+  <section class="bg-primary-100 py-12 mt-10">
+    <div class="container max-w-3xl text-center">
+      <h2 class="text-heading-3 text-white mb-3">Need a DSCR or Portfolio Renewal Quote?</h2>
+      <p class="text-white/80 mb-6">
+        Licensed brokers at LendCity can model rental methods and place investor files — free for borrowers.
+      </p>
+      <a href="/book-a-call/">
+        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
+          Book a Free Investor Strategy Call
+        </button>
+      </a>
+    </div>
+  </section>
+</DefaultLayout>
