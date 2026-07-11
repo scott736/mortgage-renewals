@@ -1,58 +1,59 @@
 // ============================================
-// Mortgage Renewal Hub Automation System - Type Definitions
+// Mortgage Renewal Hub Automation — Type Definitions
 // ============================================
-
-// ----------------
-// Enums
-// ----------------
+// Renewal-native categories & clusters (not LendCity investor taxonomy).
 
 export type Category =
-  | "mortgage-financing"
-  | "investing-fundamentals"
-  | "scaling-portfolio"
-  | "partnerships-capital"
-  | "us-cross-border"
-  | "personal-finance-mindset";
+  | "renewal-process"
+  | "switch-vs-stay"
+  | "rates-and-payments"
+  | "checklist-and-docs"
+  | "qualification-and-rules"
+  | "tools-and-calculators"
+  | "life-situations"
+  | "lenders-and-provinces";
 
+/**
+ * Spoke-level topic clusters for hub-and-spoke linking.
+ * Guide hubs → blog news / situation pages → book-a-call.
+ */
 export type TopicCluster =
-  | "mortgage-basics"
-  | "mortgage-qualification"
-  | "refinancing-strategies"
-  | "commercial-lending"
-  | "getting-started"
-  | "rental-property-analysis"
-  | "multifamily-investing"
-  | "brrrr-flipping"
-  | "portfolio-scaling"
-  | "joint-ventures-partnerships"
-  | "capital-raising"
-  | "us-investing-basics"
-  | "dscr-foreign-national"
-  | "cross-border-tax-legal"
-  | "investor-mindset"
-  | "success-stories"
-  | "team-building"
-  | "market-analysis"
-  | "property-management"
-  | "short-term-rentals"
-  | "private-mortgage-investing"
-  | "development-investing";
+  | "renewal-basics"
+  | "first-renewal"
+  | "subsequent-renewal"
+  | "switch-mechanics"
+  | "stress-test-osfi"
+  | "rate-environment"
+  | "payment-shock"
+  | "fixed-vs-variable"
+  | "renewal-checklist"
+  | "renewal-timeline"
+  | "penalty-and-break"
+  | "refinance-vs-renew"
+  | "calculator-tools"
+  | "bank-lender-renewal"
+  | "provincial-renewal"
+  | "situation-renewal"
+  | "broker-help";
 
 export type FunnelStage = "awareness" | "consideration" | "decision";
 
+/** Who the page serves — Canadian homeowners at renewal. */
 export type TargetPersona =
-  | "beginner"
-  | "scaling-investor"
-  | "cross-border"
-  | "professional";
+  | "first-time-renewer"
+  | "repeat-renewer"
+  | "rate-shopper"
+  | "switcher"
+  | "payment-stressed"
+  | "special-situation";
 
-export type Region = "canada" | "usa" | "both" | "mexico";
+export type Region = "canada" | "ontario" | "bc" | "alberta" | "quebec" | "other";
 
 export type Priority = "low" | "normal" | "high";
 export type QueueStatus = "ready" | "merged" | "hold";
-export type QueueRegion = "canada" | "usa" | "both";
+export type QueueRegion = "canada";
 
-export type ArticleSource = "manual" | "podcast" | "import";
+export type ArticleSource = "manual" | "news" | "import";
 
 // ----------------
 // Blog Post
@@ -66,39 +67,29 @@ export interface BlogPostFrontmatter {
   image?: string;
   authorImage?: string;
   authorName?: string;
-  category: Category;
+  category?: Category;
   tags: string[];
   keyTerms?: string[];
 
-  // Smart Linker fields
   topicCluster?: TopicCluster;
   funnelStage?: FunnelStage;
   targetPersona?: TargetPersona;
-  region: Region;
+  region?: Region;
   extractedKeywords?: string[];
   contentSummary?: string;
   qualityScore?: number;
-  isPillar: boolean;
-  isEvergreen: boolean;
+  isPillar?: boolean;
+  isEvergreen?: boolean;
   seasonalRelevance?: string[];
-  // LLM semantic analysis fields (populated by --generate-prompts / --import-results or API)
   semanticThemes?: string[];
   linkableTopics?: string[];
   idealIncomingAnchors?: string[];
-  focusKeyphrase?: string; // Single most important keyword phrase for this post (used as preferred anchor text by other posts)
+  focusKeyphrase?: string;
 
-  // Processing tracking fields
-  enrichedAt?: string; // ISO date when post was last enriched
-  metaGeneratedAt?: string; // ISO date when SEO meta was last generated
-
-  // SEO meta fields (separate from title/description which are content-focused)
-  seoTitle?: string; // SEO-optimized title (50-60 chars)
-  seoDescription?: string; // SEO meta description (150-160 chars)
-
-  // Podcast fields
-  podcastEpisodeId?: string;
-  podcastShowId?: string;
-  podcastEmbed?: string;
+  enrichedAt?: string;
+  metaGeneratedAt?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }
 
 export interface BlogPost {
@@ -118,15 +109,10 @@ export interface QueueArticleFrontmatter {
   category?: Category;
   tags?: string[];
   queuedAt: Date;
-  priority: Priority;
-  skipEnhancement: boolean;
-  source: ArticleSource;
   status?: QueueStatus;
-  canonicalTopicId?: string;
-  mergeInto?: string;
-  funnelStage?: FunnelStage;
   region?: QueueRegion;
-  keyTerms?: string[];
+  priority?: Priority;
+  topicCluster?: TopicCluster;
 }
 
 export interface QueueArticle {
@@ -137,182 +123,7 @@ export interface QueueArticle {
 }
 
 // ----------------
-// Smart Linker
-// ----------------
-
-export interface LinkSuggestion {
-  targetSlug: string;
-  targetTitle: string;
-  targetUrl: string;
-  targetType: "post" | "page" | "glossary";
-  score: number;
-  breakdown: ScoreBreakdown;
-  anchorOptions: string[];
-  reason: string;
-}
-
-// ----------------
-// Pillar Pages (Service/Location Pages)
-// ----------------
-
-export interface PillarPage {
-  slug: string;
-  url: string;
-  title: string;
-  isPillar: boolean;
-  priority: number;
-  topicClusters: TopicCluster[];
-  matchingKeywords: string[];
-  matchingTags: string[];
-  anchorTextSuggestions: string[];
-  region: Region;
-}
-
-export interface PillarPagesConfig {
-  description: string;
-  updatedAt: string;
-  pages: PillarPage[];
-}
-
-export interface ScoreBreakdown {
-  clusterMatch: number;
-  funnelFlow: number;
-  personaMatch: number;
-  tagOverlap: number;
-  keywordOverlap: number;
-  qualityScore: number;
-  pillarBonus: number;
-  orphanBoost: number;
-  freshnessDecay: number;
-  reciprocalPenalty: number;
-  diversityPenalty: number;
-  geographicBoost: number;
-  seasonalBoost: number;
-}
-
-export interface PostSuggestions {
-  slug: string;
-  generatedAt: string;
-  suggestions: LinkSuggestion[];
-  stats: {
-    candidatesConsidered: number;
-    afterScoring: number;
-    afterReranking: number;
-  };
-}
-
-export interface PostMetadata {
-  slug: string;
-  title: string;
-  description: string;
-  category: Category;
-  tags: string[];
-  topicCluster?: TopicCluster;
-  funnelStage?: FunnelStage;
-  targetPersona?: TargetPersona;
-  region: Region;
-  extractedKeywords?: string[];
-  qualityScore?: number;
-  isPillar: boolean;
-  isEvergreen: boolean;
-  pubDate: string;
-  inboundLinks: string[];
-  outboundLinks: string[];
-  // LLM semantic analysis fields (used by AI smart linker v2)
-  semanticThemes?: string[];
-  focusKeyphrase?: string;
-  idealIncomingAnchors?: string[];
-  linkableTopics?: string[];
-}
-
-export interface LinkGraph {
-  [slug: string]: {
-    inbound: string[];
-    outbound: string[];
-  };
-}
-
-export interface DashboardStats {
-  generatedAt: string | null;
-  totalPosts: number;
-  postsWithSuggestions: number;
-  orphanPosts: Array<{ slug: string; inboundCount: number }>;
-  overLinkedPosts: Array<{ slug: string; inboundCount: number }>;
-  clusterDistribution: Record<TopicCluster, number>;
-  funnelCoverage: Record<FunnelStage, number>;
-  recentActivity: Array<{
-    slug: string;
-    suggestionsGenerated: number;
-    timestamp: string;
-  }>;
-}
-
-// ----------------
-// Podcast
-// ----------------
-
-export interface TransistorEpisode {
-  id: string;
-  title: string;
-  shareUrl: string;
-  showId: string;
-  publishedAt: string;
-}
-
-export interface ProcessedEpisode {
-  episodeId: string;
-  title: string;
-  slug: string;
-  processedAt: string;
-  showId: string;
-}
-
-export interface ShowMapping {
-  category: Category;
-  defaultPersona: TargetPersona;
-  defaultCluster: TopicCluster;
-}
-
-export interface GeneratedArticle {
-  title: string;
-  description: string;
-  content: string;
-  tags: string[];
-  category: Category;
-  topicCluster: TopicCluster;
-  funnelStage: FunnelStage;
-  targetPersona: TargetPersona;
-  region: Region;
-  faqs: Array<{ question: string; answer: string }>;
-  imageSearchQuery: string;
-}
-
-// ----------------
-// Configuration
-// ----------------
-
-export interface AutomationConfig {
-  scheduler: {
-    publishFrequency: number;
-    publishTime: string;
-    minScheduledPosts: number;
-    defaultCategory: Category;
-    shuffleQueue: boolean;
-  };
-  podcast: {
-    showMapping: Record<string, ShowMapping>;
-    autoPublish: boolean;
-    saveToQueue: boolean;
-  };
-  images: {
-    maxWidth: number;
-    quality: number;
-    format: "webp" | "jpeg" | "png";
-  };
-}
-
-// ----------------
-// CLI Options
+// CLI
 // ----------------
 
 export interface CLIOptions {
@@ -323,57 +134,71 @@ export interface CLIOptions {
   episodeId?: string;
   shareUrl?: string;
   showId?: string;
-  all?: boolean;
   useApi?: boolean;
+  all?: boolean;
   dryRun?: boolean;
   verbose?: boolean;
-  generatePrompts?: boolean;
-  importResults?: boolean;
-  // New options for skip processed, meta generation, and link removal
-  skipProcessed?: boolean;
-  generateMeta?: boolean;
-  skipMeta?: boolean;
-  removeLinks?: boolean;
-  bulkRemoveLinks?: boolean;
-  // Smart CTA rescan filters
-  skipExisting?: boolean;
-  category?: string;
-  /** Skip API call and use template-only path for Smart CTA rescan/generate. */
-  noApi?: boolean;
-  /** Locale for blog content: en | es | fr. Defaults to en. */
-  locale?: string;
-  /** Content collection: blog | glossary. Defaults to blog. */
-  collection?: string;
-  // Content updater options
-  threshold?: number;
-  maxPosts?: number;
-  // Linker v4 API options
   concurrency?: number;
   model?: string;
   highConfidenceOnly?: boolean;
-  /** Keep strategy-call / CTA links when stripping (default true). */
-  preserveCta?: boolean;
-  /** Enable a second LLM pass to prune the accepted set after validation. Default: true. */
   rerank?: boolean;
-  // Force a rebuild even when the catalog inputs hash is unchanged
   force?: boolean;
-  // SEO competitor analysis options
+  skipExisting?: boolean;
+  category?: string;
+  noApi?: boolean;
+  locale?: string;
+  collection?: string;
+  threshold?: number;
+  maxPosts?: number;
   competitor?: string;
   keywords?: string;
   url?: string;
   prompt?: string;
   to?: string;
   baselineDate?: string;
-  // Scheduler catch-up: publish multiple articles in one run
   count?: number;
-  /** Required for full-list newsletter send (not --to preview). */
   confirmSend?: boolean;
-  /** Newsletter edition date YYYY-MM-DD (send-approved / preflight). */
   edition?: string;
-  /** Newsletter subject (send-approved / preflight). */
   subject?: string;
-  /** Override pubDate for scheduler publish (YYYY-MM-DD). */
-  pubDate?: string;
-  /** HTML artifact path for send-approved. */
   htmlFile?: string;
+  preserveCta?: boolean;
+}
+
+// ----------------
+// Automation config shape (minimal stub for config.json)
+// ----------------
+
+export interface AutomationConfig {
+  scheduler?: {
+    publishFrequency?: number;
+    publishTime?: string;
+    minScheduledPosts?: number;
+    defaultCategory?: Category;
+    shuffleQueue?: boolean;
+  };
+  podcast?: Record<string, unknown>;
+  images?: {
+    maxWidth?: number;
+    quality?: number;
+    format?: string;
+  };
+}
+
+// Linker / enrichment report helpers still referenced by shared code
+export interface EnrichmentStats {
+  topicClusters: TopicCluster[];
+  clusterDistribution: Partial<Record<TopicCluster, number>>;
+}
+
+export interface ContentPlanItem {
+  category: Category;
+  topicCluster?: TopicCluster;
+  title?: string;
+}
+
+export interface ShowMappingEntry {
+  category: Category;
+  defaultPersona: TargetPersona;
+  defaultCluster: TopicCluster;
+  autoPublish?: boolean;
 }

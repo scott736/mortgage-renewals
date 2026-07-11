@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-07-11T21:39:57.883Z",
-  "totalNodes": 31,
-  "totalEdges": 384,
+  "generatedAt": "2026-07-11T21:54:48.666Z",
+  "totalNodes": 38,
+  "totalEdges": 401,
   "nodes": {
     "/mortgage-renewal-guide": {
       "slug": "mortgage-renewal-guide",
@@ -28,7 +28,7 @@
         "/mortgage-broker-renewal",
         "/mortgage-renewal-calculator"
       ],
-      "pageRank": 0.049708
+      "pageRank": 0.041283
     },
     "/best-mortgage-renewal-rates": {
       "slug": "best-mortgage-renewal-rates",
@@ -65,7 +65,7 @@
         "/switching-lenders-at-renewal",
         "/fixed-vs-variable-mortgage-renewal"
       ],
-      "pageRank": 0.0623
+      "pageRank": 0.0539
     },
     "/mortgage-renewal-checklist": {
       "slug": "mortgage-renewal-checklist",
@@ -100,7 +100,7 @@
         "/fixed-vs-variable-mortgage-renewal",
         "/renewal-vs-refinancing"
       ],
-      "pageRank": 0.054207
+      "pageRank": 0.05128
     },
     "/switching-lenders-at-renewal": {
       "slug": "switching-lenders-at-renewal",
@@ -108,7 +108,7 @@
       "title": "Switching Lenders at Renewal",
       "type": "pillar",
       "inboundCount": 40,
-      "outboundCount": 5,
+      "outboundCount": 6,
       "inboundFrom": [
         "/blog/osfi-stress-test-switch-renewals-2026",
         "/404",
@@ -152,13 +152,14 @@
         "/what-is-a-mortgage-renewal"
       ],
       "outboundTo": [
+        "/mortgage-discharge-fees-canada",
         "/fixed-vs-variable-mortgage-renewal",
         "/mortgage-renewal-checklist",
         "/best-mortgage-renewal-rates",
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.103924
+      "pageRank": 0.102047
     },
     "/renewal-vs-refinancing": {
       "slug": "renewal-vs-refinancing",
@@ -188,7 +189,7 @@
         "/mortgage-renewal-calculator",
         "/book-a-call"
       ],
-      "pageRank": 0.028213
+      "pageRank": 0.026763
     },
     "/mortgage-broker-renewal": {
       "slug": "mortgage-broker-renewal",
@@ -290,7 +291,7 @@
         "/switching-lenders-at-renewal",
         "/mortgage-renewal-checklist"
       ],
-      "pageRank": 0.108488
+      "pageRank": 0.106709
     },
     "/fixed-vs-variable-mortgage-renewal": {
       "slug": "fixed-vs-variable-mortgage-renewal",
@@ -329,7 +330,7 @@
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.081514
+      "pageRank": 0.067545
     },
     "/ontario-mortgage-renewal": {
       "slug": "ontario-mortgage-renewal",
@@ -337,7 +338,7 @@
       "title": "Ontario Mortgage Renewal",
       "type": "pillar",
       "inboundCount": 0,
-      "outboundCount": 7,
+      "outboundCount": 8,
       "inboundFrom": [],
       "outboundTo": [
         "/book-a-call",
@@ -346,9 +347,10 @@
         "/switching-lenders-at-renewal",
         "/mortgage-renewal-checklist",
         "/mortgage-broker-renewal",
-        "/fixed-vs-variable-mortgage-renewal"
+        "/fixed-vs-variable-mortgage-renewal",
+        "/stress-test-mortgage-renewal"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/bc-mortgage-renewal": {
       "slug": "bc-mortgage-renewal",
@@ -366,7 +368,7 @@
         "/switching-lenders-at-renewal",
         "/fixed-vs-variable-mortgage-renewal"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/alberta-mortgage-renewal": {
       "slug": "alberta-mortgage-renewal",
@@ -384,7 +386,7 @@
         "/switching-lenders-at-renewal",
         "/fixed-vs-variable-mortgage-renewal"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/quebec-mortgage-renewal": {
       "slug": "quebec-mortgage-renewal",
@@ -406,7 +408,148 @@
         "/renewal-vs-refinancing",
         "/book-a-call"
       ],
-      "pageRank": 0.010955
+      "pageRank": 0.008336
+    },
+    "/what-is-a-mortgage-renewal": {
+      "slug": "what-is-a-mortgage-renewal",
+      "url": "/what-is-a-mortgage-renewal",
+      "title": "What Is a Mortgage Renewal?",
+      "type": "pillar",
+      "inboundCount": 2,
+      "outboundCount": 6,
+      "inboundFrom": [
+        "/index",
+        "/mortgage-renewal-calculator"
+      ],
+      "outboundTo": [
+        "/switching-lenders-at-renewal",
+        "/mortgage-renewal-checklist",
+        "/renewal-vs-refinancing",
+        "/mortgage-broker-renewal",
+        "/mortgage-renewal-glossary",
+        "/book-a-call"
+      ],
+      "pageRank": 0.038613
+    },
+    "/mortgage-renewal-payment-shock": {
+      "slug": "mortgage-renewal-payment-shock",
+      "url": "/mortgage-renewal-payment-shock",
+      "title": "Payment Shock at Renewal",
+      "type": "pillar",
+      "inboundCount": 2,
+      "outboundCount": 7,
+      "inboundFrom": [
+        "/blog/first-renewal-payment-shock-2026",
+        "/index"
+      ],
+      "outboundTo": [
+        "/switching-lenders-at-renewal",
+        "/mortgage-renewal-calculator",
+        "/mortgage-broker-renewal",
+        "/switch-vs-stay-calculator",
+        "/mortgage-renewal-checklist",
+        "/first-time-mortgage-renewal",
+        "/book-a-call"
+      ],
+      "pageRank": 0.013183
+    },
+    "/stress-test-mortgage-renewal": {
+      "slug": "stress-test-mortgage-renewal",
+      "url": "/stress-test-mortgage-renewal",
+      "title": "Stress Test at Renewal",
+      "type": "pillar",
+      "inboundCount": 7,
+      "outboundCount": 4,
+      "inboundFrom": [
+        "/credit-union-mortgage-renewal-canada",
+        "/index",
+        "/ontario-mortgage-renewal",
+        "/osfi-b20-stress-test-at-renewal",
+        "/spousal-buyout-mortgage-renewal",
+        "/switch-vs-stay-calculator",
+        "/territories-mortgage-renewal"
+      ],
+      "outboundTo": [
+        "/switching-lenders-at-renewal",
+        "/mortgage-stress-test-calculator",
+        "/mortgage-broker-renewal",
+        "/book-a-call"
+      ],
+      "pageRank": 0.012097
+    },
+    "/osfi-b20-stress-test-at-renewal": {
+      "slug": "osfi-b20-stress-test-at-renewal",
+      "url": "/osfi-b20-stress-test-at-renewal",
+      "title": "OSFI B-20 Stress Test at Renewal",
+      "type": "pillar",
+      "inboundCount": 1,
+      "outboundCount": 4,
+      "inboundFrom": [
+        "/cmhc-sagen-canada-guaranty-at-renewal"
+      ],
+      "outboundTo": [
+        "/stress-test-mortgage-renewal",
+        "/switching-lenders-at-renewal",
+        "/mortgage-broker-renewal",
+        "/book-a-call"
+      ],
+      "pageRank": 0.007125
+    },
+    "/mortgage-discharge-fees-canada": {
+      "slug": "mortgage-discharge-fees-canada",
+      "url": "/mortgage-discharge-fees-canada",
+      "title": "Mortgage Discharge Fees Canada",
+      "type": "pillar",
+      "inboundCount": 3,
+      "outboundCount": 7,
+      "inboundFrom": [
+        "/blog/discharge-fees-switch-costs-july-2026",
+        "/switching-lenders-at-renewal",
+        "/title-insurance-legal-fees-switching"
+      ],
+      "outboundTo": [
+        "/switching-lenders-at-renewal",
+        "/td-mortgage-renewal",
+        "/rbc-mortgage-renewal",
+        "/scotiabank-mortgage-renewal",
+        "/switch-vs-stay-calculator",
+        "/mortgage-broker-renewal",
+        "/book-a-call"
+      ],
+      "pageRank": 0.022792
+    },
+    "/first-time-mortgage-renewal": {
+      "slug": "first-time-mortgage-renewal",
+      "url": "/first-time-mortgage-renewal",
+      "title": "First-Time Mortgage Renewal",
+      "type": "pillar",
+      "inboundCount": 2,
+      "outboundCount": 3,
+      "inboundFrom": [
+        "/job-loss-mortgage-renewal",
+        "/mortgage-renewal-payment-shock"
+      ],
+      "outboundTo": [
+        "/book-a-call",
+        "/mortgage-broker-renewal",
+        "/mortgage-renewal-calculator"
+      ],
+      "pageRank": 0.008725
+    },
+    "/canadian-lender-cheat-sheet": {
+      "slug": "canadian-lender-cheat-sheet",
+      "url": "/canadian-lender-cheat-sheet",
+      "title": "Canadian Lender Cheat Sheet",
+      "type": "pillar",
+      "inboundCount": 0,
+      "outboundCount": 3,
+      "inboundFrom": [],
+      "outboundTo": [
+        "/mortgage-renewal-calculator",
+        "/mortgage-broker-renewal",
+        "/book-a-call"
+      ],
+      "pageRank": 0.007125
     },
     "/mortgage-renewal-calculator": {
       "slug": "mortgage-renewal-calculator",
@@ -414,7 +557,7 @@
       "title": "Mortgage Renewal Calculator",
       "type": "page",
       "inboundCount": 38,
-      "outboundCount": 1,
+      "outboundCount": 2,
       "inboundFrom": [
         "/blog/cmhc-spring-2026-renewal-wave",
         "/404",
@@ -456,9 +599,10 @@
         "/territories-mortgage-renewal"
       ],
       "outboundTo": [
+        "/what-is-a-mortgage-renewal",
         "/mortgage-renewal-glossary"
       ],
-      "pageRank": 0.080712
+      "pageRank": 0.074116
     },
     "/switch-vs-stay-calculator": {
       "slug": "switch-vs-stay-calculator",
@@ -466,7 +610,7 @@
       "title": "Switch vs Stay Calculator",
       "type": "page",
       "inboundCount": 7,
-      "outboundCount": 3,
+      "outboundCount": 4,
       "inboundFrom": [
         "/blog/discharge-fees-switch-costs-july-2026",
         "/collateral-vs-standard-charge-mortgage",
@@ -478,10 +622,11 @@
       ],
       "outboundTo": [
         "/mortgage-renewal-calculator",
+        "/stress-test-mortgage-renewal",
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.010955
+      "pageRank": 0.012705
     },
     "/mortgage-penalty-calculator": {
       "slug": "mortgage-penalty-calculator",
@@ -498,7 +643,7 @@
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.010955
+      "pageRank": 0.008639
     },
     "/break-even-switch-calculator": {
       "slug": "break-even-switch-calculator",
@@ -514,7 +659,7 @@
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/mortgage-stress-test-calculator": {
       "slug": "mortgage-stress-test-calculator",
@@ -532,7 +677,7 @@
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.009695
     },
     "/rate-comparison-calculator": {
       "slug": "rate-comparison-calculator",
@@ -550,7 +695,7 @@
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/current-mortgage-rates-canada": {
       "slug": "current-mortgage-rates-canada",
@@ -563,7 +708,7 @@
         "/renewal-reminder"
       ],
       "outboundTo": [],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/bank-of-canada-rate-decisions": {
       "slug": "bank-of-canada-rate-decisions",
@@ -581,7 +726,7 @@
         "/mortgage-broker-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.016715
+      "pageRank": 0.013183
     },
     "/mortgage-renewal-faq": {
       "slug": "mortgage-renewal-faq",
@@ -602,7 +747,7 @@
         "/book-a-call",
         "/mortgage-renewal-guide"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/mortgage-renewal-glossary": {
       "slug": "mortgage-renewal-glossary",
@@ -627,7 +772,7 @@
         "/switching-lenders-at-renewal",
         "/book-a-call"
       ],
-      "pageRank": 0.09088
+      "pageRank": 0.055656
     },
     "/about": {
       "slug": "about",
@@ -642,7 +787,7 @@
         "/mortgage-renewal-calculator",
         "/book-a-call"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.007125
     },
     "/book-a-call": {
       "slug": "book-a-call",
@@ -764,7 +909,7 @@
         "/what-is-a-mortgage-renewal"
       ],
       "outboundTo": [],
-      "pageRank": 0.134967
+      "pageRank": 0.134972
     },
     "/td-mortgage-renewal": {
       "slug": "td-mortgage-renewal",
@@ -784,7 +929,7 @@
         "/book-a-call",
         "/switching-lenders-at-renewal"
       ],
-      "pageRank": 0.010955
+      "pageRank": 0.011104
     },
     "/rbc-mortgage-renewal": {
       "slug": "rbc-mortgage-renewal",
@@ -803,7 +948,7 @@
         "/book-a-call",
         "/mortgage-broker-renewal"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.009892
     },
     "/scotiabank-mortgage-renewal": {
       "slug": "scotiabank-mortgage-renewal",
@@ -820,7 +965,7 @@
       "outboundTo": [
         "/book-a-call"
       ],
-      "pageRank": 0.009035
+      "pageRank": 0.009892
     },
     "/blog/boc-holds-rate-june-2026-renewals": {
       "slug": "boc-holds-rate-june-2026-renewals",
@@ -833,7 +978,7 @@
       "outboundTo": [
         "/bank-of-canada-rate-decisions"
       ],
-      "pageRank": 0.009035,
+      "pageRank": 0.007125,
       "wordCount": 169,
       "outboundDensity": 2.96,
       "isOverLinked": false,
@@ -851,7 +996,7 @@
         "/mortgage-renewal-calculator",
         "/mortgage-renewal-guide"
       ],
-      "pageRank": 0.009035,
+      "pageRank": 0.007125,
       "wordCount": 178,
       "outboundDensity": 5.62,
       "isOverLinked": true,
@@ -863,17 +1008,18 @@
       "title": "Mortgage Discharge Fees Still Matter in July 2026 — Even With Legal-Paid Switches",
       "type": "post",
       "inboundCount": 0,
-      "outboundCount": 4,
+      "outboundCount": 5,
       "inboundFrom": [],
       "outboundTo": [
+        "/mortgage-discharge-fees-canada",
         "/td-mortgage-renewal",
         "/switch-vs-stay-calculator",
         "/quebec-mortgage-renewal",
         "/mortgage-broker-renewal"
       ],
-      "pageRank": 0.009035,
+      "pageRank": 0.007125,
       "wordCount": 278,
-      "outboundDensity": 7.19,
+      "outboundDensity": 8.99,
       "isOverLinked": true,
       "isUnderLinked": false
     },
@@ -883,14 +1029,16 @@
       "title": "First Renewal Payment Shock: A 2020–2021 Borrower's Checklist",
       "type": "post",
       "inboundCount": 0,
-      "outboundCount": 0,
+      "outboundCount": 1,
       "inboundFrom": [],
-      "outboundTo": [],
-      "pageRank": 0.009035,
+      "outboundTo": [
+        "/mortgage-renewal-payment-shock"
+      ],
+      "pageRank": 0.007125,
       "wordCount": 194,
-      "outboundDensity": 0,
+      "outboundDensity": 2.58,
       "isOverLinked": false,
-      "isUnderLinked": true
+      "isUnderLinked": false
     },
     "/blog/osfi-stress-test-switch-renewals-2026": {
       "slug": "osfi-stress-test-switch-renewals-2026",
@@ -903,7 +1051,7 @@
       "outboundTo": [
         "/switching-lenders-at-renewal"
       ],
-      "pageRank": 0.009035,
+      "pageRank": 0.007125,
       "wordCount": 179,
       "outboundDensity": 2.79,
       "isOverLinked": false,

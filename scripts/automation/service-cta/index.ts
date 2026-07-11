@@ -184,7 +184,7 @@ async function processOneFile(
 
   const category =
     (typeof frontmatter.category === "string" && frontmatter.category) ||
-    "investing-fundamentals";
+    "renewal-process";
 
   if (categoryFilter && category !== categoryFilter) {
     return { updated: false, skipped: true, skipReason: `category ${category}` };

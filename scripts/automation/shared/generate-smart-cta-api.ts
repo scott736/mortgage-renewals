@@ -166,17 +166,23 @@ export function buildCTAPrompt(
   // Examples of good vs bad
   lines.push("## Examples");
   lines.push("");
-  lines.push("**GOOD** (specific to article about the 70% rule in flipping):");
-  lines.push('> Now that you know how the 70% rule protects your flip margins, the next step is lining up your financing — {link} and we\'ll help you structure the purchase and refinance so the numbers actually work.');
+  lines.push("**GOOD** (specific to first-renewal payment shock):");
+  lines.push('> If your renewal payment jumps more than 30%, {link} and we\'ll model term, amortization, and switch scenarios before you sign.');
   lines.push("");
-  lines.push("**GOOD** (specific to article about debt ratios):");
-  lines.push('> Your GDS and TDS ratios directly determine how much you can borrow — {link} and we\'ll show you exactly where your ratios stand and which lenders work best for your profile.');
+  lines.push("**GOOD** (specific to discharge fees / switching):");
+  lines.push('> Discharge and legal fees can erase a thin rate win — {link} and we\'ll net the switch against staying with your bank.');
   lines.push("");
   lines.push("**BAD** (generic, could apply to any article):");
   lines.push('> Getting your financing strategy right is important — {link} to learn more about your options.');
   lines.push("");
   lines.push("**BAD** (too salesy):");
   lines.push('> Don\'t wait — {link} today before rates go up!');
+  lines.push("");
+  lines.push("## Brand");
+  lines.push("- Site: MortgageRenewalHub.ca");
+  lines.push("- Audience: Canadian homeowners renewing (not real-estate investors)");
+  lines.push("- CTA: free renewal strategy call at /book-a-call/");
+  lines.push("- Never pitch DSCR, BRRRR, or commercial multifamily products");
   lines.push("");
 
   // Article context
@@ -199,8 +205,8 @@ export function buildCTAPrompt(
   lines.push("Generate exactly 2 CTA sentences for this article. Each must:");
   lines.push("1. Reference a specific concept from this article (not a generic topic)");
   lines.push("2. Include `{link}` exactly once where the booking link goes");
-  lines.push("3. Connect the article concept to why talking to a mortgage expert helps");
-  lines.push("4. Sound conversational and direct — like advice from a knowledgeable friend");
+  lines.push("3. Connect the article concept to why talking to a renewal broker helps");
+  lines.push("4. Sound conversational and direct — like advice from a licensed broker");
   lines.push("5. Be 25-45 words long");
   lines.push("");
   lines.push("The two CTAs should reference DIFFERENT parts/concepts of the article so they work well placed in separate sections.");

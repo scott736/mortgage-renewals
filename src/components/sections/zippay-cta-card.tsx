@@ -16,11 +16,11 @@ export type ZippayCtaCardProps = {
 };
 
 export default function ZippayCtaCard({
-  title = "Ready to Save at Your Mortgage Renewal?",
-  description = "Book a free strategy call with a licensed Canadian mortgage broker. Compare rates from 30+ lenders and find the best deal for your renewal.",
-  primaryLabel = "Book Free Call",
+  title = "Don't Auto-Renew Blind",
+  description = "Book a free renewal call with a licensed Canadian broker. Compare offers from 30+ lenders before your maturity date.",
+  primaryLabel = "Book Free Renewal Call",
   primaryHref = "/book-a-call/",
-  secondaryLabel = "Learn More",
+  secondaryLabel = "Read the Renewal Guide",
   secondaryHref = "/mortgage-renewal-guide/",
   softBg,
 }: ZippayCtaCardProps) {

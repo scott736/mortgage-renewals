@@ -1,130 +1,150 @@
 // ============================================
-// Smart CTA - Contextual Inline Call-to-Action
-// Mortgage Renewal Hub — booking URL /book-a-call/
+// Smart CTA — Mortgage Renewal Hub (fresh copy)
 // ============================================
+// Renewer-focused inline CTAs. Booking URL: /book-a-call/
+// Do NOT reuse LendCity investor templates.
 
 export const BOOKING_URL = "/book-a-call/";
 
-export const CTA_BUTTON = `<a href="/book-a-call/" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-primary text-primary-foreground shadow hover:bg-zinc-600 h-10 px-8 no-underline">Book Free Strategy Call</a>`;
-
-function getBookingUrl(_region?: string): string {
-  return BOOKING_URL;
-}
+export const CTA_BUTTON = `<a href="/book-a-call/" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium bg-primary text-primary-foreground shadow hover:bg-zinc-600 h-10 px-8 no-underline">Book Free Renewal Call</a>`;
 
 /**
- * Content keyword signals for topic detection.
- * Topics feed both Smart CTA templates and Service CTA hub mapping.
+ * Keyword signals → renewal topics (also feed service-cta hub mapping).
  */
 export const CONTENT_CTA_SIGNALS: Record<string, string[]> = {
-  rates: [
-    "renewal rate",
-    "mortgage rate",
-    "best rate",
-    "rate offer",
-    "posted rate",
-    "discounted rate",
-    "prime rate",
-    "bank of canada",
-  ],
-  switching: [
+  "switch-vs-stay": [
     "switch lender",
     "switching lender",
     "change lender",
     "transfer mortgage",
-    "discharge fee",
-    "port my mortgage",
+    "stay with your bank",
     "leave my bank",
+    "discharge fee",
   ],
-  checklist: [
+  "payment-shock": [
+    "payment shock",
+    "payment increase",
+    "payment jump",
+    "higher payment",
+    "renewal payment",
+  ],
+  "rates-and-news": [
+    "renewal rate",
+    "best rate",
+    "bank of canada",
+    "overnight rate",
+    "posted rate",
+    "rate forecast",
+  ],
+  "checklist-timeline": [
     "renewal checklist",
     "document checklist",
     "renewal letter",
-    "what to bring",
-    "paperwork",
+    "120 days",
+    "60 days",
+    "renewal window",
+    "renewal reminder",
   ],
-  calculator: [
+  "stress-test-fees": [
+    "stress test",
+    "osfi",
+    "b-20",
+    "qualifying rate",
+    "discharge",
+    "legal fee",
+    "ird",
+    "mortgage penalty",
+  ],
+  "calculators": [
     "calculator",
-    "payment shock",
-    "run the numbers",
     "break-even",
     "switch vs stay",
+    "run the numbers",
   ],
-  penalty: [
-    "mortgage penalty",
-    "ird",
-    "interest rate differential",
-    "three-month interest",
-    "break your mortgage",
-  ],
-  refinance: [
-    "refinanc",
-    "heloc",
-    "cash-out",
-    "equity takeout",
-    "renewal vs refinance",
-  ],
-  process: [
-    "renewal process",
-    "how renewal works",
-    "renewal timeline",
-    "auto-renew",
-    "renewal window",
-  ],
-  broker: [
-    "mortgage broker",
-    "brokerage",
-    "compare lenders",
-    "30+ lenders",
-  ],
-  "fixed-variable": [
-    "fixed vs variable",
-    "fixed rate",
-    "variable rate",
-    "trigger rate",
+  "first-renewal": [
+    "first renewal",
+    "first-time renewal",
+    "never renewed",
+    "first mortgage renewal",
   ],
 };
 
+/**
+ * Category / topic template banks — MortgageRenewalHub.ca voice only.
+ * Each template uses {link} for the booking markdown link.
+ */
 const SMART_CTA_TEMPLATES: Record<string, string[]> = {
-  renewal: [
-    "Before you sign your bank's renewal letter, it pays to compare — {link} and we'll shop 30+ lenders for your situation.",
-    "Auto-renewing is convenient, but it rarely gets you the best rate — {link} for a free second opinion.",
-    "Your renewal window is the easiest time to switch lenders with no stress test in most cases — {link} to see if a switch saves you money.",
-    "A 0.20% rate difference on a $400K mortgage adds up fast — {link} and we'll run the real payment math.",
+  "renewal-process": [
+    "Don't sign your bank's renewal letter on autopilot — {link} and we'll compare real offers from 30+ lenders for your maturity date.",
+    "Your renewal window is the easiest time to lock a better rate without the usual red tape — {link} for a free 15-minute plan.",
+    "A small rate gap on a $400K balance compounds for years — {link} before you auto-renew.",
   ],
-  rates: [
-    "Posted renewal rates aren't the whole story — {link} and we'll show you the discounted rates you may actually qualify for.",
-    "Rate shopping at renewal takes one call, not a week of bank visits — {link} to compare options side by side.",
+  "switch-vs-stay": [
+    "Stay vs switch isn't a guess — {link} and we'll net out discharge fees against the rate savings.",
+    "Most straight switches at maturity skip the stress test — {link} to see if leaving your bank is the cheaper move.",
+    "If your bank won't match a broker rate, switching is often cleaner than you think — {link} and we'll map the timeline.",
   ],
-  switching: [
-    "Switching at renewal is often free of the stress test — {link} and we'll map the discharge, legal, and rate trade-offs.",
-    "Don't assume leaving your bank means penalties — at term maturity you can usually walk — {link} to confirm for your lender.",
+  "rates-and-payments": [
+    "Posted renewal rates aren't what sharp borrowers pay — {link} and we'll show discounted options that fit your file.",
+    "BoC headlines matter less than the offer on your letter — {link} to pressure-test your renewal rate.",
   ],
-  checklist: [
-    "Having your documents ready speeds approval when you switch — {link} and we'll tell you exactly what your file needs.",
-    "A clear checklist beats scrambling in the last 30 days — {link} to get a renewal plan before the clock runs out.",
+  "payment-shock": [
+    "Facing a payment jump? {link} and we'll model term, amortization, and switch scenarios before you panic-sign.",
+    "Payment shock is fixable with the right structure — {link} for a free renewal strategy call.",
   ],
-  "mortgage-financing": [
-    "Before you commit to any renewal product, get a second opinion — {link} to see which options fit your financial picture.",
-    "Every borrower's situation is different, and the wrong term can cost thousands — {link} to make sure you're set up properly.",
+  "checklist-and-docs": [
+    "Documents ready? Next step is comparing offers — {link} while your 120-day window is still open.",
+    "A checklist without a rate plan still leaves money on the table — {link} once your paperwork is lined up.",
   ],
-  "investing-fundamentals": [
-    "Investment property renewals have different rules than your primary home — {link} before you auto-renew.",
-    "Portfolio renewals need coordination across lenders and terms — {link} to build a plan that scales with you.",
+  "qualification-and-rules": [
+    "Stress-test rules decide whether a switch is easy or hard — {link} and we'll confirm what applies to your file.",
+    "OSFI quirks shouldn't trap you with a weak bank offer — {link} for a clear yes/no on switching.",
+  ],
+  "tools-and-calculators": [
+    "Numbers looked good in the calculator? {link} and we'll turn the scenario into actual lender quotes.",
+    "Tools show the math — a broker finds the rate — {link} when you're ready to act on the result.",
+  ],
+  "life-situations": [
+    "Special situations need a custom renewal plan, not a generic bank letter — {link} with a licensed broker.",
+    "Divorce, self-employed income, or a rental property changes the playbook — {link} before you renew.",
+  ],
+  "lenders-and-provinces": [
+    "Your bank's renewal desk only shops one shelf — {link} and we'll compare across the market.",
+    "Provincial fees and lender habits differ — {link} so your switch plan matches where you live.",
+  ],
+  // Topic-key fallbacks (from CONTENT_CTA_SIGNALS)
+  "switch-vs-stay-topic": [
+    "Thinking about leaving your lender? {link} and we'll price the switch end-to-end.",
+  ],
+  "rates-and-news": [
+    "Rate news is noisy — your renewal letter is the signal — {link} to get a second opinion on the offer.",
+  ],
+  "checklist-timeline": [
+    "Still inside your renewal window? {link} before the 30-day scramble starts.",
+  ],
+  "stress-test-fees": [
+    "Discharge fees and stress-test rules can flip the stay-vs-switch math — {link} before you decide.",
+  ],
+  calculators: [
+    "Got a calculator result you trust? {link} and we'll match it to live lender pricing.",
+  ],
+  "first-renewal": [
+    "First renewal is when most Canadians overpay by auto-signing — {link} and do it once the right way.",
   ],
 };
 
 const FUNNEL_STAGE_TEMPLATES: Record<string, string[]> = {
   awareness: [
-    "If you're just starting to explore renewal options, {link} — it's free, and there's no obligation.",
-    "Not sure where to start? {link} and we'll help you figure out the right first step.",
+    "New to renewals? {link} — free, no obligation, and we'll explain your options in plain English.",
+    "Not sure where to start? {link} and we'll map your next 120 days.",
   ],
   consideration: [
-    "Comparing your renewal options is smart — {link} and we'll help you see which path fits best.",
-    "Before you narrow down, {link} to get a clear picture of rates and switch costs.",
+    "Comparing offers? {link} and we'll help you read the fine print before you commit.",
+    "Two quotes aren't enough — {link} to see what 30+ lenders would actually price.",
   ],
   decision: [
-    "You already know what you need — {link} and let's lock in your renewal strategy.",
-    "Ready to move? {link} and we'll fast-track your comparison.",
+    "Ready to lock something in? {link} and we'll move on your maturity timeline.",
+    "Don't let the bank's deadline box you in — {link} this week.",
   ],
 };
 
@@ -160,16 +180,25 @@ function detectContentTopic(content: string): string | null {
   return bestScore >= 3 ? bestTopic : null;
 }
 
+const TOPIC_TO_TEMPLATE_KEY: Record<string, string> = {
+  "switch-vs-stay": "switch-vs-stay",
+  "payment-shock": "payment-shock",
+  "rates-and-news": "rates-and-news",
+  "checklist-timeline": "checklist-timeline",
+  "stress-test-fees": "stress-test-fees",
+  calculators: "calculators",
+  "first-renewal": "first-renewal",
+};
+
 /**
- * Insert 1-2 Smart CTAs into article content.
- * Places them after the 2nd and optionally 4th H2 sections.
+ * Insert 1–2 Smart CTAs after early H2 sections.
  */
 export function insertSmartCTAs(
   content: string,
   category: string,
   _topicCluster?: string,
   aiGeneratedCTAs?: string[],
-  region?: string,
+  _region?: string,
   funnelStage?: "awareness" | "consideration" | "decision",
   locale: string = "en"
 ): string {
@@ -178,21 +207,21 @@ export function insertSmartCTAs(
     return content;
   }
 
-  const lang = (locale || "en").toLowerCase();
-  const isFr = lang === "fr";
+  const isFr = (locale || "en").toLowerCase() === "fr";
+  const bookingUrl = BOOKING_URL;
+  const linkText1 = isFr
+    ? "[réservez un appel gratuit de renouvellement avec Mortgage Renewal Hub](" +
+      bookingUrl +
+      ")"
+    : "[book a free renewal strategy call with Mortgage Renewal Hub](" +
+      bookingUrl +
+      ")";
+  const linkText2 = isFr
+    ? "[réservez un appel gratuit avec nous](" + bookingUrl + ")"
+    : "[book a free renewal call with us](" + bookingUrl + ")";
 
   let cta1: string;
   let cta2: string | null = null;
-
-  const bookingUrl = getBookingUrl(region);
-  const linkText1 = isFr
-    ? "[réservez un appel stratégique gratuit avec Mortgage Renewal Hub](" +
-      bookingUrl +
-      ")"
-    : "[book a free strategy call with Mortgage Renewal Hub](" + bookingUrl + ")";
-  const linkText2 = isFr
-    ? "[réservez un appel stratégique gratuit avec nous](" + bookingUrl + ")"
-    : "[schedule a free strategy session with us](" + bookingUrl + ")";
 
   if (aiGeneratedCTAs && aiGeneratedCTAs.length > 0) {
     cta1 = aiGeneratedCTAs[0].replace("{link}", linkText1);
@@ -202,11 +231,14 @@ export function insertSmartCTAs(
         : null;
   } else {
     const contentTopic = detectContentTopic(content);
-    const topicTemplates = contentTopic
-      ? SMART_CTA_TEMPLATES[contentTopic]
+    const topicKey = contentTopic
+      ? TOPIC_TO_TEMPLATE_KEY[contentTopic] || contentTopic
+      : null;
+    const topicTemplates = topicKey
+      ? SMART_CTA_TEMPLATES[topicKey]
       : undefined;
     const categoryTemplates =
-      SMART_CTA_TEMPLATES[category] || SMART_CTA_TEMPLATES.renewal;
+      SMART_CTA_TEMPLATES[category] || SMART_CTA_TEMPLATES["renewal-process"];
     const funnelTemplates = funnelStage
       ? FUNNEL_STAGE_TEMPLATES[funnelStage] || []
       : [];
@@ -243,28 +275,33 @@ export function insertSmartCTAs(
     if (h2Positions.length === 1) {
       const insertPos = h2Positions[0];
       return (
-        content.slice(0, insertPos) + "\n\n" + cta1 + "\n" + content.slice(insertPos)
+        content.slice(0, insertPos) +
+        "\n\n" +
+        cta1 +
+        "\n" +
+        content.slice(insertPos)
       );
     }
     return content + "\n\n" + cta1 + "\n";
   }
 
   const insertions: Array<{ pos: number; text: string }> = [];
-  const cta1Idx = Math.min(2, h2Positions.length - 1);
-  insertions.push({ pos: h2Positions[cta1Idx], text: cta1 });
-
+  insertions.push({
+    pos: h2Positions[Math.min(2, h2Positions.length - 1)],
+    text: cta1,
+  });
   if (cta2 && h2Positions.length >= 4) {
-    const cta2Idx = Math.min(4, h2Positions.length - 1);
-    insertions.push({ pos: h2Positions[cta2Idx], text: cta2 });
+    insertions.push({
+      pos: h2Positions[Math.min(4, h2Positions.length - 1)],
+      text: cta2,
+    });
   }
-
   insertions.sort((a, b) => b.pos - a.pos);
 
   let result = content;
   for (const { pos, text } of insertions) {
     result = result.slice(0, pos) + "\n\n" + text + "\n" + result.slice(pos);
   }
-
   return result;
 }
 
@@ -274,12 +311,9 @@ export function stripSmartCTAs(content: string): string {
     `[^\\n]*\\[[^\\]]+\\]\\(${escapedUrl}[^)]*\\)[^\\n]*`,
     "g"
   );
-  let result = content.replace(pattern, "");
-  result = result.replace(/\n{3,}/g, "\n\n");
-  return result;
+  return content.replace(pattern, "").replace(/\n{3,}/g, "\n\n");
 }
 
-/** Glossary CTAs are not used on this site — stubs for CLI compatibility. */
 export function insertGlossaryCTA(
   content: string,
   _term: string,

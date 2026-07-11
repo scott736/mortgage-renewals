@@ -1,210 +1,159 @@
 // ============================================
-// Mortgage Renewal Hub Automation - Configuration
+// Mortgage Renewal Hub Automation — Configuration
 // ============================================
 
-import type { TopicCluster, Category, AutomationConfig } from "./types";
+import type { TopicCluster, Category, AutomationConfig, ShowMappingEntry } from "./types";
 import configJson from "../../src/data/automation/config.json";
 
-// Export loaded config
 export const config = configJson as AutomationConfig;
 
-// ----------------
-// Model IDs
-// ----------------
-
 export const MODELS = {
-  /** Heavy content work: article writing, enhancement, glossary definitions */
   CONTENT: "grok-4.5",
-  /** Lighter analysis: metadata enrichment, SEO meta, link suggestions */
   ANALYSIS: "grok-4.5",
-  /** Utilitarian tasks: translation, basic cleanup, Smart CTAs */
   UTILITY: "grok-4.5",
 } as const;
 
-// ----------------
-// Cluster Adjacency Map
-// ----------------
-// Defines which clusters are related for scoring purposes
-
-// ----------------
-// Category to Cluster Mapping
-// ----------------
-// Default cluster assignments based on category
-
+/**
+ * Category → spoke clusters for hub-and-spoke linking.
+ * Renewers: guide hubs → blog/news → book-a-call.
+ */
 export const CATEGORY_TO_CLUSTERS: Record<Category, TopicCluster[]> = {
-  "mortgage-financing": [
-    "mortgage-basics",
-    "mortgage-qualification",
-    "refinancing-strategies",
-    "commercial-lending",
+  "renewal-process": [
+    "renewal-basics",
+    "first-renewal",
+    "subsequent-renewal",
+    "renewal-timeline",
   ],
-  "investing-fundamentals": [
-    "getting-started",
-    "rental-property-analysis",
-    "multifamily-investing",
-    "brrrr-flipping",
-    "market-analysis",
-    "short-term-rentals",
+  "switch-vs-stay": [
+    "switch-mechanics",
+    "penalty-and-break",
+    "refinance-vs-renew",
+    "broker-help",
   ],
-  "scaling-portfolio": [
-    "portfolio-scaling",
-    "multifamily-investing",
-    "brrrr-flipping",
-    "property-management",
+  "rates-and-payments": [
+    "rate-environment",
+    "payment-shock",
+    "fixed-vs-variable",
   ],
-  "partnerships-capital": [
-    "joint-ventures-partnerships",
-    "capital-raising",
-    "team-building",
-    "private-mortgage-investing",
-    "development-investing",
-  ],
-  "us-cross-border": [
-    "us-investing-basics",
-    "dscr-foreign-national",
-    "cross-border-tax-legal",
-  ],
-  "personal-finance-mindset": [
-    "investor-mindset",
-    "success-stories",
-    "team-building",
+  "checklist-and-docs": ["renewal-checklist", "renewal-timeline"],
+  "qualification-and-rules": ["stress-test-osfi", "switch-mechanics"],
+  "tools-and-calculators": ["calculator-tools", "payment-shock", "switch-mechanics"],
+  "life-situations": ["situation-renewal", "first-renewal", "broker-help"],
+  "lenders-and-provinces": [
+    "bank-lender-renewal",
+    "provincial-renewal",
+    "broker-help",
   ],
 };
 
-// ----------------
-// Approved Tags
-// ----------------
-// Tags that can be assigned to posts
+/** Clusters that commonly bridge (adjacency for scoring). */
+export const CLUSTER_ADJACENCY: Partial<Record<TopicCluster, TopicCluster[]>> = {
+  "renewal-basics": [
+    "first-renewal",
+    "renewal-timeline",
+    "renewal-checklist",
+    "switch-mechanics",
+  ],
+  "first-renewal": ["payment-shock", "renewal-checklist", "rate-environment"],
+  "subsequent-renewal": [
+    "fixed-vs-variable",
+    "refinance-vs-renew",
+    "rate-environment",
+  ],
+  "switch-mechanics": [
+    "stress-test-osfi",
+    "penalty-and-break",
+    "calculator-tools",
+    "broker-help",
+  ],
+  "stress-test-osfi": ["switch-mechanics", "calculator-tools"],
+  "rate-environment": [
+    "payment-shock",
+    "fixed-vs-variable",
+    "calculator-tools",
+  ],
+  "payment-shock": [
+    "first-renewal",
+    "rate-environment",
+    "calculator-tools",
+  ],
+  "fixed-vs-variable": ["rate-environment", "subsequent-renewal"],
+  "renewal-checklist": ["renewal-timeline", "renewal-basics", "first-renewal"],
+  "renewal-timeline": ["renewal-checklist", "renewal-basics"],
+  "penalty-and-break": ["switch-mechanics", "refinance-vs-renew"],
+  "refinance-vs-renew": ["switch-mechanics", "subsequent-renewal"],
+  "calculator-tools": [
+    "payment-shock",
+    "switch-mechanics",
+    "stress-test-osfi",
+  ],
+  "bank-lender-renewal": [
+    "switch-mechanics",
+    "broker-help",
+    "rate-environment",
+  ],
+  "provincial-renewal": ["renewal-basics", "broker-help"],
+  "situation-renewal": ["broker-help", "renewal-basics"],
+  "broker-help": ["switch-mechanics", "rate-environment", "renewal-basics"],
+};
 
 export const APPROVED_TAGS = [
-  "mortgage-basics",
-  "investment-strategy",
-  "rental-properties",
-  "portfolio-growth",
-  "mortgage-qualification",
-  "brrrr",
-  "multifamily",
-  "cash-flow",
-  "refinancing",
-  "canadian-investing",
-  "us-investing",
-  "dscr-loans",
-  "commercial-financing",
-  "mindset",
-  "success-stories",
-  "partnerships",
-  "getting-started",
-  "leverage",
-  "market-analysis",
-  "credit",
+  "renewal",
+  "first-renewal",
+  "payment-shock",
+  "rates",
+  "bank-of-canada",
+  "switching",
+  "discharge-fees",
+  "stress-test",
+  "osfi",
+  "checklist",
+  "documents",
+  "timeline",
+  "fixed-rate",
+  "variable-rate",
+  "penalty",
+  "refinance",
+  "heloc",
+  "calculator",
+  "broker",
+  "ontario",
+  "bc",
+  "alberta",
+  "quebec",
+  "td",
+  "rbc",
+  "scotiabank",
+  "bmo",
+  "cibc",
   "cmhc",
-  "down-payment",
-  "fix-and-flip",
-  "passive-investing",
-  "value-add",
-  "development",
-  "cross-border",
-  "tax-strategy",
-  "legal-structure",
-  "insurance",
-  "property-management",
-  "deal-finding",
-  "networking",
-  "real-estate-team",
   "self-employed",
-  "mortgage-rates",
-  "mortgage-costs",
-  "mortgage-brokers",
-  "distressed-properties",
-  "rural-property",
-  "short-term-rentals",
-  "single-family",
-  "entrepreneurship",
-  "career",
-  "education",
-  "wealth-building",
-  "financial-planning",
-  "due-diligence",
-  "renovation",
-  "selling",
+  "divorce",
+  "investment-property",
 ];
-
-// ----------------
-// Writing Style Prompts
-// ----------------
 
 export const WRITING_STYLE_PROMPT = `
 Write for Canadian homeowners facing mortgage renewal — clear, practical, and broker-honest (MortgageRenewalHub.ca).
 
 Voice characteristics:
 - Talk TO the reader like a licensed broker who's renewed hundreds of mortgages
-- Use plain Canadian mortgage language (renewal letter, switch, discharge, stress test)
+- Use plain Canadian mortgage language (renewal letter, switch, discharge, stress test, payment shock)
 - Short, direct sentences; concrete payment and rate examples in CAD
 - Be direct: "Do this. Don't auto-renew without comparing."
 - Use "you" and "your" constantly
 
 NEVER use:
 - Corporate buzzwords: navigate, leverage, utilize, optimize, synergy
+- Investor jargon (DSCR, BRRRR, NOI) unless the page is specifically about investment-property renewal
 - Filler phrases: "It's important to note", "In today's market", "At the end of the day"
-- "In conclusion" or "To summarize"
-- Passive voice when active is clearer
 `;
 
 const CANADIAN_CONTEXT_PROMPT = `
-For Canadian content:
-- Use "you" (Canadian investor) perspective
-- Reference Canadian cities, lenders, regulations
-- CMHC, provincial rules, CAD amounts
-- "Here in Canada..." or "For us Canadians..."
+For Canadian renewal content:
+- Reference Canadian banks, OSFI B-20, CMHC, provincial legal/notary fees
+- CAD amounts; Bank of Canada overnight rate context when discussing rates
+- Stress-test exemption on straight switches at maturity (when accurate)
 `;
-
-const US_CONTEXT_PROMPT = `
-For US content:
-- Use American market context
-- Reference US cities, Fannie/Freddie, USD
-- State-specific rules when relevant
-- "In the US market..." or "American investors..."
-`;
-
-// ----------------
-// SEO Prompts
-// ----------------
-
-const SEO_TITLE_PROMPT = `
-Generate an SEO-optimized title (50-60 chars):
-- Front-load the primary keyword
-- Include a benefit or hook
-- Use numbers when applicable ("5 Ways to...", "$100K...")
-- No years (keep evergreen)
-- Match search intent (how-to, guide, tips)
-
-GOOD: "BRRRR Strategy: Build a $1M Portfolio with One Property"
-BAD: "Everything You Need to Know About the BRRRR Strategy in 2026"
-`;
-
-const SEO_DESCRIPTION_PROMPT = `
-Generate a meta description (150-160 chars):
-- Start with action verb or benefit
-- Include primary and secondary keywords naturally
-- End with value proposition or CTA hook
-- Match the content's promise
-
-GOOD: "Learn how Canadian investors use DSCR loans to buy US rentals without income verification. Step-by-step guide with real numbers and lender contacts."
-BAD: "This article discusses DSCR loans and how they can be used by investors."
-`;
-
-// ----------------
-// Scoring Constants
-// ----------------
-
-// ----------------
-// Pillar Component Prefixes
-// ----------------
-// Maps pillar page slug to its component file prefix for content extraction
-
-// ----------------
-// File Paths
-// ----------------
 
 export const PATHS = {
   BLOG_CONTENT: "src/content/blog",
@@ -215,53 +164,20 @@ export const PATHS = {
   LINKER_V4: "src/data/linker-v4",
 };
 
-// ----------------
-// Show Mapping (Podcast)
-// ----------------
-// Maps Transistor show IDs to content settings
-
-export const SHOW_MAPPING: Record<
-  string,
-  {
-    category: string;
-    defaultPersona: "beginner" | "scaling-investor" | "cross-border" | "professional";
-    defaultCluster: TopicCluster;
-    autoPublish?: boolean;
-  }
-> = {
-  // The Wisdom, Lifestyle, Money Show - Helps train investors on how to grow
-  "71061": {
-    category: "investing-fundamentals",
-    defaultPersona: "beginner",
-    defaultCluster: "investor-mindset",
-    autoPublish: true,
-  },
-  // Close More Deals - For REALTORS - Helps realtors grow, covers mortgage programs
-  "71049": {
-    category: "mortgage-financing",
-    defaultPersona: "professional",
-    defaultCluster: "mortgage-basics",
-    autoPublish: true,
-  },
-  // Fallback for unknown shows
+/** Unused podcast mapping kept for type compatibility — defaults to renewal. */
+export const SHOW_MAPPING: Record<string, ShowMappingEntry> = {
   default: {
-    category: "investing-fundamentals",
-    defaultPersona: "beginner",
-    defaultCluster: "getting-started",
+    category: "renewal-process",
+    defaultPersona: "first-time-renewer",
+    defaultCluster: "renewal-basics",
     autoPublish: false,
   },
 };
 
-// ----------------
-// Prompts (Combined for easy access)
-// ----------------
-
 export const PROMPTS = {
   WRITING_STYLE: WRITING_STYLE_PROMPT,
   CANADIAN_CONTEXT: CANADIAN_CONTEXT_PROMPT,
-  US_CONTEXT: US_CONTEXT_PROMPT,
-  SEO: `${SEO_TITLE_PROMPT}\n\n${SEO_DESCRIPTION_PROMPT}`,
-  SEO_TITLE: SEO_TITLE_PROMPT,
-  SEO_DESCRIPTION: SEO_DESCRIPTION_PROMPT,
+  SEO: `Generate SEO title (50-60 chars) and meta description (150-160 chars) for Canadian mortgage renewal content. Front-load the renewal keyword; no hype.`,
+  SEO_TITLE: `SEO title 50-60 chars for mortgage renewal — front-load keyword, evergreen.`,
+  SEO_DESCRIPTION: `Meta description 150-160 chars — action + renewal benefit + Canada context.`,
 };
-

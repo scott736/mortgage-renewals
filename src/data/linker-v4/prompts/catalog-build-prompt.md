@@ -106,6 +106,55 @@ Return a JSON array of objects with this structure for each page:
 - **Region**: canada
 - **Tags**: quebec, provincial
 
+### What Is a Mortgage Renewal?
+- **URL**: /what-is-a-mortgage-renewal/
+- **Type**: pillar
+- **Description**: Plain-English explainer of Canadian mortgage renewals, timelines, and options at maturity.
+- **Region**: canada
+- **Tags**: renewal, basics
+
+### Payment Shock at Renewal
+- **URL**: /mortgage-renewal-payment-shock/
+- **Type**: pillar
+- **Description**: Why renewal payments rise and how to estimate and reduce payment shock in Canada.
+- **Region**: canada
+- **Tags**: payment-shock, rates
+
+### Stress Test at Renewal
+- **URL**: /stress-test-mortgage-renewal/
+- **Type**: pillar
+- **Description**: When the mortgage stress test applies at renewal and when switches are exempt.
+- **Region**: canada
+- **Tags**: stress-test, osfi
+
+### OSFI B-20 Stress Test at Renewal
+- **URL**: /osfi-b20-stress-test-at-renewal/
+- **Type**: pillar
+- **Description**: OSFI B-20 qualifying rules and how they shape renewal switches.
+- **Region**: canada
+- **Tags**: osfi, stress-test
+
+### Mortgage Discharge Fees Canada
+- **URL**: /mortgage-discharge-fees-canada/
+- **Type**: pillar
+- **Description**: Discharge fees and switch costs when leaving your lender at renewal.
+- **Region**: canada
+- **Tags**: discharge-fees, switching
+
+### First-Time Mortgage Renewal
+- **URL**: /first-time-mortgage-renewal/
+- **Type**: pillar
+- **Description**: What to expect at your first mortgage renewal — timeline, payment shock, and comparison checklist.
+- **Region**: canada
+- **Tags**: first-renewal
+
+### Canadian Lender Cheat Sheet
+- **URL**: /canadian-lender-cheat-sheet/
+- **Type**: pillar
+- **Description**: Compare Canadian lender types and renewal behaviors before you shop or switch.
+- **Region**: canada
+- **Tags**: lenders, broker
+
 ### Mortgage Renewal Calculator
 - **URL**: /mortgage-renewal-calculator/
 - **Type**: page

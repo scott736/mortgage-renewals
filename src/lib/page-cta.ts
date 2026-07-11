@@ -1,9 +1,17 @@
 /**
  * Contextual bottom-of-page CTA config for Mortgage Renewal Hub.
- * Primary action is always book-a-call; secondary is contextual.
+ * Fresh renewer copy — primary always /book-a-call/.
  */
 
-export type CtaActionType = "book-call" | "calculator" | "guide" | "checklist" | "rates" | "switching";
+export type CtaActionType =
+  | "book-call"
+  | "calculator"
+  | "guide"
+  | "checklist"
+  | "rates"
+  | "switching"
+  | "stress-test"
+  | "payment-shock";
 
 export interface CtaAction {
   type: CtaActionType;
@@ -22,29 +30,28 @@ type Lang = "en" | "fr";
 
 const STRINGS = {
   en: {
-    bookCall: "Book Free Strategy Call",
-    tryCalculator: "Use Renewal Calculator",
+    bookCall: "Book Free Renewal Call",
+    tryCalculator: "Run Renewal Calculator",
     readGuide: "Read the Renewal Guide",
     viewChecklist: "Open Renewal Checklist",
-    compareRates: "Compare Best Rates",
-    howSwitchingWorks: "How Switching Works",
+    compareRates: "See Best Renewal Rates",
+    howSwitchingWorks: "See How Switching Works",
     switchVsStay: "Switch vs Stay Calculator",
+    stressTest: "Stress Test at Renewal",
+    paymentShock: "Payment Shock Guide",
   },
   fr: {
-    bookCall: "Réserver un appel stratégique",
-    tryCalculator: "Utiliser le calculateur",
+    bookCall: "Réserver un appel de renouvellement",
+    tryCalculator: "Lancer le calculateur",
     readGuide: "Lire le guide de renouvellement",
     viewChecklist: "Ouvrir la liste de contrôle",
-    compareRates: "Comparer les meilleurs taux",
+    compareRates: "Voir les meilleurs taux",
     howSwitchingWorks: "Comment changer de prêteur",
     switchVsStay: "Calculateur changer ou rester",
+    stressTest: "Test de résistance",
+    paymentShock: "Guide choc de paiement",
   },
 } as const;
-
-const BOOK_CALL: Record<Lang, string> = {
-  en: "/book-a-call/",
-  fr: "/book-a-call/",
-};
 
 function prefixPath(lang: Lang, path: string): string {
   if (lang === "en") return path;
@@ -53,7 +60,11 @@ function prefixPath(lang: Lang, path: string): string {
 }
 
 function bookCall(lang: Lang): CtaAction {
-  return { type: "book-call", label: STRINGS[lang].bookCall, href: BOOK_CALL[lang] };
+  return {
+    type: "book-call",
+    label: STRINGS[lang].bookCall,
+    href: "/book-a-call/",
+  };
 }
 
 function calculator(lang: Lang, path: string, label?: string): CtaAction {
@@ -96,16 +107,13 @@ function switching(lang: Lang): CtaAction {
   };
 }
 
-/** Normalize pathname: strip trailing slash, extract lang and path without locale prefix. */
 export function parsePagePath(pathname: string): { lang: Lang; path: string } {
   let path = pathname.replace(/\/$/, "") || "/";
   let lang: Lang = "en";
-
   if (path.startsWith("/fr/") || path === "/fr") {
     lang = "fr";
     path = path === "/fr" ? "/" : path.slice(3) || "/";
   }
-
   if (!path.startsWith("/")) path = `/${path}`;
   return { lang, path };
 }
@@ -118,89 +126,126 @@ function defaultPageCta(lang: Lang): PageCtaConfig {
   return {
     title:
       lang === "fr"
-        ? "Prêt à économiser à votre renouvellement ?"
-        : "Ready to Save at Your Mortgage Renewal?",
+        ? "Ne renouvelez pas à l'aveugle"
+        : "Don't Auto-Renew Blind",
     description:
       lang === "fr"
-        ? "Réservez un appel stratégique gratuit avec un courtier hypothécaire agréé. Comparez les taux de 30+ prêteurs."
-        : "Book a free strategy call with a licensed Canadian mortgage broker. Compare rates from 30+ lenders and find the best deal for your renewal.",
+        ? "Réservez un appel gratuit avec un courtier agréé. On compare les offres de 30+ prêteurs avant la date d'échéance."
+        : "Book a free call with a licensed broker. We'll compare offers from 30+ lenders before your maturity date.",
     primary: bookCall(lang),
     secondary: guide(lang),
   };
 }
 
-/**
- * Contextual bottom-of-page CTA for static pages and blog posts.
- */
 export function getPageCta(pathname: string): PageCtaConfig {
   const { lang, path } = parsePagePath(pathname);
   const s = STRINGS[lang];
 
-  // Blog
   if (matches(path, /^\/blog(\/|$)/)) {
     return {
       title:
         lang === "fr"
           ? "Votre renouvellement approche ?"
-          : "Is Your Renewal Coming Up?",
+          : "Renewal coming up?",
       description:
         lang === "fr"
-          ? "Lisez le guide, puis réservez un appel pour comparer les offres avant d’auto-renouveler."
-          : "Read the guide, then book a call to compare offers before you auto-renew.",
+          ? "Passez du billet de nouvelles au plan d'action — guide evergreen, puis appel gratuit."
+          : "Go from news to a plan — read the evergreen guide, then book a free call.",
       primary: bookCall(lang),
       secondary: guide(lang),
     };
   }
 
-  // Guide hub
   if (path === "/mortgage-renewal-guide" || path.includes("guide-renouvellement")) {
     return {
       title:
         lang === "fr"
-          ? "Prêt à passer à l’action ?"
-          : "Ready to Put This Guide Into Action?",
+          ? "Passez du guide à l'action"
+          : "Put the guide into action",
       description:
         lang === "fr"
-          ? "Utilisez la liste de contrôle ou réservez un appel pour comparer les prêteurs."
-          : "Use the checklist or book a call and we’ll compare lenders for your renewal.",
+          ? "Cochez la liste de contrôle, puis réservez un appel pour comparer de vraies offres."
+          : "Tick the checklist, then book a call to compare real lender offers.",
       primary: bookCall(lang),
       secondary: checklist(lang),
     };
   }
 
-  // Switching
-  if (matches(path, /switching-lenders|changer-preteur|switch-vs-stay/)) {
+  if (matches(path, /first-time-mortgage-renewal|first-renewal/)) {
+    return {
+      title:
+        lang === "fr"
+          ? "Premier renouvellement — faites-le bien"
+          : "First renewal — do it once the right way",
+      description:
+        lang === "fr"
+          ? "La plupart des Canadiens signent trop vite. On compare les options avant l'échéance."
+          : "Most Canadians sign too fast. We'll compare options before maturity.",
+      primary: bookCall(lang),
+      secondary: checklist(lang),
+    };
+  }
+
+  if (matches(path, /switching-lenders|changer-preteur|switch-vs-stay|discharge/)) {
     return {
       title:
         lang === "fr"
           ? "Changer ou rester — on calcule avec vous"
-          : "Switch or Stay — Let’s Run the Numbers",
+          : "Switch or stay — we'll run the math",
       description:
         lang === "fr"
-          ? "Comparez les coûts de transfert et les économies de taux avec un courtier."
-          : "Compare transfer costs and rate savings with a licensed broker before you decide.",
+          ? "Frais de quittance, échéancier et économies de taux — clairs avant de décider."
+          : "Discharge fees, timeline, and rate savings — clear before you decide.",
       primary: bookCall(lang),
       secondary: calculator(lang, "/switch-vs-stay-calculator/", s.switchVsStay),
     };
   }
 
-  // Checklist
-  if (matches(path, /checklist|liste-de-controle|document-checklist/)) {
+  if (matches(path, /checklist|liste-de-controle|document-checklist|renewal-letter|renewal-reminder/)) {
     return {
       title:
         lang === "fr"
           ? "Documents prêts — et les taux ?"
-          : "Documents Ready — What About Rates?",
+          : "Docs ready — what about the rate?",
       description:
         lang === "fr"
-          ? "Une fois la liste cochée, comparez les taux avant de signer la lettre de votre banque."
-          : "Once the checklist is done, compare rates before you sign your bank’s letter.",
+          ? "Une fois la liste cochée, comparez avant de signer la lettre de la banque."
+          : "Once the checklist is done, compare before you sign the bank's letter.",
       primary: bookCall(lang),
       secondary: calculator(lang, "/mortgage-renewal-calculator/"),
     };
   }
 
-  // Rates / BoC
+  if (matches(path, /payment-shock/)) {
+    return {
+      title:
+        lang === "fr"
+          ? "Choc de paiement — options concrètes"
+          : "Payment shock — concrete options",
+      description:
+        lang === "fr"
+          ? "Terme, amortissement ou changement de prêteur — on modèle avant que vous signiez."
+          : "Term, amortization, or a lender switch — we'll model it before you sign.",
+      primary: bookCall(lang),
+      secondary: calculator(lang, "/mortgage-renewal-calculator/"),
+    };
+  }
+
+  if (matches(path, /stress-test|osfi-b20/)) {
+    return {
+      title:
+        lang === "fr"
+          ? "Le test de résistance décide-t-il pour vous ?"
+          : "Does the stress test decide for you?",
+      description:
+        lang === "fr"
+          ? "On confirme si un transfert simple est exempté — puis on compare les prêteurs."
+          : "We'll confirm whether a straight switch is exempt — then compare lenders.",
+      primary: bookCall(lang),
+      secondary: switching(lang),
+    };
+  }
+
   if (
     matches(
       path,
@@ -210,34 +255,32 @@ export function getPageCta(pathname: string): PageCtaConfig {
     return {
       title:
         lang === "fr"
-          ? "Besoin d’aide pour interpréter ces taux ?"
-          : "Need Help Interpreting These Rates?",
+          ? "Les tableaux, c'est l'étape 1"
+          : "Rate tables are step one",
       description:
         lang === "fr"
-          ? "Les tableaux sont un point de départ — un appel transforme les taux en plan de renouvellement."
-          : "Rate tables are step one — a strategy call turns the numbers into a renewal plan.",
+          ? "Un appel transforme les taux affichés en plan de renouvellement pour votre dossier."
+          : "A call turns posted rates into a renewal plan for your file.",
       primary: bookCall(lang),
       secondary: calculator(lang, "/mortgage-renewal-calculator/"),
     };
   }
 
-  // Calculators
   if (matches(path, /calculator|calculateur/)) {
     return {
       title:
         lang === "fr"
-          ? "Les chiffres ont du sens — et maintenant ?"
-          : "The Numbers Make Sense — What’s Next?",
+          ? "Les chiffres collent — et maintenant ?"
+          : "The numbers check out — now what?",
       description:
         lang === "fr"
-          ? "Réservez un appel pour comparer les offres réelles, ou consultez les meilleurs taux."
-          : "Book a call to compare real lender offers, or check today’s best renewal rates.",
+          ? "Réservez un appel pour des offres réelles, ou consultez les meilleurs taux."
+          : "Book a call for live offers, or check today's best renewal rates.",
       primary: bookCall(lang),
       secondary: rates(lang),
     };
   }
 
-  // Bank / lender pages
   if (
     matches(
       path,
@@ -247,18 +290,17 @@ export function getPageCta(pathname: string): PageCtaConfig {
     return {
       title:
         lang === "fr"
-          ? "Ne renouvelez pas automatiquement"
-          : "Don’t Auto-Renew With Your Bank",
+          ? "Votre banque ne magasine qu'une tablette"
+          : "Your bank only shops one shelf",
       description:
         lang === "fr"
-          ? "Comparez l’offre de votre banque avec d’autres prêteurs — souvent sans test de résistance au renouvellement."
-          : "Compare your bank’s offer against other lenders — often with no stress test at renewal.",
+          ? "Comparez l'offre de renouvellement avec d'autres prêteurs — souvent sans test de résistance."
+          : "Compare your renewal offer across lenders — often with no stress test.",
       primary: bookCall(lang),
       secondary: switching(lang),
     };
   }
 
-  // Provincial
   if (
     matches(
       path,
@@ -268,87 +310,82 @@ export function getPageCta(pathname: string): PageCtaConfig {
     return {
       title:
         lang === "fr"
-          ? "Renouvellement dans votre province ?"
-          : "Renewing in Your Province?",
+          ? "Renouvellement dans votre province"
+          : "Renewing in your province",
       description:
         lang === "fr"
-          ? "Utilisez la liste de contrôle, puis réservez un appel pour des options locales."
-          : "Use the checklist, then book a call for lender options that fit your province.",
+          ? "Liste de contrôle locale, puis appel pour des options de prêteurs qui collent."
+          : "Local checklist first, then a call for lender options that fit.",
       primary: bookCall(lang),
       secondary: checklist(lang),
     };
   }
 
-  // Situation / specialty guides
   if (
     matches(
       path,
-      /divorce|self-employed|bad-credit|job-loss|investment-property|first-time|seniors|payment-shock|military|new-to-canada|expat|estate|co-ownership|stress-test|blend-and-extend|heloc|penalty|discharge|negotiation/
+      /divorce|self-employed|bad-credit|job-loss|investment-property|seniors|military|new-to-canada|expat|estate|co-ownership|blend-and-extend|heloc|negotiation/
     )
   ) {
     return {
       title:
         lang === "fr"
           ? "Votre situation mérite un plan sur mesure"
-          : "Your Situation Deserves a Custom Plan",
+          : "Your situation needs a custom plan",
       description:
         lang === "fr"
           ? "Réservez un appel gratuit — ou commencez par le guide de renouvellement."
-          : "Book a free call — or start with the full renewal guide for the big picture.",
+          : "Book a free call — or start with the full renewal guide.",
       primary: bookCall(lang),
       secondary: guide(lang),
     };
   }
 
-  // FAQ / case studies
-  if (matches(path, /faq|case-studies|reviews/)) {
+  if (matches(path, /faq|case-studies/)) {
     return {
       title:
         lang === "fr"
-          ? "Encore des questions sur votre renouvellement ?"
-          : "Still Have Questions About Your Renewal?",
+          ? "Encore des questions ?"
+          : "Still have questions?",
       description:
         lang === "fr"
-          ? "Parlez directement à un courtier — sans obligation, juste des réponses claires."
-          : "Talk directly with a broker — no obligation, just clear answers.",
+          ? "Parlez à un courtier — sans obligation, juste des réponses claires."
+          : "Talk to a broker — no obligation, just clear answers.",
       primary: bookCall(lang),
       secondary: guide(lang),
     };
   }
 
-  // Homepage
   if (path === "/") {
     return {
       title:
         lang === "fr"
-          ? "Prêt pour votre renouvellement hypothécaire ?"
-          : "Ready for Your Mortgage Renewal?",
+          ? "Prêt pour votre renouvellement ?"
+          : "Ready for your renewal?",
       description:
         lang === "fr"
-          ? "Comparez les taux, utilisez nos calculateurs, et réservez un appel gratuit avec un courtier agréé."
-          : "Compare rates, use our calculators, and book a free call with a licensed broker.",
+          ? "Comparez les taux, utilisez les calculateurs, puis réservez un appel gratuit."
+          : "Compare rates, use the calculators, then book a free call.",
       primary: bookCall(lang),
       secondary: rates(lang),
     };
   }
 
-  // Legal / soft
-  if (matches(path, /terms|privacy|cookie|accessibility|editorial/)) {
+  if (matches(path, /terms|privacy|cookie|accessibility/)) {
     return {
       title:
         lang === "fr"
           ? "Des questions sur le renouvellement ?"
-          : "Questions About Mortgage Renewal?",
+          : "Questions about renewal?",
       description:
         lang === "fr"
-          ? "Nous sommes là pour vous aider à comprendre vos options en toute transparence."
-          : "We’re here to help you understand your options with transparency.",
+          ? "On explique vos options clairement — sans jargon de banque."
+          : "We'll explain your options clearly — without bank jargon.",
       primary: bookCall(lang),
       secondary: guide(lang),
     };
   }
 
-  // Skip conversion pages themselves
   if (matches(path, /^\/(book-a-call|contact|pricing)(\/|$)/)) {
     return defaultPageCta(lang);
   }

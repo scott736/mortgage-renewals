@@ -23,36 +23,30 @@ export const MIN_LINKWHEN_OVERLAP = 3;
 export const FINANCING_INTENT_TERMS = new Set([
   "mortgage",
   "mortgages",
-  "finance",
-  "financing",
+  "renewal",
+  "renew",
+  "renewing",
   "lender",
   "lenders",
-  "lending",
-  "qualify",
-  "qualification",
-  "qualifying",
+  "switch",
+  "switching",
+  "discharge",
+  "stress",
+  "osfi",
   "rates",
-  "cmhc",
-  "dscr",
+  "rate",
+  "payment",
+  "penalty",
   "refinance",
   "refinancing",
-  "amortization",
-  "pre-approval",
-  "preapproval",
+  "heloc",
   "broker",
   "brokers",
-  "loan",
-  "loans",
-  "underwriting",
-  "underwrite",
-  "ltv",
-  "gds",
-  "tds",
-  "insured",
-  "conventional",
-  "funding",
-  "approval",
-  "approved",
+  "amortization",
+  "fixed",
+  "variable",
+  "checklist",
+  "maturity",
 ]);
 
 const NUMERIC_DATA_PATTERNS = [
@@ -172,18 +166,10 @@ export function passesConceptGate(
 const SPECIALIZED_CONCEPT_TARGETS: Partial<
   Record<FinancingConcept, FinancingConcept[]>
 > = {
-  "self-storage-financing": [
-    "self-storage-financing",
-    "commercial-financing",
-    "bridge-financing",
-    "lender-selection",
-  ],
-  "development-ground-up": ["development-ground-up", "cmhc-programs", "bridge-financing"],
-  "multifamily-investing": [
-    "multifamily-investing",
-    "commercial-financing",
-    "cmhc-programs",
-  ],
+  "stress-test-osfi": ["stress-test-osfi", "switch-vs-stay", "calculator-tools"],
+  "discharge-fees": ["discharge-fees", "switch-vs-stay", "calculator-tools"],
+  "payment-shock": ["payment-shock", "rate-environment", "calculator-tools", "first-renewal"],
+  "first-renewal": ["first-renewal", "renewal-process", "payment-shock", "renewal-checklist"],
 };
 
 /** v8: specialized asset contexts require matching target concepts. */
@@ -197,20 +183,6 @@ export function passesSpecializedAssetGate(
   const targetConcepts = (meta.financingConcepts || []) as FinancingConcept[];
   const targetAssets = meta.assetTypes || [];
 
-  if (/\bself[- ]storage\b/i.test(anchor)) {
-    if (targetAssets.some((a) => a === "office")) {
-      return { passed: false, reason: "specialized-asset-mismatch: self-storage to office" };
-    }
-    const ok =
-      targetConcepts.includes("self-storage-financing") ||
-      targetAssets.some((a) => a.includes("self-storage")) ||
-      targetConcepts.some((c) =>
-        SPECIALIZED_CONCEPT_TARGETS["self-storage-financing"]?.includes(c)
-      );
-    if (!ok) {
-      return { passed: false, reason: "specialized-asset-mismatch: self-storage" };
-    }
-  }
 
   for (const [requiredContext, allowedTargets] of Object.entries(
     SPECIALIZED_CONCEPT_TARGETS

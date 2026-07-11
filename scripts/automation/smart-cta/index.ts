@@ -78,7 +78,7 @@ async function generateForArticle(options: CLIOptions): Promise<void> {
   const { frontmatter, body } = parseFrontmatter<Record<string, any>>(raw);
   const metadata = {
     title: frontmatter.title || "Untitled",
-    category: frontmatter.category || "investing-fundamentals",
+    category: frontmatter.category || "renewal-process",
     topicCluster: frontmatter.topicCluster as string | undefined,
     region: frontmatter.region as string | undefined,
     tags: frontmatter.tags as string[] | undefined,
@@ -335,7 +335,7 @@ async function processOneFile(
 
   const metadata = {
     title: frontmatter.title || "Untitled",
-    category: frontmatter.category || "investing-fundamentals",
+    category: frontmatter.category || "renewal-process",
     topicCluster: frontmatter.topicCluster as string | undefined,
     region: frontmatter.region as string | undefined,
     tags: frontmatter.tags as string[] | undefined,

@@ -1,6 +1,6 @@
 # Mortgage Renewal Hub Site — All Linkable Pages
-# Generated: 2026-07-11T21:39:57.859Z
-# Total: 31 pages
+# Generated: 2026-07-11T21:54:48.647Z
+# Total: 38 pages
 
 ## Service & Financing Pages
 - Mortgage Renewal Guide Canada (/mortgage-renewal-guide/) — Complete guide to renewing your Canadian mortgage — timeline, documents, negotiation, and when to switch lenders. [renewal, guide, process]
@@ -14,6 +14,13 @@
 - BC Mortgage Renewal (/bc-mortgage-renewal/) — British Columbia mortgage renewal guide — rates, switching, and provincial considerations. [bc, provincial]
 - Alberta Mortgage Renewal (/alberta-mortgage-renewal/) — Alberta mortgage renewal guide for homeowners comparing rates and lenders. [alberta, provincial]
 - Quebec Mortgage Renewal (/quebec-mortgage-renewal/) — Quebec mortgage renewal — notary fees, Desjardins, and switching rules. [quebec, provincial]
+- What Is a Mortgage Renewal? (/what-is-a-mortgage-renewal/) — Plain-English explainer of Canadian mortgage renewals, timelines, and options at maturity. [renewal, basics]
+- Payment Shock at Renewal (/mortgage-renewal-payment-shock/) — Why renewal payments rise and how to estimate and reduce payment shock in Canada. [payment-shock, rates]
+- Stress Test at Renewal (/stress-test-mortgage-renewal/) — When the mortgage stress test applies at renewal and when switches are exempt. [stress-test, osfi]
+- OSFI B-20 Stress Test at Renewal (/osfi-b20-stress-test-at-renewal/) — OSFI B-20 qualifying rules and how they shape renewal switches. [osfi, stress-test]
+- Mortgage Discharge Fees Canada (/mortgage-discharge-fees-canada/) — Discharge fees and switch costs when leaving your lender at renewal. [discharge-fees, switching]
+- First-Time Mortgage Renewal (/first-time-mortgage-renewal/) — What to expect at your first mortgage renewal — timeline, payment shock, and comparison checklist. [first-renewal]
+- Canadian Lender Cheat Sheet (/canadian-lender-cheat-sheet/) — Compare Canadian lender types and renewal behaviors before you shop or switch. [lenders, broker]
 - Mortgage Renewal Calculator (/mortgage-renewal-calculator/) — Estimate your new renewal payment at different rates and terms. [calculator, payment]
 - Switch vs Stay Calculator (/switch-vs-stay-calculator/) — Compare staying with your bank versus switching lenders at renewal. [calculator, switching]
 - Mortgage Penalty Calculator (/mortgage-penalty-calculator/) — Estimate IRD or three-month interest penalties if you break your mortgage early. [calculator, penalty]
@@ -30,7 +37,7 @@
 - RBC Mortgage Renewal (/rbc-mortgage-renewal/) — RBC mortgage renewal guide — rates, process, and switching alternatives. [rbc, lender]
 - Scotiabank Mortgage Renewal (/scotiabank-mortgage-renewal/) — Scotiabank mortgage renewal — compare offers and switch options. [scotiabank, lender]
 
-## Investment Strategy Articles
+## Renewal Process Articles
 - Bank of Canada Holds at 2.25% — What It Means for July 2026 Renewals (/blog/boc-holds-rate-june-2026-renewals/) — BoC held the overnight rate at 2.25% on June 10, 2026 (prime 4.45%). Next decision July 15. How a steady policy rate affects fixed vs variable renewal choices. [Bank of Canada, Renewal Rates]
 - CMHC Spring 2026: One Million Households Still Renewing (/blog/cmhc-spring-2026-renewal-wave/) — CMHC's Spring 2026 RMIR projects roughly one million mortgage renewals in 2026 — down from the 2025 peak but still elevated. What it means for payment shock. [Market Data, Payment Shock]
 - Mortgage Discharge Fees Still Matter in July 2026 — Even With Legal-Paid Switches (/blog/discharge-fees-switch-costs-july-2026/) — TD and Scotia still charge ~$340 to discharge. Here's how switch promos, collateral charges, and Quebec notary fees change your net renewal math. [Switching Lenders, Discharge Fees, Renewal News]

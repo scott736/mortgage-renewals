@@ -55,12 +55,14 @@ export const CATEGORY_ADJACENCY: Record<string, string[]> = {
 // ----------------
 
 export const CATEGORY_LABELS: Record<string, string> = {
-  "mortgage-financing": "Mortgage & Financing",
-  "investing-fundamentals": "Investment Strategy",
-  "scaling-portfolio": "Scaling & Portfolio Growth",
-  "partnerships-capital": "Partnerships & Capital",
-  "us-cross-border": "US & Cross-Border Investing",
-  "personal-finance-mindset": "Mindset & Success Stories",
+  "renewal-process": "Renewal Process",
+  "switch-vs-stay": "Switch vs Stay",
+  "rates-and-payments": "Rates & Payments",
+  "checklist-and-docs": "Checklist & Documents",
+  "qualification-and-rules": "Stress Test & Rules",
+  "tools-and-calculators": "Calculators & Tools",
+  "life-situations": "Life Situations",
+  "lenders-and-provinces": "Lenders & Provinces",
 };
 
 // ----------------
@@ -69,13 +71,6 @@ export const CATEGORY_LABELS: Record<string, string> = {
 
 /** Generic anchors that are never acceptable */
 export const GENERIC_ANCHORS = [
-  "real estate investors",
-  "real estate investing",
-  "investment property",
-  "investment properties",
-  "investment strategies",
-  "financing options",
-  "mortgage options",
   "click here",
   "learn more",
   "read more",
@@ -85,6 +80,8 @@ export const GENERIC_ANCHORS = [
   "this post",
   "here",
   "this page",
+  "mortgage options",
+  "financing options",
   "our guide",
   "our article",
   "property investors",

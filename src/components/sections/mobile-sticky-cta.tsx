@@ -11,7 +11,7 @@ export default function MobileStickyCta() {
         onClick={() => trackCtaClick("mobile_sticky", "/book-a-call/")}
         className="block w-full rounded-lg bg-primary-100 text-white text-center py-3.5 font-semibold text-body-md-bold"
       >
-        Book Free Broker Consultation
+        Book Free Renewal Call
       </a>
       <p className="mt-2 text-center text-body-xs text-muted-foreground">
         Or call{" "}

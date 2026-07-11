@@ -11,9 +11,9 @@ export type MidContentCtaProps = {
 };
 
 export default function MidContentCta({
-  title = "Want help with your renewal?",
-  description = "Book a free 30-minute call — a licensed broker will compare rates from 30+ lenders for your situation.",
-  primaryLabel = "Book Free Strategy Call",
+  title = "Don't auto-renew without a second look",
+  description = "Book a free renewal call — a licensed broker will compare rates from 30+ lenders against your bank's letter.",
+  primaryLabel = "Book Free Renewal Call",
   primaryHref = "/book-a-call/",
 }: MidContentCtaProps) {
   return (

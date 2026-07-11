@@ -36,50 +36,45 @@ const MAX_PILLARS_PER_CATEGORY = 3;
  * unreadable. Kept in sync with PILLAR_PAGES in build-catalog.ts.
  */
 export const FALLBACK_CATEGORY_PILLARS: Record<string, string[]> = {
-  renewal: [
+  "renewal-process": [
     "/mortgage-renewal-guide/",
-    "/mortgage-renewal-checklist/",
-    "/mortgage-broker-renewal/",
+    "/what-is-a-mortgage-renewal/",
+    "/mortgage-renewal-mistakes/",
   ],
-  rates: [
-    "/best-mortgage-renewal-rates/",
-    "/current-mortgage-rates-canada/",
-    "/fixed-vs-variable-mortgage-renewal/",
-  ],
-  switching: [
+  "switch-vs-stay": [
     "/switching-lenders-at-renewal/",
     "/switch-vs-stay-calculator/",
-    "/mortgage-renewal-guide/",
+    "/mortgage-discharge-fees-canada/",
   ],
-  checklist: [
+  "rates-and-payments": [
+    "/best-mortgage-renewal-rates/",
+    "/mortgage-renewal-payment-shock/",
+    "/current-mortgage-rates-canada/",
+  ],
+  "checklist-and-docs": [
     "/mortgage-renewal-checklist/",
-    "/mortgage-renewal-guide/",
+    "/renewal-letter-decoder/",
+    "/renewal-reminder/",
   ],
-  calculators: [
+  "qualification-and-rules": [
+    "/stress-test-mortgage-renewal/",
+    "/osfi-b20-stress-test-at-renewal/",
+    "/mortgage-discharge-fees-canada/",
+  ],
+  "tools-and-calculators": [
     "/mortgage-renewal-calculator/",
     "/switch-vs-stay-calculator/",
     "/mortgage-penalty-calculator/",
   ],
-  refinance: [
-    "/renewal-vs-refinancing/",
+  "life-situations": [
     "/mortgage-renewal-guide/",
-  ],
-  broker: [
+    "/first-time-mortgage-renewal/",
     "/mortgage-broker-renewal/",
-    "/mortgage-renewal-guide/",
   ],
-  // Legacy LendCity category keys → renewal hubs (blog may omit category)
-  "mortgage-financing": [
-    "/mortgage-renewal-guide/",
-    "/best-mortgage-renewal-rates/",
-    "/switching-lenders-at-renewal/",
-  ],
-  "investing-fundamentals": [
-    "/mortgage-renewal-guide/",
-    "/investment-property-renewal/",
-  ],
-  "personal-finance-mindset": [
-    "/mortgage-renewal-guide/",
+  "lenders-and-provinces": [
+    "/mortgage-broker-renewal/",
+    "/canadian-lender-cheat-sheet/",
+    "/ontario-mortgage-renewal/",
   ],
 };
 

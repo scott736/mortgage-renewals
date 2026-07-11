@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-07-11T21:39:57.859Z",
-  "totalPages": 31,
+  "generatedAt": "2026-07-11T21:54:48.647Z",
+  "totalPages": 38,
   "pages": [
     {
       "slug": "mortgage-renewal-guide",
@@ -9,25 +9,42 @@
       "type": "pillar",
       "description": "Complete guide to renewing your Canadian mortgage — timeline, documents, negotiation, and when to switch lenders.",
       "region": "canada",
-      "category": "renewal",
+      "category": "renewal-process",
       "tags": [
         "renewal",
         "guide",
         "process"
       ],
-      "readerPromise": "Complete guide to renewing your Canadian mortgage — timeline, documents, negotiation, and when to switch lenders.",
+      "readerPromise": "Walk through the full Canadian mortgage renewal process — timeline, documents, negotiation, and when switching beats staying.",
       "topicsCovered": [
-        "renewal",
-        "guide",
-        "process"
+        "Renewal timeline (120/60/30 days)",
+        "Reading your renewal letter",
+        "Comparing bank offers",
+        "Switching vs staying",
+        "Working with a broker"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "How does mortgage renewal work in Canada?",
+        "What should I do 120 days before maturity?",
+        "Should I auto-renew with my bank?"
+      ],
+      "linkWhen": [
+        "when the reader needs the full renewal process overview",
+        "when linking from news/blog to the evergreen guide hub"
+      ],
+      "doNotLinkWhen": [
+        "when a more specific hub (rates, checklist, switching, stress test) is clearly better"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied",
+        "investment-property"
+      ],
+      "financingConcepts": [
+        "renewal-process",
+        "renewal-timeline",
+        "broker-help"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "best-mortgage-renewal-rates",
@@ -36,22 +53,39 @@
       "type": "pillar",
       "description": "Compare current mortgage renewal rates for fixed and variable terms across Canadian lenders.",
       "region": "canada",
-      "category": "rates",
+      "category": "rates-and-payments",
       "tags": [
         "rates",
         "renewal"
       ],
-      "readerPromise": "Compare current mortgage renewal rates for fixed and variable terms across Canadian lenders.",
+      "readerPromise": "Compare current Canadian mortgage renewal rates for fixed and variable terms.",
       "topicsCovered": [
-        "rates",
-        "renewal"
+        "Best renewal rates",
+        "Fixed vs variable rate offers",
+        "Rate shopping at renewal",
+        "Broker vs bank rates"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "What are today's best mortgage renewal rates in Canada?",
+        "How do I compare renewal rate offers?"
+      ],
+      "linkWhen": [
+        "when renewal rates or rate shopping are the topic",
+        "when BoC news needs an evergreen rates destination"
+      ],
+      "doNotLinkWhen": [
+        "when the paragraph is about stress-test qualification math only"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
+        "fixed",
+        "variable"
+      ],
+      "financingConcepts": [
+        "rate-environment",
+        "fixed-vs-variable"
+      ],
+      "topicsExcluded": [
+        "document-checklist-only"
       ]
     },
     {
@@ -61,23 +95,37 @@
       "type": "pillar",
       "description": "Step-by-step checklist of documents and actions before your mortgage renewal date.",
       "region": "canada",
-      "category": "checklist",
+      "category": "checklist-and-docs",
       "tags": [
         "checklist",
         "documents"
       ],
-      "readerPromise": "Step-by-step checklist of documents and actions before your mortgage renewal date.",
+      "readerPromise": "Use a step-by-step checklist of documents and actions before your mortgage renewal date.",
       "topicsCovered": [
-        "checklist",
-        "documents"
+        "Document checklist",
+        "Renewal letter review",
+        "Timeline reminders",
+        "Prep for switching"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "What documents do I need for mortgage renewal?",
+        "What should I check off before maturity?"
+      ],
+      "linkWhen": [
+        "when documents, prep steps, or first-renewal checklists are discussed"
+      ],
+      "doNotLinkWhen": [
+        "when the reader only needs a calculator or rate quote"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "renewal-checklist",
+        "renewal-timeline",
+        "first-renewal"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "switching-lenders-at-renewal",
@@ -86,22 +134,42 @@
       "type": "pillar",
       "description": "How to switch mortgage lenders at renewal in Canada — stress test rules, discharge fees, and timeline.",
       "region": "canada",
-      "category": "switching",
+      "category": "switch-vs-stay",
       "tags": [
         "switching",
         "transfer"
       ],
-      "readerPromise": "How to switch mortgage lenders at renewal in Canada — stress test rules, discharge fees, and timeline.",
+      "readerPromise": "Learn how to switch mortgage lenders at renewal in Canada — stress-test rules, discharge fees, and timeline.",
       "topicsCovered": [
-        "switching",
-        "transfer"
+        "Straight switch at maturity",
+        "Stress-test exemption",
+        "Discharge and legal fees",
+        "Collateral vs standard charge",
+        "Switch timeline"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "Can I switch lenders at renewal without a stress test?",
+        "What fees apply when I leave my bank?",
+        "How long does a switch take?"
+      ],
+      "linkWhen": [
+        "when discussing switching banks or transferring at maturity",
+        "when discharge fees or switch eligibility are mentioned"
+      ],
+      "doNotLinkWhen": [
+        "when the reader is only comparing fixed vs variable product choice"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
+        "owner-occupied",
+        "investment-property"
+      ],
+      "financingConcepts": [
+        "switch-vs-stay",
+        "stress-test-osfi",
+        "discharge-fees"
+      ],
+      "topicsExcluded": [
+        "rate-shopping-only"
       ]
     },
     {
@@ -111,23 +179,36 @@
       "type": "pillar",
       "description": "When to renew versus refinance — equity takeout, HELOC, and payment goals at term end.",
       "region": "canada",
-      "category": "refinance",
+      "category": "switch-vs-stay",
       "tags": [
         "refinance",
         "heloc"
       ],
-      "readerPromise": "When to renew versus refinance — equity takeout, HELOC, and payment goals at term end.",
+      "readerPromise": "Decide when a straight renewal is enough and when refinancing or a HELOC makes more sense.",
       "topicsCovered": [
-        "refinance",
-        "heloc"
+        "Renewal vs refinance",
+        "Equity access",
+        "HELOC at renewal",
+        "Requalification differences"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "Should I renew or refinance?",
+        "When does a HELOC beat a cash-out refinance at renewal?"
+      ],
+      "linkWhen": [
+        "when comparing renewal to refinance or equity takeout"
+      ],
+      "doNotLinkWhen": [
+        "when the reader only wants a rate comparison on a straight renewal"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied",
+        "investment-property"
+      ],
+      "financingConcepts": [
+        "refinance-vs-renew"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "mortgage-broker-renewal",
@@ -136,23 +217,37 @@
       "type": "pillar",
       "description": "How a mortgage broker helps at renewal — comparing 30+ lenders without bank shopping yourself.",
       "region": "canada",
-      "category": "broker",
+      "category": "lenders-and-provinces",
       "tags": [
         "broker",
         "renewal"
       ],
-      "readerPromise": "How a mortgage broker helps at renewal — comparing 30+ lenders without bank shopping yourself.",
+      "readerPromise": "See how a mortgage broker helps at renewal — comparing 30+ lenders without bank-shopping yourself.",
       "topicsCovered": [
-        "broker",
-        "renewal"
+        "Broker at renewal",
+        "Multi-lender shopping",
+        "Free broker compensation",
+        "When to call a broker"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "Should I use a broker for my renewal?",
+        "How does a broker get paid at renewal?"
+      ],
+      "linkWhen": [
+        "when recommending multi-lender shopping or broker help at renewal"
+      ],
+      "doNotLinkWhen": [
+        "when the reader is mid-calculator and only needs a tool link"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "broker-help",
+        "switch-vs-stay",
+        "rate-environment"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "fixed-vs-variable-mortgage-renewal",
@@ -161,23 +256,37 @@
       "type": "pillar",
       "description": "Choose fixed or variable at mortgage renewal — payment stability, trigger rates, and break costs.",
       "region": "canada",
-      "category": "rates",
+      "category": "rates-and-payments",
       "tags": [
         "fixed",
         "variable"
       ],
       "readerPromise": "Choose fixed or variable at mortgage renewal — payment stability, trigger rates, and break costs.",
       "topicsCovered": [
+        "Fixed vs variable at renewal",
+        "Trigger rate",
+        "Break penalties by product",
+        "BoC path dependency"
+      ],
+      "questionsAnswered": [
+        "Should I renew into fixed or variable?",
+        "How does trigger rate affect variable renewals?"
+      ],
+      "linkWhen": [
+        "when the reader is choosing rate type at renewal"
+      ],
+      "doNotLinkWhen": [
+        "when the topic is only BoC policy without product choice"
+      ],
+      "assetTypes": [
         "fixed",
         "variable"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
-      "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+      "financingConcepts": [
+        "renewal-process",
+        "fixed-vs-variable"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "ontario-mortgage-renewal",
@@ -186,23 +295,35 @@
       "type": "pillar",
       "description": "Ontario-specific mortgage renewal tips, legal fees, and lender options.",
       "region": "canada",
-      "category": "renewal",
+      "category": "lenders-and-provinces",
       "tags": [
         "ontario",
         "provincial"
       ],
       "readerPromise": "Ontario-specific mortgage renewal tips, legal fees, and lender options.",
       "topicsCovered": [
-        "ontario",
-        "provincial"
+        "Ontario legal fees",
+        "ON lenders",
+        "FSRA context"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "How does mortgage renewal work in Ontario?",
+        "What legal fees apply when switching in Ontario?"
+      ],
+      "linkWhen": [
+        "when the reader or content is Ontario-specific"
+      ],
+      "doNotLinkWhen": [
+        "when another province is the clear context"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "renewal-process",
+        "provincial-rules"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "bc-mortgage-renewal",
@@ -211,23 +332,34 @@
       "type": "pillar",
       "description": "British Columbia mortgage renewal guide — rates, switching, and provincial considerations.",
       "region": "canada",
-      "category": "renewal",
+      "category": "lenders-and-provinces",
       "tags": [
         "bc",
         "provincial"
       ],
       "readerPromise": "British Columbia mortgage renewal guide — rates, switching, and provincial considerations.",
       "topicsCovered": [
-        "bc",
-        "provincial"
+        "BC renewal process",
+        "BC legal costs",
+        "Local lenders"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "How does mortgage renewal work in BC?"
+      ],
+      "linkWhen": [
+        "when the reader or content is BC-specific"
+      ],
+      "doNotLinkWhen": [
+        "when another province is the clear context"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "renewal-process",
+        "provincial-rules"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "alberta-mortgage-renewal",
@@ -236,23 +368,34 @@
       "type": "pillar",
       "description": "Alberta mortgage renewal guide for homeowners comparing rates and lenders.",
       "region": "canada",
-      "category": "renewal",
+      "category": "lenders-and-provinces",
       "tags": [
         "alberta",
         "provincial"
       ],
       "readerPromise": "Alberta mortgage renewal guide for homeowners comparing rates and lenders.",
       "topicsCovered": [
-        "alberta",
-        "provincial"
+        "Alberta renewal",
+        "AB lenders",
+        "Switch costs"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "How does mortgage renewal work in Alberta?"
+      ],
+      "linkWhen": [
+        "when the reader or content is Alberta-specific"
+      ],
+      "doNotLinkWhen": [
+        "when another province is the clear context"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "renewal-process",
+        "provincial-rules"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "quebec-mortgage-renewal",
@@ -261,23 +404,309 @@
       "type": "pillar",
       "description": "Quebec mortgage renewal — notary fees, Desjardins, and switching rules.",
       "region": "canada",
-      "category": "renewal",
+      "category": "lenders-and-provinces",
       "tags": [
         "quebec",
         "provincial"
       ],
       "readerPromise": "Quebec mortgage renewal — notary fees, Desjardins, and switching rules.",
       "topicsCovered": [
-        "quebec",
-        "provincial"
+        "Quebec notary fees",
+        "Desjardins",
+        "QC switching"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "How does mortgage renewal work in Quebec?"
+      ],
+      "linkWhen": [
+        "when the reader or content is Quebec-specific"
+      ],
+      "doNotLinkWhen": [
+        "when another province is the clear context"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "renewal-process",
+        "provincial-rules"
+      ],
+      "topicsExcluded": []
+    },
+    {
+      "slug": "what-is-a-mortgage-renewal",
+      "url": "/what-is-a-mortgage-renewal/",
+      "title": "What Is a Mortgage Renewal?",
+      "type": "pillar",
+      "description": "Plain-English explainer of Canadian mortgage renewals, timelines, and options at maturity.",
+      "region": "canada",
+      "category": "renewal-process",
+      "tags": [
+        "renewal",
+        "basics"
+      ],
+      "readerPromise": "Get a plain-English definition of mortgage renewal, maturity, and your options at term end.",
+      "topicsCovered": [
+        "What a renewal is",
+        "Maturity date",
+        "Term vs amortization",
+        "Options at renewal"
+      ],
+      "questionsAnswered": [
+        "What is a mortgage renewal?",
+        "What happens when my mortgage term ends?"
+      ],
+      "linkWhen": [
+        "when defining renewal for first-time renewers",
+        "when a glossary-style explanation is needed"
+      ],
+      "doNotLinkWhen": [
+        "when the reader already understands renewals and needs rates or switch steps"
+      ],
+      "assetTypes": [
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "renewal-process",
+        "amortization-terms"
+      ],
+      "topicsExcluded": []
+    },
+    {
+      "slug": "mortgage-renewal-payment-shock",
+      "url": "/mortgage-renewal-payment-shock/",
+      "title": "Payment Shock at Renewal",
+      "type": "pillar",
+      "description": "Why renewal payments rise and how to estimate and reduce payment shock in Canada.",
+      "region": "canada",
+      "category": "rates-and-payments",
+      "tags": [
+        "payment-shock",
+        "rates"
+      ],
+      "readerPromise": "Understand why renewal payments rise, estimate the increase, and find ways to reduce payment shock.",
+      "topicsCovered": [
+        "Payment shock math",
+        "2020–2021 borrower renewals",
+        "Term and amortization levers",
+        "Switching to lower the payment"
+      ],
+      "questionsAnswered": [
+        "Why is my renewal payment so much higher?",
+        "How do I reduce payment shock at renewal?"
+      ],
+      "linkWhen": [
+        "when payment increases at renewal are the core problem"
+      ],
+      "doNotLinkWhen": [
+        "when the topic is only BoC policy with no payment impact"
+      ],
+      "assetTypes": [
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "payment-shock",
+        "rate-environment",
+        "first-renewal"
+      ],
+      "topicsExcluded": [
+        "document-checklist-only"
       ]
+    },
+    {
+      "slug": "stress-test-mortgage-renewal",
+      "url": "/stress-test-mortgage-renewal/",
+      "title": "Stress Test at Renewal",
+      "type": "pillar",
+      "description": "When the mortgage stress test applies at renewal and when switches are exempt.",
+      "region": "canada",
+      "category": "qualification-and-rules",
+      "tags": [
+        "stress-test",
+        "osfi"
+      ],
+      "readerPromise": "Know when the mortgage stress test applies at renewal, when switches are exempt, and how to qualify if required.",
+      "topicsCovered": [
+        "Stress test at renewal",
+        "Straight-switch exemption",
+        "When requalification is required",
+        "Passing the qualifying rate"
+      ],
+      "questionsAnswered": [
+        "Do I need to pass the stress test to renew?",
+        "When does switching trigger the stress test?"
+      ],
+      "linkWhen": [
+        "when stress test, qualifying rate, or switch exemption is discussed"
+      ],
+      "doNotLinkWhen": [
+        "when the article is only about rate shopping with no qualification angle"
+      ],
+      "assetTypes": [
+        "owner-occupied",
+        "investment-property"
+      ],
+      "financingConcepts": [
+        "stress-test-osfi",
+        "switch-vs-stay"
+      ],
+      "topicsExcluded": [
+        "rate-shopping-only"
+      ]
+    },
+    {
+      "slug": "osfi-b20-stress-test-at-renewal",
+      "url": "/osfi-b20-stress-test-at-renewal/",
+      "title": "OSFI B-20 Stress Test at Renewal",
+      "type": "pillar",
+      "description": "OSFI B-20 qualifying rules and how they shape renewal switches.",
+      "region": "canada",
+      "category": "qualification-and-rules",
+      "tags": [
+        "osfi",
+        "stress-test"
+      ],
+      "readerPromise": "Understand OSFI B-20 qualifying rules and how they shape renewal switches in Canada.",
+      "topicsCovered": [
+        "OSFI B-20",
+        "Qualifying rate formula",
+        "Federally regulated lenders",
+        "Switch exemptions"
+      ],
+      "questionsAnswered": [
+        "What is OSFI B-20 at renewal?",
+        "How does the federal stress test affect switching?"
+      ],
+      "linkWhen": [
+        "when OSFI or B-20 is named explicitly"
+      ],
+      "doNotLinkWhen": [
+        "when a simpler stress-test explainer is enough for the reader"
+      ],
+      "assetTypes": [
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "stress-test-osfi"
+      ],
+      "topicsExcluded": [
+        "rate-shopping-only"
+      ]
+    },
+    {
+      "slug": "mortgage-discharge-fees-canada",
+      "url": "/mortgage-discharge-fees-canada/",
+      "title": "Mortgage Discharge Fees Canada",
+      "type": "pillar",
+      "description": "Discharge fees and switch costs when leaving your lender at renewal.",
+      "region": "canada",
+      "category": "switch-vs-stay",
+      "tags": [
+        "discharge-fees",
+        "switching"
+      ],
+      "readerPromise": "Understand mortgage discharge fees and switch costs when leaving your lender at renewal.",
+      "topicsCovered": [
+        "Discharge fees",
+        "Legal fees on switch",
+        "Title insurance",
+        "Who pays switch costs"
+      ],
+      "questionsAnswered": [
+        "What does it cost to discharge my mortgage?",
+        "Do switch promotions cover legal fees?"
+      ],
+      "linkWhen": [
+        "when discharge, legal-paid switches, or switch cost line items appear"
+      ],
+      "doNotLinkWhen": [
+        "when the reader is staying with the same lender with no discharge"
+      ],
+      "assetTypes": [
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "discharge-fees",
+        "switch-vs-stay"
+      ],
+      "topicsExcluded": []
+    },
+    {
+      "slug": "first-time-mortgage-renewal",
+      "url": "/first-time-mortgage-renewal/",
+      "title": "First-Time Mortgage Renewal",
+      "type": "pillar",
+      "description": "What to expect at your first mortgage renewal — timeline, payment shock, and comparison checklist.",
+      "region": "canada",
+      "category": "life-situations",
+      "tags": [
+        "first-renewal"
+      ],
+      "readerPromise": "Prepare for your first mortgage renewal — what to expect, what to compare, and common first-renewal mistakes.",
+      "topicsCovered": [
+        "First renewal journey",
+        "Payment shock for first renewers",
+        "Documents and timeline",
+        "Bank offer negotiation"
+      ],
+      "questionsAnswered": [
+        "What should I expect at my first mortgage renewal?",
+        "How do first renewals differ from later ones?"
+      ],
+      "linkWhen": [
+        "when addressing first-time renewers or first maturity after a low-rate term"
+      ],
+      "doNotLinkWhen": [
+        "when the reader is clearly on a subsequent renewal with portfolio complexity"
+      ],
+      "assetTypes": [
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "first-renewal",
+        "renewal-process",
+        "payment-shock"
+      ],
+      "topicsExcluded": [
+        "subsequent-portfolio-renewal"
+      ]
+    },
+    {
+      "slug": "canadian-lender-cheat-sheet",
+      "url": "/canadian-lender-cheat-sheet/",
+      "title": "Canadian Lender Cheat Sheet",
+      "type": "pillar",
+      "description": "Compare Canadian lender types and renewal behaviors before you shop or switch.",
+      "region": "canada",
+      "category": "lenders-and-provinces",
+      "tags": [
+        "lenders",
+        "broker"
+      ],
+      "readerPromise": "Compare Canadian lender types and renewal behaviors before you shop or switch.",
+      "topicsCovered": [
+        "Big banks",
+        "Monolines",
+        "Credit unions",
+        "B lenders"
+      ],
+      "questionsAnswered": [
+        "Which lender types are best at renewal?",
+        "How do banks differ from monolines at renewal?"
+      ],
+      "linkWhen": [
+        "when comparing lender types or preparing to shop the market"
+      ],
+      "doNotLinkWhen": [
+        "when a single bank page is the correct deep link"
+      ],
+      "assetTypes": [
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "broker-help"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "mortgage-renewal-calculator",
@@ -286,23 +715,36 @@
       "type": "page",
       "description": "Estimate your new renewal payment at different rates and terms.",
       "region": "canada",
-      "category": "calculators",
+      "category": "tools-and-calculators",
       "tags": [
         "calculator",
         "payment"
       ],
       "readerPromise": "Estimate your new renewal payment at different rates and terms.",
       "topicsCovered": [
-        "calculator",
-        "payment"
+        "Payment calculation",
+        "Rate scenarios",
+        "Term comparison"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "What will my renewal payment be?",
+        "How do I model different renewal rates?"
+      ],
+      "linkWhen": [
+        "when payment scenarios at renewal should be calculated"
+      ],
+      "doNotLinkWhen": [
+        "when switch break-even or penalty math is the specific need"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "calculator-tools",
+        "payment-shock",
+        "rate-environment"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "switch-vs-stay-calculator",
@@ -311,23 +753,36 @@
       "type": "page",
       "description": "Compare staying with your bank versus switching lenders at renewal.",
       "region": "canada",
-      "category": "calculators",
+      "category": "tools-and-calculators",
       "tags": [
         "calculator",
         "switching"
       ],
-      "readerPromise": "Compare staying with your bank versus switching lenders at renewal.",
+      "readerPromise": "Compare staying with your bank versus switching lenders at renewal, net of fees.",
       "topicsCovered": [
-        "calculator",
-        "switching"
+        "Switch vs stay math",
+        "Fee payback period",
+        "Rate savings vs costs"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "Is switching worth it after discharge and legal fees?",
+        "How long until a switch pays for itself?"
+      ],
+      "linkWhen": [
+        "when the reader needs quantitative stay-vs-switch math"
+      ],
+      "doNotLinkWhen": [
+        "when the reader only needs a qualitative switching guide"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
-      ]
+        "owner-occupied"
+      ],
+      "financingConcepts": [
+        "calculator-tools",
+        "switch-vs-stay",
+        "discharge-fees"
+      ],
+      "topicsExcluded": []
     },
     {
       "slug": "mortgage-penalty-calculator",
@@ -336,22 +791,37 @@
       "type": "page",
       "description": "Estimate IRD or three-month interest penalties if you break your mortgage early.",
       "region": "canada",
-      "category": "calculators",
+      "category": "tools-and-calculators",
       "tags": [
         "calculator",
         "penalty"
       ],
       "readerPromise": "Estimate IRD or three-month interest penalties if you break your mortgage early.",
       "topicsCovered": [
-        "calculator",
-        "penalty"
+        "IRD",
+        "Three-month interest",
+        "Break costs"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "What penalty will I pay to break my mortgage?",
+        "Is IRD or three-month interest higher for me?"
+      ],
+      "linkWhen": [
+        "when discussing early break, blend-and-extend, or mid-term refinance costs"
+      ],
+      "doNotLinkWhen": [
+        "when the reader is at maturity with no break penalty"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
+        "fixed",
+        "variable"
+      ],
+      "financingConcepts": [
+        "penalty-and-break",
+        "calculator-tools"
+      ],
+      "topicsExcluded": [
+        "maturity-only-renewal"
       ]
     },
     {
@@ -361,7 +831,7 @@
       "type": "page",
       "description": "Find how long a rate savings needs to cover switch costs at renewal.",
       "region": "canada",
-      "category": "calculators",
+      "category": "tools-and-calculators",
       "tags": [
         "calculator",
         "switching"
@@ -386,7 +856,7 @@
       "type": "page",
       "description": "Check OSFI B-20 stress test qualification for switches that require it.",
       "region": "canada",
-      "category": "calculators",
+      "category": "tools-and-calculators",
       "tags": [
         "calculator",
         "stress-test"
@@ -411,7 +881,7 @@
       "type": "page",
       "description": "Compare two mortgage rate offers side by side for your renewal.",
       "region": "canada",
-      "category": "calculators",
+      "category": "tools-and-calculators",
       "tags": [
         "calculator",
         "rates"
@@ -436,20 +906,34 @@
       "type": "page",
       "description": "Current Canadian mortgage rates for renewals and purchases.",
       "region": "canada",
-      "category": "rates",
+      "category": "rates-and-payments",
       "tags": [
         "rates"
       ],
-      "readerPromise": "Current Canadian mortgage rates for renewals and purchases.",
+      "readerPromise": "See current Canadian mortgage rates relevant to renewals and purchases.",
       "topicsCovered": [
-        "rates"
+        "Current rates",
+        "Fixed and variable",
+        "Market context"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "What are current mortgage rates in Canada?"
+      ],
+      "linkWhen": [
+        "when live/current rate context is needed alongside renewal advice"
+      ],
+      "doNotLinkWhen": [
+        "when best renewal rates hub is the better dedicated target"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
+        "fixed",
+        "variable"
+      ],
+      "financingConcepts": [
+        "rate-environment"
+      ],
+      "topicsExcluded": [
+        "document-checklist-only"
       ]
     },
     {
@@ -459,22 +943,36 @@
       "type": "page",
       "description": "BoC policy rate decisions and what they mean for mortgage renewals.",
       "region": "canada",
-      "category": "rates",
+      "category": "rates-and-payments",
       "tags": [
         "rates",
         "boc"
       ],
-      "readerPromise": "BoC policy rate decisions and what they mean for mortgage renewals.",
+      "readerPromise": "Track Bank of Canada policy rate decisions and what they mean for mortgage renewals.",
       "topicsCovered": [
-        "rates",
-        "boc"
+        "BoC overnight rate",
+        "Decision dates",
+        "Renewal impact"
       ],
-      "questionsAnswered": [],
-      "linkWhen": [],
-      "doNotLinkWhen": [],
+      "questionsAnswered": [
+        "How do BoC decisions affect my renewal rate?",
+        "What was the latest Bank of Canada rate decision?"
+      ],
+      "linkWhen": [
+        "when discussing BoC holds/cuts/hikes and renewal timing"
+      ],
+      "doNotLinkWhen": [
+        "when the reader only needs a static best-rates table"
+      ],
       "assetTypes": [
-        "investment-property",
-        "residential"
+        "variable",
+        "fixed"
+      ],
+      "financingConcepts": [
+        "rate-environment"
+      ],
+      "topicsExcluded": [
+        "document-checklist-only"
       ]
     },
     {
@@ -484,7 +982,7 @@
       "type": "page",
       "description": "Frequently asked questions about Canadian mortgage renewals.",
       "region": "canada",
-      "category": "renewal",
+      "category": "renewal-process",
       "tags": [
         "faq"
       ],
@@ -507,7 +1005,7 @@
       "type": "page",
       "description": "Definitions of common mortgage renewal terms for Canadian homeowners.",
       "region": "canada",
-      "category": "renewal",
+      "category": "renewal-process",
       "tags": [
         "glossary"
       ],
@@ -530,7 +1028,7 @@
       "type": "page",
       "description": "About MortgageRenewalHub.ca — Canadian mortgage renewal education from licensed brokers.",
       "region": "canada",
-      "category": "renewal",
+      "category": "renewal-process",
       "tags": [
         "about"
       ],
@@ -553,7 +1051,7 @@
       "type": "page",
       "description": "Book a free mortgage renewal strategy call with a licensed Canadian broker.",
       "region": "canada",
-      "category": "renewal",
+      "category": "renewal-process",
       "tags": [
         "booking"
       ],
@@ -576,7 +1074,7 @@
       "type": "page",
       "description": "TD Bank mortgage renewal options — compare before you auto-renew.",
       "region": "canada",
-      "category": "switching",
+      "category": "lenders-and-provinces",
       "tags": [
         "td",
         "lender"
@@ -601,7 +1099,7 @@
       "type": "page",
       "description": "RBC mortgage renewal guide — rates, process, and switching alternatives.",
       "region": "canada",
-      "category": "switching",
+      "category": "lenders-and-provinces",
       "tags": [
         "rbc",
         "lender"
@@ -626,7 +1124,7 @@
       "type": "page",
       "description": "Scotiabank mortgage renewal — compare offers and switch options.",
       "region": "canada",
-      "category": "switching",
+      "category": "lenders-and-provinces",
       "tags": [
         "scotiabank",
         "lender"
@@ -651,7 +1149,7 @@
       "type": "post",
       "description": "BoC held the overnight rate at 2.25% on June 10, 2026 (prime 4.45%). Next decision July 15. How a steady policy rate affects fixed vs variable renewal choices.",
       "region": "canada",
-      "category": "investing-fundamentals",
+      "category": "renewal-process",
       "tags": [
         "Bank of Canada",
         "Renewal Rates"
@@ -665,23 +1163,18 @@
         "How does bank of canada apply to my financing decision?",
         "How does renewal rates apply to my financing decision?"
       ],
-      "linkWhen": [
-        "when investment strategy connects to how deals get funded",
-        "when the reader is learning how financing fits their investing plan"
-      ],
-      "doNotLinkWhen": [
-        "when the reader needs a specific mortgage product page, not general strategy",
-        "when financing is mentioned only in passing without actionable context"
-      ],
+      "linkWhen": [],
+      "doNotLinkWhen": [],
       "assetTypes": [
         "investment-property",
         "residential"
       ],
       "financingConcepts": [
-        "fixed-vs-variable-rates"
+        "rate-environment",
+        "fixed-vs-variable"
       ],
       "topicsExcluded": [
-        "value-add-renovation-strategy"
+        "document-checklist-only"
       ]
     },
     {
@@ -691,7 +1184,7 @@
       "type": "post",
       "description": "CMHC's Spring 2026 RMIR projects roughly one million mortgage renewals in 2026 — down from the 2025 peak but still elevated. What it means for payment shock.",
       "region": "canada",
-      "category": "investing-fundamentals",
+      "category": "renewal-process",
       "tags": [
         "Market Data",
         "Payment Shock"
@@ -705,20 +1198,14 @@
         "How does market data apply to my financing decision?",
         "How does payment shock apply to my financing decision?"
       ],
-      "linkWhen": [
-        "when investment strategy connects to how deals get funded",
-        "when the reader is learning how financing fits their investing plan"
-      ],
-      "doNotLinkWhen": [
-        "when the reader needs a specific mortgage product page, not general strategy",
-        "when financing is mentioned only in passing without actionable context"
-      ],
+      "linkWhen": [],
+      "doNotLinkWhen": [],
       "assetTypes": [
         "investment-property",
         "residential"
       ],
       "financingConcepts": [
-        "cmhc-programs"
+        "payment-shock"
       ],
       "topicsExcluded": []
     },
@@ -729,7 +1216,7 @@
       "type": "post",
       "description": "TD and Scotia still charge ~$340 to discharge. Here's how switch promos, collateral charges, and Quebec notary fees change your net renewal math.",
       "region": "canada",
-      "category": "investing-fundamentals",
+      "category": "renewal-process",
       "tags": [
         "Switching Lenders",
         "Discharge Fees",
@@ -745,19 +1232,17 @@
         "How does switching lenders apply to my financing decision?",
         "How does discharge fees apply to my financing decision?"
       ],
-      "linkWhen": [
-        "when investment strategy connects to how deals get funded",
-        "when the reader is learning how financing fits their investing plan"
-      ],
-      "doNotLinkWhen": [
-        "when the reader needs a specific mortgage product page, not general strategy",
-        "when financing is mentioned only in passing without actionable context"
-      ],
+      "linkWhen": [],
+      "doNotLinkWhen": [],
       "assetTypes": [
         "investment-property",
         "residential"
       ],
-      "financingConcepts": [],
+      "financingConcepts": [
+        "switch-vs-stay",
+        "discharge-fees",
+        "provincial-rules"
+      ],
       "topicsExcluded": []
     },
     {
@@ -767,7 +1252,7 @@
       "type": "post",
       "description": "If you bought or renewed in 2020–2021, your 2025–2026 renewal may be your first payment increase. Five actions before you sign your bank's letter.",
       "region": "canada",
-      "category": "investing-fundamentals",
+      "category": "renewal-process",
       "tags": [
         "Payment Shock",
         "First-Time Renewal"
@@ -781,20 +1266,19 @@
         "How does payment shock apply to my financing decision?",
         "How does first-time renewal apply to my financing decision?"
       ],
-      "linkWhen": [
-        "when investment strategy connects to how deals get funded",
-        "when the reader is learning how financing fits their investing plan"
-      ],
-      "doNotLinkWhen": [
-        "when the reader needs a specific mortgage product page, not general strategy",
-        "when financing is mentioned only in passing without actionable context"
-      ],
+      "linkWhen": [],
+      "doNotLinkWhen": [],
       "assetTypes": [
         "investment-property",
         "residential"
       ],
-      "financingConcepts": [],
-      "topicsExcluded": []
+      "financingConcepts": [
+        "payment-shock",
+        "first-renewal"
+      ],
+      "topicsExcluded": [
+        "subsequent-portfolio-renewal"
+      ]
     },
     {
       "slug": "osfi-stress-test-switch-renewals-2026",
@@ -803,7 +1287,7 @@
       "type": "post",
       "description": "November 2024 OSFI B-20 change removed the stress test for straight-switch renewals. What borrowers should know before switching lenders in 2026.",
       "region": "canada",
-      "category": "investing-fundamentals",
+      "category": "renewal-process",
       "tags": [
         "Regulation",
         "Switching Lenders"
@@ -817,20 +1301,19 @@
         "How does regulation apply to my financing decision?",
         "How does switching lenders apply to my financing decision?"
       ],
-      "linkWhen": [
-        "when investment strategy connects to how deals get funded",
-        "when the reader is learning how financing fits their investing plan"
-      ],
-      "doNotLinkWhen": [
-        "when the reader needs a specific mortgage product page, not general strategy",
-        "when financing is mentioned only in passing without actionable context"
-      ],
+      "linkWhen": [],
+      "doNotLinkWhen": [],
       "assetTypes": [
         "investment-property",
         "residential"
       ],
-      "financingConcepts": [],
-      "topicsExcluded": []
+      "financingConcepts": [
+        "switch-vs-stay",
+        "stress-test-osfi"
+      ],
+      "topicsExcluded": [
+        "rate-shopping-only"
+      ]
     }
   ]
 }

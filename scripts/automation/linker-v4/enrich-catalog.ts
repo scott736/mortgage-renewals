@@ -26,28 +26,23 @@ const DATA_DIR = "src/data/linker-v4";
 // ----------------
 
 const TOPIC_CLUSTER_ASSET_TYPES: Record<string, string[]> = {
-  "mortgage-basics": ["single-family", "residential", "duplex", "triplex", "fourplex"],
-  "mortgage-qualification": ["residential", "investment-property"],
-  "refinancing-strategies": ["residential", "investment-property"],
-  "commercial-lending": ["commercial", "multifamily", "office", "retail", "industrial", "mixed-use"],
-  "getting-started": ["residential", "investment-property"],
-  "rental-property-analysis": ["investment-property", "rental", "residential"],
-  "multifamily-investing": ["multifamily", "apartment"],
-  "brrrr-flipping": ["single-family", "residential"],
-  "us-investing-basics": ["investment-property", "rental"],
-  "dscr-foreign-national": ["investment-property", "rental"],
-  "portfolio-scaling": ["investment-property", "multifamily", "residential"],
-  "joint-ventures-partnerships": ["investment-property"],
-  "capital-raising": ["investment-property"],
-  "cross-border-tax-legal": ["investment-property"],
-  "investor-mindset": ["education"],
-  "success-stories": ["investment-property"],
-  "team-building": ["investment-property"],
-  "market-analysis": ["investment-property", "residential"],
-  "property-management": ["rental", "investment-property"],
-  "short-term-rentals": ["short-term-rental", "vacation-rental"],
-  "private-mortgage-investing": ["passive-income", "private-lending", "secured-lending"],
-  "development-investing": ["development", "capital-raising", "joint-ventures-partnerships"],
+  "renewal-basics": ["owner-occupied"],
+  "first-renewal": ["owner-occupied"],
+  "subsequent-renewal": ["owner-occupied", "investment-property"],
+  "switch-mechanics": ["owner-occupied", "investment-property"],
+  "stress-test-osfi": ["owner-occupied", "investment-property"],
+  "rate-environment": ["fixed", "variable"],
+  "payment-shock": ["owner-occupied"],
+  "fixed-vs-variable": ["fixed", "variable"],
+  "renewal-checklist": ["owner-occupied"],
+  "renewal-timeline": ["owner-occupied"],
+  "penalty-and-break": ["fixed", "variable"],
+  "refinance-vs-renew": ["owner-occupied", "investment-property"],
+  "calculator-tools": ["owner-occupied"],
+  "bank-lender-renewal": ["owner-occupied"],
+  "provincial-renewal": ["owner-occupied"],
+  "situation-renewal": ["owner-occupied", "investment-property"],
+  "broker-help": ["owner-occupied"],
 };
 
 // ----------------
@@ -55,93 +50,58 @@ const TOPIC_CLUSTER_ASSET_TYPES: Record<string, string[]> = {
 // ----------------
 
 const TOPIC_CLUSTER_LINK_WHEN: Record<string, string[]> = {
-  "mortgage-basics": [
-    "when explaining core mortgage concepts or qualification basics",
-    "when the reader needs foundational lending guidance",
+  "renewal-basics": [
+    "when explaining how mortgage renewal works in Canada",
+    "when the reader needs the evergreen process overview",
   ],
-  "mortgage-qualification": [
-    "when the article discusses approval criteria or underwriting",
-    "when the reader is trying to understand how to qualify",
+  "first-renewal": [
+    "when addressing first-time renewers or first maturity after a low-rate term",
+    "when payment shock hits someone who has never renewed before",
   ],
-  "refinancing-strategies": [
-    "when discussing refinancing, equity access, or BRRRR refi exits",
-    "when the reader wants to leverage existing property equity",
+  "subsequent-renewal": [
+    "when the reader has renewed before and is choosing term/product again",
   ],
-  "commercial-lending": [
-    "when the article discusses commercial property financing or DSCR/NOI",
-    "when the deal involves 5+ units or income-based commercial underwriting",
+  "switch-mechanics": [
+    "when discussing switching lenders, discharge, or transfer at maturity",
   ],
-  "getting-started": [
-    "when the article targets beginner investors exploring first steps",
-    "when the reader needs an entry point to investment property financing",
+  "stress-test-osfi": [
+    "when OSFI, B-20, or stress-test exemption rules matter to the decision",
   ],
-  "rental-property-analysis": [
-    "when analyzing rental deal metrics, cash flow, or cap rates",
-    "when the reader is evaluating whether a rental property pencils out",
+  "rate-environment": [
+    "when BoC decisions, posted rates, or renewal rate shopping are the topic",
   ],
-  "multifamily-investing": [
-    "when discussing apartment buildings or scaling to multifamily",
-    "when the reader is moving beyond single-family rentals",
+  "payment-shock": [
+    "when renewal payments jump and the reader needs mitigation options",
   ],
-  "brrrr-flipping": [
-    "when the article covers fix-and-flip, BRRRR, or value-add renovation",
-    "when short-term renovation financing is relevant",
+  "fixed-vs-variable": [
+    "when choosing fixed vs variable at renewal",
   ],
-  "us-investing-basics": [
-    "when Canadians are buying or financing US investment property",
-    "when cross-border US market entry is the topic",
+  "renewal-checklist": [
+    "when documents, prep steps, or letter review are needed",
   ],
-  "dscr-foreign-national": [
-    "when US DSCR or foreign national lending is discussed",
-    "when qualifying on rental income without personal income docs",
+  "renewal-timeline": [
+    "when 120/60/30-day timing or reminders are discussed",
   ],
-  "portfolio-scaling": [
-    "when the article discusses growing a rental portfolio",
-    "when financing strategy shifts as unit count increases",
+  "penalty-and-break": [
+    "when IRD, three-month interest, or mid-term break costs are relevant",
   ],
-  "joint-ventures-partnerships": [
-    "when structuring deals with partners or raising capital for acquisitions",
-    "when the reader needs financing alongside partnership structures",
+  "refinance-vs-renew": [
+    "when comparing straight renewal to refinance or HELOC",
   ],
-  "capital-raising": [
-    "when raising private capital or creative financing for deals",
-    "when the reader needs capital stack options beyond traditional mortgages",
+  "calculator-tools": [
+    "when the reader should run payment, switch, or penalty numbers",
   ],
-  "cross-border-tax-legal": [
-    "when US LLC, ITIN, or cross-border entity setup affects financing",
-    "when legal structure decisions precede property acquisition",
+  "bank-lender-renewal": [
+    "when a specific bank's renewal process or offer is discussed",
   ],
-  "investor-mindset": [
-    "when the article focuses on psychology or habits with a financing intro",
-    "when beginner readers need educational context before product pages",
+  "provincial-renewal": [
+    "when provincial legal/notary fees or local rules matter",
   ],
-  "success-stories": [
-    "when a case study illustrates a financing strategy the reader might replicate",
-    "when the narrative connects portfolio growth to specific lending products",
+  "situation-renewal": [
+    "when divorce, self-employed, job loss, or similar situations change renewal options",
   ],
-  "team-building": [
-    "when assembling a professional team including mortgage brokers",
-    "when the reader is scaling and needs financing partners",
-  ],
-  "market-analysis": [
-    "when city or market guides connect to local financing options",
-    "when market selection leads to a financing decision",
-  ],
-  "property-management": [
-    "when operational topics tie back to financing qualification or refi",
-    "when improving NOI or rents affects lending options",
-  ],
-  "short-term-rentals": [
-    "when Airbnb, VRBO, or short-term rental financing is discussed",
-    "when platform income affects mortgage qualification",
-  ],
-  "private-mortgage-investing": [
-    "when the reader wants to lend capital as a private mortgage investor",
-    "when passive secured yield, MICs, or RRSP private lending is discussed",
-  ],
-  "development-investing": [
-    "when the reader invests equity in development projects or syndications",
-    "when GP/LP structures or development partnership due diligence is the topic",
+  "broker-help": [
+    "when recommending multi-lender shopping or a licensed broker",
   ],
 };
 
@@ -486,6 +446,9 @@ function enrichFallback(raw: RawPageData): PagePurpose {
 }
 
 function enrichPage(raw: RawPageData, blogBySlug: Map<string, Record<string, unknown>>): PagePurpose {
+  if (!raw?.slug) {
+    throw new Error("enrichPage received a page without a slug (check PILLAR_PAGES / catalog arrays for holes)");
+  }
   const pillarCard = PILLAR_INTENT_CARDS[raw.slug];
   if (pillarCard) {
     return applyPillarIntent(raw, pillarCard);
