@@ -1,0 +1,10 @@
+{
+  "generatedAt": "2026-07-11T21:59:10.419134Z",
+  "orphansConsidered": 7,
+  "exactLinksAdded": 0,
+  "bridgesDrafted": 10,
+  "stillOrphaned": [],
+  "exactByOrphan": {},
+  "drafts": [],
+  "note": "Final state after force-orphan-inbound (MortgageRenewalHub voice, no API). Graph orphans: 0."
+}

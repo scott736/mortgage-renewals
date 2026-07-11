@@ -1,0 +1,40 @@
+{
+  "sourceSlug": "first-renewal-payment-shock-2026",
+  "sourceContentHash": "949b520b05c8c51161690dc14b2d8567e257a3cfba0173513e380b0ba05fd9ad",
+  "generatedAt": "2026-07-11T21:58:17.978Z",
+  "model": "deterministic-v8",
+  "catalogSize": 23,
+  "raw": [
+    {
+      "paragraphIndex": 3,
+      "anchorText": "Unless you actively shop or extend amortization with lender approval, your payment likely increases.",
+      "targetUrl": "/best-mortgage-renewal-rates/",
+      "readerNeed": "Compare current Canadian mortgage renewal rates for fixed and variable terms.",
+      "expectation": "Compare current Canadian mortgage renewal rates for fixed and variable terms.",
+      "semanticIntent": "v8 semantic match: score 0.32",
+      "confidence": 0.88
+    }
+  ],
+  "validated": [
+    {
+      "suggestion": {
+        "paragraphIndex": 3,
+        "anchorText": "Unless you actively shop or extend amortization with lender approval, your payment likely increases.",
+        "targetUrl": "/best-mortgage-renewal-rates/",
+        "readerNeed": "Compare current Canadian mortgage renewal rates for fixed and variable terms.",
+        "expectation": "Compare current Canadian mortgage renewal rates for fixed and variable terms.",
+        "semanticIntent": "v8 semantic match: score 0.32",
+        "confidence": 0.88
+      },
+      "positionInBody": -1,
+      "passed": false,
+      "rejectionReason": "anchor-not-found: exact substring not found in paragraph or safe zones",
+      "confidenceTier": "medium",
+      "positionDistribution": {
+        "intro": 0,
+        "body": 0,
+        "conclusion": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "sourceSlug": "osfi-stress-test-switch-renewals-2026",
+  "sourceContentHash": "ad7191b7931e0652570bf65143ed6b6ee435cf9ca256bd2e0e72c0065f5145bb",
+  "generatedAt": "2026-07-11T21:58:18.015Z",
+  "model": "deterministic-v8",
+  "catalogSize": 23,
+  "raw": [
+    {
+      "paragraphIndex": 3,
+      "anchorText": "floor were effectively trapped with their current lender at renewal.",
+      "targetUrl": "/current-mortgage-rates-canada/",
+      "readerNeed": "See current Canadian mortgage rates relevant to renewals and purchases.",
+      "expectation": "See current Canadian mortgage rates relevant to renewals and purchases.",
+      "semanticIntent": "v8 semantic match: score 0.37",
+      "confidence": 0.91
+    }
+  ],
+  "validated": [
+    {
+      "suggestion": {
+        "paragraphIndex": 3,
+        "anchorText": "floor were effectively trapped with their current lender at renewal.",
+        "targetUrl": "/current-mortgage-rates-canada/",
+        "readerNeed": "See current Canadian mortgage rates relevant to renewals and purchases.",
+        "expectation": "See current Canadian mortgage rates relevant to renewals and purchases.",
+        "semanticIntent": "v8 semantic match: score 0.37",
+        "confidence": 0.91
+      },
+      "positionInBody": -1,
+      "passed": false,
+      "rejectionReason": "anchor-not-found: exact substring not found in paragraph or safe zones",
+      "confidenceTier": "high",
+      "positionDistribution": {
+        "intro": 0,
+        "body": 0,
+        "conclusion": 0
+      }
+    }
+  ]
+}
