@@ -146,6 +146,8 @@ export interface CLIOptions {
   skipExisting?: boolean;
   category?: string;
   noApi?: boolean;
+  /** Fail quality-score when grade is D/F. */
+  strict?: boolean;
   locale?: string;
   collection?: string;
   threshold?: number;

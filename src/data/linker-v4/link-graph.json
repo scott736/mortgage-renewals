@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-11T21:58:46.709Z",
+  "generatedAt": "2026-07-11T22:15:11.652Z",
   "totalNodes": 38,
   "totalEdges": 406,
   "nodes": {
@@ -1005,8 +1005,8 @@
         "/mortgage-renewal-guide"
       ],
       "pageRank": 0.009704,
-      "wordCount": 206,
-      "outboundDensity": 9.71,
+      "wordCount": 224,
+      "outboundDensity": 8.93,
       "isOverLinked": true,
       "isUnderLinked": false
     },
@@ -1027,8 +1027,8 @@
         "/mortgage-broker-renewal"
       ],
       "pageRank": 0.009704,
-      "wordCount": 296,
-      "outboundDensity": 6.76,
+      "wordCount": 308,
+      "outboundDensity": 6.49,
       "isOverLinked": true,
       "isUnderLinked": false
     },
@@ -1048,8 +1048,8 @@
         "/mortgage-renewal-payment-shock"
       ],
       "pageRank": 0.009168,
-      "wordCount": 232,
-      "outboundDensity": 6.47,
+      "wordCount": 251,
+      "outboundDensity": 5.98,
       "isOverLinked": true,
       "isUnderLinked": false
     },
@@ -1069,8 +1069,8 @@
         "/switching-lenders-at-renewal"
       ],
       "pageRank": 0.009168,
-      "wordCount": 211,
-      "outboundDensity": 7.11,
+      "wordCount": 226,
+      "outboundDensity": 6.64,
       "isOverLinked": true,
       "isUnderLinked": false
     }

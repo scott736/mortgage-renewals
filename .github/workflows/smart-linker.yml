@@ -1,9 +1,12 @@
-name: Smart Linker
+name: Smart Linker v9
 
-# Auto-links NEW blog posts on push (Intent Placement generate + validate + judge).
+# Auto-links NEW blog posts on push (Intent Placement generate + validate + LLM judge).
 # Flat MDX blog at src/content/blog/*.mdx
 # Full-site relinks run locally:
 #   npx tsx scripts/automation -f linker-v4 -m relink-local
+# Orphan inbound drafting:
+#   npx tsx scripts/automation -f linker-v4 -m draft-orphan-inbound
+#   npx tsx scripts/automation -f linker-v4 -m apply-orphan-drafts
 
 on:
   push:
@@ -32,7 +35,7 @@ permissions:
 jobs:
   link-new-posts:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     if: >-
       (github.event_name == 'push'
         && !contains(github.event.head_commit.message, 'smart linker'))
@@ -75,13 +78,13 @@ jobs:
             echo "list=${{ steps.changes.outputs.slugs }}" >> $GITHUB_OUTPUT
           fi
 
-      - name: Build catalog
+      - name: Build catalog + embedding index + purpose cards
         if: steps.slugs.outputs.list != ''
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: npx tsx scripts/automation/index.ts -f linker-v4 -m build-catalog
 
-      - name: Generate link suggestions (Intent Placement)
+      - name: Generate link suggestions (Intent Placement v9)
         if: steps.slugs.outputs.list != ''
         env:
           GITHUB_ACTIONS: true
@@ -91,12 +94,12 @@ jobs:
           INPUT_CONCURRENCY: ${{ inputs.concurrency || '3' }}
         run: |
           for SLUG in $INPUT_SLUGS; do
-            echo "--- Generating suggestions for: $SLUG ---"
+            echo "--- Generating Intent Placement suggestions for: $SLUG ---"
             npx tsx scripts/automation/index.ts -f linker-v4 -m generate \
               --slug "$SLUG" --use-api --force --concurrency "$INPUT_CONCURRENCY"
           done
 
-      - name: Validate suggestions
+      - name: Validate suggestions (purpose-card gates)
         if: steps.slugs.outputs.list != ''
         env:
           INPUT_SLUGS: ${{ steps.slugs.outputs.list }}
@@ -105,7 +108,7 @@ jobs:
             npx tsx scripts/automation/index.ts -f linker-v4 -m validate --slug "$SLUG"
           done
 
-      - name: Semantic judge
+      - name: Semantic judge (LLM — reject misleading links)
         if: steps.slugs.outputs.list != ''
         env:
           GITHUB_ACTIONS: true
@@ -114,6 +117,16 @@ jobs:
         run: |
           for SLUG in $INPUT_SLUGS; do
             npx tsx scripts/automation/index.ts -f linker-v4 -m semantic-judge --slug "$SLUG"
+          done
+
+      - name: Rerank (if excess links passed validation)
+        if: steps.slugs.outputs.list != ''
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          INPUT_SLUGS: ${{ steps.slugs.outputs.list }}
+        run: |
+          for SLUG in $INPUT_SLUGS; do
+            npx tsx scripts/automation/index.ts -f linker-v4 -m rerank --slug "$SLUG"
           done
 
       - name: Apply links
@@ -125,13 +138,33 @@ jobs:
             npx tsx scripts/automation/index.ts -f linker-v4 -m apply --slug "$SLUG"
           done
 
+      - name: Orphan inbound for new posts (exact + bridge drafts)
+        if: steps.slugs.outputs.list != ''
+        env:
+          XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+          INPUT_SLUGS: ${{ steps.slugs.outputs.list }}
+        run: |
+          for SLUG in $INPUT_SLUGS; do
+            npx tsx scripts/automation/index.ts -f linker-v4 -m draft-orphan-inbound --slug "$SLUG"
+          done
+          npx tsx scripts/automation/index.ts -f linker-v4 -m validate --all || true
+          for SLUG in $INPUT_SLUGS; do
+            npx tsx scripts/automation/index.ts -f linker-v4 -m apply || true
+          done
+          npx tsx scripts/automation/index.ts -f linker-v4 -m apply-orphan-drafts
+          npx tsx scripts/automation/index.ts -f linker-v4 -m graph || true
+
+      - name: Quality score
+        if: steps.slugs.outputs.list != ''
+        run: npx tsx scripts/automation/index.ts -f linker-v4 -m quality-score
+
       - name: Commit changes
         if: steps.slugs.outputs.list != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add src/content/ src/data/linker-v4/
-          git diff --staged --quiet || git commit -m "chore: smart linker — auto-link new posts [skip ci]"
+          git diff --staged --quiet || git commit -m "chore: smart linker v9 — auto-link new posts [skip ci]"
           for i in 1 2 3; do
             git pull --rebase origin main && git push && break
             echo "Push attempt $i failed, retrying in 5s..."
@@ -152,6 +185,7 @@ jobs:
         run: |
           npx tsx scripts/automation/index.ts -f linker-v4 -m validate --all || true
           npx tsx scripts/automation/index.ts -f linker-v4 -m report --all || true
+          npx tsx scripts/automation/index.ts -f linker-v4 -m quality-score || true
       - name: Reminder
         run: |
           echo "Full-site relinks:"

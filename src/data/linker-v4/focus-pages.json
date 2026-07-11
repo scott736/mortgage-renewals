@@ -1,113 +1,113 @@
 {
-  "updatedAt": "2026-07-11T21:58:46.710Z",
+  "updatedAt": "2026-07-11T22:15:11.652Z",
   "description": "Pages that should receive priority inbound links. Manual entries (high-value, seo-target, manual) are preserved across rebuilds. Auto entries (orphan, low-inbound, fragile) are regenerated from the link graph.",
   "pages": [
     {
       "url": "/quebec-mortgage-renewal",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/what-is-a-mortgage-renewal",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/mortgage-renewal-payment-shock",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/osfi-b20-stress-test-at-renewal",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/first-time-mortgage-renewal",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/mortgage-penalty-calculator",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/break-even-switch-calculator",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/mortgage-stress-test-calculator",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/rate-comparison-calculator",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/current-mortgage-rates-canada",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/bank-of-canada-rate-decisions",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/mortgage-renewal-faq",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/about",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/blog/boc-holds-rate-june-2026-renewals",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/blog/cmhc-spring-2026-renewal-wave",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/blog/discharge-fees-switch-costs-july-2026",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/blog/first-renewal-payment-shock-2026",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     },
     {
       "url": "/blog/osfi-stress-test-switch-renewals-2026",
       "reason": "low-inbound",
-      "addedAt": "2026-07-11T21:58:46.710Z",
+      "addedAt": "2026-07-11T22:15:11.652Z",
       "addedBy": "link-graph"
     }
   ]

@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-07-11T22:15:12.115Z",
+  "brand": "MortgageRenewalHub",
+  "scores": {
+    "orphanRate": 0,
+    "forceBridgeRate": 1.4,
+    "avgOutboundPerPost": 3,
+    "postsWithZeroOutbound": 0,
+    "postsWithZeroInbound": 0,
+    "forceBridgeParagraphs": 7,
+    "totalBlogPosts": 5,
+    "catalogNodes": 38,
+    "catalogOrphans": 0,
+    "totalEdges": 406
+  },
+  "flags": [
+    "high force-bridge density (7 paragraphs)",
+    "force/legacy bridges present — run upgrade-force-bridges when refining"
+  ],
+  "recommendations": [
+    "Upgrade marked/legacy force bridges via: npx tsx scripts/automation/linker-v4/upgrade-force-bridges.ts",
+    "Treat quality grade as the north star; orphan count=0 alone is not enough."
+  ],
+  "grade": "A"
+}
