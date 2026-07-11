@@ -1,7 +1,7 @@
 ---
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import LiveRatesTable from '@/components/sections/live-rates-table';
-import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import SmartCtaSection from "@/components/sections/SmartCtaSection.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
@@ -137,12 +137,5 @@ const schema = combineSchemas(
     </div>
   </section>
 
-  <ZippayCtaCard
-    client:visible
-    title="Want Today's Rate for Your File?"
-    description="These are market ranges. Your actual rate depends on credit score, property, and loan-to-value. A broker confirms your real rate in one call — free."
-    primaryLabel="Get Your Personalized Rate"
-    secondaryLabel="See Best Renewal Rates"
-    secondaryHref="/best-mortgage-renewal-rates/"
-  />
+  <SmartCtaSection />
 </DefaultLayout>

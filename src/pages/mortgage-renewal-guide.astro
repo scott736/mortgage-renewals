@@ -1,5 +1,6 @@
 ---
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
+import SmartCtaSection from "@/components/sections/SmartCtaSection.astro";
 import RenewalDateCta from "@/components/lead/renewal-date-cta";
 import RelatedLinks from "@/components/RelatedLinks.astro";
 import MidContentCta from "@/components/sections/mid-content-cta";
@@ -374,15 +375,5 @@ const schema = combineSchemas(
     <RelatedLinks slug="/mortgage-renewal-guide/" />
   </article>
 
-  <section class="bg-primary-100 py-12">
-    <div class="container max-w-3xl text-center">
-      <h2 class="text-heading-3 text-white mb-3">Ready to Put This Into Action?</h2>
-      <p class="text-white/80 mb-6">Book a free call with a licensed broker who will walk you through your specific renewal situation and compare real lender quotes.</p>
-      <a href="/book-a-call/">
-        <button class="rounded-lg bg-warning-100 hover:bg-warning-50 text-gray-900 font-semibold px-8 py-4 text-lg transition-colors">
-          Book Your Free Renewal Strategy Call
-        </button>
-      </a>
-    </div>
-  </section>
+  <SmartCtaSection />
 </DefaultLayout>

@@ -1,7 +1,7 @@
 ---
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
-import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import SmartCtaSection from "@/components/sections/SmartCtaSection.astro";
 import VideoWalkthrough from "@/components/VideoWalkthrough.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
@@ -196,12 +196,5 @@ const schema = combineSchemas(
     <RelatedLinks slug="/td-mortgage-renewal/" />
   </article>
 
-  <ZippayCtaCard
-    client:visible
-    title="Don't take TD's first offer."
-    description="A free broker call gives you the benchmark rate to negotiate — or a better offer to switch to. No obligation."
-    primaryLabel="Book Your Free Renewal Strategy Call"
-    secondaryLabel="TD Renewal Guide"
-    secondaryHref="/td-mortgage-renewal/"
-  />
+  <SmartCtaSection />
 </DefaultLayout>

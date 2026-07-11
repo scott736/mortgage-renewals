@@ -18,7 +18,10 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.astro",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx,.astro --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "automation": "npx tsx scripts/automation",
+    "linker:check": "npx tsx scripts/automation -f linker-v4 -m validate --all",
+    "linker:catalog": "npx tsx scripts/automation -f linker-v4 -m build-catalog"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.2",
@@ -41,8 +44,10 @@
     "astro": "^7.0.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "lucide-react": "^1.23.0",
     "nylas": "^8.4.0",
+    "openai": "^6.46.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.81.0",
@@ -56,6 +61,7 @@
     "@typescript-eslint/parser": "^8.62.1",
     "astro-eslint-parser": "^1.4.0",
     "autoprefixer": "^10.5.2",
+    "dotenv": "^17.4.2",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
@@ -65,6 +71,7 @@
     "prettier": "^3.9.4",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.8.0",
-    "tailwindcss": "^4.3.2"
+    "tailwindcss": "^4.3.2",
+    "tsx": "^4.23.0"
   }
 }

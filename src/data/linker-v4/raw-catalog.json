@@ -1,0 +1,412 @@
+{
+  "_inputsHash": "1519afbefab2d62313a1fcb7a8edbf0528705790f96e74206a9f61e9e675895d",
+  "generatedAt": "2026-07-11T21:39:57.838Z",
+  "totalPages": 31,
+  "pages": [
+    {
+      "slug": "mortgage-renewal-guide",
+      "url": "/mortgage-renewal-guide/",
+      "title": "Mortgage Renewal Guide Canada",
+      "type": "pillar",
+      "description": "Complete guide to renewing your Canadian mortgage — timeline, documents, negotiation, and when to switch lenders.",
+      "category": "renewal",
+      "tags": [
+        "renewal",
+        "guide",
+        "process"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "best-mortgage-renewal-rates",
+      "url": "/best-mortgage-renewal-rates/",
+      "title": "Best Mortgage Renewal Rates Canada",
+      "type": "pillar",
+      "description": "Compare current mortgage renewal rates for fixed and variable terms across Canadian lenders.",
+      "category": "rates",
+      "tags": [
+        "rates",
+        "renewal"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "mortgage-renewal-checklist",
+      "url": "/mortgage-renewal-checklist/",
+      "title": "Mortgage Renewal Checklist",
+      "type": "pillar",
+      "description": "Step-by-step checklist of documents and actions before your mortgage renewal date.",
+      "category": "checklist",
+      "tags": [
+        "checklist",
+        "documents"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "switching-lenders-at-renewal",
+      "url": "/switching-lenders-at-renewal/",
+      "title": "Switching Lenders at Renewal",
+      "type": "pillar",
+      "description": "How to switch mortgage lenders at renewal in Canada — stress test rules, discharge fees, and timeline.",
+      "category": "switching",
+      "tags": [
+        "switching",
+        "transfer"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "renewal-vs-refinancing",
+      "url": "/renewal-vs-refinancing/",
+      "title": "Renewal vs Refinancing",
+      "type": "pillar",
+      "description": "When to renew versus refinance — equity takeout, HELOC, and payment goals at term end.",
+      "category": "refinance",
+      "tags": [
+        "refinance",
+        "heloc"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "mortgage-broker-renewal",
+      "url": "/mortgage-broker-renewal/",
+      "title": "Mortgage Broker Renewal",
+      "type": "pillar",
+      "description": "How a mortgage broker helps at renewal — comparing 30+ lenders without bank shopping yourself.",
+      "category": "broker",
+      "tags": [
+        "broker",
+        "renewal"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "fixed-vs-variable-mortgage-renewal",
+      "url": "/fixed-vs-variable-mortgage-renewal/",
+      "title": "Fixed vs Variable at Renewal",
+      "type": "pillar",
+      "description": "Choose fixed or variable at mortgage renewal — payment stability, trigger rates, and break costs.",
+      "category": "rates",
+      "tags": [
+        "fixed",
+        "variable"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "ontario-mortgage-renewal",
+      "url": "/ontario-mortgage-renewal/",
+      "title": "Ontario Mortgage Renewal",
+      "type": "pillar",
+      "description": "Ontario-specific mortgage renewal tips, legal fees, and lender options.",
+      "category": "renewal",
+      "tags": [
+        "ontario",
+        "provincial"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "bc-mortgage-renewal",
+      "url": "/bc-mortgage-renewal/",
+      "title": "BC Mortgage Renewal",
+      "type": "pillar",
+      "description": "British Columbia mortgage renewal guide — rates, switching, and provincial considerations.",
+      "category": "renewal",
+      "tags": [
+        "bc",
+        "provincial"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "alberta-mortgage-renewal",
+      "url": "/alberta-mortgage-renewal/",
+      "title": "Alberta Mortgage Renewal",
+      "type": "pillar",
+      "description": "Alberta mortgage renewal guide for homeowners comparing rates and lenders.",
+      "category": "renewal",
+      "tags": [
+        "alberta",
+        "provincial"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "quebec-mortgage-renewal",
+      "url": "/quebec-mortgage-renewal/",
+      "title": "Quebec Mortgage Renewal",
+      "type": "pillar",
+      "description": "Quebec mortgage renewal — notary fees, Desjardins, and switching rules.",
+      "category": "renewal",
+      "tags": [
+        "quebec",
+        "provincial"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "mortgage-renewal-calculator",
+      "url": "/mortgage-renewal-calculator/",
+      "title": "Mortgage Renewal Calculator",
+      "type": "page",
+      "description": "Estimate your new renewal payment at different rates and terms.",
+      "category": "calculators",
+      "tags": [
+        "calculator",
+        "payment"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "switch-vs-stay-calculator",
+      "url": "/switch-vs-stay-calculator/",
+      "title": "Switch vs Stay Calculator",
+      "type": "page",
+      "description": "Compare staying with your bank versus switching lenders at renewal.",
+      "category": "calculators",
+      "tags": [
+        "calculator",
+        "switching"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "mortgage-penalty-calculator",
+      "url": "/mortgage-penalty-calculator/",
+      "title": "Mortgage Penalty Calculator",
+      "type": "page",
+      "description": "Estimate IRD or three-month interest penalties if you break your mortgage early.",
+      "category": "calculators",
+      "tags": [
+        "calculator",
+        "penalty"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "break-even-switch-calculator",
+      "url": "/break-even-switch-calculator/",
+      "title": "Break-Even Switch Calculator",
+      "type": "page",
+      "description": "Find how long a rate savings needs to cover switch costs at renewal.",
+      "category": "calculators",
+      "tags": [
+        "calculator",
+        "switching"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "mortgage-stress-test-calculator",
+      "url": "/mortgage-stress-test-calculator/",
+      "title": "Mortgage Stress Test Calculator",
+      "type": "page",
+      "description": "Check OSFI B-20 stress test qualification for switches that require it.",
+      "category": "calculators",
+      "tags": [
+        "calculator",
+        "stress-test"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "rate-comparison-calculator",
+      "url": "/rate-comparison-calculator/",
+      "title": "Rate Comparison Calculator",
+      "type": "page",
+      "description": "Compare two mortgage rate offers side by side for your renewal.",
+      "category": "calculators",
+      "tags": [
+        "calculator",
+        "rates"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "current-mortgage-rates-canada",
+      "url": "/current-mortgage-rates-canada/",
+      "title": "Current Mortgage Rates Canada",
+      "type": "page",
+      "description": "Current Canadian mortgage rates for renewals and purchases.",
+      "category": "rates",
+      "tags": [
+        "rates"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "bank-of-canada-rate-decisions",
+      "url": "/bank-of-canada-rate-decisions/",
+      "title": "Bank of Canada Rate Decisions",
+      "type": "page",
+      "description": "BoC policy rate decisions and what they mean for mortgage renewals.",
+      "category": "rates",
+      "tags": [
+        "rates",
+        "boc"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "mortgage-renewal-faq",
+      "url": "/mortgage-renewal-faq/",
+      "title": "Mortgage Renewal FAQ",
+      "type": "page",
+      "description": "Frequently asked questions about Canadian mortgage renewals.",
+      "category": "renewal",
+      "tags": [
+        "faq"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "mortgage-renewal-glossary",
+      "url": "/mortgage-renewal-glossary/",
+      "title": "Mortgage Renewal Glossary",
+      "type": "page",
+      "description": "Definitions of common mortgage renewal terms for Canadian homeowners.",
+      "category": "renewal",
+      "tags": [
+        "glossary"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "about",
+      "url": "/about/",
+      "title": "About Mortgage Renewal Hub",
+      "type": "page",
+      "description": "About MortgageRenewalHub.ca — Canadian mortgage renewal education from licensed brokers.",
+      "category": "renewal",
+      "tags": [
+        "about"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "book-a-call",
+      "url": "/book-a-call/",
+      "title": "Book a Call",
+      "type": "page",
+      "description": "Book a free mortgage renewal strategy call with a licensed Canadian broker.",
+      "category": "renewal",
+      "tags": [
+        "booking"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "td-mortgage-renewal",
+      "url": "/td-mortgage-renewal/",
+      "title": "TD Mortgage Renewal",
+      "type": "page",
+      "description": "TD Bank mortgage renewal options — compare before you auto-renew.",
+      "category": "switching",
+      "tags": [
+        "td",
+        "lender"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "rbc-mortgage-renewal",
+      "url": "/rbc-mortgage-renewal/",
+      "title": "RBC Mortgage Renewal",
+      "type": "page",
+      "description": "RBC mortgage renewal guide — rates, process, and switching alternatives.",
+      "category": "switching",
+      "tags": [
+        "rbc",
+        "lender"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "scotiabank-mortgage-renewal",
+      "url": "/scotiabank-mortgage-renewal/",
+      "title": "Scotiabank Mortgage Renewal",
+      "type": "page",
+      "description": "Scotiabank mortgage renewal — compare offers and switch options.",
+      "category": "switching",
+      "tags": [
+        "scotiabank",
+        "lender"
+      ],
+      "region": "canada"
+    },
+    {
+      "slug": "boc-holds-rate-june-2026-renewals",
+      "url": "/blog/boc-holds-rate-june-2026-renewals/",
+      "title": "Bank of Canada Holds at 2.25% — What It Means for July 2026 Renewals",
+      "type": "post",
+      "description": "BoC held the overnight rate at 2.25% on June 10, 2026 (prime 4.45%). Next decision July 15. How a steady policy rate affects fixed vs variable renewal choices.",
+      "category": "investing-fundamentals",
+      "tags": [
+        "Bank of Canada",
+        "Renewal Rates"
+      ],
+      "region": "canada",
+      "excerpt": "The Bank of Canada held its target for the overnight rate at **2.25%** on June 10, 2026 — the fourth consecutive hold. Major lenders' prime rate remains **4.45%**. The next announcement is scheduled for **July 15, 2026**.\n\nWith the policy rate stable, the gap between short-term fixed and variable renewal rates has narrowed. Variable products track prime minus a spread; fixed rates follow Government of Canada bond yields."
+    },
+    {
+      "slug": "cmhc-spring-2026-renewal-wave",
+      "url": "/blog/cmhc-spring-2026-renewal-wave/",
+      "title": "CMHC Spring 2026: One Million Households Still Renewing",
+      "type": "post",
+      "description": "CMHC's Spring 2026 RMIR projects roughly one million mortgage renewals in 2026 — down from the 2025 peak but still elevated. What it means for payment shock.",
+      "category": "investing-fundamentals",
+      "tags": [
+        "Market Data",
+        "Payment Shock"
+      ],
+      "region": "canada",
+      "excerpt": "CMHC's Spring 2026 Residential Mortgage Industry Report (RMIR) estimates roughly **one million Canadian households** will renew their mortgages in 2026 — about 13% fewer than the 2025 peak when volumes topped 1.2 million.\n\nMany 2020–2021 borrowers locked ultra-low fixed rates. Those 5-year terms are maturing into a market where competitive renewal rates remain well above pandemic-era contract rates — even after the Bank of Canada eased to 2.25% overnight (prime 4.45%) through early 2026."
+    },
+    {
+      "slug": "discharge-fees-switch-costs-july-2026",
+      "url": "/blog/discharge-fees-switch-costs-july-2026/",
+      "title": "Mortgage Discharge Fees Still Matter in July 2026 — Even With Legal-Paid Switches",
+      "type": "post",
+      "description": "TD and Scotia still charge ~$340 to discharge. Here's how switch promos, collateral charges, and Quebec notary fees change your net renewal math.",
+      "category": "investing-fundamentals",
+      "tags": [
+        "Switching Lenders",
+        "Discharge Fees",
+        "Renewal News"
+      ],
+      "region": "canada",
+      "excerpt": "Canadians shopping renewals in July 2026 are focused on rate — and they should be. Broker-channel insured 5-year fixed rates near **4.04%** still beat many Big Six renewal letters by 0.25–0.75%. But the payout statement still includes a **discharge (or assignment) fee**, and that line item is where switch math gets real.\n\nApproximate outgoing discharge fees in mid-2026:"
+    },
+    {
+      "slug": "first-renewal-payment-shock-2026",
+      "url": "/blog/first-renewal-payment-shock-2026/",
+      "title": "First Renewal Payment Shock: A 2020–2021 Borrower's Checklist",
+      "type": "post",
+      "description": "If you bought or renewed in 2020–2021, your 2025–2026 renewal may be your first payment increase. Five actions before you sign your bank's letter.",
+      "category": "investing-fundamentals",
+      "tags": [
+        "Payment Shock",
+        "First-Time Renewal"
+      ],
+      "region": "canada",
+      "excerpt": "If your mortgage originated in 2020–2021, your first renewal in 2025 or 2026 may be the first time your monthly payment **rises materially** — even if you have never missed a payment and your balance has fallen.\n\nAt renewal you sign a new term at **today's market rate**. Pandemic-era fixed rates near 2% are not coming back. Competitive 5-year fixed renewal rates in mid-2026 sit materially higher. Unless you actively shop or extend amortization (with lender approval), your payment likely increases."
+    },
+    {
+      "slug": "osfi-stress-test-switch-renewals-2026",
+      "url": "/blog/osfi-stress-test-switch-renewals-2026/",
+      "title": "OSFI Stress Test Exemption for Lender Switches: 18 Months In",
+      "type": "post",
+      "description": "November 2024 OSFI B-20 change removed the stress test for straight-switch renewals. What borrowers should know before switching lenders in 2026.",
+      "category": "investing-fundamentals",
+      "tags": [
+        "Regulation",
+        "Switching Lenders"
+      ],
+      "region": "canada",
+      "excerpt": "On November 21, 2024, OSFI updated Guideline B-20 so federally regulated lenders no longer need to apply the minimum qualifying rate (MQR) when an uninsured borrower transfers their mortgage to a new lender at renewal — provided it is a straight switch with the same balance, same amortization, and no new money.\n\nBefore the change, many homeowners who could not re-qualify at contract rate plus 2% (or the 5.25% floor) were effectively trapped with their current lender at renewal. That barrier is gone for simple transfers."
+    }
+  ]
+}

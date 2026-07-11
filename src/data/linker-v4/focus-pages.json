@@ -1,0 +1,84 @@
+{
+  "updatedAt": "2026-07-11T21:39:57.883Z",
+  "description": "Pages that should receive priority inbound links. Manual entries (high-value, seo-target, manual) are preserved across rebuilds. Auto entries (orphan, low-inbound, fragile) are regenerated from the link graph.",
+  "pages": [
+    {
+      "url": "/break-even-switch-calculator",
+      "reason": "orphan",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/about",
+      "reason": "orphan",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/blog/boc-holds-rate-june-2026-renewals",
+      "reason": "orphan",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/blog/cmhc-spring-2026-renewal-wave",
+      "reason": "orphan",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/blog/discharge-fees-switch-costs-july-2026",
+      "reason": "orphan",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/blog/first-renewal-payment-shock-2026",
+      "reason": "orphan",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/blog/osfi-stress-test-switch-renewals-2026",
+      "reason": "orphan",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/mortgage-penalty-calculator",
+      "reason": "low-inbound",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/mortgage-stress-test-calculator",
+      "reason": "low-inbound",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/rate-comparison-calculator",
+      "reason": "low-inbound",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/current-mortgage-rates-canada",
+      "reason": "low-inbound",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/bank-of-canada-rate-decisions",
+      "reason": "low-inbound",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    },
+    {
+      "url": "/mortgage-renewal-faq",
+      "reason": "low-inbound",
+      "addedAt": "2026-07-11T21:39:57.883Z",
+      "addedBy": "link-graph"
+    }
+  ]
+}

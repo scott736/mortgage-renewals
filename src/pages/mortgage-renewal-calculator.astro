@@ -2,7 +2,7 @@
 import MortgageCalculators from '@/components/calculators/mortgage-calculators';
 import FaqDetails from "@/components/FaqDetails.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
-import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import SmartCtaSection from "@/components/sections/SmartCtaSection.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas, faqSchema, webApplicationSchema, webPageNode } from '@/lib/schema';
@@ -134,12 +134,5 @@ const schema = combineSchemas(
     </div>
   </section>
 
-  <ZippayCtaCard
-    client:visible
-    title="Want a Broker to Confirm These Numbers?"
-    description="Get real lender quotes from 30+ lenders — free. A licensed mortgage broker will validate your calculations and find you the best rate."
-    primaryLabel="Book Your Free Renewal Strategy Call"
-    secondaryLabel="Compare Best Rates"
-    secondaryHref="/best-mortgage-renewal-rates/"
-  />
+  <SmartCtaSection />
 </DefaultLayout>

@@ -1,7 +1,7 @@
 ---
 import AuthorByline from "@/components/AuthorByline.astro";
 import RelatedLinks from "@/components/RelatedLinks.astro";
-import ZippayCtaCard from '@/components/sections/zippay-cta-card';
+import SmartCtaSection from "@/components/sections/SmartCtaSection.astro";
 import DefaultLayout from '@/layouts/DefaultLayout.astro';
 import { getPageMeta } from '@/lib/page-meta';
 import { articleSchema, breadcrumbSchema, combineSchemas,webPageNode } from '@/lib/schema';
@@ -362,12 +362,5 @@ const schema = combineSchemas(
     <!-- Internal links -->
     <RelatedLinks slug="/mortgage-broker-renewal/" />
   </article>
-  <ZippayCtaCard
-    client:visible
-    title="Want personalized help?"
-    description="A mortgage broker is free to use. Compare 30+ lenders and get a strategy call today."
-    primaryLabel="Book Your Free Renewal Strategy Call"
-    secondaryLabel="Read the Renewal Guide"
-    secondaryHref="/mortgage-renewal-guide/"
-  />
+  <SmartCtaSection />
 </DefaultLayout>

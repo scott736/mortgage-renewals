@@ -1,0 +1,28 @@
+---
+/**
+ * Contextual bottom CTA — wraps ZippayCtaCard with getPageCta(pathname)
+ * so hubs, calculators, lenders, and blog share one data-driven pattern.
+ */
+import ZippayCtaCard from "@/components/sections/zippay-cta-card";
+import { getPageCta } from "@/lib/page-cta";
+
+interface Props {
+  pathname?: string;
+  softBg?: boolean;
+}
+
+const { pathname: pathnameProp, softBg } = Astro.props;
+const pathname = pathnameProp || Astro.url.pathname;
+const cta = getPageCta(pathname);
+---
+
+<ZippayCtaCard
+  client:visible
+  title={cta.title}
+  description={cta.description}
+  primaryLabel={cta.primary.label}
+  primaryHref={cta.primary.href}
+  secondaryLabel={cta.secondary.label}
+  secondaryHref={cta.secondary.href}
+  softBg={softBg}
+/>
