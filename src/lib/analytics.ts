@@ -20,11 +20,10 @@ export function trackLeadEvent(name: LeadEventName, props?: LeadEventProps) {
       )
     : undefined;
 
-  void import("@vercel/analytics")
-    .then(({ track }) => track(name, payload))
-    .catch(() => {
-      /* analytics optional in dev */
-    });
+  // Cloudflare Web Analytics / GTM can be wired later; keep call sites stable.
+  if (import.meta.env.DEV) {
+    console.debug("[analytics]", name, payload);
+  }
 }
 
 export function trackCtaClick(location: string, destination: string) {
