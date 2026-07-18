@@ -1,3 +1,4 @@
+/.well-known/security.txt /security.txt 200
 /sitemap.xml /sitemap-index.xml 301
 /faq /mortgage-renewal-faq/ 301
 /faq/ /mortgage-renewal-faq/ 301
