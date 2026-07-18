@@ -43,6 +43,13 @@ const pageLang = Astro.url.pathname.startsWith("/fr/") ? "fr-CA" : "en-CA";
 <html lang={pageLang}>
   <head>
     <BaseHead title={title} description={description} schema={schema} preloadImage={preloadImage} noindex={noindex} ogType={detectedOgType} />
+    <!-- Cloudflare Web Analytics -->
+    <script
+      is:inline
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "74e0ed1edd694318851f835cc6f8b4d5"}'
+    ></script>
   </head>
   <body class="min-h-screen antialiased pb-24 lg:pb-0">
     <Banner client:idle />
