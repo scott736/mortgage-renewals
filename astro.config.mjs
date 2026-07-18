@@ -7,7 +7,7 @@ import mdx from "@astrojs/mdx";
 import sitemap, { ChangeFreqEnum } from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import tailwindcss from "@tailwindcss/vite";
-import vercel from "@astrojs/vercel";
+import cloudflare from "@astrojs/cloudflare";
 import { buildSitemapHreflangLinks } from "./src/lib/hreflang.ts";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -113,10 +113,13 @@ export default defineConfig({
   ],
   // Static by default; only API routes and booking pages opt into SSR.
   output: "static",
-  adapter: vercel({
-    // Images are optimized at build time for static pages; skip Vercel Image
-    // Optimization in the SSR bundle to avoid bundling sharp (~16MB).
-    imageService: false,
+  adapter: cloudflare({
+    imageService: "compile",
+    platformProxy: {
+      enabled: true,
+    },
+    // page-dates and other build scripts use Node APIs at prerender time
+    prerenderEnvironment: "node",
   }),
 
   vite: {
