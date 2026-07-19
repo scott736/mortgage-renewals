@@ -144,45 +144,58 @@ export const POST: APIRoute = async ({ request }) => {
  * Get pending booking details (for showing on confirmation page)
  */
 export const GET: APIRoute = async ({ url }) => {
-  const token = url.searchParams.get('token');
+  try {
+    const token = url.searchParams.get('token');
 
-  if (!token) {
+    if (!token) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Missing token' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const pending = await getPendingBookingByToken(token);
+
+    if (!pending) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Booking not found' }),
+        { status: 404, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    const service = getServiceById(pending.service_id);
+    const teamMember = pending.team_member_id
+      ? getTeamMemberById(pending.team_member_id)
+      : undefined;
+
+    // Use duration override if set (from profile pages), otherwise use service default
+    const actualDuration = pending.duration_override ?? service?.duration ?? 30;
+
     return new Response(
-      JSON.stringify({ success: false, error: 'Missing token' }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({
+        success: true,
+        data: {
+          status: pending.status,
+          service: service ? { name: service.name, duration: actualDuration } : null,
+          teamMember: teamMember ? { name: teamMember.name } : null,
+          startTime: pending.start_time,
+          guestName: pending.guest_name,
+          guestEmail: pending.guest_email,
+          timezone: pending.timezone,
+          expiresAt: pending.expires_at,
+          confirmedAt: pending.confirmed_at,
+        },
+      }),
+      { status: 200, headers: { 'Content-Type': 'application/json' } }
+    );
+  } catch (error) {
+    console.error('Confirm lookup error:', error);
+    return new Response(
+      JSON.stringify({
+        success: false,
+        error: 'Failed to look up booking. Please try again.',
+      }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
-
-  const pending = await getPendingBookingByToken(token);
-
-  if (!pending) {
-    return new Response(
-      JSON.stringify({ success: false, error: 'Booking not found' }),
-      { status: 404, headers: { 'Content-Type': 'application/json' } }
-    );
-  }
-
-  const service = getServiceById(pending.service_id);
-  const teamMember = pending.team_member_id ? getTeamMemberById(pending.team_member_id) : undefined;
-
-  // Use duration override if set (from profile pages), otherwise use service default
-  const actualDuration = pending.duration_override ?? service?.duration ?? 30;
-
-  return new Response(
-    JSON.stringify({
-      success: true,
-      data: {
-        status: pending.status,
-        service: service ? { name: service.name, duration: actualDuration } : null,
-        teamMember: teamMember ? { name: teamMember.name } : null,
-        startTime: pending.start_time,
-        guestName: pending.guest_name,
-        guestEmail: pending.guest_email,
-        timezone: pending.timezone,
-        expiresAt: pending.expires_at,
-        confirmedAt: pending.confirmed_at,
-      },
-    }),
-    { status: 200, headers: { 'Content-Type': 'application/json' } }
-  );
 };

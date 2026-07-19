@@ -118,7 +118,12 @@ function pruneMemory() {
 async function storeGet(token: string): Promise<PendingBookingStore | null> {
   const redis = await getRedis();
   if (redis) {
-    return (await redis.get<PendingBookingStore>(TOKEN_KEY(token))) ?? null;
+    try {
+      return (await redis.get<PendingBookingStore>(TOKEN_KEY(token))) ?? null;
+    } catch (err) {
+      console.error('[pending-bookings] Redis get failed:', err);
+      redisPromise = null;
+    }
   }
   pruneMemory();
   return memoryStore.get(token) ?? null;
@@ -131,8 +136,13 @@ async function storeSet(
 ): Promise<void> {
   const redis = await getRedis();
   if (redis) {
-    await redis.set(TOKEN_KEY(token), booking, { ex: ttlSeconds });
-    return;
+    try {
+      await redis.set(TOKEN_KEY(token), booking, { ex: ttlSeconds });
+      return;
+    } catch (err) {
+      console.error('[pending-bookings] Redis set failed:', err);
+      redisPromise = null;
+    }
   }
   memoryStore.set(token, booking);
 }
