@@ -3,6 +3,13 @@ compatibility_date = "2026-07-18"
 compatibility_flags = ["nodejs_compat"]
 main = "@astrojs/cloudflare/entrypoints/server"
 
+[observability]
+enabled = true
+
+[observability.logs]
+enabled = true
+invocation_logs = true
+
 [assets]
 directory = "./dist/client"
 binding = "ASSETS"
