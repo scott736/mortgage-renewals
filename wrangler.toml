@@ -6,4 +6,8 @@ main = "@astrojs/cloudflare/entrypoints/server"
 [assets]
 directory = "./dist/client"
 binding = "ASSETS"
+# SSR routes (book-a-call, /api/nylas/*) only exist in the Worker.
+# Without this, browser navigations (Sec-Fetch-Mode: navigate) hit the static
+# 404 page instead of the Worker when no matching asset exists.
 not_found_handling = "404-page"
+run_worker_first = true
