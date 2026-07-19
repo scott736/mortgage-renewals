@@ -10,9 +10,10 @@
  *
  * Fallback: in-memory Map (local dev only — lost between serverless invocations,
  * which is why Redis is required in production).
+ *
+ * Redis is loaded lazily (dynamic import) so book/confirm routes do not crash
+ * at module init on Cloudflare Workers the way a static `@upstash/redis` import can.
  */
-
-import { Redis } from '@upstash/redis';
 
 import { createBooking } from './client';
 import type { BookingConfirmation, BookingRequest } from './types';
@@ -44,6 +45,19 @@ interface PendingBookingStore extends PendingBooking {
   bookingRequest: BookingRequest;
 }
 
+type RedisClient = {
+  get: <T>(key: string) => Promise<T | null>;
+  set: (
+    key: string,
+    value: unknown,
+    opts?: { ex?: number; nx?: boolean },
+  ) => Promise<unknown>;
+  incr: (key: string) => Promise<number>;
+  decr: (key: string) => Promise<number>;
+  expire: (key: string, seconds: number) => Promise<unknown>;
+  del: (...keys: string[]) => Promise<unknown>;
+};
+
 // ============================================================================
 // Storage Adapter
 // ============================================================================
@@ -53,18 +67,37 @@ const MAX_PENDING_PER_EMAIL = 3;
 const TOKEN_KEY = (token: string) => `pb:token:${token}`;
 const EMAIL_KEY = (email: string) => `pb:email:${email.toLowerCase()}`;
 
-const redisUrl = import.meta.env.UPSTASH_REDIS_REST_URL
-  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_URL : undefined)
-  || import.meta.env.KV_REST_API_URL
-  || (typeof process !== 'undefined' ? process.env.KV_REST_API_URL : undefined);
-const redisToken = import.meta.env.UPSTASH_REDIS_REST_TOKEN
-  || (typeof process !== 'undefined' ? process.env.UPSTASH_REDIS_REST_TOKEN : undefined)
-  || import.meta.env.KV_REST_API_TOKEN
-  || (typeof process !== 'undefined' ? process.env.KV_REST_API_TOKEN : undefined);
+let redisPromise: Promise<RedisClient | null> | null = null;
 
-const redis = redisUrl && redisToken
-  ? new Redis({ url: redisUrl, token: redisToken })
-  : null;
+function readEnv(name: string): string | undefined {
+  const fromImportMeta =
+    typeof import.meta !== 'undefined'
+      ? (import.meta.env?.[name] as string | undefined)
+      : undefined;
+  const fromProcess =
+    typeof process !== 'undefined' ? process.env[name] : undefined;
+  return fromImportMeta || fromProcess;
+}
+
+async function getRedis(): Promise<RedisClient | null> {
+  if (!redisPromise) {
+    redisPromise = (async () => {
+      const redisUrl =
+        readEnv('UPSTASH_REDIS_REST_URL') || readEnv('KV_REST_API_URL');
+      const redisToken =
+        readEnv('UPSTASH_REDIS_REST_TOKEN') || readEnv('KV_REST_API_TOKEN');
+      if (!redisUrl || !redisToken) return null;
+      try {
+        const { Redis } = await import('@upstash/redis');
+        return new Redis({ url: redisUrl, token: redisToken }) as RedisClient;
+      } catch (err) {
+        console.error('[pending-bookings] Failed to init Redis:', err);
+        return null;
+      }
+    })();
+  }
+  return redisPromise;
+}
 
 // In-memory fallback (local dev only)
 const memoryStore = new Map<string, PendingBookingStore>();
@@ -83,6 +116,7 @@ function pruneMemory() {
 }
 
 async function storeGet(token: string): Promise<PendingBookingStore | null> {
+  const redis = await getRedis();
   if (redis) {
     return (await redis.get<PendingBookingStore>(TOKEN_KEY(token))) ?? null;
   }
@@ -95,6 +129,7 @@ async function storeSet(
   booking: PendingBookingStore,
   ttlSeconds: number,
 ): Promise<void> {
+  const redis = await getRedis();
   if (redis) {
     await redis.set(TOKEN_KEY(token), booking, { ex: ttlSeconds });
     return;
@@ -106,6 +141,7 @@ async function storeUpdate(
   token: string,
   booking: PendingBookingStore,
 ): Promise<void> {
+  const redis = await getRedis();
   if (redis) {
     const ttl = Math.max(
       60,
@@ -119,6 +155,7 @@ async function storeUpdate(
 
 async function emailIncr(email: string): Promise<number> {
   const key = EMAIL_KEY(email);
+  const redis = await getRedis();
   if (redis) {
     const count = await redis.incr(key);
     if (count === 1) await redis.expire(key, PENDING_EXPIRY_MINUTES * 60);
@@ -132,6 +169,7 @@ async function emailIncr(email: string): Promise<number> {
 
 async function emailDecr(email: string): Promise<void> {
   const key = EMAIL_KEY(email);
+  const redis = await getRedis();
   if (redis) {
     const count = await redis.decr(key);
     if (count <= 0) await redis.del(key);
@@ -142,6 +180,7 @@ async function emailDecr(email: string): Promise<void> {
 }
 
 async function emailCount(email: string): Promise<number> {
+  const redis = await getRedis();
   if (redis) {
     const value = await redis.get<number>(EMAIL_KEY(email));
     return value ?? 0;
@@ -241,6 +280,7 @@ export async function confirmPendingBooking(
 
   // Claim before creating the calendar event so parallel confirms cannot double-book.
   const claimKey = `pb:confirming:${token}`;
+  const redis = await getRedis();
   if (redis) {
     const claimed = await redis.set(claimKey, '1', { nx: true, ex: 120 });
     if (!claimed) {

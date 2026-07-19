@@ -78,8 +78,9 @@ const schema = combineSchemas(
         </p>
       </div>
 
+      {/* client:only — Workers Free CPU budget cannot SSR this React tree (stream hung mid-page). */}
       <SchedulingWidgetWithBoundary
-        client:visible
+        client:only="react"
         services={services}
         teamMembers={teamMembers}
         initialServiceId="renewal-strategy-call"
@@ -90,7 +91,7 @@ const schema = combineSchemas(
         This content is for educational purposes only and does not constitute financial or mortgage advice. Always consult a licensed mortgage professional for advice specific to your situation.
       </p>
 
-      <ReviewsSection client:visible className="!py-12" />
+      <ReviewsSection client:only="react" className="!py-12" />
 
       <RelatedLinks slug="/book-a-call/" />
     </div>

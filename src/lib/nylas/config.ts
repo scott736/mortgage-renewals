@@ -30,21 +30,6 @@ const DEFAULT_TZ = { timezone: 'America/Toronto', rules: DEFAULT_AVAILABILITY };
 
 export const teamMembers: TeamMember[] = [
   {
-    id: 'christine',
-    name: 'Christine Traynor',
-    email: 'christine@lendcity.ca',
-    slug: 'christine-traynor',
-    title: 'Mortgage Agent & Appraiser',
-    photo: '/images/team/christine-traynor.webp',
-    bio: '20+ years as a real estate appraiser. Expert in renewal strategy for complex properties.',
-    services: ['renewal-strategy-call'],
-    nylasGrants: [
-      { grantId: '9a198c88-3442-4748-8070-1dc6875377c9', provider: 'microsoft', email: 'christine@lendcity.ca', isPrimary: true },
-    ],
-    calendars: DEFAULT_CALENDAR,
-    availability: DEFAULT_TZ,
-  },
-  {
     id: 'david',
     name: 'David Cardozo',
     email: 'david@lendcity.ca',
@@ -70,21 +55,6 @@ export const teamMembers: TeamMember[] = [
     services: ['renewal-strategy-call'],
     nylasGrants: [
       { grantId: '517e312b-c888-456b-ae95-463559e21d9f', provider: 'microsoft', email: 'gillian@lendcity.ca', isPrimary: true },
-    ],
-    calendars: DEFAULT_CALENDAR,
-    availability: DEFAULT_TZ,
-  },
-  {
-    id: 'jennifer',
-    name: 'Jennifer Champion',
-    email: 'jennifer@lendcity.ca',
-    slug: 'jennifer-champion',
-    title: 'Mortgage Agent & Developer',
-    photo: '/images/team/jennifer-champion.webp',
-    bio: 'Expert in CMHC programs and renewal strategy for multi-family and investment properties.',
-    services: ['renewal-strategy-call'],
-    nylasGrants: [
-      { grantId: 'f7f08286-394b-4b0f-9c3a-7912bf5e4101', provider: 'microsoft', email: 'jennifer@lendcity.ca', isPrimary: true },
     ],
     calendars: DEFAULT_CALENDAR,
     availability: DEFAULT_TZ,
