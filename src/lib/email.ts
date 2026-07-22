@@ -73,9 +73,15 @@ export async function sendEmail(params: SendEmailParams) {
     'Content-Type': 'application/json',
     'X-ElasticEmail-ApiKey': ELASTIC_EMAIL_API_KEY,
   };
+  // Click tracking rewrites links via tracking.mortgagerenewalhub.ca → Elastic
+  // Email (TLS cert mismatch). Firefox blocks booking confirmation CTAs.
   const reqBody = JSON.stringify({
     Recipients: { To: recipients },
     Content: content,
+    Options: {
+      TrackClicks: 'false',
+      TrackOpens: 'true',
+    },
   });
 
   const postTransactional = async (): Promise<Response> => {
