@@ -13,8 +13,14 @@ invocation_logs = true
 [assets]
 directory = "./dist/client"
 binding = "ASSETS"
-# SSR routes (book-a-call, /api/nylas/*) only exist in the Worker.
-# Without this, browser navigations (Sec-Fetch-Mode: navigate) hit the static
-# 404 page instead of the Worker when no matching asset exists.
+# SSR routes only exist in the Worker. Limit Worker-first to those prefixes so
+# static HTML stays on the CDN path.
 not_found_handling = "404-page"
-run_worker_first = true
+run_worker_first = [
+  "/api/*",
+  "/book-a-call/",
+  "/book/*",
+  "/faq/",
+  "/investment-property-mortgage-renewal/",
+  "/mortgage-renewal-divorce-separation/",
+]
