@@ -6,18 +6,19 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { PageCatalog, PagePurpose, RawPageData } from "./types";
-import { PILLAR_INTENT_CARDS, type PillarIntentCard } from "./pillar-intent";
-import {
-  PURPOSE_CARD_OVERRIDES,
-  applyPurposeCardOverride,
-} from "./purpose-card-overrides";
+
 import {
   deriveConceptsFromMeta,
   deriveTopicsExcluded,
   type FinancingConcept,
 } from "./concept-taxonomy";
-import { loadMarkdownFiles, BLOG_DIR } from "./parse";
+import { BLOG_DIR,loadMarkdownFiles } from "./parse";
+import { PILLAR_INTENT_CARDS, type PillarIntentCard } from "./pillar-intent";
+import {
+  applyPurposeCardOverride,
+  PURPOSE_CARD_OVERRIDES,
+} from "./purpose-card-overrides";
+import type { PageCatalog, PagePurpose, RawPageData } from "./types";
 
 const DATA_DIR = "src/data/linker-v4";
 

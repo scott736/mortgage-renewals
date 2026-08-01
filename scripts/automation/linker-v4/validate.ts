@@ -6,35 +6,36 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
-import type {
-  V3Suggestion,
-  ValidatedLink,
-  SuggestionFile,
-  RawPageData,
-  PagePurpose,
-  SkipZone,
-  PositionBucket,
-  PositionDistribution,
-} from "./types";
+import { type AnchorDiversityIndex,buildAnchorDiversityIndex, getExistingAnchorsForTarget } from "./anchor-intelligence";
 import {
+  fragmentAnchorReason,
+  MAX_ANCHOR_WORDS,
+  MIN_ANCHOR_WORDS,
+} from "./anchor-quality";
+import { GENERIC_ANCHORS, isPillarUrl, loadMergedCatalog,normalizeUrl, PILLAR_URL_PATTERNS } from "./catalog-utils";
+import {
+  BLOG_DIR,
+  computeContentHash,
   loadMarkdownFiles,
   numberParagraphs,
   parseBody,
-  computeContentHash,
-  BLOG_DIR,
   QUEUE_DIR,
 } from "./parse";
-import { findSkipZones, isInSkipZone, hasNegativeContext } from "./skip-zones";
-import { GENERIC_ANCHORS, PILLAR_URL_PATTERNS, normalizeUrl, isPillarUrl, loadMergedCatalog } from "./catalog-utils";
-import { buildAnchorDiversityIndex, getExistingAnchorsForTarget, type AnchorDiversityIndex } from "./anchor-intelligence";
-import {
-  MIN_ANCHOR_WORDS,
-  MAX_ANCHOR_WORDS,
-  fragmentAnchorReason,
-} from "./anchor-quality";
 import { STOP_WORDS } from "./semantic-filter";
-import { validateSemanticGates, isNumericDataAnchor, type TargetMeta } from "./semantic-gate";
+import { isNumericDataAnchor, type TargetMeta,validateSemanticGates } from "./semantic-gate";
+import { findSkipZones, hasNegativeContext,isInSkipZone } from "./skip-zones";
+import type {
+  PagePurpose,
+  PositionBucket,
+  PositionDistribution,
+  RawPageData,
+  SkipZone,
+  SuggestionFile,
+  V3Suggestion,
+  ValidatedLink,
+} from "./types";
 
 // ----------------
 // Local Types

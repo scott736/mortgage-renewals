@@ -6,15 +6,16 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
-import { buildLinkGraph, loadLinkGraph } from "./link-graph";
-import { loadBlogAndCatalog } from "./intent-placement";
-import { parseBody } from "./parse";
 import { countInternalLinks, normalizeUrl } from "./catalog-utils";
+import { loadBlogAndCatalog } from "./intent-placement";
+import { buildLinkGraph, loadLinkGraph } from "./link-graph";
 import {
   LEGACY_FORCE_BRIDGE_PATTERNS,
   LINKER_SITE,
 } from "./linker-site-config";
+import { parseBody } from "./parse";
 
 export const QUALITY_SCORE_PATH = "src/data/linker-v4/quality-score.json";
 

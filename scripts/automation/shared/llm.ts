@@ -10,13 +10,14 @@ import type {
   ChatCompletionMessageParam,
   ChatCompletionTool,
 } from "openai/resources/chat/completions";
+
 import { MODELS } from "../config";
 
 export {
-  XAI_BASE_URL,
   deleteXaiFile,
   respondWithFiles,
   uploadXaiFile,
+  XAI_BASE_URL,
 } from "../../../src/lib/xai";
 import { XAI_BASE_URL } from "../../../src/lib/xai";
 

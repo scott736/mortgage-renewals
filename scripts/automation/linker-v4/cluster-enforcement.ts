@@ -7,8 +7,9 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { LinkGraphData, LinkGraphNode, RawPageData } from "./types";
+
 import { normalizeUrl } from "./catalog-utils";
+import type { LinkGraphData, LinkGraphNode, RawPageData } from "./types";
 
 // ----------------
 // Constants

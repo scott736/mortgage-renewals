@@ -5,9 +5,12 @@
 // ============================================
 
 import "dotenv/config";
+
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+
 import { parseArgs } from "util";
+
 import type { CLIOptions } from "./types";
 
 // Parse command line arguments

@@ -5,9 +5,10 @@
 // Shows what would be applied, rejection stats, and quality metrics.
 // Saves report to src/data/linker-v4/reports/ as markdown.
 
-import fs from "fs/promises";
 import { mkdirSync } from "fs";
+import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
 import type { SuggestionFile } from "./types";
 

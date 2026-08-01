@@ -7,8 +7,9 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { LinkTracker, TrackedLink } from "./types";
+
 import { normalizeUrl } from "./catalog-utils";
+import type { LinkTracker, TrackedLink } from "./types";
 
 // ----------------
 // Types

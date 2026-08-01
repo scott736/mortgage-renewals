@@ -3,9 +3,15 @@
 // ============================================
 
 import fs from "fs/promises";
-import path from "path";
 import matter from "gray-matter";
-import type { BlogPost, QueueArticle } from "../types";
+import path from "path";
+
+import type {
+  BlogPost,
+  BlogPostFrontmatter,
+  QueueArticle,
+  QueueArticleFrontmatter,
+} from "../types";
 
 /**
  * Sanitize YAML frontmatter to ensure string values are properly quoted.
@@ -61,7 +67,7 @@ export function sanitizeYamlFrontmatter(yaml: string): string {
  * Parse frontmatter from a markdown string.
  * Automatically sanitizes YAML to handle unquoted colons in string fields.
  */
-export function parseFrontmatter<T = Record<string, any>>(
+export function parseFrontmatter<T = Record<string, unknown>>(
   content: string
 ): { frontmatter: T; body: string } {
   // Sanitize the YAML frontmatter block before parsing to prevent
@@ -81,7 +87,7 @@ export function parseFrontmatter<T = Record<string, any>>(
 /**
  * Serialize frontmatter to YAML string
  */
-function serializeFrontmatter(frontmatter: Record<string, any>): string {
+function serializeFrontmatter(frontmatter: Record<string, unknown>): string {
   const lines: string[] = [];
 
   for (const [key, value] of Object.entries(frontmatter)) {
@@ -128,7 +134,7 @@ function serializeFrontmatter(frontmatter: Record<string, any>): string {
 /**
  * Read a markdown file and parse its frontmatter
  */
-async function readMarkdownFile<T = Record<string, any>>(
+async function readMarkdownFile<T = Record<string, unknown>>(
   filePath: string
 ): Promise<{ frontmatter: T; body: string; raw: string }> {
   const raw = await fs.readFile(filePath, "utf-8");
@@ -243,7 +249,7 @@ export function assertPubDateNearTop(content: string, filePath: string): void {
  * @throws Error if required fields are missing
  */
 function validateBlogFrontmatter(
-  frontmatter: Record<string, any>,
+  frontmatter: Record<string, unknown>,
   filePath: string
 ): void {
   // Only validate blog content files
@@ -266,7 +272,7 @@ function validateBlogFrontmatter(
  */
 export async function writeMarkdownFile(
   filePath: string,
-  frontmatter: Record<string, any>,
+  frontmatter: Record<string, unknown>,
   body: string
 ): Promise<void> {
   // Validate required fields before writing
@@ -326,7 +332,7 @@ export async function loadBlogPosts(contentDir: string): Promise<BlogPost[]> {
     const { frontmatter, body } = await readMarkdownFile(filePath);
     return {
       slug: path.basename(filePath, path.extname(filePath)),
-      frontmatter: frontmatter as any,
+      frontmatter: frontmatter as BlogPostFrontmatter,
       content: body,
       filePath,
     } as BlogPost;
@@ -343,7 +349,7 @@ export async function loadQueueArticles(queueDir: string): Promise<QueueArticle[
       const { frontmatter, body } = await readMarkdownFile(filePath);
       return {
         slug: path.basename(filePath, path.extname(filePath)),
-        frontmatter: frontmatter as any,
+        frontmatter: frontmatter as QueueArticleFrontmatter,
         content: body,
         filePath,
       } as QueueArticle;

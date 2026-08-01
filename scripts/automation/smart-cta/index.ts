@@ -16,11 +16,12 @@
 import fs from "fs/promises";
 import path from "path";
 import readline from "readline";
-import type { CLIOptions } from "../types";
-import { PATHS, MODELS } from "../config";
+
+import { MODELS,PATHS } from "../config";
 import { parseFrontmatter } from "../shared/frontmatter";
-import { insertSmartCTAs, stripSmartCTAs, insertGlossaryCTA, stripGlossaryCTAs, BOOKING_URL } from "../shared/smart-cta";
-import { generateSmartCTAs, buildCTAPrompt } from "../shared/generate-smart-cta-api";
+import { buildCTAPrompt,generateSmartCTAs } from "../shared/generate-smart-cta-api";
+import { BOOKING_URL,insertGlossaryCTA, insertSmartCTAs, stripGlossaryCTAs, stripSmartCTAs } from "../shared/smart-cta";
+import type { CLIOptions } from "../types";
 
 // ----------------
 // Main Router
@@ -75,7 +76,7 @@ async function generateForArticle(options: CLIOptions): Promise<void> {
   }
 
   const frontmatterRaw = fmMatch[1];
-  const { frontmatter, body } = parseFrontmatter<Record<string, any>>(raw);
+  const { frontmatter, body } = parseFrontmatter<Record<string, unknown>>(raw);
   const metadata = {
     title: frontmatter.title || "Untitled",
     category: frontmatter.category || "renewal-process",
@@ -116,7 +117,7 @@ async function generateForArticle(options: CLIOptions): Promise<void> {
     console.log("=".repeat(60) + "\n");
 
     // Insert template CTAs as placeholders so the file is valid
-    const newBody = insertSmartCTAs(cleanBody, metadata.category, metadata.topicCluster as any, undefined, metadata.region);
+    const newBody = insertSmartCTAs(cleanBody, metadata.category, metadata.topicCluster, undefined, metadata.region);
     const newContent = `---\n${frontmatterRaw}\n---\n${newBody}`;
 
     if (dryRun) {
@@ -156,7 +157,7 @@ async function generateForArticle(options: CLIOptions): Promise<void> {
   });
   console.log("");
 
-  const newBody = insertSmartCTAs(cleanBody, metadata.category, metadata.topicCluster as any, aiCTAs, metadata.region);
+  const newBody = insertSmartCTAs(cleanBody, metadata.category, metadata.topicCluster, aiCTAs, metadata.region);
   const newContent = `---\n${frontmatterRaw}\n---\n${newBody}`;
 
   if (dryRun) {
@@ -310,7 +311,7 @@ async function processOneFile(
   if (!fmMatch) return { ctaCount: 0, skipped: true, skipReason: "invalid frontmatter" };
 
   const frontmatterRaw = fmMatch[1];
-  const { frontmatter, body } = parseFrontmatter<Record<string, any>>(raw);
+  const { frontmatter, body } = parseFrontmatter<Record<string, unknown>>(raw);
 
   if (collection === "glossary") {
     const term = frontmatter.term || "Term";
@@ -378,7 +379,7 @@ async function processOneFile(
   const newBody = insertSmartCTAs(
     cleanBody,
     metadata.category,
-    metadata.topicCluster as any,
+    metadata.topicCluster,
     aiCTAs.length > 0 ? aiCTAs : undefined,
     metadata.region,
     undefined,
@@ -420,7 +421,7 @@ async function buildInventory(options: CLIOptions): Promise<void> {
     );
     for (const file of files) {
       const raw = await fs.readFile(path.join(blogDir, file), "utf-8");
-      const { frontmatter, body } = parseFrontmatter<Record<string, any>>(raw);
+      const { frontmatter, body } = parseFrontmatter<Record<string, unknown>>(raw);
       const slug = file.replace(/\.mdx?$/, "");
       entries.push({
         url: `/blog/${slug}/`,

@@ -5,6 +5,7 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
 
 const SUGGESTIONS_DIR = "src/data/linker-v4/suggestions";

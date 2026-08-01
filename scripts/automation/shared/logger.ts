@@ -57,11 +57,11 @@ class Logger {
     }
   }
 
-  table(data: Record<string, any>[]) {
+  table(data: Record<string, unknown>[]) {
     console.table(data);
   }
 
-  json(data: any) {
+  json(data: unknown) {
     console.log(JSON.stringify(data, null, 2));
   }
 

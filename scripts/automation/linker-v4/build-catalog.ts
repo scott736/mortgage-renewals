@@ -9,13 +9,14 @@
 // After running this, ask an agent to read the enrichment prompt
 // and generate the enriched page-catalog.json.
 
+import { createHash } from "crypto";
 import fs from "fs/promises";
 import path from "path";
-import { createHash } from "crypto";
+
 import type { CLIOptions } from "../types";
-import type { RawPageData } from "./types";
-import { loadMarkdownFiles, extractExcerpt, BLOG_DIR, QUEUE_DIR } from "./parse";
 import { CATEGORY_LABELS } from "./catalog-utils";
+import { BLOG_DIR, extractExcerpt, loadMarkdownFiles, QUEUE_DIR } from "./parse";
+import type { RawPageData } from "./types";
 
 // ----------------
 // Inputs Hash (skip-when-up-to-date)

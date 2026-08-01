@@ -9,8 +9,8 @@
 //   import { generateSmartCTAs } from "./generate-smart-cta-api";
 //   const ctas = await generateSmartCTAs(articleBody, { title, category, ... });
 
+import { MODELS,WRITING_STYLE_PROMPT } from "../config";
 import LlmClient from "./llm";
-import { WRITING_STYLE_PROMPT, MODELS } from "../config";
 
 // ----------------
 // Types

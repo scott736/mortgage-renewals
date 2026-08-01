@@ -9,18 +9,19 @@
 //   (only when OPENAI_API_KEY is set).
 //   Called by generate-api.ts to rank pages by embedding similarity.
 
-import OpenAI from "openai";
 import fs from "fs/promises";
+import OpenAI from "openai";
 import path from "path";
-import { computeContentHash, loadMarkdownFiles, parseBody, BLOG_DIR } from "./parse";
+
+import { BLOG_DIR,computeContentHash, loadMarkdownFiles, parseBody } from "./parse";
 import type {
-  EmbeddingIndex,
   EmbeddingEntry,
+  EmbeddingIndex,
+  FocusPageEntry,
+  FocusPagesConfig,
+  LinkGraphData,
   RankedPage,
   RawPageData,
-  LinkGraphData,
-  FocusPagesConfig,
-  FocusPageEntry,
 } from "./types";
 
 // ----------------

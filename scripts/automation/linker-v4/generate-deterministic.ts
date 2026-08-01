@@ -5,31 +5,32 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
-import type { V3Suggestion, SuggestionFile, RankedPage } from "./types";
+import { extractAnchorFromParagraph } from "./anchor-extract";
 import {
+  extractExistingInternalLinks,
+  isPillarUrl,
+  loadMergedCatalog,
+  normalizeUrl,
+} from "./catalog-utils";
+import { loadLinkGraph } from "./link-graph";
+import {
+  BLOG_DIR,
+  computeContentHash,
   loadMarkdownFiles,
   numberParagraphs,
   parseBody,
-  computeContentHash,
-  BLOG_DIR,
 } from "./parse";
 import { rankPagesByRelevance } from "./semantic-filter";
 import {
-  loadMergedCatalog,
-  extractExistingInternalLinks,
-  isPillarUrl,
-  normalizeUrl,
-} from "./catalog-utils";
-import { findSkipZones, isInSkipZone } from "./skip-zones";
-import { extractAnchorFromParagraph } from "./anchor-extract";
-import {
   passesRegionGate,
-  validateSemanticGates,
   scoreSemanticCandidate,
   type TargetMeta,
+  validateSemanticGates,
 } from "./semantic-gate";
-import { loadLinkGraph } from "./link-graph";
+import { findSkipZones, isInSkipZone } from "./skip-zones";
+import type { RankedPage,SuggestionFile, V3Suggestion } from "./types";
 
 const SUGGESTIONS_DIR = "src/data/linker-v4/suggestions";
 const MAX_SERVICE_PILLAR = 2;

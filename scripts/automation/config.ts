@@ -2,8 +2,8 @@
 // Mortgage Renewal Hub Automation — Configuration
 // ============================================
 
-import type { TopicCluster, Category, AutomationConfig, ShowMappingEntry } from "./types";
 import configJson from "../../src/data/automation/config.json";
+import type { AutomationConfig, Category, ShowMappingEntry,TopicCluster } from "./types";
 
 export const config = configJson as AutomationConfig;
 

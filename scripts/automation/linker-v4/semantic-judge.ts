@@ -5,10 +5,11 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import LlmClient from "../shared/llm";
-import type { SuggestionFile, ValidatedLink } from "./types";
 import { loadMergedCatalog, normalizeUrl } from "./catalog-utils";
 import { parseBody } from "./parse";
+import type { SuggestionFile, ValidatedLink } from "./types";
 
 const SUGGESTIONS_DIR = "src/data/linker-v4/suggestions";
 

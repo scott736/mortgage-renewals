@@ -7,18 +7,19 @@
 
 import fs from "fs/promises";
 import path from "path";
+
+import { isPreservedInternalLink,normalizeUrl } from "./catalog-utils";
+import { FALLBACK_CATEGORY_PILLARS } from "./cluster-enforcement";
 import {
-  loadBlogAndCatalog,
   intentOverlapScore,
+  loadBlogAndCatalog,
   purposeText,
 } from "./intent-placement";
 import {
+  extractRawFrontmatter,
   numberParagraphs,
   parseBody,
-  extractRawFrontmatter,
 } from "./parse";
-import { normalizeUrl, isPreservedInternalLink } from "./catalog-utils";
-import { FALLBACK_CATEGORY_PILLARS } from "./cluster-enforcement";
 import { passesRegionGate } from "./semantic-gate";
 
 function parseArgs(argv: string[]) {

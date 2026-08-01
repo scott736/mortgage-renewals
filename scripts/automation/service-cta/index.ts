@@ -11,14 +11,15 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { CLIOptions } from "../types";
+
 import { parseFrontmatter } from "../shared/frontmatter";
 import {
-  insertServiceCTA,
-  stripServiceCTA,
   hasServiceHubLink,
+  insertServiceCTA,
   resolveServiceHub,
+  stripServiceCTA,
 } from "../shared/service-cta";
+import type { CLIOptions } from "../types";
 
 const LOCALES = ["en"] as const;
 

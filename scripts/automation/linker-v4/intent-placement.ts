@@ -5,34 +5,34 @@
 // local code extracts exact substring anchors.
 
 import LlmClient from "../shared/llm";
-import type { PagePurpose, RankedPage, ParsedArticle } from "./types";
-import {
-  loadMarkdownFiles,
-  numberParagraphs,
-  parseBody,
-  computeContentHash,
-  BLOG_DIR,
-} from "./parse";
-import { rankPagesByRelevance, tokenize } from "./semantic-filter";
-import {
-  extractExistingInternalLinks,
-  isPillarUrl,
-  loadMergedCatalog,
-  normalizeUrl,
-} from "./catalog-utils";
-import { findSkipZones, isInSkipZone } from "./skip-zones";
 import { extractAnchorFromParagraph } from "./anchor-extract";
 import {
   fragmentAnchorReason,
   validateAnchorQuality,
 } from "./anchor-quality";
 import {
+  extractExistingInternalLinks,
+  isPillarUrl,
+  loadMergedCatalog,
+  normalizeUrl,
+} from "./catalog-utils";
+import { FALLBACK_CATEGORY_PILLARS } from "./cluster-enforcement";
+import {
+  BLOG_DIR,
+  computeContentHash,
+  loadMarkdownFiles,
+  numberParagraphs,
+  parseBody,
+} from "./parse";
+import { rankPagesByRelevance, tokenize } from "./semantic-filter";
+import {
   isNumericDataAnchor,
   passesRegionGate,
-  validateSemanticGates,
   type TargetMeta,
+  validateSemanticGates,
 } from "./semantic-gate";
-import { FALLBACK_CATEGORY_PILLARS } from "./cluster-enforcement";
+import { findSkipZones, isInSkipZone } from "./skip-zones";
+import type { PagePurpose, ParsedArticle,RankedPage } from "./types";
 
 export type CatalogPage = RankedPage &
   Pick<PagePurpose, "assetTypes" | "unitRange" | "questionsAnswered">;

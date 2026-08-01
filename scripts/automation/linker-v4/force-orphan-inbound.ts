@@ -6,19 +6,20 @@
 //   npx tsx scripts/automation/linker-v4/force-orphan-inbound.ts --max 200 --all
 
 import fs from "fs/promises";
+
+import { normalizeUrl } from "./catalog-utils";
 import {
-  loadBlogAndCatalog,
   intentOverlapScore,
+  loadBlogAndCatalog,
   purposeText,
 } from "./intent-placement";
+import { buildLinkGraph,loadLinkGraph } from "./link-graph";
+import { LINKER_SITE } from "./linker-site-config";
 import {
+  extractRawFrontmatter,
   numberParagraphs,
   parseBody,
-  extractRawFrontmatter,
 } from "./parse";
-import { normalizeUrl } from "./catalog-utils";
-import { loadLinkGraph, buildLinkGraph } from "./link-graph";
-import { LINKER_SITE } from "./linker-site-config";
 
 function parseArgs(argv: string[]) {
   const maxIdx = argv.indexOf("--max");

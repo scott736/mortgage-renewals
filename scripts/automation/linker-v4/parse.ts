@@ -3,11 +3,12 @@
 // ============================================
 // Self-contained parsing utilities. No imports from existing automation code.
 
-import fs from "fs/promises";
-import path from "path";
 import { createHash } from "crypto";
+import fs from "fs/promises";
 import matter from "gray-matter";
-import type { ParsedArticle, NumberedParagraph } from "./types";
+import path from "path";
+
+import type { NumberedParagraph,ParsedArticle } from "./types";
 
 // ----------------
 // Directory Constants

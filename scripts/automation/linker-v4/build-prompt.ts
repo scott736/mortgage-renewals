@@ -10,9 +10,10 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
+import { BLOG_DIR, loadMarkdownFiles, numberParagraphs, QUEUE_DIR } from "./parse";
 import type { PageCatalog } from "./types";
-import { loadMarkdownFiles, numberParagraphs, BLOG_DIR, QUEUE_DIR } from "./parse";
 
 // ----------------
 // Main Function

@@ -5,17 +5,18 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { NumberedParagraph } from "./types";
-import { loadMarkdownFiles, parseBody, numberParagraphs, BLOG_DIR } from "./parse";
-import { loadMergedCatalog, normalizeUrl } from "./catalog-utils";
+
 import {
+  type AnchorTargetMeta,
   extractAnchorFromParagraph,
   normalizeParagraphText,
-  type AnchorTargetMeta,
 } from "./anchor-extract";
-import { validateAnchorQuality, MIN_ANCHOR_WORDS, MAX_ANCHOR_WORDS } from "./anchor-quality";
+import { MAX_ANCHOR_WORDS,MIN_ANCHOR_WORDS, validateAnchorQuality } from "./anchor-quality";
+import { loadMergedCatalog, normalizeUrl } from "./catalog-utils";
+import { BLOG_DIR,loadMarkdownFiles, numberParagraphs, parseBody } from "./parse";
 import { tokenize } from "./semantic-filter";
 import type { TargetMeta } from "./semantic-gate";
+import type { NumberedParagraph } from "./types";
 
 const DATA_DIR = "src/data/linker-v4";
 

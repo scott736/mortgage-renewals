@@ -10,27 +10,28 @@
 //   npx tsx scripts/automation -f linker-v4 -m generate --all --use-api --concurrency 5
 //   npx tsx scripts/automation -f linker-v4 -m generate --all --use-api --model haiku
 
-import LlmClient from "../shared/llm";
 import fs from "fs/promises";
 import path from "path";
-import type { CLIOptions } from "../types";
+
 import { MODELS } from "../config";
-import type { RawPageData, V3Suggestion, SuggestionFile, PageCatalog, PagePurpose, LinkGraphData, RankedPage, FocusPagesConfig, EmbeddingIndex, ValidatedLink, NumberedParagraph } from "./types";
+import LlmClient from "../shared/llm";
+import type { CLIOptions } from "../types";
+import { resolveAnchorText } from "./anchor-extract";
+import { type AnchorDiversityIndex,buildAnchorDiversityIndex, formatAnchorDistributionForPrompt } from "./anchor-intelligence";
+import { CATEGORY_ADJACENCY, extractExistingInternalLinks, filterCatalogByCategory, type FilteredPage,loadMergedCatalog } from "./catalog-utils";
+import { getHubAndSpokePromptNote } from "./cluster-enforcement";
+import { loadEmbeddingIndex, rankPagesByEmbedding } from "./embeddings";
+import { loadLinkGraph } from "./link-graph";
 import {
+  BLOG_DIR,
+  computeContentHash,
   loadMarkdownFiles,
   numberParagraphs,
   parseBody,
-  computeContentHash,
-  BLOG_DIR,
   QUEUE_DIR,
 } from "./parse";
-import { loadLinkGraph } from "./link-graph";
 import { rankPagesByRelevance } from "./semantic-filter";
-import { loadEmbeddingIndex, rankPagesByEmbedding } from "./embeddings";
-import { CATEGORY_ADJACENCY, filterCatalogByCategory, extractExistingInternalLinks, loadMergedCatalog, type FilteredPage } from "./catalog-utils";
-import { buildAnchorDiversityIndex, formatAnchorDistributionForPrompt, type AnchorDiversityIndex } from "./anchor-intelligence";
-import { getHubAndSpokePromptNote } from "./cluster-enforcement";
-import { resolveAnchorText } from "./anchor-extract";
+import type { EmbeddingIndex, FocusPagesConfig, LinkGraphData, NumberedParagraph,PageCatalog, PagePurpose, RankedPage, RawPageData, SuggestionFile, V3Suggestion, ValidatedLink } from "./types";
 
 // ----------------
 // Constants

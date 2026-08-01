@@ -7,15 +7,16 @@
 
 import fs from "fs/promises";
 import path from "path";
-import { loadMarkdownFiles, parseBody, BLOG_DIR, BLOG_LANGS } from "./parse";
+
 import { normalizeUrl } from "./catalog-utils";
+import { BLOG_DIR, BLOG_LANGS,loadMarkdownFiles, parseBody } from "./parse";
 import type {
-  LinkGraphNode,
+  FocusPageEntry,
+  FocusPagesConfig,
   LinkGraphData,
+  LinkGraphNode,
   LinkHealthReport,
   RawPageData,
-  FocusPagesConfig,
-  FocusPageEntry,
 } from "./types";
 
 // ----------------

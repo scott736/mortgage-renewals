@@ -10,8 +10,9 @@
 
 import fs from "fs/promises";
 import path from "path";
-import { loadMarkdownFiles, parseBody, BLOG_DIR } from "./parse";
-import type { TermVector, SemanticIndexEntry, SemanticIndex, RankedPage, LinkGraphData, RawPageData, FocusPagesConfig } from "./types";
+
+import { BLOG_DIR,loadMarkdownFiles, parseBody } from "./parse";
+import type { FocusPagesConfig,LinkGraphData, RankedPage, RawPageData, SemanticIndex, SemanticIndexEntry, TermVector } from "./types";
 
 // ----------------
 // Constants

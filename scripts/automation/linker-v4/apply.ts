@@ -7,26 +7,27 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
-import type { SuggestionFile, ValidatedLink, TrackedLink, LinkTracker, NumberedParagraph } from "./types";
-import {
-  loadMarkdownFiles,
-  extractRawFrontmatter,
-  parseBody,
-  numberParagraphs,
-  BLOG_DIR,
-  BLOG_LANGS,
-  QUEUE_DIR,
-} from "./parse";
-import { normalizeUrl } from "./catalog-utils";
 import { type AnchorTargetMeta } from "./anchor-extract";
+import { normalizeUrl } from "./catalog-utils";
 import {
   buildLocalizedCatalogTargetIndex,
+  getContentParagraphOrdinal,
   resolveLocalizedAnchor,
   resolveLocalizedParagraph,
-  getContentParagraphOrdinal,
 } from "./localized-apply";
-import { recordAppliedLink, buildLinkId } from "./quality-tracker";
+import {
+  BLOG_DIR,
+  BLOG_LANGS,
+  extractRawFrontmatter,
+  loadMarkdownFiles,
+  numberParagraphs,
+  parseBody,
+  QUEUE_DIR,
+} from "./parse";
+import { buildLinkId,recordAppliedLink } from "./quality-tracker";
+import type { LinkTracker, NumberedParagraph,SuggestionFile, TrackedLink, ValidatedLink } from "./types";
 
 // ----------------
 // Constants

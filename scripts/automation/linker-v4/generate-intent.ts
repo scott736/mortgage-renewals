@@ -5,17 +5,18 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { CLIOptions } from "../types";
-import type { SuggestionFile } from "./types";
-import LlmClient from "../shared/llm";
+
 import { MODELS } from "../config";
+import LlmClient from "../shared/llm";
+import type { CLIOptions } from "../types";
+import { normalizeUrl } from "./catalog-utils";
 import {
   generateIntentLinksForArticle,
-  loadBlogAndCatalog,
   type IntentLink,
+  loadBlogAndCatalog,
 } from "./intent-placement";
 import { loadLinkGraph } from "./link-graph";
-import { normalizeUrl } from "./catalog-utils";
+import type { SuggestionFile } from "./types";
 
 const SUGGESTIONS_DIR = "src/data/linker-v4/suggestions";
 

@@ -6,8 +6,9 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { PagePurpose, RawPageData, PageCatalog } from "./types";
+
 import { isServiceHubUrl } from "../shared/service-cta";
+import type { PageCatalog,PagePurpose, RawPageData } from "./types";
 
 const DATA_DIR = "src/data/linker-v4";
 // ----------------

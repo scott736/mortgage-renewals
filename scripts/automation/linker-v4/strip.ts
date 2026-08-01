@@ -6,10 +6,11 @@
 
 import fs from "fs/promises";
 import path from "path";
+
 import type { CLIOptions } from "../types";
-import type { LinkTracker } from "./types";
-import { loadMarkdownFiles, extractRawFrontmatter, parseBody, BLOG_DIR, BLOG_LANGS } from "./parse";
 import { isPreservedInternalLink } from "./catalog-utils";
+import { BLOG_DIR, BLOG_LANGS,extractRawFrontmatter, loadMarkdownFiles, parseBody } from "./parse";
+import type { LinkTracker } from "./types";
 
 // ----------------
 // Constants

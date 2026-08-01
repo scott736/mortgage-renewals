@@ -4,7 +4,7 @@
 // Rejects mid-clause fragments ("the mortgage and") and scores
 // descriptive, click-worthy anchor phrases.
 
-import { tokenize, STOP_WORDS } from "./semantic-filter";
+import { STOP_WORDS,tokenize } from "./semantic-filter";
 
 export interface AnchorTargetMeta {
   title: string;

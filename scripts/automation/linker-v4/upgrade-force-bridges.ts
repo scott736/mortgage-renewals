@@ -6,14 +6,15 @@
 //   npx tsx scripts/automation/linker-v4/upgrade-force-bridges.ts --use-api --max 80
 
 import fs from "fs/promises";
+
+import { MODELS } from "../config";
+import { LlmClient } from "../shared/llm";
 import { loadBlogAndCatalog } from "./intent-placement";
-import { parseBody, extractRawFrontmatter } from "./parse";
 import {
   LEGACY_FORCE_BRIDGE_PATTERNS,
   LINKER_SITE,
 } from "./linker-site-config";
-import { LlmClient } from "../shared/llm";
-import { MODELS } from "../config";
+import { extractRawFrontmatter,parseBody } from "./parse";
 
 function parseArgs(argv: string[]) {
   const maxIdx = argv.indexOf("--max");

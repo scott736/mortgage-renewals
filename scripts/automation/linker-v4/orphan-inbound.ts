@@ -8,27 +8,28 @@
 
 import fs from "fs/promises";
 import path from "path";
-import type { CLIOptions } from "../types";
-import type { SuggestionFile, ParsedArticle } from "./types";
-import LlmClient from "../shared/llm";
+
 import { MODELS } from "../config";
+import LlmClient from "../shared/llm";
+import type { CLIOptions } from "../types";
+import { normalizeUrl } from "./catalog-utils";
 import {
-  loadMarkdownFiles,
-  parseBody,
-  numberParagraphs,
-  extractRawFrontmatter,
-  BLOG_DIR,
-  computeContentHash,
-} from "./parse";
-import {
-  findInboundSourceCandidates,
-  tryLinkToOrphanInSource,
-  loadBlogAndCatalog,
   type CatalogPage,
+  findInboundSourceCandidates,
   type IntentLink,
+  loadBlogAndCatalog,
+  tryLinkToOrphanInSource,
 } from "./intent-placement";
 import { buildLinkGraph, loadLinkGraph } from "./link-graph";
-import { normalizeUrl } from "./catalog-utils";
+import {
+  BLOG_DIR,
+  computeContentHash,
+  extractRawFrontmatter,
+  loadMarkdownFiles,
+  numberParagraphs,
+  parseBody,
+} from "./parse";
+import type { ParsedArticle,SuggestionFile } from "./types";
 
 const DRAFTS_DIR = "src/data/linker-v4/orphan-inbound-drafts";
 const SUGGESTIONS_DIR = "src/data/linker-v4/suggestions";

@@ -3,18 +3,18 @@
 // ============================================
 // Concept, asset-class, and reader-intent validation (not just token overlap).
 
-import { tokenize } from "./semantic-filter";
-import { scoreAnchorTargetAlignment, type AnchorTargetMeta } from "./anchor-extract";
+import { type AnchorTargetMeta,scoreAnchorTargetAlignment } from "./anchor-extract";
 import {
-  inferConcepts,
-  inferAssetClasses,
   conceptOverlap,
-  hasConceptConflict,
-  hasAssetConflict,
-  hitsTopicsExcluded,
-  scoreReaderIntentAlignment,
   type FinancingConcept,
+  hasAssetConflict,
+  hasConceptConflict,
+  hitsTopicsExcluded,
+  inferAssetClasses,
+  inferConcepts,
+  scoreReaderIntentAlignment,
 } from "./concept-taxonomy";
+import { tokenize } from "./semantic-filter";
 
 export const MIN_ANCHOR_TARGET_SCORE = 0.20;
 export const MIN_CONTEXT_TARGET_SCORE = 0.19;

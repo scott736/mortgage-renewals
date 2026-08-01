@@ -4,18 +4,18 @@
 // Finds exact 5–14 word phrases that read as complete thoughts,
 // not arbitrary mid-clause fragments.
 
-import { tokenize, STOP_WORDS } from "./semantic-filter";
-import { GENERIC_ANCHORS } from "./catalog-utils";
-import { isNumericDataAnchor } from "./semantic-gate";
 import {
-  MIN_ANCHOR_WORDS,
-  MAX_ANCHOR_WORDS,
+  type AnchorTargetMeta,
   isEdgeStopword,
   isFragmentAnchor,
+  MAX_ANCHOR_WORDS,
+  MIN_ANCHOR_WORDS,
   scoreDescriptiveAnchor,
   validateAnchorQuality,
-  type AnchorTargetMeta,
 } from "./anchor-quality";
+import { GENERIC_ANCHORS } from "./catalog-utils";
+import { STOP_WORDS,tokenize } from "./semantic-filter";
+import { isNumericDataAnchor } from "./semantic-gate";
 
 export type { AnchorTargetMeta };
 
