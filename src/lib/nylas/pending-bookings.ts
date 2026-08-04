@@ -15,7 +15,8 @@
  * at module init on Cloudflare Workers the way a static `@upstash/redis` import can.
  */
 
-import { createBooking } from './client';
+import { createBooking, getAvailability } from './client';
+import { getServiceById } from './config';
 import type { BookingConfirmation, BookingRequest } from './types';
 
 // ============================================================================
@@ -308,6 +309,51 @@ export async function confirmPendingBooking(
   await storeUpdate(token, store);
 
   try {
+    // Fail-closed: re-validate the slot is still free (vacation/OOO/busy) before createBooking.
+    const service = getServiceById(store.service_id);
+    const slotDuration = store.duration_override ?? service?.duration ?? 30;
+    const slotStart = new Date(store.start_time);
+    const dayStart = slotStart.toISOString().split('T')[0];
+    // endDate must be at least 1 day after startDate so Nylas gets a non-zero window
+    const nextDay = new Date(slotStart.getTime() + 24 * 60 * 60 * 1000);
+    const dayEnd = nextDay.toISOString().split('T')[0];
+
+    try {
+      const availableSlots = await getAvailability({
+        serviceId: store.service_id,
+        teamMemberId: store.team_member_id,
+        startDate: dayStart,
+        endDate: dayEnd,
+        timezone: store.timezone,
+        duration: slotDuration,
+      });
+
+      const slotStillAvailable = availableSlots.some(
+        (slot) => new Date(slot.startTime).getTime() === slotStart.getTime(),
+      );
+
+      if (!slotStillAvailable) {
+        store.status = 'pending';
+        delete store.confirmed_at;
+        await storeUpdate(token, store);
+        if (redis) await redis.del(claimKey);
+        return {
+          success: false,
+          error: 'This time slot is no longer available. Please book a different time.',
+        };
+      }
+    } catch (availError) {
+      console.error('[pending-bookings] Availability recheck failed (fail closed):', availError);
+      store.status = 'pending';
+      delete store.confirmed_at;
+      await storeUpdate(token, store);
+      if (redis) await redis.del(claimKey);
+      return {
+        success: false,
+        error: 'Unable to verify slot availability. Please try again in a moment.',
+      };
+    }
+
     const booking = await createBooking(store.bookingRequest);
     await emailDecr(store.guest_email);
     if (redis) await redis.del(claimKey);

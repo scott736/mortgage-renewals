@@ -3,7 +3,7 @@
  * Server-side client for interacting with Nylas v3 API
  */
 
-import Nylas from 'nylas';
+import Nylas, { AvailabilityMethod } from 'nylas';
 
 import { timingSafeCompare } from '@/lib/crypto-utils';
 import { escapeHtml } from '@/lib/email';
@@ -14,6 +14,11 @@ import {
   getTeamMembersByService,
   schedulingConfig,
 } from './config';
+import {
+  mergeConflictCalendarIds,
+  normalizeOpenHourTime,
+  type ConflictCalendarLike,
+} from './conflict-calendars';
 import { enrichTeamMember, enrichTeamMembers } from './grants';
 import type {
   AvailabilityRequest,
@@ -216,25 +221,17 @@ async function exchangeCodeForGrant(
  * Get all grant IDs for a team member (supports multiple calendars)
  */
 function getTeamMemberGrantIds(member: TeamMember): string[] {
-  const grantIds: string[] = [];
+  const grantIds = new Set<string>();
 
-  // Add primary grant ID if set
   if (member.nylasGrantId) {
-    grantIds.push(member.nylasGrantId);
+    grantIds.add(member.nylasGrantId);
   }
 
-  // Add all grants from nylasGrants array
-  if (member.nylasGrants && member.nylasGrants.length > 0) {
-    const seen = new Set(grantIds);
-    for (const grant of member.nylasGrants) {
-      if (!seen.has(grant.grantId)) {
-        grantIds.push(grant.grantId);
-        seen.add(grant.grantId);
-      }
-    }
+  for (const grant of member.nylasGrants ?? []) {
+    grantIds.add(grant.grantId);
   }
 
-  return grantIds;
+  return [...grantIds];
 }
 
 /**
@@ -281,19 +278,179 @@ function getCalendarId(member: TeamMember): string {
   return 'primary';
 }
 
+/** Grant emails used as Nylas Availability participants for a team member. */
+function getParticipantEmails(member: TeamMember): string[] {
+  const fromGrants = (member.nylasGrants ?? [])
+    .map((g) => g.email?.trim())
+    .filter((email): email is string => Boolean(email));
+  if (fromGrants.length > 0) {
+    return [...new Set(fromGrants)];
+  }
+  if (member.nylasGrantId || member.email) {
+    return [member.email];
+  }
+  return [];
+}
+
+/** Round buffer minutes to Nylas' 5-minute increments. */
+function roundBufferMinutes(minutes: number): number {
+  if (minutes <= 0) return 0;
+  return Math.ceil(minutes / 5) * 5;
+}
+
+function buildOpenHours(member: TeamMember) {
+  return member.availability?.rules.map((rule) => ({
+    days: [rule.dayOfWeek],
+    timezone: member.availability?.timezone || schedulingConfig.defaultTimezone,
+    start: normalizeOpenHourTime(rule.startTime),
+    end: normalizeOpenHourTime(rule.endTime),
+    exdates: [] as string[],
+  }));
+}
+
+/** Short-lived cache of conflict calendar IDs per grant (avoids listing on every request). */
+const conflictCalendarCache = new Map<string, { ids: string[]; expiresAt: number }>();
+const CONFLICT_CALENDAR_CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour
+
 /**
- * Get available time slots for a service
- * Checks ALL connected calendars (Google + Microsoft) for conflicts
+ * Calendar IDs that must be free for a grant before we offer a booking slot.
+ * Includes primary + any owned writable calendars (vacation/OOO on secondary calendars).
+ */
+async function getConflictCalendarIdsForGrant(
+  nylas: Nylas,
+  grantId: string,
+  member: TeamMember,
+): Promise<string[]> {
+  const cached = conflictCalendarCache.get(grantId);
+  if (cached && cached.expiresAt > Date.now()) {
+    return cached.ids;
+  }
+
+  let discovered: ConflictCalendarLike[] = [];
+  try {
+    const response = await nylas.calendars.list({
+      identifier: grantId,
+      queryParams: { limit: 200 },
+    });
+    discovered = (response.data ?? []).map((cal) => ({
+      id: cal.id,
+      readOnly: cal.readOnly,
+      isOwnedByUser: cal.isOwnedByUser,
+      isPrimary: cal.isPrimary,
+      name: cal.name,
+    }));
+  } catch (error) {
+    console.warn(
+      `Failed to list calendars for grant ${grantId}; falling back to primary/config calendars:`,
+      error,
+    );
+  }
+
+  const ids = mergeConflictCalendarIds(member, discovered);
+  conflictCalendarCache.set(grantId, {
+    ids,
+    expiresAt: Date.now() + CONFLICT_CALENDAR_CACHE_TTL_MS,
+  });
+  return ids;
+}
+
+/** Build Availability participants from every connected grant (all calendars must be free). */
+async function buildAvailabilityParticipants(
+  nylas: Nylas,
+  members: TeamMember[],
+): Promise<{
+  participants: Array<{
+    email: string;
+    calendarIds: string[];
+    openHours?: ReturnType<typeof buildOpenHours>;
+  }>;
+  emailToMember: Map<string, TeamMember>;
+}> {
+  const emailToMember = new Map<string, TeamMember>();
+  const participants: Array<{
+    email: string;
+    calendarIds: string[];
+    openHours?: ReturnType<typeof buildOpenHours>;
+  }> = [];
+
+  for (const member of members) {
+    const openHours = buildOpenHours(member);
+    const grants =
+      member.nylasGrants && member.nylasGrants.length > 0
+        ? member.nylasGrants
+        : member.nylasGrantId
+          ? [{ grantId: member.nylasGrantId, email: member.email, provider: 'microsoft' as const }]
+          : [];
+
+    for (const grant of grants) {
+      const email = (grant.email || member.email).trim();
+      if (!email) continue;
+      const calendarIds = await getConflictCalendarIdsForGrant(nylas, grant.grantId, member);
+      emailToMember.set(email.toLowerCase(), member);
+      participants.push({
+        email,
+        calendarIds,
+        ...(openHours && openHours.length > 0 ? { openHours } : {}),
+      });
+    }
+  }
+
+  return { participants, emailToMember };
+}
+
+/**
+ * Pick which team member owns a free slot.
+ * Multi-grant members are free only when every grant email is free (all calendars clear).
+ */
+function resolveTeamMemberForSlot(
+  slotEmails: string[],
+  members: TeamMember[],
+  emailToMember: Map<string, TeamMember>,
+  fairnessOrder: string[],
+): string | null {
+  const freeSet = new Set(slotEmails.map((email) => email.toLowerCase()));
+
+  const eligible = members.filter((member) => {
+    const emails = getParticipantEmails(member);
+    return emails.length > 0 && emails.every((email) => freeSet.has(email.toLowerCase()));
+  });
+
+  if (eligible.length === 0) return null;
+  if (eligible.length === 1) return eligible[0].id;
+
+  for (const email of fairnessOrder) {
+    const member = emailToMember.get(email.toLowerCase());
+    if (member && eligible.some((m) => m.id === member.id)) {
+      return member.id;
+    }
+  }
+
+  return eligible[0].id;
+}
+
+function toUnixSeconds(value: unknown): number {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string' && value.trim()) {
+    const asNumber = Number(value);
+    if (Number.isFinite(asNumber)) return asNumber;
+  }
+  throw new Error('Invalid availability timestamp from Nylas');
+}
+
+/**
+ * Get available time slots for a service.
+ * Uses one Nylas Availability request for the whole participant pool (round-robin
+ * via max-fairness, or collective for a single bookable person / multi-grant).
+ * Conflict calendars include primary + owned writable calendars so vacation/OOO blocks.
  */
 export async function getAvailability(request: AvailabilityRequest): Promise<TimeSlot[]> {
-  const _nylas = getNylasClient();
+  const nylas = getNylasClient();
   const service = getServiceById(request.serviceId);
 
   if (!service) {
     throw new Error(`Service not found: ${request.serviceId}`);
   }
 
-  // Determine which team members to check
   let teamMembersToCheck: TeamMember[];
 
   if (request.teamMemberId) {
@@ -302,17 +459,15 @@ export async function getAvailability(request: AvailabilityRequest): Promise<Tim
       throw new Error(`Team member not found: ${request.teamMemberId}`);
     }
     const member = await enrichTeamMember(rawMember);
-    const grantIds = getTeamMemberGrantIds(member);
-    if (grantIds.length === 0) {
+    if (getTeamMemberGrantIds(member).length === 0) {
       throw new Error(`Team member ${member.name} has not connected their calendar`);
     }
     teamMembersToCheck = [member];
   } else {
-    // Get all team members who offer this service and have connected calendars
     const rawMembers = getTeamMembersByService(request.serviceId);
     const enrichedMembers = await enrichTeamMembers(rawMembers);
     teamMembersToCheck = enrichedMembers.filter(
-      (member) => getTeamMemberGrantIds(member).length > 0
+      (member) => getTeamMemberGrantIds(member).length > 0,
     );
   }
 
@@ -323,153 +478,78 @@ export async function getAvailability(request: AvailabilityRequest): Promise<Tim
     throw new Error('No team members available for this service');
   }
 
-  // Shuffle team members for round-robin so no single person is consistently
-  // favored when deduplicating overlapping time slots
-  if (service.roundRobin && !request.teamMemberId && teamMembersToCheck.length > 1) {
-    for (let i = teamMembersToCheck.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [teamMembersToCheck[i], teamMembersToCheck[j]] = [teamMembersToCheck[j], teamMembersToCheck[i]];
-    }
-  }
-
-  // Use requested duration if provided, otherwise fall back to service config
   const durationMinutes = request.duration ?? service.duration;
-
   const startDate = new Date(request.startDate);
   const endDate = new Date(request.endDate);
 
-  // Nylas requires timestamps to be multiples of 5 minutes
-  const roundUp5Min = (ts: number) => Math.ceil(ts / 300) * 300;
-  const apiUri = NYLAS_API_URI || 'https://api.us.nylas.com';
-  const startTimestamp = roundUp5Min(Math.floor(startDate.getTime() / 1000));
-  const endTimestamp = roundUp5Min(Math.floor(endDate.getTime() / 1000));
-
-  // Fetch availability for ALL team members in parallel
-  const slotResults = await Promise.allSettled(
-    teamMembersToCheck.map(async (member): Promise<TimeSlot[]> => {
-      const openHours = member.availability?.rules.map((rule) => ({
-        days: [rule.dayOfWeek],
-        timezone: member.availability?.timezone || schedulingConfig.defaultTimezone,
-        start: rule.startTime,
-        end: rule.endTime,
-        exdates: [] as string[],
-      }));
-
-      const availRes = await fetch(`${apiUri}/v3/calendars/availability`, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${NYLAS_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          start_time: startTimestamp,
-          end_time: endTimestamp,
-          duration_minutes: durationMinutes,
-          interval_minutes: schedulingConfig.slotInterval,
-          participants: [
-            {
-              email: member.email,
-              ...(openHours && openHours.length > 0 && {
-                open_hours: openHours.map(oh => ({
-                  days: oh.days,
-                  timezone: oh.timezone,
-                  start: oh.start,
-                  end: oh.end,
-                  exdates: oh.exdates,
-                })),
-              }),
-            },
-          ],
-        }),
-      });
-
-      const availData = await availRes.json();
-      const slots: TimeSlot[] = [];
-
-      if (availData.data?.time_slots) {
-        for (const slot of availData.data.time_slots) {
-          slots.push({
-            startTime: new Date(slot.start_time * 1000).toISOString(),
-            endTime: new Date(slot.end_time * 1000).toISOString(),
-            teamMemberId: member.id,
-            available: true,
-          });
-        }
-      }
-
-      return slots;
-    })
+  const { participants, emailToMember } = await buildAvailabilityParticipants(
+    nylas,
+    teamMembersToCheck,
   );
 
-  // Collect all successful results, log failures
-  const allSlots: TimeSlot[] = [];
-  for (let i = 0; i < slotResults.length; i++) {
-    const result = slotResults[i];
-    if (result.status === 'fulfilled') {
-      allSlots.push(...result.value);
-    } else {
-      console.error(`Error getting availability for ${teamMembersToCheck[i].name}:`, result.reason);
+  if (participants.length === 0) {
+    throw new Error('No calendar participants available for this service');
+  }
+
+  const useRoundRobin =
+    service.roundRobin && !request.teamMemberId && teamMembersToCheck.length > 1;
+
+  // Single person (or multi-grant for one person) → collective so every calendar must be free.
+  // Round-robin pool → max-fairness so Nylas returns any-one-available slots + fairness order.
+  const availabilityMethod = useRoundRobin
+    ? AvailabilityMethod.MaxFairness
+    : AvailabilityMethod.Collective;
+
+  const bufferBefore = roundBufferMinutes(service.bufferBefore || 0);
+  const bufferAfter = roundBufferMinutes(service.bufferAfter || 0);
+
+  try {
+    const availability = await nylas.calendars.getAvailability({
+      requestBody: {
+        startTime: Math.floor(startDate.getTime() / 1000),
+        endTime: Math.floor(endDate.getTime() / 1000),
+        durationMinutes,
+        intervalMinutes: schedulingConfig.slotInterval,
+        roundTo: schedulingConfig.slotInterval,
+        participants,
+        availabilityRules: {
+          availabilityMethod,
+          // Microsoft tentative events block booking (vacation sometimes lands as tentative).
+          tentativeAsBusy: true,
+          ...(bufferBefore > 0 || bufferAfter > 0
+            ? { buffer: { before: bufferBefore, after: bufferAfter } }
+            : {}),
+        },
+      },
+    });
+
+    const fairnessOrder = availability.data?.order ?? [];
+    const rawSlots = availability.data?.timeSlots ?? [];
+
+    const slots: TimeSlot[] = [];
+    for (const slot of rawSlots) {
+      const teamMemberId = resolveTeamMemberForSlot(
+        slot.emails ?? [],
+        teamMembersToCheck,
+        emailToMember,
+        fairnessOrder,
+      );
+      if (!teamMemberId) continue;
+
+      slots.push({
+        startTime: new Date(toUnixSeconds(slot.startTime) * 1000).toISOString(),
+        endTime: new Date(toUnixSeconds(slot.endTime) * 1000).toISOString(),
+        teamMemberId,
+        available: true,
+      });
     }
+
+    slots.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
+    return slots;
+  } catch (error) {
+    console.error('Error getting batched availability:', error);
+    throw error;
   }
-
-  // Sort slots by start time
-  allSlots.sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
-
-  // For round-robin, deduplicate overlapping slots (keep first available team member)
-  if (service.roundRobin && !request.teamMemberId) {
-    return deduplicateSlots(allSlots, schedulingConfig.slotInterval);
-  }
-
-  return allSlots;
-}
-
-/**
- * Remove duplicate time slots (for round-robin scheduling)
- * Distributes slots across team members so no single person gets all bookings.
- */
-function deduplicateSlots(slots: TimeSlot[], intervalMinutes: number): TimeSlot[] {
-  // Group all candidates for each time interval
-  const groups = new Map<string, TimeSlot[]>();
-
-  for (const slot of slots) {
-    const roundedStart = roundToInterval(new Date(slot.startTime), intervalMinutes);
-    const key = roundedStart.toISOString();
-    if (!groups.has(key)) {
-      groups.set(key, []);
-    }
-    groups.get(key)!.push(slot);
-  }
-
-  // Track how many slots each member has been assigned
-  const memberCount = new Map<string, number>();
-
-  const result: TimeSlot[] = [];
-  for (const [, candidates] of groups) {
-    // Pick the candidate whose member has the fewest assignments so far
-    let best = candidates[0];
-    let bestCount = memberCount.get(best.teamMemberId) ?? 0;
-
-    for (let i = 1; i < candidates.length; i++) {
-      const count = memberCount.get(candidates[i].teamMemberId) ?? 0;
-      if (count < bestCount) {
-        best = candidates[i];
-        bestCount = count;
-      }
-    }
-
-    result.push(best);
-    memberCount.set(best.teamMemberId, bestCount + 1);
-  }
-
-  return result;
-}
-
-/**
- * Round a date to the nearest interval
- */
-function roundToInterval(date: Date, intervalMinutes: number): Date {
-  const ms = intervalMinutes * 60 * 1000;
-  return new Date(Math.round(date.getTime() / ms) * ms);
 }
 
 // ============================================================================
