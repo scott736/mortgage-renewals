@@ -289,7 +289,7 @@ export async function confirmPendingBooking(
     return { success: false, error: 'This confirmation link has expired. Please book again.' };
   }
 
-  // Claim before creating the calendar event so parallel confirms cannot double-book.
+  // Claim before recheck/create so parallel confirms cannot double-book.
   const claimKey = `pb:confirming:${token}`;
   const redis = await getRedis();
   if (redis) {
@@ -303,13 +303,8 @@ export async function confirmPendingBooking(
     }
   }
 
-  // Mark confirmed before createBooking so a second request sees non-pending status.
-  store.status = 'confirmed';
-  store.confirmed_at = new Date().toISOString();
-  await storeUpdate(token, store);
-
   try {
-    // Fail-closed: re-validate the slot is still free (vacation/OOO/busy) before createBooking.
+    // Fail-closed: re-validate the slot is still free (vacation/OOO/busy) before claiming confirmed.
     const service = getServiceById(store.service_id);
     const slotDuration = store.duration_override ?? service?.duration ?? 30;
     const slotStart = new Date(store.start_time);
@@ -333,9 +328,6 @@ export async function confirmPendingBooking(
       );
 
       if (!slotStillAvailable) {
-        store.status = 'pending';
-        delete store.confirmed_at;
-        await storeUpdate(token, store);
         if (redis) await redis.del(claimKey);
         return {
           success: false,
@@ -344,15 +336,18 @@ export async function confirmPendingBooking(
       }
     } catch (availError) {
       console.error('[pending-bookings] Availability recheck failed (fail closed):', availError);
-      store.status = 'pending';
-      delete store.confirmed_at;
-      await storeUpdate(token, store);
       if (redis) await redis.del(claimKey);
       return {
         success: false,
         error: 'Unable to verify slot availability. Please try again in a moment.',
       };
     }
+
+    // Mark confirmed after recheck succeeds so a second request sees non-pending status
+    // only once the slot is verified — not while recheck may still fail and roll back.
+    store.status = 'confirmed';
+    store.confirmed_at = new Date().toISOString();
+    await storeUpdate(token, store);
 
     const booking = await createBooking(store.bookingRequest);
     await emailDecr(store.guest_email);

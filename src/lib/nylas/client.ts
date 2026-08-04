@@ -280,8 +280,9 @@ function getCalendarId(member: TeamMember): string {
 
 /** Grant emails used as Nylas Availability participants for a team member. */
 function getParticipantEmails(member: TeamMember): string[] {
+  // Must match buildAvailabilityParticipants: fall back to member.email when a grant omits email.
   const fromGrants = (member.nylasGrants ?? [])
-    .map((g) => g.email?.trim())
+    .map((g) => (g.email || member.email).trim())
     .filter((email): email is string => Boolean(email));
   if (fromGrants.length > 0) {
     return [...new Set(fromGrants)];
@@ -367,11 +368,15 @@ async function buildAvailabilityParticipants(
   emailToMember: Map<string, TeamMember>;
 }> {
   const emailToMember = new Map<string, TeamMember>();
-  const participants: Array<{
-    email: string;
-    calendarIds: string[];
-    openHours?: ReturnType<typeof buildOpenHours>;
-  }> = [];
+  // Nylas requires unique participant emails per request; merge calendarIds when emails collide.
+  const participantByEmail = new Map<
+    string,
+    {
+      email: string;
+      calendarIds: string[];
+      openHours?: ReturnType<typeof buildOpenHours>;
+    }
+  >();
 
   for (const member of members) {
     const openHours = buildOpenHours(member);
@@ -386,16 +391,23 @@ async function buildAvailabilityParticipants(
       const email = (grant.email || member.email).trim();
       if (!email) continue;
       const calendarIds = await getConflictCalendarIdsForGrant(nylas, grant.grantId, member);
-      emailToMember.set(email.toLowerCase(), member);
-      participants.push({
-        email,
-        calendarIds,
-        ...(openHours && openHours.length > 0 ? { openHours } : {}),
-      });
+      const key = email.toLowerCase();
+      emailToMember.set(key, member);
+
+      const existing = participantByEmail.get(key);
+      if (existing) {
+        existing.calendarIds = [...new Set([...existing.calendarIds, ...calendarIds])];
+      } else {
+        participantByEmail.set(key, {
+          email,
+          calendarIds,
+          ...(openHours && openHours.length > 0 ? { openHours } : {}),
+        });
+      }
     }
   }
 
-  return { participants, emailToMember };
+  return { participants: [...participantByEmail.values()], emailToMember };
 }
 
 /**
