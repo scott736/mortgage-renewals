@@ -102,8 +102,8 @@ export const services: Service[] = [
     description:
       "Speak with a licensed Canadian mortgage professional about your upcoming renewal. We'll review your options, compare rates across 30+ lenders, and build a strategy to save you money — at no cost to you.",
     duration: 30,
-    bufferBefore: 5,
-    bufferAfter: 5,
+    bufferBefore: 0,
+    bufferAfter: 0,
     teamMembers: teamMembers.map((m) => m.id),
     roundRobin: true,
     icon: 'PhoneCall',
