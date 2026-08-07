@@ -60,21 +60,6 @@ export const teamMembers: TeamMember[] = [
     availability: DEFAULT_TZ,
   },
   {
-    id: 'jeremy',
-    name: 'Jeremy Kresky',
-    email: 'jeremy@lendcity.ca',
-    slug: 'jeremy-kresky',
-    title: 'Mortgage Agent',
-    photo: '/images/team/jeremy-kresky.webp',
-    bio: 'Specializes in complex renewals including agricultural, commercial, and non-standard income.',
-    services: ['renewal-strategy-call'],
-    nylasGrants: [
-      { grantId: '8d5b3f8a-3ceb-4110-9fa6-cfa373ea0a69', provider: 'microsoft', email: 'jeremy@lendcity.ca', isPrimary: true },
-    ],
-    calendars: DEFAULT_CALENDAR,
-    availability: DEFAULT_TZ,
-  },
-  {
     id: 'kirann',
     name: 'Kirann Sharma',
     email: 'kirann@lendcity.ca',
