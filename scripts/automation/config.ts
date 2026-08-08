@@ -7,10 +7,15 @@ import type { AutomationConfig, Category, ShowMappingEntry,TopicCluster } from "
 
 export const config = configJson as AutomationConfig;
 
+/** Muse Spark 1.2 on Meta Model API. Override with LLM_MODEL env if needed. */
+const MUSE_MODEL =
+  (typeof process !== "undefined" && process.env.LLM_MODEL) ||
+  "muse-spark-1.2";
+
 export const MODELS = {
-  CONTENT: "grok-4.5",
-  ANALYSIS: "grok-4.5",
-  UTILITY: "grok-4.5",
+  CONTENT: MUSE_MODEL,
+  ANALYSIS: MUSE_MODEL,
+  UTILITY: MUSE_MODEL,
 } as const;
 
 /**
